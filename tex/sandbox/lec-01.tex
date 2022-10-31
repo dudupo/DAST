@@ -1,0 +1,311 @@
+\input{tex/texlib/head}
+\title{<++>}
+
+Recitation Week 2 - Complexity and Correctness
+
+Abstract
+
+In this course (and many more), we will encounter algorithm. As
+you've scen in Intro, a single task can have many different solutions and
+implementations. One of the things that differ between sohstiona is their
+running time, or time complexity. We contime here the dicumsion
+you had in clas om this subject. We alas add the notion of algorithm's
+correctness, as we woul! ike to analyse only algorithms that solve the
+given problem for any given input, and show how we can prove this halds
+for a specific algorithm.
+
+ 
+
+1 Asymptotic notations - O,2,0
+
+Definition 1.1. (Reminder) Let f,y:N—+ B+, We define:
+* fit) =Ofin)) == 30 >0 AngEN Yn>ne fin) < Cyn)
+@ fin} =A2igin)) <= Fe>0 3noEN Yo> no eg(n) < fin)
+
+© fa) = Sf9ir}) fl) = Oia) A Fin}
+
+ 
+
+ 
+
+AUein))
+
+Draw schematic examples. For @ preferably of a function that “goes muta”
+betuwet tua lines, for example.
+
+In exence, Big O notation implies that “eventually, g ® larger that 7.
+Shuilarly, Big 8 notation implies that “eventually, g ® smaller than (°. Another
+way to put it ® that asymptotically, g is an upper bowl for f [for O, lower
+bound for 9). For ©, it describes asymptotic similarity, in the seuse that f
+“behaves like” g for lange values of n. We will se some formalization of th
+idea later talay.
+
+ 
+
+ 
+
+1.1 Properties
+General properties
+
+Claim 1.2. (Reflerive)
+For any f. fin) = O(n)
+
+Pwof. Choose ng =1,C = 1, for any n > ng we have f(n) < fin). a
+
+ 
+
+We sad last week this also hokls for 6. Does it also bold for 27 (was noted
+dn elas
+
+ 
+Claim 1.3. (Aatiaymmetr:
+For any fg, § =Olg) fg = 2(f).
+
+Remark 1.4. This is not exactly the came as an antisynsnuetric relation as you
+saw in Discrete Math! f = Ofg) and g= O(f) does not imply f = 9.
+
+Prof. f = O(g) > g = Of): Let ng, C withn > ng => fin) < Cy(n). Choose
+
+e= A, thus n > ng =Sefin) < a(n)
+QU) => fF = Oly): Similarly. oO
+
+ 
+
+  
+
+Claim 1.5. Symmetric f =O(g) —> 9 = Off)
+Prof.
+
+f= (9) <= (f=0@AT= 20) <= (9=2U)A9= 00) <> 9 = O/)
+a
+Exerelse 1.6. Show that the rtations O, 2,0 are transitive.
+
+(Transitiaity of O appears in Birt)
+Remark 1.7. This justifies thinking about 6 as an equivalence relation. In the
+sane way - f = Ofy) means “y is larger than f7: This is an order relation fon
+equivalence clases).
+
+Algebraic properties
+
+Question 1.8. (Can do this using poll)
+
+Let fig: NB.
+
+Prove or d&prove the following claims:
+
+1. diate rad = 0 => gin) = Q6fin))
+2 #6) = 0(F(3)}
+
+3. f(a) = O(n) = Pm) =O(™))
+4. fn) = Ofgin}) = 26 = (20)
+
+Solution. (With possilsle examples)
+‘ug = (u)8 ‘a= (ul f - apdexg wsyeg “p
+
+0 = FF = 140 =F (OO = F myep peronas v jo veg ona, “¢
+uf = (ul f - aplmexg weg 7
+"| SSIOe Tt] Toppenb oy rpg com, “y
+
+Example 1.9. (Factorial)
+
+Prove nl = Ofn")
+Prof. on! =[TL, i <TTL, n= 2" a
+We will see another proof, just to work our iduction muscles:
+Prof. (wing iduction) Choosing © = 1 and ne = U, prove by iluction on
+that Yn > ng inl < Cn".
+Base: for n = 1 this is immediate.
+
+Assumption: Assume this hokls for » — 1, that is (m —1)) <(m—1)"-*.
+Step: For n, we have:
+
+mls n-fn— 1)! <nfa— iyo! < nent) =n”
+And Bob's your uncle. a
+
+Exercise 110. (Appears in Exercise 1) If f(n) = Olg(n)) ond limo f(n) =
+ox, then log(f(n)) = Ollog(a(n)).
+
+Corollary 1.11. log(n!) = Ofmleg(n))
+
+Proof. We showed that mn! = Ofn"), andn! ——+ oo, thus lbg{n!) = Oflogin™)) =
+Ofmlog(n)). a
+2 Running time of algorithms
+
+In computational tasks the difficulty lies in solving the given problem for lange
+
+distances. The difficulty usually grows monotonically with the input size, so we
+
+would like to analyse it, meaning to calculate the amount of resources used by it
+
+asa function of the input size. To address this question we must define what
+
+resources we nreasure /oount and the way in which we nueasure/oount then.
+Given an algorithm, we woukl like to know: what is the algorithm's
+
+@ Space complexity?
+« Best time complexity?
+
+@ Worst time complexity?
+
+By “space” we mean memory. Both memory amd tine are machine-depemlent
+axl a8 you saw in class, we would like to study algorithms, the abstraction of
+programs, that do not depeml on the omling-language or the machine on which
+the instructions might run.
+
+Preparatory Question. The asymptotic notations (O,8,@) are equivalence
+classes that “ignore” two paraneters of functions:
+
+1. behaviour on finite prefixes of inputs
+2. constant scalings
+
+As was said in class, thik allows us to ignore machine-specific properties. What
+sort of such properties can we ignomw this way? Can you think of an example
+showlng the necessity of this approach?
+
+An example to show the necessity of the first property being ignored can be
+algorithms with a constant-time pre-processing stage, like constructing several
+dictionaries in python. For small inputs this stage sem to nuke the algorithn
+inefficient, but its advantages become clear in langer inputs.
+
+An example for the secoml property could be two machines, one on which the
+inultiplication instruction is efficient while the acklition instruction is ine nat,
+axl another with these efficiencies reversed. To decide which of the following
+algorithms to we inorder to double an integer depemdls on the machine we will
+use. Ignorlag constant scaling these algorithms become equivalent, aul we may
+think of any instruction as taking “one unit of time” for simplicity of analysis.
+
+   
+
+ 
+
+Algorithm 1 DoubleByFactor{m)
+1 return 2-n
+
+ 
+
+ 
+
+Algorithm 2 DoubleByAddition(n)
+1 return n+n
+
+ 
+
+ 
+
+Example 2.1, (Bubble Sort)
+ 
+
+Algorithm 3 ButhieSort( A, ....n —
+
+ 
+
+ 
+
+1 for i from () to n —2 do
+a suapped = Falke
+
+&
+&
+
+  
+
+if not swapped then
+& Break
+
+& return A
+
+ 
+
+Space Complexity:
+
+The input takes a space of 1.
+How much additional space did we ue? we only used i, 9 amd a flag. This
+is 4 constant amount, lets say C. A constant is Of1), thus the total space
+complexity is $(n) =n + O(1) = O(n).
+
+ 
+
+Beat Time Complexity:
+
+ 
+
+What is the “best case ecenano”? If the input A is already sorted when the
+program starts. In this ease, the Por loop in row $ will nun 1 times, each time
+with a constant cost for each execution, s the running time will be an +6 for
+some constants a, This is a linear function, this Ty ger(n) = O(n).
+
+ 
+
+ 
+
+ 
+
+Worat Time Complexity
+
+The worst case: the array is sorted in reversed order. In that case, the Fer loop
+invow 1 will ran times. Within each run, the inner For loop will run i times,
+each time with a constant cost for each execution. So the total running time
+will be:
+
++d= (XS) +d=0(n9}
+
+n=+te(n-D+...
+
+     
+
+Twoasrin)
+
+ 
+
+ 
+
+When we say “time complexity” we mean “worst tinve complexity”. Nor
+unally want to guarantee an upper bound on an algorithm’ nnniag the. This
+is done by upper bounding (giving a big} boul) ite worst time complexity.
+
+Now we know how to analyse the resources the algorithm takes. But we
+would like to analyse only eorreet algorithme. By correctness of an algorithm
+we mean it achieves the task at hand. In this case, that the output army is a
+sorted version of the input ene.
+
+We will prove this wing an iuvatiant - a property that is kept true in regard
+to sone quantity. Here the invariant will be that the suffix (last part) of the
+array is sorted, aud the quantity will be this cuflix’s length.
+
+ 
+3. (If there is time) Explanation on Loop Invariant:
+We can prove the correctness of iterative algorithms using an induction, which is proved
+on the iterations of the algorithm (each iteration is accounted as the “i” of the induction).
+This will be a key topic in your next course in Algorithms, but itis also important for our
+course. We can prove an algorithm's correctness using an induction, which is proved on
+the iterations of the algorithm (each iteration is accounted as the “? of the induction).
+The computer science way to call this sortof proofis a “loop invariant”, which we will
+now cover more precisely.
+
+Aloop invariantis a property of a program loop thatis true before (and after)each
+iteration. Itis a logical assertion, sometimes checked within the code by an assertion
+call. Knowing a code's invariants is essential in understanding the effect of a loop and
+proving its correctness. There are three parts of a loop invariant that we need to show:
+
+1. Initialization: It is true prior to the first iteration of the loop.
+2. Maintenance: If it is true before an iteration of the loop, it remains true before the
+
+next iteration.
+3. Termination: When the loop terminates, the invariant gives usa Useful property
+that helps show that the algorithm is correct.
+
+We'll see some examples:
+
+1. Example 1:
+int 3 = 9;
+
+for(int i=0; i<l0; i++)
+
+3-7
+
+. ‘wea ria nt?
+
+ 
+
+What is the bop invariant?
+max is always maximum among the first ielments of array A.
+\input{tex/texlib/tail}

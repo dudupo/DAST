@@ -1,0 +1,6 @@
+*.aux
+*.bcf
+*.fdb_latexmk
+*.fls
+*.log
+*.passwords

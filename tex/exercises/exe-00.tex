@@ -1,0 +1,43 @@
+\title{Data Structures - Assignment 0} 
+\author{Induction and Asymptotic Notations.}
+\date{September 2021}
+\input{tex/texlib/head}
+
+
+\paragraph{Exercise 1. Induction.}Prove the following statements by induction:
+\begin{enumerate}
+    \item \( 2^n \le n!\) for \(n\ge 2\).
+    \item \(\prod^{n}_{j=1}{\left(1 +\frac{1}{j^2}\right)} \le n+1\).
+    \item Prove that \( \displaystyle 1^3+2^3+3^3+\cdots+ n^3=\frac{n^2(n+1)^2}4 \).
+    \item For a convex polygon with n sides, the number of diagonals is \(\frac{1}{2}n\left(n-3\right)\).
+    \item For a binary tree (not necessarily complete) of height \(h\), the number of nodes is less then \(2^{h+1} -1 \).
+    \item Prove that for every positive integer \( n \) there exist positive integers \( a_{11} \),  \( a_{21} \), \( a_{22} \), \( a_{31} \), \( a_{32} \), \( a_{33} \), \( \dots \), \( a_{n1} \), \( a_{n2} \), \( \dots \), \( a_{nn} \) such that 
+\[ a_{11}^2=a_{21}^2+a_{22}^2=a_{31}^2+a_{32}^2+a_{33}^2=\cdots=a_{n1}^2+\cdots+a_{nn}^2.\]
+\end{enumerate}
+
+
+\paragraph{Exercise 2. O-notation.}
+\begin{enumerate}
+\item Prove that \(2^{\sqrt{n}} = \Omega\left(n^k\right)\) for every \(k \in \mathbb{R}^{+}\). 
+\item Prove that for every pair of functions \(f,g : \mathbb{N} \rightarrow \mathbb{R}^{+}\) \begin{equation*}
+     O \left( f + g \right) = O \left( \max{\{f,g\}} \right)
+\end{equation*} 
+
+
+\item Let \(\zeta_r\) be the area of \(r\)-radius circle. Define a \textit{tiling} as set of non overlapping rectangles with unit-length side such that each rectangle is inside the circle (and doesn't cross the border). Define \(\eta_r\) to be the maximum area of \(r\)-radius circle tiling, Prove that \( \zeta_r = \Theta\left(\eta_r\right)\).  
+\end{enumerate}
+
+% \paragraph{Exercise 2. Hierarchy Collapsing.}Let assume the following false statement,  suppose there exists an index \(k \in \mathbb{N}\) such that \(n^k = \Theta\left(n^{k+1}\right) \). 
+% \begin{enumerate}
+%     \item show that growth of arbitrary polynomial of degree \(d\) is bounded by constant  \( n^d = \Theta \left(1 \right)  \)
+%     \item show that the above holds also for exponential growth, \( 2^n = \Theta \left(1 \right)  \)
+% \end{enumerate}
+
+
+% \paragraph{Exercise 3. Arithmetic Mean Behavior.}Prove or disprove,  Let \(f:\mathbb{N} \rightarrow \mathbb{R}^{+}\) be a function such that: \( f(n) = \Theta\left(\frac{1}{n}\sum^{n}_{i=1}{f(i)}\right)\), let \(M\) be a set of \(log\left(n\right)\) arbitrary points, in the range \( \{1,2...,n\}\).
+
+% Does the following bound hold? \begin{equation*} 
+%     f(n) = \Theta\left(\frac{1}{n}\sum^{n}_{i=1, i\notin M }{f(i)}\right)
+% \end{equation*} 
+
+\input{tex/texlib/tail}
