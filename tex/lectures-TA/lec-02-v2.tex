@@ -52,6 +52,7 @@ As you might already notice, the same pattern has been used to bound both algori
 \paragraph{Example.}  \( T\left(n\right)  =4T\left(\frac{n}{2}\right)+d\cdot n \Rightarrow
 T\left(n\right) = \Theta\left(n^2\right)\) according to case (3). And \(T\left(n\right) & = 3T\left(\frac{n}{2}\right) + d\cdot n \Rightarrow T\left(n\right) = \Theta \left( n^{\log_{2}\left(3\right)}\right)\)
 also due to case (3).
+
 \begin{defbox}{Master Theorem, strong version.} 
 Now, let's generalize the simple version for arbitrary positive \(f\) and let \( a \ge 1, b > 1\). 
 
@@ -95,9 +96,10 @@ T\left(n\right) & =  \sum_{k=1}^{\log{n}}{n\cdot\log \left( \frac{n}{2^k}\right)
   = n\sum_{k=1}^{\log{n}}{ \left( \log n - k \right) } = \\ & = \Theta \left( n \log^2 \left(n\right)  \right) 
 \end{split}
 \end{equation*}
+za
+\pzaaragraph{Example.} Consider merge sort variation such that instead of splitting the array into two equals parts it's split them into different size arrays. The first one contains \( \frac{n}{10} \) elements while second contains the others \( \frac{9n}{10}\) elements.
 
-\paragraph{Example.} Consider merge sort variation such that instead of splitting the array into two equals parts it's split them into different size arrays. The first one contains \( \frac{n}{10} \) elements while second contains the others \( \frac{9n}{10}\) elements.
-
+\begin{algbox}{non-equal-merge alg.}
 \begin{algorithm}[H]
 \SetAlgoLined
 \KwResult{returns the sorted permutation of \(x_1 ... x_n \in \mathbb{R}^n \)  }
@@ -116,8 +118,8 @@ T\left(n\right) & =  \sum_{k=1}^{\log{n}}{n\cdot\log \left( \frac{n}{2^k}\right)
  return Merge(\(R_l, R_r\))
   
  }
- \caption{non-equal-merge alg.}
 \end{algorithm}
+\end{algbox}
 Note, that the master theorem achieves an upper bound, 
 \begin{equation*}
     \begin{split}
@@ -161,6 +163,7 @@ We will call the number of iteration till the stopping condition the recursion h
 \paragraph{Example. Karatsuba algorithm.} Many years it's was believed that multiplication can't done by less then \( \Omega \left( n^2 \right) \) time; until Karatsuba found the following algorithm. denote by \begin{equation*}
 z_0, z_1, z_2 \leftarrow x_{l}y_{r}, x_{l}y_{r} + x_{r}y_{l}, x_{r}y_{r}
 \end{equation*}Notice that \( z_1 = \left(x_{l}+x_{r}\right)\left(y_{l}+y_{r}\right) - z_{0} -z_{1} \). summarize the above yields the following pseudo code. 
+
 \begin{algbox}{Karatsuba alg.}
 \begin{algorithm}[H]
 \SetAlgoLined
