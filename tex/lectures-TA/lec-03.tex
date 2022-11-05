@@ -76,6 +76,14 @@ We have seen in the Lecture that no Algorithm can compute the $\max$ function wi
   Let $n \ in \mathbb{N}$ and consider the sequance $H = H_{1}, H_{2} \cdots H_{n} \in \mathbb{R} \left( * \right)$. we will say that $H$ is a Heap if for every $i \in [n]$ we have that: $H_{i} \le H_{2i}, H_{2i + 1}$ when we think of the value at indecis greater than $n$ as $H_{i>n} = -\infty$. 
 \end{defbox}
 
+Checking vital sigens: Are the following sequances are heaps? 
+\begin{enumerate}
+  \item 1,2,3,4,5,6,7,8,9,10 (Y)
+  \item 1,1,1,1,1,1,1,1,1,1  (Y)
+  \item 1,4,3,2,7,8,9,10     (N)
+  \item 1,4,2,5,6,3	     (Y)
+\end{enumerate}
+
 \begin{algbox}{Heapify-down.}
 \begin{algorithm}[H]
 % \SetAlgoLined
