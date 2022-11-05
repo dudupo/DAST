@@ -12,23 +12,23 @@
 In this course, any algorithm is defined relative to a task/problem/function, And it will be said correct if for any input it compute diserable output. For example, suppose that our task is to extract the maximum element from a given array.
 So the input space are all the arrays of numbers, and proving that a given algorithm is correct, requires from us to prove that for an aribtrary array the algorithm's out put is the the maximal number. Formally:  
 
-\begin{tcolorbox}
+\begin{defbox}
 \paragraph{Correctness.} We will say that an algorithm \( \mathcal{A}\) (an ordered set of operations) computes \( f:D_1 \rightarrow D_2 \) if for every \(x \in D_1\) the following equality holds \(f(x) = \mathcal{A}(x)\). Sometimes when it's obvious what is the goal function \(f\), we will abbreviate and say that \( \mathcal{A}\) is correct.       
-\end{tcolorbox}
+\end{defbox}
 \paragraph{}
 Examples of functions \(f\) might be: file saving, summing numbers, or posting a message in the forum.  
 
 Usually it will be convinant to divide the algortims into subsections and then characteristic, and prove correctness for each of them seapratly. One main technique is usning the notation of Loop Invariants. Loop Invariant is a property that characteristic a loop segment code  and satisfy the following conditions: 
 
 
-\begin{tcolorbox}
+\begin{defbox}
 \paragraph{Loop Invariant.} 
 \begin{enumerate}
     \item Initialization. The property holds (even) before the first iteration of the loop.   
     \item Conservation. As long as one performs the loop iterations, the property still holds.
     \item (optional) Termination. Exiting from the loop carrying information.
 \end{enumerate}
-\end{tcolorbox}
+\end{defbox}
 
 \paragraph{Task: Maximum finding.}
 \paragraph{Example.} Before dealing with the hard problem, let us face the naive algorithm to find the maximum of a given array.
