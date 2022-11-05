@@ -34,7 +34,7 @@ Usually it will be convinant to divide the algortims into subsections and then c
 \paragraph{Example.} Before dealing with the hard problem, let us face the naive algorithm to find the maximum of a given array.
 
 \begin{algbox}{Maximum finding.}
-\begin{algorithm}[H]
+\begin{algorithm*}[H]
 % \SetAlgoLined
 \KwResult{returns the maximum of \(a_1 ... a_n \in \mathbb{R}^n \)  }
  \ \\ 
@@ -44,8 +44,8 @@ Usually it will be convinant to divide the algortims into subsections and then c
         \(b \leftarrow \max \left(b, a_i \right) \)
     } 
  return \( b \) 
- \caption{maximum alg.}
-\end{algorithm}
+ %\caption{maximum alg.}
+\end{algorithm*}
 \end{algbox}
 
 What is the Loop Invariant here? \textit{"at the \(i\)-th iteration, \(b = \max{ \{ a_1 ... a_{i-1} \} } \)"}. The proof is almost identical to the naive case.   
