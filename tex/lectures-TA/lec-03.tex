@@ -72,7 +72,7 @@ Assume by induction, that for every \(m < j\) the property is correct, and consi
 \subsection*{Heaps.} We have seen in the Lecture that no Algorithm can compute the $\max$ function with less then $n-1$ comparisions. So our soultion above is indeed the best we could excpect for. The same is true for the searching problem, and yet we saw that if we are intersted in storing the numbers then, by storing them according to sorted order, we could compute each query in logratimic time via binary search. That arise the quastion, is it possible to have a similar result regrding the max problem?. Heaps are strucutres that in addition for supporting adding and removing elements are also enable to compute the maximum effincintly.  
 
 
-\begin{algbox}{Heapify.}
+\begin{algbox}{Heapify-down.}
 \begin{algorithm}[H]
 % \SetAlgoLined
 \KwResult{returns the maximum of \(a_1 ... a_n \in \mathbb{R}^n \)  }
@@ -84,11 +84,23 @@ next $\leftarrow$ i \\
   next $\leftarrow 2i + 1$
 }
 \If{ $ i \neq $ next } {
-  $ H_{i} \leftarrow H_{\text{next}} $ \\ 
+  $ H_{i} \rightleftarrow H_{\text{next}} $ \\ 
   Heapify$\left( \text{next}  \right)$
 }
 \end{algorithm}
 \end{algbox}
+\begin{algbox}{Heapify-up.}
+\begin{algorithm}[H]
+% \SetAlgoLined
+\KwResult{returns the maximum of \(a_1 ... a_n \in \mathbb{R}^n \)  }
+perent $\leftarrow \lfloor i/2 \rfloor $ \\
+\If{ perent $  > 0 \text{ and }  H_{\text{perent}} \le H_{i}$ } { 
+  $ H_{i} \leftrightarrow H_{\text{perent}} $ \\ 
+  Heapify-up$\left( \text{perent}  \right)$
+}
+\end{algorithm}
+\end{algbox}
+
 
 
 \begin{algbox}{Heappush.}
