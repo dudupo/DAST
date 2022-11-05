@@ -41,12 +41,13 @@ where \(n^{\log 3}  \sim n^{1.58} < n^2 \).
 \section{Master Theorem, one Theorem to bound them all. }
 As you might already notice, the same pattern has been used to bound both algorithms. The master theorem is the result of the recursive expansion. it classifies recursive functions at the form of \(T\left(n\right) = a\cdot T\left( \frac{n}{b} \right) + f\left(n\right) \), for positive function \(f : \mathbb{N} \rightarrow \mathbb{R}^{+} \).       
 
-\paragraph{Master Theorem, simple version.} First, Consider the case that \(f = n^c\). Let \( a \ge 1, b > 1\) and \( c \ge 0 \). then: 
+\begin{defbox}{Master Theorem, simple version.} First, Consider the case that \(f = n^c\). Let \( a \ge 1, b > 1\) and \( c \ge 0 \). then: 
 \begin{enumerate}
     \item if \(\frac{a}{b^c} < 1 \) then \( T\left(n\right) = \Theta \left( n^c \right) \) \ \ \ \textbf{(\(f\) wins)}.
     \item if \(\frac{a}{b^c} = 1 \) then \( T\left(n\right) = \Theta \left( n^c \log_{b} \left(n\right) \right) \).
     \item if \(\frac{a}{b^c} > 1 \) then \( T\left(n\right) = \Theta \left( n^{\log_{b} \left(a\right)} \right) \) \ \ \ \textbf{(\(f\) loose)}.
-\end{enumerate}
+  \end{enumerate}
+\end{defbox}
 
 \paragraph{Example.}  \( T\left(n\right)  =4T\left(\frac{n}{2}\right)+d\cdot n \Rightarrow
 T\left(n\right) = \Theta\left(n^2\right)\) according to case (3). And \(T\left(n\right) & = 3T\left(\frac{n}{2}\right) + d\cdot n \Rightarrow T\left(n\right) = \Theta \left( n^{\log_{2}\left(3\right)}\right)\)
