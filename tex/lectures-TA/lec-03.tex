@@ -1,22 +1,22 @@
 \title{Heaps - Recitation 4} 
-\author{Correctness, Loop Invariants And Heaps.}
+\author{Correctness, Loop Invariant And Heaps.}
 \input{../texlib/head}
 
 %\begin{abstract}
-  Apart of quantify the resource requirement of our algorithms we are also intersted to prove that they indeed work. In this Recitation we will demonstrate how to prove correctness via the notation of loop invariant. In addition we will present the first (non-trival) data structre in course, and prove that it allow us to compute the maximum efficintly.     
+  Apart of quantify the resource requirement of our algorithms we are also interested to prove that they indeed work. In this Recitation we will demonstrate how to prove correctness via the notation of loop invariant. In addition we will present the first (non-trivial) data structure in course, and prove that it allow us to compute the maximum efficiently.     
    
 %\end{abstract}
 
 
 \subsection*{Correctness And Loop Invariant.}
-In this course, any algorithm is defined relative to a task/problem/function, And it will be said correct if for any input it compute diserable output. For example, suppose that our task is to extract the maximum element from a given array.
-So the input space are all the arrays of numbers, and proving that a given algorithm is correct, requires to prove that for an aribtrary array the algorithm's out put is the the maximal number. Formally:  
+In this course, any algorithm is defined relative to a task/problem/function, And it will be said correct if for any input it compute desirable output. For example, suppose that our task is to extract the maximum element from a given array.
+So the input space are all the arrays of numbers, and proving that a given algorithm is correct, requires to prove that for an arbitrary array the algorithm's out put is the the maximal number. Formally:  
 
 \begin{defbox}{Correctness.}
 We will say that an algorithm \( \mathcal{A}\) (an ordered set of operations) computes \( f:D_1 \rightarrow D_2 \) if for every \(x \in D_1 \Rightarrow f(x) = \mathcal{A}(x)\). Sometimes when it's obvious what is the goal function \(f\), we will abbreviate and say that \( \mathcal{A}\) is correct.       
 \end{defbox}
 \paragraph{}
-Other Examples of functions \(f\) might be including any compution taks: file saving, summing numbers, posting a message in the forum, etc. Let's dive back into the maximum extraction problem and see how correctenss should be prove in practice.     
+Other Examples of functions \(f\) might be including any computation task: file saving, summing numbers, posting a message in the forum, etc. Let's dive back into the maximum extraction problem and see how correctness should be prove in practice.     
 \paragraph{Task: Maximum Finding.} \textit{Given $n\in \mathbb{N}$ numbers $a_1, a_2, \cdots a_n \in \mathbb{R}$ write an Algorithm which returns their maximum.} 
 
 Consider the follows suggestion. How would you prove it correct?  
@@ -33,7 +33,7 @@ Consider the follows suggestion. How would you prove it correct?
 \end{algorithm*}
 \end{algbox}
 
-Usually it will be convinant to divide the algortims into subsections and then characteristic, and prove correctness for each of them seapratly. One main technique is usning the notation of Loop Invariants. Loop Invariant is a property that characteristic a loop segment code  and satisfy the following conditions: 
+Usually it will be convineint to divide the algorithms into subsections and then characteristic, and prove correctness for each of them separately. One main technique is using the notation of Loop Invariant. Loop Invariant is a property that characteristic a loop segment code  and satisfy the following conditions: 
 \begin{defbox}{Loop Invariant.} 
 \begin{enumerate}
     \item Initialization. The property holds (even) before the first iteration of the loop.   
@@ -69,27 +69,27 @@ Assume by induction, that for every \(m < j\) the property is correct, and consi
 
 \paragraph{Loop Invariant In The Cleverer Alg.} Consider now the linear time algorithm:
 
-\paragraph{Task: The Superpharm Problem.}\textit{you are requested to maintain a pharmacy line, in each turn you get one of the fallowing queries, etheir a new customer enter into the shop, ethir apharmacist request for the next person stand in front. In addtion, diffrent customers have difftent priorites, So you are asked to gurnte that in each turn the person with the heigset priority will be at the front. }
+\paragraph{Task: The Superpharm Problem.}\textit{you are requested to maintain a pharmacy line, in each turn you get one of the fallowing queries, either a new customer enter into the shop, either a pharmacist request for the next person stand in front. In addition, different customers have different priorities, So you are asked to gurnte that in each turn the person with the height priority will be at the front. }
 
-Before we condsider a sophisticated soultion, What is the running time for the naive soultion? (maintaining the line as linear array) ($\sim O\left( n^2 \right)$).  
+Before we consider a sophisticated solution, What is the running time for the naive solution? (maintaining the line as linear array) ($\sim O\left( n^2 \right)$).  
 %\textit{ You are given string $x = x_{1},x_{2} ... x_{m}$ such that $x_{i}$ is ethier number $x_{i} \in \mathbb{R}$ or the symbol $q$. for example, consider the following possible input $1,2,13,4,5,q,q,3,q$. Also define $S_{0} = \{ \}$.  In each turn $i \in [m]$ print} 
-\subsection*{Heaps.} Heaps are strucutres that in addition for supporting adding and removing elements are also enable to compute the maximum effincintly.  
+\subsection*{Heaps.} Heaps are structures that in addition for supporting adding and removing elements are also enable to compute the maximum efficiently.  
 
-We have seen in the Lecture that no Algorithm can compute the $\max$ function with less then $n-1$ comparisions. So our soultion above is indeed the best we could excpect for. The same is true for the searching problem, and yet we saw that if we are intersted in storing the numbers then, by storing them according to sorted order, we could compute each query in logratimic time via binary search. That arise the quastion, is it possible to have a similar result regrding the max problem?. 
+We have seen in the Lecture that no Algorithm can compute the $\max$ function with less then $n-1$ comparisons. So our solution above is indeed the best we could expect for. The same is true for the searching problem, and yet we saw that if we are interested in storing the numbers then, by storing them according to sorted order, we could compute each query in logarithmic time via binary search. That arise the question, is it possible to have a similar result regarding the max problem?. 
 \begin{defbox}{Heap}
-  Let $n \in \mathbb{N}$ and consider the sequance $H = H_{1}, H_{2} \cdots H_{n} \in \mathbb{R} \left( * \right)$. we will say that $H$ is a Heap if for every $i \in [n]$ we have that: $H_{i} \le H_{2i}, H_{2i + 1}$ when we think of the value at indecis greater than $n$ as $H_{i>n} = -\infty$. 
+  Let $n \in \mathbb{N}$ and consider the sequence $H = H_{1}, H_{2} \cdots H_{n} \in \mathbb{R} \left( * \right)$. we will say that $H$ is a Heap if for every $i \in [n]$ we have that: $H_{i} \le H_{2i}, H_{2i + 1}$ when we think of the value at indices greater than $n$ as $H_{i>n} = -\infty$. 
 \end{defbox}
 
-\paragraph{Checking vital sigens.}Are the following sequances are heaps? 
+\paragraph{Checking vital signs.}Are the following sequences are heaps? 
 \begin{enumerate}
   \item 1,2,3,4,5,6,7,8,9,10 (Y)
   \item 1,1,1,1,1,1,1,1,1,1  (Y)
   \item 1,4,3,2,7,8,9,10     (N)
   \item 1,4,2,5,6,3	     (Y)
 \end{enumerate}
-How mach is cost (running time) to compute the the min of $H$? (without change the heap). ($O\left( 1 \right)$). Assume that option 4 is our Superpharm Line, let's try to imagne how should we maintain the line. After sereving the customer at top, what can be said on $ \{ H_{2}, H_{3}\}$? or $\{H_{i>3}\}?$ (the second heighset value is in $\{H_{2}, H_{3} \}$.)   
+How mach is cost (running time) to compute the the min of $H$? (without change the heap). ($O\left( 1 \right)$). Assume that option 4 is our Superpharm Line, let's try to imagine how should we maintain the line. After serving the customer at top, what can be said on $ \{ H_{2}, H_{3}\}$? or $\{H_{i>3}\}?$ (the second heighset value is in $\{H_{2}, H_{3} \}$.)   
 
-\paragraph{Subtask: Extracting Heap's Minimum.} \textit{Let $H$ be an Heap at size $n$, Write algorithm which return $H_1$, erasie it and retuens $H^\prime$, an Heap which contain all the remain elemenets.} 
+\paragraph{Subtask: Extracting Heap's Minimum.} \textit{Let $H$ be an Heap at size $n$, Write algorithm which return $H_1$, erase it and returns $H^\prime$, an Heap which contain all the remain elements.} 
 \textbf{Solution:} 
 
 \begin{algbox}{Heappop.}
@@ -122,8 +122,8 @@ next $\leftarrow$ i \\
 }
 \end{algorithm}
 \end{algbox}
-\paragraph{Claim.} Assume that $H$ satisfiey the Heap inquality for all the elements except $H_{j}$. Namely for any $i \neq j$ we have that $H_{i} \le H_{2i}, H_{2i+1}$. Then applying Heapify-down on $H$ at index $j$ returns an heap. 
-\paragraph{Proof.} Induction on $n - j$. Base case, $n-j < n/2 \Rightarrow j > n/2$, Hence $2j,2j+1 \notin [n]$ and we have that the Heap propety holds for any $i$.
+\paragraph{Claim.} Assume that $H$ satisfies the Heap inequality for all the elements except $H_{j}$. Namely for any $i \neq j$ we have that $H_{i} \le H_{2i}, H_{2i+1}$. Then applying Heapify-down on $H$ at index $j$ returns an heap. 
+\paragraph{Proof.} Induction on $n - j$. Base case, $n-j < n/2 \Rightarrow j > n/2$, Hence $2j,2j+1 \notin [n]$ and we have that the Heap property holds for any $i$.
 
 Assume the correctness of the claim for any $j^\prime$ satisfy $j^\prime > j$ and consider $j$. Denote by $H^\prime$ the state of the heap after the swapping at line number 7 and let $i\in [n]$. First Notice that if $j \neq 2i, 2i+1 $ and $i \neq 2j, 2j+1$ then $H^{\prime}_{i}=H_{i} \le H_{2i}= H^{\prime}_{2i}$ (and in similar to $2i+1$). So it left to consider the case where  $ i = \lfloor j/2 \rfloor $ and $ i = j$.  %  $H_{j} < H_{2j},H_{2j+1}$ and as we swapped  
 
@@ -134,8 +134,8 @@ Assume the correctness of the claim for any $j^\prime$ satisfy $j^\prime > j$ an
 \begin{algorithm}[H]
 % \SetAlgoLined
 \KwResult{returns the maximum of \(a_1 ... a_n \in \mathbb{R}^n \)  }
-perent $\leftarrow \lfloor i/2 \rfloor $ \\
-\If{ \text{perent} $  > 0 \text{ and }  H_{\text{perent}} \le H_{i}$ } { 
+parent $\leftarrow \lfloor i/2 \rfloor $ \\
+\If{ \text{parent} $  > 0 \text{ and }  H_{\text{perent}} \le H_{i}$ } { 
   $ H_{i} \leftrightarrow H_{\text{perent}} $ \\ 
   Heapify-up$\left( \text{perent}  \right)$
 }
