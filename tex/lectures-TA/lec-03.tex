@@ -125,7 +125,7 @@ next $\leftarrow$ i \\
 \paragraph{Claim.} Assume that $H$ satisfiey the Heap inquality for all the elements except $H_{j}$. Namely for any $i \neq j$ we have that $H_{i} \le H_{2i}, H_{2i+1}$. Then applying Heapify-down on $H$ at index $j$ returns an heap. 
 \paragraph{Proof.} Induction on $n - j$. Base case, $n-j < n/2 \Rightarrow j > n/2$, Hence $2j,2j+1 \notin [n]$ and we have that the Heap propety holds for any $i$.
 
-Assume the correctness of the claim for any $j^\prime$ satisfy $j^\prime > j$ and consider $j$. 
+Assume the correctness of the claim for any $j^\prime$ satisfy $j^\prime > j$ and consider $j$. Denote by $H^\prime$ the state of the heap after the swapping at line number(7) and let $i\in [n]$. First Notice that if $j \neq 2i, 2i+1 $ and $i \neq 2j, 2j+1$ then $H^{\prime}_{i}=H_{i} \le H_{2i}= H^{\prime}_{2i}$ (and in similar to $2i+1$). So it left to consider the case where  $ i = \lfloor j/2 \rfloor $ and $ i = j$.  %  $H_{j} < H_{2j},H_{2j+1}$ and as we swapped  
 
 \paragraph{Insertion.} blabla 
 
