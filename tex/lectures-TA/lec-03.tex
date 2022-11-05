@@ -97,7 +97,7 @@ How mach is cost (running time) to compute the the min of $H$? (without change t
 % \SetAlgoLined
 \KwResult{returns the maximum of \(a_1 ... a_n \in \mathbb{R}^n \)  }
 ret $\leftarrow H_{1} $ \\
-$ H_{1} \leftarrow -\infty $  \\
+$ H_{1} \leftarrow \infty $  \\
 Heapify-down$\left( 1 \right)$ \\
 return ret  
 \end{algorithm}
@@ -122,6 +122,8 @@ next $\leftarrow$ i \\
 }
 \end{algorithm}
 \end{algbox}
+\paragraph{Claim.} Assume that $H$ satisfiey the Heap inquality for all the elements except $H_{1}$. Namely for any $i > 1$ we have that $H_{i} \le H_{2i}, H_{2i+1}$. Then applying Heapify-down on $H$ retuens an heap. 
+\paragraph{Proof.}
 
 \paragraph{Insertion.} blabla 
 
