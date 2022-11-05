@@ -65,15 +65,15 @@ Assume by induction, that for every \(m < j\) the property is correct, and consi
 \end{algorithm}
 \end{algbox}
 
-\paragraph{Loop Invariant In The Cleverer Alg.} Consider now the linear time algorithm:
 
-\paragraph{Task: The Superpharm Problem.}\textit{you are requested to maintain a pharmacy line, in each turn you get one of the fallowing queries, either a new customer enter into the shop, either a pharmacist request for the next person stand in front. In addition, different customers have different priorities, So you are asked to gurnte that in each turn the person with the height priority will be at the front. }
+\paragraph{Task: The Superpharm Problem.}\textit{You are requested to maintain a pharmacy line. In each turn, you get one of the following queries, either a new customer enters the shop, or the pharmacist requests the next person to stand in front. In addition, different customers have different priorities, So you are asked to guarantee that in each turn, the person with the height priority will be at the front.}
 
-Before we consider a sophisticated solution, What is the running time for the naive solution? (maintaining the line as linear array) ($\sim O\left( n^2 \right)$).  
+Before we consider a sophisticated solution, What is the running time for the naive solution?(maintaining the line as a linear array) ($\sim O\left( n^2 \right)$).  
 %\textit{ You are given string $x = x_{1},x_{2} ... x_{m}$ such that $x_{i}$ is ethier number $x_{i} \in \mathbb{R}$ or the symbol $q$. for example, consider the following possible input $1,2,13,4,5,q,q,3,q$. Also define $S_{0} = \{ \}$.  In each turn $i \in [m]$ print} 
-\subsection*{Heaps.} Heaps are structures that in addition for supporting adding and removing elements are also enable to compute the maximum efficiently.  
+\subsection*{Heaps.} Heaps are structures that enable computing the maximum efficiency in addition to supporting adding and removing elements.
 
-We have seen in the Lecture that no Algorithm can compute the $\max$ function with less then $n-1$ comparisons. So our solution above is indeed the best we could expect for. The same is true for the searching problem, and yet we saw that if we are interested in storing the numbers then, by storing them according to sorted order, we could compute each query in logarithmic time via binary search. That arise the question, is it possible to have a similar result regarding the max problem?. 
+We have seen in the Lecture that no Algorithm can compute the $\max$ function with less than $n-1$ comparisons. So our solution above is indeed the best we could expect for. The same is true for the search problem. Yet, we saw that if we are interested in storing the numbers, then, by keeping them according to sorted order, we could compute each query in logarithmic time via binary search. That raises the question, is it possible to have a similar result regarding the max problem?
+
 \begin{defbox}{Heap}
   Let $n \in \mathbb{N}$ and consider the sequence $H = H_{1}, H_{2} \cdots H_{n} \in \mathbb{R} \left( * \right)$. we will say that $H$ is a Heap if for every $i \in [n]$ we have that: $H_{i} \le H_{2i}, H_{2i + 1}$ when we think of the value at indices greater than $n$ as $H_{i>n} = -\infty$. 
 \end{defbox}
