@@ -85,7 +85,7 @@ next $\leftarrow$ i \\
 }
 \If{ $ i \neq $ next } {
   $ H_{i} \leftrightarrow H_{\text{next}} $ \\ 
-  Heapify$\left( \text{next}  \right)$
+  Heapify-down$\left( \text{next}  \right)$
 }
 \end{algorithm}
 \end{algbox}
@@ -107,30 +107,20 @@ perent $\leftarrow \lfloor i/2 \rfloor $ \\
 \begin{algorithm}[H]
 % \SetAlgoLined
 \KwResult{returns the maximum of \(a_1 ... a_n \in \mathbb{R}^n \)  }
- \ \\ 
- \For{ \(i \in [n] \) } { 
-        \ \\ 
-	\If { \(a_{i} = x\) }{
-	  return \(i, a_{i}\)
-        }
-    } 
-    return \( \Delta \) 
+$ H_{n} \leftarrow v $ \\ 
+Heapify-up$\left( n \right)$\\
+$ n \leftarrow n + 1 $ 
 \end{algorithm}
 \end{algbox}
-
 
 \begin{algbox}{Heappop.}
 \begin{algorithm}[H]
 % \SetAlgoLined
 \KwResult{returns the maximum of \(a_1 ... a_n \in \mathbb{R}^n \)  }
- \ \\ 
- \For{ \(i \in [n] \) } { 
-        \ \\ 
-	\If { \(a_{i} = x\) }{
-	  return \(i, a_{i}\)
-        }
-    } 
-    return \( \Delta \) 
+ret $\leftarrow H_{1} $ \\
+$ H_{1} \leftarrow -\infty $  \\
+Heapify-down$\left( 1 \right)$ \\
+return ret  
 \end{algorithm}
 \end{algbox}
 
