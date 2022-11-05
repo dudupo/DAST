@@ -89,7 +89,9 @@ We have seen in the Lecture that no Algorithm can compute the $\max$ function wi
 \end{enumerate}
 How mach is cost (running time) to compute the the min of $H$? (without change the heap). ($O\left( 1 \right)$). Assume that option 4 is our Superpharm Line, let's try to imagne how should we maintain the line. After sereving the customer at top, what can be said on $ \{ H_{2}, H_{3}\}$? or $\{H_{i>3}\}?$ (the second heighset value is in $\{H_{2}, H_{3} \}$.)   
 
-\paragraph{Subtask: Extracting Heap's Minimum.} \textit{Let $H$ be an Heap at size $n$, Write algorithm which return $H_1$ and $H^\prime$ Heap which contain all the elemenets of $H / H_1 $. } 
+\paragraph{Subtask: Extracting Heap's Minimum.} \textit{Let $H$ be an Heap at size $n$, Write algorithm which return $H_1$, erasie it and retuens $H^\prime$, an Heap which contain all the remain elemenets.} 
+\textbf{Solution:} 
+
 \begin{algbox}{Heappop.}
 \begin{algorithm}[H]
 % \SetAlgoLined
