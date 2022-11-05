@@ -52,7 +52,7 @@ As you might already notice, the same pattern has been used to bound both algori
 \paragraph{Example.}  \( T\left(n\right)  =4T\left(\frac{n}{2}\right)+d\cdot n \Rightarrow
 T\left(n\right) = \Theta\left(n^2\right)\) according to case (3). And \(T\left(n\right) & = 3T\left(\frac{n}{2}\right) + d\cdot n \Rightarrow T\left(n\right) = \Theta \left( n^{\log_{2}\left(3\right)}\right)\)
 also due to case (3).
-\paragraph{Master Theorem, strong version.} 
+\begin{defbox}{Master Theorem, strong version.} 
 Now, let's generalize the simple version for arbitrary positive \(f\) and let \( a \ge 1, b > 1\). 
 
 \newcommand{\logab}{\log_{b} \left(a\right)}
@@ -65,7 +65,7 @@ Now, let's generalize the simple version for arbitrary positive \(f\) and let \(
     \item if there exist \(\varepsilon >0 ,c<1\) and \(n_0 \in \mathbb{N} \) such that  \(f\left(n\right) = \Omega \left( n^{\logab + \varepsilon }\right)\) and for every \( n > n_0 \) \(a \cdot f\left( \frac{n}{b} \right) \le c f\left(n\right)\)  then \( T\left(n\right) = \theta \left( f\left(n\right) \right) \) \ \ \ \textbf{(\(f\) wins)}.
     
 \end{enumerate}
-
+\end{defbox}
 \newcommand{\TT}[2]{#1 T\left(\frac{n}{#2}\right)}
 
 \paragraph{Examples}
