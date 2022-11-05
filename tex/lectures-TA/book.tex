@@ -1,4 +1,430 @@
-\input{../texlib/head}
+\section{Data Structures - Recitation 0} 
+\author{Induction and Asymptotic Notations.}
+\date{September 2021}
+\input{tex/texlib/head}
+
+ 
+
+% \section{Time Planning.}
+% \begin{enumerate}
+%     \item Welcome words, general information, listing the recitation topics \& QA. 7\textbf{m} (section 1).
+%     \item Explain (remind) induction and presenting the first first example. 10\textbf{m}.
+%     \item Second weak induction example 4\textbf{m}.
+%     \item Strong induction 7\textbf{m}.
+%     \item Introduce, the big O. explain the object shortly, plot graphs. yet still not formal definitions. 7\textbf{m}.  
+%     \item Shoot the definitions of the \(O, \Omega, \Theta\) at one. 7\textbf{m}.
+%     \item 3\textbf{m} spare + break. 
+%     \item Review again the asymptotic notations, with examples from section 4. Q\&A. 7\textbf{m}
+%     \item Lemma 21 7\textbf{m}
+%     \item Claim 22 7\textbf{m}
+%     \item The claim beneath Claim 22 7\textbf{m}
+%     \item Example 23 7\textbf{m} (should take more time, the above claims will pay the tax). 
+%     \item Logarithmic Rules 7\textbf{m}. 
+% \end{enumerate}
+% \section{General Course Information.}
+% \begin{enumerate}
+%     \item Introduce yourself
+%     \item course mail: huji.dast.2022a@gmail.com
+%     \item targilim scoring: 0.85 \( \cdot \) Test + 0.15 \( \cdot \) Average(\(N - 2\)). 
+% \item  introduction to the course: \begin{enumerate}
+%     \item  It’s important \& fun: \begin{enumerate}
+%         \item We going to learn some data structures: Heaps, Trees, Hash Tables
+%         \item And some algorithms: Sorting, Minimal Spanning Tree, Shortest Path
+%     \end{enumerate}
+%     \item Doing your homework by yourself is the best way to improve your solving problems skill.
+% \end{enumerate}
+% \end{enumerate}
+
+% \paragraph{Abstract.} Today we will cover induction, infinite series, and asymptotic notation. These tools will come in handy (in the next couple of weeks) when we want to find the runtime complexity of an algorithm, specifically using the ’Master Theorem’, to give asymptotic bounds for recursion relations, and to prove loop invariants using (finite) induction.
+
+\section{Induction.}
+\paragraph{What is induction?}
+\begin{enumerate}
+    \item A mathematical proof technique. It is essentially used to prove that a property \(P(n)\) holds for every natural number \(n\).
+    \item The method of induction requires two cases to be proved:
+    \begin{enumerate}
+        \item The first case, called the base case, proves that the property holds for the first element.
+        \item The second case, called the induction step, proves that if the property holds for one natural number, then it holds for the next natural number.
+    \end{enumerate}
+    \item The domino metaphor. 
+\end{enumerate}
+\paragraph{The two types of induction, their steps, and why it makes sense} (Strong vs Weak) - Emphasize the change in the induction step.
+\paragraph{Example 1. (Weak induction)} Prove that \( \forall n \in  N \)
+\( \sum_{i=0}^{n}{i} = \frac{n(n+1)}{2} \).
+
+
+Proof. Base: For \(n = 1\), \(\sum_{i=0}^{1}{1} = 1 = \frac{(1+1)\cdot 1}{2} \).
+
+Assumption: Assume that the claim holds for \(n\).
+Step: 
+\begin{equation*}
+ \sum_{i=0}^{n+1}{i} = \left( \sum_{i=0}^{n}{i} \right) + n+1 = \frac{n(n+1)}{2} + n + 1 = \frac{n(n+1) + 2\cdot (n+1)}{2} = \frac{(n+1)(n+2)}{2} 
+\end{equation*}
+\paragraph{Example 2. (Weak induction)} Let \(q\in \mathbb{R} / \{1\}\), consider the geometric series \( 1,q,q^2,q^3....q^k...\). Prove that the sum of the first \(k\) elements is \begin{equation*}
+     1+q+q^2+...+q^{k-1}+q^k = \frac{q^{k+1}-1}{q-1}
+\end{equation*}
+
+Proof. Base: For \(n = 1\), we get \( \frac{q^{k+1}-1}{q-1} = \frac{q-1}{q-1} = 1\). 
+Assumption: Assume that the claim holds for \(k\). then:
+Step: 
+\begin{equation*}
+\begin{split}
+    1+q+q^2+...+q^{k-1}+q^k + q^{k+1} &=  \frac{q^{k}-1}{q-1} + q^{k+1}  = \frac{q^{k+1}-1 +q^{k+1}\left(q-1\right) }{q-1} = \\ &\frac{\textcolor{red}{q^{k+1}}-1 +q^{k+2} - \textcolor{red}{q^{k+1}}  }{q-1} = \frac{q^{k+2}-1}{q-1} 
+\end{split}
+\end{equation*}
+
+
+% \ctt{Finish the induction proof and add alternative proof by counting. I am not sure what is favored, exposing both ways (at the first example) will make clear that induction is only a single proofing tool and surly not the only one. Yet from didactic point of view, it might confuses. }
+
+\paragraph{Example 3. (Strong induction)} Let there be a chocolate bar that consists of \(n\) square chocolate blocks. Then it takes exactly \(n - 1\) snaps to separate it into the \(n\) squares no matter how we split it.
+
+
+Proof. By strong induction. Base: For \(n = 1\), it is clear that we need \(0\) snaps. Assumption: Assume that for \textbf{every} \(m < n \), this claim holds.
+
+
+Step: We have in our hand the given chocolate bar with \(n\) square chocolate blocks. Then we may snap it anywhere we like, to get two new chocolate bars: one with some \( k \in [n]\) chocolate blocks and one with \(n - k\) chocolate blocks. From the induction assumption, we know that it takes \(k - 1\) snaps to separate the first bar, and \(n - k - 1\) snaps for the second one. And to sum them up, we got exactly \[ (k - 1) + (n - k - 1) + 1 = n - 1 \] snaps.
+
+
+\section{Asymptotic Notations.}
+\paragraph{Definition} Let \( f, g : \mathbb{N} \rightarrow \mathbb{R}^{+} \). We say that \( f(n) = O(g(n))\)  if \( \exists N \in \mathbb{N}, \exists c > 0 \) s.t. \( \forall n \ge N \ : \ f(n) \le c \cdot g(n)\)
+\paragraph{Example} For exmaple, if \(f(n) = n + 10 \) and \( g(n) = n^2\)
+, then \(f(n) = O(g(n)) \) (Draw the graphs) for \(n \ge 5 \):
+\(f(n) = n + 10 \le n + 2n = 3n \le n \cdot n = n^2\)
+\paragraph{Definition} Let \( f, g : \mathbb{N} \rightarrow \mathbb{R} \)
+We say that \(f(n) = \Omega(g(n))\) if \(g(n) = O(f(n))\), equivalently,
+\( \exists N \in \mathbb{N}, \exists c > 0 \) s.t. \( \forall n \ge N c_0· g(n) \le f(n) \)
+\paragraph{Example} Also if \( f(n) = 5n\) and \(g(n) = n^2\), then \(f(n) = O(g(n))\) (Now discuss intuition - no matter how much we “stretch” \(f, g\) is still the winner)
+\paragraph{Definition} Let \( f, g : \mathbb{N} \rightarrow \mathbb{R} \), We say that \(f(n) = \Omega(g(n))\) if:
+\( \exists N \in \mathbb{N}, \exists c > 0 \) s.t \( \forall n \ge N \ f(n) \ge c \cdot g(n) \).
+
+\paragraph{Example} For exmaple, if \(f(n) = n + 10\) and \(g(n) = n^2\)
+, then \(g(n) = \Omega(f(n))\)
+
+\paragraph{Definition} Let \( f, g : \mathbb{N} \rightarrow \mathbb{R} \), We say that \(f(n) = \Theta(g(n))\) if:
+\(f(n) = O(g(n))\) and \(f(n) = \Omega(g(n))\)
+That is, we say that \(f(n) = \Theta(g(n))\) if:
+\( \exists N \in \mathbb{N}, \exists c_1, c_2 > 0\) s.t. \(\forall n \ge N \ c_1\cdotg(n) \le f(n) \le c_2 \cdot g(n)\)
+
+\paragraph{Example} For every \(f : \mathbb{N} \rightarrow \mathbb{R}, f(n) = \Theta(f(n))\)
+\paragraph{Example} If \(p(n) = n^5\) and \(q(n) = 0.5n^5 + n\), then \(p(n) = \Theta(q(n))\)
+But why is this example true? This next Lemma helps for intuition:
+\paragraph{Lemma} \( \lim_{n \rightarrow \infty} \frac{f(n)}{g(n)} < \infty \Rightarrow f(n) = O(g(n)) \)
+
+
+Proof. Assume that \(l = \lim_{n \rightarrow \infty} \frac{f(n)}{g(n)} < \infty\). Then for some \(N \in \mathbb{N}\) we have that for all \(n \ge N\):
+\( \frac{f(n)}{g(n)} < l + 1 \Rightarrow f(n) < (l + 1) · g(n) \)
+Which is exactly what we wanted.
+
+\section{Examples with proofs.}
+% EXAMPLES WITH PROOFS
+
+\paragraph{Claim} \(n = O(2^n)\)
+(This must seem very silly, but even though we have a strong feeling it’s true, we still need to learn how to PROVE it)
+Proof. We will prove by induction that \( \forall n \ge 1 \) , \(2^n \ge n\), and that will suffice.
+Basis: \(n = 1\), so it is clear that: \(n = 1 < 2 = 2^n\)
+Assumption: Assume that \(n < 2^n\) for some \(n\).
+Step: We will prove for \(n + 1\). It holds that:
+\begin{equation*}
+n + 1 < 2^{n} + 1 < 2^n + 2^n = 2^{n+1}
+\end{equation*}
+
+\paragraph{Claim}
+Let $p(n)$ be a polynomial of degree $d$ and let $q(n)$ be a polynomial
+of degree $k$. Then:
+\begin{enumerate}
+\item $d\leq k\Rightarrow p(n)=O(q(n))$ (set upper bound over the quotient)
+\item $d\geq k\Rightarrow p(n)=\Omega(q(n))$ (an exercise)
+\item $d=k\Rightarrow p(n)=\Theta(g(n))$ (an exercise)
+\end{enumerate}
+Proof (Of 1) First, let's write down $p(n),\ g(n)$ explicitly:
+\[
+
+% \begin{paragraph}
+%     Combinatorial Review, Induction, and Asymptotic Notations. 
+% \end{paragraph}
+p(n)=\sum_{i=0}^{d}\alpha_{i}n^{i},\ g(n)=\sum_{j=0}^{k}\beta_{j}n^{j}
+\]
+Now let's manipulate their quotient:
+\[
+\frac{p(n)}{q(n)}=\frac{\sum_{i=0}^{d}\alpha_{i}n^{i}}{\sum_{j=0}^{k}\beta_{j}n^{j}}=\frac{\sum_{i=0}^{d}\alpha_{i}n^{i}}{\sum_{j=0}^{k}\beta_{j}n^{j}}\cdot\frac{n^{k-1}}{n^{k-1}}=\frac{\sum_{i=0}^{d}\alpha_{i}n^{i-k+1}}{\sum_{j=0}^{k}\beta_{j}n^{j-k+1}}\leq
+\]
+
+\[
+\leq\frac{\sum_{i=0}^{d}\alpha_{i}}{\beta_{k}} < \infty
+\]
+And now we can use the lemma that we have proved earlier. 
+
+
+\section{Logarithmic Rules.}
+
+Just a quick reminder of logarithmic rules:
+\begin{enumerate}
+\item $log_{a}x\cdot y=log_{a}x+log_{a}y$
+\item $log_{a}\frac{x}{y}=log_{a}x-log_{a}y$
+\item $log_{a}x^{m}=m\cdot log_{a}x$
+\item Change of basis: $\frac{log_{a}x}{log_{a}y}=log_{y}x$
+\end{enumerate}
+And so we get that:
+\begin{rem}
+For every $x,a,b\in\mathbb{R},$ we have that $log_{a}x=\Theta(log_{b}x)$
+\end{rem}
+
+\paragraph{Example.} Let \(f(n)\) be defined as:
+\begin{equation*}
+f(n) = \left\{ \begin{array}{rcl}
+& f\left( \lfloor  \frac{n}{2} \rfloor \right) + 1 & \mbox{for }  n > 1  \\
+& 5 & \mbox{else}  
+\end{array}\right.
+\end{equation*}
+Let’s find an asymptotic upper bound for \(f(n)\). let's guess \( f(n) = O(\log(n)) \).
+
+Proof.  We’ll prove by strong induction that : \(f(n) < c \log(n) - 1\) for \(c =8 \) And that will be enough (why? This implies \(f(n) = O(\log(n))\)).
+Base: \(n = 2\). Clearly, \(f(2) = 6 < 8 \)
+Assumption: Assume that for every m < n, this claim holds.
+Step: Then we get:
+\begin{equation*} \begin{split}
+    f(n) &= f\left( \lfloor  \frac{n}{2} \rfloor \right) + 1 \le c\log\left(  \lfloor\frac{n}{2}\rfloor\right)  + 1  \\ & \le c\log\left(n\right) - c\log\left(2\right) + 1 
+    \le c\log\left(n\right) \ \ \ \text{for } c = 8
+\end{split}
+\end{equation*}
+
+
+% \section{Another Example.}
+
+
+% Now let’s try to analyze something we’re going to encounter in this course: Recursively defined functions (Like Fibonacci’s
+% sequence).
+
+
+% \paragraph{Example 23.} Let \(f(n)\) be defined as:
+% \begin{equation*}
+% f(n) = \left\{ \begin{array}{rcl}
+% & 2f\left( \lfloor  \frac{n}{2} \rfloor \right) + 1 & \mbox{for }  n > 1  \\
+% & 1 & \mbox{else}  
+% \end{array}\right.
+% \end{equation*}
+% Let’s find an asymptotic upper bound for \(f(n)\).
+% We can unravel this recursion rule, and to make things easier let’s just assume that n is a power of 2. So we get:
+%     \begin{equation*}
+%     f(n) = 2f\left(\frac{n}{2}\right) + 1 =2\left(2f\left(\frac{n}{4}\right) + 1\right) + 1 = ... = nf(1)+ \left( n -1 \right) = 2n-1
+%     \end{equation*}
+
+% Proof. \textbf{(Bad proof)}
+% Proof by strong induction. We’ll try to prove using \(N = 1, c = 10\), and we’ll try to show that \(f(n) < c \cdot n\).
+% Base: \(n = 1\). Clearly we get that \(f(1) = 1 < 10 = c \cdot 1\)
+
+% Assumption: Assume that for every \(m < n\), this claim holds.
+% Step: We get:
+% \begin{equation*}
+%     f(n) = 2f\left( \lfloor  \frac{n}{2} \rfloor \right) + 1 \le 2c\lfloor  \frac{n}{2} \rfloor  + 1 \le c\cdot n + 1
+% \end{equation*}
+% But this is not a proof... (why? Didn’t prove hypothesis)
+
+
+% Proof. \textbf{(Good proof)} We’ll try to prove something a little different. We’ll prove by strong induction that (with the same \(N, c\) ): \(f(n) < c \cdot n - 1\) And that will be enough (why? This implies \(f(n) = O(n)\)).
+% Base: \(n = 1\). Clearly, \(f(1) = 1 < 9 = c \cdot 1 - 1\)
+% Assumption: Assume that for every m < n, this claim holds.
+% Step: Then we get:
+% \begin{equation*}
+%     f(n) = 2f\left( \lfloor  \frac{n}{2} \rfloor \right) + 1 \le 2\left(c  \frac{n}{2} -1 \right)  + 1 \le c\cdot n - 1
+% \end{equation*}
+
+% Remark 24. Note that in the definition of big \(O\) notation (12), the property only needs to hold from some \(N\) and on. In this
+% last proof, we chose that \(N\) to be \(N = 1\), but it does not has to be 1.
+
+
+% \section{SERIES AND CONVERGENCE.}
+
+% \paragraph{Definition 3.} Let \( \{a_n\}^{\infty}_{n = N} \) be a sequence of real number. The sequence of partial sums corresponding to this sequence is \(S_k = \sum^{k}_{n=N}{a_n} \) an which is also a sequence of real numbers, with indices ranging from \(N\) to \(\infty\).
+% \paragraph{Definition 4.} Let \( \{a_n\}^{\infty}_{n=N} \) be a sequence of real number. We say that the infinite series \( \sum^{\infty}_{n=N}{a_n} \)  converges when the sequence of partial sums converges, i.e. \(S_{k \rightarrow \infty} \rightarrow L \in \mathbb{R} \). In which case we say \( \sum^{\infty}_{n=N}{a_n} = L \). Otherwise, we say it diverges.
+
+% Remark 5. Note that we can always ’pad’ the series with zeros, and this does not alter its convergence status. So we shall talk about series which their initial index is zero (or one).
+% \paragraph{Example 6.} The Harmonic series \( \sum^{\infty}_{n=1}{\frac{1}{n}}\) diverges.
+
+% Proof. Assume by contradiction it doesn’t, then there is a bound \( \lim_{k\rightarrow \infty} S_k = S \in \mathbb{R} \). So \(\lim_{k\rightarrow \infty} S_{2k} = S \in  R \). Thus \( \lim_{k} S_{2k}-S_{k} = 0 \), but \( S_{2k}-S_{k} = \frac{1}{n+1} + ... + \frac{1}{2n} \ge n \cdot \frac{1}{2n} = \frac{1}{2} \)
+% , which is a contradiction, as we assumed \( \lim_{k\rightarrow \infty} S_{2k}-S_{k} = 0 \).
+
+% \paragraph{Proposition 7.} If \( \{ S_k \}^{\infty}_{n=0} \) an converges, then \( a_{n\rightarrow\infty} \rightarrow 0 \). Proof. Consider \( \lim_{n\rightarrow\infty} [S_{n} - S{_n-1}]\).
+
+% \paragraph{Example 8.} Let \(a_{n}= q^n\) be a sequence of real numbers, \(q \in \mathbb{R}\).
+% \begin{enumerate}
+%     \item If \(q < 1\), then \(S_k\) converges.
+%     \item If \( q \ge 1\), then \(S_k\) diverges.
+% \end{enumerate}
+% Proof.
+% \begin{enumerate}
+%     \item Note that \[(1-q)S_{k} = \left(1-q\right)\left(1 + q + q^2 .. q^k \right) = \left(1 + q + q^2 + .. + q^k - q - q^2 - .. - q^{k+1} \right) = 1 - q^{k+1}   \] therefore \(S_k = \frac{1-q^{k+1}}{1-q} \), which    converges for \(k \rightarrow \infty \). That is \( S_k \rightarrow \frac{1}{1-q} \).
+%     \item Exercise.
+% \end{enumerate}
+% \subsection{Convergence Tests}
+% \paragraph{Theorem 9.} (Direct Comparison Test) Let \( \{a_n\}^{\infty}_{n = N} \),\( \{b_n\}^{\infty}_{n = N} \) be real, non-negative sequences, and assume \( \exsits M \in \mathbb{N}\) s.t. \( \forall n \ge M\), \( a_n \le b_n\). Then:
+% \begin{enumerate}
+%     \item If \(\sum^{\infty}_{n=1}{b_n}\) converges, so does \(\sum^{\infty}_{n=1}{a_n}\).
+%     \item If \(\sum^{\infty}_{n=1}{a_n}\) diverges, so does \(\sum^{\infty}_{n=1}{b_n}\).
+% \end{enumerate}
+
+
+% Proof. Exercise (Guidance: Show that the partial sums corresponding to the sequence \(b_n\) are larger than the partial sums
+% corr. to \(a_n\), and use a result from Infi about limits).
+
+% \paragraph{Theorem 10.} (Limit comparison Test, generalized) Let \( \{a_n\}^{\infty}_{n = N} \),\( \{b_n\}^{\infty}_{n = N} \) be real, non-negative sequences,
+% and assume \( \exsits M \in \mathbb{N}, r > 0, R > 0 \)  s.t \( \forall n \ge M, r \le \frac{a_n}{b_n} \le R\). Then either \( \sum_{n=1}^{\infty}{a_n} \)
+% and \( \sum_{n=1}^{\infty}{b_n} \) both converge or they both diverge.
+% Proof. Use the previous theorem (direct comparison) with \(rb_n \le a_n \le Rb_n\) along with limit arithmetics.
+
+% \paragraph{Example 11.} \( \sum_{n=1}^{\infty}{\frac{1}{n^2}} \) converges.
+% Proof. Note that \( \frac{1}{n^2} \le \frac{1}{n(n-1)} \), so it is enough to prove that the series 
+% \( \sum_{n=2}^{\infty}{\frac{1}{n(n-1)}}\) converges by Direct Comparison. Notice that the partial sums are:
+% \begin{equation*}
+%     S_k = \sum_{n=2}^{k}{\frac{1}{n(n-1)}} = \sum_{n=2}^{k}{\frac{1}{n-1} - \frac{1}{n}} = \\ \left(1 - \frac{1}{2} \right) + \left( \frac{1}{2} - \frac{1}{3} \right) + ... + \left( \frac{1}{k-1} - \frac{1}{k} \right) = \\ 1 - \frac{1}{k}   
+% \end{equation*}
+% so the sequence of partial sums clearly converges (to 1).
+% Proof. (Alternative) Look at the sides of the squares. We could always fit one more line of 2
+% k
+% squares for elements 2
+% k until 2
+% k+1 − 1 of the
+% series. The total area of the rect angle here is 2.
+
+
+\input{tex/texlib/tail}\section{Correctness - Recitation 2} 
+\author{Correctness proofs and computational complexity. }
+\input{tex/texlib/head}
+
+ 
+\begin{paragraph}
+    Proving algorithms correctness is necessary to guarantee that our code computes its goal for every given input. In that recitation, we will examine several algorithms, analyze theirs running time and memory consumption, and prove they are correct.   
+\end{paragraph}
+
+
+\paragraph{Leading Example.}
+Consider \(n\) numbers \(a_1,a_2,....,a_n \in \mathbb{R}\). Given set \(Q\) of \(|Q|\) queries, such each query \(q \in Q\) is a tuple \( (i,j) \in [n] \times [n] \). Write an algorithm that calculates the \(\max_{i\le k\le j}{a_k} \). 
+
+\section{Correctness And Loop Invariant.}
+
+\paragraph{Correctness.} We will say that an algorithm \( \mathcal{A}\) (an ordered set of operations) computes \( f:D_1 \rightarrow D_2 \) if for every \(x \in D_1\) the following equality holds \(f(x) = \mathcal{A}(x)\). Sometimes when it's obvious what is the goal function \(f\), we will abbreviate and say that \( \mathcal{A}\) is correct.       
+
+Examples of functions \(f\) might be: file saving, summing numbers, or posting a message in the forum.  
+
+\paragraph{Loop Invariant.} Loop Invariant is a property that characteristic a loop segment code  and satisfy the following conditions: 
+\begin{enumerate}
+    \item Initialization. The property holds (even) before the first iteration of the loop.   
+    \item Conservation. As long as one performs the loop iterations, the property still holds.
+    \item (optional) Termination. Exiting from the loop carrying information.
+\end{enumerate}
+
+\paragraph{Example.} Before dealing with the hard problem, let us face the naive algorithm to find the maximum of a given array.
+
+\begin{algorithm}[H]
+% \SetAlgoLined
+\KwResult{returns the maximum of \(a_1 ... a_n \in \mathbb{R}^n \)  }
+ \ \\ 
+ \For{ \(i \in [n] \) } { 
+        \( j \leftarrow 1 \) \\
+        \ \\
+        \While{ \(j \le [n] \) and \( a_i \ge a_j \) } {
+        \( j \leftarrow j + 1 \)    
+        }
+        \\
+        \ \\ 
+        \If { \(j = n+1\) }{
+        return \(a_i\)
+        }
+    } 
+return \( \Delta \) 
+ \caption{naive maximum alg.}
+\end{algorithm}
+\paragraph{Claim.} Consider the while loop. The property: \textit{"for every \(j^\prime < j \le n+1 \Rightarrow a_{j^\prime} \le a_i \)"} is a loop invariant that is associated with it. 
+
+\textbf{Proof:} first, the initialization condition holds, as the at the first iteration \(j=1\) and therefore the property is trivial.
+Assume by induction, that for every \(m < j\) the property is correct, and consider the \(j\)-th iteration. If back again to line (5), then it means that \( (j-1) < n\) and \( a_{j-1} \le a_{i} \). Combining the above with the induction assumption yields that \(a_i \ge a_{j-1},a_{j-2}, ... a_{1}\).    
+
+\paragraph{Correctness Proof.} Split into cases, First if the algorithm return result at line (9), then due to the loop invariant, combining the fact that \( j = n + 1\), it holds that for every \(j^\prime  \le n < j \Rightarrow a_i \ge a_{j^\prime} \)  i.e \(a_i\) is the maximum of \(a_1, .... a_n \). The second case, in which the algorithm returns \( \Delta \) at line number (10) contradicts the fact that \(n\) is finite, and left as an exercise.  the running time is \( O(n^2) \) and the space consumption is \(O(n)\). 
+
+\paragraph{Loop Invariant In The Cleverer Alg.} Consider now the linear time algorithm:
+
+\begin{algorithm}[H]
+% \SetAlgoLined
+\KwResult{returns the maximum of \(a_1 ... a_n \in \mathbb{R}^n \)  }
+ \ \\ 
+ let \(b \leftarrow a_1 \) \\ 
+ \ \\ 
+ \For{\(i \in [2, n] \) } { 
+        \(b \leftarrow \max \left(b, a_i \right) \)
+    } 
+ return \( b \) 
+ \caption{maximum alg.}
+\end{algorithm}
+
+What is the Loop Invariant here? \textit{"at the \(i\)-th iteration, \(b = \max{ \{ a_1 ... a_{i-1} \} } \)"}. The proof is almost identical to the naive case.   
+
+\section{Non-Linear Space Complexity Algorithms. }
+\paragraph{Sub-Array Maximum.} Consider the leading example; It's easy to write an algorithm that answers the queries at a total time of a \( O\left( |Q| \cdot n \right) \) by answers separately on each query. Can we achieve a better upper bound?
+
+\begin{algorithm}[H]
+% \SetAlgoLined
+\KwResult{print the \( \max{\{ a_i ... a_j \} }\) for each query \((i,j) \in Q \) }
+ \ \\ 
+ let \(A \leftarrow \mathbb{M}^{n\times n} \) \\ 
+ \ \\ 
+ \For{\(i \in [n] \) } {
+    \( A_{i,i} \leftarrow a_i\)
+ }
+ \ \\
+ \For{ \(k \in [1, n]\) }{
+    \For{\(i \in [n] \) } {
+        \If{ \(i+k \le n\) }{
+        \(A_{i,i+k} \leftarrow \max \left(A_{i,i+k-1}, a_{i+k} \right) \)
+        }
+    } 
+}
+\ \\
+\For { \( q \in Q \) }{
+    \(i,j \leftarrow q \) \\
+    print \( A_{i,j}\)
+}
+ \caption{Sub-Array. \(O(n^2)\) space alg.}
+\end{algorithm}
+
+\paragraph{Claim.} Consider the outer loop at the \(k\)-th step. The following is a loop invariant: \[for \ every \ k^\prime < k ,\ s.t \ i + k^\prime \le n \Rightarrow A_{i,i+k^\prime} = \max{ \{ a_{i}, a_{i+1}, ... ,a_{i + k^\prime} \} }\]  
+\textbf{Proof.} The initialization condition trivially holds, assume by induction that \( A_{i,i+k-1} = \max{\{a_i ... a_{i+k-1}\}}\) at beginning of \( k \) iteration. By the fact that \( \max(x,y,z)= \max(\max(x,y),z) \) we get that
+\begin{equation*}
+\begin{split}
+ \max{\{a_1 ... a_{i + k-1}, a_{i+ k} \}} = \max{\{ \max{ \{ a_1 ... a_{i + k-1} \} }, a_{i+ k} \}} =  \max{\{A_{i,i+k-1}, a_{i+ k} \}}
+ \end{split}    
+ \end{equation*} And the right term is exactly the value which assigned to \(A_{i,i+k}\) in the end of the\(k\)-th iteration. Thus in the beginning of \( k+1 \) iteration the property is still conserved.
+
+\paragraph{ \(O\left(n\log n\right)\) Space Solution.} Example for \(O\left(n\log n + |Q|\log n\right)\) time and \(O\left(n\log n\right)\) space algorithm. Instead of storing the whole matrix, we store only logarithmic number of rows.   
+
+\begin{algorithm}[H]
+% \SetAlgoLined
+\KwResult{print the \( \max{\{ a_i ... a_j \} }\) for each query \((i,j) \in Q \) }
+ \ \\ 
+ let \(A \leftarrow \mathbb{M}^{n\times \log n} \) \\ 
+ \ \\
+ \For{\(i \in [n] \) } {
+    \( A_{i,1} \leftarrow a_i\)
+ }
+ \ \\
+ \For{ \(k \in [2,4,..,2^m,...,n]\) }{
+    \For{\(i \in [n] \) } {
+        \If{ \(i+k \le n\) }{
+        \(A_{i,k} \leftarrow \max \left(A_{i,\frac{k}{2}},A_{i+\frac{k}{2}, \frac{k}{2}} \right) \)
+        }
+    } 
+}
+\ \\
+\For { \( q \in Q \) }{
+    \(i,j \leftarrow q \) \\
+    decompose \(j - i \) into binary representation \(2^{t_1} + 2^{t_2} + .. +2^{t_l}\) \\
+    print \( \max { \{ A_{i,2^{t_1}},A_{i+ 2^{t_1}, 2^{t_2} }, ... , A_{i+ 2^{t_1} + 2^{t_2} +.. 2^{t_{l-1}}, 2^{t_l}} \} }\)
+}
+ \caption{Sub-Array. \(O(n \log n )\) space alg.}
+\end{algorithm}
+
+\input{tex/texlib/tail}
+
+
 \section{Recursive Analysis - Recitation 3} 
 \author{Master theorem and recursive trees.}
 
