@@ -84,6 +84,19 @@ We have seen in the Lecture that no Algorithm can compute the $\max$ function wi
   \item 1,4,2,5,6,3	     (Y)
 \end{enumerate}
 
+\begin{algbox}{Heappop.}
+\begin{algorithm}[H]
+% \SetAlgoLined
+\KwResult{returns the maximum of \(a_1 ... a_n \in \mathbb{R}^n \)  }
+ret $\leftarrow H_{1} $ \\
+$ H_{1} \leftarrow -\infty $  \\
+Heapify-down$\left( 1 \right)$ \\
+return ret  
+\end{algorithm}
+\end{algbox}
+
+
+
 \begin{algbox}{Heapify-down.}
 \begin{algorithm}[H]
 % \SetAlgoLined
@@ -99,16 +112,6 @@ next $\leftarrow$ i \\
   $ H_{i} \leftrightarrow H_{\text{next}} $ \\ 
   Heapify-down$\left( \text{next}  \right)$
 }
-\end{algorithm}
-\end{algbox}
-\begin{algbox}{Heappop.}
-\begin{algorithm}[H]
-% \SetAlgoLined
-\KwResult{returns the maximum of \(a_1 ... a_n \in \mathbb{R}^n \)  }
-ret $\leftarrow H_{1} $ \\
-$ H_{1} \leftarrow -\infty $  \\
-Heapify-down$\left( 1 \right)$ \\
-return ret  
 \end{algorithm}
 \end{algbox}
 
