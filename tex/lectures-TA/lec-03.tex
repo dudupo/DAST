@@ -26,5 +26,63 @@ Usually it will be convinant to divide the algortims into subsections and then c
 \end{enumerate}
 
 \paragraph{Example.} Before dealing with the hard problem, let us face the naive algorithm to find the maximum of a given array.
+
+\begin{algorithm}[H]
+% \SetAlgoLined
+\KwResult{returns the maximum of \(a_1 ... a_n \in \mathbb{R}^n \)  }
+ \ \\ 
+ \For{ \(i \in [n] \) } { 
+        \( j \leftarrow 1 \) \\
+        \ \\
+        \While{ \(j \le [n] \) and \( a_i \ge a_j \) } {
+        \( j \leftarrow j + 1 \)    
+        }
+        \\
+        \ \\ 
+        \If { \(j = n+1\) }{
+        return \(a_i\)
+        }
+    } 
+    return \( \Delta \) 
+    \caption{naive maximum alg.}
+\end{algorithm}
+
+\paragraph{Claim.} Consider the while loop. The property: \textit{"for every \(j^\prime < j \le n+1 \Rightarrow a_{j^\prime} \le a_i \)"} is a loop invariant that is associated with it. 
+
+\textbf{Proof:} first, the initialization condition holds, as the at the first iteration \(j=1\) and therefore the property is trivial.
+Assume by induction, that for every \(m < j\) the property is correct, and consider the \(j\)-th iteration. If back again to line (5), then it means that \( (j-1) < n\) and \( a_{j-1} \le a_{i} \). Combining the above with the induction assumption yields that \(a_i \ge a_{j-1},a_{j-2}, ... a_{1}\).    
+
+\paragraph{Correctness Proof.} Split into cases, First if the algorithm return result at line (9), then due to the loop invariant, combining the fact that \( j = n + 1\), it holds that for every \(j^\prime  \le n < j \Rightarrow a_i \ge a_{j^\prime} \)  i.e \(a_i\) is the maximum of \(a_1, .... a_n \). The second case, in which the algorithm returns \( \Delta \) at line number (10) contradicts the fact that \(n\) is finite, and left as an exercise.  the running time is \( O(n^2) \) and the space consumption is \(O(n)\). 
+
+\paragraph{Loop Invariant In The Cleverer Alg.} Consider now the linear time algorithm:
+
+\begin{algorithm}[H]
+% \SetAlgoLined
+\KwResult{returns the maximum of \(a_1 ... a_n \in \mathbb{R}^n \)  }
+ \ \\ 
+ let \(b \leftarrow a_1 \) \\ 
+ \ \\ 
+ \For{\(i \in [2, n] \) } { 
+        \(b \leftarrow \max \left(b, a_i \right) \)
+    } 
+ return \( b \) 
+ \caption{maximum alg.}
+\end{algorithm}
+
+What is the Loop Invariant here? \textit{"at the \(i\)-th iteration, \(b = \max{ \{ a_1 ... a_{i-1} \} } \)"}. The proof is almost identical to the naive case.   
+
+
+\paragraph{Task: Maximum finding.}
+blabla bla bla
+
+\paragraph{Loop Invariant.}
+
+
+\paragraph{Task: Element finding.} 
+
+
+\paragraph{Heaps.}
+
+
 \input{../texlib/tail}
 
