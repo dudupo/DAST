@@ -77,14 +77,14 @@ Assume by induction, that for every \(m < j\) the property is correct, and consi
 % \SetAlgoLined
 \KwResult{returns the maximum of \(a_1 ... a_n \in \mathbb{R}^n \)  }
 next $\leftarrow$ i \\
-\If{ $ 2i < n \text{ and }  H_{next} \le H_{2i}$ } {
+\If{ $ 2i < n \text{ and }  H_{\text{next}} \le H_{2i}$ } {
   next $\leftarrow 2i$ 
 }
-\If{ $2i + 1 < n \text{ and }  H_{next} \le H_{2i +1} $ } {
+\If{ $2i + 1 < n \text{ and }  H_{\text{next}} \le H_{2i +1} $ } {
   next $\leftarrow 2i + 1$
 }
 \If{ $ i \neq $ next } {
-  $ H_{i} \leftarrow H_{next} $ 
+  $ H_{i} \leftarrow H_{\text{next}} $ \\ 
   Heapify$\left( \text{next}  \right)$
 }
 \end{algorithm}
