@@ -69,8 +69,9 @@ Assume by induction, that for every \(m < j\) the property is correct, and consi
 
 \paragraph{Loop Invariant In The Cleverer Alg.} Consider now the linear time algorithm:
 
-\paragraph{Task: The Superpharm Line.} \textit{ You are requested to maintain a pharmacy line, in each turn you get one of the fallowing queries, etheir a new customer enter into the shop, ethir apharmacist request for the next person stand in front. In addtion you are requested to provide priority fredom degree.}
-Naive soultion? 
+\paragraph{Task: The Superpharm Problem.}\textit{you are requested to maintain a pharmacy line, in each turn you get one of the fallowing queries, etheir a new customer enter into the shop, ethir apharmacist request for the next person stand in front. In addtion, diffrent customers have difftent priorites, So you are asked to gurnte that in each turn the person with the heigset priority will be at the front. }
+Naive soultion?
+%\textit{ You are given string $x = x_{1},x_{2} ... x_{m}$ such that $x_{i}$ is ethier number $x_{i} \in \mathbb{R}$ or the symbol $q$. for example, consider the following possible input $1,2,13,4,5,q,q,3,q$. Also define $S_{0} = \{ \}$.  In each turn $i \in [m]$ print} 
 \subsection*{Heaps.} Heaps are strucutres that in addition for supporting adding and removing elements are also enable to compute the maximum effincintly.  
 
 We have seen in the Lecture that no Algorithm can compute the $\max$ function with less then $n-1$ comparisions. So our soultion above is indeed the best we could excpect for. The same is true for the searching problem, and yet we saw that if we are intersted in storing the numbers then, by storing them according to sorted order, we could compute each query in logratimic time via binary search. That arise the quastion, is it possible to have a similar result regrding the max problem?. 
