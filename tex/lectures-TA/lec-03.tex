@@ -123,7 +123,8 @@ next $\leftarrow$ i \\
 \end{algorithm}
 \end{algbox}
 \paragraph{Claim.} Assume that $H$ satisfiey the Heap inquality for all the elements except $H_{j}$. Namely for any $i \neq j$ we have that $H_{i} \le H_{2i}, H_{2i+1}$. Then applying Heapify-down on $H$ at index $j$ returns an heap. 
-\paragraph{Proof.} Induction on $n - j$. Base case, $n-j < n/2 \Rightarrow j > n/2$, Hence $2j,2j+1 \notin [n]$.   
+\paragraph{Proof.} Induction on $n - j$. Base case, $n-j < n/2 \Rightarrow j > n/2$, Hence $2j,2j+1 \notin [n]$ and we have that the Heap propety holds for any $i$.
+Assume the correctness of the claim for any $j^\prime$ satisfy $j^\prime > j$ and consider $j$. 
 
 \paragraph{Insertion.} blabla 
 
