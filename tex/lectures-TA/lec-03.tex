@@ -15,10 +15,10 @@ So the input space is all the arrays of numbers, and proving that a given algori
 We will say that an algorithm \( \mathcal{A}\) (an ordered set of operations) computes \( f:D_1 \rightarrow D_2 \) if for every \(x \in D_1 \Rightarrow f(x) = \mathcal{A}(x)\). Sometimes when it's obvious what is the goal function \(f\), we will abbreviate and say that \( \mathcal{A}\) is correct.       
 \end{defbox}
 \paragraph{}
-Other Examples of functions \(f\) might be including any computation task: file saving, summing numbers, posting a message in the forum, etc. Let's dive back into the maximum extraction problem and see how correctness should be prove in practice.     
-\paragraph{Task: Maximum Finding.} \textit{Given $n\in \mathbb{N}$ numbers $a_1, a_2, \cdots a_n \in \mathbb{R}$ write an Algorithm which returns their maximum.} 
+Other functions \(f\) might be including any computation task: file saving, summing numbers, posting a message in the forum, etc. Let's dive back into the maximum extraction problem and see how correctness should be proven in practice.     
+\paragraph{Task: Maximum Finding.} \textit{Given $n\in \mathbb{N}$ numbers $a_1, a_2, \cdots a_n \in \mathbb{R}$ write an Algorithm that returns their maximum.} 
 
-Consider the follows suggestion. How would you prove it correct?  
+Consider the following suggestion. How would you prove it correct?  
 \begin{algbox}{Maximum finding.}
 \begin{algorithm*}[H]
 % \SetAlgoLined
@@ -31,8 +31,7 @@ Consider the follows suggestion. How would you prove it correct?
  %\caption{maximum alg.}
 \end{algorithm*}
 \end{algbox}
-
-Usually it will be convineint to divide the algorithms into subsections and then characteristic, and prove correctness for each of them separately. One main technique is using the notation of Loop Invariant. Loop Invariant is a property that characteristic a loop segment code  and satisfy the following conditions: 
+Usually, it will be convenient to divide the algorithms into subsections and then characterize and prove their correctness separately. One primary technique is using the notation of Loop Invariant. Loop Invariant is a property that is characteristic of a loop segment code  and satisfies the following conditions:
 \begin{defbox}{Loop Invariant.} 
 \begin{enumerate}
     \item Initialization. The property holds (even) before the first iteration of the loop.   
