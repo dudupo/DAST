@@ -58,9 +58,7 @@ Assume by induction, that for every \(m < j\) the property is correct, and consi
 \begin{algorithm}[H]
 % \SetAlgoLined
 \KwResult{returns the maximum of \(a_1 ... a_n \in \mathbb{R}^n \)  }
- \ \\ 
  \For{ \(i \in [n] \) } { 
-        \ \\ 
 	\If { \(a_{i} = x\) }{
 	  return \(i, a_{i}\)
         }
@@ -72,6 +70,57 @@ Assume by induction, that for every \(m < j\) the property is correct, and consi
 \paragraph{Loop Invariant In The Cleverer Alg.} Consider now the linear time algorithm:
 
 \subsection*{Heaps.} We have seen in the Lecture that no Algorithm can compute the $\max$ function with less then $n-1$ comparisions. So our soultion above is indeed the best we could excpect for. The same is true for the searching problem, and yet we saw that if we are intersted in storing the numbers then, by storing them according to sorted order, we could compute each query in logratimic time via binary search. That arise the quastion, is it possible to have a similar result regrding the max problem?. Heaps are strucutres that in addition for supporting adding and removing elements are also enable to compute the maximum effincintly.  
+
+
+\begin{algbox}{Heapify.}
+\begin{algorithm}[H]
+% \SetAlgoLined
+\KwResult{returns the maximum of \(a_1 ... a_n \in \mathbb{R}^n \)  }
+next $\leftarrow$ i \\
+\If{ $ 2i < n \text{ and }  H_{next} \le H_{2i}$ } {
+  next $\leftarrow 2i$ 
+}
+\If{ $2i + 1 < n \text{ and }  H_{next} \le H_{2i +1} $ } {
+  next $\leftarrpw 2i + 1$
+}
+\If{ $ i \neq $ next } {
+  $ H_{i} \leftarrow H_{next} $ 
+  Heapify$\left( \text{next}  \right)$
+}
+\end{algorithm}
+\end{algbox}
+
+
+\begin{algbox}{Heappush.}
+\begin{algorithm}[H]
+% \SetAlgoLined
+\KwResult{returns the maximum of \(a_1 ... a_n \in \mathbb{R}^n \)  }
+ \ \\ 
+ \For{ \(i \in [n] \) } { 
+        \ \\ 
+	\If { \(a_{i} = x\) }{
+	  return \(i, a_{i}\)
+        }
+    } 
+    return \( \Delta \) 
+\end{algorithm}
+\end{algbox}
+
+
+\begin{algbox}{Heappop.}
+\begin{algorithm}[H]
+% \SetAlgoLined
+\KwResult{returns the maximum of \(a_1 ... a_n \in \mathbb{R}^n \)  }
+ \ \\ 
+ \For{ \(i \in [n] \) } { 
+        \ \\ 
+	\If { \(a_{i} = x\) }{
+	  return \(i, a_{i}\)
+        }
+    } 
+    return \( \Delta \) 
+\end{algorithm}
+\end{algbox}
 
 
 \input{../texlib/tail}
