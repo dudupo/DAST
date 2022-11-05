@@ -13,7 +13,7 @@ In this course, any algorithm is defined relative to a task/problem/function, An
 So the input space are all the arrays of numbers, and proving that a given algorithm is correct, requires from us to prove that for an aribtrary array the algorithm's out put is the the maximal number. Formally:  
 
 \paragraph{Correctness.} We will say that an algorithm \( \mathcal{A}\) (an ordered set of operations) computes \( f:D_1 \rightarrow D_2 \) if for every \(x \in D_1\) the following equality holds \(f(x) = \mathcal{A}(x)\). Sometimes when it's obvious what is the goal function \(f\), we will abbreviate and say that \( \mathcal{A}\) is correct.       
-
+\paragraph{}
 Examples of functions \(f\) might be: file saving, summing numbers, or posting a message in the forum.  
 
 Usually it will be convinant to divide the algortims into subsections and then characteristic, and prove correctness for each of them seapratly. One main technique is usning the notation of Loop Invariants. 
@@ -25,37 +25,8 @@ Usually it will be convinant to divide the algortims into subsections and then c
     \item (optional) Termination. Exiting from the loop carrying information.
 \end{enumerate}
 
+\paragraph{Task: Maximum finding.}
 \paragraph{Example.} Before dealing with the hard problem, let us face the naive algorithm to find the maximum of a given array.
-
-\begin{algorithm}[H]
-% \SetAlgoLined
-\KwResult{returns the maximum of \(a_1 ... a_n \in \mathbb{R}^n \)  }
- \ \\ 
- \For{ \(i \in [n] \) } { 
-        \( j \leftarrow 1 \) \\
-        \ \\
-        \While{ \(j \le [n] \) and \( a_i \ge a_j \) } {
-        \( j \leftarrow j + 1 \)    
-        }
-        \\
-        \ \\ 
-        \If { \(j = n+1\) }{
-        return \(a_i\)
-        }
-    } 
-    return \( \Delta \) 
-    \caption{naive maximum alg.}
-\end{algorithm}
-
-\paragraph{Claim.} Consider the while loop. The property: \textit{"for every \(j^\prime < j \le n+1 \Rightarrow a_{j^\prime} \le a_i \)"} is a loop invariant that is associated with it. 
-
-\textbf{Proof:} first, the initialization condition holds, as the at the first iteration \(j=1\) and therefore the property is trivial.
-Assume by induction, that for every \(m < j\) the property is correct, and consider the \(j\)-th iteration. If back again to line (5), then it means that \( (j-1) < n\) and \( a_{j-1} \le a_{i} \). Combining the above with the induction assumption yields that \(a_i \ge a_{j-1},a_{j-2}, ... a_{1}\).    
-
-\paragraph{Correctness Proof.} Split into cases, First if the algorithm return result at line (9), then due to the loop invariant, combining the fact that \( j = n + 1\), it holds that for every \(j^\prime  \le n < j \Rightarrow a_i \ge a_{j^\prime} \)  i.e \(a_i\) is the maximum of \(a_1, .... a_n \). The second case, in which the algorithm returns \( \Delta \) at line number (10) contradicts the fact that \(n\) is finite, and left as an exercise.  the running time is \( O(n^2) \) and the space consumption is \(O(n)\). 
-
-\paragraph{Loop Invariant In The Cleverer Alg.} Consider now the linear time algorithm:
-
 \begin{algorithm}[H]
 % \SetAlgoLined
 \KwResult{returns the maximum of \(a_1 ... a_n \in \mathbb{R}^n \)  }
@@ -71,14 +42,38 @@ Assume by induction, that for every \(m < j\) the property is correct, and consi
 
 What is the Loop Invariant here? \textit{"at the \(i\)-th iteration, \(b = \max{ \{ a_1 ... a_{i-1} \} } \)"}. The proof is almost identical to the naive case.   
 
+\paragraph{Claim.} Consider the while loop. The property: \textit{"for every \(j^\prime < j \le n+1 \Rightarrow a_{j^\prime} \le a_i \)"} is a loop invariant that is associated with it. 
 
-\paragraph{Task: Maximum finding.}
+\textbf{Proof:} first, the initialization condition holds, as the at the first iteration \(j=1\) and therefore the property is trivial.
+Assume by induction, that for every \(m < j\) the property is correct, and consider the \(j\)-th iteration. If back again to line (5), then it means that \( (j-1) < n\) and \( a_{j-1} \le a_{i} \). Combining the above with the induction assumption yields that \(a_i \ge a_{j-1},a_{j-2}, ... a_{1}\).    
+
+\paragraph{Correctness Proof.} Split into cases, First if the algorithm return result at line (9), then due to the loop invariant, combining the fact that \( j = n + 1\), it holds that for every \(j^\prime  \le n < j \Rightarrow a_i \ge a_{j^\prime} \)  i.e \(a_i\) is the maximum of \(a_1, .... a_n \). The second case, in which the algorithm returns \( \Delta \) at line number (10) contradicts the fact that \(n\) is finite, and left as an exercise.  the running time is \( O(n^2) \) and the space consumption is \(O(n)\). 
+
+
+
 blabla bla bla
 
 \paragraph{Loop Invariant.}
 
 
 \paragraph{Task: Element finding.} 
+
+\begin{algorithm}[H]
+% \SetAlgoLined
+\KwResult{returns the maximum of \(a_1 ... a_n \in \mathbb{R}^n \)  }
+ \ \\ 
+ \For{ \(i \in [n] \) } { 
+        \ \\ 
+	\If { \(a_{i} = x\) }{
+	  return \(i, a_{i}\)
+        }
+    } 
+    return \( \Delta \) 
+    \caption{naive maximum alg.}
+\end{algorithm}
+
+\paragraph{Loop Invariant In The Cleverer Alg.} Consider now the linear time algorithm:
+
 
 
 \paragraph{Heaps.}
