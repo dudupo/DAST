@@ -1,0 +1,5 @@
+[0] Config.pm:311> INFO - This is Biber 2.16
+[0] Config.pm:314> INFO - Logfile is 'lec-02-v2.blg'
+[71] biber:340> INFO - === Sat Nov  5, 2022, 17:21:40
+[84] Biber.pm:415> INFO - Reading 'lec-02-v2.bcf'
+[141] Utils.pm:395> WARN - No data sources defined!

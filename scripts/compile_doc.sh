@@ -5,7 +5,7 @@ biber $filename
 pdflatex  --shell-escape $1
 
 # change to your local directory.  
-rootpath="~/workspace/DAST"
+rootpath="/home/davidponar/workspace/DAST"
 
 mv $filename.pdf "$rootpath/pdfs/"  
 

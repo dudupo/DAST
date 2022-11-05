@@ -1,5 +1,5 @@
 \usepackage[utf8]{inputenc}
-\usepackage[a4paper, total={6in, 9in}]{geometry}
+\usepackage[a4paper, total={6.5in, 9in}]{geometry}
 \usepackage{braket}
 \usepackage{xcolor}
 \usepackage{amsmath}
@@ -11,11 +11,27 @@
 \usepackage{float}
 \usetikzlibrary{calc}
 \usepackage{array}
-\usepackage[ruled,vlined,linesnumbered]{algorithm2e}
+\usepackage[vlined,linesnumbered]{algorithm2e}
 
 \usepackage[
 backend=biber,
 style=alphabetic,
 sorting=ynt
 ]{biblatex}
+\usepackage{tcolorbox}
 
+%https://osl.ugr.es/CTAN/macros/latex/contrib/tcolorbox/tcolorbox.pdf
+\tcbuselibrary{breakable}
+\tcbset{%any default parameters
+  width=0.9\textwidth,
+  halign=justify,
+  center,
+  breakable,
+  colback=white    
+}
+\newtcolorbox{algbox}[1]{colback=blue!5!white,
+colframe=blue!75!black,fonttitle=\bfseries,
+title={#1}}
+\newtcolorbox{defbox}[1]{colback=blue!5!white,
+colframe=red!75!black,fonttitle=\bfseries,
+title={#1}}

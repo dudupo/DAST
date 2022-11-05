@@ -1,0 +1,70 @@
+
+" do stuff you want to do on every buffer enter event
+
+" guard to end loading if it has been loaded for the currently edited file
+if g:localvimrc_sourced_once_for_file
+  finish
+endif
+
+" do stuff you want to do only once for a edited file
+
+" guard to end loading if it has been loaded for the running vim instance
+if g:localvimrc_sourced_once
+  finish
+endif
+
+" do stuff you want to do only once for a running vim instance
+
+call IMAP('`1s', '\ket{\psi<++>}<++>'  	,"tex")
+call IMAP('`1b', '\bra{<++>}<++>'	,"tex")
+call IMAP('->',  '\Rightarrow'		,"tex")
+call IMAP('<-',  '\Leftarrow'		,"tex")
+" call IMAP('<<', '&\le', 		'"tex")
+
+
+function! g:Equ()
+  execute "normal! o\\begin{equation*}\<cr>\\begin{split}\<cr><++>\<cr>\\end{split}\<cr>\\end{equation*}<++>" 
+  return 0
+endfunction 
+command! Equ call Equ()
+
+function! g:Newcommand()
+  let l:pos = getcurpos()
+  let l:line = pos[1] + 1
+  execute "normal! i\<esc>?newcommand\<cr>$o\\newcommand{<++>}{<++>}\<esc>:" . line  . "\<cr>" . "$" ."i<++>\<esc>?newcommand\<cr>"
+  return 0
+endfunction 
+
+command! Newco call Newcommand()
+
+" call IMAP(,,"tex")
+" call IMAP(,,"tex")
+
+function! g:Series(_char, _end_sym)
+  let l:ret = ""
+  let l:c = 0
+  let l:terms = 3  
+  let l:tempchar = a:_char
+  let l:tempesym = a:_end_sym
+  while c <= terms
+    if c < terms
+      let ret = ret . tempchar .  "_{" . c . "},"
+    else
+      let ret = ret . "... " . tempchar .  "_{"  . tempesym  . "}" 
+    endif
+    let c += 1 
+  endwhile
+  execute 'normal i'.ret 
+  return 0
+endfunction
+"command! Series call <SID>Series(<args>
+
+function! g:WNote(note)
+  let l:_note =  a:note
+  let l:_name = input('Enter note title: ')
+  let _note = substitute(_note, '\', '\\', 'g')
+  execute ':!echo -en ' . _note . '   > /home/davidponar/workspace/DBnotes/' . _name  
+  return 0
+endfunction 
+
+
