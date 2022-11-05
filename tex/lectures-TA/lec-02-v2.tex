@@ -1,6 +1,6 @@
 \title{Recursive Analysis - Recitation 3} 
 \author{Master theorem and recursive trees.}
-\input{tex/texlib/head}
+\input{../texlib/head}
 
  
 \begin{abstract}
@@ -160,7 +160,7 @@ We will call the number of iteration till the stopping condition the recursion h
 \paragraph{Example. Karatsuba algorithm.} Many years it's was believed that multiplication can't done by less then \( \Omega \left( n^2 \right) \) time; until Karatsuba found the following algorithm. denote by \begin{equation*}
 z_0, z_1, z_2 \leftarrow x_{l}y_{r}, x_{l}y_{r} + x_{r}y_{l}, x_{r}y_{r}
 \end{equation*}Notice that \( z_1 = \left(x_{l}+x_{r}\right)\left(y_{l}+y_{r}\right) - z_{0} -z_{1} \). summarize the above yields the following pseudo code. 
-
+\begin{algbox}{Karatsuba alg.}
 \begin{algorithm}[H]
 \SetAlgoLined
 \KwResult{returns the multiplication \(x\cdot y\) where \(x,y \in \mathbb{F}^{n}_{2}\) }
@@ -178,8 +178,8 @@ z_0, z_1, z_2 \leftarrow x_{l}y_{r}, x_{l}y_{r} + x_{r}y_{l}, x_{r}y_{r}
  \ \\
  return \(z_0 + 2^{\frac{n}{2}}z_1 + 2^{n}z_2\) \ \ \ \ \  // \( O \left(n\right) \). 
  }
- \caption{Karatsuba alg.}
 \end{algorithm}
+\end{algbox}
 Let's analyze the running time of the algorithm above, assume that \(n = 2^{m}\) and then the recursive relation is 
 \begin{equation*}
     \begin{split}
@@ -189,5 +189,5 @@ Let's analyze the running time of the algorithm above, assume that \(n = 2^{m}\)
 \end{equation*}
 where \(n^{\log 3}  \sim n^{1.58} < n^2 \).
 
-\input{tex/texlib/tail}
+\input{../texlib/tail}
 
