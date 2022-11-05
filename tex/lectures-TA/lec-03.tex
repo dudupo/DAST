@@ -3,15 +3,14 @@
 \input{../texlib/head}
 
 %\begin{abstract}
-  Apart of quantify the resource requirement of our algorithms we are also interested to prove that they indeed work. In this Recitation we will demonstrate how to prove correctness via the notation of loop invariant. In addition we will present the first (non-trivial) data structure in course, and prove that it allow us to compute the maximum efficiently.     
-   
+  Apart from quantifying the resource requirement of our algorithms, we are also interested in proving that they indeed work. In this Recitation, we will demonstrate how to prove correctness via the notation of loop invariant. In addition, we will present the first (non-trivial) data structure in the course and prove that it allows us to compute the maximum efficiently.
+
 %\end{abstract}
 
 
 \subsection*{Correctness And Loop Invariant.}
-In this course, any algorithm is defined relative to a task/problem/function, And it will be said correct if for any input it compute desirable output. For example, suppose that our task is to extract the maximum element from a given array.
-So the input space are all the arrays of numbers, and proving that a given algorithm is correct, requires to prove that for an arbitrary array the algorithm's out put is the the maximal number. Formally:  
-
+In this course, any algorithm is defined relative to a task/problem/function, And it will be said correctly if, for any input, it computes desirable output. For example, suppose that our task is to extract the maximum element from a given array. 
+So the input space is all the arrays of numbers, and proving that a given algorithm is correct requires proving that the algorithm's output is the maximal number for an arbitrary array. Formally:  
 \begin{defbox}{Correctness.}
 We will say that an algorithm \( \mathcal{A}\) (an ordered set of operations) computes \( f:D_1 \rightarrow D_2 \) if for every \(x \in D_1 \Rightarrow f(x) = \mathcal{A}(x)\). Sometimes when it's obvious what is the goal function \(f\), we will abbreviate and say that \( \mathcal{A}\) is correct.       
 \end{defbox}
