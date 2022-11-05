@@ -73,7 +73,7 @@ Assume by induction, that for every \(m < j\) the property is correct, and consi
 
 We have seen in the Lecture that no Algorithm can compute the $\max$ function with less then $n-1$ comparisions. So our soultion above is indeed the best we could excpect for. The same is true for the searching problem, and yet we saw that if we are intersted in storing the numbers then, by storing them according to sorted order, we could compute each query in logratimic time via binary search. That arise the quastion, is it possible to have a similar result regrding the max problem?. 
 \begin{defbox}{Heap}
-  Let $n \ in \mathbb{N}$ and consider the sequance $H = H_{1}, H_{2} \cdots H_{n} \in \mathbb{R} \left( * \right)$. we will say that $H$ is a Heap if for every $i \in [n]$ we have that: $H_{i} \le H_{2i}, H_{2i + 1}$ when we think of the value at indecis greater than $n$ as $H_{i>n} = -\infty$. 
+  Let $n \in \mathbb{N}$ and consider the sequance $H = H_{1}, H_{2} \cdots H_{n} \in \mathbb{R} \left( * \right)$. we will say that $H$ is a Heap if for every $i \in [n]$ we have that: $H_{i} \le H_{2i}, H_{2i + 1}$ when we think of the value at indecis greater than $n$ as $H_{i>n} = -\infty$. 
 \end{defbox}
 
 \paragraph{} Checking vital sigens: Are the following sequances are heaps? 
