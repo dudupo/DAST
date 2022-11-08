@@ -63,7 +63,9 @@ And that compleate the Conservation part. Termination, followes by the conservat
     return \( \Delta \) 
 \end{algorithm}
 \end{algbox}
-
+\paragraph{Correctness Proof.} First, let's prove the following loop invariant. 
+\subparagraph{Claim} \textit{Suppose that the running of the algorirthm reached the i'th iteration, then $x \notin \{ a_{1} .. a_{i-1} \}$.} 
+\subparagraph{Proof.} Initialization, for $i=1$ the claim is trival, let's use that as the induction base case for proving Conservation. Assume the correctness of the claim for any $i^{\prime} < i$. And consdier the $i$th iteration. By the induction assumption we have that $x \notin \{a_1 .. a_{i-2} \} $, and by the fact we have reached the $i$th iteration we have,   
 
 \paragraph{Task: The Superpharm Problem.}\textit{You are requested to maintain a pharmacy line. In each turn, you get one of the following queries, either a new customer enters the shop, or the pharmacist requests the next person to stand in front. In addition, different customers have different priorities, So you are asked to guarantee that in each turn, the person with the height priority will be at the front.}
 
