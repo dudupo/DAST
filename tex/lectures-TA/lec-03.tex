@@ -49,13 +49,6 @@ b^{(i)} = \max{ \{ b^{(i-1)}, a_{i} \} } = \max{ \{ \max{ \{ a_1, .. a_{i-2}, a_
 \end{equation*} 
 And that compleate the Conservation part. Termination, followes by the conservation, at the $n$ iteration, $b^{(i)}$ is seted to $\max{ \{ a_1 ,a_2 .. a_n  \}}$. 
 
-\paragraph{Claim.} Consider the while loop. The property: \textit{"for every \(j^\prime < j \le n+1 \Rightarrow a_{j^\prime} \le a_i \)"} is a loop invariant that is associated with it. 
-
-\textbf{Proof:} first, the initialization condition holds, as the at the first iteration \(j=1\) and therefore the property is trivial.
-Assume by induction, that for every \(m < j\) the property is correct, and consider the \(j\)-th iteration. If back again to line (5), then it means that \( (j-1) < n\) and \( a_{j-1} \le a_{i} \). Combining the above with the induction assumption yields that \(a_i \ge a_{j-1},a_{j-2}, ... a_{1}\).    
-
-\paragraph{Correctness Proof.} Split into cases, First if the algorithm return result at line (9), then due to the loop invariant, combining the fact that \( j = n + 1\), it holds that for every \(j^\prime  \le n < j \Rightarrow a_i \ge a_{j^\prime} \)  i.e \(a_i\) is the maximum of \(a_1, .... a_n \). The second case, in which the algorithm returns \( \Delta \) at line number (10) contradicts the fact that \(n\) is finite, and left as an exercise.  the running time is \( O(n^2) \) and the space consumption is \(O(n)\). 
-
 \paragraph{Task: Element finding.}  \textit{Given $n\in \mathbb{N}$ numbers $a_1, a_2, \cdots a_n \in \mathbb{R}$ and additional number $x \in \mathbb{R}$ write an Algorithm that returns $i$ s.t $a_{i} = x$ if there exists such $i$ and} False \textit{otherwise.} 
 
 \begin{algbox}{Element finding.}
