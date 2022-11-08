@@ -34,14 +34,20 @@ Consider the following suggestion. How would you prove it correct?
 Usually, it will be convenient to divide the algorithms into subsections and then characterize and prove their correctness separately. One primary technique is using the notation of Loop Invariant. Loop Invariant is a property that is characteristic of a loop segment code  and satisfies the following conditions:
 \begin{defbox}{Loop Invariant.} 
 \begin{enumerate}
-    \item Initialization. The property holds (even) before the first iteration of the loop.   
+  \item Initialization. The property holds (even) before the first iteration of the loop.    
     \item Conservation. As long as one performs the loop iterations, the property still holds.
-    \item (optional) Termination. Exiting from the loop carrying information.
+    \item Termination. Exiting from the loop carrying information.
 \end{enumerate}
 \end{defbox}
 
-
-What is the Loop Invariant here? \textit{"at the \(i\)-th iteration, \(b = \max{ \{ a_1 ... a_{i-1} \} } \)"}. The proof is almost identical to the naive case.   
+Let's denote by $b^{(i)}$ the value of $b$ at line number $2$ at the $i$th iteration for $i\ge2$ and define $b^{(1)}$ to be it's value in the it's initialization.  What is the Loop Invariant here? \textbf{Claim.} \textit{"at the \(i\)-th iteration, $b^{(i)} = \max{ \{ a_1 ... a_{i} \} } $"}. 
+\paragraph{Proof.} Initialization, clearly, $ b^{(1)} = a_{1} = \max{ \{ a_1 \} } $. Conservation,by induction, we have the base case from the initialization part, assume the corretness of the clain for any $i^\prime < i$ and consider the $i$th iteration (ofcourse, assume that $i<n$). Then:  
+\begin{equation*}
+  \begin{split}
+$b^{(i)} = \max{ \{ b^{(i-1)}, a_{i} \} } = \max{ \max{ \{ a_1, .. a_{i-2}, a_{i-1} \} }, a_{i} \} } = \max{ a_{1}, .. a_{i} \} }
+  \end{split}
+\end{equation*} 
+And that compleate the Conservation part. Termination, followes by the conservation, at the $n$ iteration, $b^{(i)}$ is seted to $\max{ \{ a_1 ,a_2 .. a_n  \}}$. 
 
 \paragraph{Claim.} Consider the while loop. The property: \textit{"for every \(j^\prime < j \le n+1 \Rightarrow a_{j^\prime} \le a_i \)"} is a loop invariant that is associated with it. 
 
