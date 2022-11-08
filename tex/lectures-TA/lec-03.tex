@@ -44,7 +44,7 @@ Let's denote by $b^{(i)}$ the value of $b$ at line number $2$ at the $i$th itera
 \paragraph{Proof.} Initialization, clearly, $ b^{(1)} = a_{1} = \max{ \{ a_1 \} } $. Conservation,by induction, we have the base case from the initialization part, assume the corretness of the clain for any $i^\prime < i$ and consider the $i$th iteration (ofcourse, assume that $i<n$). Then:  
 \begin{equation*}
   \begin{split}
-b^{(i)} = \max{ \{ b^{(i-1)}, a_{i} \} } = \max{ \max{ \{ a_1, .. a_{i-2}, a_{i-1} \} }, a_{i} \} } = \max{ a_{1}, .. a_{i} \} }
+b^{(i)} = \max{ \{ b^{(i-1)}, a_{i} \} } = \max{ \{ \max{ \{ a_1, .. a_{i-2}, a_{i-1} \} }, a_{i} \} } = \max{ \{  a_{1}, .. a_{i} \} }
   \end{split}
 \end{equation*} 
 And that compleate the Conservation part. Termination, followes by the conservation, at the $n$ iteration, $b^{(i)}$ is seted to $\max{ \{ a_1 ,a_2 .. a_n  \}}$. 
