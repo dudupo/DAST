@@ -130,12 +130,14 @@ return ret
 \begin{algorithm}[H]
 % \SetAlgoLined
 \KwResult{returns the maximum of \(a_1 ... a_n \in \mathbb{R}^n \)  }
-next $\leftarrow$ i \\
-\If{ $ 2i < n \text{ and }  H_{\text{next}} \le H_{2i}$ } {
-  next $\leftarrow 2i$ 
+next  $\leftarrow i  $ \\
+left  $\leftarrow 2i $ \\
+right $\rightarrow 2i +1 $ 
+\If{ left $ < n \text{ and }  H_{\text{next}} \le H_{\text{left}}$ } {
+  next $\leftarrow$ left 
 }
-\If{ $2i + 1 < n \text{ and }  H_{\text{next}} \le H_{2i +1} $ } {
-  next $\leftarrow 2i + 1$
+\If{ right $ < n \text{ and }  H_{\text{next}} \le H_{\text{right}}$ } {
+  next $\leftarrow$  right
 }
 \If{ $ i \neq $ next } {
   $ H_{i} \leftrightarrow H_{\text{next}} $ \\ 
