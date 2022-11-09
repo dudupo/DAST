@@ -169,6 +169,7 @@ return $x_{1} .. x_{n}$
 \end{algorithm}
 \end{algbox}
 
+Let's compute the running time of the construction algorithm. The algortim make two reqursive calls on input at helf of the orignal size, and then pay $\Theta\left( \log n \right)$ time to drop the the first node. Hence by using the Master Theorem we have obtain that: 
 \begin{equation*}
   \begin{split}
     T\left( n \right) &= \Theta \left( \log n \right) + 2T\left( \frac{n}{2} \right) \\ 
