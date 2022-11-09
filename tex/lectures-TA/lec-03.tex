@@ -80,6 +80,12 @@ We have seen in the Lecture that no Algorithm can compute the $\max$ function wi
 
 \begin{defbox}{Heap}
   Let $n \in \mathbb{N}$ and consider the sequence $H = H_{1}, H_{2} \cdots H_{n} \in \mathbb{R} \left( * \right)$. we will say that $H$ is a Heap if for every $i \in [n]$ we have that: $H_{i} \le H_{2i}, H_{2i + 1}$ when we think of the value at indices greater than $n$ as $H_{i>n} = -\infty$. 
+  \begin{equation*}
+    \begin{split}
+      \Leftrightarrow
+    \end{split}
+  \end{equation*}
+  That defintion equivalance to the following requrisve defination: Consider a binary tree, that we associcate a number for each node. Then, we will say that this binary tree is an heap if the root's value is lower than the values of its sons and also each of the subtrees defined by its childrens is also a heap. 
 \end{defbox}
 
 \input{tree-1.tex}
