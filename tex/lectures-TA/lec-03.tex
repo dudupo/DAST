@@ -82,8 +82,7 @@ We have seen in the Lecture that no Algorithm can compute the $\max$ function wi
   Let $n \in \mathbb{N}$ and consider the sequence $H = H_{1}, H_{2} \cdots H_{n} \in \mathbb{R} \left( * \right)$. we will say that $H$ is a Heap if for every $i \in [n]$ we have that: $H_{i} \le H_{2i}, H_{2i + 1}$ when we think of the value at indices greater than $n$ as $H_{i>n} = -\infty$. 
 \end{defbox}
 
-\input{tree.tex}
-
+\input{tree-1.tex}
 \paragraph{Checking vital signs.}Are the following sequences are heaps? 
 \begin{enumerate}
   \item 1,2,3,4,5,6,7,8,9,10 (Y)
@@ -91,6 +90,9 @@ We have seen in the Lecture that no Algorithm can compute the $\max$ function wi
   \item 1,4,3,2,7,8,9,10     (N)
   \item 1,4,2,5,6,3	     (Y)
 \end{enumerate}
+\input{tree-2.tex}
+\input{tree-3.tex}
+\input{tree-4.tex}
 How mach is cost (running time) to compute the the min of $H$? (without change the heap). ($O\left( 1 \right)$). Assume that option 4 is our Superpharm Line, let's try to imagine how should we maintain the line. After serving the customer at top, what can be said on $ \{ H_{2}, H_{3}\}$? or $\{H_{i>3}\}?$ (the second heighset value is in $\{H_{2}, H_{3} \}$.)   
 
 \paragraph{Subtask: Extracting Heap's Minimum.} \textit{Let $H$ be an Heap at size $n$, Write algorithm which return $H_1$, erase it and returns $H^\prime$, an Heap which contain all the remain elements.} 
