@@ -158,6 +158,18 @@ right $\rightarrow 2i +1 $ \\
 \end{itemize}
 \paragraph{Question.} How to construct an heap? and how much time it will take?  
 
+\begin{algbox}{Build.}
+\begin{algorithm}[H]
+% \SetAlgoLined
+\KwResult{returns the maximum of \(a_1 ... a_n \in \mathbb{R}^n \)  }
+leftHeap $ \leftarrow $ Build ( $x_2 .. x_{n/2} $) \\ 
+rightHeap $ \leftarrow $ Build ( $x_{n/2 +1 }, .. x_{n}$) \\
+Heapify-down(1, $x_1 .. x_{n}$) \\
+return $x_{1} .. x_{n}$
+\end{algorithm}
+\end{algbox}
+
+
 \begin{algbox}{Heapify-up.}
 \begin{algorithm}[H]
 % \SetAlgoLined
