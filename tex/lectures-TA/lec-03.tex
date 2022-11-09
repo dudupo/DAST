@@ -201,6 +201,7 @@ $ n \leftarrow n + 1 $
 \end{algorithm}
 \end{algbox}
 
-\paragraph{Question.} Consider the sets $X = \{x_1,x_2 .. x_n\}$, $Y = \{y_1, y_2 .. y_n\}$. Assume that each of the values $x_i,y_i$ is unieq. Write an Algorithm which compute the $k$ most small items at $ O \left( n + k\log k  \right) $ time. 
+\paragraph{Question.} Consider the sets $X = \{x_1,x_2 .. x_n\}$, $Y = \{y_1, y_2 .. y_n\}$. Assume that each of the values $x_i,y_i$ is unieq. Write an Algorithm which compute the $k$ most small items in $X \oplus Y = \{ x_{i} + y_{j} : x_{i} \in X , y_{j} \in Y  \} $ at $ O \left( n + k\log k  \right) $ time. 
+\subparagraph{Claim.} If $a \in X$ is smaller than $i$ elements of $X$ and $b \in Y$ is smaller than $j$ elemnts of $Y$. Then, $a + b$ is smaller than $i\cdot j$ elements of $X \oplus Y$.
 \input{../texlib/tail}
 
