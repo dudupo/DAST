@@ -1,0 +1,25 @@
+
+    % Drawing a graph using the PG 3.0 graphdrawing library
+% Author: Mark Wibrow
+%\documentclass[tikz,border=10pt]{article}
+%\usepackage{tikz}
+%\usetikzlibrary{positioning}
+%\begin{document}
+
+\tikzset{%
+  every neuron/.style={
+    circle,
+    draw,
+    %fill=black,
+    radius=0.05mm
+  },
+  neuron missing/.style={
+    draw=none,
+    scale=2,
+    text height=0.25cm,
+    execute at begin node=\color{black}$\vdots$
+  },
+}
+
+\begin{tikzpicture}
+    \node [every  neuron ] (v-1) at ( 0.0 ,-0) { $9$  };\node [every  neuron ] (v-2) at ( 0.0 ,-1) { $8$  };\node [every  neuron ] (v-3) at ( 3.5 ,-1) { $7$  };\node [every  neuron ] (v-4) at ( 0.0 ,-2) { $6$  };\node [every  neuron ] (v-5) at ( 1.75 ,-2) { $5$  };\node [every  neuron ] (v-6) at ( 3.5 ,-2) { $4$  };\node [every  neuron ] (v-7) at ( 5.25 ,-2) { $3$  };\node [every  neuron ] (v-8) at ( 0.0 ,-3) { $2$  };\node [every  neuron ] (v-9) at ( 0.875 ,-3) { $1$  };\node [every  neuron ] (v-10) at ( 1.75 ,-3) { $0.5$  };\node [every  neuron ] (v-11) at ( 2.625 ,-3) { $0.4$  };\node [every  neuron ] (v-12) at ( 3.5 ,-3) { $0.3$  };\node [every  neuron ] (v-13) at ( 4.375 ,-3) { $0.2$  };\draw [->] (v-1) -- (v-2);\draw [->] (v-1) -- (v-3);\draw [->] (v-2) -- (v-4);\draw [->] (v-2) -- (v-5);\draw [->] (v-3) -- (v-6);\draw [->] (v-3) -- (v-7);\draw [->] (v-4) -- (v-8);\draw [->] (v-4) -- (v-9);\draw [->] (v-5) -- (v-10);\draw [->] (v-5) -- (v-11);\draw [->] (v-6) -- (v-12);\draw [->] (v-6) -- (v-13);\end{tikzpicture}
