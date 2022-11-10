@@ -15,7 +15,7 @@ So the input space is all the arrays of numbers, and proving that a given algori
 We will say that an algorithm \( \mathcal{A}\) (an ordered set of operations) computes \( f:D_1 \rightarrow D_2 \) if for every \(x \in D_1 \Rightarrow f(x) = \mathcal{A}(x)\). Sometimes when it's obvious what is the goal function \(f\), we will abbreviate and say that \( \mathcal{A}\) is correct.       
 \end{defbox}
 \paragraph{}
-Other functions \(f\) might be including any computation task: file saving, summing numbers, posting a message in the forum, etc. Let's dive back into the maximum extraction problem and see how correctness should be proven in practice.     
+Other functions \(f\) might be including any computation task: file saving, summing numbers, posting a message in the forum, etc. Let's dive back into the maximum extraction problem and see how one should prove correctness in practice.     
 \paragraph{Task: Maximum Finding.} \textit{Given $n\in \mathbb{N}$ numbers $a_1, a_2, \cdots a_n \in \mathbb{R}$ write an Algorithm that returns their maximum.} 
 
 Consider the following suggestion. How would you prove it correct?  
@@ -40,14 +40,14 @@ Usually, it will be convenient to divide the algorithms into subsections and the
 \end{enumerate}
 \end{defbox}
 
-Let's denote by $b^{(i)}$ the value of $b$ at line number $2$ at the $i$th iteration for $i\ge2$ and define $b^{(1)}$ to be it's value in the it's initialization.  What is the Loop Invariant here? \textbf{Claim.} \textit{"at the \(i\)-th iteration, $b^{(i)} = \max{ \{ a_1 ... a_{i} \} } $"}. 
-\paragraph{Proof.} Initialization, clearly, $ b^{(1)} = a_{1} = \max{ \{ a_1 \} } $. Conservation,by induction, we have the base case from the initialization part, assume the corretness of the clain for any $i^\prime < i$ and consider the $i$th iteration (ofcourse, assume that $i<n$). Then:  
+Let's denote by $b^{(i)}$ the value of $b$ at line number $2$ at the $i$th iteration for $i\ge2$ and define $b^{(1)}$ to be its value in its initialization. What is the Loop Invariant here? \textbf{Claim.} \textit{"at the \(i\)-th iteration, $b^{(i)} = \max{ \{ a_1 ... a_{i} \} } $"}. 
+\paragraph{Proof.} Initialization, clearly, $ b^{(1)} = a_{1} = \max{ \{ a_1 \} } $. Conservation, by induction, we have the base case from the initialization part, assume the correctness of the claim for any $i^\prime < i$, and consider the $i$th iteration (of course, assume that $i<n$). Then:  
 \begin{equation*}
   \begin{split}
 b^{(i)} = \max{ \{ b^{(i-1)}, a_{i} \} } = \max{ \{ \max{ \{ a_1, .. a_{i-2}, a_{i-1} \} }, a_{i} \} } = \max{ \{  a_{1}, .. a_{i} \} }
   \end{split}
 \end{equation*} 
-And that compleate the Conservation part. Termination, followes by the conservation, at the $n$ iteration, $b^{(i)}$ is seted to $\max{ \{ a_1 ,a_2 .. a_n  \}}$. 
+And that completes the Conservation part. Termination, followed by the conservation, at the $n$ iteration, $b^{(i)}$ is seted to $\max{ \{ a_1 ,a_2 .. a_n  \}}$. 
 
 \paragraph{Task: Element finding.}  \textit{Given $n\in \mathbb{N}$ numbers $a_1, a_2, \cdots a_n \in \mathbb{R}$ and additional number $x \in \mathbb{R}$ write an Algorithm that returns $i$ s.t $a_{i} = x$ if there exists such $i$ and} False \textit{otherwise.} 
 
@@ -64,15 +64,15 @@ And that compleate the Conservation part. Termination, followes by the conservat
 \end{algorithm}
 \end{algbox}
 \paragraph{Correctness Proof.} First, let's prove the following loop invariant. 
-\subparagraph{Claim} \textit{Suppose that the running of the algorirthm reached the i'th iteration, then $x \notin \{ a_{1} .. a_{i-1} \}$.} 
-\textbf{Proof.} Initialization, for $i=1$ the claim is trival, let's use that as the induction base case for proving Conservation. Assume the correctness of the claim for any $i^{\prime} < i$. And consdier the $i$th iteration. By the induction assumption we have that $x \notin \{a_1 .. a_{i-2} \} $, and by the fact that we reached the $i$th iteration we have that in the $i-1$ iteration, at line (2) the condintional weren't satisfied (otherwise, the function would returned at line (3) namely $x \neq a_{i-1}$. Hence, it follows that $ x \notin \{ a_1, a_2 .. a_{i-2}, a_{i-1} \} $.     
-  \subparagraph{} Seperate to cases. First consdier, the case that given the input $a_1 .. a_n$ the algorithm reutrn $\Delta$. In this case we have by the termaionation property that $x \notin \{ a_1 .. a_n \} $.Now, Suppose that the algorithm return the pair $\left( i, x \right)$ then it's mean that the condintional at line (2) were satisfied at the $i$th iteration. So, indeed $a_{i} = x$ and the algorithm returns the expected output.        
+\subparagraph{Claim} \textit{Suppose that the running of the algorithm reached the i-th iteration, then $x \notin \{ a_{1} .. a_{i-1} \}$.} 
+\textbf{Proof.} Initialization, for $i=1$ the claim is trivial. Let's use that as the induction base case for proving Conservation. Assume the correctness of the claim for any $i^{\prime} < i$. And consider the $i$th iteration. By the induction assumption, we have that $x \notin \{a_1 .. a_{i-2} \} $, and by the fact that we reached the $i$th iteration, we have that in the $i-1$ iteration, at the line (2) the conditional weren't satisfied (otherwise, the function would return at line (3) namely $x \neq a_{i-1}$. Hence, it follows that $ x \notin \{ a_1, a_2 .. a_{i-2}, a_{i-1} \} $.     
+  \subparagraph{} Separate to cases. First, consider the case that given the input $a_1 .. a_n$, the algorithm return $\Delta$. In this case we have by the termination property that $x \notin \{ a_1 .. a_n \} $. Now, Suppose that the algorithm returns the pair $\left( i, x \right)$, then it means that the conditional at the line (2) was satisfied at the $i$th iteration. So, indeed $a_{i} = x$, and the algorithm returns the expected output.        
 
 
 
 \paragraph{Task: The Superpharm Problem.}\textit{You are requested to maintain a pharmacy line. In each turn, you get one of the following queries, either a new customer enters the shop, or the pharmacist requests the next person to stand in front. In addition, different customers have different priorities, So you are asked to guarantee that in each turn, the person with the height priority will be at the front.}
 
-Before we consider a sophisticated solution, What is the running time for the naive solution?(maintaining the line as a linear array) ($\sim O\left( n^2 \right)$).  
+Before we consider a sophisticated solution, What is the running time for the naive solution? (maintaining the line as a linear array) ($\sim O\left( n^2 \right)$).
 %\textit{ You are given string $x = x_{1},x_{2} ... x_{m}$ such that $x_{i}$ is ethier number $x_{i} \in \mathbb{R}$ or the symbol $q$. for example, consider the following possible input $1,2,13,4,5,q,q,3,q$. Also define $S_{0} = \{ \}$.  In each turn $i \in [m]$ print} 
 \subsection*{Heaps.} Heaps are structures that enable computing the maximum efficiency in addition to supporting adding and removing elements.
 
@@ -85,7 +85,7 @@ We have seen in the Lecture that no Algorithm can compute the $\max$ function wi
       \Leftrightarrow
     \end{split}
   \end{equation*}
-  That defintion equivalance to the following requrisve defination: Consider a binary tree, that we associcate a number for each node. Then, we will say that this binary tree is an heap if the root's value is lower than the values of its sons and also each of the subtrees defined by its childrens is also a heap. 
+  That definition is equivalent to the following recursive definition: Consider a binary tree in that we associate a number for each node. Then, we will say that this binary tree is a heap if the root's value is lower than its sons' values, and each subtree defined by its children is also a heap. 
 \end{defbox}
 
 \input{tree-1.tex}
@@ -108,7 +108,7 @@ We have seen in the Lecture that no Algorithm can compute the $\max$ function wi
 	\input{tree-4.tex}
   \end{subfigure}
 \end{figure}
-How mach is cost (running time) to compute the the min of $H$? (without change the heap). ($O\left( 1 \right)$). Assume that option 4 is our Superpharm Line, let's try to imagine how should we maintain the line. After serving the customer at top, what can be said on $ \{ H_{2}, H_{3}\}$? or $\{H_{i>3}\}?$ (the second heighset value is in $\{H_{2}, H_{3} \}$.)   
+How much is the cost (running time) to compute the min of $H$? (without changing the heap). ($O\left( 1 \right)$). Assume that option 4 is our Superpharm Line. Let's try to imagine how we should maintain the line. After serving the customer at the top, what can be said on $ \{ H_{2}, H_{3}\}$? or $\{H_{i>3}\}?$ (the second highest value is in $\{H_{2}, H_{3} \}$.)   
 
 \paragraph{Subtask: Extracting Heap's Minimum.} \textit{Let $H$ be an Heap at size $n$, Write algorithm which return $H_1$, erase it and returns $H^\prime$, an Heap which contain all the remain elements.} 
 \textbf{Solution:} 
@@ -168,7 +168,7 @@ return $x_{1} .. x_{n}$
 \end{algorithm}
 \end{algbox}
 
-Let's compute the running time of the construction algorithm. The algortim make two reqursive calls on input at helf of the orignal size, and then pay $\Theta\left( \log n \right)$ time to drop the the first node. Hence by using the Master Theorem we have obtain that: 
+Let's compute the running time of the construction algorithm. The algorithm makes two recursive calls on input at half the original size and then pays $\Theta\left( \log n \right)$ time to drop the first node. Hence by using the Master Theorem, we have obtained that: 
 \begin{equation*}
   \begin{split}
     T\left( n \right) &= \Theta \left( \log n \right) + 2T\left( \frac{n}{2} \right) \\ 
@@ -203,7 +203,7 @@ $ n \leftarrow n + 1 $
 
 \paragraph{Task:}Write a datastructure that support insertion and deltion at $O\left( \log n \right) $ time and in addition enable to extract the median in $O\left( \log n  \right)$ time. 
 
-\paragraph{Soultlion.} We will define two seprate  Heaps, the first will be a maximumm heap and will store the first $ \lfloor n/2 \rfloor $ smallest elements, and the second will be a minimum heap and will contain the $ \lceil n/2 \rceil$ greatest elements. 
+\paragraph{Soultlion.} We will define two separate Heaps, the first will be a maximum heap and store the first $ \lfloor n/2 \rfloor $ smallest elements, and the second will be a minimum heap and contain the $ \lceil n/2 \rceil$ greatest elements. 
 
 \begin{algbox}{Median-Heappush.}
 \begin{algorithm}[H]
@@ -248,9 +248,9 @@ return median
   \newpage
 \section{ Appendix. Exercise from last year }
 
-\paragraph{Question.} Consider the sets $X = \{x_1,x_2 .. x_n\}$, $Y = \{y_1, y_2 .. y_n\}$. Assume that each of the values $x_i,y_i$ is unieq. Write an Algorithm which compute the $k$ most small items in $X \oplus Y = \{ x_{i} + y_{j} : x_{i} \in X , y_{j} \in Y  \} $ at $ O \left( n + k\log k  \right) $ time. 
+\paragraph{Question.} Consider the sets $X = \{x_1,x_2 .. x_n\}$, $Y = \{y_1, y_2 .. y_n\}$. Assume that each of the values $x_i,y_i$ is unique. Write an Algorithm which compute the $k$ most small items in $X \oplus Y = \{ x_{i} + y_{j} : x_{i} \in X , y_{j} \in Y  \} $ at $ O \left( n + k\log k  \right) $ time. 
 
-\textbf{Solution.} Notice that If $a \in X$ is greater than $i$ elements of $X$ and $b \in Y$ greater than $j$ elemnts of $Y$. Then, $a + b$  greater than $i\cdot j$ elements of $X \oplus Y$. Denote by $X^\prime = \{ x^{\prime}_{1} .. x^{\prime}_{n}$ ( $Y^{\prime}$ ) The elements of $X$ in sorted order. So it's clear that if $x_{i}+y_{j} = x^{\prime}_{i^{\prime}} + y^{\prime}_{j^{\prime}}$ is one of the $k$ smallest elements of $X\oplus Y$ then $i^{\prime}j^{\prime} \ge k$. So we are going to create an heap of elements which rescpects the that inequality, and then query that heap.
+\textbf{Solution.} Notice that If $a \in X$ is greater than $i$ elements of $X$ and $b \in Y$ greater than $j$ elements of $Y$. Then, $a + b$  greater than $i\cdot j$ elements of $X \oplus Y$. Denote by $X^\prime = \{ x^{\prime}_{1} .. x^{\prime}_{n}$ ( $Y^{\prime}$ ) The elements of $X$ in sorted order. So it's clear that if $x_{i}+y_{j} = x^{\prime}_{i^{\prime}} + y^{\prime}_{j^{\prime}}$ is one of the $k$ smallest elements of $X\oplus Y$ then $i^{\prime}j^{\prime} \ge k$. So we will create a heap of elements that respect that inequality and then query that heap.
 
 \begin{algbox}{Heappush.}
 \begin{algorithm}[H]
@@ -272,4 +272,3 @@ return extract-$k$ ( $H_{XY}$ )
 
 
 \input{../texlib/tail}
-
