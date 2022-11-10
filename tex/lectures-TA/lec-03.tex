@@ -206,7 +206,7 @@ $ n \leftarrow n + 1 $
 
 \paragraph{Question.} Consider the sets $X = \{x_1,x_2 .. x_n\}$, $Y = \{y_1, y_2 .. y_n\}$. Assume that each of the values $x_i,y_i$ is unieq. Write an Algorithm which compute the $k$ most small items in $X \oplus Y = \{ x_{i} + y_{j} : x_{i} \in X , y_{j} \in Y  \} $ at $ O \left( n + k\log k  \right) $ time. 
 
-\textbf{Solution.} Notice that If $a \in X$ is greater than $i$ elements of $X$ and $b \in Y$ greater than $j$ elemnts of $Y$. Then, $a + b$  greater than $i\cdot j$ elements of $X \oplus Y$. Denote by $X^\prime = \{ x^{\prime}_{1} .. x^{\prime}_{n}$ ( $Y^{\prime}$ ) The elements of $X$ in sorted order. So it's clear that if $x_{i}+y_{j} = \prime x^{\prime}_{i^{\prime}} + y^{\prime}_{j^{\prime}}$ is one of the $k$ smallest elements of $X\oplus Y$ then $i^{\prime}j^{\prime} \ge k$. So we are going to create an heap of elements which rescpects the that inequality, and then query that heap.
+\textbf{Solution.} Notice that If $a \in X$ is greater than $i$ elements of $X$ and $b \in Y$ greater than $j$ elemnts of $Y$. Then, $a + b$  greater than $i\cdot j$ elements of $X \oplus Y$. Denote by $X^\prime = \{ x^{\prime}_{1} .. x^{\prime}_{n}$ ( $Y^{\prime}$ ) The elements of $X$ in sorted order. So it's clear that if $x_{i}+y_{j} = x^{\prime}_{i^{\prime}} + y^{\prime}_{j^{\prime}}$ is one of the $k$ smallest elements of $X\oplus Y$ then $i^{\prime}j^{\prime} \ge k$. So we are going to create an heap of elements which rescpects the that inequality, and then query that heap.
 
 \begin{algbox}{Heappush.}
 \begin{algorithm}[H]
