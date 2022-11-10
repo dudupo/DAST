@@ -202,9 +202,9 @@ $ n \leftarrow n + 1 $
 \end{algbox}
 
 
-\paragraph{Task:}. Write a datastructure that support insertion and deltion at $O\left( \log n \right) $ time and in addition enable to query the median in $O\left( \log n  \right)$ time. 
+\paragraph{Task:}Write a datastructure that support insertion and deltion at $O\left( \log n \right) $ time and in addition enable to extract the median in $O\left( \log n  \right)$ time. 
 
-\paragraph{Soultlion.}
+\paragraph{Soultlion.} We will define two seprate  Heaps, the first will be a maximumm heap and will store the first $ \lfloor n/2 \rfloor $ smallest elements, and the second will be a minimum heap and will contain the $ \lceil n/2 \rceil$ greatest elements. 
 
   \newpage
 \section{ Appendix. Exercise from last year }
