@@ -351,7 +351,7 @@ So the input space is all the arrays of numbers, and proving that a given algori
 We will say that an algorithm \( \mathcal{A}\) (an ordered set of operations) computes \( f:D_1 \rightarrow D_2 \) if for every \(x \in D_1 \Rightarrow f(x) = \mathcal{A}(x)\). Sometimes when it's obvious what is the goal function \(f\), we will abbreviate and say that \( \mathcal{A}\) is correct.       
 \end{defbox}
 \paragraph{}
-Other functions \(f\) might be including any computation task: file saving, summing numbers, posting a message in the forum, etc. Let's dive back into the maximum extraction problem and see how correctness should be proven in practice.     
+Other functions \(f\) might be including any computation task: file saving, summing numbers, posting a message in the forum, etc. Let's dive back into the maximum extraction problem and see how one should prove correctness in practice.     
 \paragraph{Task: Maximum Finding.} \textit{Given $n\in \mathbb{N}$ numbers $a_1, a_2, \cdots a_n \in \mathbb{R}$ write an Algorithm that returns their maximum.} 
 
 Consider the following suggestion. How would you prove it correct?  
@@ -370,21 +370,20 @@ Consider the following suggestion. How would you prove it correct?
 Usually, it will be convenient to divide the algorithms into subsections and then characterize and prove their correctness separately. One primary technique is using the notation of Loop Invariant. Loop Invariant is a property that is characteristic of a loop segment code  and satisfies the following conditions:
 \begin{defbox}{Loop Invariant.} 
 \begin{enumerate}
-    \item Initialization. The property holds (even) before the first iteration of the loop.   
+  \item Initialization. The property holds (even) before the first iteration of the loop.    
     \item Conservation. As long as one performs the loop iterations, the property still holds.
-    \item (optional) Termination. Exiting from the loop carrying information.
+    \item Termination. Exiting from the loop carrying information.
 \end{enumerate}
 \end{defbox}
 
-
-What is the Loop Invariant here? \textit{"at the \(i\)-th iteration, \(b = \max{ \{ a_1 ... a_{i-1} \} } \)"}. The proof is almost identical to the naive case.   
-
-\paragraph{Claim.} Consider the while loop. The property: \textit{"for every \(j^\prime < j \le n+1 \Rightarrow a_{j^\prime} \le a_i \)"} is a loop invariant that is associated with it. 
-
-\textbf{Proof:} first, the initialization condition holds, as the at the first iteration \(j=1\) and therefore the property is trivial.
-Assume by induction, that for every \(m < j\) the property is correct, and consider the \(j\)-th iteration. If back again to line (5), then it means that \( (j-1) < n\) and \( a_{j-1} \le a_{i} \). Combining the above with the induction assumption yields that \(a_i \ge a_{j-1},a_{j-2}, ... a_{1}\).    
-
-\paragraph{Correctness Proof.} Split into cases, First if the algorithm return result at line (9), then due to the loop invariant, combining the fact that \( j = n + 1\), it holds that for every \(j^\prime  \le n < j \Rightarrow a_i \ge a_{j^\prime} \)  i.e \(a_i\) is the maximum of \(a_1, .... a_n \). The second case, in which the algorithm returns \( \Delta \) at line number (10) contradicts the fact that \(n\) is finite, and left as an exercise.  the running time is \( O(n^2) \) and the space consumption is \(O(n)\). 
+Let's denote by $b^{(i)}$ the value of $b$ at line number $2$ at the $i$th iteration for $i\ge2$ and define $b^{(1)}$ to be its value in its initialization. What is the Loop Invariant here? \textbf{Claim.} \textit{"at the \(i\)-th iteration, $b^{(i)} = \max{ \{ a_1 ... a_{i} \} } $"}. 
+\paragraph{Proof.} Initialization, clearly, $ b^{(1)} = a_{1} = \max{ \{ a_1 \} } $. Conservation, by induction, we have the base case from the initialization part, assume the correctness of the claim for any $i^\prime < i$, and consider the $i$th iteration (of course, assume that $i<n$). Then:  
+\begin{equation*}
+  \begin{split}
+b^{(i)} = \max{ \{ b^{(i-1)}, a_{i} \} } = \max{ \{ \max{ \{ a_1, .. a_{i-2}, a_{i-1} \} }, a_{i} \} } = \max{ \{  a_{1}, .. a_{i} \} }
+  \end{split}
+\end{equation*} 
+And that completes the Conservation part. Termination, followed by the conservation, at the $n$ iteration, $b^{(i)}$ is seted to $\max{ \{ a_1 ,a_2 .. a_n  \}}$. 
 
 \paragraph{Task: Element finding.}  \textit{Given $n\in \mathbb{N}$ numbers $a_1, a_2, \cdots a_n \in \mathbb{R}$ and additional number $x \in \mathbb{R}$ write an Algorithm that returns $i$ s.t $a_{i} = x$ if there exists such $i$ and} False \textit{otherwise.} 
 
@@ -400,11 +399,16 @@ Assume by induction, that for every \(m < j\) the property is correct, and consi
     return \( \Delta \) 
 \end{algorithm}
 \end{algbox}
+\paragraph{Correctness Proof.} First, let's prove the following loop invariant. 
+\subparagraph{Claim} \textit{Suppose that the running of the algorithm reached the i-th iteration, then $x \notin \{ a_{1} .. a_{i-1} \}$.} 
+\textbf{Proof.} Initialization, for $i=1$ the claim is trivial. Let's use that as the induction base case for proving Conservation. Assume the correctness of the claim for any $i^{\prime} < i$. And consider the $i$th iteration. By the induction assumption, we have that $x \notin \{a_1 .. a_{i-2} \} $, and by the fact that we reached the $i$th iteration, we have that in the $i-1$ iteration, at the line (2) the conditional weren't satisfied (otherwise, the function would return at line (3) namely $x \neq a_{i-1}$. Hence, it follows that $ x \notin \{ a_1, a_2 .. a_{i-2}, a_{i-1} \} $.     
+  \subparagraph{} Separate to cases. First, consider the case that given the input $a_1 .. a_n$, the algorithm return $\Delta$. In this case we have by the termination property that $x \notin \{ a_1 .. a_n \} $. Now, Suppose that the algorithm returns the pair $\left( i, x \right)$, then it means that the conditional at the line (2) was satisfied at the $i$th iteration. So, indeed $a_{i} = x$, and the algorithm returns the expected output.        
+
 
 
 \paragraph{Task: The Superpharm Problem.}\textit{You are requested to maintain a pharmacy line. In each turn, you get one of the following queries, either a new customer enters the shop, or the pharmacist requests the next person to stand in front. In addition, different customers have different priorities, So you are asked to guarantee that in each turn, the person with the height priority will be at the front.}
 
-Before we consider a sophisticated solution, What is the running time for the naive solution?(maintaining the line as a linear array) ($\sim O\left( n^2 \right)$).  
+Before we consider a sophisticated solution, What is the running time for the naive solution? (maintaining the line as a linear array) ($\sim O\left( n^2 \right)$).
 %\textit{ You are given string $x = x_{1},x_{2} ... x_{m}$ such that $x_{i}$ is ethier number $x_{i} \in \mathbb{R}$ or the symbol $q$. for example, consider the following possible input $1,2,13,4,5,q,q,3,q$. Also define $S_{0} = \{ \}$.  In each turn $i \in [m]$ print} 
 \subsection*{Heaps.} Heaps are structures that enable computing the maximum efficiency in addition to supporting adding and removing elements.
 
@@ -412,8 +416,15 @@ We have seen in the Lecture that no Algorithm can compute the $\max$ function wi
 
 \begin{defbox}{Heap}
   Let $n \in \mathbb{N}$ and consider the sequence $H = H_{1}, H_{2} \cdots H_{n} \in \mathbb{R} \left( * \right)$. we will say that $H$ is a Heap if for every $i \in [n]$ we have that: $H_{i} \le H_{2i}, H_{2i + 1}$ when we think of the value at indices greater than $n$ as $H_{i>n} = -\infty$. 
+  \begin{equation*}
+    \begin{split}
+      \Leftrightarrow
+    \end{split}
+  \end{equation*}
+  That definition is equivalent to the following recursive definition: Consider a binary tree in that we associate a number for each node. Then, we will say that this binary tree is a heap if the root's value is lower than its sons' values, and each subtree defined by its children is also a heap. 
 \end{defbox}
 
+\input{tree-1.tex}
 \paragraph{Checking vital signs.}Are the following sequences are heaps? 
 \begin{enumerate}
   \item 1,2,3,4,5,6,7,8,9,10 (Y)
@@ -421,7 +432,19 @@ We have seen in the Lecture that no Algorithm can compute the $\max$ function wi
   \item 1,4,3,2,7,8,9,10     (N)
   \item 1,4,2,5,6,3	     (Y)
 \end{enumerate}
-How mach is cost (running time) to compute the the min of $H$? (without change the heap). ($O\left( 1 \right)$). Assume that option 4 is our Superpharm Line, let's try to imagine how should we maintain the line. After serving the customer at top, what can be said on $ \{ H_{2}, H_{3}\}$? or $\{H_{i>3}\}?$ (the second heighset value is in $\{H_{2}, H_{3} \}$.)   
+\begin{figure}[h]
+  \centering
+  \begin{subfigure}[b]{0.3\textwidth}
+	\input{tree-2.tex}
+  \end{subfigure}
+\begin{subfigure}[b]{0.3\textwidth}
+	\input{tree-3.tex}
+  \end{subfigure}
+\begin{subfigure}[b]{0.3\textwidth}
+	\input{tree-4.tex}
+  \end{subfigure}
+\end{figure}
+How much is the cost (running time) to compute the min of $H$? (without changing the heap). ($O\left( 1 \right)$). Assume that option 4 is our Superpharm Line. Let's try to imagine how we should maintain the line. After serving the customer at the top, what can be said on $ \{ H_{2}, H_{3}\}$? or $\{H_{i>3}\}?$ (the second highest value is in $\{H_{2}, H_{3} \}$.)   
 
 \paragraph{Subtask: Extracting Heap's Minimum.} \textit{Let $H$ be an Heap at size $n$, Write algorithm which return $H_1$, erase it and returns $H^\prime$, an Heap which contain all the remain elements.} 
 \textbf{Solution:} 
@@ -443,12 +466,14 @@ return ret
 \begin{algorithm}[H]
 % \SetAlgoLined
 \KwResult{returns the maximum of \(a_1 ... a_n \in \mathbb{R}^n \)  }
-next $\leftarrow$ i \\
-\If{ $ 2i < n \text{ and }  H_{\text{next}} \le H_{2i}$ } {
-  next $\leftarrow 2i$ 
+next  $\leftarrow i  $ \\
+left  $\leftarrow 2i $ \\
+right $\rightarrow 2i +1 $ \\ 
+\If{ left $ < n \text{ and }  H_{\text{next}} \le H_{\text{left}}$ } {
+  next $\leftarrow$ left 
 }
-\If{ $2i + 1 < n \text{ and }  H_{\text{next}} \le H_{2i +1} $ } {
-  next $\leftarrow 2i + 1$
+\If{ right $ < n \text{ and }  H_{\text{next}} \le H_{\text{right}}$ } {
+  next $\leftarrow$  right
 }
 \If{ $ i \neq $ next } {
   $ H_{i} \leftrightarrow H_{\text{next}} $ \\ 
@@ -456,13 +481,36 @@ next $\leftarrow$ i \\
 }
 \end{algorithm}
 \end{algbox}
-\paragraph{Claim.} Assume that $H$ satisfies the Heap inequality for all the elements except $H_{j}$. Namely for any $i \neq j$ we have that $H_{i} \le H_{2i}, H_{2i+1}$. Then applying Heapify-down on $H$ at index $j$ returns an heap. 
-\paragraph{Proof.} Induction on $n - j$. Base case, $n-j < n/2 \Rightarrow j > n/2$, Hence $2j,2j+1 \notin [n]$ and we have that the Heap property holds for any $i$.
+\paragraph{Claim.} Assume that $H$ satisfies the Heap inequality for all the elements except the root. Namely for any $i \neq 1$ we have that $H_{i} \le H_{2i}, H_{2i+1}$. Then applying Heapify-down on $H$ at index $1$ returns a heap.  
+\paragraph{Proof.} By Induction on the heap size.  
+ 
+\begin{itemize} 
+  \item Base, Consider a heap at the size at most three and prove for each by considering each case separately. (lefts as exercise).  
+  \item Assumption, assume the correctness of the Claim for any tree that satisfies the heap inequality except the root, at size $n^{\prime} < n$. 
+  \item Induction step. Consider a tree at size $n$ which and assume w.l.g (why could we?) that the right child of the root is the minimum between the triple. Then, by the definition of the algorithm, at line 9, the root exchanges its value with its right child. Given that before the swapping, all the elements of the heap, except the root, had satisfied the heap inequality, we have that after the exchange, all the right subtree's elements, except the root of that subtree (the original root's right child) still satisfy the inequality. As the size of the right subtree is at most $n-1$, we could use the assumption and have that after line (10), the right subtree is a heap.  
+ 
+    Now, as the left subtree remains the same (the values of the nodes of the left side didn't change), we have that this subtree is also a heap. So it's left to show that the new tree's root is smaller than its children's. Suppose that is not the case, then it's clear that the root of the right subtree (heap) is smaller than the new root. Combining the fact that its origin must be the right subtree, we have a contradiction to the fact that the original right subtree was a heap (as its root wasn't the minimum element in that subtle).  
+ 
+\end{itemize} 
+\paragraph{Question.} How to construct a heap? And how much time will it take?   
+\begin{algbox}{Build.}
+\begin{algorithm}[H]
+% \SetAlgoLined
+\KwResult{returns the maximum of \(a_1 ... a_n \in \mathbb{R}^n \)  }
+leftHeap $ \leftarrow $ Build ( $x_2 .. x_{n/2} $) \\ 
+rightHeap $ \leftarrow $ Build ( $x_{n/2 +1 }, .. x_{n}$) \\
+Heapify-down(1, $x_1 .. x_{n}$) \\
+return $x_{1} .. x_{n}$
+\end{algorithm}
+\end{algbox}
 
-Assume the correctness of the claim for any $j^\prime$ satisfy $j^\prime > j$ and consider $j$. Denote by $H^\prime$ the state of the heap after the swapping at line number 7 and let $i\in [n]$. First Notice that if $j \neq 2i, 2i+1 $ and $i \neq 2j, 2j+1$ then $H^{\prime}_{i}=H_{i} \le H_{2i}= H^{\prime}_{2i}$ (and in similar to $2i+1$). So it left to consider the case where  $ i = \lfloor j/2 \rfloor $ and $ i = j$.  %  $H_{j} < H_{2j},H_{2j+1}$ and as we swapped  
-
-\paragraph{Insertion.} blabla 
-
+Let's compute the running time of the construction algorithm. The algorithm makes two recursive calls on input at half the original size and then pays $\Theta\left( \log n \right)$ time to drop the first node. Hence by using the Master Theorem, we have obtained that: 
+\begin{equation*}
+  \begin{split}
+    T\left( n \right) &= \Theta \left( \log n \right) + 2T\left( \frac{n}{2} \right) \\ 
+    T\left( n \right) &= \Theta\left(  n  \right) 
+  \end{split}
+\end{equation*}
 
 \begin{algbox}{Heapify-up.}
 \begin{algorithm}[H]
@@ -489,5 +537,74 @@ $ n \leftarrow n + 1 $
 \end{algbox}
 
 
-\input{../texlib/tail}
+\paragraph{Task:}Write a datastructure that support insertion and deltion at $O\left( \log n \right) $ time and in addition enable to extract the median in $O\left( \log n  \right)$ time. 
 
+\paragraph{Soultlion.} We will define two separate Heaps, the first will be a maximum heap and store the first $ \lfloor n/2 \rfloor $ smallest elements, and the second will be a minimum heap and contain the $ \lceil n/2 \rceil$ greatest elements. 
+
+\begin{algbox}{Median-Heappush.}
+\begin{algorithm}[H]
+% \SetAlgoLined
+\KwResult{returns the maximum of \(a_1 ... a_n \in \mathbb{R}^n \)  }
+
+median $\leftarrow$ extract $H_{max}$  \\
+\If{ $v < $median  }{ 
+  heappush ( $H_{max}$, $v$ ) \\
+  heappush ( $H_{min}$, median ) \\
+} 
+\Else{
+  heappush ( $H_{min}$, $v$ ) \\
+  heappush ( $H_{max}$, median ) \\
+}
+\end{algorithm}
+\end{algbox}
+
+\begin{algbox}{Median-Heappop.}
+\begin{algorithm}[H]
+% \SetAlgoLined
+\KwResult{returns the maximum of \(a_1 ... a_n \in \mathbb{R}^n \)  }
+median $\leftarrow$ extract $H_{max}$ \\   
+\If{ size($H_{min}$) - size($H_{max}$) $> 2$ }{
+  temp $ \leftarrow $ extract $H_{\min}$ \\
+  heappush ( $H_{max}$, temp )    \\
+}
+return median 
+\end{algorithm}
+\end{algbox}
+
+\begin{figure}[h]
+  \centering
+  \begin{subfigure}[b]{0.49\textwidth}
+	\input{tree-5.tex}
+  \end{subfigure}
+\begin{subfigure}[b]{0.49\textwidth}
+	\input{tree-6.tex}
+  \end{subfigure}
+\end{figure}
+
+  \newpage
+\section{ Appendix. Exercise from last year }
+
+\paragraph{Question.} Consider the sets $X = \{x_1,x_2 .. x_n\}$, $Y = \{y_1, y_2 .. y_n\}$. Assume that each of the values $x_i,y_i$ is unique. Write an Algorithm which compute the $k$ most small items in $X \oplus Y = \{ x_{i} + y_{j} : x_{i} \in X , y_{j} \in Y  \} $ at $ O \left( n + k\log k  \right) $ time. 
+
+\textbf{Solution.} Notice that If $a \in X$ is greater than $i$ elements of $X$ and $b \in Y$ greater than $j$ elements of $Y$. Then, $a + b$  greater than $i\cdot j$ elements of $X \oplus Y$. Denote by $X^\prime = \{ x^{\prime}_{1} .. x^{\prime}_{n}$ ( $Y^{\prime}$ ) The elements of $X$ in sorted order. So it's clear that if $x_{i}+y_{j} = x^{\prime}_{i^{\prime}} + y^{\prime}_{j^{\prime}}$ is one of the $k$ smallest elements of $X\oplus Y$ then $i^{\prime}j^{\prime} \ge k$. So we will create a heap of elements that respect that inequality and then query that heap.
+
+\begin{algbox}{Heappush.}
+\begin{algorithm}[H]
+% \SetAlgoLined
+\KwResult{returns the maximum of \(a_1 ... a_n \in \mathbb{R}^n \)  }
+$ H_{X} \leftarrow $ build $\left( X \right)$  \\ 
+$ H_{Y} \leftarrow $ build $\left( Y \right)$  \\
+$ S_{X} \leftarrow $ extract-$k$ $\left( H_{X} \right)$  \\ 
+$ S_{Y} \leftarrow $ extract-$k$ $\left( H_{Y} \right)$  \\
+$ H_{XY} \leftarrow $ Heap $(\{ \} )$ \\
+\For{ $i \in [k]$ } {
+  \For { $j \in [k/i]$ } {
+  	Heappush( $H_{XY}$, $S_{X,i} + S_{Y, j}$ )    
+  }
+}
+return extract-$k$ ( $H_{XY}$ ) 
+\end{algorithm}
+\end{algbox}
+
+
+\input{../texlib/tail}
