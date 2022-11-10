@@ -229,9 +229,8 @@ median $\leftarrow$ extract $H_{max}$  \\
 \KwResult{returns the maximum of \(a_1 ... a_n \in \mathbb{R}^n \)  }
 median $\leftarrow$ extract $H_{max}$ \\   
 \If{ size($H_{min}$) - size($H_{max}$) $> 2$ }{
-  temp $ \leftarrow $ extract $H_{\max}$ \\
-  heappush ( $H_{max}$, $v$ )    \\
-  heappush ( $H_{min}$, median ) \\
+  temp $ \leftarrow $ extract $H_{\min}$ \\
+  heappush ( $H_{max}$, temp )    \\
 }
 return median 
 \end{algorithm}
