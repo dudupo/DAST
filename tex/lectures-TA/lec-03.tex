@@ -206,6 +206,38 @@ $ n \leftarrow n + 1 $
 
 \paragraph{Soultlion.} We will define two seprate  Heaps, the first will be a maximumm heap and will store the first $ \lfloor n/2 \rfloor $ smallest elements, and the second will be a minimum heap and will contain the $ \lceil n/2 \rceil$ greatest elements. 
 
+\begin{algbox}{Heappush.}
+\begin{algorithm}[H]
+% \SetAlgoLined
+\KwResult{returns the maximum of \(a_1 ... a_n \in \mathbb{R}^n \)  }
+
+median $\leftarrow$ extract $H_{max}$  \\
+\If{ $v < median$  }{ 
+  heappush ( $H_{max}$, $v$ ) \\
+  heappush ( $H_{min}$, median ) \\
+} 
+\Else{
+  heappush ( $H_{min}$, $v$ ) \\
+  heappush ( $H_{max}$, median ) \\
+}
+\end{algorithm}
+\end{algbox}
+
+\begin{algbox}{Heappush.}
+\begin{algorithm}[H]
+% \SetAlgoLined
+\KwResult{returns the maximum of \(a_1 ... a_n \in \mathbb{R}^n \)  }
+median $\leftarrow$ extract $H_{max}$ \\   
+\If{ size($H_{min}$) - size($H_{max}$) $> 2$ }{
+  temp $ \leftarrow $ extract $H_{\max}$ \\
+  heappush ( $H_{max}$, $v$ )    \\
+  heappush ( $H_{min}$, median ) \\
+}
+return median 
+\end{algorithm}
+\end{algbox}
+
+
   \newpage
 \section{ Appendix. Exercise from last year }
 
