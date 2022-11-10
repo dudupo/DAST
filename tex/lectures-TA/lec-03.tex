@@ -201,7 +201,30 @@ $ n \leftarrow n + 1 $
 \end{algorithm}
 \end{algbox}
 
+\section{ Appendix. Exercise from last year }
+
 \paragraph{Question.} Consider the sets $X = \{x_1,x_2 .. x_n\}$, $Y = \{y_1, y_2 .. y_n\}$. Assume that each of the values $x_i,y_i$ is unieq. Write an Algorithm which compute the $k$ most small items in $X \oplus Y = \{ x_{i} + y_{j} : x_{i} \in X , y_{j} \in Y  \} $ at $ O \left( n + k\log k  \right) $ time. 
-\subparagraph{Claim.} If $a \in X$ is smaller than $i$ elements of $X$ and $b \in Y$ is smaller than $j$ elemnts of $Y$. Then, $a + b$ is smaller than $i\cdot j$ elements of $X \oplus Y$.
+
+\textbf{Solution.} Notice that If $a \in X$ is greater than $i$ elements of $X$ and $b \in Y$ greater than $j$ elemnts of $Y$. Then, $a + b$  greater than $i\cdot j$ elements of $X \oplus Y$. Denote by $X^\prime = \{ x^{\prime}_{1} .. x^{\prime}_{n}$ ( $Y^{\prime}$ ) The elements of $X$ in sorted order. So it's clear that if $x_{i}+y_{j} = \prime x^{\prime}_{i^{\prime}} + y^{\prime}_{j^{\prime}}$ is one of the $k$ smallest elements of $X\oplus Y$ then $i^{\prime}j^{\prime} \ge k$. So we are going to create an heap of elements which rescpects the that inequality, and then query that heap.
+
+\begin{algbox}{Heappush.}
+\begin{algorithm}[H]
+% \SetAlgoLined
+\KwResult{returns the maximum of \(a_1 ... a_n \in \mathbb{R}^n \)  }
+$ H_{X} \leftarrow $ build $\left( X \right)$  \\ 
+$ H_{Y} \leftarrow $ build $\left( Y \right)$  \\
+$ S_{X} \leftarrow $ extract-$k$ $\left( H_{X} \right)$  \\ 
+$ S_{Y} \leftarrow $ extract-$k$ $\left( H_{Y} \right)$  \\
+$ H_{XY} \leftarrow $ Heap $(\{ \} )$ \\
+\For{ $i \in [k]$ } {
+  \For { $j \in [k/i]$ } {
+  	Heappush( $H_{XY}$, $S_{X,i} + S_{Y, j}$ )    
+  }
+}
+return extract-$k$ ( $H_{XY}$ ) 
+\end{algorithm}
+\end{algbox}
+
+
 \input{../texlib/tail}
 
