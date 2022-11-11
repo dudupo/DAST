@@ -156,10 +156,14 @@ right $\rightarrow 2i +1 $ \\
 \begin{algbox}{Build.}
 \begin{algorithm}[H]
 % \SetAlgoLined
-leftHeap $ \leftarrow $ Build ( $x_2 .. x_{n/2} $) \\ 
-rightHeap $ \leftarrow $ Build ( $x_{n/2 +1 }, .. x_{n}$) \\
-Heapify-down(1, $x_1 .. x_{n}$) \\
-return $x_{1} .. x_{n}$
+  Given arbitrary array $ H = H_{1} .. H_{n} $  
+  $ i \leftarrow \lfloor \frac{1}{2}n  \rfloor $ \\
+  \While { $ i > 1 $ }
+  { 
+    Heapify-down $\left( H, i \right)$ \\ 
+    $ i \leftarrow i - 1 $  
+  }
+return $H_{1} .. H_{n}$
 \end{algorithm}
 \end{algbox}
 
