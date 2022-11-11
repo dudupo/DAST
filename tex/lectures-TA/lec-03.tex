@@ -172,7 +172,8 @@ Let's compute the running time of the construction algorithm.  Denote by $m_i$ t
 \begin{equation*}
   \begin{split}
     T\left( n \right) &= \sum_{i=1}^{\lfloor \frac{n}{2} \rfloor}{  \log\left( \frac{n}{i} \right) } \le  \sum_{i=1}^{\lfloor \frac{n}{2} \rfloor}{  \log\left( \frac{n}{i} \right) } =  \sum_\Theta \left( \log n \right) + 2T\left( \frac{n}{2} \right) \\ 
-    T\left( n + 1 \right) - T\left( n \right) & \le \log\left( \frac{n+1}{ \lfloor \frac{n+1}{2} \rfloor } \right) + \sum{ \log \left( \lfloor \frac{n+1}{i} \rfloor \left( \lfloor \frac{n}{i} \rfloor \right)^{-1}  \right)  } \le \\ 
+    T\left( n + 1 \right) - T\left( n \right) & \le \log\left( \lfloor \frac{n+1}{  \frac{n+1}{2}  }  \rfloor  \right) + \sum{ \log \left( \lfloor \frac{n+1}{i} \rfloor \left( \lfloor \frac{n}{i} \rfloor \right)^{-1}  \right)  } \le \\ 
+    
     T\left( n \right) &= \Theta\left(  n  \right) 
   \end{split}
 \end{equation*}
