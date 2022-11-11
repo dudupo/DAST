@@ -167,10 +167,11 @@ return $H_{1} .. H_{n}$
 \end{algorithm}
 \end{algbox}
 
-Let's compute the running time of the construction algorithm. The algorithm makes two recursive calls on input at half the original size and then pays $\Theta\left( \log n \right)$ time to drop the first node. Hence by using the Master Theorem, we have obtained that: 
+Let's compute the running time of the construction algorithm.  Denote by $m_i$ the number of reqursive calls made by heapify-down callled initially over $i$th elemenet. As in each reqursive call the algorithm progress the index at factor at least two we have that  $2^{m_i} i \le n$. Hence, $m_{i} = \log\left( \frac{n}{i} \right)$. Combine the fact that Heapify make an additonal $O(1)$ work we have:
+
 \begin{equation*}
   \begin{split}
-    T\left( n \right) &= \Theta \left( \log n \right) + 2T\left( \frac{n}{2} \right) \\ 
+    T\left( n \right) &= \sum_{i=1}^{\lfloor \frac{n}{2} \rfloor}{  \log\left( \frac{n}{i} \right) } \le  \sum_{i=1}^{\lfloor \frac{n}{2} \rfloor}{  \log\left( \frac{n}{i} \right) }   \sum_\Theta \left( \log n \right) + 2T\left( \frac{n}{2} \right) \\ 
     T\left( n \right) &= \Theta\left(  n  \right) 
   \end{split}
 \end{equation*}
