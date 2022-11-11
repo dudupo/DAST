@@ -22,7 +22,6 @@ Consider the following suggestion. How would you prove it correct?
 \begin{algbox}{Maximum finding.}
 \begin{algorithm*}[H]
 % \SetAlgoLined
-\KwResult{returns the maximum of \(a_1 ... a_n \in \mathbb{R}^n \)  }
  let \(b \leftarrow a_1 \) \\ 
  \For{\(i \in [2, n] \) } { 
         \(b \leftarrow \max \left(b, a_i \right) \)
@@ -54,7 +53,6 @@ And that completes the Conservation part. Termination, followed by the conservat
 \begin{algbox}{Element finding.}
 \begin{algorithm}[H]
 % \SetAlgoLined
-\KwResult{returns the maximum of \(a_1 ... a_n \in \mathbb{R}^n \)  }
  \For{ \(i \in [n] \) } { 
 	\If { \(a_{i} = x\) }{
 	  return \(i, a_{i}\)
@@ -116,7 +114,6 @@ How much is the cost (running time) to compute the min of $H$? (without changing
 \begin{algbox}{Heappop.}
 \begin{algorithm}[H]
 % \SetAlgoLined
-\KwResult{returns the maximum of \(a_1 ... a_n \in \mathbb{R}^n \)  }
 ret $\leftarrow H_{1} $ \\
 $ H_{1} \leftarrow \infty $  \\
 Heapify-down$\left( 1 \right)$ \\
@@ -129,7 +126,6 @@ return ret
 \begin{algbox}{Heapify-down.}
 \begin{algorithm}[H]
 % \SetAlgoLined
-\KwResult{returns the maximum of \(a_1 ... a_n \in \mathbb{R}^n \)  }
 next  $\leftarrow i  $ \\
 left  $\leftarrow 2i $ \\
 right $\rightarrow 2i +1 $ \\ 
@@ -160,7 +156,6 @@ right $\rightarrow 2i +1 $ \\
 \begin{algbox}{Build.}
 \begin{algorithm}[H]
 % \SetAlgoLined
-\KwResult{returns the maximum of \(a_1 ... a_n \in \mathbb{R}^n \)  }
 leftHeap $ \leftarrow $ Build ( $x_2 .. x_{n/2} $) \\ 
 rightHeap $ \leftarrow $ Build ( $x_{n/2 +1 }, .. x_{n}$) \\
 Heapify-down(1, $x_1 .. x_{n}$) \\
@@ -179,7 +174,6 @@ Let's compute the running time of the construction algorithm. The algorithm make
 \begin{algbox}{Heapify-up.}
 \begin{algorithm}[H]
 % \SetAlgoLined
-\KwResult{returns the maximum of \(a_1 ... a_n \in \mathbb{R}^n \)  }
 parent $\leftarrow \lfloor i/2 \rfloor $ \\
 \If{ \text{parent} $  > 0 \text{ and }  H_{\text{perent}} \le H_{i}$ } { 
   $ H_{i} \leftrightarrow H_{\text{perent}} $ \\ 
@@ -193,7 +187,6 @@ parent $\leftarrow \lfloor i/2 \rfloor $ \\
 \begin{algbox}{Heappush.}
 \begin{algorithm}[H]
 % \SetAlgoLined
-\KwResult{returns the maximum of \(a_1 ... a_n \in \mathbb{R}^n \)  }
 $ H_{n} \leftarrow v $ \\ 
 Heapify-up$\left( n \right)$\\
 $ n \leftarrow n + 1 $ 
@@ -208,7 +201,6 @@ $ n \leftarrow n + 1 $
 \begin{algbox}{Median-Heappush.}
 \begin{algorithm}[H]
 % \SetAlgoLined
-\KwResult{returns the maximum of \(a_1 ... a_n \in \mathbb{R}^n \)  }
 
 median $\leftarrow$ extract $H_{max}$  \\
 \If{ $v < $median  }{ 
@@ -225,7 +217,6 @@ median $\leftarrow$ extract $H_{max}$  \\
 \begin{algbox}{Median-Heappop.}
 \begin{algorithm}[H]
 % \SetAlgoLined
-\KwResult{returns the maximum of \(a_1 ... a_n \in \mathbb{R}^n \)  }
 median $\leftarrow$ extract $H_{max}$ \\   
 \If{ size($H_{min}$) - size($H_{max}$) $> 2$ }{
   temp $ \leftarrow $ extract $H_{\min}$ \\
@@ -255,7 +246,6 @@ return median
 \begin{algbox}{Heappush.}
 \begin{algorithm}[H]
 % \SetAlgoLined
-\KwResult{returns the maximum of \(a_1 ... a_n \in \mathbb{R}^n \)  }
 $ H_{X} \leftarrow $ build $\left( X \right)$  \\ 
 $ H_{Y} \leftarrow $ build $\left( Y \right)$  \\
 $ S_{X} \leftarrow $ extract-$k$ $\left( H_{X} \right)$  \\ 
