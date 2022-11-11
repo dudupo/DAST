@@ -204,7 +204,7 @@ $ n \leftarrow n + 1 $
 
 \paragraph{Soultlion.} We will define two separate Heaps, the first will be a maximum heap and store the first $ \lfloor n/2 \rfloor $ smallest elements, and the second will be a minimum heap and contain the $ \lceil n/2 \rceil$ greatest elements. 
 
-\begin{algbox}{Median-Heappush.}
+\begin{algbox}{Median-Insert-key.}
 \begin{algorithm}[H]
 % \SetAlgoLined
 
@@ -220,7 +220,7 @@ median $\leftarrow$ extract $H_{max}$  \\
 \end{algorithm}
 \end{algbox}
 
-\begin{algbox}{Median-Heappop.}
+\begin{algbox}{Median-Extract-key.}
 \begin{algorithm}[H]
 % \SetAlgoLined
 median $\leftarrow$ extract $H_{max}$ \\   
