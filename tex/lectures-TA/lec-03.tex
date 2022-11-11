@@ -176,7 +176,7 @@ Let's compute the running time of the construction algorithm.  Denote by $m_i$ t
    &  \log\left( 2  \right) + \sum{ \log \left( \frac{n+100}{i}  \frac{i}{n-100}   \right)  } \le \\ 
     &  \log\left( 2  \right) + \sum{ \log \left( 1+ \frac{200}{n-100} \right)  } = 
     \log\left( 2  \right) + \sum{ \log \left( 1+ \frac{200}{n-100} \right)  } \le \\
-  & T\log\left( 2  \right) + \log \left( \left( 1+ \frac{200}{n-100} \right)  \right)^{ \lfloor \frac{n}{2} \rfloor } \le \\  
+    & \log\left( 2  \right) + \log \left( \left( 1+ \frac{200}{n-100} \right)^{ \lfloor \frac{n}{2} \rfloor } \right) \le \\ &   \log\left( 2 \right)  + e^{200} \le \\ 
     \left( n \right) &= \Theta\left(  n  \right) 
   \end{split}
 \end{equation*}
