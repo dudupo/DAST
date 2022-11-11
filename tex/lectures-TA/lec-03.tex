@@ -111,7 +111,7 @@ How much is the cost (running time) to compute the min of $H$? (without changing
 \paragraph{Subtask: Extracting Heap's Minimum.} \textit{Let $H$ be an Heap at size $n$, Write algorithm which return $H_1$, erase it and returns $H^\prime$, an Heap which contain all the remain elements.} 
 \textbf{Solution:} 
 
-\begin{algbox}{Heappop.}
+\begin{algbox}{Extract-min.}
 \begin{algorithm}[H]
 % \SetAlgoLined
 ret $\leftarrow H_{1} $ \\
@@ -190,7 +190,7 @@ parent $\leftarrow \lfloor i/2 \rfloor $ \\
 
 
 
-\begin{algbox}{Heappush.}
+\begin{algbox}{Insert-key.}
 \begin{algorithm}[H]
 % \SetAlgoLined
 $ H_{n} \leftarrow v $ \\ 
