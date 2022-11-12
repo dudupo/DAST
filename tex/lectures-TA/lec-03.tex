@@ -210,14 +210,14 @@ $ n \leftarrow n + 1 $
 
 
 \paragraph{Heap Sort.}   
-
+Combining the above we obtain a new sorting algorithm. Given an array, we could first heapify it (build heap from it) and then extract the elements by their order. As we saw, the construction requires linear time, and then each extraction cost $\log n$ time. So, the overall cost is $O\left( n\log n  \right)$.  
 \begin{algbox}{Heap-Sort.}
 \begin{algorithm}[H]
 % \SetAlgoLined
   $H \leftarrow $ build $ \left( x_1, x_2 .. x_{n}  \right) $ \\ 
   ret $ \leftarrow $ Array $ \{ \} $ \\
   \For {  $ i \in [n] $ } {
-    ret[$i$] $\leftarrow$ extract $H$
+    ret[$ n - i$] $\leftarrow$ extract $H$
   }
   return ret. 
 \end{algorithm}
