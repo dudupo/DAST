@@ -66,17 +66,20 @@ And that completes the Conservation part. Termination, followed by the conservat
 \textbf{Proof.} Initialization, for $i=1$ the claim is trivial. Let's use that as the induction base case for proving Conservation. Assume the correctness of the claim for any $i^{\prime} < i$. And consider the $i$th iteration. By the induction assumption, we have that $x \notin \{a_1 .. a_{i-2} \} $, and by the fact that we reached the $i$th iteration, we have that in the $i-1$ iteration, at the line (2) the conditional weren't satisfied (otherwise, the function would return at line (3) namely $x \neq a_{i-1}$. Hence, it follows that $ x \notin \{ a_1, a_2 .. a_{i-2}, a_{i-1} \} $.     
   \subparagraph{} Separate to cases. First, consider the case that given the input $a_1 .. a_n$, the algorithm return False. In this case we have by the termination property that $x \notin \{ a_1 .. a_n \} $. Now, Suppose that the algorithm returns the pair $\left( i, x \right)$, then it means that the conditional at the line (2) was satisfied at the $i$th iteration. So, indeed $a_{i} = x$, and the algorithm returns the expected output.        
 
-\begin{defbox}{Heap}
+%\textit{ You are given string $x = x_{1},x_{2} ... x_{m}$ such that $x_{i}$ is ethier number $x_{i} \in \mathbb{R}$ or the symbol $q$. for example, consider the following possible input $1,2,13,4,5,q,q,3,q$. Also define $S_{0} = \{ \}$.  In each turn $i \in [m]$ print} 
+\subsection*{Heaps.}
+
 
   \paragraph{Task: The Superpharm Problem. (Motivation for Heaps) }\textit{You are requested to maintain a pharmacy line. In each turn, you get one of the following queries, either a new customer enters the shop, or the pharmacist requests the next person to stand in front. In addition, different customers have different priorities, So you are asked to guarantee that in each turn, the person with the height priority will be at the front.}
 
 Before we consider a sophisticated solution, What is the running time for the naive solution? (maintaining the line as a linear array) ($\sim O\left( n^2 \right)$).
-%\textit{ You are given string $x = x_{1},x_{2} ... x_{m}$ such that $x_{i}$ is ethier number $x_{i} \in \mathbb{R}$ or the symbol $q$. for example, consider the following possible input $1,2,13,4,5,q,q,3,q$. Also define $S_{0} = \{ \}$.  In each turn $i \in [m]$ print} 
-\subsection*{Heaps.} Heaps are structures that enable computing the maximum efficiency in addition to supporting adding and removing elements.
+
+Heaps are structures that enable computing the maximum efficiency in addition to supporting adding and removing elements.
+
 
 We have seen in the Lecture that no Algorithm can compute the $\max$ function with less than $n-1$ comparisons. So our solution above is indeed the best we could expect for. The same is true for the search problem. Yet, we saw that if we are interested in storing the numbers, then, by keeping them according to sorted order, we could compute each query in logarithmic time via binary search. That raises the question, is it possible to have a similar result regarding the max problem?
 
-
+\begin{defbox}{Heap}
   Let $n \in \mathbb{N}$ and consider the sequence $H = H_{1}, H_{2} \cdots H_{n} \in \mathbb{R} \left( * \right)$. we will say that $H$ is a Heap if for every $i \in [n]$ we have that: $H_{i} \le H_{2i}, H_{2i + 1}$ when we think of the value at indices greater than $n$ as $H_{i>n} = -\infty$. 
   \begin{equation*}
     \begin{split}
