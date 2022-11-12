@@ -107,7 +107,6 @@ We have seen in the Lecture that no Algorithm can compute the $\max$ function wi
   \end{subfigure}
 \end{figure}
 How much is the cost (running time) to compute the min of $H$? (without changing the heap). ($O\left( 1 \right)$). Assume that option 4 is our Superpharm Line. Let's try to imagine how we should maintain the line. After serving the customer at the top, what can be said on $ \{ H_{2}, H_{3}\}$? or $\{H_{i>3}\}?$ (the second highest value is in $\{H_{2}, H_{3} \}$.)   
-
 \paragraph{Subtask: Extracting Heap's Minimum.} \textit{Let $H$ be an Heap at size $n$, Write algorithm which return $H_1$, erase it and returns $H^\prime$, an Heap which contain all the remain elements.} 
 \textbf{Solution:} 
 
@@ -141,6 +140,23 @@ right $\rightarrow 2i +1 $ \\
 }
 \end{algorithm}
 \end{algbox}
+\paragraph{Running Example.} 
+\begin{figure}[h]
+  \centering
+  \begin{subfigure}[b]{0.25\textwidth}
+	\input{tree-41.tex}
+  \end{subfigure}
+\begin{subfigure}[b]{0.25\textwidth}
+	\input{tree-42.tex}
+  \end{subfigure}
+\begin{subfigure}[b]{0.25\textwidth}
+	\input{tree-43.tex}
+  \end{subfigure}
+\begin{subfigure}[b]{0.25\textwidth}
+	\input{tree-44.tex}
+  \end{subfigure}
+\end{figure}
+
 \paragraph{Claim.} Assume that $H$ satisfies the Heap inequality for all the elements except the root. Namely for any $i \neq 1$ we have that $H_{i} \le H_{2i}, H_{2i+1}$. Then applying Heapify-down on $H$ at index $1$ returns a heap.  
 \paragraph{Proof.} By Induction on the heap size.  
  
