@@ -176,8 +176,9 @@ right $\rightarrow 2i +1 $ \\
 \paragraph{Question.} How to construct a heap? And how much time will it take?   
 \begin{algbox}{Build.}
 \begin{algorithm}[H]
+  \SetKwInOut{Input}{input}
 % \SetAlgoLined
-  Given arbitrary array $ H = H_{1} .. H_{n} $  
+  \Input{ Array $ H = H_{1} .. H_{n} $ }
   $ i \leftarrow \lfloor \frac{1}{2}n  \rfloor $ \\
   \While { $ i > 1 $ }
   { 
