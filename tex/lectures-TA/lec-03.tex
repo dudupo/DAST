@@ -291,7 +291,9 @@ return median
   \caption{ Example for Median, heap, the left and right trees are maximum and minimum heaps.  }
 \end{figure}
 
+#if 0
   \newpage
+
 \section{ Appendix. Exercise from last year }
 
 \paragraph{Question.} Consider the sets $X = \{x_1,x_2 .. x_n\}$, $Y = \{y_1, y_2 .. y_n\}$. Assume that each of the values $x_i,y_i$ is unique. Write an Algorithm which compute the $k$ most small items in $X \oplus Y = \{ x_{i} + y_{j} : x_{i} \in X , y_{j} \in Y  \} $ at $ O \left( n + k\log k  \right) $ time. 
@@ -314,6 +316,6 @@ $ H_{XY} \leftarrow $ Heap $(\{ \} )$ \\
 return extract-$k$ ( $H_{XY}$ ) 
 \end{algorithm}
 \end{algbox}
-
+#endif
 
 \input{../texlib/tail}
