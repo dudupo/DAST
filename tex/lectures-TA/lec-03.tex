@@ -268,7 +268,7 @@ $ n \leftarrow n + 1 $
 
 \paragraph{Task:}Write a datastructure that support insertion and deltion at $O\left( \log n \right) $ time and in addition enable to extract the median in $O\left( \log n  \right)$ time. 
 
-\paragraph{Soultlion.} We will define two separate Heaps, the first will be a maximum heap and store the first $ \lfloor n/2 \rfloor $ smallest elements, and the second will be a minimum heap and contain the $ \lceil n/2 \rceil$ greatest elements. 
+\paragraph{Soultlion.} We will define two separate Heaps, the first will be a maximum heap and store the first $ \lfloor n/2 \rfloor $ smallest elements, and the second will be a minimum heap and contain the $ \lceil n/2 \rceil$ greatest elements. So, it's clear that the root of the maximum heap is the median of the elements. Therefore for gurantine correctness we should maintain the balance between the heaps size. Namely, promising that after each inseration or extraction the difference between the hepas size is either $0$ or $1$.
 
 \begin{algbox}{Median-Insert-key.}
 \begin{algorithm}[H]
