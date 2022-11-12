@@ -22,6 +22,8 @@ Consider the following suggestion. How would you prove it correct?
 \begin{algbox}{Maximum finding.}
 \begin{algorithm*}[H]
 % \SetAlgoLined
+ \SetKwInOut{Input}{input}
+ \Input{ Array  $ a_1, a_2, .. a_n $  }
  let \(b \leftarrow a_1 \) \\ 
  \For{\(i \in [2, n] \) } { 
         \(b \leftarrow \max \left(b, a_i \right) \)
@@ -52,6 +54,8 @@ And that completes the Conservation part. Termination, followed by the conservat
 
 \begin{algbox}{Element finding.}
 \begin{algorithm}[H]
+\SetKwInOut{Input}{input}
+ \Input{ Array  $ a_1, a_2, .. a_n $  }
 % \SetAlgoLined
  \For{ \(i \in [n] \) } { 
 	\If { \(a_{i} = x\) }{
@@ -113,6 +117,8 @@ How much is the cost (running time) to compute the min of $H$? (without changing
 
 \begin{algbox}{Extract-min.}
 \begin{algorithm}[H]
+\SetKwInOut{Input}{input}
+ \Input{ Heap  $ H_1, H_2, .. H_n $  }
 % \SetAlgoLined
 ret $\leftarrow H_{1} $ \\
 $ H_{1} \leftarrow \infty $  \\
@@ -125,6 +131,8 @@ return ret
 
 \begin{algbox}{Heapify-down.}
 \begin{algorithm}[H]
+\SetKwInOut{Input}{input}
+ \Input{ Array  $ a_1, a_2, .. a_n $  }
 % \SetAlgoLined
 next  $\leftarrow i  $ \\
 left  $\leftarrow 2i $ \\
@@ -213,6 +221,8 @@ And by the Ratio test for inifinte serires $ \lim_{j\rightarrow \infty} \frac{(j
 Combining the above we obtain a new sorting algorithm. Given an array, we could first heapify it (build heap from it) and then extract the elements by their order. As we saw, the construction requires linear time, and then each extraction cost $\log n$ time. So, the overall cost is $O\left( n\log n  \right)$. Correction follows immedatly from Build and Extract correction.  
 \begin{algbox}{Heap-Sort.}
 \begin{algorithm}[H]
+\SetKwInOut{Input}{input}
+ \Input{ Array  $ H_1, H_2, .. H_n $  }
 % \SetAlgoLined
   $H \leftarrow $ build $ \left( x_1, x_2 .. x_{n}  \right) $ \\ 
   ret $ \leftarrow $ Array $ \{ \} $ \\
@@ -227,6 +237,8 @@ Combining the above we obtain a new sorting algorithm. Given an array, we could 
 
 \begin{algbox}{Heapify-up.}
 \begin{algorithm}[H]
+  \SetKwInOut{Input}{input}
+ \Input{ Heap  $ H_1, H_2, .. H_n $  }
 % \SetAlgoLined
 parent $\leftarrow \lfloor i/2 \rfloor $ \\
 \If{ \text{parent} $  > 0 \text{ and }  H_{\text{parent}} \le H_{i}$ } { 
@@ -240,6 +252,8 @@ parent $\leftarrow \lfloor i/2 \rfloor $ \\
 
 \begin{algbox}{Insert-key.}
 \begin{algorithm}[H]
+\SetKwInOut{Input}{input}
+ \Input{ Heap  $ H_1, H_2, .. H_n $  }
 % \SetAlgoLined
 $ H_{n} \leftarrow v $ \\ 
 Heapify-up$\left( n \right)$\\
@@ -258,6 +272,8 @@ $ n \leftarrow n + 1 $
 
 \begin{algbox}{Median-Insert-key.}
 \begin{algorithm}[H]
+  \SetKwInOut{Input}{input}
+ \Input{ Array  $ H_1, H_2, .. H_n $  }
 % \SetAlgoLined
 
 median $\leftarrow$ extract $H_{max}$  \\
@@ -274,6 +290,8 @@ median $\leftarrow$ extract $H_{max}$  \\
 
 \begin{algbox}{Median-Extract.}
 \begin{algorithm}[H]
+\SetKwInOut{Input}{input}
+ \Input{ Array  $ H_1, H_2, .. H_n $  }
 % \SetAlgoLined
 median $\leftarrow$ extract $H_{max}$ \\   
 \If{ size($H_{min}$) - size($H_{max}$) $> 2$ }{
