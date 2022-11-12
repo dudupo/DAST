@@ -68,9 +68,9 @@ And that completes the Conservation part. Termination, followed by the conservat
 \paragraph{Correctness Proof.} First, let's prove the following loop invariant. 
 \subparagraph{Claim} \textit{Suppose that the running of the algorithm reached the i-th iteration, then $x \notin \{ a_{1} .. a_{i-1} \}$.} 
 \textbf{Proof.} Initialization, for $i=1$ the claim is trivial. Let's use that as the induction base case for proving Conservation. Assume the correctness of the claim for any $i^{\prime} < i$. And consider the $i$th iteration. By the induction assumption, we have that $x \notin \{a_1 .. a_{i-2} \} $, and by the fact that we reached the $i$th iteration, we have that in the $i-1$ iteration, at the line (2) the conditional weren't satisfied (otherwise, the function would return at line (3) namely $x \neq a_{i-1}$. Hence, it follows that $ x \notin \{ a_1, a_2 .. a_{i-2}, a_{i-1} \} $.     
-  \subparagraph{} Separate to cases. First, consider the case that given the input $a_1 .. a_n$, the algorithm return False. In this case we have by the termination property that $x \notin \{ a_1 .. a_n \} $. Now, Suppose that the algorithm returns the pair $\left( i, x \right)$, then it means that the conditional at the line (2) was satisfied at the $i$th iteration. So, indeed $a_{i} = x$, and the algorithm returns the expected output.        
+  \subparagraph{} Separate to cases. First, consider the case that given the input $a_1 .. a_n$, the algorithm return False. In this case, we have by the termination property that $x \notin \{ a_1 .. a_n \} $. Now, Suppose that the algorithm returns the pair $\left( i, x \right)$, then it means that the conditional at the line (2) was satisfied at the $i$th iteration. So, indeed $a_{i} = x$, and the algorithm returns the expected output.        
 
-%\textit{ You are given string $x = x_{1},x_{2} ... x_{m}$ such that $x_{i}$ is ethier number $x_{i} \in \mathbb{R}$ or the symbol $q$. for example, consider the following possible input $1,2,13,4,5,q,q,3,q$. Also define $S_{0} = \{ \}$.  In each turn $i \in [m]$ print} 
+
   \newpage
 \subsection*{Heaps.}
   \paragraph{Task: The Superpharm Problem. (Motivation for Heaps) }\textit{You are requested to maintain a pharmacy line. In each turn, you get one of the following queries, either a new customer enters the shop, or the pharmacist requests the next person to stand in front. In addition, different customers have different priorities, So you are asked to guarantee that in each turn, the person with the height priority will be at the front.}
@@ -78,7 +78,7 @@ And that completes the Conservation part. Termination, followed by the conservat
 Before we consider a sophisticated solution, What is the running time for the naive solution? (maintaining the line as a linear array) ($\sim O\left( n^2 \right)$).
 
 Heaps are structures that enable computing the maximum efficiency in addition to supporting adding and removing elements.
-We have seen in the Lecture that no Algorithm can compute the $\max$ function with less than $n-1$ comparisons. So our solution above is indeed the best we could expect for. The same is true for the element finding problem. Yet, we saw that if we are interested in storing the numbers, then, by keeping them according to sorted order, we could compute each query in logarithmic time via binary search. That raises the question, is it possible to have a similar result regarding the max problem?
+We have seen in the Lecture that no Algorithm can compute the $\max$ function with less than $n-1$ comparisons. So our solution above is indeed the best we could expect for. The same is true for the element-finding problem. Yet, we saw that if we are interested in storing the numbers, then, by keeping them according to sorted order, we could compute each query in logarithmic time via binary search. That raises the question, is it possible to have a similar result regarding the max problem?
 
 \begin{defbox}{Heap}
   Let $n \in \mathbb{N}$ and consider the sequence $H = H_{1}, H_{2} \cdots H_{n} \in \mathbb{R} \left( * \right)$. we will say that $H$ is a Heap if for every $i \in [n]$ we have that: $H_{i} \le H_{2i}, H_{2i + 1}$ when we think of the value at indices greater than $n$ as $H_{i>n} = -\infty$. 
@@ -171,7 +171,7 @@ right $\rightarrow 2i +1 $ \\
 
 
 \paragraph{Claim.} Assume that $H$ satisfies the Heap inequality for all the elements except the root. Namely for any $i \neq 1$ we have that $H_{i} \le H_{2i}, H_{2i+1}$. Then applying Heapify-down on $H$ at index $1$ returns a heap.  
-\paragraph{Proof.} By Induction on the heap size.  
+\paragraph{Proof.} By induction on the heap size.  
  
 \begin{itemize} 
   \item Base, Consider a heap at the size at most three and prove for each by considering each case separately. (lefts as exercise).  
@@ -196,9 +196,9 @@ right $\rightarrow 2i +1 $ \\
 return $H_{1} .. H_{n}$
 \end{algorithm}
 \end{algbox}
-We can compute a simple upper bound on the running time of Build  as follows. Each call to Heapify costs $O(\log n)$ time, and Build  makes $O(n)$ such calls. Thus, the running time is $O(n \log n)$. This upper bound, though correct, is not as tight as it can be.
+We can compute a simple upper bound on the running time of Build as follows. Each call to Heapify costs $O(\log n)$ time, and Build makes $O(n)$ such calls. Thus, the running time is $O(n \log n)$. This upper bound, though correct, is not as tight as it can be.
 
-Let's compute the a tight bound. Denote by $U_h$ the subset of vertices in the heap at height $h_{i}$.  Also let $c > 0 $ be the constant quantify the work that is done in each reqursive step, then we can express the total cost as being bonded from above by: 
+Let's compute the tight bound. Denote by $U_h$ the subset of vertices in a heap at height $h_{i}$. Also, let $c > 0 $ be the constant quantify the work that is done in each recursive step, then we can express the total cost as being bonded from above by: 
 
 \begin{equation*}
   \begin{split}
@@ -206,7 +206,7 @@ Let's compute the a tight bound. Denote by $U_h$ the subset of vertices in the h
   \end{split}
 \end{equation*}
 
-In addition, by counting arguments we have the inequality $ 2^{\log n - h_{i}}|U_{i}| \le n $ (Proving this argument is left as exercise). We thus obtain:  
+In addition, by counting arguments, we have the inequality $ 2^{\log n - h_{i}}|U_{i}| \le n $ (Proving this argument is left as an exercise). We thus obtain:  
 
 \begin{equation*}
   \begin{split}
@@ -218,7 +218,7 @@ And by the Ratio test for inifinte serires $ \lim_{j\rightarrow \infty} \frac{(j
 
 
 \paragraph{Heap Sort.}   
-Combining the above we obtain a new sorting algorithm. Given an array, we could first heapify it (build heap from it) and then extract the elements by their order. As we saw, the construction requires linear time, and then each extraction cost $\log n$ time. So, the overall cost is $O\left( n\log n  \right)$. Correction follows immedatly from Build and Extract correction.  
+Combining the above, we obtain a new sorting algorithm. Given an array, we could first Heapify it (build a heap from it) and then extract the elements by their order. As we saw, the construction requires linear time, and then each extraction costs $\log n$ time. So, the overall cost is $O\left( n\log n  \right)$. Correction follows immediately from Build and Extract correction.  
 \begin{algbox}{Heap-Sort.}
 \begin{algorithm}[H]
 \SetKwInOut{Input}{input}
@@ -310,7 +310,7 @@ return median
 \begin{subfigure}[b]{0.49\textwidth}
 	\input{tree-r1.tex}
   \end{subfigure}
-  \caption{ Example for Median, heap, the left and right trees are maximum and minimum heaps.  }
+  \caption{ Example for Median-Heap, the left and right trees are maximum and minimum heaps.  }
 \end{figure}
 
 \iffalse 
@@ -341,3 +341,4 @@ return extract-$k$ ( $H_{XY}$ )
 \fi
 
 \input{../texlib/tail}
+
