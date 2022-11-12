@@ -105,6 +105,7 @@ We have seen in the Lecture that no Algorithm can compute the $\max$ function wi
 \begin{subfigure}[b]{0.3\textwidth}
 	\input{tree-4.tex}
   \end{subfigure}
+  \caption{The trees representations of the heaps above. The node which fails to satisfy the Heap inequality is colorized.}
 \end{figure}
 How much is the cost (running time) to compute the min of $H$? (without changing the heap). ($O\left( 1 \right)$). Assume that option 4 is our Superpharm Line. Let's try to imagine how we should maintain the line. After serving the customer at the top, what can be said on $ \{ H_{2}, H_{3}\}$? or $\{H_{i>3}\}?$ (the second highest value is in $\{H_{2}, H_{3} \}$.)   
 \paragraph{Subtask: Extracting Heap's Minimum.} \textit{Let $H$ be an Heap at size $n$, Write algorithm which return $H_1$, erase it and returns $H^\prime$, an Heap which contain all the remain elements.} 
