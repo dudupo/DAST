@@ -168,21 +168,24 @@ return $H_{1} .. H_{n}$
 \end{algbox}
 We can compute a simple upper bound on the running time of Build  as follows. Each call to Heapify costs $O(\log n)$ time, and Build  makes $O(n)$ such calls. Thus, the running time is $O(n \log n)$. This upper bound, though correct, is not as tight as it can be.
 
-Let's compute the a tight bound. Denote by $m_i$ the number of reqursive calls made by heapify-down callled initially over $i$th elemenet. As in each reqursive call the algorithm progress the index at factor at least two we have that  $2^{m_i} i \le n$. Hence, $m_{i} = \log\left( \lfloor \frac{n}{i}  \rfloor  \right)$. Also let $c > 0$ be the constant quantify the work that is done in each reqursive step, then we can express the total cost as being bonded from above by: 
+Let's compute the a tight bound. Denote by $U_h$ the subset of vertices in the heap at height $h_{i}$.  Also let $c > 0 $ be the constant quantify the work that is done in each reqursive step, then we can express the total cost as being bonded from above by: 
 
 \begin{equation*}
   \begin{split}
-    T\left( n \right) &= \sum_{i=1}^{\lfloor \frac{n}{2} \rfloor}{c \cdot m_{i}   } = \sum_{i=1}^{\lfloor \frac{n}{2} \rfloor}{  \log\left( \lfloor \frac{n}{i}  \rfloor \right) } 
+    T\left( n \right) &= \sum_{ h_{i} =1}^{ \log n }{c \cdot \left( \log n -  h_{i} \right)  |U_{h_{i}}|   } 
   \end{split}
 \end{equation*}
 
+In addition, by counting arguments we have the inequality $ 2^{\log n - h_{i}}|U_{i}| \le n $. We thus obtain:  
+
 \begin{equation*}
   \begin{split}
-    T\left( n + 1 \right) - T\left( n \right) & \le \log\left( \lfloor \frac{n+1}{ \frac{n+1}{2}  }  \rfloor  \right) + \sum_{i=1}^{\lfloor \frac{n}{2} \rfloor}{ \log \left( \lfloor \frac{n+1}{i} \rfloor \left( \lfloor \frac{n}{i} \rfloor \right)^{-1}  \right)  } \\  & \le  \log\left( 2  \right) + \sum_{i=1}^{\lfloor \frac{n}{2} \rfloor}{ \log \left( \frac{n+100}{i}  \frac{i}{n-100}   \right)  } \le  1  + \sum_{i=1}^{\lfloor \frac{n}{2} \rfloor}{ \log \left( 1+ \frac{200}{n-100} \right)  } \\ 
-    & = 1 + \log \left( \left( 1+ \frac{200}{n-100} \right)^{ \lfloor \frac{n}{2} \rfloor } \right) \le 1 + \lim_{n \rightarrow \infty}   \log \left( \left( 1+ \frac{200}{n-100} \right)^{ \lfloor \frac{n}{2} \rfloor } \right) \le 1  + e^{200}  \\ 
-     \end{split}
+    T\left( n \right) $ \le  \sum_{ h_{i} =1}^{ \log n }{c \cdot \left( \log n -  h_{i} \right) \frac{n}{2^{log n - h_{i}} } = c n \sum_{ j = 1}^{ \log n }{ 2^{-j} \cdot j  }  \\ 
+      \le &  c n \sum_{ j = 1}^{ \infty }{ 2^{-j} \cdot j  } 
+  \end{split}
 \end{equation*}
-Namley we got that the diffrence $T(n+1) - T(n)$ is bounded by constant and therefore $T\left( n \right) = \Theta\left( n \right)$.
+And by the Ratio test for inifinte serires $ \lim_{j\rightarrow \infty} \frac{(j+1)2^{-j-1}}{j2^{-j}} \rightarrow \frac{1}{2}$ we have that the serire covergence to constant. Hence: $ T\left( n \right) = \Theta\left( n \right) $. 
+
 \begin{algbox}{Heapify-up.}
 \begin{algorithm}[H]
 % \SetAlgoLined
