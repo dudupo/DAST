@@ -221,23 +221,23 @@ $ n \leftarrow n + 1 $
 
 median $\leftarrow$ extract $H_{max}$  \\
 \If{ $v < $median  }{ 
-  heappush ( $H_{max}$, $v$ ) \\
-  heappush ( $H_{min}$, median ) \\
+  Insert-key ( $H_{max}$, $v$ ) \\
+  Insert-key ( $H_{min}$, median ) \\
 } 
 \Else{
-  heappush ( $H_{min}$, $v$ ) \\
-  heappush ( $H_{max}$, median ) \\
+  Insert-key ( $H_{min}$, $v$ ) \\
+  Insert-key ( $H_{max}$, median ) \\
 }
 \end{algorithm}
 \end{algbox}
 
-\begin{algbox}{Median-Extract-key.}
+\begin{algbox}{Median-Extract.}
 \begin{algorithm}[H]
 % \SetAlgoLined
 median $\leftarrow$ extract $H_{max}$ \\   
 \If{ size($H_{min}$) - size($H_{max}$) $> 2$ }{
   temp $ \leftarrow $ extract $H_{\min}$ \\
-  heappush ( $H_{max}$, temp )    \\
+  Insert-key ( $H_{max}$, temp )    \\
 }
 return median 
 \end{algorithm}
