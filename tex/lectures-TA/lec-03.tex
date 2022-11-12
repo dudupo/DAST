@@ -209,7 +209,20 @@ $ n \leftarrow n + 1 $
 \end{algbox}
 
 
-\paragraph{Heap Sort.} We  
+\paragraph{Heap Sort.}   
+
+\begin{algbox}{Heap-Sort.}
+\begin{algorithm}[H]
+% \SetAlgoLined
+  $H \leftarrow $ build $ \left( x_1, x_2 .. x_{n}  \right) $ \\ 
+  ret $ \leftarrow $ Array $ \{ \} $ \\
+  \For {  $ i \in [n] $ } {
+    ret[$i$] $\leftarrow$ extract $H$
+  }
+  return ret. 
+\end{algorithm}
+\end{algbox}
+
 
 \newpage 
 \subsection*{Example, Median Heap}
