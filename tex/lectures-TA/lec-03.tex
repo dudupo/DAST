@@ -141,9 +141,9 @@ right $\rightarrow 2i +1 $ \\
 \end{algorithm}
 \end{algbox}
 
-\paragraph{Running Example.} 
+ 
 
-\begin{figure}[H]
+\begin{figure}[h]
   \centering
   \begin{subfigure}[b]{0.23\textwidth}
 	\input{tree-41.tex}
@@ -157,7 +157,9 @@ right $\rightarrow 2i +1 $ \\
 \begin{subfigure}[b]{0.23\textwidth}
 	\input{tree-44.tex}
   \end{subfigure}
+  \caption{Running Example, Extract.} 
 \end{figure}
+
 
 \paragraph{Claim.} Assume that $H$ satisfies the Heap inequality for all the elements except the root. Namely for any $i \neq 1$ we have that $H_{i} \le H_{2i}, H_{2i+1}$. Then applying Heapify-down on $H$ at index $1$ returns a heap.  
 \paragraph{Proof.} By Induction on the heap size.  
