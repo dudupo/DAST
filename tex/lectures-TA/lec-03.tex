@@ -168,11 +168,11 @@ return $H_{1} .. H_{n}$
 \end{algbox}
 We can compute a simple upper bound on the running time of Build  as follows. Each call to Heapify costs $O(\log n)$ time, and Build  makes $O(n)$ such calls. Thus, the running time is $O(n \log n)$. This upper bound, though correct, is not as tight as it can be.
 
-Let's compute the a tight bound. Denote by $m_i$ the number of reqursive calls made by heapify-down callled initially over $i$th elemenet. As in each reqursive call the algorithm progress the index at factor at least two we have that  $2^{m_i} i \le n$. Hence, $m_{i} = \log\left( \frac{n}{i} \right)$. Also let $c > 0$ be the constant quantify the work that is done in each reqursive step, then we can express the total cost as being bonded from above by: 
+Let's compute the a tight bound. Denote by $m_i$ the number of reqursive calls made by heapify-down callled initially over $i$th elemenet. As in each reqursive call the algorithm progress the index at factor at least two we have that  $2^{m_i} i \le n$. Hence, $m_{i} = \log\left( \lfloor \frac{n}{i}  \rfloor  \right)$. Also let $c > 0$ be the constant quantify the work that is done in each reqursive step, then we can express the total cost as being bonded from above by: 
 
 \begin{equation*}
   \begin{split}
-    T\left( n \right) &= \sum_{i=1}^{\lfloor \frac{n}{2} \rfloor}{c \cdot m_{i}   } = \sum_{i=1}^{\lfloor \frac{n}{2} \rfloor}{  \log\left( \frac{n}{i} \right) } 
+    T\left( n \right) &= \sum_{i=1}^{\lfloor \frac{n}{2} \rfloor}{c \cdot m_{i}   } = \sum_{i=1}^{\lfloor \frac{n}{2} \rfloor}{  \log\left( \lfloor \frac{n}{i}  \rfloor \right) } 
   \end{split}
 \end{equation*}
 
