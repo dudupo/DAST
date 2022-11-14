@@ -274,17 +274,19 @@ $ n \leftarrow n + 1 $
 \begin{algbox}{Median-Insert-key.}
 \begin{algorithm}[H]
   \SetKwInOut{Input}{input}
- \Input{ Array  $ H_1, H_2, .. H_n $  }
+  \Input{ Array  $ H_1, H_2, .. H_n , v $  }
 % \SetAlgoLined
-
-median $\leftarrow$ extract $H_{max}$  \\
+median $\leftarrow$ extract $H_{max}$ \\    
 \If{ $v < $median  }{ 
   Insert-key ( $H_{max}$, $v$ ) \\
-  Insert-key ( $H_{min}$, median ) \\
 } 
 \Else{
   Insert-key ( $H_{min}$, $v$ ) \\
-  Insert-key ( $H_{max}$, median ) \\
+}
+Insert-key ( $H_{max}$, median )    \\
+\If{ size($H_{min}$) $<$ size($H_{max}$)  }{
+  temp $\leftarrow $ Extract $H_{min}$ \\
+  Insert-key ( $H_{max}$, temp )    
 }
 \end{algorithm}
 \end{algbox}
