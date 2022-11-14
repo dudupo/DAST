@@ -138,10 +138,10 @@ return ret
 next  $\leftarrow i  $ \\
 left  $\leftarrow 2i $ \\
 right $\rightarrow 2i +1 $ \\ 
-\If{ left $ < n \text{ and }  H_{\text{next}} \le H_{\text{left}}$ } {
+\If{ left $ < n \text{ and }  H_{\text{left}} < H_{\text{next}}$ } {
   next $\leftarrow$ left 
 }
-\If{ right $ < n \text{ and }  H_{\text{next}} \le H_{\text{right}}$ } {
+\If{ right $ < n \text{ and }  H_{\text{right}} < H_{\text{next}}$ } {
   next $\leftarrow$  right
 }
 \If{ $ i \neq $ next } {
