@@ -121,7 +121,8 @@ How much is the cost (running time) to compute the min of $H$? (without changing
  \Input{ Heap  $ H_1, H_2, .. H_n $  }
 % \SetAlgoLined
 ret $\leftarrow H_{1} $ \\
-$ H_{1} \leftarrow \infty $  \\
+$ H_{1} \leftarrow H_{n} $  \\
+$ n \leftarrow n -1 $ \\
 Heapify-down$\left( 1 \right)$ \\
 return ret  
 \end{algorithm}
