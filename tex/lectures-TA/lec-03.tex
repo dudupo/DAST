@@ -272,21 +272,17 @@ $ n \leftarrow n + 1 $
 \paragraph{Soultlion.} We will define two separate Heaps, the first will be a maximum heap and store the first $ \lfloor n/2 \rfloor $ smallest elements, and the second will be a minimum heap and contain the $ \lceil n/2 \rceil$ greatest elements. So, it's clear that the root of the maximum heap is the median of the elements. Therefore to guarantee correctness, we should maintain the balance between the heap's size. Namely, promising that after each insertion or extraction, the difference between the heap's size is either $0$ or $1$.
 
 \begin{algbox}{Median-Insert-key.}
-\begin{algorithm}[H]
-  \SetKwInOut{Input}{input}
-  \Input{ Array  $ H_1, H_2, .. H_n , v $  }
-% \SetAlgoLined
-median $\leftarrow$ extract $H_{max}$ \\    
-\If{ $v < $ median  }{ 
-  Insert-key ( $H_{max}$, $v$ ) \\
-} 
-\Else{
-  Insert-key ( $H_{min}$, $v$ ) \\
+\begin{algorithm}[H]  
+\SetKwInOut{Input}{input} 
+\Input{ Array  $ H_1, H_2, .. H_n , v $  } 
+median $\leftarrow$ Median-Extract $H$ \\
+\If{ $v < $ median  }{
+   Insert-key ( $H_{max}$, $v$ ) \\
+   Insert-key ( $H_{min}$, $median$ ) \\
 }
-Insert-key ( $H_{max}$, median )    \\
-\If{ size($H_{min}$) $<$ size($H_{max}$)  }{
-  temp $\leftarrow $ Extract $H_{min}$ \\
-  Insert-key ( $H_{max}$, temp )    
+\Else{
+   Insert-key ( $H_{min}$, $v$ ) \\
+   Insert-key ( $H_{max}$, $median$ ) \\
 }
 \end{algorithm}
 \end{algbox}
