@@ -24,7 +24,7 @@ Our study of quicksort is broken into four sections. Section 7.1 describes the a
 
 
     \begin{algbox}{randomized-quicksort $(A, p, r)$}
-      \begin{algorithm}
+      \begin{algorithm}[H]
 	\If{ $p < r$ }{
 	  $q \leftarrow $ randomized-partition $(A, p, r)$ \\
 	  randomized-quicksort $(A, p, q-1)$\\
@@ -39,7 +39,7 @@ Figure 7.1 shows how PARTITION works on an 8-element array. PARTITION always sel
 
 
 \begin{algbox}{Partition(A, p, r)}
-  \begin{algorithm}
+  \begin{algorithm}[H]
     $ x \leftarrow A_{r} $ \\
     $ i \leftarrow p - 1 $ \\
     \For{ $j \in [p, r-1]$ }{
@@ -62,30 +62,6 @@ Initialization: Prior to the first iteration of the loop, we have i = p – 1 an
 Maintenance: As Figure 7.3 shows, we consider two cases, depending on the outcome of the test in line 4. Figure 7.3(a) shows what happens when A[j] > x: the only action in the loop is to increment j. After j has been incremented, the second condition holds for A[j – 1] and all other entries remain unchanged. Figure 7.3(b) shows what happens when A[j] ≤ x: the loop increments i, swaps A[i] and A[j], and then increments j. Because of the swap, we now have that A[i] ≤ x, and condition 1 is satisfied. Similarly, we also have that A[j – 1] > x, since the item that was swapped into A[j – 1] is, by the loop invariant, greater than x.
 Termination: Since the loop makes exactly r – p iterations, it terminates, whereupon j = r. At that point, the unexamined subarray A[j : r – 1] is empty, and every entry in the array belongs to one of the other three sets described by the invariant. Thus, the values in the array have been partitioned into three sets: those less than or equal to x (the low side), those greater than x (the high side), and a singleton set containing x (the pivot).
 
-
-\section{ Appendix. Exercise from last year }
-
-\paragraph{Question.} Consider the sets $X = \{x_1,x_2 .. x_n\}$, $Y = \{y_1, y_2 .. y_n\}$. Assume that each of the values $x_i,y_i$ is unique. Write an Algorithm which compute the $k$ most small items in $X \oplus Y = \{ x_{i} + y_{j} : x_{i} \in X , y_{j} \in Y  \} $ at $ O \left( n + k\log k  \right) $ time. 
-
-\textbf{Solution.} Notice that If $a \in X$ is greater than $i$ elements of $X$ and $b \in Y$ greater than $j$ elements of $Y$. Then, $a + b$  greater than $i\cdot j$ elements of $X \oplus Y$. Denote by $X^\prime = \{ x^{\prime}_{1} .. x^{\prime}_{n}$ ( $Y^{\prime}$ ) The elements of $X$ in sorted order. So it's clear that if $x_{i}+y_{j} = x^{\prime}_{i^{\prime}} + y^{\prime}_{j^{\prime}}$ is one of the $k$ smallest elements of $X\oplus Y$ then $i^{\prime}j^{\prime} \ge k$. So we will create a heap of elements that respect that inequality and then query that heap.
-
-\begin{algbox}{Heappush.}
-\begin{algorithm}[H]
-% \SetAlgoLined
-$ H_{X} \leftarrow $ build $\left( X \right)$  \\ 
-$ H_{Y} \leftarrow $ build $\left( Y \right)$  \\
-$ S_{X} \leftarrow $ extract-$k$ $\left( H_{X} \right)$  \\ 
-$ S_{Y} \leftarrow $ extract-$k$ $\left( H_{Y} \right)$  \\
-$ H_{XY} \leftarrow $ Heap $(\{ \} )$ \\
-\For{ $i \in [k]$ } {
-  \For { $j \in [k/i]$ } {
-  	Heappush( $H_{XY}$, $S_{X,i} + S_{Y, j}$ )    
-  }
-}
-return extract-$k$ ( $H_{XY}$ ) 
-\end{algorithm}
-\end{algbox}
-\fi
 
 \input{../texlib/tail}
 
