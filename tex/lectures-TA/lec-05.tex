@@ -70,46 +70,28 @@ Counting sort first determines, for each input element x, the number of elements
 The COUNTING-SORT procedure on the facing page takes as input an array A[1 : n], the size n of this array, and the limit k on the nonnegative integer values in A. It returns its sorted output in the array B[1 : n] and uses an array C [0 : k] for temporary working storage.
 
 
-
-COUNTING-SORT(A, n, k)
- 1
-let B[1 : n] and C [0 : k] be new arrays
-
- 2
-for i = 0 to k
-
- 3
-C [i] = 0
-
- 4
-for j = 1 to n
-
- 5
-C [A[j]] = C [A[j]] + 1
-
- 6
-// C [i] now contains the number of elements equal to i.
- 7
-for i = 1 to k
-
- 8
-C [i] = C [i] + C [i – 1]
-
- 9
-// C [i] now contains the number of elements less than or equal to i.
-10
-// Copy A to B, starting from the end of A.
-11
-for j = n downto 1
-
-12
-B[C [A[j]]] = A[j]
-
-13
-C [A[j]] = C [A[j]] – 1
-// to handle duplicate values
-14
-return B
+\begin{algbox}{Counting-sort$(A, n, k)$}
+  \begin{algorithm}[H]
+  	let B and C be new arrays at size $n$ and $k$
+  	\For{ $i \in  [0, k]$}{
+		$C_{i} \leftarrow 0 $
+  	}
+	\For{ $j \leftarrow [1, n]$}{
+	  $C_{A{j}} \leftarrow C_{A_{j}} + 1 $
+ 	}
+	// $C_{i}$ now contains the number of elements equal to i.
+	\For{ $i \in  [1, k]$}{
+	  $C_{i} \leftarrow C_{i} + C_{i – 1} $
+ 	}
+	// $C_{i}$ now contains the number of elements less than or equal to $i$.
+	// Copy $A$ to $B$, starting from the end of $A$.
+	\For{ $i \in [n , 1]$}{
+	  $B_{C_{A_{j}}} \leftarrow A_{j}$ \\
+	  $C_{A_{j}} \leftarrow C_{A{j}} – 1$\\
+	  // to handle duplicate values
+	  return $B$
+  \end{algorithm}
+\end{algbox}
 
 \paragraph{Counting Sort}
 Counting sort can beat the lower bound of $\Omega\left(n \log n\right)$ proved in Section 8.1 because it is not a comparison sort. In fact, no comparisons between input elements occur anywhere in the code. Instead, counting sort uses the actual values of the elements to index into an array. The $\Omega\left(n \log n\right)$ lower bound for sorting does not apply when we depart from the comparison sort model.
@@ -124,7 +106,7 @@ Intuitively, you might sort numbers on their most significant (leftmost) digit, 
 Radix sort solves the problem of card sorting—counterintuitively—by sorting on the least significant digit first. The algorithm then combines the cards into a single deck, with the cards in the 0 bin preceding the cards in the 1 bin preceding the cards in the 2 bin, and so on. Then it sorts the entire deck again on the second-least significant digit and recombines the deck in a like manner. The process continues until the cards have been sorted on all d digits. Remarkably, at that point the cards are fully sorted on the d-digit number. Thus, only d passes through the deck are required to sort. Figure 8.3 shows how radix sort operates on a “deck” of seven 3-digit numbers.
 In order for radix sort to work correctly, the digit sorts must be stable. The sort performed by a card sorter is stable, but the operator must be careful not to change the order of the cards as they come out of a bin, even though all the cards in a bin have the same digit in the chosen column.
 In a typical computer, which is a sequential random-access machine, we sometimes use radix sort to sort records of information that are keyed by multiple fields. For example, we might wish to sort dates by three keys: year, month, and day. We could run a sorting algorithm with a comparison function that, given two dates, compares years, and if there is a tie, compares months, and if another tie occurs, compares days. Alternatively, we could sort the information three times with a stable sort: first on day (the “least significant” part), next on month, and finally on year.
-The code for radix sort is straightforward. The RADIX-SORT procedure assumes that each element in array A[1 : n] has d digits, where digit 1 is the lowest-order digit and digit d is the highest-order digit.
+The code for radix sort is straightforward. The RADIX-SORT procedure assumes that each element in array $A_{1 : n}$ has d digits, where digit 1 is the lowest-order digit and digit d is the highest-order digit.
 
 
 \begin{algbox}{radix-sort(A, n, d)}
