@@ -68,20 +68,7 @@ We need to show that this loop invariant is true prior to the first iteration, t
 
 \end{enumerate}
 
-\newcommand{\vet}[1]{\foreach \num in {#1}{\el{\num}}}
-\newcommand{\el}[1]{\tikz{\node[font=\footnotesize, minimum size=16pt, draw]{#1}}}
-\newcommand{\bl}{\color{blue}}
-\newcommand{\gr}{\color{gray}}
-\newcommand{\re}{\color{red}}
-\begin{tabular}{c}
-\vet{\re $1^i$,\re 3,\re 5,\re 6, \bl $0^j$,\bl 2,\bl 4,\bl 9,\bl 10}  \\
-\vet{\bl 0, \#, \#, \#, \#, \#, \#, \#,\#}\\ 
-\vet{\re $1^i$,\re 3,\re 5,\re 6, \gr 0, \bl $2^j$,\bl 4,\bl 9,\bl 10} \\
-\vet{\gr 0, \re 1, \#, \#, \#, \#, \#, \#,\#}\\
-\vet{\gr 1, \re $3^i$,\re 5,\re 6, \gr 0, \bl $2^j$,\bl 4,\bl 9,\bl 10} \\
-\vet{\gr 0, \gr 1, \bl 2, \#, \#, \#, \#, \#,\#}\\
-\vet{\gr 1, \re $3^i$,\re 5,\re 6, \gr 0, \gr 2,\bl $4^j$,\bl 9,\bl 10} 
-\end{tabular}
+\input{quick-2.tex}
 
 \subsection{Linear Time Sorts}
 8.2 Counting sort
