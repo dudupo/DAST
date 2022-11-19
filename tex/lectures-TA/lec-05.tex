@@ -12,8 +12,9 @@ The quicksort algorithm is a good example for a \textbf{non-determistic} algorit
 
 What is the exactly reason that happens? By giving up on the algoirthm behaveoir centertiy we are going to turn the task of eneginering bad input impossible.    
 
-Our study of quicksort is broken into four sections. Section 7.1 describes the algorithm and an important subroutine used by quicksort for partitioning. Because the behavior of quicksort is complex, we’ll start with an intuitive discussion of its performance in Section 7.2 and analyze it precisely at the end of the chapter. Section 7.3 presents a randomized version of quicksort. When all elements are distinct,1 this randomized algorithm has a good expected running time and no particular input elicits its worst-case behavior. (See Problem 7-2 for the case in which elements may be equal.) Section 7.4 analyzes the randomized algorithm, showing that it runs in $\Theta(n^2)$ time in the worst case and, assuming distinct elements, in expected $O\left(n\log n\right)$ time.
-  
+We have seen the following Algortithm in class: 
+
+
 \begin{algbox}{randomized-partition$(A, p, r)$}
   \begin{algorithm}[H]
       $i \leftarrow $ random $(p, r)$ \\
@@ -21,9 +22,7 @@ Our study of quicksort is broken into four sections. Section 7.1 describes the a
       return Partition $(A, p, r)$
     \end{algorithm}
 \end{algbox}
-
-
-    \begin{algbox}{randomized-quicksort $(A, p, r)$}
+ \begin{algbox}{randomized-quicksort $(A, p, r)$}
       \begin{algorithm}[H]
 	\If{ $p < r$ }{
 	  $q \leftarrow $ randomized-partition $(A, p, r)$ \\
@@ -33,10 +32,9 @@ Our study of quicksort is broken into four sections. Section 7.1 describes the a
       \end{algorithm}
     \end{algbox}
 
-Partitioning the array
+\paragraph{Partitioning }
 The key to the algorithm is the PARTITION procedure on the next page, which rearranges the subarray A[p : r] in place, returning the index of the dividing point between the two sides of the partition.
 Figure 7.1 shows how PARTITION works on an 8-element array. PARTITION always selects the element x = A[r] as the pivot. As the procedure runs, each element falls into exactly one of four regions, some of which may be empty. At the start of each iteration of the for loop in lines 3–6, the regions satisfy certain properties, shown in Figure 7.2. We state these properties as a loop invariant:
-
 
 \begin{algbox}{Partition(A, p, r)}
   \begin{algorithm}[H]
@@ -54,13 +52,21 @@ Figure 7.1 shows how PARTITION works on an 8-element array. PARTITION always sel
 \end{algbox}
 
 At the beginning of each iteration of the loop of lines 3–6, for any array index k, the following conditions hold:
-• if p ≤ k ≤ i, then A[k] ≤ x (the tan region of Figure 7.2);
-• if i + 1 ≤ k ≤ j – 1, then A[k] > x (the blue region);
-• if k = r, then A[k] = x (the yellow region).
+\begin{itemize}
+  \item  if p ≤ k ≤ i, then A[k] ≤ x (the tan region of Figure 7.2);
+  \item  if i + 1 ≤ k ≤ j – 1, then A[k] > x (the blue region);
+  \item  if k = r, then A[k] = x (the yellow region).
+\end{itemize}
 We need to show that this loop invariant is true prior to the first iteration, that each iteration of the loop maintains the invariant, that the loop terminates, and that correctness follows from the invariant when the loop terminates.
-Initialization: Prior to the first iteration of the loop, we have i = p – 1 and j = p. Because no values lie between p and i and no values lie between i + 1 and j – 1, the first two conditions of the loop invariant are trivially satisfied. The assignment in line 1 satisfies the third condition.
-Maintenance: As Figure 7.3 shows, we consider two cases, depending on the outcome of the test in line 4. Figure 7.3(a) shows what happens when A[j] > x: the only action in the loop is to increment j. After j has been incremented, the second condition holds for A[j – 1] and all other entries remain unchanged. Figure 7.3(b) shows what happens when A[j] ≤ x: the loop increments i, swaps A[i] and A[j], and then increments j. Because of the swap, we now have that A[i] ≤ x, and condition 1 is satisfied. Similarly, we also have that A[j – 1] > x, since the item that was swapped into A[j – 1] is, by the loop invariant, greater than x.
-Termination: Since the loop makes exactly r – p iterations, it terminates, whereupon j = r. At that point, the unexamined subarray A[j : r – 1] is empty, and every entry in the array belongs to one of the other three sets described by the invariant. Thus, the values in the array have been partitioned into three sets: those less than or equal to x (the low side), those greater than x (the high side), and a singleton set containing x (the pivot).
+
+\begin{enumerate}
+  \item Initialization: Prior to the first iteration of the loop, we have i = p – 1 and j = p. Because no values lie between p and i and no values lie between i + 1 and j – 1, the first two conditions of the loop invariant are trivially satisfied. The assignment in line 1 satisfies the third condition.
+  \item Maintenance: As Figure 7.3 shows, we consider two cases, depending on the outcome of the test in line 4. Figure 7.3(a) shows what happens when A[j] > x: the only action in the loop is to increment j. After j has been incremented, the second condition holds for A[j – 1] and all other entries remain unchanged. Figure 7.3(b) shows what happens when A[j] ≤ x: the loop increments i, swaps A[i] and A[j], and then increments j. Because of the swap, we now have that A[i] ≤ x, and condition 1 is satisfied. Similarly, we also have that A[j – 1] > x, since the item that was swapped into A[j – 1] is, by the loop invariant, greater than x.
+    \item Termination: Since the loop makes exactly r – p iterations, it terminates, whereupon j = r. At that point, the unexamined subarray A[j : r – 1] is empty, and every entry in the array belongs to one of the other three sets described by the invariant. Thus, the values in the array have been partitioned into three sets: those less than or equal to x (the low side), those greater than x (the high side), and a singleton set containing x (the pivot).
+
+
+\end{enumerate}
+
 
 
 \subsection{Linear Time Sorts}
