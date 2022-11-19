@@ -52,6 +52,8 @@ PARTITION always selects the element$ x = A_{r}$ as the pivot. As the procedure 
   \end{algorithm}
 \end{algbox}
 
+\begin{tabular}{cc}
+
 At the beginning of each iteration of the loop of lines 3–6, for any array index k, the following conditions hold:
 \begin{itemize}
   \item  if $p \le k \le i$, then $A_{k} \le x$ (the tan region of Figure 7.2);
@@ -59,6 +61,8 @@ At the beginning of each iteration of the loop of lines 3–6, for any array ind
   \item  if $k = r$, then $A_{k} = x$ (the yellow region).
 \end{itemize}
 We need to show that this loop invariant is true prior to the first iteration, that each iteration of the loop maintains the invariant, that the loop terminates, and that correctness follows from the invariant when the loop terminates.
+
+& 
 
 \begin{enumerate}
   \item Initialization: Prior to the first iteration of the loop, we have $i = p – 1$ and $ j= p$. Because no values lie between $p$ and $i$ and no values lie between $i + 1$ and $j – 1$, the first two conditions of the loop invariant are trivially satisfied. The assignment in line 1 satisfies the third condition.
@@ -69,6 +73,8 @@ We need to show that this loop invariant is true prior to the first iteration, t
 \end{enumerate}
 
 \input{quick-1.tex}
+
+\end{tabular}
 
 \subsection{Linear Time Sorts}
 8.2 Counting sort
