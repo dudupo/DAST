@@ -54,14 +54,14 @@ To complete the correctness proof of the algorithm (most of it passed in the Lec
 \paragraph{claim.} At the beginning of each iteration of the loop of lines 3–6, for any array index $k$, the following conditions hold:
 \begin{itemize}
   \item  if $p \le k \le i$, then $A_{k} \le x$.
-  \item  if $i + 1 \le k \le j – 1$, then$ A_{k} > x$.
+  \item  if $i + 1 \le k \le j – 1$, then $A_{k} > x$.
   \item  if $k = r$, then $A_{k} = x$.
 \end{itemize}
 \paragraph{Proof.}
 \begin{enumerate}
   \item Initialization: Prior to the first iteration of the loop, we have $i = p – 1$ and $ j= p$. Because no values lie between $p$ and $i$ and no values lie between $i + 1$ and $j – 1$, the first two conditions of the loop invariant are trivially satisfied. The assignment in line 1 satisfies the third condition.
-  \item Maintenance: As Figure 7.3 shows, we consider two cases, depending on the outcome of the test in line 4. Figure 7.3(a) shows what happens when $A_{j} > x$: the only action in the loop is to increment $j$. After $j$  has been incremented, the second condition holds for $A_{j – 1}$ and all other entries remain unchanged. Figure 7.3(b) shows what happens when $A_{j} \le x$: the loop increments $i$, swaps $A_{i}$ and $A_{j}$, and then increments $j$. Because of the swap, we now have that $A_{i} \le x$, and condition 1 is satisfied. Similarly, we also have that $A_{j – 1} > x$, since the item that was swapped into $A_{j – 1}$ is, by the loop invariant, greater than $x$.
-  \item Termination: Since the loop makes exactly $r – p$ iterations, it terminates, whereupon$ j= r$. At that point, the unexamined subarray $A_{j : r – 1}$ is empty, and every entry in the array belongs to one of the other three sets described by the invariant. Thus, the values in the array have been partitioned into three sets: those less than or equal to $x$ (the low side), those greater than $x$ (the high side), and a singleton set containing $x$ (the pivot).
+  \item Maintenance: we consider two cases, depending on the outcome of the test in line 4, when $A_{j} > x$: the only action in the loop is to increment $j$. After $j$  has been incremented, the second condition holds for $A_{j – 1}$ and all other entries remain unchanged. When $A_{j} \le x$: the loop increments $i$, swaps $A_{i}$ and $A_{j}$, and then increments $j$. Because of the swap, we now have that $A_{i} \le x$, and condition 1 is satisfied. Similarly, we also have that $A_{j – 1} > x$, since the item that was swapped into $A_{j – 1}$ is, by the loop invariant, greater than $x$.
+  \item Termination: Since the loop makes exactly $r – p$ iterations, it terminates, whereupon$ j= r$. At that point, the unexamined subarray $A_{j}, A_{j+1}..  A_{r – 1}$ is empty, and every entry in the array belongs to one of the other three sets described by the invariant. Thus, the values in the array have been partitioned into three sets: those less than or equal to $x$ (the low side), those greater than $x$ (the high side), and a singleton set containing $x$ (the pivot).
 
 
 \end{enumerate}
@@ -69,11 +69,8 @@ To complete the correctness proof of the algorithm (most of it passed in the Lec
 \input{quick-1.tex}
 
 \subsection{Linear Time Sorts}
-8.2 Counting sort
-Counting sort assumes that each of the n input elements is an integer in the range 0 to k, for some integer k. It runs in $\Theta \left(n + k\right)$ time, so that when k = O(n), counting sort runs in $\Theta\left(n\right)$ time.
-Counting sort first determines, for each input element x, the number of elements less than or equal to x. It then uses this information to place element x directly into its position in the output array. For example, if 17 elements are less than or equal to x, then x belongs in output position 17. We must modify this scheme slightly to handle the situation in which several elements have the same value, since we do not want them all to end up in the same position.
-The COUNTING-SORT procedure on the facing page takes as input an array A[1 : n], the size n of this array, and the limit k on the nonnegative integer values in A. It returns its sorted output in the array B[1 : n] and uses an array C [0 : k] for temporary working storage.
-
+\paragraph{ Counting sort.} Counting sort assumes that each of the n input elements is an integer at size at most $k$. It runs in $\Theta \left(n + k\right)$ time, so that when $k = O(n)$, counting sort runs in $\Theta\left(n\right)$ time.
+Counting sort first determines, for each input element $x$, the number of elements less than or equal to $x$. It then uses this information to place element $x$ directly into its position in the output array. For example, if 17 elements are less than or equal to $x$, then $x$ belongs in output position 17. We must modify this scheme slightly to handle the situation in which several elements have the \textbf{same value}, since we do not want them all to end up in the same position.
 
 \begin{algbox}{Counting-sort$(A, n, k)$}
   \begin{algorithm}[H]
