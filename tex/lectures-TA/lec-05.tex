@@ -36,8 +36,6 @@ To complete the correctness proof of the algorithm (most of it passed in the Lec
 
 %which rearranges the subarray $ A_{p : r}$ in place, returning the index of the dividing point between the two sides of the partition.
 
-PARTITION always selects the element$ x = A_{r}$ as the pivot. As the procedure runs, each element falls into exactly one of four regions, some of which may be empty. At the start of each iteration of the for loop in lines 3–6, the regions satisfy certain properties, shown in Figure 7.2. We state these properties as a loop invariant:
-
 \begin{algbox}{Partition(A, p, r)}
   \begin{algorithm}[H]
     $ x \leftarrow A_{r} $ \\
