@@ -36,7 +36,7 @@ To complete the correctness proof of the algorithm (most of it passed in the Lec
 
 %which rearranges the subarray $ A_{p : r}$ in place, returning the index of the dividing point between the two sides of the partition.
 
-\begin{algbox}{Partition(A, p, r)}
+\begin{algbox}{Partition$(A, p, r)$}
   \begin{algorithm}[H]
     $ x \leftarrow A_{r} $ \\
     $ i \leftarrow p - 1 $ \\
@@ -51,14 +51,13 @@ To complete the correctness proof of the algorithm (most of it passed in the Lec
   \end{algorithm}
 \end{algbox}
 
-At the beginning of each iteration of the loop of lines 3–6, for any array index k, the following conditions hold:
+\paragraph{claim.} At the beginning of each iteration of the loop of lines 3–6, for any array index $k$, the following conditions hold:
 \begin{itemize}
-  \item  if $p \le k \le i$, then $A_{k} \le x$ (the tan region of Figure 7.2);
-  \item  if $i + 1 \le k \le j – 1$, then$ A_{k} > x$ (the blue region);
-  \item  if $k = r$, then $A_{k} = x$ (the yellow region).
+  \item  if $p \le k \le i$, then $A_{k} \le x$.
+  \item  if $i + 1 \le k \le j – 1$, then$ A_{k} > x$.
+  \item  if $k = r$, then $A_{k} = x$.
 \end{itemize}
-We need to show that this loop invariant is true prior to the first iteration, that each iteration of the loop maintains the invariant, that the loop terminates, and that correctness follows from the invariant when the loop terminates.
-
+\paragraph{Proof.}
 \begin{enumerate}
   \item Initialization: Prior to the first iteration of the loop, we have $i = p – 1$ and $ j= p$. Because no values lie between $p$ and $i$ and no values lie between $i + 1$ and $j – 1$, the first two conditions of the loop invariant are trivially satisfied. The assignment in line 1 satisfies the third condition.
   \item Maintenance: As Figure 7.3 shows, we consider two cases, depending on the outcome of the test in line 4. Figure 7.3(a) shows what happens when $A_{j} > x$: the only action in the loop is to increment $j$. After $j$  has been incremented, the second condition holds for $A_{j – 1}$ and all other entries remain unchanged. Figure 7.3(b) shows what happens when $A_{j} \le x$: the loop increments $i$, swaps $A_{i}$ and $A_{j}$, and then increments $j$. Because of the swap, we now have that $A_{i} \le x$, and condition 1 is satisfied. Similarly, we also have that $A_{j – 1} > x$, since the item that was swapped into $A_{j – 1}$ is, by the loop invariant, greater than $x$.
