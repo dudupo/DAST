@@ -11,10 +11,7 @@ Till now we have quantiffied the algorithm permformance against the worst case s
 The quicksort algorithm is a good example for a \textbf{non-determistic} algorithm that has a worst-case running time of $\Theta\left(n^{2}\right)$. Yet its expected running time is $\Theta\left(n\log n\right)$. Namley fix an a array of $n$ numbers, the ruunings of Quicksort over that array might be diffrent, each of them is an diffrent event in probability space, and the rununing time of the algorithm is a random variabile defiend over that space. Saying that the algorithm has worst space complexitiy of $\Theta(n^{2})$ means that there exist event in which it runs $\Theta\left(n^{2}\right)$ time with non-zero probability. But parcticaly the interesting question is not the existance of such event but how likily that it happend. It turns out that  expection of the runnning time is acctuly $\Theta\left(n\log n\right)$.  
 
 What is the exactly reason that happens? By giving up on the algoirthm behaveoir centertiy we are going to turn the task of eneginering bad input impossible.    
-
-We have seen the following Algortithm in class: 
-
-
+ 
 \begin{algbox}{randomized-partition$(A, p, r)$}
   \begin{algorithm}[H]
       $i \leftarrow $ random $(p, r)$ \\
@@ -30,11 +27,15 @@ We have seen the following Algortithm in class:
 	  randomized-quicksort $(A, q+1, r)$
 	}
       \end{algorithm}
-    \end{algbox}
+\end{algbox}
 
-\paragraph{Partitioning }
-The key to the algorithm is the PARTITION procedure on the next page, which rearranges the subarray $ A_{p : r}$ in place, returning the index of the dividing point between the two sides of the partition.
-Figure 7.1 shows how PARTITION works on an 8-element array. PARTITION always selects the element$ x = A_{r}$ as the pivot. As the procedure runs, each element falls into exactly one of four regions, some of which may be empty. At the start of each iteration of the for loop in lines 3–6, the regions satisfy certain properties, shown in Figure 7.2. We state these properties as a loop invariant:
+
+\paragraph{Partitioning.}
+To complete the correctness proof of the algorithm (that most of it has passed in the Lecture). We have to prove that the partition method is indeeded rearrange the array such that all the elements contained in right subarray are greater than all the elements on the left subarray.  
+
+%which rearranges the subarray $ A_{p : r}$ in place, returning the index of the dividing point between the two sides of the partition.
+
+PARTITION always selects the element$ x = A_{r}$ as the pivot. As the procedure runs, each element falls into exactly one of four regions, some of which may be empty. At the start of each iteration of the for loop in lines 3–6, the regions satisfy certain properties, shown in Figure 7.2. We state these properties as a loop invariant:
 
 \begin{algbox}{Partition(A, p, r)}
   \begin{algorithm}[H]
@@ -67,7 +68,20 @@ We need to show that this loop invariant is true prior to the first iteration, t
 
 \end{enumerate}
 
-
+\newcommand{\vet}[1]{\foreach \num in {#1}{\el{\num}}}
+\newcommand{\el}[1]{\tikz{\node[font=\footnotesize, minimum size=16pt, draw]{#1}}}
+\newcommand{\bl}{\color{blue}}
+\newcommand{\gr}{\color{gray}}
+\newcommand{\re}{\color{red}}
+\begin{tabular}{c}
+\vet{\re $1^i$,\re 3,\re 5,\re 6, \bl $0^j$,\bl 2,\bl 4,\bl 9,\bl 10}  \\
+\vet{\bl 0, \#, \#, \#, \#, \#, \#, \#,\#}\\ \\
+\vet{\re $1^i$,\re 3,\re 5,\re 6, \gr 0, \bl $2^j$,\bl 4,\bl 9,\bl 10} \\
+\vet{\gr 0, \re 1, \#, \#, \#, \#, \#, \#,\#}\\
+\vet{\gr 1, \re $3^i$,\re 5,\re 6, \gr 0, \bl $2^j$,\bl 4,\bl 9,\bl 10} \\
+\vet{\gr 0, \gr 1, \bl 2, \#, \#, \#, \#, \#,\#}\\
+\vet{\gr 1, \re $3^i$,\re 5,\re 6, \gr 0, \gr 2,\bl $4^j$,\bl 9,\bl 10} 
+\end{tabular}
 
 \subsection{Linear Time Sorts}
 8.2 Counting sort
