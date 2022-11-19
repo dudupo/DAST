@@ -74,19 +74,19 @@ Counting sort first determines, for each input element $x$, the number of elemen
 
 \begin{algbox}{Counting-sort$(A, n, k)$}
   \begin{algorithm}[H]
-  	let B and C be new arrays at size $n$ and $k$
+  	let B and C be new arrays at size $n$ and $k$ \\ 
   	\For{ $i \in  [0, k]$}{
 		$C_{i} \leftarrow 0 $
   	}
 	\For{ $j \leftarrow [1, n]$}{
 	  $C_{A{j}} \leftarrow C_{A_{j}} + 1 $
  	}
-	// $C_{i}$ now contains the number of elements equal to i.
+	// $C_{i}$ now contains the number of elements equal to i. \\ 
 	\For{ $i \in  [1, k]$}{
 	  $C_{i} \leftarrow C_{i} + C_{i – 1} $
  	}
-	// $C_{i}$ now contains the number of elements less than or equal to $i$.
-	// Copy $A$ to $B$, starting from the end of $A$.
+	// $C_{i}$ now contains the number of elements less than or equal to $i$. \\
+	// Copy $A$ to $B$, starting from the end of $A$. \\
 	\For{ $i \in [n , 1]$}{
 	  $B_{C_{A_{j}}} \leftarrow A_{j}$ \\
 	  $C_{A_{j}} \leftarrow C_{A{j}} – 1$\\
