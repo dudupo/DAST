@@ -101,8 +101,7 @@ Notice that Counting sort can beat the lower bound of $\Omega\left(n \log n\righ
 An important property of counting sort is that it is \textbf{stable}.
 
 \begin{defbox}{Stable Sort.}
- elements with the same value appear in the output array in the same order as they do in the input array. That is, it breaks ties between two elements by the rule that whichever element appears first in the input array appears first in the output array. Normally, the property of stability is important only when satellite data are carried around with the element being sorted.  
-\end{defbox}
+ We will say that a sorting algortim is stable if elements with the same value appear in the output array in the same order as they do in the input array. \end{defbox}
 
 Counting sort's stability is important for another reason: counting sort is often used as a subroutine in radix sort. As we shall see in the next section, in order for radix sort to work correctly, counting sort must be stable.
 
