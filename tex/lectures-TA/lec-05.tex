@@ -124,10 +124,9 @@ The code for radix sort is straightforward. The RADIX-SORT procedure assumes tha
   \end{algorithm}
 \end{algbox}
 
-%Although the pseudocode for RADIX-SORT does not specify which stable sort to use, COUNTING-SORT is commonly used. If you use COUNTING-SORT as the stable sort, you can make RADIX-SORT a little more efficient by revising COUNTING-SORT to take a pointer to the output array as a parameter, having RADIX-SORT preallocate this array, and alternating input and output between the two arrays in successive iterations of the for loop in RADIX-SORT.
-%Lemma 8.3
-%Given n d-digit numbers in which each digit can take on up to k possible values, RADIX-SORT correctly sorts these numbers in $\Theta\left(d(n + k)\right)$ time if the stable sort it uses takes $\Theta\left(n + k\right)$ time.
-%Proof The correctness of radix sort follows by induction on the column being sorted (see Exercise 8.3-3). The analysis of the running time depends on the stable sort used as the intermediate sorting algorithm. When each digit lies in the range 0 to k – 1 (so that it can take on k possible values), and k is not too large, counting sort is the obvious choice. Each pass over n d-digit numbers then takes $\Theta(n + k)$ time. There are d passes, and so the total time for radix sort is $\Theta\left(d(n + k)\right)$.
+Lemma 8.3
+Given $n$ $d$-digit numbers in which each digit can take on up to $k$ possible values, Radix-sort correctly sorts these numbers in $\Theta\left(d(n + k)\right)$ time if the stable sort it uses takes $\Theta\left(n + k\right)$ time.
+\textbf{Proof.} The correctness of radix sort follows by induction on the column being sorted. The analysis of the running time depends on the stable sort used as the intermediate sorting algorithm. When each digit lies in the range $0$ to $k – 1$ (so that it can take on $k$ possible values), and $k$ is not too large, counting sort is the obvious choice. Each pass over $n$ $d$-digit numbers then takes $\Theta(n + k)$ time. There are $d$ passes, and so the total time for radix sort is $\Theta\left(d(n + k)\right).
 
 %When d is constant and k = O(n), we can make radix sort run in linear time. More generally, we have some flexibility in how to break each key into digits.
 %Lemma 8.4
