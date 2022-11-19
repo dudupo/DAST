@@ -115,10 +115,19 @@ The Radix-sort procedure assumes that each element in array $A$ has d digits, wh
   \end{algorithm}
 \end{algbox}
 
-Lemma 8.3
-Given $n$ $d$-digit numbers in which each digit can take on up to $k$ possible values, Radix-sort correctly sorts these numbers in $\Theta\left(d(n + k)\right)$ time if the stable sort it uses takes $\Theta\left(n + k\right)$ time.
+\paragraph{Correctness Proof.} By induction on the column being sorted.
+\begin{itemize}
+  \item Base. Where $d = 1$ the correctness followes imedatly from correctness of our base sort subroutine. 
+  \item Induction Assumption. Assume that Radix-sort is correct for any array of numbers that each of them contain at most $d-1$ digits. 
+  \item Step. Let $A^{\prime}$  be the algorithm output. Consider $x,y \in A$, Assume without loosing geanrality that $x > y$. Denote by $x_{d}, y_{d}$ their $d$-digit and by $x_{/d}, y_{/d}$ the numbers obtained by taking only the first  $d-1$ digits of $x,y$. Separate in two cases:
 
-\textbf{Correctness Proof.} The correctness of radix sort follows by induction on the column being sorted. The analysis of the running time depends on the stable sort used as the intermediate sorting algorithm. When each digit lies in the range $0$ to $k – 1$ (so that it can take on $k$ possible values), and $k$ is not too large, counting sort is the obvious choice. Each pass over $n$ $d$-digit numbers then takes $\Theta(n + k)$ time. There are $d$ passes, and so the total time for radix sort is $\Theta\left(d(n + k)\right)$.
+    \begin{itemize}
+      \item   If $x_{d} > y_{d}$ then a secnario in which $x$ apper prior to $y$ is aimplay contrudiction to the correctness of our subroutine.
+      \item   So consider the case in which $x_{d} = y_{d}$. In that case it must holdes that $x_{/d} > y_{/d}$. Then the appperance of $x$ prior to $y$ either contrudict the assumesption that the base algorithm we have used is stable, or that $x$ apper before $y$ in the end of the $d-1$ iteartion. Which contrudict the induction assumption. 
+    \end{itemize}
+ \end{itemize}
+
+The analysis of the running time depends on the stable sort used as the intermediate sorting algorithm. When each digit lies in the range $0$ to $k – 1$ (so that it can take on $k$ possible values), and $k$ is not too large, counting sort is the obvious choice. Each pass over $n$ $d$-digit numbers then takes $\Theta(n + k)$ time. There are $d$ passes, and so the total time for radix sort is $\Theta\left(d(n + k)\right)$.
 
 %When d is constant and k = O(n), we can make radix sort run in linear time. More generally, we have some flexibility in how to break each key into digits.
 %Lemma 8.4
