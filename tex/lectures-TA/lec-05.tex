@@ -31,7 +31,7 @@ Our study of quicksort is broken into four sections. Section 7.1 describes the a
 	  randomized-quicksort $(A, q+1, r)$
 	}
       \end{algorithm}
-    \end{algbox}<++>
+    \end{algbox}
 
 Partitioning the array
 The key to the algorithm is the PARTITION procedure on the next page, which rearranges the subarray A[p : r] in place, returning the index of the dividing point between the two sides of the partition.
@@ -62,6 +62,114 @@ Initialization: Prior to the first iteration of the loop, we have i = p – 1 an
 Maintenance: As Figure 7.3 shows, we consider two cases, depending on the outcome of the test in line 4. Figure 7.3(a) shows what happens when A[j] > x: the only action in the loop is to increment j. After j has been incremented, the second condition holds for A[j – 1] and all other entries remain unchanged. Figure 7.3(b) shows what happens when A[j] ≤ x: the loop increments i, swaps A[i] and A[j], and then increments j. Because of the swap, we now have that A[i] ≤ x, and condition 1 is satisfied. Similarly, we also have that A[j – 1] > x, since the item that was swapped into A[j – 1] is, by the loop invariant, greater than x.
 Termination: Since the loop makes exactly r – p iterations, it terminates, whereupon j = r. At that point, the unexamined subarray A[j : r – 1] is empty, and every entry in the array belongs to one of the other three sets described by the invariant. Thus, the values in the array have been partitioned into three sets: those less than or equal to x (the low side), those greater than x (the high side), and a singleton set containing x (the pivot).
 
+
+\subsection{Linear Time Sorts}
+8.2 Counting sort
+Counting sort assumes that each of the n input elements is an integer in the range 0 to k, for some integer k. It runs in $\Theta \left(n + k\right)$ time, so that when k = O(n), counting sort runs in $\Theta\left(n\right)$ time.
+Counting sort first determines, for each input element x, the number of elements less than or equal to x. It then uses this information to place element x directly into its position in the output array. For example, if 17 elements are less than or equal to x, then x belongs in output position 17. We must modify this scheme slightly to handle the situation in which several elements have the same value, since we do not want them all to end up in the same position.
+The COUNTING-SORT procedure on the facing page takes as input an array A[1 : n], the size n of this array, and the limit k on the nonnegative integer values in A. It returns its sorted output in the array B[1 : n] and uses an array C [0 : k] for temporary working storage.
+
+
+
+COUNTING-SORT(A, n, k)
+ 1
+let B[1 : n] and C [0 : k] be new arrays
+
+ 2
+for i = 0 to k
+
+ 3
+C [i] = 0
+
+ 4
+for j = 1 to n
+
+ 5
+C [A[j]] = C [A[j]] + 1
+
+ 6
+// C [i] now contains the number of elements equal to i.
+ 7
+for i = 1 to k
+
+ 8
+C [i] = C [i] + C [i – 1]
+
+ 9
+// C [i] now contains the number of elements less than or equal to i.
+10
+// Copy A to B, starting from the end of A.
+11
+for j = n downto 1
+
+12
+B[C [A[j]]] = A[j]
+
+13
+C [A[j]] = C [A[j]] – 1
+// to handle duplicate values
+14
+return B
+
+\paragraph{Counting Sort}
+Counting sort can beat the lower bound of $\Omega\left(n \log n\right)$ proved in Section 8.1 because it is not a comparison sort. In fact, no comparisons between input elements occur anywhere in the code. Instead, counting sort uses the actual values of the elements to index into an array. The $\Omega\left(n \log n\right)$ lower bound for sorting does not apply when we depart from the comparison sort model.
+
+An important property of counting sort is that it is stable: elements with the same value appear in the output array in the same order as they do in the input array. That is, it breaks ties between two elements by the rule that whichever element appears first in the input array appears first in the output array. Normally, the property of stability is important only when satellite data are carried around with the element being sorted. Counting sort’s stability is important for another reason: counting sort is often used as a subroutine in radix sort. As we shall see in the next section, in order for radix sort to work correctly, counting sort must be stable.
+
+\paragraph{Radix sort}
+Radix sort is the algorithm used by the card-sorting machines you now find only in computer museums. The cards have 80 columns, and in each column a machine can punch a hole in one of 12 places. The sorter can be mechanically “programmed” to examine a given column of each card in a deck and distribute the card into one of 12 bins depending on which place has been punched. An operator can then gather the cards bin by bin, so that cards with the first place punched are on top of cards with the second place punched, and so on.
+
+For decimal digits, each column uses only 10 places. (The other two places are reserved for encoding nonnumeric characters.) A d-digit number occupies a field of d columns. Since the card sorter can look at only one column at a time, the problem of sorting n cards on a d-digit number requires a sorting algorithm.
+Intuitively, you might sort numbers on their most significant (leftmost) digit, sort each of the resulting bins recursively, and then combine the decks in order. Unfortunately, since the cards in 9 of the 10 bins must be put aside to sort each of the bins, this procedure generates many intermediate piles of cards that you would have to keep track of. (See Exercise 8.3-6.)
+Radix sort solves the problem of card sorting—counterintuitively—by sorting on the least significant digit first. The algorithm then combines the cards into a single deck, with the cards in the 0 bin preceding the cards in the 1 bin preceding the cards in the 2 bin, and so on. Then it sorts the entire deck again on the second-least significant digit and recombines the deck in a like manner. The process continues until the cards have been sorted on all d digits. Remarkably, at that point the cards are fully sorted on the d-digit number. Thus, only d passes through the deck are required to sort. Figure 8.3 shows how radix sort operates on a “deck” of seven 3-digit numbers.
+In order for radix sort to work correctly, the digit sorts must be stable. The sort performed by a card sorter is stable, but the operator must be careful not to change the order of the cards as they come out of a bin, even though all the cards in a bin have the same digit in the chosen column.
+In a typical computer, which is a sequential random-access machine, we sometimes use radix sort to sort records of information that are keyed by multiple fields. For example, we might wish to sort dates by three keys: year, month, and day. We could run a sorting algorithm with a comparison function that, given two dates, compares years, and if there is a tie, compares months, and if another tie occurs, compares days. Alternatively, we could sort the information three times with a stable sort: first on day (the “least significant” part), next on month, and finally on year.
+The code for radix sort is straightforward. The RADIX-SORT procedure assumes that each element in array A[1 : n] has d digits, where digit 1 is the lowest-order digit and digit d is the highest-order digit.
+
+
+\begin{algbox}{radix-sort(A, n, d)}
+  \begin{algorithm}
+    \For{ $ i \in [1,d]$ } {
+        use a stable sort to sort array $A$ on digit $i$
+    }
+  \end{algorithm}
+\end{algbox}
+
+Although the pseudocode for RADIX-SORT does not specify which stable sort to use, COUNTING-SORT is commonly used. If you use COUNTING-SORT as the stable sort, you can make RADIX-SORT a little more efficient by revising COUNTING-SORT to take a pointer to the output array as a parameter, having RADIX-SORT preallocate this array, and alternating input and output between the two arrays in successive iterations of the for loop in RADIX-SORT.
+Lemma 8.3
+Given n d-digit numbers in which each digit can take on up to k possible values, RADIX-SORT correctly sorts these numbers in $\Theta\left(d(n + k)\right)$ time if the stable sort it uses takes $\Theta\left(n + k\right)$ time.
+Proof The correctness of radix sort follows by induction on the column being sorted (see Exercise 8.3-3). The analysis of the running time depends on the stable sort used as the intermediate sorting algorithm. When each digit lies in the range 0 to k – 1 (so that it can take on k possible values), and k is not too large, counting sort is the obvious choice. Each pass over n d-digit numbers then takes $\Theta(n + k)$ time. There are d passes, and so the total time for radix sort is $\Theta\left(d(n + k)\right)$.
+▪
+When d is constant and k = O(n), we can make radix sort run in linear time. More generally, we have some flexibility in how to break each key into digits.
+Lemma 8.4
+Given n b-bit numbers and any positive integer r ≤ b, RADIX-SORT correctly sorts these numbers in $\Theta\left((b/r)(n + 2r)\right)$ time if the stable sort it uses takes Θ(n + k) time for inputs in the range 0 to k.
+Proof For a value r ≤ b, view each key as having d = ⌈b/r⌉ digits of r bits each. Each digit is an integer in the range 0 to 2r – 1, so that we can use counting sort with k = 2r – 1. (For example, we can view a 32-bit word as having four 8-bit digits, so that b = 32, r = 8, k = 2r – 1 = 255, and d = b/r = 4.) Each pass of counting sort takes $ \Theta \left(n + k \right) = \Theta\left(n + 2r\right)$ time and there are d passes, for a total running time of $\Theta\left(d(n + 2r)\right) = \Theta\left((b/r)(n + 2r)\right)$.
+
+Given n and b, what value of r ≤ b minimizes the expression (b/r)(n + 2r)? As r decreases, the factor b/r increases, but as r increases so does 2r. The answer depends on whether b < ⌊lg n⌋. If b < ⌊lg n⌋, then r ≤ b implies (n + 2r) = Θ(n). Thus, choosing r = b yields a running time of (b/b)(n + 2b) = Θ(n), which is asymptotically optimal. If b ≥ ⌊lg n⌋, then choosing r = ⌊lg n⌋ gives the best running time to within a constant factor, which we can see as follows.1 Choosing r = ⌊lg n⌋ yields a running time of Θ(bn/lg n). As r increases above ⌊lg n⌋, the 2r term in the numerator increases faster than the r term in the denominator, and so increasing r above ⌊lg n⌋ yields a running time of Ω(bn / lg n). If instead r were to decrease below ⌊lg n⌋, then the b/r term increases and the n + 2r term remains at Θ(n).
+Is radix sort preferable to a comparison-based sorting algorithm, such as quicksort? If b = O(lg n), as is often the case, and r ≈ lg n, then radix sort’s running time is Θ(n), which appears to be better than quicksort’s expected running time of Θ(n lg n). The constant factors hidden in the Θ-notation differ, however. Although radix sort may make fewer passes than quicksort over the n keys, each pass of radix sort may take significantly longer. Which sorting algorithm to prefer depends on the characteristics of the implementations, of the underlying machine (e.g., quicksort often uses hardware caches more effectively than radix sort), and of the input data. Moreover, the version of radix sort that uses counting sort as the intermediate stable sort does not sort in place, which many of the Θ(n lg n)-time comparison sorts do. Thus, when primary memory storage is at a premium, an in-place algorithm such as quicksort could be the better choice.
+
+
+\paragraph{Bucket sort.}
+Bucket sort assumes that the input is drawn from a uniform distribution and has an average-case running time of O(n). Like counting sort, bucket sort is fast because it assumes something about the input. Whereas counting sort assumes that the input consists of integers in a small range, bucket sort assumes that the input is generated by a random process that distributes elements uniformly and independently over the interval [0, 1). (See Section C.2 for a definition of a uniform distribution.)
+Bucket sort divides the interval [0, 1) into n equal-sized subintervals, or buckets, and then distributes the n input numbers into the buckets. Since the inputs are uniformly and independently distributed over [0, 1), we do not expect many numbers to fall into each bucket. To produce the output, we simply sort the numbers in each bucket and then go through the buckets in order, listing the elements in each.
+The BUCKET-SORT procedure on the next page assumes that the input is an array A[1 : n] and that each element A[i] in the array satisfies 0 ≤ A[i] < 1. The code requires an auxiliary array B[0 : n – 1] of linked lists (buckets) and assumes that there is a mechanism for maintaining such lists. (Section 10.2 describes how to implement basic operations on linked lists.) Figure 8.4 shows the operation of bucket sort on an input array of 10 numbers.
+
+\begin{algbox}{bucket-sort(A, n)}
+  \begin{algorithm}
+    	let B[0 : n – 1] be a new array
+	\For{ $i \leftarrow [0, n – 1]$}{
+	   make $B_{i}$ an empty list
+       	}
+	\For{ $i \leftarrow [1, n]$}{
+	    insert $A_{i}$ into list $B_{ \lfloor n A_{i} \rfloor} ]$
+       	}
+	\For{ $i \leftarrow [0, n – 1]$}{
+	    sort list $B_{i}$
+       	}
+	concatenate the lists $B_{0}, B{1}, .. , B_{n – 1}$ together and\\
+	return the concatenated lists
+  \end{algorithm}
+\end{algbox}
 
 \input{../texlib/tail}
 
