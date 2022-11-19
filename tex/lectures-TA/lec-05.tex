@@ -8,7 +8,7 @@ Till now, we have quantified the algorithm performance against the worst-case sc
 
 %\end{abstract}
 
-\subsection{Quicksort.}
+\subsection*{Quicksort.}
 The quicksort algorithm is a good example of a \textbf{non-determistic} algorithm that has a worst-case running time of $\Theta\left(n^{2}\right)$. Yet its expected running time is $\Theta\left(n\log n\right)$. Namely, fix an array of $n$ numbers. The running of Quicksort over that array might be different. Each of them is a different event in probability space, and the algorithm's running time is a random variable defined over that space. Saying that the algorithm has the worst space complexity of $\Theta(n^{2})$ means that there exists an event in which it runs $\Theta\left(n^{2}\right)$ time with non-zero probability. But practically, the interesting question is not the existence of such an event but how likely it would happen. It turns out that the expectation of the running time is $\Theta\left(n\log n\right)$.  
 
 What is the exact reason that happens? By giving up on the algorithm behavior century, we will turn the task of engineering a bad input impossible.    
@@ -68,7 +68,7 @@ To complete the correctness proof of the algorithm (most of it passed in the Lec
 
 \input{quick-1.tex}
 
-\subsection{Linear Time Sorts}
+\subsection*{Linear Time Sorts}
 \paragraph{ Counting sort.} Counting sort assumes that each of the n input elements is an integer at size at most $k$. It runs in $\Theta \left(n + k\right)$ time, so that when $k = O(n)$, counting sort runs in $\Theta\left(n\right)$ time.
 Counting sort first determines, for each input element $x$, the number of elements less than or equal to $x$. It then uses this information to place element $x$ directly into its position in the output array. For example, if 17 elements are less than or equal to $x$, then $x$ belongs in output position 17. We must modify this scheme slightly to handle the situation in which several elements have the \textbf{same value}, since we do not want them all to end up in the same position.
 
