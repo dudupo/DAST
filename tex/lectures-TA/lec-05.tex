@@ -15,7 +15,7 @@ What is the exactly reason that happens? By giving up on the algoirthm behaveoir
 Our study of quicksort is broken into four sections. Section 7.1 describes the algorithm and an important subroutine used by quicksort for partitioning. Because the behavior of quicksort is complex, we’ll start with an intuitive discussion of its performance in Section 7.2 and analyze it precisely at the end of the chapter. Section 7.3 presents a randomized version of quicksort. When all elements are distinct,1 this randomized algorithm has a good expected running time and no particular input elicits its worst-case behavior. (See Problem 7-2 for the case in which elements may be equal.) Section 7.4 analyzes the randomized algorithm, showing that it runs in $\Theta(n^2)$ time in the worst case and, assuming distinct elements, in expected $O\left(n\log n\right)$ time.
   
 \begin{algbox}{randomized-partition$(A, p, r)$}
-  \begin{algorithm}
+  \begin{algorithm}[H]
       $i \leftarrow $ random $(p, r)$ \\
       $A_{r} \leftrightarrow A_{i} $ \\
       return Partition $(A, p, r)$
