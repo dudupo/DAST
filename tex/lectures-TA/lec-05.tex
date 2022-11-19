@@ -1,4 +1,3 @@
-
 \title{Quicksort And Liner Time Sorts  - Recitation 6} 
 \author{Quicksort, Countingsort, Radixsort, And Bucketsort.}
 \input{../texlib/head}
@@ -60,7 +59,7 @@ To complete the correctness proof of the algorithm (most of it passed in the Lec
 \paragraph{Proof.}
 \begin{enumerate}
   \item Initialization: Prior to the first iteration of the loop, we have $i = p – 1$ and $ j= p$. Because no values lie between $p$ and $i$ and no values lie between $i + 1$ and $j – 1$, the first two conditions of the loop invariant are trivially satisfied. The assignment in line 1 satisfies the third condition.
-  \item Maintenance: we consider two cases, depending on the outcome of the test in line 4, when $A_{j} > x$: the only action in the loop is to increment $j$. After $j$  has been incremented, the second condition holds for $A_{j – 1}$ and all other entries remain unchanged. When $A_{j} \le x$: the loop increments $i$, swaps $A_{i}$ and $A_{j}$, and then increments $j$. Because of the swap, we now have that $A_{i} \le x$, and condition 1 is satisfied. Similarly, we also have that $A_{j – 1} > x$, since the item that was swapped into $A_{j – 1}$ is, by the loop invariant, greater than $x$.
+  \item Maintenance: we consider two cases, depending on the outcome of the test in line 4, when $A_{j} > x$: the only action in the loop is to increment $j$. After $j$  has been incremented, the second condition holds for $A_{j – 1}$, and all other entries remain unchanged. When $A_{j} \le x$: the loop increments $i$, swaps $A_{i}$ and $A_{j}$, and then increments $j$. Because of the swap, we now have that $A_{i} \le x$, and condition 1 is satisfied. Similarly, we also have that $A_{j – 1} > x$, since the item that was swapped into $A_{j – 1}$ is, by the loop invariant, greater than $x$.
   \item Termination: Since the loop makes exactly $r – p$ iterations, it terminates, whereupon$ j= r$. At that point, the unexamined subarray $A_{j}, A_{j+1}..  A_{r – 1}$ is empty, and every entry in the array belongs to one of the other three sets described by the invariant. Thus, the values in the array have been partitioned into three sets: those less than or equal to $x$ (the low side), those greater than $x$ (the high side), and a singleton set containing $x$ (the pivot).
 
 
@@ -69,7 +68,7 @@ To complete the correctness proof of the algorithm (most of it passed in the Lec
 \input{quick-1.tex}
 
 \subsection*{Linear Time Sorts}
-\paragraph{ Counting sort.} Counting sort assumes that each of the n input elements is an integer at size at most $k$. It runs in $\Theta \left(n + k\right)$ time, so that when $k = O(n)$, counting sort runs in $\Theta\left(n\right)$ time.
+\paragraph{ Counting sort.} Counting sort assumes that each of the n input elements is an integer at the size at most $k$. It runs in $\Theta \left(n + k\right)$ time, so that when $k = O(n)$, counting sort runs in $\Theta\left(n\right)$ time.
 Counting sort first determines, for each input element $x$, the number of elements less than or equal to $x$. It then uses this information to place element $x$ directly into its position in the output array. For example, if 17 elements are less than or equal to $x$, then $x$ belongs in output position 17. We must modify this scheme slightly to handle the situation in which several elements have the \textbf{same value}, since we do not want them all to end up in the same position.
 
 \begin{algbox}{Counting-sort$(A, n, k)$}
@@ -92,19 +91,19 @@ Counting sort first determines, for each input element $x$, the number of elemen
   \end{algorithm}
 \end{algbox}
 
-Notice that Counting sort can beat the lower bound of $\Omega\left(n \log n\right)$ only because it is not a comparison sort. In fact, no comparisons between input elements occur anywhere in the code. Instead, counting sort uses the actual values of the elements to index into an array.
+Notice that the Counting sort can beat the lower bound of $\Omega\left(n \log n\right)$ only because it is not a comparison sort. In fact, no comparisons between input elements occur anywhere in the code. Instead, counting sort uses the actual values of the elements to index into an array.
 
-An important property of counting sort is that it is \textbf{stable}.
+An important property of the counting sort is that it is \textbf{stable}.
 
 \begin{defbox}{Stable Sort.}
- We will say that a sorting algortim is stable if elements with the same value appear in the output array in the same order as they do in the input array. \end{defbox}
+ We will say that a sorting algorithm is stable if elements with the same value appear in the output array in the same order as they do in the input array. \end{defbox}
 
 Counting sort's stability is important for another reason: counting sort is often used as a subroutine in radix sort. As we shall see in the next section, in order for radix sort to work correctly, counting sort must be stable.
 
 \paragraph{Radix sort}
 Radix sort is the algorithm used by the card-sorting machines you now find only in computer museums. The cards have 80 columns, and in each column, a machine can punch a hole in one of 12 places. The sorter can be mechanically "programmed" to examine a given column of each card in a deck and distribute the card into one of 12 bins depending on which place has been punched. An operator can then gather the cards bin by bin, so that cards with the first place punched are on top of cards with the second place punched, and so on.
 
-The Radix-sort procedure assumes that each element in array $A$ has d digits, where digit 1 is the lowest-order digit and digit $d$ is the highest-order digit.
+The Radix-sort procedure assumes that each element in the array $A$ has d digits, where digit 1 is the lowest-order digit and digit $d$ is the highest-order digit.
 
 
 \begin{algbox}{radix-sort(A, n, d)}
@@ -117,13 +116,13 @@ The Radix-sort procedure assumes that each element in array $A$ has d digits, wh
 
 \paragraph{Correctness Proof.} By induction on the column being sorted.
 \begin{itemize}
-  \item Base. Where $d = 1$ the correctness followes imedatly from correctness of our base sort subroutine. 
-  \item Induction Assumption. Assume that Radix-sort is correct for any array of numbers that each of them contain at most $d-1$ digits. 
-  \item Step. Let $A^{\prime}$  be the algorithm output. Consider $x,y \in A$, Assume without loosing geanrality that $x > y$. Denote by $x_{d}, y_{d}$ their $d$-digit and by $x_{/d}, y_{/d}$ the numbers obtained by taking only the first  $d-1$ digits of $x,y$. Separate in two cases:
+  \item Base. Where $d = 1$, the correctness follows immediately from the correctness of our base sort subroutine. 
+  \item Induction Assumption. Assume that Radix-sort is correct for any array of numbers containing at most $d-1$ digits. 
+  \item Step. Let $A^{\prime}$  be the algorithm output. Consider $x,y \in A$. Assume without losing generality that $x > y$. Denote by $x_{d}, y_{d}$ their $d$-digit and by $x_{/d}, y_{/d}$ the numbers obtained by taking only the first  $d-1$ digits of $x,y$. Separate in two cases:
 
     \begin{itemize}
-      \item   If $x_{d} > y_{d}$ then a secnario in which $x$ apper prior to $y$ is aimplay contrudiction to the correctness of our subroutine.
-      \item   So consider the case in which $x_{d} = y_{d}$. In that case it must holdes that $x_{/d} > y_{/d}$. Then the appperance of $x$ prior to $y$ either contrudict the assumesption that the base algorithm we have used is stable, or that $x$ apper before $y$ in the end of the $d-1$ iteartion. Which contrudict the induction assumption. 
+      \item   If $x_{d} > y_{d}$ then a scenario in which $x$ appear prior to $y$ is  imply contradiction to the correctness of our subroutine.
+      \item   So consider the case in which $x_{d} = y_{d}$. In that case, it must hold that $x_{/d} > y_{/d}$. Then the appearance of $x$ prior to $y$ either contradicts the assumption that the base algorithm we have used is stable or that $x$ appears before $y$ at the end of the $d-1$ iteration. Which contradicts the induction assumption. 
     \end{itemize}
  \end{itemize}
 
@@ -133,11 +132,11 @@ The analysis of the running time depends on the stable sort used as the intermed
 %Lemma 8.4
 %Given n b-bit numbers and any positive integer r ≤ b, RADIX-SORT correctly sorts these numbers in $\Theta\left((b/r)(n + 2r)\right)$ time if the stable sort it uses takes Θ(n + k) time for inputs in the range 0 to k.
 
-%Proof For a value r ≤ b, view each key as having d = ⌈b/r⌉ digits of r bits each. Each digit is an integer in the range 0 to 2r – 1, so that we can use counting sort with k = 2r – 1. (For example, we can view a 32-bit word as having four 8-bit digits, so that b = 32, r = 8, k = 2r – 1 = 255, and d = b/r = 4.) Each pass of counting sort takes $ \Theta \left(n + k \right) = \Theta\left(n + 2r\right)$ time and there are d passes, for a total running time of $\Theta\left(d(n + 2r)\right) = \Theta\left((b/r)(n + 2r)\right)$.
+%Proof For a value r ≤ b, view each key as having d = ⌈b/r⌉ digits of r bits each. Each digit is an integer in the range 0 to 2r – 1, so we can use counting sort with k = 2r – 1. (For example, we can view a 32-bit word as having four 8-bit digits, so that b = 32, r = 8, k = 2r – 1 = 255, and d = b/r = 4.) Each pass of counting sort takes $ \Theta \left(n + k \right) = \Theta\left(n + 2r\right)$ time and there are d passes, for a total running time of $\Theta\left(d(n + 2r)\right) = \Theta\left((b/r)(n + 2r)\right)$.
 
 %Given n and b, what value of r ≤ b minimizes the expression (b/r)(n + 2r)? As r decreases, the factor b/r increases, but as r increases so does 2r. The answer depends on whether b < ⌊lg n⌋. If b < ⌊lg n⌋, then r ≤ b implies (n + 2r) = Θ(n). Thus, choosing r = b yields a running time of (b/b)(n + 2b) = Θ(n), which is asymptotically optimal. If b ≥ ⌊lg n⌋, then choosing r = ⌊lg n⌋ gives the best running time to within a constant factor, which we can see as follows.1 Choosing r = ⌊lg n⌋ yields a running time of Θ(bn/log n). As r increases above ⌊lg n⌋, the 2r term in the numerator increases faster than the r term in the denominator, and so increasing r above ⌊lg n⌋ yields a running time of Ω(bn / log n). If instead r were to decrease below ⌊lg n⌋, then the b/r term increases and the n + 2r term remains at Θ(n).
 
-%Is radix sort preferable to a comparison-based sorting algorithm, such as quicksort? If b = O(log n), as is often the case, and r ≈ log n, then radix sort's running time is Θ(n), which appears to be better than quicksort's expected running time of Θ(n log n). The constant factors hidden in the Θ-notation differ, however. Although radix sort may make fewer passes than quicksort over the n keys, each pass of radix sort may take significantly longer. Which sorting algorithm to prefer depends on the characteristics of the implementations, of the underlying machine (e.g., quicksort often uses hardware caches more effectively than radix sort), and of the input data. Moreover, the version of radix sort that uses counting sort as the intermediate stable sort does not sort in place, which many of the Θ(n log n)-time comparison sorts do. Thus, when primary memory storage is at a premium, an in-place algorithm such as quicksort could be the better choice.
+%Is radix sort preferable to a comparison-based sorting algorithm, such as Quicksort? If b = O(log n), as is often the case, and r ≈ log n, then the radix sort's running time is Θ(n), which appears to be better than Quicksort's expected running time of Θ(n log n). The constant factors hidden in the Θ-notation differ, however. Although radix sort may make fewer passes than Quicksort over the n keys, each pass of radix sort may take significantly longer. Which sorting algorithm to prefer depends on the characteristics of the implementations, of the underlying machine (e.g., Quicksort often uses hardware caches more effectively than radix sort), and of the input data. Moreover, the version of radix sort that uses counting sort as the intermediate stable sort does not sort in place, which many of the Θ(n log n)-time comparison sorts do. Thus, when primary memory storage is at a premium, an in-place algorithm such as Quicksort could be the better choice.
 
 
 \paragraph{Bucket sort.}
