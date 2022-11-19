@@ -128,7 +128,7 @@ The code for radix sort is straightforward. The RADIX-SORT procedure assumes tha
 
 
 \begin{algbox}{radix-sort(A, n, d)}
-  \begin{algorithm}
+  \begin{algorithm}[H]
     \For{ $ i \in [1,d]$ } {
         use a stable sort to sort array $A$ on digit $i$
     }
@@ -155,7 +155,7 @@ Bucket sort divides the interval [0, 1) into n equal-sized subintervals, or buck
 The BUCKET-SORT procedure on the next page assumes that the input is an array A[1 : n] and that each element A[i] in the array satisfies 0 ≤ A[i] < 1. The code requires an auxiliary array B[0 : n – 1] of linked lists (buckets) and assumes that there is a mechanism for maintaining such lists. (Section 10.2 describes how to implement basic operations on linked lists.) Figure 8.4 shows the operation of bucket sort on an input array of 10 numbers.
 
 \begin{algbox}{bucket-sort(A, n)}
-  \begin{algorithm}
+  \begin{algorithm}[H]
     	let B[0 : n – 1] be a new array
 	\For{ $i \leftarrow [0, n – 1]$}{
 	   make $B_{i}$ an empty list
