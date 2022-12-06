@@ -161,6 +161,33 @@ Perform R rotation on the right child:\\
              child{node{20} child{node{18}} child{node{23}}}
             ;
     \end{tikzpicture}
+
+
+\subsection{Delete, Insert.}
+The principles of the $Delete$ and $Insert$ operations are the same as in
+regular BST, but we will need to rebalance the tree in order to preserv AVL
+property.
+A single insertion or deletion may change the height difference of subtrees
+by at most 1, and might affect only the subtrees with roots along the path
+from $r$ to the point of insertion/ deletion.
+More concretely - we will add a recursive operation of traversing the tree
+"back up" and checking violations. Had we found one - we'll fix it using
+rotations. Since rotations can be done in $O(1)$, the entire correction
+process will take $O(\log(n))$, so we maintain a good time complexity.
+
+
+\begin{algbox}{AVL Insert(r,x)}
+  \begin{algorithm}[H]
+    Call Insert $(r,x)$ // (The standart insertion routine for BST) \\  
+    Let $p$ be the new node appended to the tree. \\
+    \While{ $p$.parent $\neq \empty$ } {
+      Check in which of the four states we are. \\ 
+      Apply the right rotation.
+    }
+  \end{algorithm}
+\end{algbox}
+
+
 \iffalse
 \newpage
 \subsection{Delete, Insert}
