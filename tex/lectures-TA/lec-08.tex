@@ -1,5 +1,4 @@
-\title{Quicksort And Liner Time Sorts  - Recitation 6} 
-\author{Quicksort, Countingsort, Radixsort, And Bucketsort.}
+\title{AVL Trees  - Recitation 7} 
 \input{../texlib/head}
 
 %\begin{abstract}
@@ -12,23 +11,23 @@
 \end{abstract}
 \section{AVL trees}
     Reminders:
-    \begin{defbox}{}
+    \begin{defbox}{Binary Tree.}
         A binary tree is a tree $(T,r)$ with $r\in V$, such that $\deg(v)
             \leq 2$ for any $v\in V$.
-    \end{defbox}{}
-    \begin{defbox}{} A tree's height $h(T)$ (sometimes $h(r)$) is defined to be the
+    \end{defbox}
+    \begin{defbox}{Height} A tree's height $h(T)$ (sometimes $h(r)$) is defined to be the
     length of the
     longest
     simple path from $r$ to a leaf.
-    \end{defbox}{}
-    \begin{defbox}{} A binary search tree is a binary tree $(T,r)$ such that for any
+    \end{defbox}
+    \begin{defbox}{ Binary Search Tree } A binary search tree is a binary tree $(T,r)$ such that for any
     node $x$ (root of a subtree) and a node in that subtree $y$:
     \begin{enumerate}
         \item if $y$ is in the left subtree of $x$ then $y.key \leq x.key$
         \item if $y$ is in the right subtree of $x$ then $x.key < y.key$
     \end{enumerate}
         Note that this is a (relatively) local property.
-    \end{defbox}{}
+    \end{defbox}
 For example:\\
     \begin{center}
         \begin{tikzpicture}[ level distance=1.5cm,
@@ -56,13 +55,10 @@ For example:\\
 understand the definitions!
 \end{remark}
 
-in the lecture, we've seen some operations that can be performed on BSTs, and
-proved
-correctness for some of them. These were: $Search(x), Min(T), Max(T), Pred(x), Succ(x),
+Last time, we have seen some operations that can be performed on BSTs, and
+proved correctness for some of them. These were: $Search(x), Min(T), Max(T), Pred(x), Succ(x),
 Insert(x), Delete(x)$. All of these operations take $O(h(T))$ in the worst case.\\
-\begin{remark}
-    Can do one or two examples, but this is not th heart of the recitation.
-\end{remark}
+
 The main two operations that may cause problems are $Insert$ and $Delete$, as
 they change the tree's height (consider inserting $81,82,83,84$ to our
 working example).
@@ -93,10 +89,7 @@ we'd want to:
     \item See how to $Delete$ and $Insert$, while maintaining the height field.
 \end{enumerate}
 
-
-
-
-\newpage
+%\newpage
 \subsection{Rotations}
 \includegraphics[scale=.3]{Recitations/rotations.png}\\
 Rotations allow us to maintain the AVL property, in $O(1)$ time (you've
