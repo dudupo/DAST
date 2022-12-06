@@ -113,8 +113,11 @@ Taken from last year's recitation:\\
 
 Let's analyze one of these cases:\\
 \begin{example} Let's see why R rotation Fixes LL violation:\\
+\begin{figure}[h]
+  \centering
 \includegraphics[scale=.5]{Recitations/LLviolation.jpg}\\
 This is the general form of LL violations.
+\end{figure}
 Analyze the heights of subtrees. Denote $h$ the height of $A_L$ before
 inserting $v$. So $A_R$'s height has to also be $h$:\\
 If it's height was $h+1$, the insertion wouldn't have created a violation in
@@ -124,12 +127,13 @@ $B_R$'s height is also $h$: If it was $h+1$ or $h+2$, no violation in $B$ had
 occurred.\\
 
 After the rotation, the tree looks like this:\\
-\includegraphics[scale=.9]{Recitations/LLviolationfix.jpg}\\
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=.9]{Recitations/LLviolationfix.jpg}
+\end{figure}
 So all the nodes here maintain AVL property; why is it maintained in general?
 \end{example}\\
-Detect the violation in the following tree, and perform
-the
-necessary rotations:\\
+Detect the violation in the following tree, and perform the necessary rotations:\\
 \begin{figure}[h]
   \centering
   \begin{subfigure}[b]{0.31\textwidth}
