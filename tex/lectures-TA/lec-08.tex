@@ -180,11 +180,11 @@ process will take $O(\log(n))$, so we maintain a good time complexity.
   \begin{algorithm}[H]
     Call Insert $(r,x)$ // (The standart insertion routine for BST) \\  
     Let $p$ be the new node appended to the tree. \\
-    \While{ $p$.parent $\neq \empty$ } {
-      $p \leftarrow$ $p$.parent \\  
+    \While{ $p$.parent $\neq \emptyset $ } {
       Check in which of the four states we are. \\ 
       Apply the right rotation. \\ 
       Update the height of each toched vertex  
+      $p \leftarrow$ $p$.parent \\  
     }
   \end{algorithm}
 \end{algbox}
