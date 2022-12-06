@@ -65,17 +65,17 @@ working example).
 To address this problem, we introduce another filed: for each node $v$ add a
 field of $h(v)$ = the height of the subtree who's root is $v$. This allows us
 to maintain the AVL property:
-    \begin{defbox}{} An AVL tree is a balanced BST, such that for any node $x$, it's left
+\begin{defbox}{AVL Tree.} An AVL tree is a balanced BST, such that for any node $x$, it's left
     and right subtrees' height differ in no more than $1$. In other words:
         $$|h(left(x)) - h(right(x))|\leq 1$$
-    \end{defbox}{}
+    \end{defbox}
     This field allows us to calculate the Balance Factor for each node in $O
     (1)$:
-    \begin{defbox}{} For each node $x\in T$, it's Balance Factor is defined 
+    \begin{defbox}{AVL Tree.} For each node $x\in T$, it's Balance Factor is defined 
     $$hd
     (x) := h(left(x)) - h(right(x))$$ In AVL trees, we would like to maintain
     $|hd(x)| \leq 1$
-    \end{defbox}{}
+    \end{defbox}
 \begin{example} For our working example, the node $60$'s $hd$ is $h(50) - h
 (70) = 1$, and $hd(50) = h(45)- h(55) = -1$. You can check and see that this
 is an AVL tree.
