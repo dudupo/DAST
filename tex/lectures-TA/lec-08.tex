@@ -127,7 +127,10 @@ So all the nodes here maintain AVL property; why is it maintained in general?
 \begin{example} Detect the violation in the following tree, and perform
 the
 necessary rotations:\\
-    \begin{tikzpicture}[ level distance=1.5cm,
+\begin{figure}[h]
+  \centering
+  \begin{subfigure}[b]{0.49\textwidth}
+            \begin{tikzpicture}[ level distance=1.5cm,
         level 1/.style={sibling distance=3.5cm},
         level 2/.style={sibling distance=2cm}, scale=.65]
             \node {15}
@@ -136,7 +139,24 @@ necessary rotations:\\
             child{node{13}}}} child{node{20} child{node{18}} child{node{23}}}
             ;
     \end{tikzpicture}
-\end{example}\\
+  \end{subfigure}
+\begin{subfigure}[b]{0.49\textwidth}
+        \begin{tikzpicture}[ level distance=1.5cm,
+        level 1/.style={sibling distance=3.5cm},
+        level 2/.style={sibling distance=2cm}, scale=.65]
+            \node {15}
+                child{node{5} child{node{3}} child{node{10}
+            child{node{6}} child{node{12} child{node{} edge
+            from parent [draw = none]} child{node{13}} }}
+            }
+             child{node{20} child{node{18}} child{node{23}}}
+            ;
+    \end{tikzpicture}
+  \end{subfigure}
+  \caption{ Example for Median-Heap, the left and right trees are maximum and minimum heaps.  }
+\end{figure}
+
+end{example}\\
 The first node in which a violation occurred is $5$, this is an RL violation:\\
 Perform R rotation on the right child:\\
 \begin{tikzpicture}[ level distance=1.5cm,
