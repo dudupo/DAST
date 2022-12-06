@@ -11,26 +11,24 @@
     that the height of an AVL tree is $O(\log(n))$.
 \end{abstract}
 \section{AVL trees}
-\begin{framed}
     Reminders:
-    \begin{defn}
+    \begin{defbox}{}
         A binary tree is a tree $(T,r)$ with $r\in V$, such that $\deg(v)
             \leq 2$ for any $v\in V$.
-    \end{defn}
-    \begin{defn} A tree's height $h(T)$ (sometimes $h(r)$) is defined to be the
+    \end{defbox}{}
+    \begin{defbox}{} A tree's height $h(T)$ (sometimes $h(r)$) is defined to be the
     length of the
     longest
     simple path from $r$ to a leaf.
-    \end{defn}
-    \begin{defn} A binary search tree is a binary tree $(T,r)$ such that for any
+    \end{defbox}{}
+    \begin{defbox}{} A binary search tree is a binary tree $(T,r)$ such that for any
     node $x$ (root of a subtree) and a node in that subtree $y$:
     \begin{enumerate}
         \item if $y$ is in the left subtree of $x$ then $y.key \leq x.key$
         \item if $y$ is in the right subtree of $x$ then $x.key < y.key$
     \end{enumerate}
         Note that this is a (relatively) local property.
-    \end{defn}
-\end{framed}
+    \end{defbox}{}
 For example:\\
     \begin{center}
         \begin{tikzpicture}[ level distance=1.5cm,
@@ -71,19 +69,17 @@ working example).
 To address this problem, we introduce another filed: for each node $v$ add a
 field of $h(v)$ = the height of the subtree who's root is $v$. This allows us
 to maintain the AVL property:
-\begin{framed}
-    \begin{defn} An AVL tree is a balanced BST, such that for any node $x$, it's left
+    \begin{defbox}{} An AVL tree is a balanced BST, such that for any node $x$, it's left
     and right subtrees' height differ in no more than $1$. In other words:
         $$|h(left(x)) - h(right(x))|\leq 1$$
-    \end{defn}
+    \end{defbox}{}
     This field allows us to calculate the Balance Factor for each node in $O
     (1)$:
-    \begin{defn} For each node $x\in T$, it's Balance Factor is defined 
+    \begin{defbox}{} For each node $x\in T$, it's Balance Factor is defined 
     $$hd
     (x) := h(left(x)) - h(right(x))$$ In AVL trees, we would like to maintain
     $|hd(x)| \leq 1$
-    \end{defn}
-\end{framed}
+    \end{defbox}{}
 \begin{example} For our working example, the node $60$'s $hd$ is $h(50) - h
 (70) = 1$, and $hd(50) = h(45)- h(55) = -1$. You can check and see that this
 is an AVL tree.
