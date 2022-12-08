@@ -685,5 +685,689 @@ return extract-$k$ ( $H_{XY}$ )
 \end{algbox}
 \fi
 
-\input{../texlib/tail}
 
+
+\section{Quicksort And Liner Time Sorts  - Recitation 6} 
+\author{Quicksort, Countingsort, Radixsort, And Bucketsort.}
+
+
+%\begin{paragraph}
+Till now, we have quantified the algorithm performance against the worst-case scenario. And we saw that according to that measure, In the comparisons model, one can not sort in less than $\Theta\left( n\log n \right) $ time. In this recitation, we present two new main concepts that, in some instances, achieve better analyses. The first one is the Exception Complexity; By Letting the algorithm behave non-determinately, we might obtain an algorithm that most of the time runs to compute the task fast. Yet we will not success get down beneath the $\Theta\left(n\log n\right)$ lower bound, but we will go back to use that concept in the pending of the course. The second concept is to restrict ourselves to dealing only with particular inputs. For example, We will see that if we suppose that the given array contains only integers in a bounded domain, then we can sort it in linear time.  
+
+%\end{paragraph}
+
+\subsection*{Quicksort.}
+The quicksort algorithm is a good example of a \textbf{non-determistic} algorithm that has a worst-case running time of $\Theta\left(n^{2}\right)$. Yet its expected running time is $\Theta\left(n\log n\right)$. Namely, fix an array of $n$ numbers. The running of Quicksort over that array might be different. Each of them is a different event in probability space, and the algorithm's running time is a random variable defined over that space. Saying that the algorithm has the worst space complexity of $\Theta(n^{2})$ means that there exists an event in which it runs $\Theta\left(n^{2}\right)$ time with non-zero probability. But practically, the interesting question is not the existence of such an event but how likely it would happen. It turns out that the expectation of the running time is $\Theta\left(n\log n\right)$.  
+
+What is the exact reason that happens? By giving up on the algorithm behavior century, we will turn the task of engineering a bad input impossible.    
+ 
+\begin{algbox}{randomized-partition$(A, p, r)$}
+  \begin{algorithm}[H]
+      $i \leftarrow $ random $(p, r)$ \\
+      $A_{r} \leftrightarrow A_{i} $ \\
+      return Partition $(A, p, r)$
+    \end{algorithm}
+\end{algbox}
+ \begin{algbox}{randomized-quicksort $(A, p, r)$}
+      \begin{algorithm}[H]
+	\If{ $p < r$ }{
+	  $q \leftarrow $ randomized-partition $(A, p, r)$ \\
+	  randomized-quicksort $(A, p, q-1)$\\
+	  randomized-quicksort $(A, q+1, r)$
+	}
+      \end{algorithm}
+\end{algbox}
+
+
+\paragraph{Partitioning.}
+To complete the correctness proof of the algorithm (most of it passed in the Lecture), we have to prove that the partition method is indeed rearranging the array such that all the elements contained in the right subarray are greater than all the elements on the left subarray.  
+
+%which rearranges the subarray $ A_{p : r}$ in place, returning the index of the dividing point between the two sides of the partition.
+
+\begin{algbox}{Partition$(A, p, r)$}
+  \begin{algorithm}[H]
+    $ x \leftarrow A_{r} $ \\
+    $ i \leftarrow p - 1 $ \\
+    \For{ $j \in [p, r-1]$ }{
+      \If{ $ A_{j} \le x  $}{
+	$ i \leftarrow i + 1 $ \\
+	$ A_{i} \leftrightarrow A_{j} $\\
+      }
+    }
+   $ A_{i+1} \leftrightarrow A_{r} $\\
+   return $ i+1$
+  \end{algorithm}
+\end{algbox}
+
+\paragraph{claim.} At the beginning of each iteration of the loop of lines 3–6, for any array index $k$, the following conditions hold:
+\begin{itemize}
+  \item  if $p \le k \le i$, then $A_{k} \le x$.
+  \item  if $i + 1 \le k \le j – 1$, then $A_{k} > x$.
+  \item  if $k = r$, then $A_{k} = x$.
+\end{itemize}
+\paragraph{Proof.}
+\begin{enumerate}
+  \item Initialization: Prior to the first iteration of the loop, we have $i = p – 1$ and $ j= p$. Because no values lie between $p$ and $i$ and no values lie between $i + 1$ and $j – 1$, the first two conditions of the loop invariant are trivially satisfied. The assignment in line 1 satisfies the third condition.
+  \item Maintenance: we consider two cases, depending on the outcome of the test in line 4, when $A_{j} > x$: the only action in the loop is to increment $j$. After $j$  has been incremented, the second condition holds for $A_{j – 1}$, and all other entries remain unchanged. When $A_{j} \le x$: the loop increments $i$, swaps $A_{i}$ and $A_{j}$, and then increments $j$. Because of the swap, we now have that $A_{i} \le x$, and condition 1 is satisfied. Similarly, we also have that $A_{j – 1} > x$, since the item that was swapped into $A_{j – 1}$ is, by the loop invariant, greater than $x$.
+  \item Termination: Since the loop makes exactly $r – p$ iterations, it terminates, whereupon$ j= r$. At that point, the unexamined subarray $A_{j}, A_{j+1}..  A_{r – 1}$ is empty, and every entry in the array belongs to one of the other three sets described by the invariant. Thus, the values in the array have been partitioned into three sets: those less than or equal to $x$ (the low side), those greater than $x$ (the high side), and a singleton set containing $x$ (the pivot).
+
+
+\end{enumerate}
+
+\input{quick-1.tex}
+
+\subsection*{Linear Time Sorts}
+\paragraph{ Counting sort.} Counting sort assumes that each of the n input elements is an integer at the size at most $k$. It runs in $\Theta \left(n + k\right)$ time, so that when $k = O(n)$, counting sort runs in $\Theta\left(n\right)$ time.
+Counting sort first determines, for each input element $x$, the number of elements less than or equal to $x$. It then uses this information to place element $x$ directly into its position in the output array. For example, if 17 elements are less than or equal to $x$, then $x$ belongs in output position 17. We must modify this scheme slightly to handle the situation in which several elements have the \textbf{same value}, since we do not want them all to end up in the same position.
+
+\begin{algbox}{Counting-sort$(A, n, k)$}
+  \begin{algorithm}[H]
+  	let B and C be new arrays at size $n$ and $k$ \\ 
+  	\For{ $i \in  [0, k]$}{
+		$C_{i} \leftarrow 0 $
+  	}
+	\For{ $j \leftarrow [1, n]$}{
+	  $C_{A{j}} \leftarrow C_{A_{j}} + 1 $
+ 	}
+	\For{ $i \in  [1, k]$}{
+	  $C_{i} \leftarrow C_{i} + C_{i – 1} $
+ 	}
+	\For{ $i \in [n , 1]$}{
+	  $B_{C_{A_{j}}} \leftarrow A_{j}$ \\
+	  $C_{A_{j}} \leftarrow C_{A{j}} – 1$ \ \ // to handle duplicate values
+	}
+	  return $B$
+  \end{algorithm}
+\end{algbox}
+
+Notice that the Counting sort can beat the lower bound of $\Omega\left(n \log n\right)$ only because it is not a comparison sort. In fact, no comparisons between input elements occur anywhere in the code. Instead, counting sort uses the actual values of the elements to index into an array.
+
+An important property of the counting sort is that it is \textbf{stable}.
+
+\begin{defbox}{Stable Sort.}
+ We will say that a sorting algorithm is stable if elements with the same value appear in the output array in the same order as they do in the input array. \end{defbox}
+
+Counting sort's stability is important for another reason: counting sort is often used as a subroutine in radix sort. As we shall see in the next section, in order for radix sort to work correctly, counting sort must be stable.
+
+\paragraph{Radix sort}
+Radix sort is the algorithm used by the card-sorting machines you now find only in computer museums. The cards have 80 columns, and in each column, a machine can punch a hole in one of 12 places. The sorter can be mechanically "programmed" to examine a given column of each card in a deck and distribute the card into one of 12 bins depending on which place has been punched. An operator can then gather the cards bin by bin, so that cards with the first place punched are on top of cards with the second place punched, and so on.
+
+The Radix-sort procedure assumes that each element in the array $A$ has d digits, where digit 1 is the lowest-order digit and digit $d$ is the highest-order digit.
+
+
+\begin{algbox}{radix-sort(A, n, d)}
+  \begin{algorithm}[H]
+    \For{ $ i \in [1,d]$ } {
+        use a stable sort to sort array $A$ on digit $i$
+    }
+  \end{algorithm}
+\end{algbox}
+
+\paragraph{Correctness Proof.} By induction on the column being sorted.
+\begin{itemize}
+  \item Base. Where $d = 1$, the correctness follows immediately from the correctness of our base sort subroutine. 
+  \item Induction Assumption. Assume that Radix-sort is correct for any array of numbers containing at most $d-1$ digits. 
+  \item Step. Let $A^{\prime}$  be the algorithm output. Consider $x,y \in A$. Assume without losing generality that $x > y$. Denote by $x_{d}, y_{d}$ their $d$-digit and by $x_{/d}, y_{/d}$ the numbers obtained by taking only the first  $d-1$ digits of $x,y$. Separate in two cases:
+
+    \begin{itemize}
+      \item   If $x_{d} > y_{d}$ then a scenario in which $x$ appear prior to $y$ is  imply contradiction to the correctness of our subroutine.
+      \item   So consider the case in which $x_{d} = y_{d}$. In that case, it must hold that $x_{/d} > y_{/d}$. Then the appearance of $x$ prior to $y$ either contradicts the assumption that the base algorithm we have used is stable or that $x$ appears before $y$ at the end of the $d-1$ iteration. Which contradicts the induction assumption. 
+    \end{itemize}
+ \end{itemize}
+
+The analysis of the running time depends on the stable sort used as the intermediate sorting algorithm. When each digit lies in the range $0$ to $k – 1$ (so that it can take on $k$ possible values), and $k$ is not too large, counting sort is the obvious choice. Each pass over $n$ $d$-digit numbers then takes $\Theta(n + k)$ time. There are $d$ passes, and so the total time for radix sort is $\Theta\left(d(n + k)\right)$.
+
+%When d is constant and k = O(n), we can make radix sort run in linear time. More generally, we have some flexibility in how to break each key into digits.
+%Lemma 8.4
+%Given n b-bit numbers and any positive integer r ≤ b, RADIX-SORT correctly sorts these numbers in $\Theta\left((b/r)(n + 2r)\right)$ time if the stable sort it uses takes Θ(n + k) time for inputs in the range 0 to k.
+
+%Proof For a value r ≤ b, view each key as having d = ⌈b/r⌉ digits of r bits each. Each digit is an integer in the range 0 to 2r – 1, so we can use counting sort with k = 2r – 1. (For example, we can view a 32-bit word as having four 8-bit digits, so that b = 32, r = 8, k = 2r – 1 = 255, and d = b/r = 4.) Each pass of counting sort takes $ \Theta \left(n + k \right) = \Theta\left(n + 2r\right)$ time and there are d passes, for a total running time of $\Theta\left(d(n + 2r)\right) = \Theta\left((b/r)(n + 2r)\right)$.
+
+%Given n and b, what value of r ≤ b minimizes the expression (b/r)(n + 2r)? As r decreases, the factor b/r increases, but as r increases so does 2r. The answer depends on whether b < ⌊lg n⌋. If b < ⌊lg n⌋, then r ≤ b implies (n + 2r) = Θ(n). Thus, choosing r = b yields a running time of (b/b)(n + 2b) = Θ(n), which is asymptotically optimal. If b ≥ ⌊lg n⌋, then choosing r = ⌊lg n⌋ gives the best running time to within a constant factor, which we can see as follows.1 Choosing r = ⌊lg n⌋ yields a running time of Θ(bn/log n). As r increases above ⌊lg n⌋, the 2r term in the numerator increases faster than the r term in the denominator, and so increasing r above ⌊lg n⌋ yields a running time of Ω(bn / log n). If instead r were to decrease below ⌊lg n⌋, then the b/r term increases and the n + 2r term remains at Θ(n).
+
+%Is radix sort preferable to a comparison-based sorting algorithm, such as Quicksort? If b = O(log n), as is often the case, and r ≈ log n, then the radix sort's running time is Θ(n), which appears to be better than Quicksort's expected running time of Θ(n log n). The constant factors hidden in the Θ-notation differ, however. Although radix sort may make fewer passes than Quicksort over the n keys, each pass of radix sort may take significantly longer. Which sorting algorithm to prefer depends on the characteristics of the implementations, of the underlying machine (e.g., Quicksort often uses hardware caches more effectively than radix sort), and of the input data. Moreover, the version of radix sort that uses counting sort as the intermediate stable sort does not sort in place, which many of the Θ(n log n)-time comparison sorts do. Thus, when primary memory storage is at a premium, an in-place algorithm such as Quicksort could be the better choice.
+
+
+\paragraph{Bucket sort.}
+%Bucket sort assumes that the input is drawn from a uniform distribution and has an average-case running time of O(n). Like counting sort, bucket sort is fast because it assumes something about the input. Whereas counting sort assumes that the input consists of integers in a small range, bucket sort assumes that the input is generated by a random process that distributes elements uniformly and independently over the interval [0, 1). (See Section C.2 for a definition of a uniform distribution.)
+Bucket sort divides the interval [0, 1) into n equal-sized subintervals, or buckets, and then distributes the n input numbers into the buckets. Since the inputs are uniformly and independently distributed over [0, 1), we do not expect many numbers to fall into each bucket. To produce the output, we simply sort the numbers in each bucket and then go through the buckets in order, listing the elements in each.
+%The BUCKET-SORT procedure on the next page assumes that the input is an array A[1 : n] and that each element A[i] in the array satisfies 0 ≤ A[i] < 1. The code requires an auxiliary array B[0 : n – 1] of linked lists (buckets) and assumes that there is a mechanism for maintaining such lists. (Section 10.2 describes how to implement basic operations on linked lists.) Figure 8.4 shows the operation of bucket sort on an input array of 10 numbers.
+
+\begin{algbox}{bucket-sort(A, n)}
+  \begin{algorithm}[H]
+    	let B[0 : n – 1] be a new array
+	\For{ $i \leftarrow [0, n – 1]$}{
+	   make $B_{i}$ an empty list
+       	}
+	\For{ $i \leftarrow [1, n]$}{
+	    insert $A_{i}$ into list $B_{ \lfloor n A_{i} \rfloor} ]$
+       	}
+	\For{ $i \leftarrow [0, n – 1]$}{
+	    sort list $B_{i}$
+       	}
+	concatenate the lists $B_{0}, B{1}, .. , B_{n – 1}$ together and\\
+	return the concatenated lists
+  \end{algorithm}
+\end{algbox}
+
+
+
+\section{AVL Trees  - Recitation 7} 
+
+
+%\begin{paragraph}
+%\begin{paragraph}
+    In this recitation, we will review the new data structures you have seen - Binary search trees and, specifically, AVL trees. We will revise the different operations, review the essential concepts of balance factor and rotations and see some examples. Finally, if there is time left - we will prove that the height of an AVL tree is $O(\log(n))$.
+%\end{paragraph}
+    
+\section{AVL trees}
+    Reminders:
+    \begin{defbox}{Binary Tree.}
+        A binary tree is a tree $(T,r)$ with $r\in V$, such that $\deg(v)
+            \leq 2$ for any $v\in V$.
+    \end{defbox}
+    \begin{defbox}{Height.} A tree's height $h(T)$ (sometimes $h(r)$) is defined to be the
+    length of the
+    longest
+    simple path from $r$ to a leaf.
+    \end{defbox}
+    \begin{defbox}{ Binary Search Tree. } A binary search tree is a binary tree $(T,r)$ such that for any
+    node $x$ (root of a subtree) and a node in that subtree $y$:
+    \begin{enumerate}
+        \item if $y$ is in the left subtree of $x$ then $y.key \leq x.key$
+        \item if $y$ is in the right subtree of $x$ then $x.key < y.key$
+    \end{enumerate}
+        Note that this is a (relatively) local property.
+    \end{defbox}
+For example:\\
+    \begin{center}
+        \begin{tikzpicture}[ level distance=1.5cm,
+        level 1/.style={sibling distance=3.5cm},
+        level 2/.style={sibling distance=2cm}, scale=.65]
+            \node {40}
+                child{node{15}
+                        child{node{10} child{node{5}} child{node{} edge from parent
+            [draw=none]}}
+                        child{node{20}}}
+                child{node{60}
+                        child{node{50}
+                                child{node{45}}
+                                child{node{55}
+                                        child{node{52}}
+                                        child{node{} edge from parent [draw=none]}
+                                }
+                                }
+                        child{node{70} child{node{} edge from parent [draw=none]}
+                                child{node{80}}}
+            };
+    \end{tikzpicture}
+    \end{center}
+\begin{remark} Go over the properties and calculate the tree's height. Make sure you understand the definitions!
+\end{remark}
+
+Last time, we saw some operations that can be performed on BSTs, and
+proved correctness for some of them. These were: $Search(x), Min(T), Max(T), Pred(x), Succ(x),
+Insert(x), Delete(x)$. All of these operations take $O(h(T))$ in the worst case.\\
+
+The main two operations that may cause problems are $Insert$ and $Delete$, as
+they change the tree's height (consider inserting $81,82,83,84$ to our
+working example).
+To address this problem, we introduce another field: for each node $v$, add a field of $h(v)$ = the height of the subtree whose root is $v$. This allows us to maintain the AVL property:
+\begin{defbox}{AVL Tree.} An AVL tree is a balanced BST, such that for any node $x$, its left and right subtrees' height differs in no more than $1$. In other words:
+        $$|h(left(x)) - h(right(x))|\leq 1$$
+    \end{defbox}
+    This field allows us to calculate the Balance Factor for each node in $O
+    (1)$:
+    \begin{defbox}{Balance Factor.} For each node $x\in T$, it's Balance Factor is defined 
+    $$hd
+    (x) := h(left(x)) - h(right(x))$$ In AVL trees, we would like to maintain
+    $|hd(x)| \leq 1$
+    \end{defbox}
+\begin{example} For our working example, the node $60$'s $hd$ is $h(50) - h
+(70) = 1$, and $hd(50) = h(45)- h(55) = -1$. You can check and see that this is an AVL tree.
+\end{example}
+So to make sure that we can actually maintain time complexity $O(\log(n))$, we would want to:
+\begin{enumerate}
+    \item Show that for an AVL tree, $h(T) = \theta(log(n))$ (If there's time
+    left)
+    \item See how to correct violations in AVL property - using \textbf{rotations}
+    \item See how to $Delete$ and $Insert$, while maintaining the height field.
+\end{enumerate}
+
+%\newpage
+\subsection{Rotations}
+\begin{figure}[h]
+  \centering
+\includegraphics[scale=.3]{Recitations/rotations.png}\\
+\end{figure}
+Rotations allow us to maintain the AVL property in $O(1)$ time (you have
+discussed this in the lecture - changing subtree's roots).
+In
+this
+schematic
+representation of rotations, $x,y$ are nodes and $\alpha,\beta,\gamma$ are subtrees.
+Note that the BST property is maintained! \\
+
+%\includegraphics[scale=.5]{Recitations/rotationEg.png}
+
+The Balance factor allows us to identify if the AVL property was violated, and moreover -
+the exact values of the bad Balance factors will tell us which rotations to do to fix
+this:\\
+Taken from last year's recitation:\\
+\includegraphics[scale=.6]{Recitations/violations.png}
+
+Let us analyze one of these cases:\\
+\begin{example} Let us see why R rotation Fixes LL violation:\\
+\begin{figure}[h]
+  \centering
+\includegraphics[scale=.5]{Recitations/LLviolation.jpg}\\
+This is the general form of LL violations.
+\end{figure}
+
+Let us analyze the heights of subtrees. Denote $h$ the height of $A_L$ before inserting $v$. So $A_R$'s height has also to be $h$.
+If its height were $h+1$, the insertion would not have created a violation in
+$B$ ($A$'s height would have stayed the same). If it were $h-1$, the violation would have appeared first in $A$ (not in $B$). Thus, $A$'s height is $h+1$.
+$B_R$'s height is also $h$: If it was $h+1$ or $h+2$, no violation in $B$ had
+occurred.
+
+After the rotation, the tree looks like this:
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=.9]{Recitations/LLviolationfix.jpg}
+\end{figure}
+So all the nodes here maintain AVL property; why is it maintained?
+\end{example}\\
+Detect the violation in the following tree, and perform the necessary rotations:\\
+\begin{figure}[h]
+  \centering
+  \begin{subfigure}[b]{0.31\textwidth}
+            \begin{tikzpicture}[ level distance=1.5cm,
+        level 1/.style={sibling distance=3.5cm},
+        level 2/.style={sibling distance=2cm}, scale=.65]
+            \node {15}
+	    child{node{5} child{node{3}} child{node{12}  child{node{10}
+            child{node{6}} child{node{} edge from parent [draw = none]}}
+            child{node{13}}}} child{node{20} child{node{18}} child{node{23}}}
+            ;
+    \end{tikzpicture}
+  \end{subfigure}
+\begin{subfigure}[b]{0.31\textwidth}
+        \begin{tikzpicture}[ level distance=1.5cm,
+        level 1/.style={sibling distance=3.5cm},
+        level 2/.style={sibling distance=2cm}, scale=.65]
+            \node {15}
+	    child{node{} child{node{3}} child{node{10}
+            child{node{6}} child{node{12} child{node{} edge
+            from parent [draw = none]} child{node{13}} }}
+            }
+             child{node{20} child{node{18}} child{node{23}}}
+            ;
+    \end{tikzpicture}
+  \end{subfigure}
+\begin{subfigure}[b]{0.31\textwidth}
+  \begin{tikzpicture}[ level distance=1.5cm,
+        level 1/.style={sibling distance=3.5cm},
+        level 2/.style={sibling distance=2cm}, scale=.65]
+            \node {15}
+                child{node{10} child{node{5} child{node{3}} child{node{6}}
+            } child{node{12}
+            child{node{} edge from parent [draw = none]} child{node{13}}}}
+             child{node{20} child{node{18}} child{node{23}}}
+            ;
+    \end{tikzpicture}
+
+\end{subfigure}
+  \caption{ 
+The first node in which a violation occurred is $5$, this is an RL violation.
+Perform R rotation on the right child. Then perform L rotation on the root of the relevant subtree ($5$):
+}
+\end{figure}
+\subsection{Delete, Insert.}
+The principles of the $Delete$ and $Insert$ operations are the same as in
+regular BST, but we will need to rebalance the tree in order to preserve AVL
+property.
+A single insertion or deletion may change the height difference of subtrees
+by at most 1, and might affect only the subtrees with roots along the path
+from $r$ to the point of insertion/ deletion.
+More concretely - we will add a recursive operation of traversing the tree
+"back up" and checking violations. Had we found one - we will fix it using
+rotations. Since rotations can be done in $O(1)$, the entire correction
+process will take $O(\log(n))$, so we maintain a good time complexity.
+
+
+\begin{algbox}{AVL Insert(r,x)}
+  \begin{algorithm}[H]
+    Call Insert $(r,x)$ // (The standard insertion routine for BST) \\  
+    Let $p$ be the new node appended to the tree. \\
+    \While{ $p$.parent $\neq \emptyset $ } {
+      Check which of the four states we are in.\\ 
+      Apply the right rotation. \\ 
+      Update the height of each touched vertex  \\
+      $p \leftarrow$ $p$.parent \\  
+    }
+  \end{algorithm}
+\end{algbox}
+
+
+\iffalse
+\newpage
+\subsection{Delete, Insert}
+The principles of the $Delete$ and $Insert$ operations are the same as in
+regular BST, but we will need to rebalance the tree in order to preserve AVL
+property.
+A single insertion or deletion may change the height difference of subtrees
+by at most 1, and might affect only the subtrees with roots along the path
+from $r$ to the point of insertion/ deletion.
+More concretely - we will add a recursive operation of traversing the tree
+"back up" and checking violations. Had we found one - we will fix it using
+rotations. Since rotations can be done in $O(1)$, the entire correction
+process will take $O(\log(n))$, so we maintain a good time complexity.
+\subsubsection{Delete}
+This is the regular BST delete. We will need to traverse up the
+tree and detect violations (if occurred).\\
+\includegraphics[scale=.6]{Recitations/DeleteBST.jpg}\\
+\begin{remark} Go over the procedure quickly - explain the 3 cases - no
+children, one child (easy), and two children (using successor).
+\end{remark}
+\begin{example}\\
+    Delete $20$ from the tree at the beginning of the recitation:\\
+    \includegraphics[scale=.3]{Recitations/DeleteEx.jpg}
+\end{example}
+%    Consider the original BST we looked at:\\
+%
+%\begin{tikzpicture}[ level distance=1.5cm,
+%        level 1/.style={sibling distance=3.5cm},
+%        level 2/.style={sibling distance=2cm}, scale=.65]
+%            \node {40}
+%                child{node{15}
+%                        child{node{10} child{node{5}} child{node{} edge from parent
+%            [draw=none]}}
+%                        child{node{20}}}
+%                child{node{60}
+%                        child{node{50}
+%                                child{node{45}}
+%                                child{node{55}
+%                                        child{node{52}}
+%                                        child{node{} edge from parent [draw=none]}
+%                                }
+%                                }
+%                        child{node{70} child{node{} edge from parent [draw=none]}
+%                                child{node{80}}}
+%            };
+%    \end{tikzpicture}
+%
+%Let's $Insert(4)$:\\
+%
+%\begin{tikzpicture}[ level distance=1.5cm,
+%        level 1/.style={sibling distance=3.5cm},
+%        level 2/.style={sibling distance=2cm}, scale=.65]
+%            \node {40}
+%                child{node{15}
+%                        child{node{(-2)10} child{node{(-1)5}child{node{4}}
+%            child{node{} edge
+%            from
+%            parent
+%            [draw = none]} }
+%            child{node{} edge from
+%            parent
+%            [draw=none]}}
+%                        child{node{20}}}
+%                child{node{60}
+%                        child{node{50}
+%                                child{node{45}}
+%                                child{node{55}
+%                                        child{node{52}}
+%                                        child{node{} edge from parent [draw=none]}
+%                                }
+%                                }
+%                        child{node{70} child{node{} edge from parent [draw=none]}
+%                                child{node{80}}}
+%            };
+%    \end{tikzpicture}\\
+%
+%So we need to fix LL violation. This is by performing R rotation of the root
+%of the subtree in which the violation first appeared: \\
+%
+%\begin{tikzpicture}[ level distance=1.5cm,
+%        level 1/.style={sibling distance=3.5cm},
+%        level 2/.style={sibling distance=2cm}, scale=.65]
+%            \node {40}
+%                child{node{15}
+%                        child{node{(0)5} child{node{(0)4}} child{node{10}}
+%             }
+%                        child{node{20}}}
+%                child{node{60}
+%                        child{node{50}
+%                                child{node{45}}
+%                                child{node{55}
+%                                        child{node{52}}
+%                                        child{node{} edge from parent [draw=none]}
+%                                }
+%                                }
+%                        child{node{70} child{node{} edge from parent [draw=none]}
+%                                child{node{80}}}
+%            };
+%    \end{tikzpicture}
+%\begin{remark}
+%    RR rotations are symmetric
+%\end{remark}
+\subsubsection{Insert}
+Once again - this is the regular BST insert; we will need to traverse up the
+tree and detect violations (if occurred).\\
+\includegraphics[scale=.6]{Recitations/InsertBST.jpg}\\
+\begin{example}
+    Insert $65$ tho the previous tree (after the deletion):\\
+    \begin{tikzpicture}[ level distance=1.5cm,
+        level 1/.style={sibling distance=3.5cm},
+        level 2/.style={sibling distance=2cm}, scale=.65]
+            \node{50} child{node{40} child{node{10} child{node{5}
+            }child{node{15}}} child{node{45}}}
+            child{node{60} child{node{55}
+                                    child{node{52}} child{node{} edge from
+                                                            parent [draw=none]}}
+                                    child{node{70}
+                                            child{node{} edge from parent
+            [draw=none]} child{node{80}}}}
+
+    \end{tikzpicture}\\
+    So after the insertion:\\
+        \begin{tikzpicture}[ level distance=1.5cm,
+        level 1/.style={sibling distance=3.5cm},
+        level 2/.style={sibling distance=2cm}, scale=.65]
+            \node{50} child{node{40} child{node{10} child{node{5}
+            }child{node{15}}} child{node{45}}}
+            child{node{60} child{node{55}
+                                    child{node{52}} child{node{} edge from
+                                                            parent [draw=none]}}
+                                    child{node{70}
+                                            child{node{65}} child{node{80}}}}
+
+    \end{tikzpicture}\\
+    And no violation occurred.\\
+    \newpage
+\end{example}
+\begin{example}
+    Insert 53 to the previous tree:\\
+    \begin{tikzpicture}[ level distance=1.5cm,
+        level 1/.style={sibling distance=3.5cm},
+        level 2/.style={sibling distance=2cm}, scale=.65]
+            \node{50} child{node{40} child{node{10} child{node{5}
+            }child{node{15}}} child{node{45}}}
+            child{node{60} child{node{55}
+                                    child{node{52} child{node{} edge from
+            parent [draw=none]} child{node{53}}} child{node{}
+            edge
+            from
+                                                            parent [draw=none]}}
+                                    child{node{70}
+                                            child{node{65}} child{node{80}}}}
+
+    \end{tikzpicture}\\
+    Detect LR violation in $55$: Perform $L$ rotation on $52$:\\
+    \begin{tikzpicture}[ level distance=1.5cm,
+        level 1/.style={sibling distance=3.5cm},
+        level 2/.style={sibling distance=2cm}, scale=.65]
+            \node{50} child{node{40} child{node{10} child{node{5}
+            }child{node{15}}} child{node{45}}}
+            child{node{60} child{node{55}
+                                    child{node{53} child{node{52}}
+            child{node{} edge from parent[draw=none]}}
+            child{node{}
+            edge
+            from
+                                                            parent [draw=none]}}
+                                    child{node{70}
+                                            child{node{65}} child{node{80}}}}
+
+    \end{tikzpicture}\\
+    perform $R$ rotation on $55$:\\
+    \begin{tikzpicture}[ level distance=1.5cm,
+        level 2/.style={sibling distance=3cm},
+        level 1/.style={sibling distance=5cm},
+        level 3/.style={sibling distance=1.5cm},scale=.65]
+            \node{50} child{node{40} child{node{10} child{node{5}
+            }child{node{15}}} child{node{45}}}
+            child{node{60} child{node{53}
+                                    child{node{52}}
+            child{node{55}}}
+                                    child{node{70}
+                                            child{node{65}} child{node{80}}}}
+
+    \end{tikzpicture}\\
+
+\end{example}
+
+\newpage
+\fi
+\subsection{Exam Question.}
+Consider the following question from 2018 exam. 
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.8]{avl-q-exam.png}\\
+\end{figure}
+
+
+
+\begin{figure}[H]
+  \begin{subfigure}[b]{0.47\textwidth}
+    \paragraph{Solution.} 
+
+How would it look like an algorithm which computes the 'sum over' query? Or for given $x$, which vertices have a key less than $x$? 
+Consider the path $v_1,v_2,v_3...v_n$ on which the Search subroutine went over when looking for $x$. If $v_i$.key $ <  v_{i+1}$.key then it means that $x$ is 
+greater then $v_{i}$.key. Furthermore, $x$ is also greater than all the keys in the left subtree of $v_{i}$.
+
+\paragraph{}
+
+Let us transform that insight into an 
+Algorithm. Define for each vertex a field that stores the summation of all its left subtree keys plus its own key; call it 'Leftsum'.  
+Then computing the sumover query will be done by summing these fields of the vertices in the right turn on the searching path. 
+\end{subfigure} 
+\hfill
+\begin{subfigure}[b]{0.49\textwidth}
+  \includegraphics[scale=0.07]{oavl-q.png}
+   \end{subfigure} 
+   \hfill
+\end{figure}
+
+
+\begin{algbox}{Sumover($r$,$x$)}
+  \begin{algorithm}[H]
+    \If{ $r$ is None }{
+      return $0$ 
+    }\Else{
+      \If{$x > r$.key }{
+	return $r$.Leftsum + Sumover( $r$.right, $x$ )  
+      }\Else{
+      	return Sumover( $r$.left, $x$ )  
+      }
+    }
+  \end{algorithm}
+\end{algbox}
+
+So it has left to show how one could maintain the tree and guarantee a logarithmic height. Consider a vertex $v$ and suppose that both
+his direct children are correct AVL trees and have the correct value at the Leftsum field. We know that:
+\begin{enumerate}
+  \item There is a rotation that balances the tree at the cost of $O(1)$ time.
+  \item All the descendants of $v$, at a distance at least two from it,  will remain the same in the sense that their subtree has not changed. 
+\end{enumerate}
+Therefore we will have to recompute the Sumleft filed for only a $O(1)$ vertices (which are the children and the grandchildren of $v$ previews the rotation). 
+Each computation could be done in $O(1)$ time. 
+
+
+\begin{algbox}{AVL-Leftsum Insert(r,x)}
+  \begin{algorithm}[H]
+    Call Insert $(r,x)$ // (The standard insertion routine for BST) \\  
+    Let $p$ be the new node appended to the tree. \\
+    \While{ $p$.parent $\neq \emptyset $ } {
+      Apply the right rotation. \\
+      \For{ any vertex $v$ such that its pointers have changed, sorted by height } {
+	$v$.Leftsum $\leftarrow$ $v$.key + $v$.left.Leftsum + $v$.left.right.Leftism 		
+      }
+      $p \leftarrow$ $p$.parent \\  
+    }
+  \end{algorithm}
+\end{algbox}
+
+\paragraph{Running time.} The work is done over vertices along a single path, and on each vertex only $O(1)$ time 
+is spent, Then we have that the total running time of the algorithm is proportional to the tree height. 
+Combining the fact that we maintain the AVL property, it follows that the total time is $\Theta\left( \log n \right)$.  
+
+
+
+
+\section*{Appendix}
+\subsection{AVL tree's height}
+Let $n_h$ be the minimal number of nodes in an AVL tree of height
+$h$.\\
+\begin{thm}
+    $n_h$ is strictly increasing in $h$.
+\end{thm}
+\begin{proof} Exercise.
+\end{proof}
+\begin{thm}
+$n_{h} = n_{h-1} + n_{h-2} + 1$.
+\end{thm}
+\begin{proof}For an AVL tree of height $0$, $n_0 = 1$,
+and of height $1$, $n_1 = 2 $ (by checking directly).\\
+    Let's look at a minimal AVL tree of height $h$. By the AVL property, one
+of its subtrees is of height $h-1$ (WLOG - the left subtree) and by
+minimality, its left subtree has to have $n_{h-1}$ nodes. $T$'s right subtree
+thus has to be of height $h-2$: It can't be of height $h-1$: $n_{h-1} >
+n_{h-2}$ by the previous theorem, and if the right subtree is of height $h-1$ -
+we could switch it with an AVL tree of height $h-2$, with fewer nodes - so
+less nodes in $T$, contradicting minimality. So the right subtree has
+$n_{h-2}$ nodes (once again, by minimality), and thus the whole tree has
+    $n_{h} = n_{h-1} + n_{h-2} + 1$ (added the root) nodes.
+\end{proof}
+\begin{cor}$n_h > 2n_{h-2} + 1$
+\end{cor}
+\begin{cor}$h = O(\log(n))$
+\end{cor}
+\begin{proof}
+    Assume $k$ is even (why can we assume that?).
+    It can be shown by induction that:
+    \[
+        n_h>2n_{h-2}+1>2(2n_{h-4}+1)+1=4n_{h-4}+(1+2)\ldots >
+        2^{\frac{h}{2}}+\sum_{i=0}^{\frac{h}{2}-1}
+        2^i=\sum_{i=1}^{\frac{h}{2}}2^i = \frac{2^\frac{h}{2} - 1}{2-1} =  2^{\frac{h}{2}} - 1
+    \]
+    So $n_h \geq 2^{\frac{h}{2}} - 1$, thus
+    \[
+        h\leq 2\log(n_h + 1)
+    \]
+    and for generall AVL tree with $n$ nodes and height $h$:
+    \[
+         h\leq 2\log(n_h + 1) \leq 2\log(n + 1) = O(\log(n))
+    \]
+%    By $n_h$'s minimality:
+%    $$n \geq n_h \geq F_h = C (\varphi^h - (-\varphi)^h) \geq
+%    \tilde{C}\varphi^h$$
+%    Thus
+%    $h \leq \frac{1}{\tilde{C}} \log_{\varphi}(n)$
+\end{proof}
+\begin{remark}
+    In fact, one can show that $n_h > F_h$ and $F_h$ is the $h$'th Fibonacci
+    number. Recall that $F_h = C(\varphi^h - (\psi)^h)$, and this gives a
+    tighter bound on $n_h$.
+\end{remark}
+\input{../texlib/tail}
