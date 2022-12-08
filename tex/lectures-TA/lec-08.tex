@@ -403,8 +403,27 @@ Consider the following question form 2018 exam.
   \centering
   \includegraphics[scale=0.8]{avl-q-exam.png}\\
 \end{figure}
-How would look like an algorithm which serves the 'sumover' query? Noitce that if a vertex $v$ has key such $v$.key $< x$ then all the vertices with values less than $x$ 
-are vertices of the left substree of $x$. Therefore if $v$.key $x.key$ then $\rightarrow$ \texttt{Sumover($v$, $x$)} $=$ \texttt{Sumover($v.left$, $x$)}.   
+
+How would look like an algorithm which compute the 'sumover' query? Or for given $x$ which vertics are the ones with a key less than $x$. 
+Consdier the path $v_1,v_2,v_3...v_n$ on which the Search subroutine went over when looking for $x$. If $v_i$.key $ <  v_{i+1}$.key then it means that $x$ is 
+greater then $v_{i}$.key. And therefore $x$ is also greater than all the keys in the left subtree of $v_{i}$. Let's transform that insight into an 
+Algorithm. Define for each vertex a field that stores the summation of all it's left subtree keys plus it's own key, Call it 'Leftsum'.  
+Then computing the sumover query will be done by summing theose fields of the verteics in the right turn on the searching path. 
+
+
+\begin{algbox}{Sumover($r$,$x$}
+  \begin{algorithm}[H]
+    \If{ $r$ is None }{
+      return $0$ 
+    }\Else{
+      \If{$x$ > $r$.key }{
+	return $r$.Leftsum + Sumover( $r$.right, $x$ )  
+      }\Else{
+      	return Sumover( $r$.left, $x$ )  
+      }
+    }
+  \end{algorithm}
+\end{algbox}
 
 \section*{Appendix}
 \subsection{AVL tree's height}
