@@ -411,7 +411,7 @@ Algorithm. Define for each vertex a field that stores the summation of all it's 
 Then computing the sumover query will be done by summing theose fields of the verteics in the right turn on the searching path. 
 
 
-\begin{algbox}{Sumover($r$,$x$}
+\begin{algbox}{Sumover($r$,$x$)}
   \begin{algorithm}[H]
     \If{ $r$ is None }{
       return $0$ 
@@ -424,6 +424,34 @@ Then computing the sumover query will be done by summing theose fields of the ve
     }
   \end{algorithm}
 \end{algbox}
+
+So it's left to show how one could maintain the tree and gurantee a logrithmic hieght. Consider a vertex $v$ and suppose that both
+his direct children are correct AVL trees and also has the correct value at the Leftsum field. We know that:
+\begin{enumerate}
+  \item There is a rotaiton that blanced the tree at the cost of $O(1)$ time.
+  \item All the descendants of $v$ distance at distance grater than $2$ form it will remain the same, in the sanse that 
+    their subtree will not change. 
+\end{enumerate}
+Therefore we will have to recompute the Sumleft filed for only a $O(1)$ vertics (which are the children and the grandchildren of $v$ privews the rotation). 
+Each of that compution could be done in $O(1)$ time. 
+
+
+\begin{algbox}{AVL-Leftsum Insert(r,x)}
+  \begin{algorithm}[H]
+    Call Insert $(r,x)$ // (The standart insertion routine for BST) \\  
+    Let $p$ be the new node appended to the tree. \\
+    \While{ $p$.parent $\neq \emptyset $ } {
+      Apply the right rotation. \\
+      \For{ any vertex $v$ such that its pointers have changed, sorted by height } {
+	$v$.Leftsum $\leftarrow$ v.key + v.left.Leftsum + v.left.right.Leftsum 		
+      }
+      $p \leftarrow$ $p$.parent \\  
+    }
+  \end{algorithm}
+\end{algbox}
+
+
+
 
 \section*{Appendix}
 \subsection{AVL tree's height}
