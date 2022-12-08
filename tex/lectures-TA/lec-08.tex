@@ -379,8 +379,8 @@ tree and detect violations (if occurred).\\
     \end{tikzpicture}\\
     perform $R$ rotation on $55$:\\
     \begin{tikzpicture}[ level distance=1.5cm,
-        level 1/.style={sibling distance=5cm},
         level 2/.style={sibling distance=3cm},
+        level 1/.style={sibling distance=5cm},
         level 3/.style={sibling distance=1.5cm},scale=.65]
             \node{50} child{node{40} child{node{10} child{node{5}
             }child{node{15}}} child{node{45}}}
@@ -395,8 +395,11 @@ tree and detect violations (if occurred).\\
 \end{example}
 
 \newpage
-\section*{Appendix}
 \fi
+\begin{figure}[h]
+  \centering
+\includegraphics[scale=.3]{Recitations/rotations.png}\\
+\end{figure}\section*{Appendix}
 \subsection{AVL tree's height}
 Let $n_h$ be the minimal number of nodes in an AVL tree of height
 $h$.\\
