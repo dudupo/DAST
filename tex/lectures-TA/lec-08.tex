@@ -416,7 +416,7 @@ Then computing the sumover query will be done by summing theose fields of the ve
     \If{ $r$ is None }{
       return $0$ 
     }\Else{
-      \If{$x$ > $r$.key }{
+      \If{$x > r$.key }{
 	return $r$.Leftsum + Sumover( $r$.right, $x$ )  
       }\Else{
       	return Sumover( $r$.left, $x$ )  
@@ -443,7 +443,7 @@ Each of that compution could be done in $O(1)$ time.
     \While{ $p$.parent $\neq \emptyset $ } {
       Apply the right rotation. \\
       \For{ any vertex $v$ such that its pointers have changed, sorted by height } {
-	$v$.Leftsum $\leftarrow$ v.key + v.left.Leftsum + v.left.right.Leftsum 		
+	$v$.Leftsum $\leftarrow$ $v$.key + $v$.left.Leftsum + $v$.left.right.Leftsum 		
       }
       $p \leftarrow$ $p$.parent \\  
     }
