@@ -413,14 +413,13 @@ Consdier the path $v_1,v_2,v_3...v_n$ on which the Search subroutine went over w
 greater then $v_{i}$.key. And therefore $x$ is also greater than all the keys in the left subtree of $v_{i}$. Let's transform that insight into an 
 Algorithm. Define for each vertex a field that stores the summation of all it's left subtree keys plus it's own key, Call it 'Leftsum'.  
 Then computing the sumover query will be done by summing theose fields of the verteics in the right turn on the searching path. 
-\end{subfigure} \hfill
+\end{subfigure} 
+\hfill
 \begin{subfigure}[t]{0.49\textwidth}
-  \includegraphics[scale=0.08]{oavl-q.png}\\
-   \end{subfigure} \hfill
+  \includegraphics[scale=0.08]{oavl-q.png}
+   \end{subfigure} 
+   \hfill
 \end{figure}
-\begin{figure}[h]
-\end{figure}
-
 
 
 \begin{algbox}{Sumover($r$,$x$)}
