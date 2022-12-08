@@ -3,11 +3,7 @@
 
 %\begin{abstract}
 %\begin{abstract}
-    In this recitation we will review the new data structures you've seen - Binary
-    search trees, and specifically AVL trees. We'll revise the different
-    operations, go over the important concepts of balance factor and
-    rotations and see some examples. If there's time left - we will prove
-    that the height of an AVL tree is $O(\log(n))$.
+    In this recitation, we will review the new data structures you have seen - Binary search trees and, specifically, AVL trees. We will revise the different operations, review the essential concepts of balance factor and rotations and see some examples. Finally, if there is time left - we will prove that the height of an AVL tree is $O(\log(n))$.
 %\end{abstract}
     
 \section{AVL trees}
@@ -52,22 +48,18 @@ For example:\\
             };
     \end{tikzpicture}
     \end{center}
-\begin{remark} Go over the properties, calculate the tree's height. Make sure you
-understand the definitions!
+\begin{remark} Go over the properties and calculate the tree's height. Make sure you understand the definitions!
 \end{remark}
 
-Last time, we have seen some operations that can be performed on BSTs, and
+Last time, we saw some operations that can be performed on BSTs, and
 proved correctness for some of them. These were: $Search(x), Min(T), Max(T), Pred(x), Succ(x),
 Insert(x), Delete(x)$. All of these operations take $O(h(T))$ in the worst case.\\
 
 The main two operations that may cause problems are $Insert$ and $Delete$, as
 they change the tree's height (consider inserting $81,82,83,84$ to our
 working example).
-To address this problem, we introduce another filed: for each node $v$ add a
-field of $h(v)$ = the height of the subtree who's root is $v$. This allows us
-to maintain the AVL property:
-\begin{defbox}{AVL Tree.} An AVL tree is a balanced BST, such that for any node $x$, it's left
-    and right subtrees' height differ in no more than $1$. In other words:
+To address this problem, we introduce another field: for each node $v$, add a field of $h(v)$ = the height of the subtree whose root is $v$. This allows us to maintain the AVL property:
+\begin{defbox}{AVL Tree.} An AVL tree is a balanced BST, such that for any node $x$, its left and right subtrees' height differs in no more than $1$. In other words:
         $$|h(left(x)) - h(right(x))|\leq 1$$
     \end{defbox}
     This field allows us to calculate the Balance Factor for each node in $O
@@ -78,11 +70,9 @@ to maintain the AVL property:
     $|hd(x)| \leq 1$
     \end{defbox}
 \begin{example} For our working example, the node $60$'s $hd$ is $h(50) - h
-(70) = 1$, and $hd(50) = h(45)- h(55) = -1$. You can check and see that this
-is an AVL tree.
+(70) = 1$, and $hd(50) = h(45)- h(55) = -1$. You can check and see that this is an AVL tree.
 \end{example}
-So to make sure that we can actually maintain time complexity $O(\log(n))$, 
-we'd want to:
+So to make sure that we can actually maintain time complexity $O(\log(n))$, we would want to:
 \begin{enumerate}
     \item Show that for an AVL tree, $h(T) = \theta(log(n))$ (If there's time
     left)
@@ -96,7 +86,7 @@ we'd want to:
   \centering
 \includegraphics[scale=.3]{Recitations/rotations.png}\\
 \end{figure}
-Rotations allow us to maintain the AVL property, in $O(1)$ time (you've
+Rotations allow us to maintain the AVL property in $O(1)$ time (you have
 discussed this in the lecture - changing subtree's roots).
 In
 this
@@ -112,19 +102,17 @@ this:\\
 Taken from last year's recitation:\\
 \includegraphics[scale=.6]{Recitations/violations.png}
 
-Let's analyze one of these cases:\\
-\begin{example} Let's see why R rotation Fixes LL violation:\\
+Let us analyze one of these cases:\\
+\begin{example} Let us see why R rotation Fixes LL violation:\\
 \begin{figure}[h]
   \centering
 \includegraphics[scale=.5]{Recitations/LLviolation.jpg}\\
 This is the general form of LL violations.
 \end{figure}
 
-Analyze the heights of subtrees. Denote $h$ the height of $A_L$ before
-inserting $v$. So $A_R$'s height has to also be $h$.
-If it's height was $h+1$, the insertion wouldn't have created a violation in
-$B$ ($A$'s height would have stayed the same). If it was $h-1$, the violation
-would've appeared first in $A$ (not in $B$). Thus, $A$'s height is $h+1$.
+Let us analyze the heights of subtrees. Denote $h$ the height of $A_L$ before inserting $v$. So $A_R$'s height has also to be $h$.
+If its height were $h+1$, the insertion would not have created a violation in
+$B$ ($A$'s height would have stayed the same). If it were $h-1$, the violation would have appeared first in $A$ (not in $B$). Thus, $A$'s height is $h+1$.
 $B_R$'s height is also $h$: If it was $h+1$ or $h+2$, no violation in $B$ had
 occurred.
 
@@ -133,7 +121,7 @@ After the rotation, the tree looks like this:
   \centering
   \includegraphics[scale=.9]{Recitations/LLviolationfix.jpg}
 \end{figure}
-So all the nodes here maintain AVL property; why is it maintained in general?
+So all the nodes here maintain AVL property; why is it maintained?
 \end{example}\\
 Detect the violation in the following tree, and perform the necessary rotations:\\
 \begin{figure}[h]
@@ -182,25 +170,25 @@ Perform R rotation on the right child. Then perform L rotation on the root of th
 \end{figure}
 \subsection{Delete, Insert.}
 The principles of the $Delete$ and $Insert$ operations are the same as in
-regular BST, but we will need to rebalance the tree in order to preserv AVL
+regular BST, but we will need to rebalance the tree in order to preserve AVL
 property.
 A single insertion or deletion may change the height difference of subtrees
 by at most 1, and might affect only the subtrees with roots along the path
 from $r$ to the point of insertion/ deletion.
 More concretely - we will add a recursive operation of traversing the tree
-"back up" and checking violations. Had we found one - we'll fix it using
+"back up" and checking violations. Had we found one - we will fix it using
 rotations. Since rotations can be done in $O(1)$, the entire correction
 process will take $O(\log(n))$, so we maintain a good time complexity.
 
 
 \begin{algbox}{AVL Insert(r,x)}
   \begin{algorithm}[H]
-    Call Insert $(r,x)$ // (The standart insertion routine for BST) \\  
+    Call Insert $(r,x)$ // (The standard insertion routine for BST) \\  
     Let $p$ be the new node appended to the tree. \\
     \While{ $p$.parent $\neq \emptyset $ } {
-      Check in which of the four states we are. \\ 
+      Check which of the four states we are in.\\ 
       Apply the right rotation. \\ 
-      Update the height of each toched vertex  \\
+      Update the height of each touched vertex  \\
       $p \leftarrow$ $p$.parent \\  
     }
   \end{algorithm}
@@ -211,24 +199,24 @@ process will take $O(\log(n))$, so we maintain a good time complexity.
 \newpage
 \subsection{Delete, Insert}
 The principles of the $Delete$ and $Insert$ operations are the same as in
-regular BST, but we will need to rebalance the tree in order to preserv AVL
+regular BST, but we will need to rebalance the tree in order to preserve AVL
 property.
 A single insertion or deletion may change the height difference of subtrees
 by at most 1, and might affect only the subtrees with roots along the path
 from $r$ to the point of insertion/ deletion.
 More concretely - we will add a recursive operation of traversing the tree
-"back up" and checking violations. Had we found one - we'll fix it using
+"back up" and checking violations. Had we found one - we will fix it using
 rotations. Since rotations can be done in $O(1)$, the entire correction
 process will take $O(\log(n))$, so we maintain a good time complexity.
 \subsubsection{Delete}
-This is the regular BST delete, we will need to traverse up the
+This is the regular BST delete. We will need to traverse up the
 tree and detect violations (if occurred).\\
 \includegraphics[scale=.6]{Recitations/DeleteBST.jpg}\\
 \begin{remark} Go over the procedure quickly - explain the 3 cases - no
-children, 1 child (easy) and 2 children (using successor).
+children, one child (easy), and two children (using successor).
 \end{remark}
 \begin{example}\\
-    Delete $20$ from the tree in the beginning of the recitation:\\
+    Delete $20$ from the tree at the beginning of the recitation:\\
     \includegraphics[scale=.3]{Recitations/DeleteEx.jpg}
 \end{example}
 %    Consider the original BST we looked at:\\
@@ -283,7 +271,7 @@ children, 1 child (easy) and 2 children (using successor).
 %            };
 %    \end{tikzpicture}\\
 %
-%So we need to fix LL violation, this is by preforming R rotation of the root
+%So we need to fix LL violation. This is by performing R rotation of the root
 %of the subtree in which the violation first appeared: \\
 %
 %\begin{tikzpicture}[ level distance=1.5cm,
@@ -310,7 +298,7 @@ children, 1 child (easy) and 2 children (using successor).
 %    RR rotations are symmetric
 %\end{remark}
 \subsubsection{Insert}
-Once again - this is the regular BST insert, we will need to traverse up the
+Once again - this is the regular BST insert; we will need to traverse up the
 tree and detect violations (if occurred).\\
 \includegraphics[scale=.6]{Recitations/InsertBST.jpg}\\
 \begin{example}
@@ -398,7 +386,7 @@ tree and detect violations (if occurred).\\
 \newpage
 \fi
 \subsection{Exam Question.}
-Consider the following question form 2018 exam. 
+Consider the following question from 2018 exam. 
 \begin{figure}[h]
   \centering
   \includegraphics[scale=0.8]{avl-q-exam.png}\\
@@ -410,15 +398,15 @@ Consider the following question form 2018 exam.
   \begin{subfigure}[b]{0.47\textwidth}
     \paragraph{Solution.} 
 
-How would look like an algorithm which compute the 'sumover' query? Or for given $x$ which vertics are the ones with a key less than $x$. 
-Consdier the path $v_1,v_2,v_3...v_n$ on which the Search subroutine went over when looking for $x$. If $v_i$.key $ <  v_{i+1}$.key then it means that $x$ is 
-greater then $v_{i}$.key. And therefore $x$ is also greater than all the keys in the left subtree of $v_{i}$.
+How would it look like an algorithm which computes the 'sum over' query? Or for given $x$, which vertices have a key less than $x$? 
+Consider the path $v_1,v_2,v_3...v_n$ on which the Search subroutine went over when looking for $x$. If $v_i$.key $ <  v_{i+1}$.key then it means that $x$ is 
+greater then $v_{i}$.key. Furthermore, therefore, $x$ is also greater than all the keys in the left subtree of $v_{i}$.
 
 \paragraph{}
 
-Let's transform that insight into an 
-Algorithm. Define for each vertex a field that stores the summation of all it's left subtree keys plus it's own key, Call it 'Leftsum'.  
-Then computing the sumover query will be done by summing theose fields of the verteics in the right turn on the searching path. 
+Let us transform that insight into an 
+Algorithm. Define for each vertex a field that stores the summation of all its left subtree keys plus its own key; call it 'Leftsum'.  
+Then computing the sumover query will be done by summing these fields of the vertices in the right turn on the searching path. 
 \end{subfigure} 
 \hfill
 \begin{subfigure}[b]{0.49\textwidth}
@@ -442,34 +430,33 @@ Then computing the sumover query will be done by summing theose fields of the ve
   \end{algorithm}
 \end{algbox}
 
-So it's left to show how one could maintain the tree and gurantee a logrithmic hieght. Consider a vertex $v$ and suppose that both
-his direct children are correct AVL trees and also has the correct value at the Leftsum field. We know that:
+So it has left to show how one could maintain the tree and guarantee a logarithmic height. Consider a vertex $v$ and suppose that both
+his direct children are correct AVL trees and have the correct value at the Leftsum field. We know that:
 \begin{enumerate}
-  \item There is a rotaiton that blanced the tree at the cost of $O(1)$ time.
-  \item All the descendants of $v$ distance at distance grater than $2$ form it will remain the same, in the sanse that 
-    their subtree will not change. 
+  \item There is a rotation that balances the tree at the cost of $O(1)$ time.
+  \item All the descendants of $v$, at a distance at least two from it,  will remain the same in the sense that their subtree has not changed. 
 \end{enumerate}
-Therefore we will have to recompute the Sumleft filed for only a $O(1)$ vertics (which are the children and the grandchildren of $v$ privews the rotation). 
-Each of that compution could be done in $O(1)$ time. 
+Therefore we will have to recompute the Sumleft filed for only a $O(1)$ vertices (which are the children and the grandchildren of $v$ previews the rotation). 
+Each computation could be done in $O(1)$ time. 
 
 
 \begin{algbox}{AVL-Leftsum Insert(r,x)}
   \begin{algorithm}[H]
-    Call Insert $(r,x)$ // (The standart insertion routine for BST) \\  
+    Call Insert $(r,x)$ // (The standard insertion routine for BST) \\  
     Let $p$ be the new node appended to the tree. \\
     \While{ $p$.parent $\neq \emptyset $ } {
       Apply the right rotation. \\
       \For{ any vertex $v$ such that its pointers have changed, sorted by height } {
-	$v$.Leftsum $\leftarrow$ $v$.key + $v$.left.Leftsum + $v$.left.right.Leftsum 		
+	$v$.Leftsum $\leftarrow$ $v$.key + $v$.left.Leftsum + $v$.left.right.Leftism 		
       }
       $p \leftarrow$ $p$.parent \\  
     }
   \end{algorithm}
 \end{algbox}
 
-\paragraph{Running time.} The work is made over vertices along a single path, and on each vartics only $O(1)$ time 
-is spent, Then we have that the total running time of the algorithm is proptional to the tree hight. 
-Combine the fact that we maintain tha AVL property it follows that the total time is $\Theta\left( \log n \right)$.  
+\paragraph{Running time.} The work is done over vertices along a single path, and on each vertex only $O(1)$ time 
+is spent, Then we have that the total running time of the algorithm is proportional to the tree height. 
+Combining the fact that we maintain the AVL property, it follows that the total time is $\Theta\left( \log n \right)$.  
 
 
 
@@ -489,11 +476,11 @@ $n_{h} = n_{h-1} + n_{h-2} + 1$.
 \begin{proof}For an AVL tree of height $0$, $n_0 = 1$,
 and of height $1$, $n_1 = 2 $ (by checking directly).\\
     Let's look at a minimal AVL tree of height $h$. By the AVL property, one
-of it's subtrees is of height $h-1$ (WLOG - the left subtree) and by
-minimality, it's left subtree has to have $n_{h-1}$ nodes. $T$'s right subtree
+of its subtrees is of height $h-1$ (WLOG - the left subtree) and by
+minimality, its left subtree has to have $n_{h-1}$ nodes. $T$'s right subtree
 thus has to be of height $h-2$: It can't be of height $h-1$: $n_{h-1} >
-n_{h-2}$ by previous theorem, and if the right subtree is of height $h-1$ -
-we could switch it with an AVL tree of height $h-2$, with less nodes - so
+n_{h-2}$ by the previous theorem, and if the right subtree is of height $h-1$ -
+we could switch it with an AVL tree of height $h-2$, with fewer nodes - so
 less nodes in $T$, contradicting minimality. So the right subtree has
 $n_{h-2}$ nodes (once again, by minimality), and thus the whole tree has
     $n_{h} = n_{h-1} + n_{h-2} + 1$ (added the root) nodes.
@@ -530,5 +517,3 @@ $n_{h-2}$ nodes (once again, by minimality), and thus the whole tree has
     tighter bound on $n_h$.
 \end{remark}
 \input{../texlib/tail}
-
-
