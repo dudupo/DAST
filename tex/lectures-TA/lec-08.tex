@@ -410,6 +410,12 @@ greater then $v_{i}$.key. And therefore $x$ is also greater than all the keys in
 Algorithm. Define for each vertex a field that stores the summation of all it's left subtree keys plus it's own key, Call it 'Leftsum'.  
 Then computing the sumover query will be done by summing theose fields of the verteics in the right turn on the searching path. 
 
+\begin{figure}[h]
+  \centering
+  \includegraphics[scale=0.8]{avl-q.jpg}\\
+\end{figure}
+
+
 
 \begin{algbox}{Sumover($r$,$x$)}
   \begin{algorithm}[H]
