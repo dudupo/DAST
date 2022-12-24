@@ -200,29 +200,29 @@ Its representation will be: \\ \\
 One natural thing we might want to do is to travel around inside a graph. That is, we would like to visit all of the vertices in a graph in some order that relates to the edges. \\ 
 One reason to want such a thing is the following objective: Given some start vertex $v$, we would like to know how long is the shortest path from $s$ to every vertex $v\in V$. \\ 
 For this we present the following algorithm, which receives the connected graph $G$ and the starting node $s$ as input. Note that in addition to our definition of the graph $G$, we will now also save some property $dist$ for every vertex, and also a flag called $visited$.  (Now read the algorithm, it may be in the next page because LaTeX is dumb...)
-\begin{algorithm}
-\caption{BFS(G, s)}
-\begin{algorithmic}[1]
-\For {$v\in V$}
-\State set $v.dist \leftarrow \infty$, $v.visited \leftarrow False$
-\EndFor
-\State set $s.dist\leftarrow 0$
-\State $Q\leftarrow$ new Queue
-\State $Q.Enqueue(s)$
-\State $s.visited \leftarrow True$
-\While {$Q$ is not empty}
-\State $u\leftarrow Q.Dequeue()$
-	\For {neighbor $w$ of $u$}
-	\If {$w.visited$ is $False$}
-		\State $w.visited\leftarrow True$
-		\State $w.dist\leftarrow \min(w.dist, u.dist+1)$
-		\State $Q.Enqueue(w)$
-	\EndIf
-	\EndFor
-\EndWhile
-\end{algorithmic}
-\end{algorithm} 
 
+\begin{algbox}{BFS($G, s$)}
+  \begin{algorithm}[H]
+    \For {$v\in V$}{
+ 	set $v.dist \leftarrow \infty$, $v.visited \leftarrow False$
+      }
+ set $s.dist\leftarrow 0$ \\
+ $Q\leftarrow$ new Queue \\ 
+ $Q$.Enqueue($s$) \\
+ $s$.visited $\leftarrow$ True
+ \While {$Q$ is not empty} {
+ $u\leftarrow Q$.Dequeue()
+	\For {neighbor $w$ of $u$}{
+	\If {$w$.visited is False}{
+		 $w$.visited$\leftarrow$ True
+		 $w$.dist $\leftarrow \min(w$.dist, $u$.dist$+1)$
+		 $Q$.Enqueue($w$)
+
+	      }
+	}
+      }
+  \end{algorithm}
+\end{algbox}
 \textbf{Example}: In the tirgul video...
 
 \underline{Correctness}: The example should be enough to explain the correctness. A concrete proof can be found in the book, page 597.
