@@ -243,27 +243,25 @@ Now we have in our hands a way to travel  through a graph using the edges. How e
 \textbf{Exercise}: Present and analyse an algorithm $CC(G)$ which receives some undirected graph $G$ and outputs the number of connected components in $G$ in $O(|V|+|E|)$. \\
 
 \textbf{Solution}: Consider the following algorithm: (Now read the algorithm, it may be in the next page because LaTeX is dumb...)
-\begin{algorithm}
-\caption{CC(G)}
-\begin{algorithmic}[1]
-\State count$\leftarrow 0$
-\For {$v\in V$}
-\If {$v.visited = False$}
-\State count$\leftarrow$count$+1$
-\State $BFS(G, v)$
-\EndIf
-\EndFor
-\Return count
-\end{algorithmic}
-\end{algorithm}
-
+\begin{algbox}{CC($G$)}
+  \begin{algorithm}[H]
+     count $\leftarrow 0$
+     \For {$v\in V$ }{
+	\If {$v$.visited = False} {
+	  count$\leftarrow$count$+1$ \\
+	  BFS($G, v$)
+	}
+      }
+	\Return count
+  \end{algorithm}
+\end{algbox}
 \underline{Correctness}: We know that given some vertex $v\in V$, $BFS(G, v)$ marks all of the nodes in the connected component of $v$ as marked (Since $BFS$ marks all vertices in a connected graph). So each time that $BFS$ is invoked, it is because some vertex $v$ has not been visited, meaning it is not in the same connected component as any of the previous vertices. \\
 
 \underline{Runtime}: Let's denote all of the connected components in $G$ by $(G_i=(V_i , E_i))_{i=1}^k$. For each connected component, the runtime of $BFS$ will be $O(|V_i|+|E_i|)$. So all in all, we get $O(|V|+|E|)$.
 
 \subsection{Correctness}
 
-We must not forget to prove BFS's correctness! Specifically, we want to prove that after calling $BFS(G, s)$, we have that for all nodes $v$ in $s$'s connected component, $v.visited = True$. We will prove something stronger:
+We must not forget to prove BFS's correctness! Specifically, we want to prove that after calling $BFS(G, s)$, we have that for all nodes $v$ in $s$'s connected component, $v$.visited = True. We will prove something stronger:
 
 \begin{prop}
 Let $G=(V,E)$ and let $s\in V$. For each $v\in V$ denote $d_v=dist(s, v)$. 
@@ -292,7 +290,7 @@ If $v$ is not in the connected component of $s$ then $d_v=\infty$.
 
 
 \begin{corollary}
-After $BFS(G,s)$ is run, $v.visited = True$ for all $v$ in the connected component of $s$!
+After $BFS(G,s)$ is run, $v$.visited = True for all $v$ in the connected component of $s$!
 \end{corollary}
 
 \input{../texlib/tail}
