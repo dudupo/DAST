@@ -208,9 +208,9 @@ Okay, so now we know what graphs are. But how can we represent them in a compute
   \begin{subfigure}[b]{0.25\textwidth}
         \begin{tikzpicture}
 \node[main node](12){$1$};
-\node[main node](22)[below = 1cm of 1]{$2$};
-\node[main node](32)[right = 1cm of 1]{$3$};
-\node[main node](42)[below = 1cm of 3]{$4$};
+\node[main node](22)[below = 1cm of 12]{$2$};
+\node[main node](32)[right = 1cm of 12]{$3$};
+\node[main node](42)[below = 1cm of 32]{$4$};
 
 \draw[edge] (12) to (22);
 \draw[edge] (12) to (42);
