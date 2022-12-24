@@ -166,11 +166,13 @@ $$1 \geq |V| - |E|\ \implies \ |E|\geq|V|-1$$
 
 \subsection{Graph Representation}
 
-Okay, so now we know what graphs are. But how can we represent them in a computer? There is more than one option, but our representation of choice will be that of \textbf{an array of linked lists}. \\
-Given some graph $G$, every slot in the array will contain a linked list. Each linked list will represent a list of some node's neighbors.\\
+Okay, so now we know what graphs are. But how can we represent them in a computer? There are two mainly options. The first one is by \textbf{an array of linked lists}. Given some graph $G$, every slot in the array will contain a linked list. Each linked list will represent a list of some node's neighbors.\\
 
 \textbf{Exmaple}: Consider the following directed graph: \\ \\
-\begin{tikzpicture}
+\begin{figure}[h]
+  \centering
+  \begin{subfigure}[b]{0.49\textwidth}
+        \begin{tikzpicture}
 \node[main node](1){$1$};
 \node[main node](2)[below = 1cm of 1]{$2$};
 \node[main node](3)[right = 1cm of 1]{$3$};
@@ -184,16 +186,24 @@ Given some graph $G$, every slot in the array will contain a linked list. Each l
 \draw[edge] (3) to (1);
 \end{tikzpicture} \\ 
 
-Its representation will be: \\ \\
-\begin{tikzpicture}
+  \end{subfigure}
+\begin{subfigure}[b]{0.49\textwidth}
+        \begin{tikzpicture}
 \foreach \index/\list in {1/{2,3,4,null}, 2/{null}, 3/{1, null}, 4/{1, 3, null}} {
    \node[array element] (aux) at (0,-\index) {\index};
    \LinkedList{\list}
 }
-\end{tikzpicture}
+\end{tikzpicture}  \end{subfigure}
+  \caption{The trees representations of the heaps above. The node which fails to satisfy the Heap inequality is colorized.}
+\end{figure}
+
+%Its representation will be: \\ \\
+
 
 \begin{remark} Note that we use $O(|V|+|E|)$ space to store the graph using this representation.
 \end{remark}
+
+
 
 \subsection{Breadth First Search (BFS)}
 
