@@ -214,8 +214,8 @@ For this we present the following algorithm, which receives the connected graph 
  $u\leftarrow Q$.Dequeue()
 	\For {neighbor $w$ of $u$}{
 	\If {$w$.visited is False}{
-		 $w$.visited$\leftarrow$ True
-		 $w$.dist $\leftarrow \min(w$.dist, $u$.dist$+1)$
+		 $w$.visited$\leftarrow$ True \\
+		 $w$.dist $\leftarrow \min(w$.dist, $u$.dist$+1)$ \\
 		 $Q$.Enqueue($w$)
 
 	      }
