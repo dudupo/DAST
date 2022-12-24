@@ -222,14 +222,14 @@ Okay, so now we know what graphs are. But how can we represent them in a compute
   \end{subfigure}
 \begin{subfigure}[b]{0.49\textwidth}       
   \begin{tikzpicture}
-    \node at (10,10) (1) { $
+    \node (1) { $
 	  \begin{bmatrix}
 	0 & 1 & 1 & 1\\
 	0 & 0 & 0 & 0\\
 	1 & 0 & 0 & 0\\
 	1 & 0 & 1 & 0
 	\end{bmatrix}
-      $};
+      $ at (10,10)};
       \end{tikzpicture}
 \end{subfigure}
   \caption{the trees representations of the heaps above. the node which fails to satisfy the heap inequality is colorized.}
