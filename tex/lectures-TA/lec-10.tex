@@ -202,36 +202,36 @@ Okay, so now we know what graphs are. But how can we represent them in a compute
 
 \begin{remark} Note that we use $O(|V|+|E|)$ space to store the graph using this representation.
 \end{remark}
-
-\begin{figure}[h]
-  \centering
-  \begin{subfigure}[b]{0.25\textwidth}
-        \begin{tikzpicture}
-%\node[main node](1){$1$};
-%\node[main node](2)[below = 1cm of 1]{$2$};
-%\node[main node](3)[right = 1cm of 1]{$3$};
-%\node[main node](4)[below = 1cm of 3]{$4$};
 %
-%\draw[edge] (1) to (2);
-%\draw[edge] (1) to (4);
-%\draw[edge] (4) to (1);
-%\draw[edge] (4) to (3);
-%\draw[edge] (1) to (3);
-%\draw[edge] (3) to (1);
-\end{tikzpicture} \\ 
-  \end{subfigure}
-\begin{subfigure}[b]{0.49\textwidth}       
-  \begin{equation*}
-      \begin{bmatrix}
-	0 & 1 & 1 & 1\\
-	0 & 0 & 0 & 0\\
-	1 & 0 & 0 & 0\\
-	1 & 0 & 1 & 0
-	\end{bmatrix}
-  \end{equation*}
-\end{subfigure}
-  \caption{the trees representations of the heaps above. the node which fails to satisfy the heap inequality is colorized.}
-\end{figure}
+%\begin{figure}[h]
+%  \centering
+%  \begin{subfigure}[b]{0.25\textwidth}
+%        \begin{tikzpicture}
+%%\node[main node](1){$1$};
+%%\node[main node](2)[below = 1cm of 1]{$2$};
+%%\node[main node](3)[right = 1cm of 1]{$3$};
+%%\node[main node](4)[below = 1cm of 3]{$4$};
+%%
+%%\draw[edge] (1) to (2);
+%%\draw[edge] (1) to (4);
+%%\draw[edge] (4) to (1);
+%%\draw[edge] (4) to (3);
+%%\draw[edge] (1) to (3);
+%%\draw[edge] (3) to (1);
+%\end{tikzpicture} \\ 
+%  \end{subfigure}
+%\begin{subfigure}[b]{0.49\textwidth}       
+%  \begin{equation*}
+%      \begin{bmatrix}
+%	0 & 1 & 1 & 1\\
+%	0 & 0 & 0 & 0\\
+%	1 & 0 & 0 & 0\\
+%	1 & 0 & 1 & 0
+%	\end{bmatrix}
+%  \end{equation*}
+%\end{subfigure}
+%  \caption{the trees representations of the heaps above. the node which fails to satisfy the heap inequality is colorized.}
+%\end{figure}
 
 \subsection{Breadth First Search (BFS)}
 
