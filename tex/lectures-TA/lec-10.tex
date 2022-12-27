@@ -334,4 +334,41 @@ If $v$ is not in the connected component of $s$ then $d_v=\infty$.
 After $BFS(G,s)$ is run, $v$.visited = True for all $v$ in the connected component of $s$!
 \end{corollary}
 
+\subsection{Depth First Search (DFS)}
+\begin{algbox}{DFS($G$)}
+  \begin{algorithm}[H]
+    \For {$v\in V$}{
+ 	$vi$.visited $\leftarrow False$
+    }
+    time $ \leftarrow 1 $
+    \For {$v\in V$}{
+      \If { not $v$.visited } {
+	$\pi \left( v \right) v \leftarrow $ null \\ 
+	Explore( $G,v$ ) 
+     } 
+   }
+
+  \end{algorithm}
+
+  \begin{algorithm}[H]
+    \For {$\left( v,u \right) \in E  $}{
+      Previsit($v$)
+      \If { not $u$.visited } {
+	$ \pi \left( u \right) \leftarrow v $ \\ 
+	Explore( $G, u$ ) 
+      }
+      Postvisit($v$)
+    }
+  \end{algorithm}
+  \begin{algorithm}[H]
+    pre($v$) $\leftarrow $ time \\
+    time $\leftarrow$ time $+1$
+  \end{algorithm}
+ \begin{algorithm}[H]
+    post($v$) $\leftarrow $ time \\
+    time $\leftarrow$ time $+1$
+  \end{algorithm}
+
+
+\end{algbox}
 \input{../texlib/tail}
