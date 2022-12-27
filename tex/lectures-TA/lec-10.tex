@@ -192,7 +192,8 @@ Okay, so now we know what graphs are. But how can we represent them in a compute
 
 \textbf{Question.} What is the memmory cost of each of the representations? Note that while holding an adjacency matrix requires to store $|V|^2$ bits regardless the size of $E$, Mainting the edges by adjacency lists costs linear memmory at number of edges and therefore only $ \Theta \left(  |V| + |E| \right) $ bits. 
 
-\paragraph{Example.} Consider the following directed graph: \begin{figure}[h]
+\paragraph{Example.} Consider the following directed graph:
+\begin{figure}[h]
   \centering
   \begin{subfigure}[b]{0.25\textwidth}
     \begin{tikzpicture}
@@ -218,7 +219,7 @@ Okay, so now we know what graphs are. But how can we represent them in a compute
       }
     \end{tikzpicture}  
   \end{subfigure}
-  \caption{the trees representations of the heaps above. the node which fails to satisfy the heap inequality is colorized.}
+  \caption{ Persenting by array of adjacency lists.  }
 \end{figure}
 
 %Its representation will be: \\ \\
@@ -253,7 +254,7 @@ Okay, so now we know what graphs are. But how can we represent them in a compute
       $ };
       \end{tikzpicture}
 \end{subfigure}
-  \caption{the trees representations of the heaps above. the node which fails to satisfy the heap inequality is colorized.}
+\caption{ Presenting by adjacency matrix. }
 \end{figure}
 
 \subsection{Breadth First Search (BFS)}
