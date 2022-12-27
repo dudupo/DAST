@@ -363,12 +363,12 @@ After $BFS(G,s)$ is run, $v$.visited = True for all $v$ in the connected compone
     }
   \end{algorithm}
   \begin{algorithm}[H]
-    \bf{Previsit}($v$) \\
+    \bf{Previsit}($v$): \\
     pre($v$) $\leftarrow $ time \\
     time $\leftarrow$ time $+1$
   \end{algorithm}
  \begin{algorithm}[H]
-   \bf{Postvisit} ($v$) \\ 
+   \bf{Postvisit} ($v$): \\ 
     post($v$) $\leftarrow $ time \\
     time $\leftarrow$ time $+1$
   \end{algorithm}
