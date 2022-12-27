@@ -147,8 +147,14 @@ $$dist(u,w)\leq dist(u,v) + dist(v, w)$$
 \item A graph $G$ is said to be a \textbf{connected} graph if it only has one connected component.
 \end{enumerate}
 \end{definition}
-
+\begin{figure}[h]
+  \begin{subfigure}[b]{0.4\textwidth} 
 An \textbf{example} of a non-connected graph: \\ \\ 
+\end{subfigure}
+\begin{subfigure}[b]{0.05\textwidth}
+  \
+\end{subfigure}
+\begin{subfigure}[b]{0.25\textwidth}
 \begin{tikzpicture}
 \node[main node](1){$1$};
 \node[main node](2)[below = 1cm of 1]{$2$};
@@ -158,6 +164,8 @@ An \textbf{example} of a non-connected graph: \\ \\
 \draw[edge] (1) to (2);
 \draw[edge] (3) to (4);
 \end{tikzpicture}
+\end{subfigure}
+\end{figure}
 
 \begin{prop}
 Let $G=(V,E)$ be some graph. If $G$ is connected, then $|E| \geq |V|-1$
