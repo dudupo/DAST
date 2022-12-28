@@ -326,43 +326,6 @@ Now we have a way to travel through a graph using the edges. How else can we use
 	\Return count
   \end{algorithm}
 \end{algbox}
-\underline{Correctness}: We know that given some vertex $v\in V$, $BFS(G, v)$ marks all of the nodes in the connected component of $v$ as marked (Since $BFS$ marks all vertices in a connected graph). So each time that $BFS$ is invoked, it is because some vertex $v$ has not been visited, meaning it is not in the same connected component as any of the previous vertices. \\
-
-\underline{Runtime}: Let's denote all of the connected components in $G$ by $(G_i=(V_i , E_i))_{i=1}^k$. For each connected component, the runtime of $BFS$ will be $O(|V_i|+|E_i|)$. So all in all, we get $O(|V|+|E|)$.
-
-\subsection{Correctness}
-
-We must not forget to prove BFS's correctness! Specifically, we want to prove that after calling $BFS(G, s)$, we have that for all nodes $v$ in $ s$'s connected component, $v$.visited = True. We will prove something stronger:
-
-\begin{prop}
-Let $G=(V,E)$ and let $s\in V$. For each $v\in V$ denote $d_v=dist(s, v)$. 
-After $BFS(G,s)$ is called, all nodes with $d_v=k$ are inserted to the queue, and they are inserted before all nodes with $d_v=k+1$.
-\end{prop}
-
-\begin{proof}
-We prove this by induction on $k$. 
-
-\underline{Base}: $k=0$. Only $d_s=0$, and it is in fact inserted first.
-
-\underline{Hypothesis}: Assume correctness for all $l<k$.
-
-\underline{Step}: Let $v$ be a node such that $d_v=k$ (if there is no such $v$ we are done). By I.H for $k-1$, we know that all nodes $u$ with $d_u=k-1$ were inserted into the queue by now. By definition of the distance function, there exists some node $u_0$ such that $d_{u_0}=k-1$ and $(u_0,v)\in E$. When $u_0$ is dequeued, $v$ is inserted into the queue. 
-
-So far we have proved that all nodes of distance $k$ are eventually inserted to the queue. We still need to show that this is done before all nodes of distance $k+1$. 
-
-Assume towards contradiction that $v$ is inserted before $w$, where $d_v=k+1,\ d_w=k$. If $v$ was accessed through $u$ and $w$ was accessed through $x$, then $d_u = k$ and $d_x=k-1$. Since a queue is LIFO, we get that $u$ was inserted before $x$, but this is a contradiction to the I.H.
-
-
-\end{proof}
-
-\begin{remark}
-If $v$ is not in the connected component of $s$, then $d_v=\infty$.
-\end{remark}
-
-
-\begin{corollary}
-After $BFS(G,s)$ is run, $v$.visited = True for all $v$ in the connected component of $s$!
-\end{corollary}
 
 \subsection{Depth First Search (DFS)}
 As its name implies, depth-first search searches "deeper" in the graph whenever possible. Depth-first search explores edges out of the most recently discovered vertex $v$ that still has unexplored edges leaving it. Once all of $ v$'s edges have been explored, the search "backtracks" to explore edges leaving the vertex from which $v$ was discovered. This process continues until all vertices that are reachable from the original source vertex have been discovered. If any undiscovered vertices remain, then depth-first search selects one of them as a new source, repeating the search from that source. The algorithm repeats this entire process until it has discovered every vertex.
