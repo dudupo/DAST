@@ -115,10 +115,15 @@ A \textbf{directed graph} $G$ is a pair of two sets - $G=(V, E)$ - $V$ being a s
 \end{tikzpicture}
 \end{subfigure}
 \end{figure}
+
+\begin{definition}
+  A \textbf{weighted graph} composed by a graph $G=\left( V,E \right)$ (either non-directed or directed) and a wight function $w : E \rightarrow \mathbb{R}$. Usally (but not necssery) we will think about the quantity $w(e)$ where $e \in E$ as the length of the edge.    
+\end{definition}
+
 Now that we see graphs with our eyes, we can imagine all sorts of uses for them... For example, the can represent the structure of the connections between friends on facebook, or they can even represent which rooms in your house have doors between them.
 
 \begin{remark}
-Note that directed graphs are a \textbf{generalization} of non-directed graphs, in the sense that every non-directed graph can b represented as a directed graph. Simply take every non-directed edge $\{v,u\}$ and turn it into two directed edges $(v,u), (u,v)$. 
+Note that directed graphs are a \textbf{generalization} of non-directed graphs, in the sense that every non-directed graph can be represented as a directed graph. Simply take every non-directed edge $\{v,u\}$ and turn it into two directed edges $(v,u), (u,v)$. 
 \end{remark}
 
 \begin{remark}
