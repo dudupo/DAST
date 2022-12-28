@@ -265,34 +265,30 @@ Okay, so now we know what graphs are. But how can we represent them in a compute
 
 \subsection{Breadth First Search (BFS)}
 
-One natural thing we might want to do is to travel around inside a graph. That is, we would like to visit all of the vertices in a graph in some order that relates to the edges. \\ 
-One reason to want such a thing is the following objective: Given some start vertex $v$, we would like to know how long is the shortest path from $s$ to every vertex $v\in V$. \\ 
-For this we present the following algorithm, which receives the connected graph $G$ and the starting node $s$ as input. Note that in addition to our definition of the graph $G$, we will now also save some property $dist$ for every vertex, and also a flag called $visited$.
-
-
+One natural thing we might want to do is to travel around inside a graph. That is, we would like to visit all of the vertices in a graph in some order that relates to the edges. 
 Breadth-first search constructs a breadth-first tree, initially containing only its root, which is the source vertex $s$. Whenever the search discovers a white vertex $v$ in the course of scanning the adjacency list of a gray vertex $u$ ,the vertex $v$ and the edge ($u$, $v$) are added to the tree. We say that $u$ is the predecessor or parent of $v$ in the breadth-first tree. Since every vertex reachable from $s$ is discovered at most once, each vertex reachable from $s$ has exactly one parent. (There is one exception: because $s$ is the root of the breadth-first tree, it has no parent.) Ancestor and descendant relationships in the breadth-first tree are defined relative to the root $s$ as usual: if $u$ is on the simple path in the tree from the root $s$ to vertex $v$ ,then $u$ is an ancestor of $v$ and $v$ is a descendant of $u$.
 The breadth-first-search procedure BFS on the following page assumes that the graph $G = (V, E)$ is represented using adjacency lists. It denotes the queue by $Q$, and it attaches three additional attributes to each vertex $v$ in the graph:
 
 \begin{enumerate}
-    \item $v$.color is the color of $v$: WHITE, GRAY, or BLACK.
-    \item $v$.d holds the distance from the source vertex $s$ to $v$,as computed by the algorithm.
-    \item $v$.$\pi$ is $v$’s predecessor in the breadth-first tree. If $v$ has no predecessor because it is the source vertex or is undiscovered, then $v$.$\pi$ NIL.
+    \item $v$.visited is a boolean flag which indicate wheter $v$ was allready visited.
+    \item $\pi(v)$ is $v$’s predecessor in the breadth-first tree. If $v$ has no predecessor because it is the source vertex or is undiscovered, then $\pi(v)$ is None/NULL.
 \end{enumerate}
+
 \begin{algbox}{BFS($G, s$)}
   \begin{algorithm}[H]
     \For {$v\in V$}{
- 	set $v.dist \leftarrow \infty$, $v.visited \leftarrow False$
-      }
- set $s.dist\leftarrow 0$ \\
+	 $v.visited \leftarrow False$
+     }
+  $s.dist\leftarrow 0$ \\
  $Q\leftarrow$ new Queue \\ 
  $Q$.Enqueue($s$) \\
  $s$.visited $\leftarrow$ True \\
  \While {$Q$ is not empty} {
  $u\leftarrow Q$.Dequeue() \\
-	\For {neighbor $w$ of $u$}{
+	\For {neighbor $w$ of $u$}
 	\If {$w$.visited is False}{
 		 $w$.visited$\leftarrow$ True \\
-		 $w$.dist $\leftarrow \min(w$.dist, $u$.dist$+1)$ \\
+		 $\pi(w) \leftarrow u $ \\
 		 $Q$.Enqueue($w$)
 
 	      }
@@ -300,10 +296,8 @@ The breadth-first-search procedure BFS on the following page assumes that the gr
       }
   \end{algorithm}
 \end{algbox}
-\textbf{Example}: In the tirgul video...
 
 \underline{Correctness}: The example should be enough to explain the correctness. A concrete proof can be found in the book, page 597.
-
 
 \underline{Runtime}: We can analyse the runtime line-by-line:
 \begin{itemize}
