@@ -277,7 +277,7 @@ The breadth-first-search procedure BFS on the following page assumes that the gr
 \begin{algbox}{BFS($G, s$)}
   \begin{algorithm}[H]
     \For {$v\in V$}{
-	 $v.visited \leftarrow False$
+	 $v.visited \leftarrow $ False 
      }
   $s.dist\leftarrow 0$ \\
  $Q\leftarrow$ new Queue \\ 
@@ -285,7 +285,7 @@ The breadth-first-search procedure BFS on the following page assumes that the gr
  $s$.visited $\leftarrow$ True \\
  \While {$Q$ is not empty} {
  $u\leftarrow Q$.Dequeue() \\
-	\For {neighbor $w$ of $u$}
+	\For {neighbor $w$ of $u$} {
 	\If {$w$.visited is False}{
 		 $w$.visited$\leftarrow$ True \\
 		 $\pi(w) \leftarrow u $ \\
