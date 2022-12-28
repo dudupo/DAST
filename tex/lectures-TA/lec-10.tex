@@ -117,7 +117,7 @@ A \textbf{directed graph} $G$ is a pair of two sets - $G=(V, E)$ - $V$ being a s
 \end{figure}
 
 \begin{definition}
-  A \textbf{weighted graph} composed by a graph $G=\left( V,E \right)$ (either non-directed or directed) and a wight function $w : E \rightarrow \mathbb{R}$. Usally (but not necssery) we will think about the quantity $w(e)$ where $e \in E$ as the length of the edge.    
+  A \textbf{weighted graph} composed by a graph $G=\left( V,E \right)$ (either non-directed or directed) and a wight function $w : E \rightarrow \mathbb{R}$. Usally (but not necssery) we will think about the quantity $w(e)$ where $e \in E$ as the length of the edge.  
 \end{definition}
 
 Now that we see graphs with our eyes, we can imagine all sorts of uses for them... For example, the can represent the structure of the connections between friends on facebook, or they can even represent which rooms in your house have doors between them.
@@ -362,6 +362,8 @@ After $BFS(G,s)$ is run, $v$.visited = True for all $v$ in the connected compone
 \end{corollary}
 
 \subsection{Depth First Search (DFS)}
+As its name implies, depth-first search searches “deeper” in the graph whenever possible. Depth-first search explores edges out of the most recently discovered vertex v that still has unexplored edges leaving it. Once all of v’s edges have been explored, the search “backtracks” to explore edges leaving the vertex from which v was discovered. This process continues until all vertices that are reachable from the original source vertex have been discovered. If any undiscovered vertices remain, then depth-first search selects one of them as a new source, repeating the search from that source. The algorithm repeats this entire process until it has discovered every vertexi.
+
 \begin{algbox}{DFS($G$)}
   \begin{algorithm}[H]
    \bf{DFS}( $G$): \\
@@ -402,4 +404,18 @@ After $BFS(G,s)$ is run, $v$.visited = True for all $v$ in the connected compone
 
 
 \end{algbox}
+Properties of depth-first search
+Depth-first search yields valuable information about the structure of a graph. Perhaps the most basic property of depth-first search is that the predecessor subgraph Gπ does indeed form a forest of trees, since the structure of the depth-first trees exactly mirrors the structure of recursive calls of DFS-VISIT. That is, u = v.π if and only if DFS-VISIT(G, v) was called during a search of u’s adjacency list. Additionally, vertex v is a descendant of vertex u in the depth-first forest if and only if v is discovered during the time in which u is gray.
+Another important property of depth-first search is that discovery and finish times have parenthesis structure. If the DFS-VISIT procedure were to print a left parenthesis “(u” when it discovers vertex u and to print a right parenthesis “u)” when it finishes u, then the printed expression would be well formed in the sense that the parentheses are properly nested. For example, the depth-first search of Figure 20.5(a) corresponds to the parenthesization shown in Figure 20.5(b). The following theorem provides another way to characterize the parenthesis structure.
+Theorem 20.7 (Parenthesis theorem)
+In any depth-first search of a (directed or undirected) graph G = (V, E), for any two vertices u and v, exactly one of the following three conditions holds:
+• the intervals [u.d, u.f] and [v.d, v.f] are entirely disjoint, and neither u nor v is a descendant of the other in the depth-first forest,
+• the interval [u.d, u.f] is contained entirely within the interval [v.d, v.f], and u is a descendant of v in a depth-first tree, or
+• the interval [v.d, v.f] is contained entirely within the interval [u.d, u.f], and v is a descendant of u in a depth-first tree.
+Proof We begin with the case in which u.d < v.d. We consider two subcases, according to whether v.d < u.f. The first subcase occurs when v.d < u.f, so that v was discovered while u was still gray, which implies that v is a descendant of u. Moreover, since v was discovered after u, all of its outgoing edges are explored, and v is finished, before the search returns to and finishes u. In this case, therefore, the interval [v.d, v.f] is entirely contained within the interval [u.d, u.f]. In the other subcase, u.f < v.d, and by inequality (20.4), u.d < u.f < v.d < v.f, and thus the intervals [u.d, u.f] and [v.d, v.f] are disjoint. Because the intervals are disjoint, neither vertex was discovered while the other was gray, and so neither vertex is a descendant of the other.
+
+
+Corollary 20.8 (Nesting of descendants’ intervals)
+Vertex v is a proper descendant of vertex u in the depth-first forest for a (directed or undirected) graph G if and only if u.d < v.d < v.f < u.f.
+
 \input{../texlib/tail}
