@@ -62,9 +62,9 @@ array element/.style = {
 %\vspace{0.2in}
 
 \section{Graphs}
-This is an important section, as you'll be seeing graph's A LOT, both in this course and in courses to follow. 
+This is an important section, as you'll see graphs A LOT in this course and in the courses to follow. 
 
-\subsection{Definitions, Examples and Basics}
+\subsection{Definitions, Examples, and Basics}
 
 \begin{figure}[h]
 \begin{subfigure}[b]{0.65\textwidth}
@@ -117,10 +117,10 @@ A \textbf{directed graph} $G$ is a pair of two sets - $G=(V, E)$ - $V$ being a s
 \end{figure}
 
 \begin{definition}
-  A \textbf{weighted graph} composed by a graph $G=\left( V,E \right)$ (either non-directed or directed) and a wight function $w : E \rightarrow \mathbb{R}$. Usally (but not necssery) we will think about the quantity $w(e)$ where $e \in E$ as the length of the edge.  
+  A \textbf{weighted graph} composed by a graph $G=\left( V,E \right)$ (either non-directed or directed) and a weight function $w : E \rightarrow \mathbb{R}$. Usually (but not necessary), we will think about the quantity $w(e)$, where $e \in E$, as the length of the edge.  
 \end{definition}
 
-Now that we see graphs with our eyes, we can imagine all sorts of uses for them... For example, the can represent the structure of the connections between friends on facebook, or they can even represent which rooms in your house have doors between them.
+Now that we see graphs with our eyes, we can imagine all sorts of uses for them... For example, they can represent the structure of the connections between friends on Facebook, or they can even represent which rooms in your house have doors between them.
 
 \begin{remark}
 Note that directed graphs are a \textbf{generalization} of non-directed graphs, in the sense that every non-directed graph can be represented as a directed graph. Simply take every non-directed edge $\{v,u\}$ and turn it into two directed edges $(v,u), (u,v)$. 
@@ -177,9 +177,9 @@ Let $G=(V,E)$ be some graph. If $G$ is connected, then $|E| \geq |V|-1$
 \end{prop}
 
 \begin{proof}
-We will perform the following cool process: Let $\{e_1,...,e_m\}$ be an enumeration of $E$, and let $G_0=(V,\emptyset)$. We will build the graphs $G_1, G_2,... G_m=G$ by adding edges one-by-one. Formally, we define - 
+We will perform the following cool process: Let $\{e_1,...,e_m\}$ be an enumeration of $E$, and let $G_0=(V,\emptyset)$. We will build the graphs $G_1, G_2,... G_m=G$ by adding edges one by one. Formally, we define - 
 $$\forall i\in[m]\ \ G_i=(V,\{e_1,...,e_i\})$$
-$G_0$ has exactly $|V|$ connected components, as it has no edges at all. Then $G_1$ has $|V|-1$. From there on, any edges does one of the following:
+$G_0$ has exactly $|V|$ connected components, as it has no edges at all. Then $G_1$ has $|V|-1$. From there on, any edges do one of the following:
 \begin{enumerate}
     \item Keeps the number of connected components the same (the edge closes a cycle)
     '\item Lowers the number of connected components by $1$ (the edges does not close a cycle)
@@ -194,9 +194,9 @@ $$1 \geq |V| - |E|\ \implies \ |E|\geq|V|-1$$
 
 \subsection{Graph Representation}
 
-Okay, so now we know what graphs are. But how can we represent them in a computer? There are two mainly options. The first one is by \textbf{array of adjacency lists}. Given some graph $G$, every slot in the array will contain a linked list. Each linked list will represent a list of some node's neighbors. The second option is to store edges in an \textbf{adjacency matrix}, a $ |V| \times |V| $ binary matrix in which the $v,u$-cell eqauls $1$ if there is an edge connecting $u$ to $v$. In the example below the matrix is denoted by $A_{G}$. Note that the running time anlysis might depands on the underline representaion.     
+Okay, so now we know what graphs are. But how can we represent them in a computer? There are two main options. The first one is by \textbf{array of adjacency lists}. Given some graph $G$, every slot in the array will contain a linked list. Each linked list will represent a list of some node's neighbors. The second option is to store edges in an \textbf{adjacency matrix}, a $ |V| \times |V| $ binary matrix in which the $v,u$-cell equals $1$ if there is an edge connecting $u$ to $v$. That matrix is denoted by $A_{G}$ in the example below. Note that the running time analysis might depend on the underline representation.     
 
-\textbf{Question.} What is the memmory cost of each of the representations? Note that while holding an adjacency matrix requires to store $|V|^2$ bits regardless the size of $E$, Mainting the edges by adjacency lists costs linear memmory at number of edges and therefore only $ \Theta \left(  |V| + |E| \right) $ bits. 
+\textbf{Question.} What is the memory cost of each of the representations? Note that while holding an adjacency matrix requires storing $|V|^2$ bits regardless of the size of $E$, Maintaining the edges by adjacency lists costs linear memory at the number of edges and, therefore, only $ \Theta \left(  |V| + |E| \right) $ bits. 
 
 \paragraph{Example.} Consider the following directed graph:
 \begin{figure}[h]
@@ -266,7 +266,7 @@ Okay, so now we know what graphs are. But how can we represent them in a compute
 \subsection{Breadth First Search (BFS)}
 
 One natural thing we might want to do is to travel around inside a graph. That is, we would like to visit all of the vertices in a graph in some order that relates to the edges. 
-Breadth-first search constructs a breadth-first tree, initially containing only its root, which is the source vertex $s$. Whenever the search discovers a white vertex $v$ in the course of scanning the adjacency list of a gray vertex $u$ ,the vertex $v$ and the edge ($u$, $v$) are added to the tree. We say that $u$ is the predecessor or parent of $v$ in the breadth-first tree. Since every vertex reachable from $s$ is discovered at most once, each vertex reachable from $s$ has exactly one parent. (There is one exception: because $s$ is the root of the breadth-first tree, it has no parent.) Ancestor and descendant relationships in the breadth-first tree are defined relative to the root $s$ as usual: if $u$ is on the simple path in the tree from the root $s$ to vertex $v$ ,then $u$ is an ancestor of $v$ and $v$ is a descendant of $u$.
+Breadth-first search constructs a breadth-first tree, initially containing only its root, which is the source vertex $s$. Whenever the search discovers a white vertex $v$ in the course of scanning the adjacency list of a gray vertex $u$, the vertex $v$ and the edge ($u$, $v$) are added to the tree. We say that $u$ is the predecessor or parent of $v$ in the breadth-first tree. Since every vertex reachable from $s$ is discovered at most once, each vertex reachable from $s$ has exactly one parent. (There is one exception: because $s$ is the root of the breadth-first tree, it has no parent.) Ancestor and descendant relationships in the breadth-first tree are defined relative to the root $s$ as usual: if $u$ is on the simple path in the tree from the root $s$ to vertex $v$, then $u$ is an ancestor of $v$, and $v$ is a descendant of $u$.
 The breadth-first-search procedure BFS on the following page assumes that the graph $G = (V, E)$ is represented using adjacency lists. It denotes the queue by $Q$, and it attaches three additional attributes to each vertex $v$ in the graph:
 
 \begin{enumerate}
@@ -305,12 +305,12 @@ The breadth-first-search procedure BFS on the following page assumes that the gr
 \item Lines 3-6: $O(1)$
 \item Lines 7-8: First we need to understand the number of times the $while$ loop iterates. We can see that every vertex can only enter the queue ONCE (since it is then tagged as "visited"), and therefore it runs $\leq |V|$ times. All operations are $O(1)$, and we get a total of $O(|V|)$. 
 \item Lines 9-13: Next, we want to understand the number of times this $for$ loop iterates. 
-The for loop starts iterating once per vertex, and then the number of its iterations is the same as the number of neighbours that this vertex has. Thus, it runs $O(|E|)$ times.
+The for loop starts iterating once per vertex, and then the number of its iterations is the same as the number of neighbors that this vertex has. Thus, it runs $O(|E|)$ times.
 \end{itemize}
 So all in all we get a runtime of $O(|V|+|E|)$
 
 \subsection{Usage of BFS}
-Now we have in our hands a way to travel  through a graph using the edges. How else can we use it?\\ \\ 
+Now we have a way to travel through a graph using the edges. How else can we use it?\\ \\ 
 \textbf{Exercise}: Present and analyse an algorithm $CC(G)$ which receives some undirected graph $G$ and outputs the number of connected components in $G$ in $O(|V|+|E|)$. \\
 
 \textbf{Solution}: Consider the following algorithm: (Now read the algorithm, it may be in the next page because LaTeX is dumb...)
@@ -332,11 +332,11 @@ Now we have in our hands a way to travel  through a graph using the edges. How e
 
 \subsection{Correctness}
 
-We must not forget to prove BFS's correctness! Specifically, we want to prove that after calling $BFS(G, s)$, we have that for all nodes $v$ in $s$'s connected component, $v$.visited = True. We will prove something stronger:
+We must not forget to prove BFS's correctness! Specifically, we want to prove that after calling $BFS(G, s)$, we have that for all nodes $v$ in $ s$'s connected component, $v$.visited = True. We will prove something stronger:
 
 \begin{prop}
 Let $G=(V,E)$ and let $s\in V$. For each $v\in V$ denote $d_v=dist(s, v)$. 
-After $BFS(G,s)$ is called, all nodes with $d_v=k$ are inserted to the queue, and they are insterted before all nodes with $d_v=k+1$.
+After $BFS(G,s)$ is called, all nodes with $d_v=k$ are inserted to the queue, and they are inserted before all nodes with $d_v=k+1$.
 \end{prop}
 
 \begin{proof}
@@ -356,7 +356,7 @@ Assume towards contradiction that $v$ is inserted before $w$, where $d_v=k+1,\ d
 \end{proof}
 
 \begin{remark}
-If $v$ is not in the connected component of $s$ then $d_v=\infty$.
+If $v$ is not in the connected component of $s$, then $d_v=\infty$.
 \end{remark}
 
 
@@ -365,7 +365,7 @@ After $BFS(G,s)$ is run, $v$.visited = True for all $v$ in the connected compone
 \end{corollary}
 
 \subsection{Depth First Search (DFS)}
-As its name implies, depth-first search searches “deeper” in the graph whenever possible. Depth-first search explores edges out of the most recently discovered vertex $v$ that still has unexplored edges leaving it. Once all of $v$’s edges have been explored, the search “backtracks” to explore edges leaving the vertex from which $v$ was discovered. This process continues until all vertices that are reachable from the original source vertex have been discovered. If any undiscovered vertices remain, then depth-first search selects one of them as a new source, repeating the search from that source. The algorithm repeats this entire process until it has discovered every vertex.
+As its name implies, depth-first search searches "deeper" in the graph whenever possible. Depth-first search explores edges out of the most recently discovered vertex $v$ that still has unexplored edges leaving it. Once all of $ v$'s edges have been explored, the search "backtracks" to explore edges leaving the vertex from which $v$ was discovered. This process continues until all vertices that are reachable from the original source vertex have been discovered. If any undiscovered vertices remain, then depth-first search selects one of them as a new source, repeating the search from that source. The algorithm repeats this entire process until it has discovered every vertex.
 
 \begin{algbox}{DFS($G$)}
   \begin{algorithm}[H]
@@ -407,8 +407,8 @@ As its name implies, depth-first search searches “deeper” in the graph whene
 
 
 \end{algbox}
-\paragraph{Properties of depth-first search.} Depth-first search yields valuable information about the structure of a graph. Perhaps the most basic property of depth-first search is that the predecessor subgraph $G_{\pi}$ does indeed form a forest of trees, since the structure of the depth-first trees exactly mirrors the structure of recursive calls of explore-function . That is, $u$ = $\pi\left( v \right)$ if and only if explore($G, v$) was called during a search of $u$’s adjacency list. Additionally, vertex $v$ is a descendant of vertex $u$ in the depth-first forest if and only if $v$ is discovered during the time in which $u$ is gray.
-Another important property of depth-first search is that discovery and finish times have parenthesis structure. If the explore procedure were to print a left parenthesis ``$(u$'' when it discovers vertex $u$ and to print a right parenthesis r``$u)$” when it finishes $u$, then the printed expression would be well formed in the sense that the parentheses are properly nested.
+\paragraph{Properties of depth-first search.} Depth-first search yields valuable information about the structure of a graph. Perhaps the most basic property of depth-first search is that the predecessor subgraph $G_{\pi}$ does indeed form a forest of trees since the structure of the depth-first trees exactly mirrors the structure of recursive calls of explore-function. That is, $u$ = $\pi\left( v \right)$ if and only if explore($G, v$) was called during a search of $ u$'s adjacency list. Additionally, vertex $v$ is a descendant of vertex $u$ in the depth-first forest if and only if $v$ is discovered during the time in which $u$ is gray.
+Another important property of depth-first search is that discovery and finish times have a parenthesis structure. If the explore procedure were to print a left parenthesis "$(u$" when it discovers vertex $u$ and to print a right parenthesis r``$u)$" when it finishes $u$, then the printed expression would be well-formed in the sense that the parentheses are properly nested.
 
 The following theorem provides another way to characterize the parenthesis structure.
 
@@ -421,7 +421,7 @@ In any depth-first search of a (directed or undirected) graph $G = (V, E)$, for 
   \item the interval [pre($v$), post($v$)] is contained entirely within the interval [pre($u$), post($u$)], and $v$ is a descendant of $u$ in a depth-first tree.
   \end{enumerate}
 
-  \paragraph{Proof.} We begin with the case in which pre($u$) $<$ pre($v$). We consider two subcases, according to whether pre($v$) $<$ post($u$). The first subcase occurs when pre($v$) $<$ post($u$), so that $v$ was discovered while $u$ was still gray, which implies that $v$ is a descendant of $u$. Moreover, since $v$ was discovered after $u$, all of its outgoing edges are explored, and $v$ is finished, before the search returns to and finishes $u$. In this case, therefore, the interval [pre($v$), post($v$)] is entirely contained within the interval [pre($u$), post($u$)]. In the other subcase, post($u$) $<$ pre($v$), and by defintion, pre($u$) $<$ post($u$) $<$ pre(v) $<$ post($v$), and thus the intervals [pre($u$), post($u$)] and [pre($v$), post($v$)] are disjoint. Because the intervals are disjoint, neither vertex was discovered while the other was gray, and so neither vertex is a descendant of the other.
+  \paragraph{Proof.} We begin with the case in which pre($u$) $<$ pre($v$). We consider two subcases, according to whether pre($v$) $<$ post($u$). The first subcase occurs when pre($v$) $<$ post($u$), so that $v$ was discovered while $u$ was still gray, which implies that $v$ is a descendant of $u$. Moreover, since $v$ was discovered after $u$, all of its outgoing edges are explored, and $v$ is finished before the search returns to and finishes $u$. In this case, therefore, the interval [pre($v$), post($v$)] is entirely contained within the interval [pre($u$), post($u$)]. In the other subcase, post($u$) $<$ pre($v$), and by defintion, pre($u$) $<$ post($u$) $<$ pre(v) $<$ post($v$), and thus the intervals [pre($u$), post($u$)] and [pre($v$), post($v$)] are disjoint. Because the intervals are disjoint, neither vertex was discovered while the other was gray, and so neither vertex is a descendant of the other.
 
 
 
@@ -429,3 +429,4 @@ In any depth-first search of a (directed or undirected) graph $G = (V, E)$, for 
   Vertex $v$ is a proper descendant of vertex $u$ in the depth-first forest for a (directed or undirected) graph $G$ if and only if pre($u$) $<$ pre($v$) $<$ post($v$) $<$ post($u$).
 
 \input{../texlib/tail}
+
