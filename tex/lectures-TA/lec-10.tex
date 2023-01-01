@@ -391,16 +391,17 @@ In any depth-first search of a (directed or undirected) graph $G = (V, E)$, for 
 \paragraph{  Corollary. Nesting of descendants' intervals.}
   Vertex $v$ is a proper descendant of vertex $u$ in the depth-first forest for a (directed or undirected) graph $G$ if and only if pre($u$) $<$ pre($v$) $<$ post($v$) $<$ post($u$).
 
-  \paragraph{Problem. Two Chess Pieces.}
- Moti has a tree with n nodes. He is willing to share it with you, which means you can operate on it.
+  
+  %%\paragraph{Problem. Two Chess Pieces.}
+ %Moti has a tree with n nodes. He is willing to share it with you, which means you can operate on it.
 
-Initially, there are two chess pieces on the node 1 of the tree. In one step, you can choose any piece, and move it to the neighboring node. You are also given an integer $d$. You need to ensure that the distance between the two pieces doesn't ever exceed $d$.
+%Initially, there are two chess pieces on the node 1 of the tree. In one step, you can choose any piece, and move it to the neighboring node. You are also given an integer $d$. You need to ensure that the distance between the two pieces doesn't ever exceed $d$.
 
-Each of these two pieces has a sequence of nodes which they need to pass in any order, and eventually, they have to return to the root. As a curious boy, he wants to know the minimum steps you need to take.
+%Each of these two pieces has a sequence of nodes which they need to pass in any order, and eventually, they have to return to the root. As a curious boy, he wants to know the minimum steps you need to take.
 
-\paragraph{Solution.} We can find that for any $d$-th ancestor of some $b_i$, the first piece must pass it some time. Otherwise, we will violate the distance limit. The second piece must pass the $d$-th ancestor of each $b_i$ as well. Then we can add the $d$-th ancestor of each $a_i$ to the array $b$, and add the $d$-th ancestor of each $b_i$ to the array $a$.
-
-Then we can find now we can find a solution that each piece only needs to visit its nodes using the shortest route, without considering the limit of $d$, and the total length can be easily computed. We can find that if we adopt the strategy that we visit these nodes according to their DFS order(we merge the array of $a$ and $b$, and sort them according to the DFS order, if the first one is from $a$, we try to move the first piece to this position, otherwise use the second piece), and move the other piece one step closer to the present piece only if the next step of the present piece will violate the distance limit, then we can ensure the movement exactly just let each piece visit its necessary node without extra operations.
-
+%\paragraph{Solution.} We can find that for any $d$-th ancestor of some $b_i$, the first piece must pass it some time. Otherwise, we will violate the distance limit. The second piece must pass the $d$-th ancestor of each $b_i$ as well. Then we can add the $d$-th ancestor of each $a_i$ to the array $b$, and add the $d$-th ancestor of each $b_i$ to the array $a$.
+%
+%Then we can find now we can find a solution that each piece only needs to visit its nodes using the shortest route, without considering the limit of $d$, and the total length can be easily computed. We can find that if we adopt the strategy that we visit these nodes according to their DFS order(we merge the array of $a$ and $b$, and sort them according to the DFS order, if the first one is from $a$, we try to move the first piece to this position, otherwise use the second piece), and move the other piece one step closer to the present piece only if the next step of the present piece will violate the distance limit, then we can ensure the movement exactly just let each piece visit its necessary node without extra operations.
+%
 \input{../texlib/tail}
 
