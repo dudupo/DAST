@@ -336,10 +336,10 @@ As its name implies, depth-first search searches "deeper" in the graph whenever 
     \For {$v\in V$}{
  	$vi$.visited $\leftarrow False$
     }
-    time $ \leftarrow 1 $
+    time $ \leftarrow 1 $\\
     \For {$v\in V$}{
       \If { not $v$.visited } {
-	$\pi \left( v \right) v \leftarrow $ null \\ 
+	$\pi \left( v \right)  \leftarrow $ null \\ 
 	Explore( $G,v$ ) 
      } 
    }
@@ -348,14 +348,14 @@ As its name implies, depth-first search searches "deeper" in the graph whenever 
 
   \begin{algorithm}[H]
     \bf{Explore}($G,v$): \\
+     Previsit($v$)
     \For {$\left( v,u \right) \in E  $}{
-      Previsit($v$)
       \If { not $u$.visited } {
 	$ \pi \left( u \right) \leftarrow v $ \\ 
 	Explore( $G, u$ ) 
       }
-      Postvisit($v$)
     }
+    Postvisit($v$)
   \end{algorithm}
   \begin{algorithm}[H]
     \bf{Previsit}($v$): \\
