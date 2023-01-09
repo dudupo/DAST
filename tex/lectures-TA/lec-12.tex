@@ -1,1 +1,91 @@
+\title{Graphs  - Recitation 9} 
+\input{../texlib/head}
+\usetikzlibrary{positioning, arrows}
+\tikzset{main node/.style={circle,draw,minimum size=0.8cm,inner sep=0pt},}
+\tikzset{edge/.style = {->,> = latex'}}
+
+\iffalse
+\newtheorem{prop}{Proposition}
+\newtheorem{ex}{Exercise}
+\newtheorem{sol}{Solution}
+\newtheorem{theorem}{Theorem} \newtheorem{thm}{Theorem}[section]
+\newtheorem{conj}[thm]{Conjecture} \newtheorem{lemma}[thm]{Lemma}
+\newtheorem{corollary}[thm]{Corollary} \newtheorem{claim}[thm]{Claim}
+\newtheorem{proposition}[thm]{Proposition}
+\newtheorem{definition}{Definition} \newtheorem{remark}{Remark}
+   
+\pagestyle{empty}
+
+\setlength{\textwidth}{6.5in}
+\setlength{\evensidemargin}{0.0in}
+\setlength{\oddsidemargin}{0.0in}
+\setlength{\topmargin}{-0.25in}
+\setlength{\textheight}{9.0in}
+\setlength{\baselineskip}{1.3\baselineskip}
+\setlength{\parindent}{.0in}
+\fi
+\tikzset{
+node of list/.style = { 
+             draw, 
+             fill=orange!20, 
+             minimum height=6mm, 
+             minimum width=6mm,
+             node distance=6mm
+   },
+link/.style = {
+     -stealth,
+     shorten >=1pt
+     },
+array element/.style = {
+    draw, fill=white,
+    minimum width = 6mm,
+    minimum height = 10mm
+  }
+}
+
+\def\LinkedList#1{%
+  \foreach \element in \list {
+     \node[node of list, right = of aux, name=ele] {\element};
+     \draw[link] (aux) -- (ele);
+     \coordinate (aux) at (ele.east);
+  } 
+}
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+%\vspace{0.2in}
+
+\section{Union Find.} 
+
+We have mentioned that for finding efficently the minimal spanning tree using kruskal, one has to answer quickly about wheter a pair of vertices $v,u$ share the same connactivity commponent. In this recitation we will presnt a datastructure that will allow us both quering the belonging of given item and mergging groups at efficent time cost. 
+
+The problem define as follow. Given $n$ items $x_1 ... x_{n}$ we would like to maintain the parttion of them into disjointss sets by supporting the following operations:  
+\begin{enumerate}
+  \item Make-Set$(x)$ create an empty set whose only member is $x$. We could assume that this operation can be called over $x$ only once. 
+  \item Union$(x,y)$ merge the set which contains $x$ with the one which contains $y$. 
+  \item Find-Set$(x)$ returns a pointer to the set holding $x$. 
+\end{enumerate}
+
+Notice that the navie immpleamntion using pointres array, $A$, defined to store at place $i$ a pointer to the set containing $x$ can perform the $Find-Set$ operation at $O\left( 1 \right)$. The bottle neck of that immplemntion is that the mergging will require from us to run over the whole itmes and changes their corresponding  pointer at $A$ one by one. Namly, a running time cost of $\Theta\left( n \right)$ time. Let's review a diffrent approch:
+
+\paragraph{Linked Lists Immplemntation.}
+One way to have a non-trival improvmeant is to associate for each set a linked list storing all the elemnents belonging to the set. Each node of those linked lists contains, additilly to it's value and it's sibling pointer, also a pointer for the list itself (the set). Consider again the mergging operation. it's clear that having those lists allow us to uinfind sets by iterating and updating only the elememnts belong to them. Still one more trick is needed for achiving a good running cost.     
+
+
+
+
+
+
+\paragraph{Union By Rank.}
+
+\paragraph{}
+
+
+\input{../texlib/tail}
 
