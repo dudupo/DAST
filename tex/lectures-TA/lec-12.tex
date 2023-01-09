@@ -82,7 +82,7 @@ One way to have a non-trival improvmeant is to associate for each set a linked l
   \begin{algorithm}[H]
   \If{size $A[x] \ge $  size$A[y]$  }{
       size $A[x] \leftarrow $   size $A[x]$ +  size$A[y]$ \\
-      \For{ for $z$ in $A[y]$ }{
+      \For{  $z \in A[y]$ }{
 	$A[z] \leftarrow A[x]$ \\ 
       }
       $A[x] \leftarrow A[x] \cup A[y]$ // $O\left( 1 \right)$ concatenation of linked lists.  
