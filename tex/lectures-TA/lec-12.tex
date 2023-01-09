@@ -72,7 +72,7 @@ The problem define as follow. Given $n$ items $x_1 ... x_{n}$ we would like to m
   \item Find-Set$(x)$ returns a pointer to the set holding $x$. 
 \end{enumerate}
 
-Notice that the navie immpleamntion using pointres array, $A$, defined to store at place $i$ a pointer to the set containing $x$ can perform the $Find-Set$ operation at $O\left( 1 \right)$. The bottle neck of that immplemntion is that the mergging will require from us to run over the whole itmes and changes their corresponding  pointer at $A$ one by one. Namly, a running time cost of $\Theta\left( n \right)$ time. Let's review a diffrent approch:
+Notice that the navie immpleamntion using pointres array, $A$, defined to store at place $i$ a pointer to the set containing $x$ can perform the Find-Set operation at $O\left( 1 \right)$. The bottle neck of that immplemntion is that the mergging will require from us to run over the whole itmes and changes their corresponding  pointer at $A$ one by one. Namly, a running time cost of $\Theta\left( n \right)$ time. Let's review a diffrent approch:
 
 \paragraph{Linked Lists Immplemntation.}
 One way to have a non-trival improvmeant is to associate for each set a linked list storing all the elemnents belonging to the set. Each node of those linked lists contains, additilly to it's value and it's sibling pointer, also a pointer for the list itself (the set). Consider again the mergging operation. it's clear that having those lists allow us to uinfind sets by iterating and updating only the elememnts belong to them. Still one more trick is needed for achiving a good running cost. 
@@ -92,8 +92,12 @@ One way to have a non-trival improvmeant is to associate for each set a linked l
   \end{algorithm}
 \end{algbox}
 
-Clearly, executing the above method over sets at linear size require at least linear time. Let's anlayze what happens when  mergging $n$ times. As we have allredy seen at graphs, runtime can be measured by counting the total number of operations that each item/vertex do along the whole running. So we can ask our selfes how many times does an item change his location and his set pointer. Assume that $x$. Assume that $x$   
-
+Clearly, executing the above method over sets at linear size require at least linear time. Let's anlayze what happens when  mergging $n$ times. As we have allredy seen at graphs, runtime can be measured by counting the total number of operations that each item/vertex do along the whole running. So we can ask our selfes how many times does an item change his location and his set pointer. Assume that at the time when $x$ were changed $A[x]$ containd (before the mergging) $t$ elemenets then immdetly after that $A[x]$ will store at least $2t$ elements.  In otherwords 
+\begin{equation*}
+  \begin{split}
+    \text{size} A^{(t+1)}[x] \leftarrow  \text{size} A^{(t)}[x] +  \text{size} A^{(t)}[y] \ge 2A^{(t)}[x]  
+  \end{split}
+\end{equation*}
 \paragraph{Union By Rank.}
 
 \paragraph{}
