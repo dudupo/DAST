@@ -107,7 +107,8 @@ Clearly, executing the above over sets at linear size require at least linear ti
     T\left( n, m  \right) &= \text{ direact parent move } + \text{ climbing moves  } =    \\
     &=  \text{ direact parent move } + \text{ stage exchange } +  \text{ inner stage } = \\ 
     & \le m + m \cdot | \mathcal{B} | + \sum_{ B \in \mathcal{B} }{ \text{ steps inside B  }   }\\
-    & \le m + m \cdot | \mathcal{B} | + \sum_{ B \in \mathcal{B} }{ \sum_{u \in B} { \text{ steps inside B started at }u }  }
+    & \le m + m \cdot | \mathcal{B} | + \sum_{ B \in \mathcal{B} }{ \sum_{u \in B} { \text{ steps inside B started at }u }  }\\
+    & \le m + m \cdot | \mathcal{B} | + \sum_{ B \in \mathcal{B} }{ \sum_{u \in B}{ |B| }  }
   \end{split}
 \end{equation*}
 
