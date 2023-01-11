@@ -102,6 +102,36 @@ Hence, if we will list down the sizes of the $x$'s set at the momments mergging 
 
 Noitce that that in the case in which $m = O\left( 1 \right)$ we will still pay much more than nedded. Any how, the next implemmntion is going to give us (enventuly) much faster algorithm.
 
+\begin{figure}[h]
+  \centering
+  \begin{subfigure}[b]{0.25\textwidth}
+    \begin{tikzpicture}
+      \node[main node](1){$1$};
+      \node[main node](2)[below = 1cm of 1]{$2$};
+      \node[main node](3)[right = 1cm of 1]{$3$};
+      \node[main node](4)[below = 1cm of 3]{$4$};
+
+      \draw[edge] (1) to (2);
+      \draw[edge] (1) to (4);
+      \draw[edge] (4) to (1);
+      \draw[edge] (4) to (3);
+      \draw[edge] (1) to (3);
+      \draw[edge] (3) to (1);
+    \end{tikzpicture}  
+    \\ \\  
+  \end{subfigure} 
+  \begin{subfigure}[b]{0.49\textwidth}
+    \begin{tikzpicture}
+      \foreach \index/\list in {1/{2,3,4,null}, 2/{null}, 3/{1, null}, 4/{1, 3, null}} {
+	\node[array element] (aux) at (0,-\index) {\index};
+	\LinkedList{\list}
+      }
+    \end{tikzpicture}  
+  \end{subfigure}
+  \caption{ Persenting $G$ by array of adjacency lists.  }
+\end{figure}
+
+
 \paragraph{Forest Immplemntation.} Insted of associating each set with a linked list, one might attach a forst. The vertices holds the values of the items, and we could think about the root of each tree as the represtive of the tree. If two vertices $x,y$ share the same root than it's clear than they are belong to the same set. At the initialliztion stage Make-Set defines the vertices as roots of trival trees (single root without any descendants), Then the find method is: 
 \begin{algbox}{Find$(x)$}
   \begin{algorithm}[H]
