@@ -177,18 +177,25 @@ Claim, let $S(r)$ a lower bound over the the size of tree at rank $r$. Then $M\l
 Let's analyses the queris cost by counting the edges on which the algorithm went over. Denote by find($v^{(t)}$) the query which was requested at time $t$ and let $P^{(t)}=v,v_{2} .. v_{k}$ be the vertices path on which the algorithm climbe from $v$ up to his root. Now, observes that by comperssing the path the ranks of the verticis in $P$ must be distincit. Now consdier any parttion of the line into set of buckets (segements) $\mathcal{B}= \left\{ B_{i} | B_{i} = [b_{i} ,b_{i+1}] \right\}$. 
 
 
-
-
 \begin{equation*}
   \begin{split}
     T\left( n, m  \right) &= \text{ direact parent move } + \text{ climbing moves  } =    \\
     &=  \text{ direact parent move } + \text{ stage exchange } +  \text{ inner stage } = \\ 
     & \le m + m \cdot | \mathcal{B} | + \sum_{ B \in \mathcal{B} }{ \text{ steps inside B  }   }\\
-    & \le m + m \cdot | \mathcal{B} | + \sum_{ B \in \mathcal{B} }{ \sum_{u \in B} { \text{ steps inside B started at }u }  }\\
-    & \le m + m \cdot | \mathcal{B} | + \sum_{ B \in \mathcal{B} }{ \sum_{u \in B}{ |B| }  } \\ 
+    & \le m + m \cdot | \mathcal{B} | + \sum_{ B \in \mathcal{B} }{ \sum_{ rank(u) \in B} { \text{ steps inside B started at }u }  }\\
+    & \le m + m \cdot | \mathcal{B} | + \sum_{ B \in \mathcal{B} }{ \sum_{ rank(u) \in B}{ |B| }  } \\ 
     & \le m + m \cdot | \mathcal{B} | + \sum_{ B \in \mathcal{B} }{ \frac{n}{\min{B} } |B| }
   \end{split}
 \end{equation*}
+
+For example conisder our last calculation, In which we divided the ranges of ranks into $\log n$ buckets and then  
+\begin{equation*}
+  \begin{split}
+  \sum_{ B \in \mathcal{B} }{ \frac{n}{\min{B} } |B| } \le \sum_{ B \in \{ [i] | i \in [ \log n ]  \}  }{ x  } 
+  \end{split}
+\end{equation*}
+
+
 
 \input{../texlib/tail}
 
