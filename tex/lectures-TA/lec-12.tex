@@ -142,11 +142,11 @@ Noitce that that in the case in which $m = O\left( 1 \right)$ we will still pay 
   \end{algorithm}    
 \end{algbox}
 
-  We will see that for having the last improvment one slightly change should be setted. But before that lets try to mimic the decsion rule above. Even those we could define a size field for each root and get the same algortihm as above, Insted we will define another field which from first sight looks indentical. Let the rank$\left( v \right)$ of the node $v$ be hight of the $v$. Recall that tree's height define to be the logest path from the root to one of the vertices. 
- 
-  \paragraph{Union By Rank Huristic\protect\footnote{Corman calls that rule an hursitic, but please noitce that huristics are usually refers to methods that seemes to be efficent ampiricly, yet it doesn't clear how to prove their advantage mathmatclly. Still, in that course we stick to Corman triminalogy.}}. So as we said, first we are going to ensure how to mimic the $\log n$ complexitiy proof under the forst immplemntion. 
+We will see that for having the last improvment one slightly change should be setted. But before that lets try to mimic the decsion rule above. Even those we could define a size field for each root and get the same algortihm as above, Insted we will define another field which from first sight looks indentical. Let the rank$\left( v \right)$ of the node $v$ be hight of the $v$. Recall that tree's height define to be the logest path from the root to one of the vertices. 
 
-  \begin{algbox}{Uinon$(x,y)$}
+\paragraph{Union By Rank Huristic\protect\footnote{Corman calls that rule an hursitic, but please noitce that huristics are usually refers to methods that seemes to be efficent ampiricly, yet it doesn't clear how to prove their advantage mathmatclly. Still, in that course we stick to Corman triminalogy.}}. So as we said, first we are going to ensure how to mimic the $\log n$ complexitiy proof under the forst immplemntion. 
+
+\begin{algbox}{Uinon$(x,y)$}
   \begin{algorithm}[H]
     $x\leftarrow $ Find$\left( x \right)$ \\
     $y\leftarrow $ Find$\left( y \right)$ \\
@@ -183,19 +183,26 @@ Let's analyses the queris cost by counting the edges on which the algorithm went
     &=  \text{ direact parent move } + \text{ stage exchange } +  \text{ inner stage } = \\ 
     & \le m + m \cdot | \mathcal{B} | + \sum_{ B \in \mathcal{B} }{ \text{ steps inside B  }   }\\
     & \le m + m \cdot | \mathcal{B} | + \sum_{ B \in \mathcal{B} }{ \sum_{ rank(u) \in B} { \text{ steps inside B started at }u }  }\\
-    & \le m + m \cdot | \mathcal{B} | + \sum_{ B \in \mathcal{B} }{ \sum_{ rank(u) \in B}{ |B| }  } \\ 
-    & \le m + m \cdot | \mathcal{B} | + \sum_{ B \in \mathcal{B} }{ \frac{n}{\min{B} } |B| }
+    & \le m + m \cdot | \mathcal{B} | + \sum_{ B \in \mathcal{B} }{ \sum_{ rank(u) \in B}{ |B| }  } %i\\ 
+    %& \le m + m \cdot | \mathcal{B} | + \sum_{ B \in \mathcal{B} }{ \frac{n}{\min{B} } |B| }
   \end{split}
 \end{equation*}
 
 For example conisder our last calculation, In which we divided the ranges of ranks into $\log n$ buckets at length $1$, $B_{r} = \{r\}$, then as the size of the subtrees at rank $r$ is at least $2^{r}$ we have that the size of $|B_{r}|$ is at most $\frac{n}{2^{r}}$ and that's why:   
 \begin{equation*}
   \begin{split}
-    \sum_{ B \in \mathcal{B} }{ \frac{n}{\min{B} } |B| } &\le \sum_{ B \in \{ [i] | i \in [ \log n ]  \}  }{ \frac{n}{2^{r}} \cdot 1    } \le  2\cdot n
+    \sum_{ b \in \mathcal{b} }{ \frac{n}{\min{b} } |b| } &\le \sum_{ b \in \{ [i] | i \in [ \log n ]  \}  }{ \frac{n}{2^{r}} \cdot 1    } \le  2\cdot n
   \end{split}
 \end{equation*}
 
-So the total time is at most $m + m \log n + 2n = \Theta\left( n \right)$. And if we would take the $ \log n  / \log \log n $ buckets such that $B_{i}$ store the  $i$th $\log \log n $ numbers. 
+So the total time is at most $m + m \log n + 2n = \Theta\left( n \right)$. And if we would take the $ \log n  / \log \log n $ buckets such that $B_{i}$ store the  $i$th $\log \log n $ numbers. Then the sum above will become:   
+
+\begin{equation*}
+  \begin{split}
+    m + \frac{\log n }{\log \log n} + \sum_{ b \in \mathcal{b} }{ \frac{n}{\min{b} } |b| } &\le \sum_{ b \in \{ [i] | i \in [ \log n ]  \}  }{ \frac{n}{2^{r}} \cdot  \frac{\log \log n }{  }<++>    } \le  2\cdot n
+  \end{split}
+\end{equation*}
+
 
 
 \input{../texlib/tail}
