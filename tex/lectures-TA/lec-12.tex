@@ -208,8 +208,8 @@ So the total time is at most $m + m \log n + 2n = \Theta\left( n \right)$. And i
 Could we done even better? Yes, Consider a nonunifom parttion $ B_{r} = \{ r,  r+ 1 ... 2^{r} \} $. So first qustion one should ask what is $ |\mathcal{B}|$? ( $ \log^{*}\left( n \right) $ ). On the otherhand the number of vertices in which their rank belongs to the $i$th bucket is at most:    $|B_{i}| \le  $ 
 \begin{equation*}
   \begin{split}
-    & \text{ maximal number of nodes at rank } r + \text{ maximal number of nodes at rank } r+1 + \\ 
-    & \text{ maximal number of nodes at rank } r+2 + ... +  \text{ maximal number of nodes at rank } 2^{r} \\  
+    & \text{ maximal number of nodes at rank } r + \text{ maximal number of nodes at rank } (r+1) + \\ 
+    & \text{ maximal number of nodes at rank } (r+2) + ... +  \text{ maximal number of nodes at rank } 2^{r} \\  
     & \frac{n}{2^{r}} + \frac{n}{2^{r+1}} + \frac{n}{2^{r+2}} + ... + \frac{n}{2^{2^{r}}} \Rightarrow |B_{r}| \le 2 \cdot \frac{n}{2^{r}} 
   \end{split}
 \end{equation*}
