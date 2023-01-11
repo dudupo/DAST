@@ -102,7 +102,16 @@ Hence, if we will list down the sizes of the $x$'s set at the momments mergging 
 
 Noitce that that in the case in which $m = O\left( 1 \right)$ we will still pay much more than nedded. Any how, the next implemmntion is going to give us (enventuly) much faster algorithm.
 
-\paragraph{Forest Immplemntation.} Insted of associating each set with a linked list, one might attach a forst. The vertices holds the values of the items, and we could think about the root of each tree as the represtive of the tree. If two vertices $x,y$ share the same root than it's clear than they are belong to the same set.   
+\paragraph{Forest Immplemntation.} Insted of associating each set with a linked list, one might attach a forst. The vertices holds the values of the items, and we could think about the root of each tree as the represtive of the tree. If two vertices $x,y$ share the same root than it's clear than they are belong to the same set. At the initialliztion stage Make-Set defines the vertices as roots of trival trees (single root without any descendants), Then the find method is: 
+\begin{algbox}{Find$(x)$}
+  \begin{algorithm}[H]
+    \While{ $ \pi(x) \neq  $ None } { 
+      $ x \leftarrow \pi\left( x \right)$
+    }
+    Return $x$ 
+  \end{algorithm}
+  We will see that for having the last improvment one slightly change should be setted. But before that lets try to mimic the decsion rule above. Even those we could define a size field for each root and get the same algortihm as above, Insted we will define another field which from first sight looks indentical. Let the rank$\left( v \right)$ of the node $v$ be hight of the $v$. Recall that tree's height define to be the logest path from the root to one of the vertices.     
+\end{algbox}
 \begin{algbox}{Uinon$(x,y)$}
   \begin{algorithm}[H]
     $x\leftarrow $ Find$\left( x \right)$ \\
@@ -112,20 +121,11 @@ Noitce that that in the case in which $m = O\left( 1 \right)$ we will still pay 
 	$\pi\left( y \right) \leftarrow x$ \\
       }\uElseIf {   rank$\left( y \right) = $  rank$\left( x \right)$ } { 
 	$\pi\left( y \right) \leftarrow x$ \\
-	 rank$\left( x \right) \leftarrow $  rank$\left( x \right) + 1 $ \\  
+	rank$\left( x \right) \leftarrow $  rank$\left( x \right) + 1 $ \\  
       } \Else { 
 	$\pi\left( x \right) \leftarrow y$ \\
       }
     }
-  \end{algorithm}
-\end{algbox}
-
-\begin{algbox}{Find$(x)$}
-  \begin{algorithm}[H]
-    \While{ $ \pi(x) \neq  $ None } { 
-      $ x \leftarrow \pi\left( x \right)$
-    }
-    Return $x$ 
   \end{algorithm}
 \end{algbox}
 
