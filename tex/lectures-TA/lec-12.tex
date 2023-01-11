@@ -95,7 +95,7 @@ One way to have a non-trival improvmeant is to associate for each set a linked l
 Clearly, executing the above over sets at linear size require at least linear time. Let's anlayze what happens when  mergging $n$ times. As we have allredy seen at graphs, runtime can be measured by counting the total number of operations that each item/vertex do along the whole running. So we can ask our selfes how many times does an item change his location and his set pointer. Assume that at the time when $x$ were changed $A[x]$ containd (before the mergging) $t$ elemenets then immdetly after that $A[x]$ will store at least $2t$ elements.  In otherwords 
 \begin{equation*}
   \begin{split}
-    \text{size} A^{(t+1)}[x] \leftarrow  \text{size} A^{(t)}[x] +  \text{size} A^{(t)}[y] \ge 2A^{(t)}[x]  
+    \text{size } A^{(t+1)}[x] \leftarrow  \text{size } A^{(t)}[x] +  \text{size } A^{(t)}[y] \ge 2A^{(t)}[x]  
   \end{split}
 \end{equation*}
 \paragraph{Union By Rank.}
