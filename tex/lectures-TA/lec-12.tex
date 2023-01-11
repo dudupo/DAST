@@ -188,13 +188,14 @@ Let's analyses the queris cost by counting the edges on which the algorithm went
   \end{split}
 \end{equation*}
 
-For example conisder our last calculation, In which we divided the ranges of ranks into $\log n$ buckets and then  
+For example conisder our last calculation, In which we divided the ranges of ranks into $\log n$ buckets at length $1$, $B_{r} = \{r\}$, then as the size of the subtrees at rank $r$ is at least $2^{r}$ we have that the size of $|B_{r}|$ is at most $\frac{n}{2^{r}}$ and that's why:   
 \begin{equation*}
   \begin{split}
-  \sum_{ B \in \mathcal{B} }{ \frac{n}{\min{B} } |B| } \le \sum_{ B \in \{ [i] | i \in [ \log n ]  \}  }{ x  } 
+    \sum_{ B \in \mathcal{B} }{ \frac{n}{\min{B} } |B| } &\le \sum_{ B \in \{ [i] | i \in [ \log n ]  \}  }{ \frac{n}{2^{r}} \cdot 1    } \le  2\cdot n
   \end{split}
 \end{equation*}
 
+So the total time is at most $m + m \log n + 2n = \Theta\left( n \right)$. And if we would take the $ \log n  / \log \log n $ buckets such that $B_{i}$ store the  $i$th $\log \log n $ numbers. 
 
 
 \input{../texlib/tail}
