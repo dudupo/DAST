@@ -191,7 +191,7 @@ Let's analyses the queris cost by counting the edges on which the algorithm went
 For example conisder our last calculation, In which we divided the ranges of ranks into $\log n$ buckets at length $1$, $B_{r} = \{r\}$, then as the size of the subtrees at rank $r$ is at least $2^{r}$ we have that the size of $|B_{r}|$ is at most $\frac{n}{2^{r}}$ and that's why:   
 \begin{equation*}
   \begin{split}
-    \sum_{ b \in \mathcal{b} }{ \frac{n}{\min{b} } |b| } &\le \sum_{ b \in \{ [i] | i \in [ \log n ]  \}  }{ \frac{n}{2^{r}} \cdot 1    } \le  2\cdot n
+    \sum_{ b \in \mathcal{B} }{ \sum_{ rank(u) \in B}{ |B| } } &\le \sum_{ b \in \{ [i] | i \in [ \log n ]  \}  }{ \frac{n}{2^{r}} \cdot 1    } \le  2\cdot n
   \end{split}
 \end{equation*}
 
