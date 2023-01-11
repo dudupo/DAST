@@ -195,11 +195,12 @@ For example conisder our last calculation, In which we divided the ranges of ran
   \end{split}
 \end{equation*}
 
-So the total time is at most $m + m \log n + 2n = \Theta\left( n \right)$. And if we would take the $ \log n  / \log \log n $ buckets such that $B_{i}$ store the  $i$th $\log \log n $ numbers. Then the sum above will become:   
+So the total time is at most $m + m \log n + 2n = \Theta\left( n \right)$. And if we would take the $ \log \log n $ buckets such that $B_{i}$ store the  $i$th $ n /  \log \log n $ numbers. Then the sum above will become:   
 
 \begin{equation*}
   \begin{split}
-    m + \frac{\log n }{\log \log n} + \sum_{ b \in \mathcal{b} }{ \frac{n}{\min{b} } |b| } &\le \sum_{ b \in \{ [i] | i \in [ \log n ]  \}  }{ \frac{n}{2^{r}} \cdot  \frac{\log \log n }{  }<++>    } \le  2\cdot n
+    & m + m \cdot \log \log n + \sum_{ b \in \mathcal{b} }{ \frac{n}{\min{b} } |b| } \le \sum_{ b \in \{ B \in \mathcal{B}  \}  }{ \frac{n}{2^{ \frac{  i \log n} { \log \log n  }  }} \cdot \log \log n }    \le  2\cdot n \\ 
+      & m + m \cdot \frac{\log n }{\log \log n} 
   \end{split}
 \end{equation*}
 
