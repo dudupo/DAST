@@ -109,10 +109,14 @@ Noitce that that in the case in which $m = O\left( 1 \right)$ we will still pay 
       $ x \leftarrow \pi\left( x \right)$
     }
     Return $x$ 
-  \end{algorithm}
-  We will see that for having the last improvment one slightly change should be setted. But before that lets try to mimic the decsion rule above. Even those we could define a size field for each root and get the same algortihm as above, Insted we will define another field which from first sight looks indentical. Let the rank$\left( v \right)$ of the node $v$ be hight of the $v$. Recall that tree's height define to be the logest path from the root to one of the vertices.     
+  \end{algorithm}    
 \end{algbox}
-\begin{algbox}{Uinon$(x,y)$}
+
+  We will see that for having the last improvment one slightly change should be setted. But before that lets try to mimic the decsion rule above. Even those we could define a size field for each root and get the same algortihm as above, Insted we will define another field which from first sight looks indentical. Let the rank$\left( v \right)$ of the node $v$ be hight of the $v$. Recall that tree's height define to be the logest path from the root to one of the vertices. 
+ 
+  \paragraph{Union By Rank.} 
+
+  \begin{algbox}{Uinon$(x,y)$}
   \begin{algorithm}[H]
     $x\leftarrow $ Find$\left( x \right)$ \\
     $y\leftarrow $ Find$\left( y \right)$ \\
@@ -130,7 +134,7 @@ Noitce that that in the case in which $m = O\left( 1 \right)$ we will still pay 
 \end{algbox}
 
 
-\paragraph{Union By Rank.}
+
 
 \paragraph{Path Compression.} Let's analyses the cost of queries $m$ times by counting the edges on which the algorithm went over. Let's denote by find($v^{(t)}$) the query which requestef at time $t$ and let $P^{(t)}=v,v_{2} .. v_{k}$ be the vertices path on which the algorithm climbe from $v$ up to his root. Now, observes that by comperssing the path the ranks of the verticis in $P$ must be distincit. Now consdier any parttion of the line into buckets $B_{i} = [b_{i} ,b_{i+1}]$. $\sum_{v}{\sum_{B_{i}}{\sum_{v \rightarrow u \ r[v]=r[u] }{1}}} \le \sum_{v}{\sum_{B}{|B|}}$   
 
