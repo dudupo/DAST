@@ -167,6 +167,16 @@ Claim, let $S(r)$ a lower bound over the the size of tree at rank $r$. Then $M\l
 
 \paragraph{Path Compression.} Let's analyses the cost of queries $m$ times by counting the edges on which the algorithm went over. Let's denote by find($v^{(t)}$) the query which request at time $t$ and let $P^{(t)}=v,v_{2} .. v_{k}$ be the vertices path on which the algorithm climbe from $v$ up to his root. Now, observes that by comperssing the path the ranks of the verticis in $P$ must be distincit. Now consdier any parttion of the line into buckets $B_{i} = [b_{i} ,b_{i+1}]$. $\sum_{v}{\sum_{B_{i}}{\sum_{v \rightarrow u \ r[v]=r[u] }{1}}} \le \sum_{v}{\sum_{B}{|B|}}$   
 
+\begin{algbox}{Find$(x)$}
+  \begin{algorithm}[H]
+    \If{ $ \pi\left( x \right) \neq $ None}{
+      $\pi\left( x \right) \leftarrow $Find$\left( \pi\left( x \right) \right)$
+    } 
+    Return $\pi\left( x \right)$ 
+  \end{algorithm}    
+\end{algbox}
+
+
 \begin{equation*}
   \begin{split}
     T\left( n, m  \right) &= \text{ direact parent move } + \text{ climbing moves  } =    \\
