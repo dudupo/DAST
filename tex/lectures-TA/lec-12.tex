@@ -103,6 +103,34 @@ Hence, if we will list down the sizes of the $x$'s set at the momments mergging 
 Noitce that that in the case in which $m = O\left( 1 \right)$ we will still pay much more than nedded. Any how, the next implemmntion is going to give us (enventuly) much faster algorithm.
 
 \paragraph{Forest Immplemntation.} Insted of associating each set with a linked list, one might attach a forst. The vertices holds the values of the items, and we could think about the root of each tree as the represtive of the tree. If two vertices $x,y$ share the same root than it's clear than they are belong to the same set.   
+\begin{algbox}{Uinon$(x,y)$}
+  \begin{algorithm}[H]
+  \If{size $A[x] \ge $  size$A[y]$  }{
+      size $A[x] \leftarrow $   size $A[x]$ +  size $A[y]$ \\
+      \For{  $z \in A[y]$ }{
+	$A[z] \leftarrow A[x]$ \\ 
+      }
+      $A[x] \leftarrow A[x] \cup A[y]$ // $O\left( 1 \right)$ concatenation of linked lists.  
+    }\Else{
+      Union $\left( y,x \right)$ 
+    }
+  \end{algorithm}
+\end{algbox}
+
+\begin{algbox}{Find$(x,y)$}
+  \begin{algorithm}[H]
+  \If{size $A[x] \ge $  size$A[y]$  }{
+      size $A[x] \leftarrow $   size $A[x]$ +  size $A[y]$ \\
+      \For{  $z \in A[y]$ }{
+	$A[z] \leftarrow A[x]$ \\ 
+      }
+      $A[x] \leftarrow A[x] \cup A[y]$ // $O\left( 1 \right)$ concatenation of linked lists.  
+    }\Else{
+      Union $\left( y,x \right)$ 
+    }
+  \end{algorithm}
+\end{algbox}
+
 
 \paragraph{Union By Rank.}
 
