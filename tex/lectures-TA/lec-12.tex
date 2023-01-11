@@ -199,7 +199,7 @@ So the total time is at most $m + m \log n + 2n = \Theta\left( n \right)$. And i
 
 \begin{equation*}
   \begin{split}
-    & m + m \cdot \log \log n + \sum_{ b \in \mathcal{b} }{ \frac{n}{\min{b} } |b| } \le \sum_{ b \in \{ B \in \mathcal{B}  \}  }{ \frac{n}{2^{ \frac{  i \log n} { \log \log n  }  }} \cdot \log \log n }    \le  2\cdot n \\ 
+    & m + m \cdot \log \log n + \sum_{ b \in \mathcal{B} }{ \sum_{ rank(u) \in B}{ |B| } }  \le \sum_{ b \in \{ B \in \mathcal{B}  \}  }{ \frac{n}{2^{ \frac{  i \log n} { \log \log n  }  }} \cdot \log \log n }    \le  2\cdot n \\ 
       & m + m \cdot \frac{\log n }{\log \log n} 
   \end{split}
 \end{equation*}
