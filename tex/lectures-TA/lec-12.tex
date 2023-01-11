@@ -5,38 +5,38 @@
 \tikzset{edge/.style = {->,> = latex'}}
 
 \iffalse
-\newtheorem{prop}{Proposition}
-\newtheorem{ex}{Exercise}
-\newtheorem{sol}{Solution}
-\newtheorem{theorem}{Theorem} \newtheorem{thm}{Theorem}[section]
-\newtheorem{conj}[thm]{Conjecture} \newtheorem{lemma}[thm]{Lemma}
-\newtheorem{corollary}[thm]{Corollary} \newtheorem{claim}[thm]{Claim}
-\newtheorem{proposition}[thm]{Proposition}
-\newtheorem{definition}{Definition} \newtheorem{remark}{Remark}
-   
-\pagestyle{empty}
+  \newtheorem{prop}{Proposition}
+  \newtheorem{ex}{Exercise}
+  \newtheorem{sol}{Solution}
+  \newtheorem{theorem}{Theorem} \newtheorem{thm}{Theorem}[section]
+  \newtheorem{conj}[thm]{Conjecture} \newtheorem{lemma}[thm]{Lemma}
+  \newtheorem{corollary}[thm]{Corollary} \newtheorem{claim}[thm]{Claim}
+  \newtheorem{proposition}[thm]{Proposition}
+  \newtheorem{definition}{Definition} \newtheorem{remark}{Remark}
 
-\setlength{\textwidth}{6.5in}
-\setlength{\evensidemargin}{0.0in}
-\setlength{\oddsidemargin}{0.0in}
-\setlength{\topmargin}{-0.25in}
-\setlength{\textheight}{9.0in}
-\setlength{\baselineskip}{1.3\baselineskip}
-\setlength{\parindent}{.0in}
+  \pagestyle{empty}
+
+  \setlength{\textwidth}{6.5in}
+  \setlength{\evensidemargin}{0.0in}
+  \setlength{\oddsidemargin}{0.0in}
+  \setlength{\topmargin}{-0.25in}
+  \setlength{\textheight}{9.0in}
+  \setlength{\baselineskip}{1.3\baselineskip}
+  \setlength{\parindent}{.0in}
 \fi
 \tikzset{
-node of list/.style = { 
-             draw, 
-             fill=orange!20, 
-             minimum height=6mm, 
-             minimum width=6mm,
-             node distance=6mm
-   },
-link/.style = {
-     -stealth,
-     shorten >=1pt
-     },
-array element/.style = {
+  node of list/.style = { 
+    draw, 
+    fill=orange!20, 
+    minimum height=6mm, 
+    minimum width=6mm,
+    node distance=6mm
+  },
+  link/.style = {
+    -stealth,
+    shorten >=1pt
+  },
+  array element/.style = {
     draw, fill=white,
     minimum width = 6mm,
     minimum height = 10mm
@@ -45,9 +45,9 @@ array element/.style = {
 
 \def\LinkedList#1{%
   \foreach \element in \list {
-     \node[node of list, right = of aux, name=ele] {\element};
-     \draw[link] (aux) -- (ele);
-     \coordinate (aux) at (ele.east);
+    \node[node of list, right = of aux, name=ele] {\element};
+    \draw[link] (aux) -- (ele);
+    \coordinate (aux) at (ele.east);
   } 
 }
 
@@ -80,7 +80,7 @@ One way to have a non-trival improvmeant is to associate for each set a linked l
 
 \begin{algbox}{Uinon$(x,y)$}
   \begin{algorithm}[H]
-  \If{size $A[x] \ge $  size$A[y]$  }{
+    \If{size $A[x] \ge $  size$A[y]$  }{
       size $A[x] \leftarrow $   size $A[x]$ +  size $A[y]$ \\
       \For{  $z \in A[y]$ }{
 	$A[z] \leftarrow A[x]$ \\ 
@@ -105,29 +105,27 @@ Noitce that that in the case in which $m = O\left( 1 \right)$ we will still pay 
 \paragraph{Forest Immplemntation.} Insted of associating each set with a linked list, one might attach a forst. The vertices holds the values of the items, and we could think about the root of each tree as the represtive of the tree. If two vertices $x,y$ share the same root than it's clear than they are belong to the same set.   
 \begin{algbox}{Uinon$(x,y)$}
   \begin{algorithm}[H]
-  \If{size $A[x] \ge $  size$A[y]$  }{
-      size $A[x] \leftarrow $   size $A[x]$ +  size $A[y]$ \\
-      \For{  $z \in A[y]$ }{
-	$A[z] \leftarrow A[x]$ \\ 
+    $x\leftarrow $ Find$\left( x \right)$ \\
+    $y\leftarrow $ Find$\left( y \right)$ \\
+    \If{ $ x \neq y $ }{
+      \uIf{ rank$\left( y \right) < $  rank$\left( x \right)$ }{
+	$\pi\left( y \right) \leftarrow x$ \\
+      }\uElseIf {   rank$\left( y \right) < $  rank$\left( x \right)$ } { 
+	$\pi\left( y \right) \leftarrow x$ \\
+	 rank$\left( x \right) \leftarrow $  rank$\left( x \right) + 1 $ \\  
+      } \uElse { 
+	$\pi\left( x \right) \leftarrow y$ \\
       }
-      $A[x] \leftarrow A[x] \cup A[y]$ // $O\left( 1 \right)$ concatenation of linked lists.  
-    }\Else{
-      Union $\left( y,x \right)$ 
     }
   \end{algorithm}
 \end{algbox}
 
-\begin{algbox}{Find$(x,y)$}
+\begin{algbox}{Find$(x)$}
   \begin{algorithm}[H]
-  \If{size $A[x] \ge $  size$A[y]$  }{
-      size $A[x] \leftarrow $   size $A[x]$ +  size $A[y]$ \\
-      \For{  $z \in A[y]$ }{
-	$A[z] \leftarrow A[x]$ \\ 
-      }
-      $A[x] \leftarrow A[x] \cup A[y]$ // $O\left( 1 \right)$ concatenation of linked lists.  
-    }\Else{
-      Union $\left( y,x \right)$ 
+    \While{ $ \pi(x) \neq  $ None } { 
+      $ x \leftarrow \pi\left( x \right)$
     }
+    Return $x$ 
   \end{algorithm}
 \end{algbox}
 
