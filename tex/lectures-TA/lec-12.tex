@@ -165,16 +165,17 @@ Noitce that that in the case in which $m = O\left( 1 \right)$ we will still pay 
 The decison rule at line (4-8) preserves the correcntess of the fowlling claim:
 Claim, let $S(r)$ a lower bound over the the size of tree at rank $r$. Then $M\left( r+1 \right) \ge 2M\left( r \right)$. The proof left as excrsice. Assuming the correctness of the claim it holds that $M\left( \log n \right) \ge n $. So it immidetly followes that the running time take at most $n\log n$. Actully we could get even a tighter bound by noitce that a single query is bounded by the rank. and therefore, the total cost is at most $m \cdot \log n$. 
 
-\paragraph{Path Compression.} Let's analyses the cost of queries $m$ times by counting the edges on which the algorithm went over. Let's denote by find($v^{(t)}$) the query which request at time $t$ and let $P^{(t)}=v,v_{2} .. v_{k}$ be the vertices path on which the algorithm climbe from $v$ up to his root. Now, observes that by comperssing the path the ranks of the verticis in $P$ must be distincit. Now consdier any parttion of the line into buckets $B_{i} = [b_{i} ,b_{i+1}]$. $\sum_{v}{\sum_{B_{i}}{\sum_{v \rightarrow u \ r[v]=r[u] }{1}}} \le \sum_{v}{\sum_{B}{|B|}}$   
-
+\paragraph{Path Compression Huristic.} The final trick to yield a sub-logaritmic time algorithm isenusure that no edge will be traced more than once.     
 \begin{algbox}{Find$(x)$}
   \begin{algorithm}[H]
     \If{ $ \pi\left( x \right) \neq $ None}{
       $\pi\left( x \right) \leftarrow $Find$\left( \pi\left( x \right) \right)$
     } 
-    Return $\pi\left( x \right)$ 
+    Return $\pi\left(x\right)$ 
   \end{algorithm}    
 \end{algbox}
+Let's analyses the cost of queries $m$ times by counting the edges on which the algorithm went over. Let's denote by find($v^{(t)}$) the query which request at time $t$ and let $P^{(t)}=v,v_{2} .. v_{k}$ be the vertices path on which the algorithm climbe from $v$ up to his root. Now, observes that by comperssing the path the ranks of the verticis in $P$ must be distincit. Now consdier any parttion of the line into buckets $B_{i} = [b_{i} ,b_{i+1}]$. $\sum_{v}{\sum_{B_{i}}{\sum_{v \rightarrow u \ r[v]=r[u] }{1}}} \le \sum_{v}{\sum_{B}{|B|}}$   
+
 
 
 \begin{equation*}
