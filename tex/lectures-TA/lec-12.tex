@@ -92,12 +92,18 @@ One way to have a non-trival improvmeant is to associate for each set a linked l
   \end{algorithm}
 \end{algbox}
 
-Clearly, executing the above over sets at linear size require at least linear time. Let's anlayze what happens when  mergging $n$ times. As we have allredy seen at graphs, runtime can be measured by counting the total number of operations that each item/vertex do along the whole running. So we can ask our selfes how many times does an item change his location and his set pointer. Assume that at the time when $x$ were changed $A[x]$ containd (before the mergging) $t$ elemenets then immdetly after that $A[x]$ will store at least $2t$ elements.  In otherwords 
+Clearly, executing the above over sets at linear size require at least linear time. Let's anlayze what happens when  mergging $n$ times. As we have allredy seen at graphs, runtime can be measured by counting the total number of operations that each item/vertex do along the whole running. So we can ask our selfes how many times does an item change his location and his set pointer. Assume that at the time when $x$ were changed $A[x]$ containd (before the mergging) $t$ elemenets then immdetly after that $A[x]$ will store at least $2t$ elements: 
 \begin{equation*}
   \begin{split}
     \text{size } A^{(t+1)}[x] \leftarrow  \text{size } A^{(t)}[x] +  \text{size } A^{(t)}[y] \ge 2A^{(t)}[x]  
   \end{split}
 \end{equation*}
+Hence, if we will list down the sizes of the $x$'s set at the momments mergging had occured we could write only $\log n$ nmbers before the excciding the maximal size ($n$). That proves that the number of times vertex changed his pointer is bounded by $\log n$, and the total number of actions costs at most $\Theta\left( n\log n \right)$. 
+
+Noitce that that in the case in which $m = O\left( 1 \right)$ we will still pay much more than nedded. Any how, the next implemmntion is going to give us (enventuly) much faster algorithm.
+
+\paragraph{Forest Immplemntation.} Insted of associating each set with a linked list, one might attach a forst. The vertices holds the values of the items, and we could think about the root of each tree as the represtive of the tree. If two vertices $x,y$ share the same root than it's clear than they are belong to the same set.   
+
 \paragraph{Union By Rank.}
 
 \paragraph{Path Compression.} Let's analyses the cost of queries $m$ times by counting the edges on which the algorithm went over. Let's denote by find($v^{(t)}$) the query which requestef at time $t$ and let $P^{(t)}=v,v_{2} .. v_{k}$ be the vertices path on which the algorithm climbe from $v$ up to his root. Now, observes that by comperssing the path the ranks of the verticis in $P$ must be distincit. Now consdier any parttion of the line into buckets $B_{i} = [b_{i} ,b_{i+1}]$. $\sum_{v}{\sum_{B_{i}}{\sum_{v \rightarrow u \ r[v]=r[u] }{1}}} \le \sum_{v}{\sum_{B}{|B|}}$   
