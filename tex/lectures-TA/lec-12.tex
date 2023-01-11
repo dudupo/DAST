@@ -201,13 +201,23 @@ So the total time is at most $m + m \log n + 2n = \Theta\left( n \right)$. And i
   \begin{split}
     & \sum_{ b \in \mathcal{B} }{ \sum_{ rank(u) \in B}{ |B| } }  \le \sum_{ b \in \{ B \in \mathcal{B}  \}  }{ \frac{n}{2^{ \frac{  i \log n} { \log \log n  }  }} \cdot \log \log n }    \le  2\cdot n \\ 
     & \le n  \sum_{ b \in \{ B \in \mathcal{B}  \}  }{ 1 \cdot  \cdot \log \log n }    \le  n \left( \log \log n  \right)^{2}   \\
-       & \Rightarrow m + m \cdot \log \log n + n \left( \log \log n  \right)^{2}  
+    & \Rightarrow m + m \cdot \log \log n + n \left( \log \log n  \right)^{2}  
   \end{split}
 \end{equation*}
- 
-Could we done even better? Yes, Consider a nonunifom parttion $ B_{r} = \{ r,  r+ 1 ... 2^{r} \} $. So first qustion one should ask what is $ |\mathcal{B}|$? ( $ \log^{*}\left( n \right) $ ). 
 
-On the otherhand. 
+Could we done even better? Yes, Consider a nonunifom parttion $ B_{r} = \{ r,  r+ 1 ... 2^{r} \} $. So first qustion one should ask what is $ |\mathcal{B}|$? ( $ \log^{*}\left( n \right) $ ). On the otherhand the number of vertices in which their rank belongs to the $i$th bucket is at most:    $|B_{i}| =  $ 
+\begin{equation*}
+  \begin{split}
+    & \text{ maximal number of nodes at rank} $r$ + \text{ maximal number of nodes at rank} $r+1$ + \text{ maximal number of nodes at rank} $r+2$ + ... +  \text{ maximal number of nodes at rank} $2^{r}$ \\  
+    & \frac{n}{2^{r}} + \frac{n}{2^{r+1}} + \frac{n}{2^{r+2}} + ... + \frac{n}{2^{2^{r}}}
+  \end{split}
+\end{equation*}
+
+\begin{equation*}
+  \begin{split}
+    \sum_{ b \in \mathcal{B} }{ \sum_{ rank(u) \in B}{ |B| } }  \le 
+  \end{split}
+\end{equation*}
 
 
 
