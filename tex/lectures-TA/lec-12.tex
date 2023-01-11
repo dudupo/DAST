@@ -109,8 +109,7 @@ Clearly, executing the above over sets at linear size require at least linear ti
     & \le m + m \cdot | \mathcal{B} | + \sum_{ B \in \mathcal{B} }{ \text{ steps inside B  }   }\\
     & \le m + m \cdot | \mathcal{B} | + \sum_{ B \in \mathcal{B} }{ \sum_{u \in B} { \text{ steps inside B started at }u }  }\\
     & \le m + m \cdot | \mathcal{B} | + \sum_{ B \in \mathcal{B} }{ \sum_{u \in B}{ |B| }  } \\ 
-    & \le m + m \cdot | \mathcal{B} | + \sum_{ B \in \mathcal{B} }{ \frac{n}{\min B } |B| }
-  
+    & \le m + m \cdot | \mathcal{B} | + \sum_{ B \in \mathcal{B} }{ \frac{n}{\min{B} } |B| }
   \end{split}
 \end{equation*}
 
