@@ -144,7 +144,7 @@ Noitce that that in the case in which $m = O\left( 1 \right)$ we will still pay 
 
   We will see that for having the last improvment one slightly change should be setted. But before that lets try to mimic the decsion rule above. Even those we could define a size field for each root and get the same algortihm as above, Insted we will define another field which from first sight looks indentical. Let the rank$\left( v \right)$ of the node $v$ be hight of the $v$. Recall that tree's height define to be the logest path from the root to one of the vertices. 
  
-  \paragraph{Union By Rank Huristic\protect\footnote{Corman calls that rule an hursitic, but please noitce that huristics are usually refers to methods that seemes to be efficent ampiricly, yet it doesn't clear how to prove their advantage mathmatclly. Still, in that course we stick to Corman triminalogy.}}. So as we said, first we are going to ensure how to mimic the $log n$ complexitiy proof under the forst immplemntion. 
+  \paragraph{Union By Rank Huristic\protect\footnote{Corman calls that rule an hursitic, but please noitce that huristics are usually refers to methods that seemes to be efficent ampiricly, yet it doesn't clear how to prove their advantage mathmatclly. Still, in that course we stick to Corman triminalogy.}}. So as we said, first we are going to ensure how to mimic the $\log n$ complexitiy proof under the forst immplemntion. 
 
   \begin{algbox}{Uinon$(x,y)$}
   \begin{algorithm}[H]
@@ -165,7 +165,7 @@ Noitce that that in the case in which $m = O\left( 1 \right)$ we will still pay 
 The decison rule at line (4-8) preserves the correcntess of the fowlling claim:
 Claim, let $S(r)$ a lower bound over the the size of tree at rank $r$. Then $M\left( r+1 \right) \ge 2M\left( r \right)$. The proof left as excrsice. Assuming the correctness of the claim it holds that $M\left( \log n \right) \ge n $. So it immidetly followes that the running time take at most $n\log n$. Actully we could get even a tighter bound by noitce that a single query is bounded by the rank. and therefore, the total cost is at most $m \cdot \log n$. 
 
-\paragraph{Path Compression Huristic.} The final trick to yield a sub-logaritmic time algorithm isenusure that no edge will be traced more than once.     
+\paragraph{Path Compression Huristic.} The final trick to yield a sub-logaritmic time algorithm is to compress the bruch on which we have allready passed and by that reduce the number of duplicated transitions.     
 \begin{algbox}{Find$(x)$}
   \begin{algorithm}[H]
     \If{ $ \pi\left( x \right) \neq $ None}{
