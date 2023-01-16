@@ -1842,19 +1842,19 @@ In any depth-first search of a (directed or undirected) graph $G = (V, E)$, for 
 
 \section{Union Find.} 
 
-We have mentioned that for finding efficently the minimal spanning tree using kruskal, one has to answer quickly about wheter a pair of vertices $v,u$ share the same connactivity commponent. In this recitation we will presnt a datastructure that will allow us both quering the belonging of given item and mergging groups at efficent time cost. 
+We have mentioned that to find efficiently the minimal spanning tree using Kruskal, One has to answer quickly about whether a pair of vertices $v,u$ share the same connectivity component. In this recitation, we will present a data structure that will allow us to query the belonging of a given item and merge groups at an efficient time cost. 
 
-The problem define as follow. Given $n$ items $x_1 ... x_{n}$ we would like to maintain the parttion of them into disjointss sets by supporting the following operations:  
+The problem defines as follows. Given $n$ items $x_1 ... x_{n}$, we would like to maintain the partition of them into disjoints sets by supporting the following operations:  
 \begin{enumerate}
   \item Make-Set$(x)$ create an empty set whose only member is $x$. We could assume that this operation can be called over $x$ only once. 
   \item Union$(x,y)$ merge the set which contains $x$ with the one which contains $y$. 
   \item Find-Set$(x)$ returns a pointer to the set holding $x$. 
 \end{enumerate}
 
-Notice that the navie immpleamntion using pointres array, $A$, defined to store at place $i$ a pointer to the set containing $x$ can perform the Find-Set operation at $O\left( 1 \right)$. The bottle neck of that immplemntion is that the mergging will require from us to run over the whole itmes and changes their corresponding  pointer at $A$ one by one. Namly, a running time cost of $\Theta\left( n \right)$ time. Let's review a diffrent approch:
+Notice that the native implementation using pointers array, $A$, defined to store at place $i$ a pointer to the set containing $x$ can perform the Find-Set operation at $O\left( 1 \right)$. The bottleneck of that implementation is that the merging will require us to run over the whole items and changes their corresponding pointer at $A$ one by one. Namely, a running time cost of $\Theta\left( n \right)$ time. Let's review a diffrent approch:
 
-\paragraph{Linked Lists Immplemntation.}
-One way to have a non-trival improvmeant is to associate for each set a linked list storing all the elemnents belonging to the set. Each node of those linked lists contains, additilly to it's value and it's sibling pointer, also a pointer for the list itself (the set). Consider again the mergging operation. it's clear that having those lists allow us to uinfind sets by iterating and updating only the elememnts belong to them. Still one more trick is needed for achiving a good running cost. 
+\paragraph{Linked Lists Implementation.}
+One way to have a non-trivial improvement is to associate each set with a linked list storing all the elements belonging to the set. Each node of those linked lists contains, in addition to its value and sibling pointer, a pointer for the list itself (the set). Consider the merging operation again. It's clear that having those lists allow us to unify sets by iterating and updating only the elements that belong to them. Still, one more trick is needed to achieve a good running cost. 
 
 
 \begin{algbox}{Uinon$(x,y)$}
@@ -1871,47 +1871,47 @@ One way to have a non-trival improvmeant is to associate for each set a linked l
   \end{algorithm}
 \end{algbox}
 
-Clearly, executing the above over sets at linear size require at least linear time. Let's anlayze what happens when  mergging $n$ times. As we have allredy seen at graphs, runtime can be measured by counting the total number of operations that each item/vertex do along the whole running. So we can ask our selfes how many times does an item change his location and his set pointer. Assume that at the time when $x$ were changed $A[x]$ containd (before the mergging) $t$ elemenets then immdetly after that $A[x]$ will store at least $2t$ elements: 
+Executing the above over sets at linear size requires at least linear time. Let's analyze what happens when merging $n$ times. As we have seen in graphs, the runtime can be measured by counting the total number of operations each item/vertex does along the whole running. So we can ask ourselves how many times an item change its location and its set pointer. Assume that at the time when $x$ were changed $A[x]$ contains (before the merging) $t$ elements then immediately after that $A[x]$ will store at least $2t$ elements: 
 \begin{equation*}
   \begin{split}
     \text{size } A^{(t+1)}[x] \leftarrow  \text{size } A^{(t)}[x] +  \text{size } A^{(t)}[y] \ge 2A^{(t)}[x]  
   \end{split}
 \end{equation*}
-Hence, if we will list down the sizes of the $x$'s set at the momments mergging had occured we could write only $\log n$ nmbers before the excciding the maximal size ($n$). That proves that the number of times vertex changed his pointer is bounded by $\log n$, and the total number of actions costs at most $\Theta\left( n\log n \right)$. 
+Hence, if we list down the sizes of the $x$'s set at the moments merging occurred, we could write only $\log n$ numbers before exceeding the maximal size ($n$). That proves that the number of times the vertex changed his pointer is bounded by $\log n$, and the total number of actions costs at most $\Theta\left( n\log n \right)$. 
 
-Noitce that that in the case in which $m = O\left( 1 \right)$ we will still pay much more than nedded. Any how, the next implemmntion is going to give us (enventuly) much faster algorithm.
+Notice that in the case in which $m = O\left( 1 \right)$, we will still pay much more than needed. Anyhow the next implementation is going to give us (eventually) a much faster algorithm.
 
-\begin{figure}[h]
-  \centering
-  \begin{subfigure}[b]{0.25\textwidth}
-    \begin{tikzpicture}
-      \node[main node](1){$1$};
-      \node[main node](2)[below = 1cm of 1]{$2$};
-      \node[main node](3)[right = 1cm of 1]{$3$};
-      \node[main node](4)[below = 1cm of 3]{$4$};
+%\begin{figure}[h]
+  %\centering
+  %\begin{subfigure}[b]{0.25\textwidth}
+    %\begin{tikzpicture}
+      %\node[main node](1){$1$};
+      %\node[main node](2)[below = 1cm of 1]{$2$};
+      %\node[main node](3)[right = 1cm of 1]{$3$};
+      %\node[main node](4)[below = 1cm of 3]{$4$};
+%
+      %\draw[edge] (1) to (2);
+      %\draw[edge] (1) to (4);
+      %\draw[edge] (4) to (1);
+      %\draw[edge] (4) to (3);
+      %\draw[edge] (1) to (3);
+      %\draw[edge] (3) to (1);
+    %\end{tikzpicture}  
+    %\\ \\  
+  %\end{subfigure} 
+  %\begin{subfigure}[b]{0.49\textwidth}
+    %\begin{tikzpicture}
+      %\foreach \index/\list in {1/{2,3,4,null}, 2/{null}, 3/{1, null}, 4/{1, 3, null}} {
+	%\node[array element] (aux) at (0,-\index) {\index};
+%	%\LinkedList{\list}
+      %}
+    %\end{tikzpicture}  
+  %\end{subfigure}
+  %\caption{Presenting $G$ by an array of adjacency lists.  }
+%\end{figure}
 
-      \draw[edge] (1) to (2);
-      \draw[edge] (1) to (4);
-      \draw[edge] (4) to (1);
-      \draw[edge] (4) to (3);
-      \draw[edge] (1) to (3);
-      \draw[edge] (3) to (1);
-    \end{tikzpicture}  
-    \\ \\  
-  \end{subfigure} 
-  \begin{subfigure}[b]{0.49\textwidth}
-    \begin{tikzpicture}
-      \foreach \index/\list in {1/{2,3,4,null}, 2/{null}, 3/{1, null}, 4/{1, 3, null}} {
-	\node[array element] (aux) at (0,-\index) {\index};
-	\LinkedList{\list}
-      }
-    \end{tikzpicture}  
-  \end{subfigure}
-  \caption{ Persenting $G$ by array of adjacency lists.  }
-\end{figure}
 
-
-\paragraph{Forest Immplemntation.} Insted of associating each set with a linked list, one might attach a forst. The vertices holds the values of the items, and we could think about the root of each tree as the represtive of the tree. If two vertices $x,y$ share the same root than it's clear than they are belong to the same set. At the initialliztion stage Make-Set defines the vertices as roots of trival trees (single root without any descendants), Then the find method is: 
+\paragraph{Forest Implementation.} Instead of associating each set with a linked list, one might attach a first. The vertices hold the values of the items, and we could think about the root of each tree as the represtive of the tree. If two vertices $x,y$ share the same root, then it's clear they belong to the same set. At the initialization stage, Make-Set defines the vertices as roots of trivial trees (single root without any descendants). Then the find method is: 
 \begin{algbox}{Find$(x)$}
   \begin{algorithm}[H]
     \While{ $ \pi(x) \neq  $ None } { 
@@ -1921,9 +1921,9 @@ Noitce that that in the case in which $m = O\left( 1 \right)$ we will still pay 
   \end{algorithm}    
 \end{algbox}
 
-We will see that for having the last improvment one slightly change should be setted. But before that lets try to mimic the decsion rule above. Even those we could define a size field for each root and get the same algortihm as above, Insted we will define another field which from first sight looks indentical. Let the rank$\left( v \right)$ of the node $v$ be hight of the $v$. Recall that tree's height define to be the logest path from the root to one of the vertices. 
+We will see that a slight change should be set for the last improvement. But before that, let's try to mimic the decision rule above. Even those, we could define a size field for each root and get the same algorithm as above. Instead, we will define another field that, from first sight, looks identical. Let the rank$\left( v \right)$ of the node $v$ be the height of the $v$. Recall that tree's height defines to be the longest path from the root to one of the vertices. 
 
-\paragraph{Union By Rank Huristic\protect\footnote{Corman calls that rule an hursitic, but please noitce that huristics are usually refers to methods that seemes to be efficent ampiricly, yet it doesn't clear how to prove their advantage mathmatclly. Still, in that course we stick to Corman triminalogy.}}. So as we said, first we are going to ensure how to mimic the $\log n$ complexitiy proof under the forst immplemntion. 
+\paragraph{Union By Rank Huristic\protect\footnote{Corman calls that rule a heuristic, but please notice that heuristics usually refers to methods that seem to be efficient empirically, yet it doesn't clear how to prove their advantage mathematically. Still, in that course, we stick to Corman terminology.}}. So as we said, first, we will ensure how to mimic the $\log n$ complexity proof under the first implementation. 
 
 \begin{algbox}{Uinon$(x,y)$}
   \begin{algorithm}[H]
@@ -1941,19 +1941,22 @@ We will see that for having the last improvment one slightly change should be se
     }
   \end{algorithm}
 \end{algbox}
-The decison rule at line (4-8) preserves the correcntess of the fowlling claim:
-Claim, let $S(r)$ a lower bound over the the size of tree at rank $r$. Then $M\left( r+1 \right) \ge 2M\left( r \right)$. The proof left as excrsice. Assuming the correctness of the claim it holds that $M\left( \log n \right) \ge n $. So it immidetly followes that the running time take at most $n\log n$. Actully we could get even a tighter bound by noitce that a single query is bounded by the rank. and therefore, the total cost is at most $m \cdot \log n$. 
+The decision rule in lines (4-8) preserves the correctness of the following claim:
+Claim, let $M(r)$ a lower bound over the size of the tree at rank $r$. Then $M\left( r+1 \right) \ge 2M\left( r \right)$. The proof is left as an exercise. Assuming the correctness of the claim, it holds that $M\left( \log n \right) \ge n $. So it immediately follows that the running time takes at most $n\log n$. We could get even tighter bound by noticing that the rank bounds a single query. And therefore, the total cost is at most $m \cdot \log n$. 
 
-\paragraph{Path Compression Huristic.} The final trick to yield a sub-logaritmic time algorithm is to compress the bruch on which we have allready passed and by that reduce the number of duplicated transitions.     
+\paragraph{Path Compression Heuristic.} The final trick to yield a sub-logarithmic time algorithm is to compress the brunch on which we have already passed and reduce the number of duplicated transitions.     
 \begin{algbox}{Find$(x)$}
   \begin{algorithm}[H]
     \If{ $ \pi\left( x \right) \neq $ None}{
       $\pi\left( x \right) \leftarrow $Find$\left( \pi\left( x \right) \right)$
-    } 
+    }
+    \Else {
+	Return $x$
+    }
     Return $\pi\left(x\right)$ 
   \end{algorithm}    
 \end{algbox}
-Let's analyses the queris cost by counting the edges on which the algorithm went over. Denote by find($v^{(t)}$) the query which was requested at time $t$ and let $P^{(t)}=v,v_{2} .. v_{k}$ be the vertices path on which the algorithm climbe from $v$ up to his root. Now, observes that by comperssing the path the ranks of the verticis in $P$ must be distincit. Now consdier any parttion of the line into set of buckets (segements) $\mathcal{B}= \left\{ B_{i} | B_{i} = [b_{i} ,b_{i+1}] \right\}$. 
+Let's analyze the query cost by counting the edges on which the algorithm went over. Denote by finding ($v^{(t)}$) the query which was requested at time $t$ and let $P^{(t)}=v,v_{2} .. v_{k}$ be the vertices path on which the algorithm climbed from $v$ up to his root. Now, observes that by compressing the path, the ranks of the vertices in $P$ must be distinct. Now consider any partition of the line into a set of buckets (segments) $\mathcal{B}= \left\{ B_{i} | B_{i} = [b_{i},b_{i+1}] \right\}$. 
 
 
 \begin{equation*}
@@ -1967,25 +1970,41 @@ Let's analyses the queris cost by counting the edges on which the algorithm went
   \end{split}
 \end{equation*}
 
-For example conisder our last calculation, In which we divided the ranges of ranks into $\log n$ buckets at length $1$, $B_{r} = \{r\}$, then as the size of the subtrees at rank $r$ is at least $2^{r}$ we have that the size of $|B_{r}|$ is at most $\frac{n}{2^{r}}$ and that's why:   
+For example, consider our last calculation, In which we divided the ranges of ranks into $\log n$ buckets at length $1$, $B_{r} = \{r\}$, then as the size of the subtrees at rank $r$ is at least $2^{r}$ we have that the size of $|B_{r}|$ is at most $\frac{n}{2^{r}}$ and that's why:   
 \begin{equation*}
   \begin{split}
     \sum_{ b \in \mathcal{B} }{ \sum_{ rank(u) \in B}{ |B| } } &\le \sum_{ b \in \{ [i] | i \in [ \log n ]  \}  }{ \frac{n}{2^{r}} \cdot 1    } \le  2\cdot n
   \end{split}
 \end{equation*}
 
-So the total time is at most $m + m \log n + 2n = \Theta\left( n \right)$. And if we would take the $ \log \log n $ buckets such that $B_{i}$ store the  $i$th $ n /  \log \log n $ numbers. Then the sum above will become:   
+So the total time is at most $m + m \log n + 2n = \Theta\left( n \right)$. And if we would take the $ \log \log n $ buckets such that $B_{i}$ stores the  $i$th $ \log n /  \log \log n $ numbers. Then the sum above will become:   
 
 \begin{equation*}
   \begin{split}
     & \sum_{ b \in \mathcal{B} }{ \sum_{ rank(u) \in B}{ |B| } }  \le \sum_{ b \in \{ B \in \mathcal{B}  \}  }{ \frac{n}{2^{ \frac{  i \log n} { \log \log n  }  }} \cdot \log \log n }    \le  2\cdot n \\ 
     & \le n  \sum_{ b \in \{ B \in \mathcal{B}  \}  }{ 1 \cdot  \cdot \log \log n }    \le  n \left( \log \log n  \right)^{2}   \\
-       & \Rightarrow m + m \cdot \log \log n + n \left( \log \log n  \right)^{2}  
+    & \Rightarrow m + m \cdot \log \log n + n \left( \log \log n  \right)^{2}  
   \end{split}
 \end{equation*}
 
-Could we done even better? Yes, Consider a nonunifom parttion $ B_{r} = \{ r , r+ 1 ... 2^{r} \} $. So first qustion one should ask what is $ |\mathcal{B}|$ ? 
+Could we do even better? Yes, Consider a nonunifom parttion $ B_{r} = \{ r,  r+ 1 ... 2^{r} \} $. So first question one should ask is, what is $ |\mathcal{B}|$? ( $ \log^{*}\left( n \right) $ ). On the other hand, the number of vertices in which their rank belongs to the $i$th bucket is at most:    
+\begin{equation*}
+  \begin{split}
+    & \text{ maximal number of nodes at rank } r + \text{ maximal number of nodes at rank } (r+1) + \\ 
+    & \text{ maximal number of nodes at rank } (r+2) + ... +  \text{ maximal number of nodes at rank } 2^{r} \\  
+    & \frac{n}{2^{r}} + \frac{n}{2^{r+1}} + \frac{n}{2^{r+2}} + ... + \frac{n}{2^{2^{r}}} \Rightarrow | \left\{ v \in B_{r} \right\} | \le 2 \cdot \frac{n}{2^{r}} 
+  \end{split}
+\end{equation*}
+
+\begin{equation*}
+  \begin{split}
+    \sum_{ b \in \mathcal{B} }{ \sum_{ rank(u) \in B}{ |B| } }  \le  \sum_{ b \in \mathcal{B} }{ \sum_{ rank(u) \in B}{ \frac{2n}{2^{r}} |B|  } }  \le \sum_{ b \in \mathcal{B} }{ \sum_{ rank(u) \in B}{ 2n } } \le \log^{(*)}\left( n \right) \cdot 2n 
+  \end{split}
+\end{equation*}
+
+
 
 \input{../texlib/tail}
+
 
 \newpage
