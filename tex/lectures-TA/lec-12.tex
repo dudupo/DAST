@@ -102,34 +102,34 @@ Hence, if we list down the sizes of the $x$'s set at the moments merging occurre
 
 Notice that in the case in which $m = O\left( 1 \right)$, we will still pay much more than needed. Anyhow the next implementation is going to give us (eventually) a much faster algorithm.
 
-\begin{figure}[h]
-  \centering
-  \begin{subfigure}[b]{0.25\textwidth}
-    \begin{tikzpicture}
-      \node[main node](1){$1$};
-      \node[main node](2)[below = 1cm of 1]{$2$};
-      \node[main node](3)[right = 1cm of 1]{$3$};
-      \node[main node](4)[below = 1cm of 3]{$4$};
-
-      \draw[edge] (1) to (2);
-      \draw[edge] (1) to (4);
-      \draw[edge] (4) to (1);
-      \draw[edge] (4) to (3);
-      \draw[edge] (1) to (3);
-      \draw[edge] (3) to (1);
-    \end{tikzpicture}  
-    \\ \\  
-  \end{subfigure} 
-  \begin{subfigure}[b]{0.49\textwidth}
-    \begin{tikzpicture}
-      \foreach \index/\list in {1/{2,3,4,null}, 2/{null}, 3/{1, null}, 4/{1, 3, null}} {
-	\node[array element] (aux) at (0,-\index) {\index};
-	\LinkedList{\list}
-      }
-    \end{tikzpicture}  
-  \end{subfigure}
-  \caption{Presenting $G$ by an array of adjacency lists.  }
-\end{figure}
+%\begin{figure}[h]
+  %\centering
+  %\begin{subfigure}[b]{0.25\textwidth}
+    %\begin{tikzpicture}
+      %\node[main node](1){$1$};
+      %\node[main node](2)[below = 1cm of 1]{$2$};
+      %\node[main node](3)[right = 1cm of 1]{$3$};
+      %\node[main node](4)[below = 1cm of 3]{$4$};
+%
+      %\draw[edge] (1) to (2);
+      %\draw[edge] (1) to (4);
+      %\draw[edge] (4) to (1);
+      %\draw[edge] (4) to (3);
+      %\draw[edge] (1) to (3);
+      %\draw[edge] (3) to (1);
+    %\end{tikzpicture}  
+    %\\ \\  
+  %\end{subfigure} 
+  %\begin{subfigure}[b]{0.49\textwidth}
+    %\begin{tikzpicture}
+      %\foreach \index/\list in {1/{2,3,4,null}, 2/{null}, 3/{1, null}, 4/{1, 3, null}} {
+	%\node[array element] (aux) at (0,-\index) {\index};
+%	%\LinkedList{\list}
+      %}
+    %\end{tikzpicture}  
+  %\end{subfigure}
+  %\caption{Presenting $G$ by an array of adjacency lists.  }
+%\end{figure}
 
 
 \paragraph{Forest Implementation.} Instead of associating each set with a linked list, one might attach a first. The vertices hold the values of the items, and we could think about the root of each tree as the represtive of the tree. If two vertices $x,y$ share the same root, then it's clear they belong to the same set. At the initialization stage, Make-Set defines the vertices as roots of trivial trees (single root without any descendants). Then the find method is: 
@@ -163,14 +163,17 @@ We will see that a slight change should be set for the last improvement. But bef
   \end{algorithm}
 \end{algbox}
 The decision rule in lines (4-8) preserves the correctness of the following claim:
-Claim, let $S(r)$ a lower bound over the size of the tree at rank $r$. Then $M\left( r+1 \right) \ge 2M\left( r \right)$. The proof is left as an exercise. Assuming the correctness of the claim, it holds that $M\left( \log n \right) \ge n $. So it immediately follows that the running time takes at most $n\log n$. We could get even tighter bound by noticing that the rank bounds a single query. And therefore, the total cost is at most $m \cdot \log n$. 
+Claim, let $M(r)$ a lower bound over the size of the tree at rank $r$. Then $M\left( r+1 \right) \ge 2M\left( r \right)$. The proof is left as an exercise. Assuming the correctness of the claim, it holds that $M\left( \log n \right) \ge n $. So it immediately follows that the running time takes at most $n\log n$. We could get even tighter bound by noticing that the rank bounds a single query. And therefore, the total cost is at most $m \cdot \log n$. 
 
 \paragraph{Path Compression Heuristic.} The final trick to yield a sub-logarithmic time algorithm is to compress the brunch on which we have already passed and reduce the number of duplicated transitions.     
 \begin{algbox}{Find$(x)$}
   \begin{algorithm}[H]
     \If{ $ \pi\left( x \right) \neq $ None}{
       $\pi\left( x \right) \leftarrow $Find$\left( \pi\left( x \right) \right)$
-    } 
+    }
+    \Else {
+	Return $x$
+    }
     Return $\pi\left(x\right)$ 
   \end{algorithm}    
 \end{algbox}
@@ -195,7 +198,7 @@ For example, consider our last calculation, In which we divided the ranges of ra
   \end{split}
 \end{equation*}
 
-So the total time is at most $m + m \log n + 2n = \Theta\left( n \right)$. And if we would take the $ \log \log n $ buckets such that $B_{i}$ stores the  $i$th $ n /  \log \log n $ numbers. Then the sum above will become:   
+So the total time is at most $m + m \log n + 2n = \Theta\left( n \right)$. And if we would take the $ \log \log n $ buckets such that $B_{i}$ stores the  $i$th $ \log n /  \log \log n $ numbers. Then the sum above will become:   
 
 \begin{equation*}
   \begin{split}
