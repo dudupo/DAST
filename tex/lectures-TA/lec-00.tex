@@ -115,17 +115,18 @@ Which is exactly what we wanted.
 \section{Examples with proofs.}
 % EXAMPLES WITH PROOFS
 
-\paragraph{Claim} \(n = O(2^n)\)
+\begin{claim} \(n = O(2^n)\)
+\end{claim}
 (This must seem very silly, but even though we have a strong feeling it’s true, we still need to learn how to PROVE it)
-Proof. We will prove by induction that \( \forall n \ge 1 \) , \(2^n \ge n\), and that will suffice.
+\begin{proof} We will prove by induction that \( \forall n \ge 1 \) , \(2^n \ge n\), and that will suffice.
 Basis: \(n = 1\), so it is clear that: \(n = 1 < 2 = 2^n\)
 Assumption: Assume that \(n < 2^n\) for some \(n\).
 Step: We will prove for \(n + 1\). It holds that:
 \begin{equation*}
 n + 1 < 2^{n} + 1 < 2^n + 2^n = 2^{n+1}
 \end{equation*}
-
-\paragraph{Claim}
+\end{proof}
+\begin{claim}
 Let $p(n)$ be a polynomial of degree $d$ and let $q(n)$ be a polynomial
 of degree $k$. Then:
 \begin{enumerate}
@@ -133,7 +134,8 @@ of degree $k$. Then:
 \item $d\geq k\Rightarrow p(n)=\Omega(q(n))$ (an exercise)
 \item $d=k\Rightarrow p(n)=\Theta(g(n))$ (an exercise)
 \end{enumerate}
-Proof (Of 1) First, let's write down $p(n), g(n)$ explicitly:
+\end{claim}
+\begin{proof}Proof (Of 1) First, let's write down $p(n), g(n)$ explicitly:
 
 
 % \begin{abstract}
@@ -151,7 +153,7 @@ Now let's manipulate their quotient:
 \leq\frac{\sum_{i=0}^{d}\alpha_{i}}{\beta_{k}} < \infty
 \]
 And now we can use the lemma that we have proved earlier. 
-
+\end{proof}
 
 \section{Logarithmic Rules.}
 
@@ -167,7 +169,7 @@ And so we get that:
 For every $x,a,b\in\mathbb{R},$ we have that $log_{a}x=\Theta(log_{b}x)$
 \end{remark}
 
-\paragraph{Example.} Let \(f(n)\) be defined as:
+\begin{example} Let \(f(n)\) be defined as:
 \begin{equation*}
 f(n) = \left\{ \begin{array}{rcl}
 & f\left( \lfloor  \frac{n}{2} \rfloor \right) + 1 & \mbox{for }  n > 1  \\
@@ -176,7 +178,7 @@ f(n) = \left\{ \begin{array}{rcl}
 \end{equation*}
 Let’s find an asymptotic upper bound for \(f(n)\). let's guess \( f(n) = O(\log(n)) \).
 
-Proof.  We’ll prove by strong induction that : \(f(n) < c \log(n) - 1\) for \(c =8 \) And that will be enough (why? This implies \(f(n) = O(\log(n))\)).
+\begin{proof}  We’ll prove by strong induction that : \(f(n) < c \log(n) - 1\) for \(c =8 \) And that will be enough (why? This implies \(f(n) = O(\log(n))\)).
 Base: \(n = 2\). Clearly, \(f(2) = 6 < 8 \)
 Assumption: Assume that for every m < n, this claim holds.
 Step: Then we get:
@@ -185,7 +187,8 @@ Step: Then we get:
     \le c\log\left(n\right) \ \ \ \text{for } c = 8
 \end{split}
 \end{equation*}
-
+\end{proof}
+\end{example}
 
 % \section{Another Example.}
 
