@@ -157,7 +157,7 @@ To understand the real power of the dividing and conquer method, let's first exa
 \end{equation*}
 We will call the number of iteration till the stopping condition the recursion height, and we will denote it by \(h\) . What should be the recursion height? \( 2^{h} = n \Rightarrow h =\log\left(n\right) \). So in total we get that multiplication could be achieved by performs \( \Theta\left(n^2\right)\) operations. 
 \end{example}
-\paragraph{Karatsuba algorithm.} Many years it's was believed that multiplication can't done by less then \( \Omega \left( n^2 \right) \) time; until Karatsuba found the following algorithm. denote by \begin{equation*}
+\paragraph{Karatsuba algorithm.}  Many years it's was believed that multiplication can't done by less then \( \Omega \left( n^2 \right) \) time; until Karatsuba found the following algorithm \cite{Karatsuba1963MultiplicationOM}. Denote by \begin{equation*}
 z_0, z_1, z_2 \leftarrow x_{l}y_{r}, x_{l}y_{r} + x_{r}y_{l}, x_{r}y_{r}
 \end{equation*}Notice that \( z_1 = \left(x_{l}+x_{r}\right)\left(y_{l}+y_{r}\right) - z_{0} -z_{1} \). summarize the above yields the following pseudo code. 
 
