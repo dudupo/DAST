@@ -98,8 +98,8 @@ T\left(n\right) & =  \sum_{k=1}^{\log{n}}{n\cdot\log \left( \frac{n}{2^k}\right)
 \begin{example}
 Consider merge sort variation such that instead of splitting the array into two equals parts it's split them into different size arrays. The first one contains \( \frac{n}{10} \) elements while second contains the others \( \frac{9n}{10}\) elements.
 
-\begin{algbox}{non-equal-merge alg.}
-\begin{algorithm}[H]
+%\begin{algbox}{non-equal-merge alg.}
+\begin{algorithm}
 \SetAlgoLined
 \KwResult{returns the sorted permutation of \(x_1 ... x_n \in \mathbb{R}^n \)  }
  \ \\ 
@@ -118,7 +118,7 @@ Consider merge sort variation such that instead of splitting the array into two 
   
  }
 \end{algorithm}
-\end{algbox}
+%\end{algbox}
 Note, that the master theorem achieves an upper bound, 
 \begin{equation*}
     \begin{split}
@@ -164,8 +164,8 @@ It was once thought that multiplication could not be done in less than $\Omega\l
 z_0, z_1, z_2 \leftarrow x_{l}y_{r}, x_{l}y_{r} + x_{r}y_{l}, x_{r}y_{r}
 \end{equation*}Notice that \( z_1 = \left(x_{l}+x_{r}\right)\left(y_{l}+y_{r}\right) - z_{0} -z_{1} \). summarize the above yields the following pseudo code. 
 
-\begin{algbox}{Karatsuba alg.}
-\begin{algorithm}[H]
+%\begin{algbox}{Karatsuba alg.}
+\begin{algorithm}
 \SetAlgoLined
 \KwResult{returns the multiplication \(x\cdot y\) where \(x,y \in \mathbb{F}^{n}_{2}\) }
  \ \\ 
@@ -183,7 +183,7 @@ z_0, z_1, z_2 \leftarrow x_{l}y_{r}, x_{l}y_{r} + x_{r}y_{l}, x_{r}y_{r}
  return \(z_0 + 2^{\frac{n}{2}}z_1 + 2^{n}z_2\) \ \ \ \ \  // \( O \left(n\right) \). 
  }
 \end{algorithm}
-\end{algbox}
+%\end{algbox}
 Let's analyze the running time of the algorithm above, assume that \(n = 2^{m}\) and then the recursive relation is 
 \begin{equation*}
     \begin{split}
