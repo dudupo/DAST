@@ -119,13 +119,14 @@ That is, we say that \(f(n) = \Theta(g(n))\) if:
 \begin{example} For every \(f : \mathbb{N} \rightarrow \mathbb{R}, f(n) = \Theta(f(n))\) \end{example}
 \begin{example} If \(p(n) = n^5\) and \(q(n) = 0.5n^5 + n\), then \(p(n) = \Theta(q(n))\)\end{example}
 But why is this example true? This next Lemma helps for intuition:
-\paragraph{Lemma} \( \lim_{n \rightarrow \infty} \frac{f(n)}{g(n)} < \infty \Rightarrow f(n) = O(g(n)) \)
+\begin{lemma}
+  \( \lim_{n \rightarrow \infty} \frac{f(n)}{g(n)} < \infty \Rightarrow f(n) = O(g(n)) \)
+\end{lemma}
 
-
-Proof. Assume that \(l = \lim_{n \rightarrow \infty} \frac{f(n)}{g(n)} < \infty\). Then for some \(N \in \mathbb{N}\) we have that for all \(n \ge N\):
+\begin{proof} Assume that \(l = \lim_{n \rightarrow \infty} \frac{f(n)}{g(n)} < \infty\). Then for some \(N \in \mathbb{N}\) we have that for all \(n \ge N\):
 \( \frac{f(n)}{g(n)} < l + 1 \Rightarrow f(n) < (l + 1) · g(n) \)
 Which is exactly what we wanted.
-
+\end{proof}
 \section{Examples with proofs.}
 % EXAMPLES WITH PROOFS
 
