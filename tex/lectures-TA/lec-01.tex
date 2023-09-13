@@ -26,7 +26,7 @@ Examples of functions \(f\) might be: file saving, summing numbers, or posting a
 
 \begin{example} Before dealing with the hard problem, let us face the naive algorithm to find the maximum of a given array.
 
-\begin{algorithm}[h]
+  \begin{algorithm}[h]
 % \SetAlgoLined
 \KwResult{returns the maximum of \(a_1 ... a_n \in \mathbb{R}^n \)  }
  \ \\ 
@@ -39,10 +39,10 @@ Examples of functions \(f\) might be: file saving, summing numbers, or posting a
         \\
         \ \\ 
         \If { \(j = n+1\) }{
-        return \(a_i\)
+        \Return \(a_i\)
         }
     } 
-return \( \Delta \) 
+\Return \( \Delta \) 
  \caption{naive maximum alg.}
 \end{algorithm}
 
@@ -76,8 +76,8 @@ What is the Loop Invariant here? \textit{"at the \(i\)-th iteration, \(b = \max{
 
 
 
-%\begin{algbox}{Sub-Array. \(O(n^2)\) space alg.}
-  \begin{algorithm}[H]
+%\begin{algbox}
+\begin{algorithm}[H]{Sub-Array. \(O(n^2)\) space alg.}
 % \SetAlgoLined
 \KwResult{print the \( \max{\{ a_i ... a_j \} }\) for each query \((i,j) \in Q \) }
  \ \\ 
