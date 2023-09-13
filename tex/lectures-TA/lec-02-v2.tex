@@ -2,7 +2,7 @@
 \begin{document}
 \chapter{Recursive Analysis - Recitation} 
 %\author{Master theorem and recursive trees.}
-\makechapter
+\@makechapterhead
  
 \begin{abstract}
     One of the standard methods to analyze the running time of algorithms is to express recursively the number of operations that are made. In the following recitation, we will review the techniques to handle such formulation (solve or bound).  
@@ -134,12 +134,7 @@ Let \(n_i\) be the size of the subset which is processed at the \(i\)-th node. T
     \sum_{i \in \text{k level}}{n_i} \le n
 \end{equation*}
 \end{claim}
-\begin{proof} Assuming otherwise implies that there exist index \(j\) such that \(x_j\) appear in at least two different nodes in the same level, denote them by \(u,v\). As they both are in the same level, non of them can be ancestor of the other. denote by \(m \in \mathbb{N}\) the input size of the sub array which is processed by the the lowest common ancestor of \(u\) and \(v\), and by \(j^\prime \in [m]\) the position of \(x_j\) in that sub array. By the definition of the algorithm it steams that \(j^\prime < \frac{m}{10} \) and \(j^\prime \ge \frac{m}{10}\). contradiction.  
-
-
- The height of the tree is bounded by \( \log_{\frac{9}{10}} \left(n\right) \). Therefore the total work equals \( \Theta \left( n\log n \right) \).    
-
-Thus, the total running time equals to:
+\begin{proof} Assuming otherwise implies that there exist index \(j\) such that \(x_j\) appear in at least two different nodes in the same level, denote them by \(u,v\). As they both are in the same level, non of them can be ancestor of the other. denote by \(m \in \mathbb{N}\) the input size of the sub array which is processed by the the lowest common ancestor of \(u\) and \(v\), and by \(j^\prime \in [m]\) the position of \(x_j\) in that sub array. By the definition of the algorithm it steams that \(j^\prime < \frac{m}{10} \) and \(j^\prime \ge \frac{m}{10}\). contradiction.  The height of the tree is bounded by \( \log_{\frac{9}{10}} \left(n\right) \). Therefore the total work equals \( \Theta \left( n\log n \right) \). Thus, the total running time equals to:
 \begin{equation*}
     T(n) = \sum_{k \in \text{levels}}{\sum_{i \in \text{k level}}{f\left(n_i\right)}} = \sum_{k \in \text{levels}}{\sum_{i \in \text{k level}}{n_i}} \le n\log n  
 \end{equation*}
@@ -150,19 +145,20 @@ Thus, the total running time equals to:
 \ctt{The current section repeats over part of the content above as it was designed to be self-contained. Also, notice that this part is considered as optional material and you are not required to remember the following algorithms for the final exam. Its primary goal is to expose you to "strange" running times. }
 
 
-\paragraph{Leading Example. numbers multiplication}
+\begin{example}[Leading Example. numbers multiplication.]
 Let \(x,y\) be an \(n\)'th digits numbers over \( \mathbb{F}^{n}_{2} \). It's known that summing such a pair requires a linear number of operations. Write an algorithm that calculates the multiplication \(x\cdot y\). 
-
-\paragraph{Example. Long multiplication.} 
+\end{example}
+\begin{example}[Long multiplication.]
 To understand the real power of the dividing and conquer method, let's first examine the known solution from elementary school.  In that technics, we calculate the power order and the value of the digit separately and sum up the results at the end. Formally: \(x \leftarrow \sum_{i=0}^{n}{x_{i}2^{i}}\) Thus, \[ x\cdot y =\left( \sum_{i=0}^{n}{x_{i}2^{i}} \right) \left( \sum_{i=0}^{n}{y_{i}2^{i}} \right) =  \sum_{i,j \in [n]\times[n] }{ x_{i}y_{j}2^{i+j} }\] the above is a sum up over \(n^2\) numbers, each at length \(n\) and therefore the total running time of the algorithm is bounded by \( \theta(n^3) \). \ctt{ notice that adding \(1\) to \(1111111111...1\) requires \(O(n)\) }.
-
-\paragraph{Example. Recursive Approach.} We could split \(x\) into the pair \(x_{l}, x_{r}\) such that \(x = x_{l} + 2^{\frac{n}{2}}x_{r} \). Then the multiplication of two \(n\)-long numbers will be reduced to sum up over multiplication of a quartet. Each at length \(\frac{n}{2}\). Thus, the running time is given by \begin{equation*}
+\end{example}
+\begin{example}[Recursive Approach.] We could split \(x\) into the pair \(x_{l}, x_{r}\) such that \(x = x_{l} + 2^{\frac{n}{2}}x_{r} \). Then the multiplication of two \(n\)-long numbers will be reduced to sum up over multiplication of a quartet. Each at length \(\frac{n}{2}\). Thus, the running time is given by \begin{equation*}
     \begin{split}
  x\cdot y & = \left(x_{l} + 2^{\frac{n}{2}}x_{r}\right)\left(y_{l} + 2^{\frac{n}{2}}y_{r}\right) = x_{l}y_{l} + 2^{\frac{n}{2}} \left( x_{l}y_{r} + x_{r}y_{l} \right) + 2^{n}x_{r}y_{r} \\ &  \Rightarrow T\left(n\right)  =4T\left(\frac{n}{2}\right)+c\cdot n=4\cdot4T\left(\frac{n}{4}\right)+4c\cdot\frac{n}{2}+c\cdot n = ... = \\ & c\cdot n\left(1+\frac{4}{2}+\left(\frac{4}{2}\right)^{2}...+\left(\frac{4}{2}\right)^{h-1}\right) + 4^{h}T(1) = n^{2} + c\cdot n\cdot\frac{2^{h}-1}{2-1}
     \end{split}
 \end{equation*}
 We will call the number of iteration till the stopping condition the recursion height, and we will denote it by \(h\) . What should be the recursion height? \( 2^{h} = n \Rightarrow h =\log\left(n\right) \). So in total we get that multiplication could be achieved by performs \( \Theta\left(n^2\right)\) operations. 
-\paragraph{Example. Karatsuba algorithm.} Many years it's was believed that multiplication can't done by less then \( \Omega \left( n^2 \right) \) time; until Karatsuba found the following algorithm. denote by \begin{equation*}
+\end{example}
+\paragraph{Karatsuba algorithm.} Many years it's was believed that multiplication can't done by less then \( \Omega \left( n^2 \right) \) time; until Karatsuba found the following algorithm. denote by \begin{equation*}
 z_0, z_1, z_2 \leftarrow x_{l}y_{r}, x_{l}y_{r} + x_{r}y_{l}, x_{r}y_{r}
 \end{equation*}Notice that \( z_1 = \left(x_{l}+x_{r}\right)\left(y_{l}+y_{r}\right) - z_{0} -z_{1} \). summarize the above yields the following pseudo code. 
 
