@@ -114,11 +114,12 @@ What is the Loop Invariant here? \textit{"at the \(i\)-th iteration, \(b = \max{
 \paragraph{ \(O\left(n\log n\right)\) Space Solution.} Example for \(O\left(n\log n + |Q|\log n\right)\) time and \(O\left(n\log n\right)\) space algorithm. Instead of storing the whole matrix, we store only logarithmic number of rows.   
 
 %\begin{algbox}{}
+\begin{algorithm}
 % \SetAlgoLined
-  \Fn( ){FnRecursive}{ 
-
+  \SetKwProg{Fn}{Function}{}{end}
   \caption{Sub-Array. \(O(n \log n )\) space alg.}
 \KwResult{print the \( \max{\{ a_i ... a_j \} }\) for each query \((i,j) \in Q \) }
+\Fn{afunc()}{\\
  \ \\ 
  let \(A \leftarrow \mathbb{M}^{n\times \log n} \) \\ 
  \ \\
@@ -140,6 +141,7 @@ What is the Loop Invariant here? \textit{"at the \(i\)-th iteration, \(b = \max{
     print \( \max { \{ A_{i,2^{t_1}},A_{i+ 2^{t_1}, 2^{t_2} }, ... , A_{i+ 2^{t_1} + 2^{t_2} +.. 2^{t_{l-1}}, 2^{t_l}} \} }\)
 }
 }
+\end{algorithm}
 %\end{algbox}
 
 \input{../texlib/tail}
