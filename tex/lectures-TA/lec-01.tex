@@ -26,10 +26,10 @@ Examples of functions \(f\) might be: file saving, summing numbers, or posting a
 
 \begin{example} Before dealing with the hard problem, let us face the naive algorithm to find the maximum of a given array.
 
-  \begin{algorithm}[h]
-% \SetAlgoLined
+\begin{algorithm}
 \KwResult{returns the maximum of \(a_1 ... a_n \in \mathbb{R}^n \)  }
- \ \\ 
+\caption{naive maximum alg.}
+\Fn{max( $a_{1} .. a_{n}$ )}{
  \For{ \(i \in [n] \) } { 
         \( j \leftarrow 1 \) \\
         \ \\
@@ -42,8 +42,8 @@ Examples of functions \(f\) might be: file saving, summing numbers, or posting a
         \Return \(a_i\)
         }
     } 
-\Return \( \Delta \) 
- \caption{naive maximum alg.}
+\Return \( \Delta \) \\  
+}
 \end{algorithm}
 
 \begin{claim} Consider the while loop. The property: \textit{"for every \(j^\prime < j \le n+1 \Rightarrow a_{j^\prime} \le a_i \)"} is a loop invariant that is associated with it. 
@@ -59,6 +59,7 @@ Assume by induction, that for every \(m < j\) the property is correct, and consi
 \begin{algorithm}[H]
 % \SetAlgoLined
 \KwResult{returns the maximum of \(a_1 ... a_n \in \mathbb{R}^n \)  }
+\Fn{max( $a_{i} .. a_{j}$) }{
  \ \\ 
  let \(b \leftarrow a_1 \) \\ 
  \ \\ 
@@ -66,6 +67,7 @@ Assume by induction, that for every \(m < j\) the property is correct, and consi
         \(b \leftarrow \max \left(b, a_i \right) \)
     } 
  return \( b \) 
+ }
  \caption{maximum alg.}
 \end{algorithm}
 
@@ -81,7 +83,7 @@ What is the Loop Invariant here? \textit{"at the \(i\)-th iteration, \(b = \max{
   \caption{Sub-Array. \(O(n^2)\) space alg.}
 % \SetAlgoLined
 \KwResult{print the \( \max{\{ a_i ... a_j \} }\) for each query \((i,j) \in Q \) }
- \ \\ 
+\Fn{max( $a_i ... a_j$ )}{
  let \(A \leftarrow \mathbb{M}^{n\times n} \) \\ 
  \ \\ 
  \For{\(i \in [n] \) } {
@@ -100,6 +102,7 @@ What is the Loop Invariant here? \textit{"at the \(i\)-th iteration, \(b = \max{
     \(i,j \leftarrow q \) \\
     print \( A_{i,j}\)
 }
+}
 \end{algorithm}
 %\end{algbox}
 
@@ -113,13 +116,12 @@ What is the Loop Invariant here? \textit{"at the \(i\)-th iteration, \(b = \max{
 
 \paragraph{ \(O\left(n\log n\right)\) Space Solution.} Example for \(O\left(n\log n + |Q|\log n\right)\) time and \(O\left(n\log n\right)\) space algorithm. Instead of storing the whole matrix, we store only logarithmic number of rows.   
 
-  \SetKwProg{Fn}{Function}{}{end}
 %\begin{algbox}{}
 \begin{algorithm}
 % \SetAlgoLined
   \caption{Sub-Array. \(O(n \log n )\) space alg.}
 \KwResult{print the \( \max{\{ a_i ... a_j \} }\) for each query \((i,j) \in Q \) }
-\Fn{max( $a_i ... a_j$ )}{\\
+\Fn{max( $a_i ... a_j$ )}{
  let \(A \leftarrow \mathbb{M}^{n\times \log n} \) \\ 
  \ \\
  \For{\(i \in [n] \) } {
