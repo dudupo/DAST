@@ -1,18 +1,17 @@
 \input{../texlib/head}
 \begin{document}
-\title{Recursive Analysis - Recitation 3} 
-\author{Master theorem and recursive trees.}
+\chapter{Recursive Analysis - Recitation} 
+%\author{Master theorem and recursive trees.}
 \maketitle
  
-\abstract{
+\begin{abstract}
     One of the standard methods to analyze the running time of algorithms is to express recursively the number of operations that are made. In the following recitation, we will review the techniques to handle such formulation (solve or bound).  
-  }
+\end{abstract}
 
 
 \section{Bounding recursive functions by hands.} Our primary tool to handle recursive relation is the Master Theorem, which was proved in the lecture. As we would like to have a more solid grasp, let's return on the calculation in the proof over a specific case. 
 Assume that your algorithm analysis has brought the following recursive relation:
-\begin{enumerate}
-    \item \textbf{Example.} \( T\left(n\right)  = \left\{ \begin{array}{rcl}
+    \begin{example}\( T\left(n\right)  = \left\{ \begin{array}{rcl}
 & 4T\left(\frac{n}{2}\right)+c\cdot n & \mbox{for }  n > 1  \\
 & 1 & \mbox{else}  
 \end{array}\right. \). Thus, the running time is given by \begin{equation*}
@@ -21,10 +20,10 @@ Assume that your algorithm analysis has brought the following recursive relation
     \end{split}
 \end{equation*}
 We will call the number of iteration till the stopping condition the recursion height, and we will denote it by \(h\) . What should be the recursion height? \( 2^{h} = n \Rightarrow h =\log\left(n\right) \). So in total we get that the algorithm running time equals \( \Theta\left(n^2\right)\). 
-
+\end{example}
 \textbf{Question}, Why is the term \( 4^{h} T(1) \) so critical? Consider the case \(T\left(n\right) =  4T\left(\frac{n}{2}\right) + c \) .One popular mistake is to forget the final term, which yields a linear solution \( \Theta(n)\) (instead of quadric \( \Theta(n^2)\)).   
 
-    \item \textbf{Example.} \( T\left(n\right)  = \left\{ \begin{array}{rcl}
+    \begin{example}\( T\left(n\right)  = \left\{ \begin{array}{rcl}
 & 3T\left(\frac{n}{2}\right) + c\cdot n & \mbox{for }  n > 1  \\
 & 1 & \mbox{else}  
 \end{array}\right. \), and then the expanding yields: 
@@ -35,8 +34,7 @@ We will call the number of iteration till the stopping condition the recursion h
     \end{split}
 \end{equation*}
 where \(n^{\log 3}  \sim n^{1.58} < n^2 \).
-\end{enumerate}
-
+\end{example}
 
 
 \section{Master Theorem, one Theorem to bound them all. }
@@ -50,10 +48,10 @@ As you might already notice, the same pattern has been used to bound both algori
   \end{enumerate}
 \end{defbox}
 
-\paragraph{Example.}  \( T\left(n\right)  =4T\left(\frac{n}{2}\right)+d\cdot n \Rightarrow
+\begin{example}  \( T\left(n\right)  =4T\left(\frac{n}{2}\right)+d\cdot n \Rightarrow
 T\left(n\right) = \Theta\left(n^2\right)\) according to case (3). And \(T\left(n\right)  = 3T\left(\frac{n}{2}\right) + d\cdot n \Rightarrow T\left(n\right) = \Theta \left( n^{\log_{2}\left(3\right)}\right)\)
 also due to case (3).
-
+\end{example}
 \begin{defbox}{Master Theorem, strong version.} 
 Now, let's generalize the simple version for arbitrary positive \(f\) and let \( a \ge 1, b > 1\). 
 
@@ -70,7 +68,7 @@ Now, let's generalize the simple version for arbitrary positive \(f\) and let \(
 \end{defbox}
 \newcommand{\TT}[2]{#1 T\left(\frac{n}{#2}\right)}
 
-\paragraph{Examples}
+\begin{example}
 \begin{enumerate}
     \item \( T\left(n\right) =  T\left(\frac{2n}{3}\right) + 1 \rightarrow f\left(n\right) = 1 =\Theta \left( n^{\log_{\frac{3}{2}} \left(1\right)}\right)\) matches the second case. i.e  \( T\left(n\right) = \Theta \left( n^{\log_{\frac{3}{2}} \left(1\right)}\log n \right)\).
     
@@ -78,7 +76,7 @@ Now, let's generalize the simple version for arbitrary positive \(f\) and let \(
     
     \item \(T\left(n\right) = 3T\left( n^{\frac{1}{3}}\right) + \log\log n\). let \( m = \log n \Rightarrow T\left( n\right) = T \left(2^m \right) = 3T\left(2^{\frac{m}{3}} \right) + \log m\). denote by \(S = S\left(m\right) = T\left(2^m\right) \rightarrow S\left(m\right) = 3T\left(2^{\frac{m}{3}} \right) + \log m = 3S\left(\frac{m}{3} \right) + \log m\). And by the fact that \(\log m = O\left(m^{\log_{3}\left(3\right)-\varepsilon} \right) \rightarrow T\left(n\right) = T\left(2^m\right) = S\left(m\right) = \Theta\left(m\right) = \Theta\left( \log(n)\right) \).  
 \end{enumerate}
-
+\end{example}
 
 \section{Recursive trees.}
 There are still cases which aren't treated by the \textit{Master Theorem}. For example consider the function \(T\left(n\right) = 2T\left(\frac{n}{2}\right) + n\log n \). Note, that \(f = \Omega\left( n^{\log_{b}(a)} \right) = \Omega\left(n\right)\). Yet for every \( \varepsilon > 0 \Rightarrow f = n\log n = O\left( n^{1+\varepsilon} \right) \) therefore the third case  doesn't hold. How can such cases still be analyzed? 
@@ -97,8 +95,9 @@ T\left(n\right) & =  \sum_{k=1}^{\log{n}}{n\cdot\log \left( \frac{n}{2^k}\right)
   = n\sum_{k=1}^{\log{n}}{ \left( \log n - k \right) } = \\ & = \Theta \left( n \log^2 \left(n\right)  \right) 
 \end{split}
 \end{equation*}
-za
-\paragraph{Example.} Consider merge sort variation such that instead of splitting the array into two equals parts it's split them into different size arrays. The first one contains \( \frac{n}{10} \) elements while second contains the others \( \frac{9n}{10}\) elements.
+
+\begin{example}
+Consider merge sort variation such that instead of splitting the array into two equals parts it's split them into different size arrays. The first one contains \( \frac{n}{10} \) elements while second contains the others \( \frac{9n}{10}\) elements.
 
 \begin{algbox}{non-equal-merge alg.}
 \begin{algorithm}[H]
@@ -128,11 +127,14 @@ Note, that the master theorem achieves an upper bound,
     \end{split}
 \end{equation*}
 Yet, that bound is far from been tight. Let's try to count the operations for each node. Let's try another direction. 
-\paragraph{Claim.} Let \(n_i\) be the size of the subset which is processed at the \(i\)-th node. Then for every \(k\):
+
+\begin{claim}
+Let \(n_i\) be the size of the subset which is processed at the \(i\)-th node. Then for every \(k\):
 \begin{equation*}
     \sum_{i \in \text{k level}}{n_i} \le n
 \end{equation*}
- \textbf{Proof}. Assuming otherwise implies that there exist index \(j\) such that \(x_j\) appear in at least two different nodes in the same level, denote them by \(u,v\). As they both are in the same level, non of them can be ancestor of the other. denote by \(m \in \mathbb{N}\) the input size of the sub array which is processed by the the lowest common ancestor of \(u\) and \(v\), and by \(j^\prime \in [m]\) the position of \(x_j\) in that sub array. By the definition of the algorithm it steams that \(j^\prime < \frac{m}{10} \) and \(j^\prime \ge \frac{m}{10}\). contradiction.  
+\end{claim}
+\begin{proof} Assuming otherwise implies that there exist index \(j\) such that \(x_j\) appear in at least two different nodes in the same level, denote them by \(u,v\). As they both are in the same level, non of them can be ancestor of the other. denote by \(m \in \mathbb{N}\) the input size of the sub array which is processed by the the lowest common ancestor of \(u\) and \(v\), and by \(j^\prime \in [m]\) the position of \(x_j\) in that sub array. By the definition of the algorithm it steams that \(j^\prime < \frac{m}{10} \) and \(j^\prime \ge \frac{m}{10}\). contradiction.  
 
 
  The height of the tree is bounded by \( \log_{\frac{9}{10}} \left(n\right) \). Therefore the total work equals \( \Theta \left( n\log n \right) \).    
@@ -141,9 +143,8 @@ Thus, the total running time equals to:
 \begin{equation*}
     T(n) = \sum_{k \in \text{levels}}{\sum_{i \in \text{k level}}{f\left(n_i\right)}} = \sum_{k \in \text{levels}}{\sum_{i \in \text{k level}}{n_i}} \le n\log n  
 \end{equation*}
-
-
-
+\end{proof}
+\end{example}
 \section{Appendix. Recursive Functions In Computer Science. (Optional)}
 
 \ctt{The current section repeats over part of the content above as it was designed to be self-contained. Also, notice that this part is considered as optional material and you are not required to remember the following algorithms for the final exam. Its primary goal is to expose you to "strange" running times. }
