@@ -26,7 +26,7 @@ Examples of functions \(f\) might be: file saving, summing numbers, or posting a
 
 \begin{example} Before dealing with the hard problem, let us face the naive algorithm to find the maximum of a given array.
 
-\begin{algorithm}[h]
+\begin{algorithm}[H]
 % \SetAlgoLined
 \KwResult{returns the maximum of \(a_1 ... a_n \in \mathbb{R}^n \)  }
  \ \\ 
@@ -56,7 +56,7 @@ Assume by induction, that for every \(m < j\) the property is correct, and consi
 
 \paragraph{Loop Invariant In The Cleverer Alg.} Consider now the linear time algorithm:
 
-\begin{algorithm}[h]
+\begin{algorithm}[H]
 % \SetAlgoLined
 \KwResult{returns the maximum of \(a_1 ... a_n \in \mathbb{R}^n \)  }
  \ \\ 
@@ -75,7 +75,7 @@ What is the Loop Invariant here? \textit{"at the \(i\)-th iteration, \(b = \max{
 \paragraph{Sub-Array Maximum.} Consider the leading example; It's easy to write an algorithm that answers the queries at a total time of a \( O\left( |Q| \cdot n \right) \) by answers separately on each query. Can we achieve a better upper bound?
 
 \begin{algbox}{Sub-Array. \(O(n^2)\) space alg.}
-\begin{algorithm}[h]
+\begin{algorithm}[H]
 % \SetAlgoLined
 \KwResult{print the \( \max{\{ a_i ... a_j \} }\) for each query \((i,j) \in Q \) }
  \ \\ 
@@ -111,7 +111,7 @@ What is the Loop Invariant here? \textit{"at the \(i\)-th iteration, \(b = \max{
 \paragraph{ \(O\left(n\log n\right)\) Space Solution.} Example for \(O\left(n\log n + |Q|\log n\right)\) time and \(O\left(n\log n\right)\) space algorithm. Instead of storing the whole matrix, we store only logarithmic number of rows.   
 
 \begin{algbox}{Sub-Array. \(O(n \log n )\) space alg.}
-\begin{algorithm}[h]
+\begin{algorithm}[H]
 % \SetAlgoLined
 \KwResult{print the \( \max{\{ a_i ... a_j \} }\) for each query \((i,j) \in Q \) }
  \ \\ 
