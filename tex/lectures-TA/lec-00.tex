@@ -47,22 +47,24 @@
     \item The domino metaphor. 
 \end{enumerate}
 \paragraph{The two types of induction, their steps, and why it makes sense} (Strong vs Weak) - Emphasize the change in the induction step.
-\paragraph{Example 1. (Weak induction)} Prove that \( \forall n \in  N \)
+\begin{example}[Weak induction] Prove that \( \forall n \in  N \)
 \( \sum_{i=0}^{n}{i} = \frac{n(n+1)}{2} \).
 
 
-Proof. Base: For \(n = 1\), \(\sum_{i=0}^{1}{1} = 1 = \frac{(1+1)\cdot 1}{2} \).
+\begin{proof} Base: For \(n = 1\), \(\sum_{i=0}^{1}{1} = 1 = \frac{(1+1)\cdot 1}{2} \).
 
 Assumption: Assume that the claim holds for \(n\).
 Step: 
 \begin{equation*}
  \sum_{i=0}^{n+1}{i} = \left( \sum_{i=0}^{n}{i} \right) + n+1 = \frac{n(n+1)}{2} + n + 1 = \frac{n(n+1) + 2\cdot (n+1)}{2} = \frac{(n+1)(n+2)}{2} 
 \end{equation*}
-\paragraph{Example 2. (Weak induction)} Let \(q\in \mathbb{R} / \{1\}\), consider the geometric series \( 1,q,q^2,q^3....q^k...\). Prove that the sum of the first \(k\) elements is \begin{equation*}
+\end{proof}
+\end{example}
+\begin{example}[Weak induction.] Let \(q\in \mathbb{R} / \{1\}\), consider the geometric series \( 1,q,q^2,q^3....q^k...\). Prove that the sum of the first \(k\) elements is \begin{equation*}
      1+q+q^2+...+q^{k-1}+q^k = \frac{q^{k+1}-1}{q-1}
 \end{equation*}
 
-Proof. Base: For \(n = 1\), we get \( \frac{q^{k+1}-1}{q-1} = \frac{q-1}{q-1} = 1\). 
+\begin{proof} Base: For \(n = 1\), we get \( \frac{q^{k+1}-1}{q-1} = \frac{q-1}{q-1} = 1\). 
 Assumption: Assume that the claim holds for \(k\). then:
 Step: 
 \begin{equation*}
@@ -70,40 +72,52 @@ Step:
     1+q+q^2+...+q^{k-1}+q^k + q^{k+1} &=  \frac{q^{k}-1}{q-1} + q^{k+1}  = \frac{q^{k+1}-1 +q^{k+1}\left(q-1\right) }{q-1} = \\ &\frac{\textcolor{red}{q^{k+1}}-1 +q^{k+2} - \textcolor{red}{q^{k+1}}  }{q-1} = \frac{q^{k+2}-1}{q-1} 
 \end{split}
 \end{equation*}
-
-
+\end{proof}
+\end{example}
 % \ctt{Finish the induction proof and add alternative proof by counting. I am not sure what is favored, exposing both ways (at the first example) will make clear that induction is only a single proofing tool and surly not the only one. Yet from didactic point of view, it might confuses. }
 
-\paragraph{Example 3. (Strong induction)} Let there be a chocolate bar that consists of \(n\) square chocolate blocks. Then it takes exactly \(n - 1\) snaps to separate it into the \(n\) squares no matter how we split it.
+\begin{example}[Strong induction] 
+  Let there be a chocolate bar that consists of \(n\) square chocolate blocks. Then it takes exactly \(n - 1\) snaps to separate it into the \(n\) squares no matter how we split it.
 
-Proof. By strong induction. Base: For \(n = 1\), it is clear that we need \(0\) snaps. Assumption: Assume that for \textbf{every} \(m < n \), this claim holds.
+  \begin{proof} By strong induction. Base: For \(n = 1\), it is clear that we need \(0\) snaps. Assumption: Assume that for \textbf{every} \(m < n \), this claim holds.
 
 
 Step: We have in our hand the given chocolate bar with \(n\) square chocolate blocks. Then we may snap it anywhere we like, to get two new chocolate bars: one with some \( k \in [n]\) chocolate blocks and one with \(n - k\) chocolate blocks. From the induction assumption, we know that it takes \(k - 1\) snaps to separate the first bar, and \(n - k - 1\) snaps for the second one. And to sum them up, we got exactly \[ (k - 1) + (n - k - 1) + 1 = n - 1 \] snaps.
-
-
+\end{proof}
+\end{example}
 \section{Asymptotic Notations.}
-\paragraph{Definition} Let \( f, g : \mathbb{N} \rightarrow \mathbb{R}^{+} \). We say that \( f(n) = O(g(n))\)  if \( \exists N \in \mathbb{N}, \exists c > 0 \) s.t. \( \forall n \ge N \ : \ f(n) \le c \cdot g(n)\)
-\paragraph{Example} For exmaple, if \(f(n) = n + 10 \) and \( g(n) = n^2\)
+\begin{definition}
+  Let \( f, g : \mathbb{N} \rightarrow \mathbb{R}^{+} \). We say that \( f(n) = O(g(n))\)  if \( \exists N \in \mathbb{N}, \exists c > 0 \) s.t. \( \forall n \ge N \ : \ f(n) \le c \cdot g(n)\)
+\end{definition}
+\begin{example}
+  For exmaple, if \(f(n) = n + 10 \) and \( g(n) = n^2\)
 , then \(f(n) = O(g(n)) \) (Draw the graphs) for \(n \ge 5 \):
 \(f(n) = n + 10 \le n + 2n = 3n \le n \cdot n = n^2\)
-\paragraph{Definition} Let \( f, g : \mathbb{N} \rightarrow \mathbb{R} \)
+\end{example}
+\begin{definition} 
+Let \( f, g : \mathbb{N} \rightarrow \mathbb{R} \)
 We say that \(f(n) = \Omega(g(n))\) if \(g(n) = O(f(n))\), equivalently,
 \( \exists N \in \mathbb{N}, \exists c > 0 \) s.t. \( \forall n \ge N c_0· g(n) \le f(n) \)
-\paragraph{Example} Also if \( f(n) = 5n\) and \(g(n) = n^2\), then \(f(n) = O(g(n))\) (Now discuss intuition - no matter how much we “stretch” \(f, g\) is still the winner)
-\paragraph{Definition} Let \( f, g : \mathbb{N} \rightarrow \mathbb{R} \), We say that \(f(n) = \Omega(g(n))\) if:
+\end{definition}
+\begin{example}
+  Also if \( f(n) = 5n\) and \(g(n) = n^2\), then \(f(n) = O(g(n))\) (Now discuss intuition - no matter how much we “stretch” \(f, g\) is still the winner)
+\end{example}
+\begin{definition} 
+Let \( f, g : \mathbb{N} \rightarrow \mathbb{R} \), We say that \(f(n) = \Omega(g(n))\) if:
 \( \exists N \in \mathbb{N}, \exists c > 0 \) s.t \( \forall n \ge N \ f(n) \ge c \cdot g(n) \).
-
-\paragraph{Example} For exmaple, if \(f(n) = n + 10\) and \(g(n) = n^2\)
+\end{definition}
+\begin{example}
+For exmaple, if \(f(n) = n + 10\) and \(g(n) = n^2\)
 , then \(g(n) = \Omega(f(n))\)
-
-\paragraph{Definition} Let \( f, g : \mathbb{N} \rightarrow \mathbb{R} \), We say that \(f(n) = \Theta(g(n))\) if:
+\end{example}
+\begin{definition}
+Let \( f, g : \mathbb{N} \rightarrow \mathbb{R} \), We say that \(f(n) = \Theta(g(n))\) if:
 \(f(n) = O(g(n))\) and \(f(n) = \Omega(g(n))\)
 That is, we say that \(f(n) = \Theta(g(n))\) if:
 \( \exists N \in \mathbb{N}, \exists c_1, c_2 > 0\) s.t. \(\forall n \ge N \ c_1\cdot g(n) \le f(n) \le c_2 \cdot g(n)\)
-
-\paragraph{Example} For every \(f : \mathbb{N} \rightarrow \mathbb{R}, f(n) = \Theta(f(n))\)
-\paragraph{Example} If \(p(n) = n^5\) and \(q(n) = 0.5n^5 + n\), then \(p(n) = \Theta(q(n))\)
+\end{definition}
+\begin{example} For every \(f : \mathbb{N} \rightarrow \mathbb{R}, f(n) = \Theta(f(n))\) \end{example}
+\begin{example} If \(p(n) = n^5\) and \(q(n) = 0.5n^5 + n\), then \(p(n) = \Theta(q(n))\)\end{example}
 But why is this example true? This next Lemma helps for intuition:
 \paragraph{Lemma} \( \lim_{n \rightarrow \infty} \frac{f(n)}{g(n)} < \infty \Rightarrow f(n) = O(g(n)) \)
 
