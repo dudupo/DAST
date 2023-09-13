@@ -1,16 +1,16 @@
 \input{../texlib/head}
-\title{Correctness - Recitation 2} 
-\author{Correctness proofs and computational complexity. }
-
- 
-\begin{abstract}
+\begin{document}    
+\chapter{Correctness - Recitation 2} 
+%\author{Correctness proofs and computational complexity. }
+%\maketitle 
+%\begin{abstract}
     Proving algorithms correctness is necessary to guarantee that our code computes its goal for every given input. In that recitation, we will examine several algorithms, analyze theirs running time and memory consumption, and prove they are correct.   
-\end{abstract}
+%\end{abstract}
 
 
-\paragraph{Leading Example.}
+\begin{example}[Leading Example.]
 Consider \(n\) numbers \(a_1,a_2,....,a_n \in \mathbb{R}\). Given set \(Q\) of \(|Q|\) queries, such each query \(q \in Q\) is a tuple \( (i,j) \in [n] \times [n] \). Write an algorithm that calculates the \(\max_{i\le k\le j}{a_k} \). 
-
+\end{example}
 \section{Correctness And Loop Invariant.}
 
 \paragraph{Correctness.} We will say that an algorithm \( \mathcal{A}\) (an ordered set of operations) computes \( f:D_1 \rightarrow D_2 \) if for every \(x \in D_1\) the following equality holds \(f(x) = \mathcal{A}(x)\). Sometimes when it's obvious what is the goal function \(f\), we will abbreviate and say that \( \mathcal{A}\) is correct.       
@@ -24,7 +24,7 @@ Examples of functions \(f\) might be: file saving, summing numbers, or posting a
     \item (optional) Termination. Exiting from the loop carrying information.
 \end{enumerate}
 
-\paragraph{Example.} Before dealing with the hard problem, let us face the naive algorithm to find the maximum of a given array.
+\begin{example} Before dealing with the hard problem, let us face the naive algorithm to find the maximum of a given array.
 
 \begin{algorithm}[H]
 % \SetAlgoLined
@@ -45,10 +45,12 @@ Examples of functions \(f\) might be: file saving, summing numbers, or posting a
 return \( \Delta \) 
  \caption{naive maximum alg.}
 \end{algorithm}
-\paragraph{Claim.} Consider the while loop. The property: \textit{"for every \(j^\prime < j \le n+1 \Rightarrow a_{j^\prime} \le a_i \)"} is a loop invariant that is associated with it. 
 
-\textbf{Proof:} first, the initialization condition holds, as the at the first iteration \(j=1\) and therefore the property is trivial.
+\begin{claim} Consider the while loop. The property: \textit{"for every \(j^\prime < j \le n+1 \Rightarrow a_{j^\prime} \le a_i \)"} is a loop invariant that is associated with it. 
+\end{claime}
+\begin{Proof} first, the initialization condition holds, as the at the first iteration \(j=1\) and therefore the property is trivial.
 Assume by induction, that for every \(m < j\) the property is correct, and consider the \(j\)-th iteration. If back again to line (5), then it means that \( (j-1) < n\) and \( a_{j-1} \le a_{i} \). Combining the above with the induction assumption yields that \(a_i \ge a_{j-1},a_{j-2}, ... a_{1}\).    
+\end{proof}
 
 \paragraph{Correctness Proof.} Split into cases, First if the algorithm return result at line (9), then due to the loop invariant, combining the fact that \( j = n + 1\), it holds that for every \(j^\prime  \le n < j \Rightarrow a_i \ge a_{j^\prime} \)  i.e \(a_i\) is the maximum of \(a_1, .... a_n \). The second case, in which the algorithm returns \( \Delta \) at line number (10) contradicts the fact that \(n\) is finite, and left as an exercise.  the running time is \( O(n^2) \) and the space consumption is \(O(n)\). 
 
@@ -68,7 +70,7 @@ Assume by induction, that for every \(m < j\) the property is correct, and consi
 \end{algorithm}
 
 What is the Loop Invariant here? \textit{"at the \(i\)-th iteration, \(b = \max{ \{ a_1 ... a_{i-1} \} } \)"}. The proof is almost identical to the naive case.   
-
+\end{example}
 \section{Non-Linear Space Complexity Algorithms. }
 \paragraph{Sub-Array Maximum.} Consider the leading example; It's easy to write an algorithm that answers the queries at a total time of a \( O\left( |Q| \cdot n \right) \) by answers separately on each query. Can we achieve a better upper bound?
 
