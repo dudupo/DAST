@@ -134,11 +134,12 @@ of degree $k$. Then:
 \item $d=k\Rightarrow p(n)=\Theta(g(n))$ (an exercise)
 \end{enumerate}
 Proof (Of 1) First, let's write down $p(n), g(n)$ explicitly:
-\[
+
 
 % \begin{abstract}
 %     Combinatorial Review, Induction, and Asymptotic Notations. 
 % \end{abstract}
+\[
 p(n)=\sum_{i=0}^{d}\alpha_{i}n^{i},\ g(n)=\sum_{j=0}^{k}\beta_{j}n^{j}
 \]
 Now let's manipulate their quotient:
@@ -162,9 +163,9 @@ Just a quick reminder of logarithmic rules:
 \item Change of basis: $\frac{log_{a}x}{log_{a}y}=log_{y}x$
 \end{enumerate}
 And so we get that:
-\begin{rem}
+\begin{remark}
 For every $x,a,b\in\mathbb{R},$ we have that $log_{a}x=\Theta(log_{b}x)$
-\end{rem}
+\end{remark}
 
 \paragraph{Example.} Let \(f(n)\) be defined as:
 \begin{equation*}
