@@ -1,8 +1,6 @@
-\title{Data Structures - Recitation 0} 
-\author{Induction and Asymptotic Notations.}
-\date{September 2021}
-\input{tex/texlib/head}
-
+\input{../texlib/head.tex}
+\begin{document}
+\chapter{Induction and Asymptotic Notations.}
  
 
 % \section{Time Planning.}
@@ -78,7 +76,6 @@ Step:
 
 \paragraph{Example 3. (Strong induction)} Let there be a chocolate bar that consists of \(n\) square chocolate blocks. Then it takes exactly \(n - 1\) snaps to separate it into the \(n\) squares no matter how we split it.
 
-
 Proof. By strong induction. Base: For \(n = 1\), it is clear that we need \(0\) snaps. Assumption: Assume that for \textbf{every} \(m < n \), this claim holds.
 
 
@@ -103,7 +100,7 @@ We say that \(f(n) = \Omega(g(n))\) if \(g(n) = O(f(n))\), equivalently,
 \paragraph{Definition} Let \( f, g : \mathbb{N} \rightarrow \mathbb{R} \), We say that \(f(n) = \Theta(g(n))\) if:
 \(f(n) = O(g(n))\) and \(f(n) = \Omega(g(n))\)
 That is, we say that \(f(n) = \Theta(g(n))\) if:
-\( \exists N \in \mathbb{N}, \exists c_1, c_2 > 0\) s.t. \(\forall n \ge N \ c_1\cdotg(n) \le f(n) \le c_2 \cdot g(n)\)
+\( \exists N \in \mathbb{N}, \exists c_1, c_2 > 0\) s.t. \(\forall n \ge N \ c_1\cdot g(n) \le f(n) \le c_2 \cdot g(n)\)
 
 \paragraph{Example} For every \(f : \mathbb{N} \rightarrow \mathbb{R}, f(n) = \Theta(f(n))\)
 \paragraph{Example} If \(p(n) = n^5\) and \(q(n) = 0.5n^5 + n\), then \(p(n) = \Theta(q(n))\)
@@ -287,4 +284,4 @@ Step: Then we get:
 % series. The total area of the rect angle here is 2.
 
 
-\input{tex/texlib/tail}
+\input{../texlib/tail}
