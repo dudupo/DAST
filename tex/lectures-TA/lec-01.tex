@@ -47,8 +47,8 @@ return \( \Delta \)
 \end{algorithm}
 
 \begin{claim} Consider the while loop. The property: \textit{"for every \(j^\prime < j \le n+1 \Rightarrow a_{j^\prime} \le a_i \)"} is a loop invariant that is associated with it. 
-\end{claime}
-\begin{Proof} first, the initialization condition holds, as the at the first iteration \(j=1\) and therefore the property is trivial.
+\end{claim}
+\begin{proof} first, the initialization condition holds, as the at the first iteration \(j=1\) and therefore the property is trivial.
 Assume by induction, that for every \(m < j\) the property is correct, and consider the \(j\)-th iteration. If back again to line (5), then it means that \( (j-1) < n\) and \( a_{j-1} \le a_{i} \). Combining the above with the induction assumption yields that \(a_i \ge a_{j-1},a_{j-2}, ... a_{1}\).    
 \end{proof}
 
