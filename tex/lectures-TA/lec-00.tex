@@ -59,12 +59,12 @@ Indeed, there is. Instead of proving that he can reach the door, he can prove th
 \( \sum_{i=0}^{n}{i} = \frac{n(n+1)}{2} \).
 
 
-\begin{proof} Base: For \(n = 1\), \(\sum_{i=0}^{1}{1} = 1 = \frac{(1+1)\cdot 1}{2} \).
-
-Assumption: Assume that the claim holds for \(n\).
-Step: 
+\begin{proof} Base: For \(n = 1\), \(\sum_{i=0}^{1}{1} = 1 = \frac{(1+1)\cdot 1}{2} \). Assumption: Assume that the claim holds for \(n\).Step: 
 \begin{equation*}
- \sum_{i=0}^{n+1}{i} = \left( \sum_{i=0}^{n}{i} \right) + n+1 = \frac{n(n+1)}{2} + n + 1 = \frac{n(n+1) + 2\cdot (n+1)}{2} = \frac{(n+1)(n+2)}{2} 
+  \begin{split}
+ \sum_{i=0}^{n+1}{i} = & \left( \sum_{i=0}^{n}{i} \right) + n+1 = \frac{n(n+1)}{2} + n + 1 \\
+ = & \frac{n(n+1) + 2\cdot (n+1)}{2} = \frac{(n+1)(n+2)}{2} 
+  \end{split}
 \end{equation*}
 \end{proof}
 \end{example}
