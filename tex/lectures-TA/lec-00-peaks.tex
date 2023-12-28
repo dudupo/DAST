@@ -66,7 +66,7 @@ We are ready to prove the correcntess of the recursive version by induction usin
 
 \begin{enumerate}
   \item Base, single element array. Trivial. 
-  \item Assumption, Assume that for any $m$-length array, $m<n$ we the alg returns a peak. 
+  \item Assumption, Assume that for any $m$-length array, such that $m<n$ the alg returns a peak. 
   \item Step, consider an array $A$ of length $n$. If $A_1$ is a peak, then the algorithm answers affirmatively on the first check, returning $1$ and we are done. If not, namely $A_1 < A_2$, then by using Claim \Cref{claim:subarray} we have that any peak of $A' = A_2, A_3, \dots, A_n$ is also a peak of $A$. The length of $A'$ is $n-1 < n$. Thus, by the induction assumption, the algorithm succeeds in returning on $A'$ a peak which is also a peak of $A$.
 \end{enumerate}
 
@@ -80,19 +80,19 @@ We saw that we can find an arbitrary peak at $c\cdot n$ time, which raises the q
           \Return $i$
         }
         \Else { 
-          \Return find-peak$\left(A_{i},A_{i+1}..A_{n}\right)$
+          \Return $i - 1  + $ find-peak$\left(A_{i},A_{i+1}..A_{n}\right)$
         }
 \end{algorithm}
 
 Let's try to 'prove' it.  
 \begin{enumerate}
-  \item 
-  \item
-  \item 
+ \item Base, single element array. Trivial. 
+  \item Assumption, Assume that for any $m$-length array, such that $m<n$ the alg returns a peak. 
+  \item Step. If $A_{n/2}$ is a peak, we're done. What happens if it isn't? Is it still true that any peak of $A_{i},A_{i+1}, \ldots, A_{n}$ is also a peak of $A$? Consider, for example, $A[i] = n - i$.
 \end{enumerate}
 
 \section{Sophisticated solution.}
-
+The insight above 
 \begin{algorithm}
 \KwResult{returns a peak of \(A_1 ... A_n \in \mathbb{R}^n \)  }
 \caption{sophisticated alg.}
@@ -101,7 +101,7 @@ $ i \leftarrow  \lceil n/2 \rceil $\\
           \Return $i$
         }
         \ElseIf { $A_{i-1} \le A_{i}$ } { 
-          \Return find-peak$\left(A_{i},A_{i+1}..A_{n}\right)$
+          \Return $i -1 + $ find-peak$\left(A_{i},A_{i+1}..A_{n}\right)$
         }
         \Else { 
           \Return find-peak$\left(A_{1},A_{2},A_{3}..A_{i-1}\right)$
