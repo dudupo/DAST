@@ -71,6 +71,7 @@ We are ready to prove the correcntess of the recursive version by induction usin
 \end{enumerate}
 
 \section{An attempt for sophisticated solution.}
+We saw that we can find an arbitrary peak at $c\cdot n$ time, which raises the question, can we do better? Do we really have to touch all the elements to find a local maxima? Next, we will see two attempts to catch a peak at logarithmic cost. The first attempt fails to achieve correctness, but analyzing exactly why will guide us on how to come up with both an efficient and correct algorithm.
 \begin{algorithm}
 \KwResult{returns a peak of \(A_1 ... A_n \in \mathbb{R}^n \)  }
 \caption{fail attempt for more sophisticated alg. }
@@ -82,6 +83,13 @@ We are ready to prove the correcntess of the recursive version by induction usin
           \Return find-peak$\left(A_{i},A_{i+1}..A_{n}\right)$
         }
 \end{algorithm}
+
+Let's try to 'prove' it.  
+\begin{enumerate}
+  \item 
+  \item
+  \item 
+\end{enumerate}
 
 \section{Sophisticated solution.}
 
