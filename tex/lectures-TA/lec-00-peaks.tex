@@ -40,8 +40,8 @@ We will say that an algorithm is correct, with respect to a given task, if it co
   Hence it must hold that $j^{\prime} < j$. But a satisfaction of the condition on line (2) can happen only if $A_{j^{\prime}}$ is a peak, which contradicts the minimality of $j$.
 \end{proof}
 
-\paragraph{Running Time.} What will be the runnnig time of the naive algorithm? 
-
+\paragraph{Running Time.} 
+Question, How would you compare the performance of two different algorithms? What will be the running time of the naive peak-find algorithm? On the lecture you will see a well-defined way to treat such questions, but for the sake of getting the general picture, let's assume that we pay for any comparison a quanta of processing time, and in overall the checking if an item in a given position is a peak we pay at most $c\in \mathbb{N}$ time, a constant independent on $n$.
 
 \section{An attempt for sophisticated solution.}
 \begin{algorithm}
