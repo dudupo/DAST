@@ -53,7 +53,7 @@ Now, we will show a recursive version of the navie peak-find algorithm for demon
  \If { $A_{1} \ge A[2]$ or $n=1$ }{
    \Return $A[1]$
  }
- \Return peak-find$(A_{2}, .. A_{n})$
+ \Return 1 + peak-find$(A_{2}, .. A_{n})$
  \end{algorithm}
 
  \begin{claim} \label{claim:subarray} 
@@ -64,6 +64,11 @@ Let $A^{\prime}_{j}$ be a peak of $A^{\prime}$. Split into cases upon on the val
 \end{proof}
 We are ready to prove the correcntess of the recursive version by induction using \Cref{claim:subarray}. 
 
+\begin{enumerate}
+  \item Base, single element array. Trivial. 
+  \item Assumption, Assume that for any $m$-length array, $m<n$ we the alg returns a peak. 
+  \item Step, consider an array $A$ of length $n$. If $A_1$ is a peak, then the algorithm answers affirmatively on the first check, returning $1$ and we are done. If not, namely $A_1 < A_2$, then by using Claim \Cref{claim:subarray} we have that any peak of $A' = A_2, A_3, \dots, A_n$ is also a peak of $A$. The length of $A'$ is $n-1 < n$. Thus, by the induction assumption, the algorithm succeeds in returning on $A'$ a peak which is also a peak of $A$.
+\end{enumerate}
 
 \section{An attempt for sophisticated solution.}
 \begin{algorithm}
