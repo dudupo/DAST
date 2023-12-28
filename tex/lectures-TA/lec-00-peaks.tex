@@ -35,7 +35,7 @@ For capturing an understanding of the problem, let's study a simple solution bef
 Let's prove that the above algorithm is doing the job. We will say that an algorithm is correct, with respect to a given task, if it computes the task for any input. 
 
 \begin{proof}
-  Assume towards contradiction that there exists an $n$-length array $A$ such that the algorithm \verb|peak-find| fails to find one of its peaks, in particular, the Alg. returns $j^{\prime}\in [n]$ such that $A_{j^{\prime}}$ is not a peak. Denote by $j$ the first position of a peak in $A$, and note that if the algorithm gets to line (2) in the $j$th iteration then either it returns $j$ or $A_{j}$ is not a peak. Hence it must hold that $j^{\prime}< j$.  
+  Assume towards contradiction that there exists an $n$-length array $A$ such that the algorithm peak-find fails to find one of its peaks, in particular, the Alg. returns $j^{\prime}\in [n]$ such that $A_{j^{\prime}}$ is not a peak. Denote by $j$ the first position of a peak in $A$, and note that if the algorithm gets to line (2) in the $j$th iteration then either it returns $j$ or $A_{j}$ is not a peak. Hence it must hold that $j^{\prime}< j$.  
 \end{proof}
 
 
