@@ -62,7 +62,7 @@ Let $A = A_1, \dots, A_n$ be an array, and $A' = A_2, A_3, \dots, A_n$ be the $n
 \begin{proof} 
 Let $A^{\prime}_{j}$ be a peak of $A^{\prime}$. Split into cases upon on the value of $j$. If $n-1 > j > 1$, then $A^{\prime}_{j} \ge A^{\prime}_{j \pm 1}$, but for any $j \in [2, n-2]$ we have $A^{\prime}_{j} = A_{j+1}$ and therefore $A_{j+1} \ge A_{j+1 \pm 1} \Rightarrow A_{j+1}$ is a peak in $A$. If $j^{\prime} = 1$, then $A^{\prime}_{1} > A^{\prime}_{2} \Rightarrow A_{2} \ge A_{3}$ and by combining the assumption that $A_{1} \le A_{2}$ we have that $A_{2} \ge A_{1}, A_{3}$. So $A_{2} = A^{\prime}_{1}$ is also a peak. The last case $j = n-1$ is left as an exercise.
 \end{proof}
-We are ready to prove the correcntess of the recursive version by induction using \Cref{cliam:subarray}. 
+We are ready to prove the correcntess of the recursive version by induction using \Cref{claim:subarray}. 
 
 
 \section{An attempt for sophisticated solution.}
