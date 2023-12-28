@@ -9,7 +9,7 @@ Consider an \(n\)-length array $A$ such that~$A_1,A_2,....,A_n~\in~\mathbb{R}$. 
 \end{example}
 
 
-\begin{example}{Warming up.} How many peaks do the following arrays contain?
+\begin{example}{Warming up.} \label{example:func} How many peaks do the following arrays contain?
   \begin{enumerate}
     \item $A[i] = 1$   $\forall i \in [n]$
     \item $A[i] = \begin{cases}
@@ -43,6 +43,7 @@ We will say that an algorithm is correct, with respect to a given task, if it co
 \paragraph{Running Time.} 
 Question, How would you compare the performance of two different algorithms? What will be the running time of the naive peak-find algorithm? On the lecture you will see a well-defined way to treat such questions, but for the sake of getting the general picture, let's assume that we pay for any comparison a quanta of processing time, and in overall the checking if an item in a given position is a peak we pay at most $c\in \mathbb{N}$ time, a constant independent on $n$.
 
+Question, In the worst case scenario, how many times does peak-finding need to check if an item $A_i$ is a peak? For the third example in~\cref{example:func}, the naive algorithm will have to check each item, so the running time adds up to at most $c \cdot n$.
 \section{An attempt for sophisticated solution.}
 \begin{algorithm}
 \KwResult{returns a peak of \(A_1 ... A_n \in \mathbb{R}^n \)  }
