@@ -4,33 +4,40 @@
 Computer science differs from other scientific disciplines in that it focuses not on solving or making discoveries, but on questioning how good is our current understanding. The fact that one has successfully come up with an idea for a certain problem immediately raises the question of optimality. At the most basic level, we would like to answer what is the 'best' \marginnote[Note 1: text for left-hand side text]{Note 1: text for right-hand side of pages, it is set justified.} program that exists for a particular problem. To do so, we must have a notation that allows us to determine if an algorithm is indeed solving the task, quantify its performance, and compare it to other algorithms. In this chapter, we introduce this basic notation. The chapter is divided into two main parts: the first is about induction, a mathematical technique for proving claims, and the second presents asymptotic notation, which we use to describe the behavior of algorithms over large inputs.
 
 \section{Peaks-Finding.}
-\begin{example}[Leading Example.]Consider \(n\)-length array $A$ such $A_1,A_2,....,A_n \in \mathbb{R}$. We will say that $A_{j}$ is a peak (local minimum) if it greater than it's neighbors. Namely $A_{i} \ge A_{i\pm1}$ if $i\pm 1 \in [n]$. Whenever $i\pm 1$ is not in the range $[n]$ we will define the inequaly $A_{i} \ge A_{i\pm 1}$ to hold trivally. For Example for $n=1$ $A_{1}=A_{n}$ is always a peak. Write an Algorithm that given $A$ return a positionof an arbitrary peak. 
+\begin{example}[Leading Example.]
+Consider an \(n\)-length array $A$ such that $A_1,A_2,....,A_n \in \mathbb{R}$. We will say that $A_{j}$ is a peak (local minimum) if it is greater than its neighbors. Namely, $A_{i} \ge A_{i\pm1}$ if $i\pm 1 \in [n]$. Whenever $i\pm 1$ is not in the range $[n]$, we will define the inequality $A_{i} \ge A_{i\pm 1}$ to hold trivially. For example, for $n=1$, $A_{1}=A_{n}$ is always a peak. Write an algorithm that, given $A$, returns the position of an arbitrary peak.
 \end{example}
 
 
-\begin{example}{Warming up.} How many peaks, do the following arrays contain:  
+\begin{example}{Warming up.} How many peaks do the following arrays contain?
   \begin{enumerate}
-    \item $A[i] = 1 \forall i \in [n]$
+    \item $A[i] = 1$   $\forall i \in [n]$
     \item $A[i] = \begin{cases}
         i & i < n/2 \\
         n/2 - i & \text{else}
       \end{cases}$
-    \item $A[i] = i \forall i \in [n]$
+    \item $A[i] = i $  $\forall i \in [n]$
   \end{enumerate}
 \end{example}
 
 \section{Naive solution.}
-
+For capturing an understanding of the problem, let's study a simple solution before suggesting a much more interesting one. Consider the algorithm examining each of the items $A_{i}$ one by one.
 \begin{algorithm}
 \KwResult{returns a peak of \(A_1 ... A_n \in \mathbb{R}^n \)  }
 \caption{naive peak-find alg.}
-%\Fn{max( $a_{1} .. a_{n}$ )}{
  \For{ \(i \in [n] \) } { 
    \If { $A_{i}$ is a peak }{
         \Return $i$
         }
     } 
 \end{algorithm}
+\paragraph{Correctness.}
+Let's prove that the above algorithm is doing the job. We will say that an algorithm is correct, with respect to a given task, if it computes the task for any input. 
+
+\begin{proof}
+  Assume towards contradiction that there exists an $n$-length array $A$ such that the algorithm \verb|peak-find\verb| fails to find one of its peaks, in particular, the Alg. returns $j^{\prime}\in [n]$ such that $A_{j^{\prime}}$ is not a peak. Denote by $j$ the first position of a peak in $A$, and note that if the algorithm gets to line (2) in the $j$th iteration then either it returns $j$ or $A_{j}$ is not a peak. Hence it must hold that $j^{\prime}< j$.  
+\end{proof}
+
 
 \section{An attempt for sophisticated solution.}
 \begin{algorithm}
