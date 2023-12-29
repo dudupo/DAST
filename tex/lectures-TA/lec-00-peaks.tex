@@ -122,6 +122,7 @@ Let's prove correction by induction.
 \end{proof}
 What's the running time? Denote by $T\left( n \right)$ an upper bound on the running time. We claim that $T(n) \le c \log (n+1)$, let's prove it by induction.
 \begin{proof}
+     
 \begin{enumerate}
   \item Base. For the base case, $n=1$ we get that $c \log(1+1) = c$ on the other hand only a single check made by the algorithm, so indeed the base case holds.
   \item Induction Assumption. Assume that for any $m < n$, the algorithm runs in at most $c \log(m + 1)$ time.
