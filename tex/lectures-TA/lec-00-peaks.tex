@@ -5,7 +5,7 @@ Computer science differs from other scientific disciplines in that it focuses no
 
 \section{Peaks-Finding.}
 \begin{example}[Leading Example.]
-Consider an \(n\)-length array $A$ such that~$A_1,A_2,....,A_n~\in~\mathbb{R}$. We will say that $A_{j}$ is a peak (local minimum) if it is greater than its neighbors. Namely, $A_{i} \ge A_{i\pm1}$ if $i\pm 1 \in [n]$. Whenever $i\pm 1$ is not in the range $[n]$, we will define the inequality $A_{i} \ge A_{i\pm 1}$ to hold trivially. For example, for $n=1$, $A_{1}=A_{n}$ is always a peak. Write an algorithm that, given $A$, returns the position of an arbitrary peak.
+Consider an \(n\)-length array $A$ such that~$A_1,A_2,....,A_n~\in~\mathbb{R}$. We will say that $A_{j}$ is a peak (local minimum) if he's greater than his neighbors. Namely, $A_{i} \ge A_{i\pm1}$ if $i\pm 1 \in [n]$. Whenever $i\pm 1$ is not in the range $[n]$, we will define the inequality $A_{i} \ge A_{i\pm 1}$ to hold trivially. For example, for $n=1$, $A_{1}=A_{n}$ is always a peak. Write an algorithm that, given $A$, returns the position of an arbitrary peak.
 \end{example}
 
 
@@ -67,7 +67,7 @@ We are ready to prove the correcntess of the recursive version by induction usin
 \begin{enumerate}
   \item Base, single element array. Trivial. 
   \item Assumption, Assume that for any $m$-length array, such that $m<n$ the alg returns a peak. 
-  \item Step, consider an array $A$ of length $n$. If $A_1$ is a peak, then the algorithm answers affirmatively on the first check, returning $1$ and we are done. If not, namely $A_1 < A_2$, then by using Claim \Cref{claim:subarray} we have that any peak of $A' = A_2, A_3, \dots, A_n$ is also a peak of $A$. The length of $A'$ is $n-1 < n$. Thus, by the induction assumption, the algorithm succeeds in returning on $A'$ a peak which is also a peak of $A$.
+  \item Step, consider an array $A$ of length $n$. If $A_1$ is a peak, then the algorithm answers affirmatively on the first check, returning $1$ and we are done. If not, namely $A_1 < A_2$, then by using \Cref{claim:subarray} we have that any peak of $A' = A_2, A_3, \dots, A_n$ is also a peak of $A$. The length of $A'$ is $n-1 < n$. Thus, by the induction assumption, the algorithm succeeds in returning on $A'$ a peak which is also a peak of $A$.
 \end{enumerate}
 
 \section{An attempt for sophisticated solution.}
