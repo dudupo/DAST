@@ -46,7 +46,7 @@ We will say that an algorithm is correct, with respect to a given task, if it co
 \end{proof}
 
 \paragraph{Running Time.} 
-Question, How would you compare the performance of two different algorithms? What will be the running time of the naive peak-find algorithm? On the lecture you will see a well-defined way to treat such questions, but for the sake of getting the general picture, let's assume that we pay for any comparison a quanta of processing time, and in overall the checking if an item in a given position is a peak we pay at most $c\in \mathbb{N}$ time, a constant independent on $n$.
+Question, How would you compare the performance of two different algorithms? What will be the running time of the naive peak-find algorithm? On the lecture you will see a well-defined way to treat such questions, but for the sake of getting the general picture, let's assume that we pay for any comparison a quanta of processing time, and in overall, checking if an item in a given position is a peak, cost at most $c\in \mathbb{N}$ time, a constant independent on $n$.
 
 Question, In the worst case scenario, how many times does peak-finding need to check if an item $A_i$ is a peak? For the third example in~\Cref{example:func}, the naive algorithm will have to check each item, so the running time adds up to at most $c \cdot n$. 
 
@@ -65,7 +65,7 @@ Now, we will show a recursive version of the navie peak-find algorithm for demon
 Let $A = A_1, \dots, A_n$ be an array, and $A' = A_2, A_3, \dots, A_n$ be the $n-1$ length array obtained by taking all of $A$'s items except the first. If $A_1 \le A_2$, then any peak of $A'$ is also a peak of $A$.
 \end{claim}
 \begin{proof} 
-Let $A^{\prime}_{j}$ be a peak of $A^{\prime}$. Split into cases upon on the value of $j$. If $n-1 > j > 1$, then $A^{\prime}_{j} \ge A^{\prime}_{j \pm 1}$, but for any $j \in [2, n-2]$ we have $A^{\prime}_{j} = A_{j+1}$ and therefore $A_{j+1} \ge A_{j+1 \pm 1} \Rightarrow A_{j+1}$ is a peak in $A$. If $j^{\prime} = 1$, then $A^{\prime}_{1} \ge A^{\prime}_{2} \Rightarrow A_{2} \ge A_{3}$ and by combining the assumption that $A_{1} \le A_{2}$ we have that $A_{2} \ge A_{1}, A_{3}$. So $A_{2} = A^{\prime}_{1}$ is also a peak. The last case $j = n-1$ is left as an exercise.
+Let $A^{\prime}_{j}$ be a peak of $A^{\prime}$. Split into cases upon on the value of $j$. If $n-1 > j > 1$, then $A^{\prime}_{j} \ge A^{\prime}_{j \pm 1}$, but for any $j \in [2, n-2]$ we have $A^{\prime}_{j} = A_{j+1}$ and therefore $A_{j+1} \ge A_{j+1 \pm 1} \Rightarrow A_{j+1}$ is a peak in $A$. If $j^{\prime} = 1$, then $A^{\prime}_{1} > A^{\prime}_{2} \Rightarrow A_{2} \ge A_{3}$ and by combining the assumption that $A_{1} \le A_{2}$ we have that $A_{2} \ge A_{1}, A_{3}$. So $A_{2} = A^{\prime}_{1}$ is also a peak. The last case $j = n-1$ is left as an exercise.
 \end{proof}
 We are ready to prove the correcntess of the recursive version by induction using \Cref{claim:subarray}. 
 
@@ -97,7 +97,7 @@ Let's try to 'prove' it.
 \end{enumerate}
 
 \section{Sophisticated solution.}
-The example above points to the fact that we would like to have a similar claim to \Cref{claim:subarray} that relates the peaks of the split array to the original one.
+The example above points to the fact that we would like to have a similar claim to \Cref{claim:subarray} that relates the peaks of the split array to the original one.  
 \begin{algorithm}
 \KwResult{returns a peak of \(A_1 ... A_n \in \mathbb{R}^n \)  }
 \caption{sophisticated alg.}
