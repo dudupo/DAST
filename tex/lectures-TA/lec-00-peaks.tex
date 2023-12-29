@@ -48,7 +48,7 @@ We will say that an algorithm is correct, with respect to a given task, if it co
 \paragraph{Running Time.} 
 Question, How would you compare the performance of two different algorithms? What will be the running time of the naive peak-find algorithm? On the lecture you will see a well-defined way to treat such questions, but for the sake of getting the general picture, let's assume that we pay for any comparison a quanta of processing time, and in overall, checking if an item in a given position is a peak, cost at most $c\in \mathbb{N}$ time, a constant independent on $n$.
 
-Question, In the worst case scenario, how many times does peak-finding need to check if an item $A_i$ is a peak? For the third example in~\Cref{example:func}, the naive algorithm will have to check each item, so the running time adds up to at most $c \cdot n$. 
+Question, In the worst case scenario, how many local checks does peak-finding do? For the third example in~\Cref{example:func}, the naive algorithm will have to check each item, so the running time adds up to at most $c \cdot n$.
 
 \section{Naive alg. recursive version.}
 Now, we will show a recursive version of the navie peak-find algorithm for demonstrating how correctness can be proved by induction. 
