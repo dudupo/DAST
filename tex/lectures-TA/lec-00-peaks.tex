@@ -113,6 +113,31 @@ $ i \leftarrow  \lceil n/2 \rceil $\\
         }
 \end{algorithm}
 
+Let's proof correctin by induction. 
+\begin{enumerate}
+  \item Base, single element array. Trivial. 
+  \item Assumption, Assume that for any $m$-length array, such that $m<n$ the alg returns a peak. 
+  \item Step, Consider an array $A$ of length $n$. If $A_{\lceil n/2 \rceil}$ is a peak, then the algorithm answers affirmatively on the first check, returning $\lceil n/2 \rceil$ and we are done. If not, then either $A_{\lceil n/2 \rceil} < A_{\lceil n/2 \rceil - 1}$ or $A_{\lceil n/2 \rceil} < A_{\lceil n/2 \rceil + 1}$. We have already handled the first case, that is, using \Cref{claim:subarray} we have that any peak of $A' = A_{\lceil n/2 \rceil + 1}, A_{\lceil n/2 \rceil + 2}, \dots, A_n$ is also a peak of $A$. The length of $A'$ is $n/2 < n$. So by the induction assumption, in the case where $A_{\lceil n/2 \rceil} < A_{\lceil n/2 \rceil - 1}$ the algorithm returns a peak. In the other case, we have $A_{\lceil n/2 \rceil} < A_{\lceil n/2 \rceil + 1}$ (otherwise $A_{\lceil n/2 \rceil}$ would be a peak). We leave finishing the proof as an exercise.
+\end{enumerate}
+
+What's the running time? Denote by $T\left( n \right)$ an upper bound on the running time. We claim that $T(n) \le c \log (n+1)$, let's prove it by induction.
+
+\begin{enumerate}
+  \item Base. For the base case, $n=1$ we get that $c \log(1+1) = c$ on the other hand only a single check made by the algorithm, so indeed the base case holds.
+  \item Induction Assumption. Assume that for any $m<n$ the algorithm run in at most $c\log(m+1)$ time. 
+  \item Step. Noitce that in the worst case, $\lceil n/2 \rceil$ is not a peak, and the algorithm call himself reqursivly imedtly after paying $c$ in the first check. Hence: 
+
+    \begin{equation*}
+      \begin{split}    
+    T\left(n\right) & \le c + T\left(n/2\right) \le c + c \log\left( \lceil n/2 \rceil + 1 \right) \\
+  & = c \log (2) +  c \log\left( \lceil n/2 \rceil + 1 \right)\le c = c \log\left(2 \left(\lceil n/2 \rceil +  1 \right) \right) \\
+  & \le c \log \left( n + 1 \right)    
+      \end{split}
+    \end{equation*}
+\end{enumerate}
+
+
+
 
 % \section{Time Planning.}
 % \begin{enumerate}
