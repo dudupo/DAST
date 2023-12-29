@@ -126,9 +126,7 @@ What's the running time? Denote by $T\left( n \right)$ an upper bound on the run
 \begin{enumerate}
   \item Base. For the base case, $n=1$ we get that $c \log(1+1) = c$ on the other hand only a single check made by the algorithm, so indeed the base case holds.
   \item Induction Assumption. Assume that for any $m < n$, the algorithm runs in at most $c \log(m + 1)$ time.
-  \item Step. Notice that in the worst case, $\lceil n/2 \rceil$ is not a peak, and the algorithm calls itself recursively immediately after paying $c$ in the first check. Hence:
-
-    \begin{equation*}
+  \item Step. Notice that in the worst case, $\lceil n/2 \rceil$ is not a peak, and the algorithm calls itself recursively immediately after paying $c$ in the first check. Hence: \begin{equation*}
       \begin{split}    
     T\left(n\right) & \le c + T\left(n/2\right) \le c + c \log\left( \lceil n/2 \rceil + 1 \right) \\
   & = c \log (2) +  c \log\left( \lceil n/2 \rceil + 1 \right)\le c = c \log\left(2 \left(\lceil n/2 \rceil +  1 \right) \right) \\
