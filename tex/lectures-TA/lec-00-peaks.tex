@@ -67,6 +67,12 @@ Let $A = A_1, \dots, A_n$ be an array, and $A' = A_2, A_3, \dots, A_n$ be the $n
 \begin{proof} 
 Let $A^{\prime}_{j}$ be a peak of $A^{\prime}$. Split into cases upon on the value of $j$. If $n-1 > j > 1$, then $A^{\prime}_{j} \ge A^{\prime}_{j \pm 1}$, but for any $j \in [2, n-2]$ we have $A^{\prime}_{j} = A_{j+1}$ and therefore $A_{j+1} \ge A_{j+1 \pm 1} \Rightarrow A_{j+1}$ is a peak in $A$. If $j^{\prime} = 1$, then $A^{\prime}_{1} > A^{\prime}_{2} \Rightarrow A_{2} \ge A_{3}$ and by combining the assumption that $A_{1} \le A_{2}$ we have that $A_{2} \ge A_{1}, A_{3}$. So $A_{2} = A^{\prime}_{1}$ is also a peak. The last case $j = n-1$ is left as an exercise.
 \end{proof}
+
+By repeating almost the exactly on proof above, one can show much more general cliam. 
+
+ \begin{claim} \label{claim:subarraymiddle} 
+   Let $A = A_1, \dots, A_n$ be an array, and $A' = A_{j+1}, A_{j+2}, \dots, A_n$ be the $n-j$ length array obtained by taking all of $A$'s items except the first. If $A_j \le A_{j+1}$, then any peak of $A'$ is also a peak of $A$.
+\end{claim}
 We are ready to prove the correcntess of the recursive version by induction using \Cref{claim:subarray}. 
 
 \begin{enumerate}
@@ -97,7 +103,7 @@ Let's try to 'prove' it.
 \end{enumerate}
 
 \section{Sophisticated solution.}
-The example above points to the fact that we would like to have a similar claim to \Cref{claim:subarray} that relates the peaks of the split array to the original one.  
+The example above points to the fact that we would like to have a similar claim to \Cref{claim:subarraymiddle} that relates the peaks of the split array to the original one.  
 \begin{algorithm}
 \KwResult{returns a peak of \(A_1 ... A_n \in \mathbb{R}^n \)  }
 \caption{sophisticated alg.}
@@ -117,7 +123,7 @@ Let's prove correction by induction.
 \begin{enumerate}
   \item Base, single element array. Trivial. 
   \item Assumption, Assume that for any $m$-length array, such that $m<n$ the alg returns a peak. 
-  \item Step, Consider an array $A$ of length $n$. If $A_{\lceil n/2 \rceil}$ is a peak, then the algorithm answers affirmatively on the first check, returning $\lceil n/2 \rceil$ and we are done. If not, then either $A_{\lceil n/2 \rceil} < A_{\lceil n/2 \rceil - 1}$ or $A_{\lceil n/2 \rceil} < A_{\lceil n/2 \rceil + 1}$. We have already handled the first case, that is, using \Cref{claim:subarray} we have that any peak of $A' = A_{\lceil n/2 \rceil + 1}, A_{\lceil n/2 \rceil + 2}, \dots, A_n$ is also a peak of $A$. The length of $A'$ is $n/2 < n$. So by the induction assumption, in the case where $A_{\lceil n/2 \rceil} < A_{\lceil n/2 \rceil - 1}$ the algorithm returns a peak. In the other case, we have $A_{\lceil n/2 \rceil} < A_{\lceil n/2 \rceil + 1}$ (otherwise $A_{\lceil n/2 \rceil}$ would be a peak). We leave finishing the proof as an exercise.
+  \item Step, Consider an array $A$ of length $n$. If $A_{\lceil n/2 \rceil}$ is a peak, then the algorithm answers affirmatively on the first check, returning $\lceil n/2 \rceil$ and we are done. If not, then either $A_{\lceil n/2 \rceil} < A_{\lceil n/2 \rceil - 1}$ or $A_{\lceil n/2 \rceil} < A_{\lceil n/2 \rceil + 1}$. We have already handled the first case, that is, using \Cref{claim:subarraymiddle} we have that any peak of $A' = A_{\lceil n/2 \rceil + 1}, A_{\lceil n/2 \rceil + 2}, \dots, A_n$ is also a peak of $A$. The length of $A'$ is $n/2 < n$. So by the induction assumption, in the case where $A_{\lceil n/2 \rceil} < A_{\lceil n/2 \rceil - 1}$ the algorithm returns a peak. In the other case, we have $A_{\lceil n/2 \rceil} < A_{\lceil n/2 \rceil + 1}$ (otherwise $A_{\lceil n/2 \rceil}$ would be a peak). We leave finishing the proof as an exercise.
 \end{enumerate}
 \end{proof}
 What's the running time? Denote by $T\left( n \right)$ an upper bound on the running time. We claim that $T(n) \le c \log (n+1)$, let's prove it by induction.
