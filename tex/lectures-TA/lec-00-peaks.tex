@@ -73,6 +73,59 @@ One can prove a much more general claim by following almost the same argument pr
  \begin{claim} \label{claim:subarraymiddle} 
    Let $A = A_1, \dots, A_n$ be an array, and $A' = A_{j+1}, A_{j+2}, \dots, A_n$ be the $n-j$ length array obtained by taking all of $A$'s items except the first. If $A_j \le A_{j+1}$, then any peak of $A'$ is also a peak of $A$.
 \end{claim}
+\section{Induction. (Might not appear in the recitation.)} 
+\ifdefined\RECITATION
+\else
+Suppose that a teacher, who is standing in front of his class, is willing to prove that he can reach the door at the corner. One obvious way to do so is to actually reach the door; that is, move physically to it and declare success. For small classes containing a small number of students, this protocol might even be efficient, lasting less than several seconds. But what if the class is really big, maybe the length and width of a football stadium? In that case, proving by doing might take time. So the obvious question to ask is, what else can we do? Is there a more efficient way to prove this?
+
+Indeed, there is. Instead of proving that he can reach the door, he can prove that while he do not stand next to the door, nothing can stop him from keeping moving forward. If that is indeed the case, then it's clear that not reaching the door in the end would be a contradiction to being just one step away from it (why?), which, in turn, would also contradict being two steps away from it. Repeating this argument leads to a contradiction for the fact that the teacher was in the classroom at the beginning.
+\fi
+\paragraph{What is induction?}~\begin{enumerate}
+    \item A mathematical proof technique. It is essentially used to prove that a property \(P(n)\) holds for every natural number \(n\).
+    \item The method of induction requires two cases to be proved:
+    \begin{enumerate}
+        \item The first case, called the base case, proves that the property holds for the first element.
+        \item The second case, called the induction step, proves that if the property holds for one natural number, then it holds for the next natural number.
+    \end{enumerate}
+    \item The domino metaphor. 
+\end{enumerate}
+\paragraph{The two types of induction, their steps, and why it makes sense} (Strong vs Weak) - Emphasize the change in the induction step.
+\begin{example}[Weak induction] Prove that $ \forall n \in  \mathbb{N}$,$\sum_{i=0}^{n}{i} = \frac{n(n+1)}{2}$.
+\begin{proof} Base: For \(n = 1\), \(\sum_{i=0}^{1}{1} = 1 = \frac{(1+1)\cdot 1}{2} \). Assumption: Assume that the claim holds for \(n\).Step: 
+\begin{equation*}
+  \begin{split}
+ \sum_{i=0}^{n+1}{i} = & \left( \sum_{i=0}^{n}{i} \right) + n+1 = \frac{n(n+1)}{2} + n + 1 \\
+ = & \frac{n(n+1) + 2\cdot (n+1)}{2} = \frac{(n+1)(n+2)}{2} 
+  \end{split}
+\end{equation*}
+\end{proof}
+\end{example}
+\begin{example}[Weak induction.] Let \(q\in \mathbb{R} / \{1\}\), consider the geometric series \( 1,q,q^2,q^3....q^k...\). Prove that the sum of the first \(k\) elements is \begin{equation*}
+     1+q+q^2+...+q^{k-1}+q^k = \frac{q^{k+1}-1}{q-1}
+\end{equation*}
+
+\begin{proof} Base: For \(n = 1\), we get \( \frac{q^{k+1}-1}{q-1} = \frac{q-1}{q-1} = 1\). 
+Assumption: Assume that the claim holds for \(k\). then:
+Step: 
+\begin{equation*}
+\begin{split}
+    1+q+q^2+...+q^{k-1}+q^k + q^{k+1} &=  \frac{q^{k}-1}{q-1} + q^{k+1}  = \frac{q^{k+1}-1 +q^{k+1}\left(q-1\right) }{q-1} = \\ &\frac{\textcolor{red}{q^{k+1}}-1 +q^{k+2} - \textcolor{red}{q^{k+1}}  }{q-1} = \frac{q^{k+2}-1}{q-1} 
+\end{split}
+\end{equation*}
+\end{proof}
+\end{example}
+% \ctt{Finish the induction proof and add alternative proof by counting. I am not sure what is favored, exposing both ways (at the first example) will make clear that induction is only a single proofing tool and surly not the only one. Yet from didactic point of view, it might confuses. }
+
+\begin{example}[Strong induction] 
+  Let there be a chocolate bar that consists of \(n\) square chocolate blocks. Then it takes exactly \(n - 1\) snaps to separate it into the \(n\) squares no matter how we split it.
+
+  \begin{proof} By strong induction. Base: For \(n = 1\), it is clear that we need \(0\) snaps. Assumption: Assume that for \textbf{every} \(m < n \), this claim holds.
+
+
+Step: We have in our hand the given chocolate bar with \(n\) square chocolate blocks. Then we may snap it anywhere we like, to get two new chocolate bars: one with some \( k \in [n]\) chocolate blocks and one with \(n - k\) chocolate blocks. From the induction assumption, we know that it takes \(k - 1\) snaps to separate the first bar, and \(n - k - 1\) snaps for the second one. And to sum them up, we got exactly \[ (k - 1) + (n - k - 1) + 1 = n - 1 \] snaps.
+\end{proof}
+\end{example}
+
 We are ready to prove the correcntess of the recursive version by induction using \Cref{claim:subarray}. 
 
 \begin{enumerate}
@@ -176,58 +229,5 @@ What's the running time? Denote by $T\left( n \right)$ an upper bound on the run
 % \end{enumerate}
 
 % \paragraph{Abstract.} Today we will cover induction, infinite series, and asymptotic notation. These tools will come in handy (in the next couple of weeks) when we want to find the runtime complexity of an algorithm, specifically using the ’Master Theorem’, to give asymptotic bounds for recursion relations, and to prove loop invariants using (finite) induction.
-
-\section{Induction.}
-\ifdefined\RECITATION
-\else
-Suppose that a teacher, who is standing in front of his class, is willing to prove that he can reach the door at the corner. One obvious way to do so is to actually reach the door; that is, move physically to it and declare success. For small classes containing a small number of students, this protocol might even be efficient, lasting less than several seconds. But what if the class is really big, maybe the length and width of a football stadium? In that case, proving by doing might take time. So the obvious question to ask is, what else can we do? Is there a more efficient way to prove this?
-
-Indeed, there is. Instead of proving that he can reach the door, he can prove that while he do not stand next to the door, nothing can stop him from keeping moving forward. If that is indeed the case, then it's clear that not reaching the door in the end would be a contradiction to being just one step away from it (why?), which, in turn, would also contradict being two steps away from it. Repeating this argument leads to a contradiction for the fact that the teacher was in the classroom at the beginning.
-\fi
-\paragraph{What is induction?}~\begin{enumerate}
-    \item A mathematical proof technique. It is essentially used to prove that a property \(P(n)\) holds for every natural number \(n\).
-    \item The method of induction requires two cases to be proved:
-    \begin{enumerate}
-        \item The first case, called the base case, proves that the property holds for the first element.
-        \item The second case, called the induction step, proves that if the property holds for one natural number, then it holds for the next natural number.
-    \end{enumerate}
-    \item The domino metaphor. 
-\end{enumerate}
-\paragraph{The two types of induction, their steps, and why it makes sense} (Strong vs Weak) - Emphasize the change in the induction step.
-\begin{example}[Weak induction] Prove that $ \forall n \in  \mathbb{N}$,$\sum_{i=0}^{n}{i} = \frac{n(n+1)}{2}$.
-\begin{proof} Base: For \(n = 1\), \(\sum_{i=0}^{1}{1} = 1 = \frac{(1+1)\cdot 1}{2} \). Assumption: Assume that the claim holds for \(n\).Step: 
-\begin{equation*}
-  \begin{split}
- \sum_{i=0}^{n+1}{i} = & \left( \sum_{i=0}^{n}{i} \right) + n+1 = \frac{n(n+1)}{2} + n + 1 \\
- = & \frac{n(n+1) + 2\cdot (n+1)}{2} = \frac{(n+1)(n+2)}{2} 
-  \end{split}
-\end{equation*}
-\end{proof}
-\end{example}
-\begin{example}[Weak induction.] Let \(q\in \mathbb{R} / \{1\}\), consider the geometric series \( 1,q,q^2,q^3....q^k...\). Prove that the sum of the first \(k\) elements is \begin{equation*}
-     1+q+q^2+...+q^{k-1}+q^k = \frac{q^{k+1}-1}{q-1}
-\end{equation*}
-
-\begin{proof} Base: For \(n = 1\), we get \( \frac{q^{k+1}-1}{q-1} = \frac{q-1}{q-1} = 1\). 
-Assumption: Assume that the claim holds for \(k\). then:
-Step: 
-\begin{equation*}
-\begin{split}
-    1+q+q^2+...+q^{k-1}+q^k + q^{k+1} &=  \frac{q^{k}-1}{q-1} + q^{k+1}  = \frac{q^{k+1}-1 +q^{k+1}\left(q-1\right) }{q-1} = \\ &\frac{\textcolor{red}{q^{k+1}}-1 +q^{k+2} - \textcolor{red}{q^{k+1}}  }{q-1} = \frac{q^{k+2}-1}{q-1} 
-\end{split}
-\end{equation*}
-\end{proof}
-\end{example}
-% \ctt{Finish the induction proof and add alternative proof by counting. I am not sure what is favored, exposing both ways (at the first example) will make clear that induction is only a single proofing tool and surly not the only one. Yet from didactic point of view, it might confuses. }
-
-\begin{example}[Strong induction] 
-  Let there be a chocolate bar that consists of \(n\) square chocolate blocks. Then it takes exactly \(n - 1\) snaps to separate it into the \(n\) squares no matter how we split it.
-
-  \begin{proof} By strong induction. Base: For \(n = 1\), it is clear that we need \(0\) snaps. Assumption: Assume that for \textbf{every} \(m < n \), this claim holds.
-
-
-Step: We have in our hand the given chocolate bar with \(n\) square chocolate blocks. Then we may snap it anywhere we like, to get two new chocolate bars: one with some \( k \in [n]\) chocolate blocks and one with \(n - k\) chocolate blocks. From the induction assumption, we know that it takes \(k - 1\) snaps to separate the first bar, and \(n - k - 1\) snaps for the second one. And to sum them up, we got exactly \[ (k - 1) + (n - k - 1) + 1 = n - 1 \] snaps.
-\end{proof}
-\end{example}
 
 \input{../texlib/tail}
