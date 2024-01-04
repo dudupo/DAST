@@ -40,9 +40,13 @@ To better understand the problem, let's first examine a simple solution before p
 We will say that an algorithm is correct, with respect to a given task, if it computes the task for any input. Let's prove that the above algorithm is doing the job. 
 
 \begin{proof}
-  Assume towards contradiction that there exists an $n$-length array $A$ such that the algorithm peak-find fails to find one of its peaks, in particular, the Alg. returns $j^{\prime}\in [n]$ such that $A_{j^{\prime}}$ is not a peak. Denote by $j$ the first position of a peak in $A$, and note that if the algorithm gets to line (2) in the $j$th iteration then either it returns $j$ or $A_{j}$ is not a peak. 
-
-  Hence it must hold that $j^{\prime} < j$. But a satisfaction of the condition on line (2) can happen only if $A_{j^{\prime}}$ is a peak, which contradicts the minimality of $j$.
+%  Assume towards contradiction that there exists an $n$-length array $A$ such that the algorithm peak-find fails to find one of its peaks, in particular, the Alg. either returns $j^{\prime}\in [n]$ such that $A_{j^{\prime}}$ is not a peak or not return at all (never reach line (3)). Let's handle first the case in which retruning indeed occurred. Denote by $j$ the first position of a peak in $A$, and note that if the algorithm gets to line (2) in the $j$th iteration then either it returns $j$ or $A_{j}$ is not a peak.
+%  Hence it must hold that $j^{\prime} < j$. But a satisfaction of the condition on line (2) can happen only if $A_{j^{\prime}}$ is a peak, which contradicts the minimality of $j$.
+%
+%  In the case that no position has been returned, In particular the algorithm didn't return in any of the first $j$ iterations and get's in to iteration number $j+1$, which means that the conidition on line (2) was not satisfied in contradiction to the fact that $A_{j}$ is a peak. 
+%
+Assume towards contradiction that there exists an $n$-length array $A$ such that the algorithm peak-find fails to find one of its peaks, in particular, the Alg. either returns $j^{\prime}\in [n]$ such that $A_{j^{\prime}}$ is not a peak or does not return at all (never reach line (3)). Let's handle first the case in which returning indeed occurred. Denote by $j$ the first position of a peak in $A$, and note that if the algorithm gets to line (2) in the $j$th iteration then either it returns $j$ or $A_{j}$ is not a peak.
+  Hence it must hold that $j^{\prime} < j$. But satisfaction of the condition on line (2) can happen only if $A_{j^{\prime}}$ is a peak, which contradicts the minimality of $j$. In the case that no position has been returned, it follows that the algorithm didn't return in any of the first $j$ iterations and gets to iteration number $j+1$, which means that the condition on line (2) was not satisfied in contradiction to the fact that $A_{j}$ is a peak.
 \end{proof}
 
 \paragraph{Running Time.} 
@@ -189,7 +193,7 @@ What's the running time? Denote by $T\left( n \right)$ an upper bound on the run
       \begin{split}    
     T\left(n\right) & \le c + T\left(n/2\right) \le c + c \log\left( \lceil n/2 \rceil \right) + c\\
   & = c \log (2) +  c \log\left( \lceil n/2 \rceil  \right) + c = c \log\left(2 \left(\lceil n/2 \rceil \right) \right) + c\\
-  & \le c \log \left( n \right) + c   
+  & \le c \log \left( n  \right)    
       \end{split}
     \end{equation*}
 \end{enumerate}
