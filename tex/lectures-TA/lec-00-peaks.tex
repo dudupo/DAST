@@ -169,7 +169,7 @@ $ i \leftarrow  \lceil n/2 \rceil $\\
           \Return $i$
         }
         \ElseIf { $A_{i-1} \le A_{i}$ } { 
-          \Return $i -1 + $ find-peak$\left(A_{i},A_{i+1}..A_{n}\right)$
+          \Return $i + $ find-peak$\left(A_{i+1}..A_{n}\right)$
         }
         \Else { 
           \Return find-peak$\left(A_{1},A_{2},A_{3}..A_{i-1}\right)$
