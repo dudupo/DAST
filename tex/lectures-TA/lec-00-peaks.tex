@@ -182,6 +182,9 @@ Let's prove correction by induction.
   \item Assumption, Assume that for any $m$-length array, such that $m<n$ the alg returns a peak. 
   \item Step, Consider an array $A$ of length $n$. If $A_{\lceil n/2 \rceil}$ is a peak, then the algorithm answers affirmatively on the first check, returning $\lceil n/2 \rceil$ and we are done. If not, then either $A_{\lceil n/2 \rceil} < A_{\lceil n/2 \rceil - 1}$ or $A_{\lceil n/2 \rceil} < A_{\lceil n/2 \rceil + 1}$. We have already handled the first case, that is, using \Cref{claim:subarraymiddle} we have that any peak of $A' = A_{\lceil n/2 \rceil + 1}, A_{\lceil n/2 \rceil + 2}, \dots, A_n$ is also a peak of $A$. The length of $A'$ is $n/2 < n$. So by the induction assumption, in the case where $A_{\lceil n/2 \rceil} < A_{\lceil n/2 \rceil - 1}$ the algorithm returns a peak. In the other case, we have $A_{\lceil n/2 \rceil} < A_{\lceil n/2 \rceil + 1}$ (otherwise $A_{\lceil n/2 \rceil}$ would be a peak). We leave finishing the proof as an exercise.
 \end{enumerate}
+\ctt{  
+  In the previous version of the recitation, the first recursive call was to find-peak$\left(A_{i},A_{i+1}..A_{n}\right)$. However, in the case where $n=2$, we have that $A_{i}=1$, so it does not hold that $|A^{\prime}| < |A|$. And we cann't use the induction assumption. 
+}
 \end{proof}
 What's the running time? Denote by $T\left( n \right)$ an upper bound on the running time. We claim that $T(n) \le c \log (n) + c$, let's prove it by induction.
 \begin{proof}
