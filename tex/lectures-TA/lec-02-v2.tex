@@ -103,6 +103,7 @@ Consider merge sort variation such that instead of splitting the array into two 
 \begin{algorithm}
 \SetAlgoLined
 \KwResult{returns the sorted permutation of \(x_1 ... x_n \in \mathbb{R}^n \)  }
+\label{alg:unmerge}
  \ \\ 
  \If{ \(n \le 10 \) }
     { return bubble-sort \( (x_1 ... x_n)\) } 
@@ -179,8 +180,9 @@ Let \(n_i\) be the size of the subset which is processed at the \(i\)-th node. T
   \draw (right3) -- (right7);
 \end{tikzpicture}
 }
-\caption{Using again the picture of the universe.
-This caption will be on the right}
+\caption{ 
+The tree matches the recursive calls made by \Cref{alg:unmerge}. Each node presents a rectangle with a length equal to the array given as input to the recursive call. The length of all the elements in a single level is equal to the original array length, thus we have that the linear work in each level sums up to $\Theta(n)$.
+}
 \end{figure}
 \ifdefined\BOOK
 
