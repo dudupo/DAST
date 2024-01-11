@@ -9,8 +9,8 @@
 %\end{abstract}
 %
 
-\section{Bounding recursive functions by hands.}
-Our main tool for dealing with recursive relations is the Master Theorem, which was proven in the lecture. In order to gain a better understanding, let's revisit the calculation in the proof for a specific case. Suppose that your algorithm analysis has yielded the following recursive relation:
+\section{Bounding recursive functions by hands.} Our primary tool to handle recursive relation is the Master Theorem, which was proved in the lecture. As we would like to have a more solid grasp, let's return on the calculation in the proof over a specific case. 
+Assume that your algorithm analysis has brought the following recursive relation:
     \begin{example}\( T\left(n\right)  = \left\{ \begin{array}{rcl}
 & 4T\left(\frac{n}{2}\right)+c\cdot n & \mbox{for }  n > 1  \\
 & 1 & \mbox{else}  
@@ -36,31 +36,6 @@ We will call the number of iteration till the stopping condition the recursion h
 where \(n^{\log 3}  \sim n^{1.58} < n^2 \).
 \end{example}
 
-The Master Theorem is a crucial tool for dealing with recursive relations, as it was proven in our lecture. To gain a better understanding, let's revisit the calculation in the proof for a specific case. Suppose that your algorithm analysis has yielded the following recursive relation:
-\begin{example}\( T\left(n\right)  = \left\{ \begin{array}{rcl}
-& 4T\left(\frac{n}{2}\right)+c\cdot n & \mbox{for }  n > 1  \\
-& 1 & \mbox{else}  
-\end{array}\right. \). This means that the running time is given by \begin{equation*}
-    \begin{split}
- & T\left(n\right)  = 4T\left(\frac{n}{2}\right)+c\cdot n=  4\cdot4T\left(\frac{n}{4}\right)+4c\cdot\frac{n}{2}+c\cdot n = ... = \\ & \overset{\text{\textcolor{red}{critical}}}{\overbrace{4^{h}T(1)}} + c\cdot n\left(1+\frac{4}{2}+\left(\frac{4}{2}\right)^{2}...+\left(\frac{4}{2}\right)^{h-1}\right) = 4^{h} + c\cdot n\cdot\frac{2^{h}-1}{2-1}
-    \end{split}
-\end{equation*}
-We define the number of iterations until the stopping condition is reached as the recursion height, denoted by \(h\). To determine the recursion height, we can use the equation \( 2^{h} = n \Rightarrow h =\log\left(n\right) \). Therefore, the algorithm's running time is \( \Theta\left(n^2\right)\). 
-\end{example}
-\textbf{Question}: Why is the term \( 4^{h} T(1) \) so critical? Consider the case \(T\left(n\right) =  4T\left(\frac{n}{2}\right) + c \) .One common mistake is to forget the final term, which results in a linear solution \( \Theta(n)\) instead of a quadratic solution \( \Theta(n^2)\).   
-
-    \begin{example}\( T\left(n\right)  = \left\{ \begin{array}{rcl}
-& 3T\left(\frac{n}{2}\right) + c\cdot n & \mbox{for }  n > 1  \\
-& 1 & \mbox{else}  
-\end{array}\right. \), and expanding this yields: 
-\begin{equation*}
-    \begin{split}
-        T\left(n\right) & = 3T\left(\frac{n}{2}\right) + c\cdot n = 3^2 T\left(\frac{n}{2^2}\right) + \frac{3}{2}cn + c\cdot n =  \overset{\text{\textcolor{red}{critical}}}{\overbrace{3^{h}T(1)}} + cn\left(1 + \frac{3}{2} + \left(\frac{3}{2}\right)^2 + ...  + \left(\frac{3}{2}\right)^{h-1} \right) \\
-        & h = \log_{2}\left(n\right) \Rightarrow T\left(n\right) = 3^{h}T(1) + c\cdot \textcolor{red}{n}\cdot \left(\left(\frac{3}{\textcolor{red}{2}}\right)^{\log_{2}{n}}\right) / \left(\frac{3}{2} - 1\right) = \theta \left( 3^{\log_{2}(n)} \right) =  \theta \left( n^{\log 3} \right)  
-    \end{split}
-\end{equation*}
-where \(n^{\log 3}  \sim n^{1.58} < n^2 \).
-\end{example}
 
 \section{Master Theorem, one Theorem to bound them all. }
 As you might already notice, the same pattern has been used to bound both algorithms. The master theorem is the result of the recursive expansion. it classifies recursive functions at the form of \(T\left(n\right) = a\cdot T\left( \frac{n}{b} \right) + f\left(n\right) \), for positive function \(f : \mathbb{N} \rightarrow \mathbb{R}^{+} \).       
