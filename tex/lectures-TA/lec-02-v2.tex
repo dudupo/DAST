@@ -129,7 +129,7 @@ Note, that the master theorem achieves an upper bound,
 \begin{equation*}
     \begin{split}
     T\left(n\right) & = n +  T\left(\frac{n}{10}\right) + T\left(\frac{9n}{10}\right) \le n +  2 T\left(\frac{9n}{10}\right)] \\
-    & \Rightarrow T\left(n\right) = O \left( n^{\log_{\frac{10}{9}}\left(2\right)} \right) \sim O \left( n^{ 6 } \right)  
+     \Rightarrow  T\left(n\right) & = O \left( n^{\log_{\frac{10}{9}}\left(2\right)} \right) \sim O \left( n^{ 6 } \right)  
     \end{split}
 \end{equation*}
 Yet, that bound is far from been tight. Let's try to count the operations for each node. Let's try another direction. 
