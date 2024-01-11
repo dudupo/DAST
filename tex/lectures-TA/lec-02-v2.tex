@@ -162,9 +162,9 @@ Please provide a TikZ code for a computation tree where each node contains an ar
  
 
 
-\begin{tikzpicture}[level distance=1.5cm,
-  level 1/.style={sibling distance=6cm},
-  level 2/.style={sibling distance=3cm}]
+\begin{tikzpicture}[level distance=3cm,
+  level 1/.style={sibling distance=12cm},
+  level 2/.style={sibling distance=6cm}]
  \node [rectangle, minimum width=1.2cm, minimum height=0.2cm, draw] (root) {};
  \node [rectangle, minimum width=0.4cm, minimum height=0.2cm, below left   of=root,   xshift=-0.2cm,  draw] (left1)  {};
  \node [rectangle, minimum width=0.8cm, minimum height=0.2cm, below right  of=root,   xshift=0.2cm,   draw] (right1) {};
