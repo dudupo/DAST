@@ -147,13 +147,45 @@ Please write a tikz code of a computation tree, each node contain an array, the 
 
 Please provide a TikZ code for a computation tree where each node contains an array. The recursive call splits the array into two unbalanced parts, with the left child receiving 1/10 of the array and the right child receiving 9/10 of it. Please draw at least two levels. I am only interested in the length of the arrays, so please use empty rectangles to represent them. Each node should be a rectangle with a width proportional to the number of elements it contains.  
 	
+
+	
+	\begin{tikzpicture}[level distance=1.5cm,
+	level 1/.style={sibling distance=6cm},
+	level 2/.style={sibling distance=3cm}]
+	
+	% root node
+	\node[rectangle, minimum width=6cm, minimum height=1cm] (root) {};
+	
+	% left child
+	\node[rectangle, minimum width=0.6cm, minimum height=1cm, below left of=root] (left) {};
+	\node[rectangle, minimum width=5.4cm, minimum height=1cm, below right of=root] (right) {};
+	
+	% left child's children
+	\node[rectangle, minimum width=0.06cm, minimum height=1cm, below left of=left] (left1) {};
+	\node[rectangle, minimum width=0.54cm, minimum height=1cm, below right of=left] (right1) {};
+	
+	% right child's children
+	\node[rectangle, minimum width=4.86cm, minimum height=1cm, below left of=right] (left2) {};
+	\node[rectangle, minimum width=0.54cm, minimum height=1cm, below right of=right] (right2) {};
+	
+	% labels
+	\node[below of=root, yshift=-0.5cm] {Array of length 10};
+	\node[below of=left, yshift=-0.5cm] {Array of length 1};
+	\node[below of=right, yshift=-0.5cm] {Array of length 9};
+	\node[below of=left1, yshift=-0.5cm] {Empty rectangle};
+	\node[below of=right1, yshift=-0.5cm] {Empty rectangle};
+	\node[below of=left2, yshift=-0.5cm] {Array of length 9};
+	\node[below of=right2, yshift=-0.5cm] {Empty rectangle};
+	
+	\end{tikzpicture}
+	
 	\begin{tikzpicture}[level/.style={sibling distance=4cm/#1, level distance=1.5cm}]
-		\node [rectangle, minimum width=4cm, minimum height=1cm] (root) {};
-		\node [rectangle, minimum width=1cm, minimum height=1cm, below left of=root, xshift=-2cm] (left) {};
-		\node [rectangle, minimum width=3cm, minimum height=1cm, below right of=root, xshift=2cm] (right) {};
-		\node [rectangle, minimum width=0.3cm, minimum height=1cm, below left of=left, xshift=-0.5cm] (left1) {};
-		\node [rectangle, minimum width=0.7cm, minimum height=1cm, below right of=left, xshift=0.5cm] (right1) {};
-		\node [rectangle, minimum width=2.7cm, minimum height=1cm, below right of=right, xshift=0.5cm] (right2) {};
+		\node [rectangle, minimum width=4cm, minimum height=1cm, draw] (root) {};
+		\node [rectangle, minimum width=1cm, minimum height=1cm, below left of=root, xshift=-2cm, draw] (left) {};
+		\node [rectangle, minimum width=3cm, minimum height=1cm, below right of=root, xshift=2cm, draw] (right) {};
+		\node [rectangle, minimum width=0.3cm, minimum height=1cm, below left of=left, xshift=-0.5cm, draw] (left1) {};
+		\node [rectangle, minimum width=0.7cm, minimum height=1cm, below right of=left, xshift=0.5cm, draw] (right1) {};
+		\node [rectangle, minimum width=2.7cm, minimum height=1cm, below right of=right, xshift=0.5cm, draw] (right2) {};
 		
 		\draw (root) -- (left);
 		\draw (root) -- (right);
