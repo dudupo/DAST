@@ -23,8 +23,7 @@ We will call the number of iteration till the stopping condition the recursion h
 \end{example}
 \textbf{Question}, Why is the term \( 4^{h} T(1) \) so critical? Consider the case \(T\left(n\right) =  4T\left(\frac{n}{2}\right) + c \) .One popular mistake is to forget the final term, which yields a linear solution \( \Theta(n)\) (instead of quadric \( \Theta(n^2)\)).   
 
-    \begin{example}       
-      \begin{equation*}
+    \begin{example}       \begin{equation*}
         \begin{split}
            T\left(n\right)  = \left\{ \begin{array}{rcl}
 & 3T\left(\frac{n}{2}\right) + c\cdot n & \mbox{for }  n > 1  \\
