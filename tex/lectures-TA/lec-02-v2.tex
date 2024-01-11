@@ -147,6 +147,27 @@ Please write a tikz code of a computation tree, each node contain an array, the 
 
 Please provide a TikZ code for a computation tree where each node contains an array. The recursive call splits the array into two unbalanced parts, with the left child receiving 1/10 of the array and the right child receiving 9/10 of it. Please draw at least two levels. I am only interested in the length of the arrays, so please use empty rectangles to represent them. Each node should be a rectangle with a width proportional to the number of elements it contains.  
 	
+\begin{tikzpicture}[level distance=1.5cm,
+  level 1/.style={sibling distance=6cm},
+  level 2/.style={sibling distance=3cm}]
+  \node [rectangle, minimum width=6cm, minimum height=1cm, draw] (root) {};
+  \node [rectangle, minimum width=1cm, minimum height=1cm, below left of=root, xshift=-2cm, draw] (left1) {};
+  \node [rectangle, minimum width=5cm, minimum height=1cm, below right of=root, xshift=2cm, draw] (right1) {};
+  \node [rectangle, minimum width=1cm, minimum height=1cm, below left of=left1, xshift=-1cm, draw] (left2) {};
+  \node [rectangle, minimum width=4cm, minimum height=1cm, below right of=left1, xshift=1cm, draw] (right2) {};
+  \node [rectangle, minimum width=1cm, minimum height=1cm, below left of=right1, xshift=-1cm, draw] (left3) {};
+  \node [rectangle, minimum width=4cm, minimum height=1cm, below right of=right1, xshift=1cm, draw] (right3) {};
+  \draw (root) -- (left1);
+  \draw (root) -- (right1);
+  \draw (left1) -- (left2);
+  \draw (left1) -- (right2);
+  \draw (right1) -- (left3);
+  \draw (right1) -- (right3);
+\end{tikzpicture}
+
+In this computation tree, the root node represents an array with 10 elements. The left child node represents an array with 1 element, while the right child node represents an array with 9 elements. This split continues recursively, with the left child node of the left child node representing an array with 1/10 of 1 element (or 0 elements), and the right child node of the left child node representing an array with 9/10 of 1 element (or 1 element). Similarly, the left child node of the right child node represents an array with 1/10 of 9 elements (or 1 element), and the right child node of the right child node represents an array with 9/10 of 9 elements (or 8 elements).
+
+This computation tree can continue to grow in depth, with each level representing a further split of the array into smaller and smaller parts. The empty rectangles in each node represent the length of the array, with the width of the rectangle proportional to the number of elements in the array. This allows for a visual representation of the unbalanced split of the array, with the right child node always receiving a larger portion of the array compared to the left child node. 
 
 	
 	\begin{tikzpicture}[level distance=1.5cm,
