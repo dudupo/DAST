@@ -141,36 +141,55 @@ Let \(n_i\) be the size of the subset which is processed at the \(i\)-th node. T
 \end{proof}
 \end{example}
 
-Please write a tikz code of a computation tree, each node contain an array, the recursive call split the array into two unbalacend parts, the left son will always get a 1/10 of the array while the right get 9/10 of it. please draw at least 3 levels. I'm intersting only in the length of the arrays, so please use an empty rectangles to present them, namely each node is a rectangle at length proportinal to the number of elements it contains.   
+Please write a tikz code of a computation tree, each node contain an array, the recursive call split the array into two unbalacend parts, the left son will always get a 1/10 of the array while the right get 9/10 of it. please draw at least 3 levels. I'm intersting only in the length of the arrays, so please use an empty rectangles to present them, namely each node is a rectangle at width proportinal to the number of elements it contains.   
 \begin{tikzpicture}[level distance=1.5cm,
   level 1/.style={sibling distance=6cm},
   level 2/.style={sibling distance=3cm},
   level 3/.style={sibling distance=1.5cm}]
-  
-  \node [rectangle, minimum width=6cm, minimum height=0.5cm] (root) {};
-  \node [rectangle, minimum width=3cm, minimum height=0.5cm, below left of=root] (left1) {};
-  \node [rectangle, minimum width=3cm, minimum height=0.5cm, below right of=root] (right1) {};
-  \node [rectangle, minimum width=1.5cm, minimum height=0.5cm, below left of=left1] (left2) {};
-  \node [rectangle, minimum width=1.5cm, minimum height=0.5cm, below right of=left1] (right2) {};
-  \node [rectangle, minimum width=1.5cm, minimum height=0.5cm, below left of=right1] (left3) {};
-  \node [rectangle, minimum width=1.5cm, minimum height=0.5cm, below right of=right1] (right3) {};
-  
-  \draw (root) -- (left1);
-  \draw (root) -- (right1);
-  \draw (left1) -- (left2);
-  \draw (left1) -- (right2);
-  \draw (right1) -- (left3);
-  \draw (right1) -- (right3);
-  
-  \node [below=0.2cm of left1] {$\frac{1}{10}$};
-  \node [below=0.2cm of right1] {$\frac{9}{10}$};
-  \node [below=0.2cm of left2] {$\frac{1}{10}$};
-  \node [below=0.2cm of right2] {$\frac{9}{10}$};
-  \node [below=0.2cm of left3] {$\frac{1}{10}$};
-  \node [below=0.2cm of right3] {$\frac{9}{10}$};
-  
+  \node [rectangle, minimum width=6cm, minimum height=1cm] (root) {};
+  child {
+    node [rectangle, minimum width=3cm, minimum height=1cm] (left1) {}
+    child {
+      node [rectangle, minimum width=1.5cm, minimum height=1cm] (left2) {}
+      child {
+        node [rectangle, minimum width=0.75cm, minimum height=1cm] (left3) {}
+      }
+      child {
+        node [rectangle, minimum width=0.75cm, minimum height=1cm] (right3) {}
+      }
+    }
+    child {
+      node [rectangle, minimum width=1.5cm, minimum height=1cm] (right2) {}
+      child {
+        node [rectangle, minimum width=0.75cm, minimum height=1cm] (left3) {}
+      }
+      child {
+        node [rectangle, minimum width=0.75cm, minimum height=1cm] (right3) {}
+      }
+    }
+  }
+  child {
+    node [rectangle, minimum width=3cm, minimum height=1cm] (right1) {}
+    child {
+      node [rectangle, minimum width=1.5cm, minimum height=1cm] (left2) {}
+      child {
+        node [rectangle, minimum width=0.75cm, minimum height=1cm] (left3) {}
+      }
+      child {
+        node [rectangle, minimum width=0.75cm, minimum height=1cm] (right3) {}
+      }
+    }
+    child {
+      node [rectangle, minimum width=1.5cm, minimum height=1cm] (right2) {}
+      child {
+        node [rectangle, minimum width=0.75cm, minimum height=1cm] (left3) {}
+      }
+      child {
+        node [rectangle, minimum width=0.75cm, minimum height=1cm] (right3) {}
+      }
+    }
+  };
 \end{tikzpicture}
-
 	
 	\begin{tikzpicture}[level/.style={sibling distance=4cm/#1, level distance=1.5cm}]
 		\node [rectangle, draw] (root) {$n$}
