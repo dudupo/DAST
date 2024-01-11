@@ -145,7 +145,27 @@ Let \(n_i\) be the size of the subset which is processed at the \(i\)-th node. T
 
 Please write a tikz code of a computation tree, each node contain an array, the recursive call split the array into two unbalacend parts, the left son will always get a 1/10 of the array while the right get 9/10 of it. please draw at least 3 levels. I'm intersting only in the length of the arrays, so please use an empty rectangles to present them, namely each node is a rectangle at width proportinal to the number of elements it contains.   
 
-Please provide a TikZ code for a computation tree where each node contains an array. The recursive call splits the array into two unbalanced parts, with the left child receiving 1/10 of the array and the right child receiving 9/10 of it. Please draw at least two levels. I am only interested in the length of the arrays, so please use empty rectangles to represent them. Each node should be a rectangle with a width proportional to the number of elements it contains.
+Please provide a TikZ code for a computation tree where each node contains an array. The recursive call splits the array into two unbalanced parts, with the left child receiving 1/10 of the array and the right child receiving 9/10 of it. Please draw at least two levels. I am only interested in the length of the arrays, so please use empty rectangles to represent them. Each node should be a rectangle with a width proportional to the number of elements it contains.  
+	
+	\begin{tikzpicture}[level/.style={sibling distance=4cm/#1, level distance=1.5cm}]
+		\node [rectangle, minimum width=4cm, minimum height=1cm] (root) {};
+		\node [rectangle, minimum width=1cm, minimum height=1cm, below left of=root, xshift=-2cm] (left) {};
+		\node [rectangle, minimum width=3cm, minimum height=1cm, below right of=root, xshift=2cm] (right) {};
+		\node [rectangle, minimum width=0.3cm, minimum height=1cm, below left of=left, xshift=-0.5cm] (left1) {};
+		\node [rectangle, minimum width=0.7cm, minimum height=1cm, below right of=left, xshift=0.5cm] (right1) {};
+		\node [rectangle, minimum width=2.7cm, minimum height=1cm, below right of=right, xshift=0.5cm] (right2) {};
+		
+		\draw (root) -- (left);
+		\draw (root) -- (right);
+		\draw (left) -- (left1);
+		\draw (left) -- (right1);
+		\draw (right) -- (right2);
+		
+		\node [below of=left1, yshift=-0.5cm] {1/10};
+		\node [below of=right1, yshift=-0.5cm] {9/10};
+		\node [below of=right2, yshift=-0.5cm] {9/10};
+	\end{tikzpicture}
+	
 \begin{tikzpicture}[level distance=2cm,
   level 1/.style={sibling distance=6cm},
   level 2/.style={sibling distance=3cm}]
