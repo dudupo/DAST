@@ -171,8 +171,9 @@ Please provide a TikZ code for a computation tree where each node contains an ar
  \node [rectangle, minimum width=0.2cm, minimum height=0.2cm, below left   of=left3,  xshift=-0.5cm,    draw] (left6)  {};
  \node [rectangle, minimum width=0.2cm, minimum height=0.2cm, below right  of=left3,  xshift=0.5cm,     draw] (right6) {};
  \node [rectangle, minimum width=0.2cm, minimum height=0.2cm, below left   of=right3, xshift=-0.5cm,    draw] (left7)  {};
- \node [rectangle, minimum width=0.2cm, minimum height=0.2cm, below right  of=right3, xshift=0.5cm,     draw] (right7) {}; -- (left1);
+ \node [rectangle, minimum width=0.2cm, minimum height=0.2cm, below right  of=right3, xshift=0.5cm,     draw] (right7) {}; 
   \draw (root) -- (right1);
+  \draw (root) -- (left1);
   \draw (left1) -- (left2);
   \draw (left1) -- (right2);
   \draw (right1) -- (left3);
