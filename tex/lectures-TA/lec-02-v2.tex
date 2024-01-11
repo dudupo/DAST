@@ -154,29 +154,29 @@ Please provide a TikZ code for a computation tree where each node contains an ar
 	level 2/.style={sibling distance=3cm}]
 	
 	% root node
-	\node[rectangle, minimum width=6cm, minimum height=1cm] (root) {};
+	\node[rectangle, minimum width=6cm, minimum height=1cm, draw] (root) {};
 	
 	% left child
-	\node[rectangle, minimum width=0.6cm, minimum height=1cm, below left of=root] (left) {};
-	\node[rectangle, minimum width=5.4cm, minimum height=1cm, below right of=root] (right) {};
+	\node[rectangle, minimum width=0.6cm, minimum height=1cm, below left of=root, draw] (left) {};
+	\node[rectangle, minimum width=5.4cm, minimum height=1cm, below right of=root, draw] (right) {};
 	
 	% left child's children
-	\node[rectangle, minimum width=0.06cm, minimum height=1cm, below left of=left] (left1) {};
-	\node[rectangle, minimum width=0.54cm, minimum height=1cm, below right of=left] (right1) {};
+	\node[rectangle, minimum width=0.06cm, minimum height=1cm, below left of=left, draw] (left1) {};
+	\node[rectangle, minimum width=0.54cm, minimum height=1cm, below right of=left, draw] (right1) {};
 	
 	% right child's children
-	\node[rectangle, minimum width=4.86cm, minimum height=1cm, below left of=right] (left2) {};
-	\node[rectangle, minimum width=0.54cm, minimum height=1cm, below right of=right] (right2) {};
+	\node[rectangle, minimum width=4.86cm, minimum height=1cm, below left of=right, draw] (left2) {};
+	\node[rectangle, minimum width=0.54cm, minimum height=1cm, below right of=right, draw] (right2) {};
 	
 	% labels
-	\node[below of=root, yshift=-0.5cm] {Array of length 10};
-	\node[below of=left, yshift=-0.5cm] {Array of length 1};
-	\node[below of=right, yshift=-0.5cm] {Array of length 9};
-	\node[below of=left1, yshift=-0.5cm] {Empty rectangle};
-	\node[below of=right1, yshift=-0.5cm] {Empty rectangle};
-	\node[below of=left2, yshift=-0.5cm] {Array of length 9};
-	\node[below of=right2, yshift=-0.5cm] {Empty rectangle};
-	
+%	\node[below of=root, yshift=-0.5cm] {Array of length 10};
+%	\node[below of=left, yshift=-0.5cm] {Array of length 1};
+%	\node[below of=right, yshift=-0.5cm] {Array of length 9};
+%	\node[below of=left1, yshift=-0.5cm] {Empty rectangle};
+%	\node[below of=right1, yshift=-0.5cm] {Empty rectangle};
+%	\node[below of=left2, yshift=-0.5cm] {Array of length 9};
+%	\node[below of=right2, yshift=-0.5cm] {Empty rectangle};
+%	
 	\end{tikzpicture}
 	
 	\begin{tikzpicture}[level/.style={sibling distance=4cm/#1, level distance=1.5cm}]
