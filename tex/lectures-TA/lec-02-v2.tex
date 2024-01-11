@@ -29,8 +29,10 @@ We will call the number of iteration till the stopping condition the recursion h
 \end{array}\right. \), and then the expanding yields: 
 \begin{equation*}
     \begin{split}
-        T\left(n\right) & = 3T\left(\frac{n}{2}\right) + c\cdot n = 3^2 T\left(\frac{n}{2^2}\right) + \frac{3}{2}cn + c\cdot n =  \overset{\text{\textcolor{red}{critical}}}{\overbrace{3^{h}T(1)}} + cn\left(1 + \frac{3}{2} + \left(\frac{3}{2}\right)^2 + ...  + \left(\frac{3}{2}\right)^{h-1} \right) \\
-        & h = \log_{2}\left(n\right) \Rightarrow T\left(n\right) = 3^{h}T(1) + c\cdot \textcolor{red}{n}\cdot \left(\left(\frac{3}{\textcolor{red}{2}}\right)^{\log_{2}{n}}\right) / \left(\frac{3}{2} - 1\right) = \theta \left( 3^{\log_{2}(n)} \right) =  \theta \left( n^{\log 3} \right)  
+        T\left(n\right) & = 3T\left(\frac{n}{2}\right) + c\cdot n = 3^2 T\left(\frac{n}{2^2}\right) + \frac{3}{2}cn + c\cdot n \\ 
+        & =  \overset{\text{\textcolor{red}{critical}}}{\overbrace{3^{h}T(1)}} + cn\left(1 + \frac{3}{2} + \left(\frac{3}{2}\right)^2 + ...  + \left(\frac{3}{2}\right)^{h-1} \right) \\
+        & h = \log_{2}\left(n\right) \Rightarrow T\left(n\right) = 3^{h}T(1) + c\cdot \textcolor{red}{n}\cdot \left(\left(\frac{3}{\textcolor{red}{2}}\right)^{\log_{2}{n}}\right) / \left(\frac{3}{2} - 1\right) \\ 
+        & = \theta \left( 3^{\log_{2}(n)} \right) =  \theta \left( n^{\log 3} \right)  
     \end{split}
 \end{equation*}
 where \(n^{\log 3}  \sim n^{1.58} < n^2 \).
