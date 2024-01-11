@@ -141,62 +141,32 @@ Let \(n_i\) be the size of the subset which is processed at the \(i\)-th node. T
 \end{proof}
 \end{example}
 
-Please write a tikz code of a computation tree, each node contain an array, the recursive call split the array into two unbalacend parts, the left son will always get a 1/3 of the array while the right get 2/3 of it. please draw at least 3 levels. I'm intersting only in the length of the arrays, so please use an empty rectangles to present them, without setting values to their elements. 
-\begin{tikzpicture}[level/.style={sibling distance=4cm/#1, level distance=1.5cm}]
-\node [rectangle, draw] (root) {};
-\node [rectangle, draw, below left=of root] (left1) {};
-\node [rectangle, draw, below right=of root] (right1) {};
-\node [rectangle, draw, below left=of left1] (left2) {};
-\node [rectangle, draw, below right=of left1] (right2) {};
-\node [rectangle, draw, below left=of right1] (left3) {};
-\node [rectangle, draw, below right=of right1] (right3) {};
+Please write a tikz code of a computation tree, each node contain an array, the recursive call split the array into two unbalacend parts, the left son will always get a 1/10 of the array while the right get 9/10 of it. please draw at least 3 levels. I'm intersting only in the length of the arrays, so please use an empty rectangles to present them, namely each node is a rectangle at length proportinal to it's size. 
 
-\draw (root) -- (left1);
-\draw (root) -- (right1);
-\draw (left1) -- (left2);
-\draw (left1) -- (right2);
-\draw (right1) -- (left3);
-\draw (right1) -- (right3);
-
-\node [below=0.5cm of left1] {1/3};
-\node [below=0.5cm of right1] {2/3};
-\node [below=0.5cm of left2] {1/9};
-\node [below=0.5cm of right2] {2/9};
-\node [below=0.5cm of left3] {2/9};
-\node [below=0.5cm of right3] {4/9};
-\end{tikzpicture}
-
-\begin{tikzpicture}[level distance=1.5cm,
-  level 1/.style={sibling distance=6cm},
-  level 2/.style={sibling distance=3cm},
-  level 3/.style={sibling distance=1.5cm}]
-  \node (root) {$A=[1,2,3,4,5,6,7,8,9,10]$}
-    child {node {$A_1=[1,2,3]$}
-      child {node {$A_{11}=[1]$}}
-      child {node {$A_{12}=[2,3]$}
-        child {node {$A_{121}=[2]$}}
-        child {node {$A_{122}=[3]$}}
-      }
-    }
-    child {node {$A_2=[4,5,6,7,8,9,10]$}
-      child {node {$A_{21}=[4]$}}
-      child {node {$A_{22}=[5,6,7]$}
-        child {node {$A_{221}=[5]$}}
-        child {node {$A_{222}=[6,7]$}
-          child {node {$A_{2221}=[6]$}}
-          child {node {$A_{2222}=[7]$}}
-        }
-      }
-      child {node {$A_{23}=[8,9,10]$}
-        child {node {$A_{231}=[8]$}}
-        child {node {$A_{232}=[9,10]$}
-          child {node {$A_{2321}=[9]$}}
-          child {node {$A_{2322}=[10]$}}
-        }
-      }
-    };
-\end{tikzpicture}
-
+	
+	\begin{tikzpicture}[level/.style={sibling distance=4cm/#1, level distance=1.5cm}]
+		\node [rectangle, draw] (root) {$n$}
+			child {node [rectangle, draw] {$\frac{n}{10}$}
+				child {node [rectangle, draw] {$\frac{n}{100}$}
+					child {node [rectangle, draw] {$\frac{n}{1000}$}}
+					child {node [rectangle, draw] {$\frac{9n}{1000}$}}
+				}
+				child {node [rectangle, draw] {$\frac{9n}{100}$}
+					child {node [rectangle, draw] {$\frac{9n}{1000}$}}
+					child {node [rectangle, draw] {$\frac{81n}{1000}$}}
+				}
+			}
+			child {node [rectangle, draw] {$\frac{9n}{10}$}
+				child {node [rectangle, draw] {$\frac{9n}{100}$}
+					child {node [rectangle, draw] {$\frac{9n}{1000}$}}
+					child {node [rectangle, draw] {$\frac{81n}{1000}$}}
+				}
+				child {node [rectangle, draw] {$\frac{81n}{100}$}
+					child {node [rectangle, draw] {$\frac{81n}{1000}$}}
+					child {node [rectangle, draw] {$\frac{729n}{1000}$}}
+				}
+			};
+	
 
 \ifdefined\BOOK
 
