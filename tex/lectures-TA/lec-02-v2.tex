@@ -165,103 +165,103 @@ Please provide a TikZ code for a computation tree where each node contains an ar
 		\node [below of=right1, yshift=-0.5cm] {9/10};
 		\node [below of=right2, yshift=-0.5cm] {9/10};
 	\end{tikzpicture}
-	
-\begin{tikzpicture}[level distance=2cm,
-  level 1/.style={sibling distance=6cm},
-  level 2/.style={sibling distance=3cm}]
-  \node [rectangle, minimum width=6cm, minimum height=1cm] (root) {};
-  \node [rectangle, minimum width=1.2cm, minimum height=1cm, below left of=root] (left1) {};
-  \node [rectangle, minimum width=4.8cm, minimum height=1cm, below right of=root] (right1) {};
-  \node [rectangle, minimum width=0.12cm, minimum height=1cm, below left of=left1] (left2) {};
-  \node [rectangle, minimum width=1.08cm, minimum height=1cm, below right of=left1] (right2) {};
-  \node [rectangle, minimum width=0.96cm, minimum height=1cm, below left of=right1] (left3) {};
-  \node [rectangle, minimum width=3.84cm, minimum height=1cm, below right of=right1] (right3) {};
-  \node [rectangle, minimum width=0.096cm, minimum height=1cm, below left of=left2] (left4) {};
-  \node [rectangle, minimum width=0.864cm, minimum height=1cm, below right of=left2] (right4) {};
-  \node [rectangle, minimum width=0.864cm, minimum height=1cm, below left of=right2] (left5) {};
-  \node [rectangle, minimum width=2.916cm, minimum height=1cm, below right of=right2] (right5) {};
-  \node [rectangle, minimum width=0.0864cm, minimum height=1cm, below left of=left3] (left6) {};
-  \node [rectangle, minimum width=0.7776cm, minimum height=1cm, below right of=left3] (right6) {};
-  \node [rectangle, minimum width=0.7776cm, minimum height=1cm, below left of=right3] (left7) {};
-  \node [rectangle, minimum width=2.7776cm, minimum height=1cm, below right of=right3] (right7) {};
-  \node [rectangle, minimum width=0.07776cm, minimum height=1cm, below left of=left4] (left8) {};
-  \node [rectangle, minimum width=0.69984cm, minimum height=1cm, below right of=left4] (right8) {};
-  \node [rectangle, minimum width=0.69984cm, minimum height=1cm, below left of=right4] (left9) {};
-  \node [rectangle, minimum width=2.39904cm, minimum height=1cm, below right of=right4] (right9) {};
-  \node [rectangle, minimum width=0.069984cm, minimum height=1cm, below left of=left5] (left10) {};
-  \node [rectangle, minimum width=0.629856cm, minimum height=1cm, below right of=left5] (right10) {};
-  \node [rectangle, minimum width=0.629856cm, minimum height=1cm, below left of=right5] (left11) {};
-  \node [rectangle, minimum width=2.129856cm, minimum height=1cm, below right of=right5] (right11) {};
-  \node [rectangle, minimum width=0.0629856cm, minimum height=1cm, below left of=left6] (left12) {};
-  \node [rectangle, minimum width=0.5668704cm, minimum height=1cm, below right of=left6] (right12) {};
-  \node [rectangle, minimum width=0.5668704cm, minimum height=1cm, below left of=right6] (left13) {};
-  \node [rectangle, minimum width=1.9336704cm, minimum height=1cm, below right of=right6] (right13) {};
-  \node [rectangle, minimum width=0.05668704cm, minimum height=1cm, below left of=left7] (left14) {};
-  \node [rectangle, minimum width=0.51018336cm, minimum height=1cm, below right of=left7] (right14) {};
-\end{tikzpicture}
-%  \node [rectangle, minimum width=0.51018336cm, minimum height=
-\begin{tikzpicture}[level distance=1.5cm,
-  level 1/.style={sibling distance=5cm},
-  level 2/.style={sibling distance=2.5cm}]
-  \node [rectangle, minimum width=5cm, minimum height=1cm] (root) {};
-  child {
-    node [rectangle, minimum width=0.5cm, minimum height=1cm] (left) {}
-    child {
-      node [rectangle, minimum width=0.05cm, minimum height=1cm] (leftleft) {}
-      child {
-        node [rectangle, minimum width=0.005cm, minimum height=1cm] (leftleftleft) {}
-      }
-      child {
-        node [rectangle, minimum width=0.045cm, minimum height=1cm] (leftleftright) {}
-      }
-    }
-    child {
-      node [rectangle, minimum width=0.45cm, minimum height=1cm] (leftright) {}
-    }
-  }
-  child {
-    node [rectangle, minimum width=4.5cm, minimum height=1cm] (right) {}
-    child {
-      node [rectangle, minimum width=0.45cm, minimum height=1cm] (rightleft) {}
-    }
-    child {
-      node [rectangle, minimum width=4.05cm, minimum height=1cm] (rightright) {}
-      child {
-        node [rectangle, minimum width=0.405cm, minimum height=1cm] (rightrightright) {}
-      }
-      child {
-        node [rectangle, minimum width=3.645cm, minimum height=1cm] (rightrightleft) {}
-      }
-    }
-  };
-\end{tikzpicture}
-
-	
-	\begin{tikzpicture}[level/.style={sibling distance=4cm/#1, level distance=1.5cm}]
-		\node [rectangle, draw] (root) {$n$}
-			child {node [rectangle, draw] {$\frac{n}{10}$}
-				child {node [rectangle, draw] {$\frac{n}{100}$}
-					child {node [rectangle, draw] {$\frac{n}{1000}$}}
-					child {node [rectangle, draw] {$\frac{9n}{1000}$}}
-				}
-				child {node [rectangle, draw] {$\frac{9n}{100}$}
-					child {node [rectangle, draw] {$\frac{9n}{1000}$}}
-					child {node [rectangle, draw] {$\frac{81n}{1000}$}}
-				}
-			}
-			child {node [rectangle, draw] {$\frac{9n}{10}$}
-				child {node [rectangle, draw] {$\frac{9n}{100}$}
-					child {node [rectangle, draw] {$\frac{9n}{1000}$}}
-					child {node [rectangle, draw] {$\frac{81n}{1000}$}}
-				}
-				child {node [rectangle, draw] {$\frac{81n}{100}$}
-					child {node [rectangle, draw] {$\frac{81n}{1000}$}}
-					child {node [rectangle, draw] {$\frac{729n}{1000}$}}
-				}
-			};
-	\end{tikzpicture}
-	
-
+%	
+%\begin{tikzpicture}[level distance=2cm,
+%  level 1/.style={sibling distance=6cm},
+%  level 2/.style={sibling distance=3cm}]
+%  \node [rectangle, minimum width=6cm, minimum height=1cm] (root) {};
+%  \node [rectangle, minimum width=1.2cm, minimum height=1cm, below left of=root] (left1) {};
+%  \node [rectangle, minimum width=4.8cm, minimum height=1cm, below right of=root] (right1) {};
+%  \node [rectangle, minimum width=0.12cm, minimum height=1cm, below left of=left1] (left2) {};
+%  \node [rectangle, minimum width=1.08cm, minimum height=1cm, below right of=left1] (right2) {};
+%  \node [rectangle, minimum width=0.96cm, minimum height=1cm, below left of=right1] (left3) {};
+%  \node [rectangle, minimum width=3.84cm, minimum height=1cm, below right of=right1] (right3) {};
+%  \node [rectangle, minimum width=0.096cm, minimum height=1cm, below left of=left2] (left4) {};
+%  \node [rectangle, minimum width=0.864cm, minimum height=1cm, below right of=left2] (right4) {};
+%  \node [rectangle, minimum width=0.864cm, minimum height=1cm, below left of=right2] (left5) {};
+%  \node [rectangle, minimum width=2.916cm, minimum height=1cm, below right of=right2] (right5) {};
+%  \node [rectangle, minimum width=0.0864cm, minimum height=1cm, below left of=left3] (left6) {};
+%  \node [rectangle, minimum width=0.7776cm, minimum height=1cm, below right of=left3] (right6) {};
+%  \node [rectangle, minimum width=0.7776cm, minimum height=1cm, below left of=right3] (left7) {};
+%  \node [rectangle, minimum width=2.7776cm, minimum height=1cm, below right of=right3] (right7) {};
+%  \node [rectangle, minimum width=0.07776cm, minimum height=1cm, below left of=left4] (left8) {};
+%  \node [rectangle, minimum width=0.69984cm, minimum height=1cm, below right of=left4] (right8) {};
+%  \node [rectangle, minimum width=0.69984cm, minimum height=1cm, below left of=right4] (left9) {};
+%  \node [rectangle, minimum width=2.39904cm, minimum height=1cm, below right of=right4] (right9) {};
+%  \node [rectangle, minimum width=0.069984cm, minimum height=1cm, below left of=left5] (left10) {};
+%  \node [rectangle, minimum width=0.629856cm, minimum height=1cm, below right of=left5] (right10) {};
+%  \node [rectangle, minimum width=0.629856cm, minimum height=1cm, below left of=right5] (left11) {};
+%  \node [rectangle, minimum width=2.129856cm, minimum height=1cm, below right of=right5] (right11) {};
+%  \node [rectangle, minimum width=0.0629856cm, minimum height=1cm, below left of=left6] (left12) {};
+%  \node [rectangle, minimum width=0.5668704cm, minimum height=1cm, below right of=left6] (right12) {};
+%  \node [rectangle, minimum width=0.5668704cm, minimum height=1cm, below left of=right6] (left13) {};
+%  \node [rectangle, minimum width=1.9336704cm, minimum height=1cm, below right of=right6] (right13) {};
+%  \node [rectangle, minimum width=0.05668704cm, minimum height=1cm, below left of=left7] (left14) {};
+%  \node [rectangle, minimum width=0.51018336cm, minimum height=1cm, below right of=left7] (right14) {};
+%\end{tikzpicture}
+%%  \node [rectangle, minimum width=0.51018336cm, minimum height=
+%\begin{tikzpicture}[level distance=1.5cm,
+%  level 1/.style={sibling distance=5cm},
+%  level 2/.style={sibling distance=2.5cm}]
+%  \node [rectangle, minimum width=5cm, minimum height=1cm] (root) {};
+%  child {
+%    node [rectangle, minimum width=0.5cm, minimum height=1cm] (left) {}
+%    child {
+%      node [rectangle, minimum width=0.05cm, minimum height=1cm] (leftleft) {}
+%      child {
+%        node [rectangle, minimum width=0.005cm, minimum height=1cm] (leftleftleft) {}
+%      }
+%      child {
+%        node [rectangle, minimum width=0.045cm, minimum height=1cm] (leftleftright) {}
+%      }
+%    }
+%    child {
+%      node [rectangle, minimum width=0.45cm, minimum height=1cm] (leftright) {}
+%    }
+%  }
+%  child {
+%    node [rectangle, minimum width=4.5cm, minimum height=1cm] (right) {}
+%    child {
+%      node [rectangle, minimum width=0.45cm, minimum height=1cm] (rightleft) {}
+%    }
+%    child {
+%      node [rectangle, minimum width=4.05cm, minimum height=1cm] (rightright) {}
+%      child {
+%        node [rectangle, minimum width=0.405cm, minimum height=1cm] (rightrightright) {}
+%      }
+%      child {
+%        node [rectangle, minimum width=3.645cm, minimum height=1cm] (rightrightleft) {}
+%      }
+%    }
+%  };
+%\end{tikzpicture}
+%
+%	
+%	\begin{tikzpicture}[level/.style={sibling distance=4cm/#1, level distance=1.5cm}]
+%		\node [rectangle, draw] (root) {$n$}
+%			child {node [rectangle, draw] {$\frac{n}{10}$}
+%				child {node [rectangle, draw] {$\frac{n}{100}$}
+%					child {node [rectangle, draw] {$\frac{n}{1000}$}}
+%					child {node [rectangle, draw] {$\frac{9n}{1000}$}}
+%				}
+%				child {node [rectangle, draw] {$\frac{9n}{100}$}
+%					child {node [rectangle, draw] {$\frac{9n}{1000}$}}
+%					child {node [rectangle, draw] {$\frac{81n}{1000}$}}
+%				}
+%			}
+%			child {node [rectangle, draw] {$\frac{9n}{10}$}
+%				child {node [rectangle, draw] {$\frac{9n}{100}$}
+%					child {node [rectangle, draw] {$\frac{9n}{1000}$}}
+%					child {node [rectangle, draw] {$\frac{81n}{1000}$}}
+%				}
+%				child {node [rectangle, draw] {$\frac{81n}{100}$}
+%					child {node [rectangle, draw] {$\frac{81n}{1000}$}}
+%					child {node [rectangle, draw] {$\frac{729n}{1000}$}}
+%				}
+%			};
+%	\end{tikzpicture}
+%	
+%
 \ifdefined\BOOK
 
 
