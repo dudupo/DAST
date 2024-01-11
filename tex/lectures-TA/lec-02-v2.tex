@@ -151,29 +151,37 @@ Please provide a TikZ code for a computation tree where each node contains an ar
  
  
  
-  
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
+ 
 
 
 \begin{tikzpicture}[level distance=1.5cm,
   level 1/.style={sibling distance=6cm},
   level 2/.style={sibling distance=3cm}]
  \node [rectangle, minimum width=1.2cm, minimum height=0.2cm, draw] (root) {};
- \node [rectangle, minimum width=0.4cm, minimum height=0.2cm, below left   of=root,   xshift=-1cm,      draw] (left1)  {};
- \node [rectangle, minimum width=0.8cm, minimum height=0.2cm, below right  of=root,   xshift=1cm,       draw] (right1) {};
- \node [rectangle, minimum width=0.2cm, minimum height=0.2cm, below left   of=left1,  xshift=-0.5cm,    draw] (left2)  {};
- \node [rectangle, minimum width=0.2cm, minimum height=0.2cm, below right  of=left1,  xshift=0.5cm,     draw] (right2) {};
- \node [rectangle, minimum width=0.4cm, minimum height=0.2cm, below left   of=right1, xshift=-1cm,      draw] (left3)  {};
- \node [rectangle, minimum width=0.4cm, minimum height=0.2cm, below right  of=right1, xshift=1cm,       draw] (right3) {};
- \node [rectangle, minimum width=0.1cm, minimum height=0.2cm, below left   of=left2,  xshift=-0.25cm,   draw] (left4)  {};
- \node [rectangle, minimum width=0.1cm, minimum height=0.2cm, below right  of=left2,  xshift=0.25cm,    draw] (right4) {};
- \node [rectangle, minimum width=0.1cm, minimum height=0.2cm, below left   of=right2, xshift=-0.25cm,   draw] (left5)  {};
- \node [rectangle, minimum width=0.1cm, minimum height=0.2cm, below right  of=right2, xshift=0.25cm,    draw] (right5) {};
- \node [rectangle, minimum width=0.2cm, minimum height=0.2cm, below left   of=left3,  xshift=-0.5cm,    draw] (left6)  {};
- \node [rectangle, minimum width=0.2cm, minimum height=0.2cm, below right  of=left3,  xshift=0.5cm,     draw] (right6) {};
- \node [rectangle, minimum width=0.2cm, minimum height=0.2cm, below left   of=right3, xshift=-0.5cm,    draw] (left7)  {};
- \node [rectangle, minimum width=0.2cm, minimum height=0.2cm, below right  of=right3, xshift=0.5cm,     draw] (right7) {}; 
-  \draw (root) -- (right1);
+ \node [rectangle, minimum width=0.4cm, minimum height=0.2cm, below left   of=root,   xshift=-0.2cm,  draw] (left1)  {};
+ \node [rectangle, minimum width=0.8cm, minimum height=0.2cm, below right  of=root,   xshift=0.2cm,   draw] (right1) {};
+ \node [rectangle, minimum width=0.2cm, minimum height=0.2cm, below left   of=left1,  xshift=-0.1cm,  draw] (left2)  {};
+ \node [rectangle, minimum width=0.2cm, minimum height=0.2cm, below right  of=left1,  xshift=0.1cm,   draw] (right2) {};
+ \node [rectangle, minimum width=0.4cm, minimum height=0.2cm, below left   of=right1, xshift=-0.2cm,  draw] (left3)  {};
+ \node [rectangle, minimum width=0.4cm, minimum height=0.2cm, below right  of=right1, xshift=0.2cm,   draw] (right3) {};
+ \node [rectangle, minimum width=0.1cm, minimum height=0.2cm, below left   of=left2,  xshift=-0.05cm, draw] (left4)  {};
+ \node [rectangle, minimum width=0.1cm, minimum height=0.2cm, below right  of=left2,  xshift=0.05cm,  draw] (right4) {};
+ \node [rectangle, minimum width=0.1cm, minimum height=0.2cm, below left   of=right2, xshift=-0.05cm, draw] (left5)  {};
+ \node [rectangle, minimum width=0.1cm, minimum height=0.2cm, below right  of=right2, xshift=0.05cm,  draw] (right5) {};
+ \node [rectangle, minimum width=0.2cm, minimum height=0.2cm, below left   of=left3,  xshift=-0.1cm,  draw] (left6)  {};
+ \node [rectangle, minimum width=0.2cm, minimum height=0.2cm, below right  of=left3,  xshift=0.1cm,   draw] (right6) {};
+ \node [rectangle, minimum width=0.2cm, minimum height=0.2cm, below left   of=right3, xshift=-0.1cm,  draw] (left7)  {};
+ \node [rectangle, minimum width=0.2cm, minimum height=0.2cm, below right  of=right3, xshift=0.1cm,   draw] (right7) {}; 
   \draw (root) -- (left1);
+  \draw (root) -- (right1);
   \draw (left1) -- (left2);
   \draw (left1) -- (right2);
   \draw (right1) -- (left3);
