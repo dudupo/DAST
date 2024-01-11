@@ -242,7 +242,7 @@ What's the running time? Denote by $T\left( n \right)$ an upper bound on the run
 % \paragraph{Abstract.} Today we will cover induction, infinite series, and asymptotic notation. These tools will come in handy (in the next couple of weeks) when we want to find the runtime complexity of an algorithm, specifically using the ’Master Theorem’, to give asymptotic bounds for recursion relations, and to prove loop invariants using (finite) induction.
 
 
-%\input{../texlib/head.tex}
+%\newpage\input{../texlib/head.tex}
     
 \chapter{Correctness - Recitation 2} 
 %\author{Correctness proofs and computational complexity. }
@@ -322,7 +322,8 @@ What is the Loop Invariant here? \textit{"at the \(i\)-th iteration, \(b = \max{
 
 
 
-%%
+%
+%
 \begin{algorithm}
   \caption{Sub-Array. \(O(n^2)\) space alg.}
 % \SetAlgoLined
@@ -360,7 +361,8 @@ What is the Loop Invariant here? \textit{"at the \(i\)-th iteration, \(b = \max{
 
 \paragraph{ \(O\left(n\log n\right)\) Space Solution.} Example for \(O\left(n\log n + |Q|\log n\right)\) time and \(O\left(n\log n\right)\) space algorithm. Instead of storing the whole matrix, we store only logarithmic number of rows.   
 
-%%{}
+%
+%{}
 \begin{algorithm}
 % \SetAlgoLined
   \caption{Sub-Array. \(O(n \log n )\) space alg.}
@@ -495,7 +497,8 @@ T\left(n\right) & =  \sum_{k=1}^{\log{n}}{n\cdot\log \left( \frac{n}{2^k}\right)
 \begin{example}
 Consider merge sort variation such that instead of splitting the array into two equals parts it's split them into different size arrays. The first one contains \( \frac{n}{10} \) elements while second contains the others \( \frac{9n}{10}\) elements.
 
-%%{non-equal-merge alg.}
+%
+%{non-equal-merge alg.}
 \begin{algorithm}
 \SetAlgoLined
 \KwResult{returns the sorted permutation of \(x_1 ... x_n \in \mathbb{R}^n \)  }
@@ -611,7 +614,8 @@ It was once thought that multiplication could not be done in less than $\Omega\l
 z_0, z_1, z_2 \leftarrow x_{l}y_{r}, x_{l}y_{r} + x_{r}y_{l}, x_{r}y_{r}
 \end{equation*}Notice that \( z_1 = \left(x_{l}+x_{r}\right)\left(y_{l}+y_{r}\right) - z_{0} -z_{1} \). summarize the above yields the following pseudo code. 
 
-%%{Karatsuba alg.}
+%
+%{Karatsuba alg.}
 \begin{algorithm}
 \SetAlgoLined
 \KwResult{returns the multiplication \(x\cdot y\) where \(x,y \in \mathbb{F}^{n}_{2}\) }
@@ -666,6 +670,7 @@ Other functions \(f\) might be including any computation task: file saving, summ
 \paragraph{Task: Maximum Finding.} \textit{Given $n\in \mathbb{N}$ numbers $a_1, a_2, \cdots a_n \in \mathbb{R}$ write an Algorithm that returns their maximum.} 
 
 Consider the following suggestion. How would you prove it correct?  
+
 %{Maximum finding.}
 \begin{algorithm*}[H]
 % \SetAlgoLined
@@ -698,6 +703,7 @@ b^{(i)} = \max{ \{ b^{(i-1)}, a_{i} \} } = \max{ \{ \max{ \{ a_1, .. a_{i-2}, a_
 And that completes the Conservation part. Termination, followed by the conservation, at the $n$ iteration, $b^{(i)}$ is seted to $\max{ \{ a_1 ,a_2 .. a_n  \}}$. 
 
 \paragraph{Task: Element finding.}  \textit{Given $n\in \mathbb{N}$ numbers $a_1, a_2, \cdots a_n \in \mathbb{R}$ and additional number $x \in \mathbb{R}$ write an Algorithm that returns $i$ s.t $a_{i} = x$ if there exists such $i$ and} False \textit{otherwise.} 
+
 
 %{Element finding.}
 \begin{algorithm}[H]
@@ -762,6 +768,7 @@ How much is the cost (running time) to compute the min of $H$? (without changing
 \paragraph{Subtask: Extracting Heap's Minimum.} \textit{Let $H$ be an Heap at size $n$, Write algorithm which return $H_1$, erase it and returns $H^\prime$, an Heap which contain all the remain elements.} 
 \textbf{Solution:} 
 
+
 %{Extract-min.}
 \begin{algorithm}[H]
 \SetKwInOut{Input}{input}
@@ -773,6 +780,7 @@ $ n \leftarrow n -1 $ \\
 Heapify-down$\left( 1 \right)$ \\
 return ret  
 \end{algorithm}
+
 
 
 
@@ -830,6 +838,7 @@ right $\rightarrow 2i +1 $ \\
  
 \end{itemize} 
 \paragraph{Question.} How to construct a heap? And how much time will it take?   
+
 %{Build.}
 \begin{algorithm}[H]
   \SetKwInOut{Input}{input}
@@ -867,6 +876,7 @@ And by the Ratio test for inifinte serires $ \lim_{j\rightarrow \infty} \frac{(j
 
 \paragraph{Heap Sort.}   
 Combining the above, we obtain a new sorting algorithm. Given an array, we could first Heapify it (build a heap from it) and then extract the elements by their order. As we saw, the construction requires linear time, and then each extraction costs $\log n$ time. So, the overall cost is $O\left( n\log n  \right)$. Correction follows immediately from Build and Extract correction.  
+
 %{Heap-Sort.}
 \begin{algorithm}[H]
 \SetKwInOut{Input}{input}
@@ -883,6 +893,7 @@ Combining the above, we obtain a new sorting algorithm. Given an array, we could
 
 \paragraph{Adding Elements Into The Heap.} (Skip if there is no time).
 
+
 %{Heapify-up.}
 \begin{algorithm}[H]
   \SetKwInOut{Input}{input}
@@ -894,6 +905,7 @@ parent $\leftarrow \lfloor i/2 \rfloor $ \\
   Heapify-up$\left( \text{parent}  \right)$
 }
 \end{algorithm}
+
 
 
 
@@ -917,6 +929,7 @@ $ n \leftarrow n + 1 $
 \paragraph{Task:}Write a datastructure that support insertion and deltion at $O\left( \log n \right) $ time and in addition enable to extract the median in $O\left( \log n  \right)$ time. 
 
 \paragraph{Soultlion.} We will define two separate Heaps, the first will be a maximum heap and store the first $ \lfloor n/2 \rfloor $ smallest elements, and the second will be a minimum heap and contain the $ \lceil n/2 \rceil$ greatest elements. So, it's clear that the root of the maximum heap is the median of the elements. Therefore to guarantee correctness, we should maintain the balance between the heap's size. Namely, promising that after each insertion or extraction, the difference between the heap's size is either $0$ or $1$.
+
 
 %{Median-Insert-key.}
 \begin{algorithm}[H]  
@@ -942,6 +955,7 @@ median $\leftarrow$ Median-Extract $H$ \\
 }
 }
 \end{algorithm}
+
 
 
 %{Median-Extract.}
@@ -978,6 +992,7 @@ return median
 
 \textbf{Solution.} Notice that If $a \in X$ is greater than $i$ elements of $X$ and $b \in Y$ greater than $j$ elements of $Y$. Then, $a + b$  greater than $i\cdot j$ elements of $X \oplus Y$. Denote by $X^\prime = \{ x^{\prime}_{1} .. x^{\prime}_{n}$ ( $Y^{\prime}$ ) The elements of $X$ in sorted order. So it's clear that if $x_{i}+y_{j} = x^{\prime}_{i^{\prime}} + y^{\prime}_{j^{\prime}}$ is one of the $k$ smallest elements of $X\oplus Y$ then $i^{\prime}j^{\prime} \ge k$. So we will create a heap of elements that respect that inequality and then query that heap.
 
+
 %{Heappush.}
 \begin{algorithm}[H]
 % \SetAlgoLined
@@ -1012,6 +1027,7 @@ The quicksort algorithm is a good example of a \textbf{non-determistic} algorith
 
 What is the exact reason that happens? By giving up on the algorithm behavior century, we will turn the task of engineering a bad input impossible.    
  
+
 %{randomized-partition$(A, p, r)$}
   \begin{algorithm}[H]
       $i \leftarrow $ random $(p, r)$ \\
@@ -1019,7 +1035,8 @@ What is the exact reason that happens? By giving up on the algorithm behavior ce
       return Partition $(A, p, r)$
     \end{algorithm}
 
- %{randomized-quicksort $(A, p, r)$}
+ 
+%{randomized-quicksort $(A, p, r)$}
       \begin{algorithm}[H]
 	\If{ $p < r$ }{
 	  $q \leftarrow $ randomized-partition $(A, p, r)$ \\
@@ -1034,6 +1051,7 @@ What is the exact reason that happens? By giving up on the algorithm behavior ce
 To complete the correctness proof of the algorithm (most of it passed in the Lecture), we have to prove that the partition method is indeed rearranging the array such that all the elements contained in the right subarray are greater than all the elements on the left subarray.  
 
 %which rearranges the subarray $ A_{p : r}$ in place, returning the index of the dividing point between the two sides of the partition.
+
 
 %{Partition$(A, p, r)$}
   \begin{algorithm}[H]
@@ -1071,6 +1089,7 @@ To complete the correctness proof of the algorithm (most of it passed in the Lec
 \paragraph{ Counting sort.} Counting sort assumes that each of the n input elements is an integer at the size at most $k$. It runs in $\Theta \left(n + k\right)$ time, so that when $k = O(n)$, counting sort runs in $\Theta\left(n\right)$ time.
 Counting sort first determines, for each input element $x$, the number of elements less than or equal to $x$. It then uses this information to place element $x$ directly into its position in the output array. For example, if 17 elements are less than or equal to $x$, then $x$ belongs in output position 17. We must modify this scheme slightly to handle the situation in which several elements have the \textbf{same value}, since we do not want them all to end up in the same position.
 
+
 %{Counting-sort$(A, n, k)$}
   \begin{algorithm}[H]
   	let B and C be new arrays at size $n$ and $k$ \\ 
@@ -1104,6 +1123,7 @@ Counting sort's stability is important for another reason: counting sort is ofte
 Radix sort is the algorithm used by the card-sorting machines you now find only in computer museums. The cards have 80 columns, and in each column, a machine can punch a hole in one of 12 places. The sorter can be mechanically "programmed" to examine a given column of each card in a deck and distribute the card into one of 12 bins depending on which place has been punched. An operator can then gather the cards bin by bin, so that cards with the first place punched are on top of cards with the second place punched, and so on.
 
 The Radix-sort procedure assumes that each element in the array $A$ has d digits, where digit 1 is the lowest-order digit and digit $d$ is the highest-order digit.
+
 
 
 %{radix-sort(A, n, d)}
@@ -1143,6 +1163,7 @@ The analysis of the running time depends on the stable sort used as the intermed
 %Bucket sort assumes that the input is drawn from a uniform distribution and has an average-case running time of O(n). Like counting sort, bucket sort is fast because it assumes something about the input. Whereas counting sort assumes that the input consists of integers in a small range, bucket sort assumes that the input is generated by a random process that distributes elements uniformly and independently over the interval [0, 1). (See Section C.2 for a definition of a uniform distribution.)
 Bucket sort divides the interval [0, 1) into n equal-sized subintervals, or buckets, and then distributes the n input numbers into the buckets. Since the inputs are uniformly and independently distributed over [0, 1), we do not expect many numbers to fall into each bucket. To produce the output, we simply sort the numbers in each bucket and then go through the buckets in order, listing the elements in each.
 %The BUCKET-SORT procedure on the next page assumes that the input is an array A[1 : n] and that each element A[i] in the array satisfies 0 ≤ A[i] < 1. The code requires an auxiliary array B[0 : n – 1] of linked lists (buckets) and assumes that there is a mechanism for maintaining such lists. (Section 10.2 describes how to implement basic operations on linked lists.) Figure 8.4 shows the operation of bucket sort on an input array of 10 numbers.
+
 
 %{bucket-sort(A, n)}
   \begin{algorithm}[H]
@@ -1344,6 +1365,7 @@ More concretely - we will add a recursive operation of traversing the tree
 "back up" and checking violations. Had we found one - we will fix it using
 rotations. Since rotations can be done in $O(1)$, the entire correction
 process will take $O(\log(n))$, so we maintain a good time complexity.
+
 
 
 %{AVL Insert(r,x)}
@@ -1581,6 +1603,7 @@ Then computing the sumover query will be done by summing these fields of the ver
 \end{figure}
 
 
+
 %{Sumover($r$,$x$)}
   \begin{algorithm}[H]
     \If{ $r$ is None }{
@@ -1603,6 +1626,7 @@ his direct children are correct AVL trees and have the correct value at the Left
 \end{enumerate}
 Therefore we will have to recompute the Sumleft filed for only a $O(1)$ vertices (which are the children and the grandchildren of $v$ previews the rotation). 
 Each computation could be done in $O(1)$ time. 
+
 
 
 %{AVL-Leftsum Insert(r,x)}
@@ -1958,6 +1982,7 @@ The breadth-first-search procedure BFS on the following page assumes that the gr
     \item $\pi(v)$ is $v$’s predecessor in the breadth-first tree. If $v$ has no predecessor because it is the source vertex or is undiscovered, then $\pi(v)$ is None/NULL.
 \end{enumerate}
 
+
 %{BFS($G, s$)}
   \begin{algorithm}[H]
     \For {$v\in V$}{
@@ -1997,6 +2022,7 @@ Now we have a way to travel through a graph using the edges. How else can we use
 \textbf{Exercise}: Present and analyse an algorithm $CC(G)$ which receives some undirected graph $G$ and outputs the number of connected components in $G$ in $O(|V|+|E|)$. \\
 
 \textbf{Solution}: Consider the following algorithm: (Now read the algorithm, it may be in the next page because LaTeX is dumb...)
+
 %{CC($G$)}
   \begin{algorithm}[H]
      count $\leftarrow 0$\\
@@ -2012,6 +2038,7 @@ Now we have a way to travel through a graph using the edges. How else can we use
 
 \subsection{Depth First Search (DFS)}
 As its name implies, depth-first search searches "deeper" in the graph whenever possible. Depth-first search explores edges out of the most recently discovered vertex $v$ that still has unexplored edges leaving it. Once all of $ v$'s edges have been explored, the search "backtracks" to explore edges leaving the vertex from which $v$ was discovered. This process continues until all vertices that are reachable from the original source vertex have been discovered. If any undiscovered vertices remain, then depth-first search selects one of them as a new source, repeating the search from that source. The algorithm repeats this entire process until it has discovered every vertex.
+
 
 %{DFS($G$)}
   \begin{algorithm}[H]
@@ -2168,6 +2195,7 @@ Notice that the native implementation using pointers array, $A$, defined to stor
 One way to have a non-trivial improvement is to associate each set with a linked list storing all the elements belonging to the set. Each node of those linked lists contains, in addition to its value and sibling pointer, a pointer for the list itself (the set). Consider the merging operation again. It's clear that having those lists allow us to unify sets by iterating and updating only the elements that belong to them. Still, one more trick is needed to achieve a good running cost. 
 
 
+
 %{Uinon$(x,y)$}
   \begin{algorithm}[H]
     \If{size $A[x] \ge $  size$A[y]$  }{
@@ -2223,6 +2251,7 @@ Notice that in the case in which $m = O\left( 1 \right)$, we will still pay much
 
 
 \paragraph{Forest Implementation.} Instead of associating each set with a linked list, one might attach a first. The vertices hold the values of the items, and we could think about the root of each tree as the represtive of the tree. If two vertices $x,y$ share the same root, then it's clear they belong to the same set. At the initialization stage, Make-Set defines the vertices as roots of trivial trees (single root without any descendants). Then the find method is: 
+
 %{Find$(x)$}
   \begin{algorithm}[H]
     \While{ $ \pi(x) \neq  $ None } { 
@@ -2235,6 +2264,7 @@ Notice that in the case in which $m = O\left( 1 \right)$, we will still pay much
 We will see that a slight change should be set for the last improvement. But before that, let's try to mimic the decision rule above. Even those, we could define a size field for each root and get the same algorithm as above. Instead, we will define another field that, from first sight, looks identical. Let the rank$\left( v \right)$ of the node $v$ be the height of the $v$. Recall that tree's height defines to be the longest path from the root to one of the vertices. 
 
 \paragraph{Union By Rank Huristic\protect\footnote{Corman calls that rule a heuristic, but please notice that heuristics usually refers to methods that seem to be efficient empirically, yet it doesn't clear how to prove their advantage mathematically. Still, in that course, we stick to Corman terminology.}}. So as we said, first, we will ensure how to mimic the $\log n$ complexity proof under the first implementation. 
+
 
 %{Uinon$(x,y)$}
   \begin{algorithm}[H]
@@ -2256,6 +2286,7 @@ The decision rule in lines (4-8) preserves the correctness of the following clai
 Claim, let $M(r)$ a lower bound over the size of the tree at rank $r$. Then $M\left( r+1 \right) \ge 2M\left( r \right)$. The proof is left as an exercise. Assuming the correctness of the claim, it holds that $M\left( \log n \right) \ge n $. So it immediately follows that the running time takes at most $n\log n$. We could get even tighter bound by noticing that the rank bounds a single query. And therefore, the total cost is at most $m \cdot \log n$. 
 
 \paragraph{Path Compression Heuristic.} The final trick to yield a sub-logarithmic time algorithm is to compress the brunch on which we have already passed and reduce the number of duplicated transitions.     
+
 %{Find$(x)$}
   \begin{algorithm}[H]
     \If{ $ \pi\left( x \right) \neq $ None}{
