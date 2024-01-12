@@ -243,6 +243,274 @@ What's the running time? Denote by $T\left( n \right)$ an upper bound on the run
 % \paragraph{Abstract.} Today we will cover induction, infinite series, and asymptotic notation. These tools will come in handy (in the next couple of weeks) when we want to find the runtime complexity of an algorithm, specifically using the ’Master Theorem’, to give asymptotic bounds for recursion relations, and to prove loop invariants using (finite) induction.
 
 
+
+\newcommand*{\EXERCISE}{}%
+%\input{../tex/texlib/head.tex}
+\input{../tex/texlib/pack}
+\input{../tex/lectures-TA/newcommands.tex}
+\addbibresource{../tex/lectures-TA/sample.bib} 
+
+\newcommand*{\RECITATION}{}%
+
+
+\ifdefined\SOLUTION
+  \chapter{DAST. Exercise 0. Solution.}
+\else
+  \chapter{DAST. Exercise 0.}
+\fi
+\section{Peaks-Finding.} Recall the logarithmic-time version of find-peak. Prove its correctness. You can continue directly from the point we have reached to in the recitation.
+
+\begin{algorithm}
+\KwResult{returns a peak of \(A_1 ... A_n \in \mathbb{R} \)  }
+\caption{sophisticated alg.}
+$ i \leftarrow  \lceil n/2 \rceil $\\
+        \If { $A_{i}$ is a peak }{
+          \Return $i$
+        }
+        \ElseIf { $A_{i-1} \le A_{i}$ } { 
+          \Return $i + $ find-peak$\left(A_{i+1}..A_{n}\right)$
+        }
+        \Else { 
+          \Return find-peak$\left(A_{1},A_{2},A_{3}..A_{i-1}\right)$
+        }
+\end{algorithm}
+
+\ifdefined\SOLUTION
+  \paragraph{Solution.} Guideline. For completing the induction step, we have to prove a similar claim to 1.3.2, stated as follows. Let $A = A_{1},A_{2},\dots,A_{n-1},A_{n}$ be a $n$-length array. Suppose that $A_{j-1}>A_{j}$ and define $A^{\prime}$ to be the array obtained by taking the elements $A_{1},A_{2}..A_{j-1}$. Then any peak of $A^{\prime}$ is also a peak of $A$.
+\fi
+
+
+\ifdefined\CHECK 
+\paragraph{For checkers}
+
+\begin{enumerate}
+  \item Accept any solution that proves the correctness in either of the two splits (left or right), no matter which.
+  \item Solutions in which it is not proven that any peak of the subarray is a peak of the original array are incorrect.
+\end{enumerate}
+\fi
+
+\section{Peaks-Finding on the Cycle.} Consider the following variation of the peaks-finding problem. We will define the peaks again to be the local maximas of given array $A$. However instead of thinking on position ${1,2..n}$ as coordinates on the line we will think about them as cordinates on the cycle. Namely $A_{1}$ is the right neighbor of $A_{n}$. 
+
+
+Show a series of arrays $\left\{ A_{n} \right\}_{n=3}^{\infty}$ for which the recursive version of peak-find always fails. Explain in one line why the naive algorithm is still correct (You don't have to provide a formal correctness proof).
+
+
+\ifdefined\SOLUTION
+  \paragraph{Solution.} Guideline. For any $n \ge 3$ define $A_{n}$ as follow:
+\begin{equation*}
+  \begin{split}
+    A_{i} = \begin{cases}
+      n & \text{ if } i = 1 \\
+      i - 1 & \text{ else } 
+    \end{cases}
+  \end{split}
+\end{equation*}
+
+So we have that 
+\begin{equation*}
+  \begin{split}
+    A_{\lceil n/2 \rceil - 1 } = \lceil n/2 \rceil - 2 \le A_{\lceil n/2 \rceil } = \lceil n/2 \rceil - 1 \le A_{\lceil n/2 \rceil + 1 } = \lceil n/2 \rceil  
+  \end{split}
+\end{equation*}
+Hence, the algorithm will answer affirmatively on line (5) and will look in recursion on the right half of the array which doesn't contain a peak. Yet the naive version iterates over the whole array, in our case it will check if $A_{1} \ge A_{2},A_{n}$, answer affirmatively and returns 1. In fact, as the global maximum is a peak it's guaranteed that for any array set on the cycle the naive version returns a peak.
+
+
+
+\fi
+
+\ifdefined\CHECK 
+\paragraph{For checkers}
+\begin{enumerate}
+  \item Reject solutions that include only a finite number inputs.
+  \item In case the students assume that the recursive call compares between $A_n$ and $A_{i+1} = A'_1$, check it with forgiveness and accept the solution. (The original intent was that the recursive algorithm would treat the peaks as if $A$ were on the line, but they still got the idea and deserve full credit).
+\end{enumerate}
+\fi
+
+
+
+
+\section{$k$-range peaks.} In this section we define $k$-range peak to be all the items satisfiey:  
+\begin{equation*}
+  \begin{split}
+    A_{i}= \max_{|i-j| \le k } \left\{ A_{j} \right\} 
+  \end{split}
+\end{equation*}
+
+Write an algorithm that find a $k$-range peak in at most $k\log(n)$ up to constant factor indepandet on $k$ and $n$. Prove correctness, and bound the running time. 
+\ifdefined\SOLUTION
+  \paragraph{Solution.} Consider \Cref{alg:krange}. 
+Let's prove correction by induction.
+\begin{proof}
+\begin{enumerate}
+  \item Base, for $n \le k$. Trivial. 
+  \item Assumption, Assume that for any $m$-length array, such that $m<n$ the alg returns a peak. 
+  \item Step, Consider an array $A$ of length $n$. If $A_j$ is a $k$-range peak, then the algorithm answers affirmatively on the first check and we're done. If not, then either $i < j$ or $j < i$. 
+
+    Consider the first case, $i < j \Rightarrow A_{j-k}, A_{j-k-1},..A_{j-1} \le A_j$. Using a variation of Claim 1.3.2 (which we didn't prove, and you had to do so), we have that any $k$-range peak of $A' = A_j, A_{j + 1},.. \dots, A_n$ is also a $k$-range peak of $A$. The length of $A'$ is equal to or less than $n/2 < n$. So, by the induction assumption, in the case where $i < j$, the algorithm returns a $k$-range peak of $A'$, denoted by $l$ its position in $A'$ and notice that its corresponding position in $A$ is $j-1+l$.
+
+    In the other case, we have $j < i$ (otherwise $j = i$ would be a peak). The second case $i > j$ is similar. Again, using a variation of Claim 1.3.2, $A_{j+k},A_{j+k-1},..A_{j+1} \le A_j$ and therefore any $k$-range peak of $A' = A_1,A_2..A_j$ is also a $k$-range peak of $A$. And again, $A'$ has length less than $n/2$ and hence, by the induction assumption, the algorithm returns a $k$-range peak of $A'$ which is also a $k$-range peak of $A$.
+\end{enumerate}
+\end{proof}
+
+\begin{algorithm}
+\KwResult{returns a $k$-range peak of \(A_1 ... A_n \in \mathbb{R} \)  }
+\caption{$k$-range peak-find alg.} \label{alg:krange}
+        $i \leftarrow  \lceil n/2 \rceil $\\
+        $j \leftarrow \arg \max_{|i-j|\le k}{ A_{j} }$ \\
+        \If { $A_{j}$ is a $k$-range peak }{
+          \Return $j$
+        }
+        \ElseIf { $i < j$ } { 
+          \Return $j -1 + $ find-peak$\left(A_{j},A_{j+1}..A_{n}\right)$
+        }
+        \Else { 
+          \Return find-peak$\left(A_{1},A_{2},A_{3}..A_{j}\right)$
+        }
+\end{algorithm}
+
+Running time, Observing that in most worst-case scenarios, in any iteration, we observe $\sim 2k+1$ elements and then call one of the recursive calls on an array of size at most $\lceil n /2 \rceil$. Therefore, the running time $T(n)$ in that case obeys the following recursive rule:
+\begin{equation*}
+  \begin{split}
+    T\left( n \right) \le c\cdot k + T\left( \lceil n / 2\rceil  \right)
+  \end{split}
+\end{equation*}
+Thus, if we denote $c^{\prime}=c\cdot k$, we obtain the same recursive formula we solved in the reaction $\Rightarrow T\left( n \right) = \Theta\left( \log n \right)$.
+
+\fi
+\ifdefined\CHECK 
+\paragraph{For checkers}
+\begin{enumerate}
+  \item Reject solutions that do not contain a formal correctness proof.
+  \item Forgive any solution that does not contain a formal computation of the time complexity.
+\end{enumerate}
+\fi
+
+\ifdefined\DPEAK
+
+\section{Extract $d$ peaks.} Write an algorithm that given $A$ prints $d$ different peaks. The algorithm has to run in time at most $3d\log(n)$ up to constant factor indepandet on $d$ and $n$. In this section you don't have to prove correctness. 
+
+\ifdefined\SOLUTION
+
+ \begin{algorithm}
+\KwResult{Given $d$ returns $d$ peaks of \(A_1 ... A_n \in \mathbb{R} \)  }
+\caption{sophisticated alg.}
+  \label{alg:count}
+  \If { $d = 0$ } {
+    \Return  $L$
+ }
+$ i \leftarrow  \lceil n/2 \rceil $\\
+        \If { $A_{i}$ is a peak }{
+          print $i, A_{i}$
+        }
+        \ElseIf { $A_{i-1} \le A_{i}$ } { 
+          \For { $ j \in $find-peak$\left(d, A_{i},A_{i+1}..A_{n}\right)$ } {
+            $ L \leftarrow L \cup i -1 + j $  \\
+             $d \leftarrow d -1$
+           }
+          } 
+        \Else { 
+          \For { $ j \in $find-peak$\left(d, A_{1},A_{2},A_{3}..A_{i-1}\right)$ } {
+            $ L \leftarrow L \cup i -1 + j $  \\
+             $d \leftarrow d -1$
+          }
+        }
+        \Return L     
+\end{algorithm}
+
+\paragraph{Solution.} Guideline. We suggest \Cref{alg:count}. Here we treat to the register store $d$ in most premtive way, in particular unshered between different level of the recursion. Yet, solutions which assume otherwise are valid. It's clear that exectly $d$ peaks are returned, it's less clear why the running time of the algorithm is $d\log n$. 
+\fi
+\fi
+
+  
+\section{2D-peaks.} Let $A$ be a $n\times n$ matrix. We will say that $A_{ij}$ is a peak if: 
+\begin{equation*}
+  \begin{split}
+    A_{ij} \ge A_{i-1,j}, A_{i+1,j}, A_{i,j-1}, A_{i,j+1}
+  \end{split}
+\end{equation*} 
+And again if the indices exceed the matrix frame, we define the inequality as satisfied trivially (For example if $A_{1,1} \ge A_{1,2}, A_{2,1}$ then $A_{1,1}$ is a peak).
+
+Write an algorithm that find a peak in $A$. Solutions that runs in at most $c n\log n $ are sufficient. Prove correctness, and bound the running time. 
+
+\ifdefined\SOLUTION
+  \newpage
+  \paragraph{Solution.} Let $B$ be a $n$-length array defined as $B_{i} = \max_{j}{A_{i,j}}$.
+  \begin{claim}
+    \label{claim:maxA}
+    For any $l \in [n]$ such that $B_l$ is a peak in $B$, we have that for $k \leftarrow \arg \max_{j} A_{l,j}$, the element $A_{l,k}$ is a peak in $A$.
+\end{claim}
+
+\begin{proof}
+By definition of $B$:
+  \begin{equation*}
+    \begin{split}
+      A_{lk} = B_{l} & \ge B_{l-1} = \max_{j}{A_{l-1,j}} \ge A_{l-1,k}\\
+               B_{l} & \ge  B_{l+1} = \max_{j}{A_{l+1,j}}  \ge A_{l+1,k}\\
+               B_{l} & \ge A_{l,k+1}\\
+               B_{l} & \ge A_{l,k-1} 
+    \end{split}
+  \end{equation*}
+\end{proof}
+Notice that \Cref{claim:maxA} already gives us an $O(n^2)$ time algorithm. First compute $B$ in $O(n^2)$ time, then call find-peak on $B$ to return an index $l$ such that $B_l$ is a peak in $B$, thus it remains to return $\arg_k \max A_{l,k}$ (which can be done in $O(n)$ time). 
+
+
+
+We are ready to present the $n\log n$ time algorithm. Instead of computing $B$ at the beginning, we are going to compute $B_{i}$ only when we need to access it. That is, any time that find-peak will compare between two elements of $B$ $B_{i},B_{j}$ we will compute their value. Thus, each access to $B$ costs $O(n)$ time. However, as the running time of the original peak-find is at most $O(\log(n))$, it follows that the total number of accesses is also bounded by $O(\log n)$, so in total the running time is at most $O(n\log n)$. The pseudocode is presented in \Cref{alg:2D}.
+\begin{algorithm} 
+  \KwResult{returns a peak of \(A_{1,1}, ... A_{n,n} \in \mathbb{R} \)  }
+\caption{2D peak-find alg.} \label{alg:2D}
+$l \leftarrow $ Call to find-peak($B_{1}, B_{2} .. B_{n}$) \\ 
+\ \ when compute $B_{i}$ on every accsses.  \\
+$k \leftarrow \arg \max_{k}A_{l,k}$\\
+\Return $l, k$  
+\end{algorithm}
+
+Correctness. Assuming contradiction, suppose there exists a matrix $A$ on which \Cref{alg:2D} fails to return a peak. \Cref{claim:maxA} guarantees that if $l$ is indeed a peak, then $A_{l,k}$ for $k = \arg \max_{k}A_{l,k}$ is a peak in $B$. Hence, the algorithm fails only if find-peak of fails to return the position of a peak in $B$, In other words, we have found an array $B$ on which find-peak fails. Thus contradicting the correctness of find-peak.
+\fi
+
+\ifdefined\CHECK 
+\paragraph{For checkers}
+\begin{enumerate}
+  \item Forgive any incorrect solution. 
+\end{enumerate}
+\fi
+
+
+\ifdefined\DPEAK
+\ifdefined\SOLUTION
+
+
+\section{2D-peaks of a tensor.} Consider the problem above, but assume that $A$ is the outer product of two positive vectors $u,v \in \mathbb{R}^{+}$, namely $A_{ij} = v_i \times u_j$.
+
+Write an algorithm that returns a peak in at most $c \cdot 2 \log(n)$ time for some constant $c$.
+
+
+  \paragraph{Solution.} Guideline. First prove the following claim:  
+
+  \begin{claim}
+If $A_{ij}$ is a peak of 
+\begin{equation*}
+  \begin{split}
+    A_{1,j}, A_{2,j}, \dots, A_{n,j}
+  \end{split}
+\end{equation*}
+then $A_{i,l}$ is a peak of 
+\begin{equation*}
+  \begin{split}
+    A_{1,l}, A_{2,l}, \dots, A_{n,l}
+  \end{split}
+\end{equation*}
+  \end{claim}
+ % \begin{proof}
+
+  % \end{proof} 
+Then consider the following algorithm: first look for a peak in $A_{1,1},A_{2,1}..A_{n,1}$, denote its position by $\left\{ 1,l \right\}$. Now, look for a peak in the $l$ column, namely in $A_{1,l},A_{2,l}..A_{n,l}$.
+\fi 
+\fi
+
+
+
+\input{../texlib/head.tex}
     
 \chapter{Correctness - Recitation 2} 
 %\author{Correctness proofs and computational complexity. }
@@ -393,7 +661,8 @@ What is the Loop Invariant here? \textit{"at the \(i\)-th iteration, \(b = \max{
 
 
 
-\newpage
+
+
 
 \setcounter{chapter}{2}
 \chapter{Recursive Analysis.} 
@@ -649,7 +918,116 @@ where \(n^{\log 3}  \sim n^{1.58} < n^2 \).
 
 
 
-\newpage\chapter{Heaps - Recitation 4} 
+
+\newcommand*{\EXERCISE}{}%
+%\input{../tex/texlib/head.tex}
+\input{../tex/texlib/pack}
+\input{../tex/lectures-TA/newcommands.tex}
+\addbibresource{../tex/lectures-TA/sample.bib} 
+
+\newcommand*{\RECITATION}{}%
+
+
+\setcounter{chapter}{2}
+\ifdefined\SOLUTION
+  \chapter{DAST. Exercise 2. Solution.}
+\else
+  \chapter{DAST. Exercise 2.}
+\fi
+
+
+\ctt{ 
+  Noitce, sections numbers 2,3,4 are optional, you don't have to submit them but please make sure you feel capable to solve them. 
+ }
+
+ \section{Small $o,\omega$, True or False? (Not a Mandatory). }
+ Let $f,g,h,k : \mathbb{N} \rightarrow \mathbb{R}^{+}$. Either prove or provide a counterexample:
+\begin{enumerate}
+  \item $f = o(g) \Leftrightarrow g = \omega(f)$. 
+  \item $f = O(g) \Rightarrow f = o(g)$. 
+  \item If $h = o(f)$ and $k = o(g)$ then $h/k = o(f/g)$.  
+\end{enumerate}
+
+\ifdefined\SOLUTION
+\fi
+
+\section{Logaritmic Arithmetic Recap. (Not a Mandatory).} 
+ Prove that for any $x,y > 0$:
+\begin{enumerate}
+  \item we have $x>y$ if and only if $\log x > \log y$. 
+  \item $x^{\log_{y}n} = n^{\log_{y}x}$ For any $n > 0$. 
+  \item $\log (x \pm y) = \log (x) + \log (1 \pm y/x)$. 
+\end{enumerate}
+
+\ifdefined\SOLUTION
+
+\fi
+
+\section{Merge Sort Correction.}
+\begin{enumerate}
+\item Consider the Merge subroutine used in the Merge-Sort algorithm. Let $A$ and $B$ be the given input arrays, and let $C$ be the output array returned by the subroutine. State, in your own words, a claim referring to the structure of $C$ at the $i$th iteration. Prove it.
+\item Prove the correctness of Merge-Sort using your claim.
+\end{enumerate}
+\ifdefined\SOLUTION
+
+\fi
+
+\section{Master Theorem. (Not a Mandatory).}
+Bound the following recursive functions. In each case, assume that $T(1)=T(0)=~1$.
+\begin{enumerate}
+  \item $T(n) = 7T(n/3) + n^{3}$
+  \item $T(n) = T(\sqrt{n}) + 2^n$ 
+\end{enumerate}
+
+\ifdefined\SOLUTION
+
+\fi 
+
+\section{$\beta$-Root Master Theorem Varition.}
+Consider the following recursice ralation: 
+\begin{equation*}
+    T\left(n\right)  = \left\{ \begin{array}{rcl}
+        & \alpha T(n^{\frac{1}{\beta}}) + \log^{\gamma} \left( n \right)  & \mbox{for }  n > 1  \\
+      & 1 & \mbox{else}  
+  \end{array} \right. 
+\end{equation*}
+When $\alpha, \beta, \gamma$ are positive numbers. Bound $T$ asymptotically tight, namely find $g: \mathbb{N} \rightarrow \mathbb{R}^{+}$ such that $T = \Theta(g)$. Notice that the solution depends on the relation between $\alpha, \beta, \gamma$.
+% $\alpha/\beta^{c} > 1$
+
+\ifdefined\SOLUTION
+
+\fi 
+
+
+\section{$T_{1},T_{2}$-Running time.}
+Let $T_{1},T_{2} : \mathbb{N} \rightarrow \mathbb{R}^{+}$ be functions satisfying the equations:
+\begin{equation*}
+  \begin{split}
+    T_{1}\left( n \right) = 3T_{1}\left(\frac{n}{2} \right) + 2T_{2}\left(\frac{n}{2} \right) + n^{3}\\ 
+    T_{2}\left( n \right) = 2T_{1}\left(\frac{n}{2} \right) + 3T_{2}\left(\frac{n}{2} \right) + n^{2} 
+  \end{split}
+\end{equation*}
+for any $n>1$, and equal to $1$ otherwise. Bound $T_{1}, T_{2}$ asymptotically tight. \textbf{Hint:} Use your linear algebra arsenal.
+% $\alpha/\beta^{c} > 1$
+
+\ifdefined\SOLUTION
+
+\fi 
+
+
+\ifdefined\Book
+
+\section{Root version.}
+Let $\mathcal{A}_{1},\mathcal{A}_{2},\mathcal{A}_{3},...,\mathcal{A}_{m}$ be algorithms, where each of their source codes is at most $N$ bits long. These algorithms are restricted to the following format: any operation they perform is either iterating over a $k$-nested loop and performing a finite amount of work in each iteration, or calling one of the other algorithms on an input of length $n/2$. Additionally, it is assumed that any $\mathcal{A}_{i}$ can be called by $\mathcal{A}_{j}$ a finite number of times, independent of $N$ and $m$. To clarify, calls to other algorithms cannot be made inside one of the for loops.
+Write an algortihm that given the sources of $\mathcal{A}_{1},\mathcal{A}_{2},\mathcal{A}_{3},...,\mathcal{A}_{m}$ bound assymptoticly tight the running time of $\mathcal{A}_{1}$ at time $\Theta\left( N\cdot m + m^{3} \right)$. 
+% $\alpha/\beta^{c} > 1$
+
+\ifdefined\SOLUTION
+
+\fi 
+\fi
+
+\chapter{Heaps - Recitation 4} 
 \author{Correctness, Loop Invariant And Heaps.}
 
 
@@ -1013,7 +1391,7 @@ return extract-$k$ ( $H_{XY}$ )
 
 
 
-\newpage\chapter{Quicksort And Liner Time Sorts  - Recitation 6} 
+\chapter{Quicksort And Liner Time Sorts  - Recitation 6} 
 \author{Quicksort, Countingsort, Radixsort, And Bucketsort.}
 
 
@@ -1184,7 +1562,7 @@ Bucket sort divides the interval [0, 1) into n equal-sized subintervals, or buck
 
 
 
-\newpage\chapter{AVL Trees  - Recitation 7} 
+\chapter{AVL Trees  - Recitation 7} 
 
 
 %\begin{paragraph}
@@ -1706,7 +2084,7 @@ $n_{h-2}$ nodes (once again, by minimality), and thus the whole tree has
     tighter bound on $n_h$.
 \end{remark}
 
-\newpage\chapter{Graphs  - Recitation 9} 
+\chapter{Graphs  - Recitation 9} 
 
 \usetikzlibrary{positioning, arrows}
 \tikzset{main node/.style={circle,draw,minimum size=0.8cm,inner sep=0pt},}
@@ -2115,7 +2493,7 @@ In any depth-first search of a (directed or undirected) graph $G = (V, E)$, for 
 %
 
 
-\newpage\chapter{Union Find - Recitation 11} 
+\chapter{Union Find - Recitation 11} 
 
 \usetikzlibrary{positioning, arrows}
 \tikzset{main node/.style={circle,draw,minimum size=0.8cm,inner sep=0pt},}
@@ -2349,4 +2727,3 @@ Could we do even better? Yes, Consider a nonunifom parttion $ B_{r} = \{ r,  r+ 
 \input{../texlib/tail}
 
 
-\newpage
