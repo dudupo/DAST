@@ -78,7 +78,7 @@ Another sorting algorithms, that it's correctness isn't so obivoius.
       If $A_{i} < A_{i-1}$ then there exists $k \in [1,i-1]$ such that $A_{k} > A_{i}$. Set $k$ to be the minimal position for which the inequality holds. For convenience, denote by $A^{(j)}$ the array in the beginning of the $j$th iteration of the inner loop. And let's split into cases according to $j$ value. 
       \begin{enumerate}
         \item $j < k$ By definition of $k$, for any $j < k, A^{(1)}_{j} < A^{(1)}_{i}$, Hence in the first $k-1$ iterations no exchange will be made and we can conclude that $A^{(j)}_{l} = A^{(1)}_{l}$ for any $l \in [n]$ and $j \le k$. 
-        \item $j \ge k$ and $j<i+1$, We claim that for each such $j$ an exchange will always occur. 
+        \item $j \ge k$ and $j<i+1$, We claim that for each such $j$ an exchange will always occur. (The proof is given below.)
           \begin{claim}
             \label{claim:second}
             For any $j \in [k,i]$ we have that in the end of the $j$th iteration:  
@@ -102,6 +102,7 @@ Another sorting algorithms, that it's correctness isn't so obivoius.
             = & A^{(0)}_{1}, A^{(0)}_{2}, .. A^{(0)}_{k-1}, A^{(0)}_{i}, A^{(0)}_{k}, .. A^{(0)}_{i-2}, A^{(0)}_{i-1}, A^{(0)}_{i+1} , A^{(0)}_{i+2} , A^{(0)}_{i+3} .. 
             \end{split}
           \end{equation*}
+           In particular, for $j = n+1$ (Note that there is no $n+1$th iteration).
 \end{enumerate}
 \end{enumerate}
   \end{proof}
