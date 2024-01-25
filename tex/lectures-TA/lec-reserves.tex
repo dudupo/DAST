@@ -25,6 +25,7 @@ Another sorting algorithms, that it's correctness isn't so obivoius.
 \end{algorithm}
 
 \begin{claim}
+  \label{claim:first}
   After the $i$th iteration, $A_{1} \le A_{2} \le A_{3} .. \le A_{i}$ and $A_{i}$ is the maximum of the whole array. 
 \end{claim}
 \begin{proof}
@@ -46,12 +47,19 @@ Another sorting algorithms, that it's correctness isn't so obivoius.
             \end{itemize}
           \end{claim}
           \begin{proof}
-            And again we are going to prove it by induction.  
+            Observes that the thired section holds trivally by the defination of the algorithm, it doesn't toach any position greater than $j$ in the first $j$ iterations (inner loop) except the $i$th position. So have to prove only the first two bullrts, And again we are going to prove them by induction.  
             \begin{enumerate}
-              \item Base. $A^{(1)}_{k}$ is greater than $A_{i}$, and be the previews case we have that at the begging of the $k$ iteration $A^{(k)}_{k}=A^{(1)}_{k}, A^{(k)}_{i}=A^{(1)}_{k}$. Therefore the condition on line (3) is satisfied, exchange is been made, and $A^{(k+1)}_{k} =A^{(k)}_{i} = A^{(0)}_{i}$ and $A^{(k+1)}_{i} = A^{(k)}_{k}$. Now observes that we didn't toach $A^{(k)}_{k+1}$ on the $j=k$ iteration of the inner loop. So $A^{(k+1)}_{k+1} = A^{(k)}_{k+1} = A^{(0)}_{k+1}$
+              \item Base. $A^{(1)}_{k}$ is greater than $A_{i}$, and be the previews case we have that at the begging of the $k$ iteration $A^{(k)}_{k}=A^{(1)}_{k}, A^{(k)}_{i}=A^{(1)}_{k}$. Therefore the condition on line (3) is satisfied, exchange is been made, and $A^{(k+1)}_{k} =A^{(k)}_{i} = A^{(0)}_{i}$ and $A^{(k+1)}_{i} = A^{(k)}_{k}$. Now  So $A^{(k+1)}_{k+1} = A^{(k)}_{k+1} = A^{(0)}_{k+1}$
+              \item Assumption. Assume the correctness of the claim for any $k\ge j^{\prime} < j \le i$. 
+              \item Step. Consider the $j \in (k,i]$ iteration, By the induction assumption we have that $A^{(j)}_{j-1} = A^{(j-1)}_{i}$ and $A^{(j)}_{i} = A^{(j-1)}_{j-1} = A^{(1)}_{j-1}$. On the otherhand, by the induction assumption of \Cref{claim:first}, $j-1 < i \Rightarrow A^{(1)}_{j-1} \le A^{(1)}_{j}$. Combining the thired bullet we obtain that:                
+                \begin{equation*}
+                  \begin{split}
+                    A^{(j)}_{j} = A^{(1)}_{j} \ge A^{(1)}_{j-1} = A^{(j)}_{i}
+                  \end{split}
+                \end{equation*}
+                And therefore, either there is inequalitiy and exhange be made or there is equality, in both cases after the $i$th iteration we have $A^{(j+1)}_{j} = A^{(j)}_{i}$ and $A^{(j+1)}_{i} = A^{(j)}_{j} = A^{(1)}_{j}$.
             \end{enumerate}
           \end{proof}
-          $A^{(1)}_{k}$ is greater than $A_{i}$, and be the previews case we have that at the begging of the $k$ iteration $A^{(k)}_{k}=A^{(1)}_{k}, A^{(k)}_{i}=A^{(1)}_{k}$. Therefore the condition on line (3) is satisfied, exchange is been made, and $A^{(k+1)}_{k} =A^{(k)}_{i} = A^{(0)}_{i}$ and $A^{(k+1)}_{i} = A^{(k)}_{k}$. Now observes that we didn't toach $A^{(k)}_{k+1}$ on the $j=k$ iteration of the inner loop. So $A^{(k+1)}_{k+1} = A^{(k)}_{k+1} = A^{(0)}_{k+1}$. By the induction assumption $A^{(0)}_{k} \le A^{(0)}_{k+1} \Rightarrow A^{(k+1)}_{i} \le A^{(k+1)}_{k+1}$, So     
         \item $j = i-1$
       \end{enumerate}
   \end{enumerate}
