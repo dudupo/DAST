@@ -124,7 +124,27 @@ We are about to present another $\Theta(n^{2})$-sorting algorithm, whose correct
   \end{enumerate}
 \end{proof}
 
-\section{Master Theorem.}   
+\section{Master Theorem.} Let $\alpha > 2, \beta > 0, \gamma > 0$ satisfing $2^{\alpha} < \beta$, defining the following running time function:    
+\begin{equation*}
+  \begin{split}
+    T\left( n \right) = \beta T \left( n - \alpha \right) + n^{\gamma}
+  \end{split}
+\end{equation*}
+Bound $T$ asymptoticly tight.
+\paragraph{Solution.} Let define $S(m) = T(\log m)$. Thus the recursive relation expand to: 
+\begin{equation*}
+  \begin{split}
+    S\left( m \right) &= T\left( \log m \right) = \beta T \left( \log m - \alpha \right) + \log^{\gamma}(m) =  \beta T \left( \log m - \log {2^\alpha} \right) +  \log^{\gamma} (m) \\ 
+    &= \beta T \left( \log \left( \frac{m}{2^{\alpha}} \right) \right) + \log^{\gamma}(m) = \beta S(\frac{m}{2^{\alpha}}) + \log^{\gamma}(m) 
+  \end{split}
+\end{equation*}
+Observes that $2^{\alpha} > 1 $ and therefore we can use the generalized master theorem. By the given that $2^{\alpha} < \beta$ we have that $m^{\log_{2^\alpha}(\beta)} $ is (generalized) polynom with positive degree. And therefore there is a positvie $\varepsilon$ such that $\log^{\gamma}(m) = O\left( m^{\log_{2^\alpha}(\beta) -\varepsilon} \right)$. Hence by the master theorem, we conclude that: 
+
+\begin{equation*}
+  \begin{split}    
+    S(m) = \Theta \left(m^{\log_{2^\alpha}(\beta)} \right) =\rightarrow T(n) = \Theta\left( 2^{m \log_{2^\alpha}(\beta)} \right)
+  \end{split}
+\end{equation*}
 %\author{Master theorem and recursive trees.}
 % 
 %\begin{abstract}
