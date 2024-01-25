@@ -7,12 +7,12 @@
 
 
 \section{More Sorting, More Correctness.}
-Another sorting algorithms, that it's correctness isn't so obivoius. The following alogrithm were developed by Stanley P. Y. Fung, \cite{Simplesort} whose coined it's name-''ICan’tBelieveItCanSort'' for the unclirity.  
+Until now, all the algorithms that we have seen were, in some sense, intuitive. We could describe in words, step by step, exactly what the algorithm does. For example, bubble and heapsort both bubble up the greatest element among the remaining elements in each iteration. Merge sort divides the task into subtasks on smaller inputs, starting with sorting the first and second halves of the given array, and then merging the sorted subarrays. We are about to present another $\Theta(n^{2})$-sorting algorithm, whose correctness is not so obvious. The algorithm was developed by Stanley P. Y. Fung, \cite{Simplesort}, who coined its name - "ICan'tBelieveItCanSort" - due to the surprise of having such a simple sorting algorithm. It's worth mentioning that, despite its simplicity, Fung came up with this algorithm in 2021.
 
 
 \begin{algorithm}
 \SetAlgoLined
-\KwResult{returns the multiplication \(x\cdot y\) where \(x,y \in \mathbb{F}^{n}_{2}\) }
+\KwResult{Sorting $A_{1},A_{2},..A_{n}$ }
 \For{ $ i \in [n]$} {
   \For{ $ j \in [n]$} {
     \If { $A_{j} < A_{i} $} {
@@ -59,7 +59,7 @@ Another sorting algorithms, that it's correctness isn't so obivoius. The followi
 %                \end{equation*}
 %                And therefore, either there is inequalitiy and exhange be made or there is equality, in both cases after the $i$th iteration we have $A^{(j+1)}_{j} = A^{(j)}_{i}$ and $A^{(j+1)}_{i} = A^{(j)}_{j} = A^{(1)}_{j}$.
 %            \end{enumerate}
-%          \end{proof}
+%          \meend{proof}
 %        \item $j > i$, So we know that $A^{(i+1)}_{i}$ is the maximal element in $A$, therfore for any $j$ it holds that $A^{(i+1)}_{i}\ge A^{(i)}_{j}$, it follows that no exchange would been made and $A^{(j)}_{i}$ will remain the maximum till the end of the inner loop.    
 %      \end{enumerate}
 %  \end{enumerate}
