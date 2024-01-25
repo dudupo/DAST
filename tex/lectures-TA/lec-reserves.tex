@@ -129,24 +129,24 @@ We are about to present another $\Theta(n^{2})$-sorting algorithm, whose correct
 %    One of the standard methods to analyze the running time of algorithms is to express recursively the number of operations that are made. In the following recitation, we will review the techniques to handle such formulation (solve or bound).  
 %\end{abstract}
 %
-\begin{algorithm}
-\SetAlgoLined
-\KwResult{returns the multiplication \(x\cdot y\) where \(x,y \in \mathbb{F}^{n}_{2}\) }
- \ \\ 
- \If{ \(x,y \in \mathbb{F}_{2}\) }
-    { return \(x \cdot y\) } 
- \ \\ 
- 
- \Else {
- define \(x_{l} , x_{r} \leftarrow x \) and \(y_{l} , y_{r} \leftarrow x \) \ \ \ \ \ // \( O \left(n\right) \). \\ 
- \ \\ 
- calculate \(z_0 \leftarrow \text{Karatsuba}\left(x_{l},y_{l}\right)\) \\
- \ \ \ \ \ \ \ \ \ \ \ \ \(z_2 \leftarrow \text{Karatsuba}\left(x_{r},y_{r}\right)\) \\ 
- \ \ \ \ \ \ \ \ \ \ \ \ \(z_1 \leftarrow \text{Karatsuba}\left(x_{r} + x_{l} ,y_{l} + y_{r} \right) - z_0 - z_2 \) \\ 
- \ \\
- return \(z_0 + 2^{\frac{n}{2}}z_1 + 2^{n}z_2\) \ \ \ \ \  // \( O \left(n\right) \). 
- }
-\end{algorithm}
+%\begin{algorithm}
+%\SetAlgoLined
+%\KwResult{returns the multiplication \(x\cdot y\) where \(x,y \in \mathbb{F}^{n}_{2}\) }
+% \ \\ 
+% \If{ \(x,y \in \mathbb{F}_{2}\) }
+%    { return \(x \cdot y\) } 
+% \ \\ 
+% 
+% \Else {
+% define \(x_{l} , x_{r} \leftarrow x \) and \(y_{l} , y_{r} \leftarrow x \) \ \ \ \ \ // \( O \left(n\right) \). \\ 
+% \ \\ 
+% calculate \(z_0 \leftarrow \text{Karatsuba}\left(x_{l},y_{l}\right)\) \\
+% \ \ \ \ \ \ \ \ \ \ \ \ \(z_2 \leftarrow \text{Karatsuba}\left(x_{r},y_{r}\right)\) \\ 
+% \ \ \ \ \ \ \ \ \ \ \ \ \(z_1 \leftarrow \text{Karatsuba}\left(x_{r} + x_{l} ,y_{l} + y_{r} \right) - z_0 - z_2 \) \\ 
+% \ \\
+% return \(z_0 + 2^{\frac{n}{2}}z_1 + 2^{n}z_2\) \ \ \ \ \  // \( O \left(n\right) \). 
+% }
+%\end{algorithm}
 \input{../texlib/tail}
 
 
