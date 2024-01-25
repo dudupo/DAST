@@ -110,7 +110,7 @@ Another sorting algorithms, that it's correctness isn't so obivoius.
   Observe that the third section holds trivially by the definition of the algorithm. It doesn't touch any position greater than $j$ in the first $j$ iterations (inner loop) except the $i$th position. So we have to prove only the first two bullets. Again, we are going to prove them by induction.  
   \begin{enumerate}
     \item Base. $A^{(1)}_{k}$ is greater than $A_{i}$, and by the above case, we have that at the beginning of the $k$th iteration $A^{(k)}_{k}=A^{(1)}_{k}, A^{(k)}_{i}=A^{(1)}_{k}$. Therefore, the condition on line (3) is satisfied, an exchange is made, and $A^{(k+1)}_{k} =A^{(k)}_{i} = A^{(0)}_{i}$ and $A^{(k+1)}_{i} = A^{(k)}_{k}$. Now, $A^{(k+1)}_{k+1} = A^{(k)}_{k+1} = A^{(0)}_{k+1}$.
-    \item Assumption. Assume the correctness of the claim for any $k\ge j^{\prime} < j \le i$. 
+    \item Assumption. Assume the correctness of the claim for any $k \le j^{\prime} < j \le i$. 
     \item Step. Consider the $j \in (k,i]$ iteration. By the induction assumption, we have that $A^{(j)}_{j-1} = A^{(j-1)}_{i}$ and $A^{(j)}_{i} = A^{(j-1)}_{j-1} = A^{(1)}_{j-1}$. On the other hand, by the induction assumption of \Cref{claim:first}, $j-1 < i \Rightarrow A^{(1)}_{j-1} \le A^{(1)}_{j}$. Combining the third bullet, we obtain that:                
       \begin{equation*}
         \begin{split}
