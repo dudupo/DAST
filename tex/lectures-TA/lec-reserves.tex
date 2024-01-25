@@ -89,7 +89,12 @@ Another sorting algorithms, that it's correctness isn't so obivoius.
             \end{itemize}
           \end{claim}
 
-  \item $j > i$, so we know that $A^{(i+1)}_{i}$ is the maximal element in $A$. Therefore, for any $j$, it holds that $A^{(i+1)}_{i}\ge A^{(i)}_{j}$. It follows that no exchange would be made and $A^{(j)}_{i}$ will remain the maximum until the end of the inner loop.    
+        \item $j > i$, so we know that $A^{(i+1)}_{i}$ is the maximal element in $A$. Therefore, for any $j$, it holds that $A^{(i+1)}_{i}\ge A^{(i)}_{j}$. It follows that no exchange would be made and $A^{(j)}_{i}$ will remain the maximum until the end of the inner loop. Thus for any $j >i$:   
+          \begin{equation*}
+            \begin{split}
+              A^{(j)}_{i}=A^{(j-1)}_{i}=.. =A^{(i+2)}_{i}=A^{(i+1)}_{i}=A^{(i)}_{i-1}=A^{(0)}_{i-1}=\max A
+            \end{split}
+          \end{equation*}
 \end{enumerate}
 \end{enumerate}
   \end{proof}
