@@ -40,13 +40,15 @@ Another sorting algorithms, that it's correctness isn't so obivoius.
           \begin{claim}
             For any $j \in [k,i]$ we have that in the end of the $j$th iteration:  
             \begin{itemize}
-              \item $A^{(j+1)}_{j} = A^{(j)}_{i}$
+              \item $A^{(j+1)}_{j} = A^{(j)}_{i}$.
+              \item $A^{(j+1)}_{i} = A^{(j)}_{j} = A^{(1)}_{j}$.
+              \item For any $l > j$ and $l \neq i$ we have $A^{(j+1)}_{l} = A^{(1)}_{l}$.
             \end{itemize}
           \end{claim}
           \begin{proof}
             And again we are going to prove it by induction.  
             \begin{enumerate}
-              \item Base. $A^{(1)}_{k}$ is greater than $A_{i}$, and be the previews case we have that at the begging of the $k$ iteration $A^{(k)}_{k}=A^{(1)}_{k}, A^{(k)}_{i}=A^{(1)}_{k}$. Therefore the condition on line (3) is satisfied, exchange is been made, and $A^{(k+1)}_{k} =A^{(k)}_{i} = A^{(0)}_{i}$ and $A^{(k+1)}_{i} = A^{(k)}_{k}$
+              \item Base. $A^{(1)}_{k}$ is greater than $A_{i}$, and be the previews case we have that at the begging of the $k$ iteration $A^{(k)}_{k}=A^{(1)}_{k}, A^{(k)}_{i}=A^{(1)}_{k}$. Therefore the condition on line (3) is satisfied, exchange is been made, and $A^{(k+1)}_{k} =A^{(k)}_{i} = A^{(0)}_{i}$ and $A^{(k+1)}_{i} = A^{(k)}_{k}$. Now observes that we didn't toach $A^{(k)}_{k+1}$ on the $j=k$ iteration of the inner loop. So $A^{(k+1)}_{k+1} = A^{(k)}_{k+1} = A^{(0)}_{k+1}$
             \end{enumerate}
           \end{proof}
           $A^{(1)}_{k}$ is greater than $A_{i}$, and be the previews case we have that at the begging of the $k$ iteration $A^{(k)}_{k}=A^{(1)}_{k}, A^{(k)}_{i}=A^{(1)}_{k}$. Therefore the condition on line (3) is satisfied, exchange is been made, and $A^{(k+1)}_{k} =A^{(k)}_{i} = A^{(0)}_{i}$ and $A^{(k+1)}_{i} = A^{(k)}_{k}$. Now observes that we didn't toach $A^{(k)}_{k+1}$ on the $j=k$ iteration of the inner loop. So $A^{(k+1)}_{k+1} = A^{(k)}_{k+1} = A^{(0)}_{k+1}$. By the induction assumption $A^{(0)}_{k} \le A^{(0)}_{k+1} \Rightarrow A^{(k+1)}_{i} \le A^{(k+1)}_{k+1}$, So     
