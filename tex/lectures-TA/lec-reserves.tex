@@ -75,7 +75,7 @@ We are about to present another $\Theta(n^{2})$-sorting algorithm, whose correct
 \begin{proof}
   By induction on the iteration number $i$. 
   \begin{enumerate}
-    \item Base. For $i=1$, it is clear that when $j$ reaches the position of the maximal element, an exchange will occur and $A_{1}$ will be set to be the maximal element. Thus, the condition on line (3) will not be satisfied until the end of the inner loop and indeed, we have that $A_{1}$ at the end of the first iteration is the maximum.
+    \item Base. For $i=1$, it is clear that when $j$ reaches the position of the maximum element, an exchange will occur and $A_{1}$ will be set to be the maximum element. Thus, the condition on line (3) will not be satisfied for the remaining $j$-iterations of the inner loop. Therefore, at the end of the first iteration, $A_{1}$ is indeed the maximum.
     \item Assumption. Assume the correctness of the claim for any $i^{\prime} < i$. 
     \item Step. Consider the $i$th iteration. And observe that if $A_{i} = A_{i-1}$ then $A_{i}$ is also the maximal element in $A$, namely no exchange will be made in the $i$th iteration, yet $A_{1} \le A_{2} \le .. \le A_{i-1}$ by the induction assumption, thus  $A_{1} \le A_{2} \le .. \le A_{i-1} \le A_{i}$ and $A_{i}$ is the maximal element, so the claim holds in the end of the iteration. 
       If $A_{i} < A_{i-1}$ then there exists $k \in [1,i-1]$ such that $A_{k} > A_{i}$. Set $k$ to be the minimal position for which the inequality holds. For convenience, denote by $A^{(j)}$ the array in the beginning of the $j$th iteration of the inner loop. And let's split into cases according to $j$ value. 
@@ -92,7 +92,7 @@ We are about to present another $\Theta(n^{2})$-sorting algorithm, whose correct
             \end{itemize}
           \end{claim}
 
-        \item $j > i$, so we know that $A^{(i+1)}_{i}$ is the maximal element in $A$. Therefore, for any $j$, it holds that $A^{(i+1)}_{i}\ge A^{(i)}_{j}$. It follows that no exchange would be made and $A^{(j)}_{i}$ will remain the maximum until the end of the inner loop. Thus for any $j >i$:   
+        \item $j > i$, so we know that $A^{(i+1)}_{i}$ is the maximal element in $A$. Therefore, for any $j$, it holds that $A^{(i+1)}_{i}\ge A^{(i)}_{j}$. It follows that no exchange would be made and $A^{(j)}_{i}$ will remain the maximum til the end of the inner loop. Thus for any $j >i$:   
           \begin{equation*}
             \begin{split}
               A^{(j)}_{i}=A^{(j-1)}_{i}=.. =A^{(i+2)}_{i}=A^{(i+1)}_{i}=A^{(i)}_{i-1}=A^{(0)}_{i-1}=\max A
