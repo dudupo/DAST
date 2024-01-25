@@ -24,6 +24,24 @@ Another sorting algorithms, that it's correctness isn't so obivoius.
 
 \end{algorithm}
 
+\begin{claim}
+  After the $i$th iteration, $A_{1} \le A_{2} \le A_{3} .. \le A_{i}$ and $A_{i}$ is the maximum of the whole array. 
+\end{claim}
+\begin{proof}
+  By induction on the iteration number $i$. 
+  \begin{enumerate}
+    \item Base. For $i=1$, it is clear that when $j$ reaches the position of the maximal element, an exchange will occur and $A_{1}$ will be set to be the maximal element. Thus, the condition on line (3) will not be satisfied until the end of the inner loop and indeed, we have that $A_{1}$ at the end of the first iteration is the maximum.
+    \item Assumption. Assume the correctness of the claim for any $i^{\prime} < i$. 
+    \item Step. Consider the $i$th iteration. And observes that if $A_{i} = A_{i-1}$ then $A_{i}$ is also the maximal elememnt in $A$, namely no exchange will be made in $i$th iteration, yet $A_{1} \le A_{2} \le .. \le A_{i-1}$ by the induction assumption, thus  $A_{1} \le A_{2} \le .. \le A_{i-1} \le A_{i}$ and $A_{i}$ is the maximal element, so the claim holds in the end of the iteration. 
+      If $A_{i} < A_{i-1}$ then there exists $k \in [1,i-1]$ such $A_{k} > A_{i}$. Set $k$ to be the minimal position for which the inequlity holds. For Convinet denote by $A^{(j)}$ the array in the begging of the $j$th iteration of the inner loop. And let's split to cases according to $j$ value. 
+      \begin{enumerate}
+        \item $j < k$
+        \item $j \ge k$
+        \item $j > i-1$
+      \end{enumerate}<++>
+  \end{enumerate}
+\end{proof}
+
 
 %\author{Master theorem and recursive trees.}
 % 
