@@ -134,7 +134,8 @@ Bound $T$ asymptoticly tight.
 \paragraph{Solution.} Let define $S(m) = T(\log m)$. Thus the recursive relation expand to: 
 \begin{equation*}
   \begin{split}
-    S\left( m \right) &= T\left( \log m \right) = \beta T \left( \log m - \alpha \right) + \log^{\gamma}(m) =  \beta T \left( \log m - \log {2^\alpha} \right) +  \log^{\gamma} (m) \\ 
+    S\left( m \right) &= T\left( \log m \right) = \beta T \left( \log m - \alpha \right) + \log^{\gamma}(m) \\
+    &=  \beta T \left( \log m - \log {2^\alpha} \right) +  \log^{\gamma} (m) \\ 
     &= \beta T \left( \log \left( \frac{m}{2^{\alpha}} \right) \right) + \log^{\gamma}(m) = \beta S(\frac{m}{2^{\alpha}}) + \log^{\gamma}(m) 
   \end{split}
 \end{equation*}
