@@ -50,125 +50,252 @@ Let $T$ be a binary search tree, and let $x$ be a node belonging to it. The pred
   \item Insert($T$, key): inserts key into $T$ (creates a new vertex).   
   \item Delete($T$, $x$): removes $x$ from $T$. 
   \item Inorder($T$): outputs $T$'s keys in sorted order.
+
+%\begin{algorithm}[H]
+%\SetAlgoLined
+%\KwData{$T$ - tree, $x$ - vertex to delete}
+%\KwResult{removes $x$ from $T$}
+%\Set
 \end{enumerate}
-\begin{algorithmic}
-\Function{Search}{$T$, $key$}
-    \State $current \gets T.root$
-    \While{$current \neq NIL$}
-        \If{$current.key = key$}
-            \State \Return $current$
-        \ElsIf{$current.key < key$}
-            \State $current \gets current.right$
-        \Else
-            \State $current \gets current.left$
-        \EndIf
-    \EndWhile
-    \State \Return $NIL$
-\EndFunction
-\end{algorithmic}
 
-\begin{algorithmic}
-\Function{Min}{$T$}
-    \State $current \gets T.root$
-    \While{$current.left \neq NIL$}
-        \State $current \gets current.left$
-    \EndWhile
-    \State \Return $current$
-\EndFunction
-\end{algorithmic}
+\begin{algorithm}[H]
+\SetAlgoLined
+\KwData{$T$ - tree, $key$ - key to search for}
+\KwResult{pointer to vertex with key equal to $key$}
+\SetKwFunction{FSearch}{Search}
+\Fn{\FSearch{$T$, $key$}}{
+    \If{$T$ is empty}{
+        \Return null\;
+    }
+    \If{$T.key$ equals $key$}{
+        \Return $T$\;
+    }
+    \If{$key$ is less than $T.key$}{
+        \Return \FSearch{$T.left$, $key$}\;
+    }
+    \Else{
+        \Return \FSearch{$T.right$, $key$}\;
+    }
+}
+\end{algorithm}
 
-\begin{algorithmic}
-\Function{Max}{$T$}
-    \State $current \gets T.root$
-    \While{$current.right \neq NIL$}
-        \State $current \gets current.right$
-    \EndWhile
-    \State \Return $current$
-\EndFunction
-\end{algorithmic}
+\begin{algorithm}[H]
+\SetAlgoLined
+\KwData{$T$ - tree}
+\KwResult{pointer to vertex with minimum value in $T$}
+\SetKwFunction{FMin}{Min}
+\Fn{\FMin{$T$}}{
+    \If{$T$ is empty}{
+        \Return null\;
+    }
+    \If{$T.left$ is empty}{
+        \Return $T$\;
+    }
+    \Return \FMin{$T.left$}\;
+}
+\end{algorithm}
 
-\begin{algorithmic}
-\Function{Predecessor}{$x$}
-    \If{$x.left \neq NIL$}
-        \State \Return \Call{Max}{$x.left$}
-    \EndIf
-    \State $y \gets x.parent$
-    \While{$y \neq NIL$ and $x = y.left$}
-        \State $x \gets y$
-        \State $y \gets y.parent$
-    \EndWhile
-    \State \Return $y$
-\EndFunction
-\end{algorithmic}
+\begin{algorithm}[H]
+\SetAlgoLined
+\KwData{$T$ - tree}
+\KwResult{pointer to vertex with maximum value in $T$}
+\SetKwFunction{FMax}{Max}
+\Fn{\FMax{$T$}}{
+    \If{$T$ is empty}{
+        \Return null\;
+    }
+    \If{$T.right$ is empty}{
+        \Return $T$\;
+    }
+    \Return \FMax{$T.right$}\;
+}
+\end{algorithm}
 
-\begin{algorithmic}
-\Function{Successor}{$x$}
-    \If{$x.right \neq NIL$}
-        \State \Return \Call{Min}{$x.right$}
-    \EndIf
-    \State $y \gets x.parent$
-    \While{$y \neq NIL$ and $x = y.right$}
-        \State $x \gets y$
-        \State $y \gets y.parent$
-    \EndWhile
-    \State \Return $y$
-\EndFunction
-\end{algorithmic}
+\begin{algorithm}[H]
+\SetAlgoLined
+\KwData{$x$ - vertex}
+\KwResult{pointer to predecessor of $x$}
+\SetKwFunction{FPredecessor}{Predecessor}
+\Fn{\FPredecessor{$x$}}{
+    \If{$x.left$ is not empty}{
+        \Return \FMax{$x.left$}\;
+    }
+    $y \leftarrow x.parent$\;
+    \While{$y$ is not empty and $x$ is $y.left$}{
+        $x \leftarrow y$\;
+        $y \leftarrow y.parent$\;
+    }
+    \Return $y$\;
+}
+\end{algorithm}
 
-\begin{algorithmic}
-\Function{Insert}{$T$, $key$}
-    \State $newNode \gets$ \Call{CreateNode}{$key$}
-    \State $y \gets NIL$
-    \State $x \gets T.root$
-    \While{$x \neq NIL$}
-        \State $y \gets x$
-        \If{$key < x.key$}
-            \State $x \gets x.left$
-        \Else
-            \State $x \gets x.right$
-        \EndIf
-    \EndWhile
-    \State $newNode.parent \gets y$
-    \If{$y = NIL$}
-        \State $T.root \gets newNode$
-    \ElsIf{$newNode.key < y.key$}
-        \State $y.left \gets newNode$
-    \Else
-        \State $y.right \gets newNode$
-    \EndIf
-\EndFunction
-\end{algorithmic}
+\begin{algorithm}[H]
+\SetAlgoLined
+\KwData{$x$ - vertex}
+\KwResult{pointer to successor of $x$}
+\SetKwFunction{FSuccessor}{Successor}
+\Fn{\FSuccessor{$x$}}{
+    \If{$x.right$ is not empty}{
+        \Return \FMin{$x.right$}\;
+    }
+    $y \leftarrow x.parent$\;
+    \While{$y$ is not empty and $x$ is $y.right$}{
+        $x \leftarrow y$\;
+        $y \leftarrow y.parent$\;
+    }
+    \Return $y$\;
+}
+\end{algorithm}
 
-\begin{algorithmic}
-\Function{Delete}{$T$, $x$}
-    \If{$x.left = NIL$}
-        \State \Call{Transplant}{$T$, $x$, $x.right$}
-    \ElsIf{$x.right = NIL$}
-        \State \Call{Transplant}{$T$, $x$, $x.left$}
-    \Else
-        \State $y \gets$ \Call{Min}{$x.right$}
-        \If{$y.parent \neq x$}
-            \State \Call{Transplant}{$T$, $y$, $y.right$}
-            \State $y.right \gets x.right$
-            \State $y.right.parent \gets y$
-        \EndIf
-        \State \Call{Transplant}{$T$, $x$, $y$}
-        \State $y.left \gets x.left$
-        \State $y.left.parent \gets y$
-    \EndIf
-\EndFunction
-\end{algorithmic}
-\begin{algorithmic}
-\Function{Inorder}{$T$}
-    \State $stack \gets$ \Call{CreateStack}{}
-    \State $current \gets T.root$
-    \While{$current \neq NIL$ or $stack$ is not empty}
-        \While{$current \neq NIL$}
-            \State \Call{Push}{$stack$, $current$}
-            \State $current \gets current.left$
-        \End
-\EndFunction
-\end{algorithmic}
+\begin{algorithm}[H]
+\SetAlgoLined
+\KwData{$T$ - tree, $key$ - key to insert}
+\KwResult{inserts $key$ into $T$}
+\SetKwFunction{FInsert}{Insert}
+\Fn{\FInsert{$T$, $key$}}{
+    $newNode \leftarrow$ create new vertex with key $key$\;
+    $y \leftarrow$ null\;
+    $x \leftarrow T$\;
+    \While{$x$ is not empty}{
+        $y \leftarrow x$\;
+        \If{$key$ is less than $x.key$}{
+            $x \leftarrow x.left$\;
+        }
+        \Else{
+            $x \leftarrow x.right$\;
+        }
+    }
+    $newNode.parent \leftarrow y$\;
+    \If{$y$ is null}{
+        $T \leftarrow newNode$\;
+    }
+    \ElseIf{$key$ is less than $y.key$}{
+        $y.left \leftarrow newNode$\;
+    }
+    \Else{
+        $y.right \leftarrow newNode$\;
+    }
+}
+\end{algorithm}
+
+%\begin{algorithmic}
+%\Function{Search}{$T$, $key$}
+%    \State $current \gets T.root$
+%    \While{$current \neq NIL$}
+%        \If{$current.key = key$}
+%            \State \Return $current$
+%        \ElsIf{$current.key < key$}
+%            \State $current \gets current.right$
+%        \Else
+%            \State $current \gets current.left$
+%        \EndIf
+%    \EndWhile
+%    \State \Return $NIL$
+%\EndFunction
+%\end{algorithmic}
+%
+%\begin{algorithmic}
+%\Function{Min}{$T$}
+%    \State $current \gets T.root$
+%    \While{$current.left \neq NIL$}
+%        \State $current \gets current.left$
+%    \EndWhile
+%    \State \Return $current$
+%\EndFunction
+%\end{algorithmic}
+%
+%\begin{algorithmic}
+%\Function{Max}{$T$}
+%    \State $current \gets T.root$
+%    \While{$current.right \neq NIL$}
+%        \State $current \gets current.right$
+%    \EndWhile
+%    \State \Return $current$
+%\EndFunction
+%\end{algorithmic}
+%
+%\begin{algorithmic}
+%\Function{Predecessor}{$x$}
+%    \If{$x.left \neq NIL$}
+%        \State \Return \Call{Max}{$x.left$}
+%    \EndIf
+%    \State $y \gets x.parent$
+%    \While{$y \neq NIL$ and $x = y.left$}
+%        \State $x \gets y$
+%        \State $y \gets y.parent$
+%    \EndWhile
+%    \State \Return $y$
+%\EndFunction
+%\end{algorithmic}
+%
+%\begin{algorithmic}
+%\Function{Successor}{$x$}
+%    \If{$x.right \neq NIL$}
+%        \State \Return \Call{Min}{$x.right$}
+%    \EndIf
+%    \State $y \gets x.parent$
+%    \While{$y \neq NIL$ and $x = y.right$}
+%        \State $x \gets y$
+%        \State $y \gets y.parent$
+%    \EndWhile
+%    \State \Return $y$
+%\EndFunction
+%\end{algorithmic}
+%
+%\begin{algorithmic}
+%\Function{Insert}{$T$, $key$}
+%    \State $newNode \gets$ \Call{CreateNode}{$key$}
+%    \State $y \gets NIL$
+%    \State $x \gets T.root$
+%    \While{$x \neq NIL$}
+%        \State $y \gets x$
+%        \If{$key < x.key$}
+%            \State $x \gets x.left$
+%        \Else
+%            \State $x \gets x.right$
+%        \EndIf
+%    \EndWhile
+%    \State $newNode.parent \gets y$
+%    \If{$y = NIL$}
+%        \State $T.root \gets newNode$
+%    \ElsIf{$newNode.key < y.key$}
+%        \State $y.left \gets newNode$
+%    \Else
+%        \State $y.right \gets newNode$
+%    \EndIf
+%\EndFunction
+%\end{algorithmic}
+%
+%\begin{algorithmic}
+%\Function{Delete}{$T$, $x$}
+%    \If{$x.left = NIL$}
+%        \State \Call{Transplant}{$T$, $x$, $x.right$}
+%    \ElsIf{$x.right = NIL$}
+%        \State \Call{Transplant}{$T$, $x$, $x.left$}
+%    \Else
+%        \State $y \gets$ \Call{Min}{$x.right$}
+%        \If{$y.parent \neq x$}
+%            \State \Call{Transplant}{$T$, $y$, $y.right$}
+%            \State $y.right \gets x.right$
+%            \State $y.right.parent \gets y$
+%        \EndIf
+%        \State \Call{Transplant}{$T$, $x$, $y$}
+%        \State $y.left \gets x.left$
+%        \State $y.left.parent \gets y$
+%    \EndIf
+%\EndFunction
+%\end{algorithmic}
+%\begin{algorithmic}
+%\Function{Inorder}{$T$}
+%    \State $stack \gets$ \Call{CreateStack}{}
+%    \State $current \gets T.root$
+%    \While{$current \neq NIL$ or $stack$ is not empty}
+%        \While{$current \neq NIL$}
+%            \State \Call{Push}{$stack$, $current$}
+%            \State $current \gets current.left$
+%        \End
+%\EndFunction
+%\end{algorithmic}
 
 
 %We are about to present another $\Theta(n^{2})$-sorting algorithm, whose correctness is not so obvious. The algorithm was developed by Stanley P. Y. Fung, \cite{Simplesort}, who coined its name - "ICan'tBelieveItCanSort" - due to the surprise of having such a simple sorting algorithm. It's worth mentioning that, despite its simplicity, Fung came up with this algorithm in 2021.
