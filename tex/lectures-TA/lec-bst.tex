@@ -22,6 +22,9 @@
 \end{definition}
 
 We encode a binary tree by associating a field to each vertex $x$, representing its right, left children, and parent. We use the notation $x$.left to refer to the left child of $x$, although the physical implementation may differ conceptually. For example, the way binary trees are implemented in Cormen is through 4 arrays. The first stores the value of $x$, while the others store pointers of specific types. For instance, the array LEFT, where LEFT.$x$ stores the left child of $x$.
+
+
+If nothing else has been mentioned, then we can assume that we can add additional fields to the vertices.
 %We are about to present another $\Theta(n^{2})$-sorting algorithm, whose correctness is not so obvious. The algorithm was developed by Stanley P. Y. Fung, \cite{Simplesort}, who coined its name - "ICan'tBelieveItCanSort" - due to the surprise of having such a simple sorting algorithm. It's worth mentioning that, despite its simplicity, Fung came up with this algorithm in 2021.
 %
 %
