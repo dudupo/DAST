@@ -36,6 +36,10 @@ If nothing else has been mentioned, then we can assume that we can add additiona
 
 \paragraph{Question.} Let $T$ be a binary search tree, Where are the minimum and maximum values of $T$? (most left and right nodes). 
 
+\begin{definition}
+Let $T$ be a binary search tree, and let $x$ be a node belonging to it. The predecessor of $x$ will be defined as a vertex $y$ such that $y$.key $\leq x$.key and $y$.key is maximal among the nodes satisfying this condition. If we were to set the values of $T$ in sorted order, then the predecessor of $x$ would be located on its left. The successor of $x$ will be defined as $y$, where $x$ is the predecessor of $y$.
+\end{definition}
+
 
 %We are about to present another $\Theta(n^{2})$-sorting algorithm, whose correctness is not so obvious. The algorithm was developed by Stanley P. Y. Fung, \cite{Simplesort}, who coined its name - "ICan'tBelieveItCanSort" - due to the surprise of having such a simple sorting algorithm. It's worth mentioning that, despite its simplicity, Fung came up with this algorithm in 2021.
 %
