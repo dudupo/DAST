@@ -1,0 +1,44 @@
+
+\input{../texlib/head}
+\begin{document}
+\ifdefined\BOOK
+\else
+\setcounter{chapter}{5}
+\fi
+\chapter{Binary Search Trees.} 
+
+\section{Binaries Trees and How to Encode Them.} We have already seen, in heaps, that organizing our data in a graph-like structure can offer a speed advantage. For future applications, and in particular for maintaining data in sorted order, we will have to encode our data using binary trees. These trees may not be almost complete and also have to support pointer manipulations, specifically placing a binary tree as a left or right subtree of a given node. To enable this, we will have to treat the \textbf{right}, \textbf{left}, and \textbf{parent} as variables, in contrast to heaps where they are determined completely by the node index. We begin this section by stating definitions.
+
+
+\begin{definition}
+  \begin{enumerate}
+    \item Binary Tree: A tree in which any vertex has at most two children.
+    \item A descendant of vertex $x$ is a vertex in the subtree whose root is $x$.
+    \item An ancestor of $x$ is a vertex to which $x$ belongs as a descendant.
+    \item A leaf is a vertex without children.
+    \item Height of vertex $x$ is the length of the longest simple path (without cycles) between $x$ and one of the leaves.
+    \item Height of the tree is the height of its root, which is usually denoted by $h$.
+\end{enumerate}
+\end{definition}
+
+%We are about to present another $\Theta(n^{2})$-sorting algorithm, whose correctness is not so obvious. The algorithm was developed by Stanley P. Y. Fung, \cite{Simplesort}, who coined its name - "ICan'tBelieveItCanSort" - due to the surprise of having such a simple sorting algorithm. It's worth mentioning that, despite its simplicity, Fung came up with this algorithm in 2021.
+%
+%
+%\begin{algorithm}
+%\SetAlgoLined
+%\KwResult{Sorting $A_{1},A_{2},..A_{n}$ }
+%\caption{ "ICan'tBelieveItCanSort"  alg.}
+%\For{ $ i \in [n]$} {
+%  \For{ $ j \in [n]$} {
+%    \If { $A_{i} < A_{j} $} {
+%      swap $A_{i} \leftrightarrow A_{j}$
+%    }
+%  }
+%}
+%
+%
+%\end{algorithm}
+
+\input{../texlib/tail}
+
+
