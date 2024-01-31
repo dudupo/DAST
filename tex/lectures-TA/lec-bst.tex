@@ -13,7 +13,7 @@
 \begin{definition}
   \begin{enumerate}
     \item Binary Tree: A tree in which any vertex has at most two children.
-    \item A descendant of vertex $x$ is a vertex in the subtree whose root is $x$.
+    \item A descendant of vertex $x$ is a vertex in the subtree whose root is $x$. A left descendant of vertex $x$ is either a vertex in the subtree whose root is the left child of $x$, or $x$'s left child.
     \item An ancestor of $x$ is a vertex to which $x$ belongs as a descendant.
     \item A leaf is a vertex without children.
     \item Height of vertex $x$ is the length of the longest simple path (without cycles) between $x$ and one of the leaves.
@@ -25,6 +25,16 @@ We encode a binary tree by associating a field to each vertex $x$, representing 
 
 
 If nothing else has been mentioned, then we can assume that we can add additional fields to the vertices.
+
+
+\section{Binary Search Trees.} Binary search tree (BST) is a binary tree which any node $x$ of it: 
+\begin{enumerate}
+  \item contains a field key, storing a number $x$.key. 
+  \item Any left descendant $y$ of $x$ satisfies $y$.key $\le$ $x$.key. 
+  \item Any right descendant $y$ of $x$ satisfies $y$.key $\ge$ $x$.key. 
+\end{enumerate}<++>
+
+
 %We are about to present another $\Theta(n^{2})$-sorting algorithm, whose correctness is not so obvious. The algorithm was developed by Stanley P. Y. Fung, \cite{Simplesort}, who coined its name - "ICan'tBelieveItCanSort" - due to the surprise of having such a simple sorting algorithm. It's worth mentioning that, despite its simplicity, Fung came up with this algorithm in 2021.
 %
 %
