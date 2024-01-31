@@ -40,6 +40,18 @@ If nothing else has been mentioned, then we can assume that we can add additiona
 Let $T$ be a binary search tree, and let $x$ be a node belonging to it. The predecessor of $x$ will be defined as a vertex $y$ such that $y$.key $\leq x$.key and $y$.key is maximal among the nodes satisfying this condition. If we were to set the values of $T$ in sorted order, then the predecessor of $x$ would be located on its left. The successor of $x$ will be defined as $y$, where $x$ is the predecessor of $y$.
 \end{definition}
 
+\paragraph{Functionalitiy of BST.}
+\begin{enumerate}
+\item Search($T$, key): returns a pointer to the vertex whose key equals key. 
+  \item Min($T$): returns a pointer to the vertex with the minimum value in $T$.  
+  \item Max($T$): returns a pointer to the vertex with the maximum value in $T$.  
+  \item Predecessor($x$): returns a pointer to the predecessor of $x$.  
+  \item Successor($x$): returns a pointer to the successor of $x$. 
+  \item Insert($T$, key): inserts key into $T$ (creates a new vertex).   
+  \item Delete($T$, $x$): removes $x$ from $T$. 
+  \item Inorder($T$): outputs $T$'s keys in sorted order.
+\end{enumerate}
+
 
 %We are about to present another $\Theta(n^{2})$-sorting algorithm, whose correctness is not so obvious. The algorithm was developed by Stanley P. Y. Fung, \cite{Simplesort}, who coined its name - "ICan'tBelieveItCanSort" - due to the surprise of having such a simple sorting algorithm. It's worth mentioning that, despite its simplicity, Fung came up with this algorithm in 2021.
 %
