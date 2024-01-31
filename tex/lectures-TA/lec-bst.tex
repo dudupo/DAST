@@ -177,144 +177,27 @@ Let $T$ be a binary search tree, and let $x$ be a node belonging to it. The pred
     }
 }
 \end{algorithm}
+\begin{algorithm}
+\SetAlgoLined
+\KwData{$T$: The input tree, $x$: The key to be deleted}
+\If{$x$ is in $T$}{
+  Remove $x$ from $T$\;
+}
+\caption{Delete($T$, $x$)}
+\end{algorithm}
 
-%\begin{algorithmic}
-%\Function{Search}{$T$, $key$}
-%    \State $current \gets T.root$
-%    \While{$current \neq NIL$}
-%        \If{$current.key = key$}
-%            \State \Return $current$
-%        \ElsIf{$current.key < key$}
-%            \State $current \gets current.right$
-%        \Else
-%            \State $current \gets current.left$
-%        \EndIf
-%    \EndWhile
-%    \State \Return $NIL$
-%\EndFunction
-%\end{algorithmic}
-%
-%\begin{algorithmic}
-%\Function{Min}{$T$}
-%    \State $current \gets T.root$
-%    \While{$current.left \neq NIL$}
-%        \State $current \gets current.left$
-%    \EndWhile
-%    \State \Return $current$
-%\EndFunction
-%\end{algorithmic}
-%
-%\begin{algorithmic}
-%\Function{Max}{$T$}
-%    \State $current \gets T.root$
-%    \While{$current.right \neq NIL$}
-%        \State $current \gets current.right$
-%    \EndWhile
-%    \State \Return $current$
-%\EndFunction
-%\end{algorithmic}
-%
-%\begin{algorithmic}
-%\Function{Predecessor}{$x$}
-%    \If{$x.left \neq NIL$}
-%        \State \Return \Call{Max}{$x.left$}
-%    \EndIf
-%    \State $y \gets x.parent$
-%    \While{$y \neq NIL$ and $x = y.left$}
-%        \State $x \gets y$
-%        \State $y \gets y.parent$
-%    \EndWhile
-%    \State \Return $y$
-%\EndFunction
-%\end{algorithmic}
-%
-%\begin{algorithmic}
-%\Function{Successor}{$x$}
-%    \If{$x.right \neq NIL$}
-%        \State \Return \Call{Min}{$x.right$}
-%    \EndIf
-%    \State $y \gets x.parent$
-%    \While{$y \neq NIL$ and $x = y.right$}
-%        \State $x \gets y$
-%        \State $y \gets y.parent$
-%    \EndWhile
-%    \State \Return $y$
-%\EndFunction
-%\end{algorithmic}
-%
-%\begin{algorithmic}
-%\Function{Insert}{$T$, $key$}
-%    \State $newNode \gets$ \Call{CreateNode}{$key$}
-%    \State $y \gets NIL$
-%    \State $x \gets T.root$
-%    \While{$x \neq NIL$}
-%        \State $y \gets x$
-%        \If{$key < x.key$}
-%            \State $x \gets x.left$
-%        \Else
-%            \State $x \gets x.right$
-%        \EndIf
-%    \EndWhile
-%    \State $newNode.parent \gets y$
-%    \If{$y = NIL$}
-%        \State $T.root \gets newNode$
-%    \ElsIf{$newNode.key < y.key$}
-%        \State $y.left \gets newNode$
-%    \Else
-%        \State $y.right \gets newNode$
-%    \EndIf
-%\EndFunction
-%\end{algorithmic}
-%
-%\begin{algorithmic}
-%\Function{Delete}{$T$, $x$}
-%    \If{$x.left = NIL$}
-%        \State \Call{Transplant}{$T$, $x$, $x.right$}
-%    \ElsIf{$x.right = NIL$}
-%        \State \Call{Transplant}{$T$, $x$, $x.left$}
-%    \Else
-%        \State $y \gets$ \Call{Min}{$x.right$}
-%        \If{$y.parent \neq x$}
-%            \State \Call{Transplant}{$T$, $y$, $y.right$}
-%            \State $y.right \gets x.right$
-%            \State $y.right.parent \gets y$
-%        \EndIf
-%        \State \Call{Transplant}{$T$, $x$, $y$}
-%        \State $y.left \gets x.left$
-%        \State $y.left.parent \gets y$
-%    \EndIf
-%\EndFunction
-%\end{algorithmic}
-%\begin{algorithmic}
-%\Function{Inorder}{$T$}
-%    \State $stack \gets$ \Call{CreateStack}{}
-%    \State $current \gets T.root$
-%    \While{$current \neq NIL$ or $stack$ is not empty}
-%        \While{$current \neq NIL$}
-%            \State \Call{Push}{$stack$, $current$}
-%            \State $current \gets current.left$
-%        \End
-%\EndFunction
-%\end{algorithmic}
+%2. Inorder($T$):
+\begin{algorithm}
+\SetAlgoLined
+\KwData{$T$: The input tree}
+\If{$T$ is not empty}{
+  Inorder($T$.left)\;
+  Output $T$.key\;
+  Inorder($T$.right)\;
+}
+\caption{Inorder($T$)}
+\end{algorithm}
 
-
-%We are about to present another $\Theta(n^{2})$-sorting algorithm, whose correctness is not so obvious. The algorithm was developed by Stanley P. Y. Fung, \cite{Simplesort}, who coined its name - "ICan'tBelieveItCanSort" - due to the surprise of having such a simple sorting algorithm. It's worth mentioning that, despite its simplicity, Fung came up with this algorithm in 2021.
-%
-%
-%\begin{algorithm}
-%\SetAlgoLined
-%\KwResult{Sorting $A_{1},A_{2},..A_{n}$ }
-%\caption{ "ICan'tBelieveItCanSort"  alg.}
-%\For{ $ i \in [n]$} {
-%  \For{ $ j \in [n]$} {
-%    \If { $A_{i} < A_{j} $} {
-%      swap $A_{i} \leftrightarrow A_{j}$
-%    }
-%  }
-%}
-%
-%
-%\end{algorithm}
 
 \input{../texlib/tail}
 
