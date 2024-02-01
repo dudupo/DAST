@@ -247,7 +247,7 @@ Let $T$ be a binary search tree, and let $x$ be a node belonging to it. The pred
     \If{$T$ is empty}{
         \Return null\;
     }
-    \If{$T.left$ is empty}{
+    \If{$T$.left is empty}{
         \Return $T$\;
     }
     \Return Min($T$.left)\;
@@ -275,7 +275,7 @@ Let $T$ be a binary search tree, and let $x$ be a node belonging to it. The pred
     \If{$x$.left is not empty}{
       \Return Max($x$.left)\;
     }
-    $y \leftarrow x.parent$\;
+    $y \leftarrow x$.parent\;
     \While{$y$ is not empty and $x$ is $y$.left}{
         $x \leftarrow y$\;
         $y \leftarrow y$.parent\;
@@ -309,7 +309,7 @@ Let $T$ be a binary search tree, and let $x$ be a node belonging to it. The pred
     $x \leftarrow T$\;
     \While{$x$ is not empty}{
         $y \leftarrow x$\;
-        \If{$key$ is less than $x.key$}{
+        \If{$key$ is less than $x$.key}{
             $x \leftarrow x$.left\;
         }
         \Else{
