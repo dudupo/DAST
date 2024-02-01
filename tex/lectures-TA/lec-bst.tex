@@ -241,18 +241,18 @@ Let $T$ be a binary search tree, and let $x$ be a node belonging to it. The pred
 
 \begin{algorithm}
 \SetAlgoLined
-\KwData{$T$ - tree, $key$ - key to insert}
-\KwResult{inserts $key$ into $T$}
+\KwData{$T$ - tree, key - key to insert}
+\KwResult{inserts key into $T$}
     newNode $\leftarrow$ create new vertex with key $key$\;
     $y \leftarrow$ null\;
     $x \leftarrow T$\;
     \While{$x$ is not empty}{
         $y \leftarrow x$\;
         \If{$key$ is less than $x.key$}{
-            $x \leftarrowi x$.left\;
+            $x \leftarrow x$.left\;
         }
         \Else{
-            $x \leftarrow x$.right\;
+          $x \leftarrow x$.right\;
         }
     }
     newNode.parent $\leftarrow y$\;
