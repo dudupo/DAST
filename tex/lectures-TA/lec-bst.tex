@@ -166,6 +166,24 @@ Let $T$ be a binary search tree, and let $x$ be a node belonging to it. The pred
   \end{enumerate}
 \end{example}
 
+\paragraph{Solution.} 
+  \begin{enumerate}
+    \item Recall that any reverse-ordered sorted array is also a max heap. This is because if $A_{i} > A_{j}$ for any $i < j$, then it follows that $A_{i} > A_{2i}, A_{2i+1}$ for any $i$. Therefore, we will output the values of $T$ in reverse order.
+      \begin{algorithm}
+       \KwData{$r$ - a vertex in BST}
+       \label{alg:treetoheap}
+       \If{$r$.right is not empty/Null}{
+         Reverse-Order($r$.right)
+       }
+       Print $r$.key
+       \If{$r$.left is not empty/Null}{
+         Reverse-Order($r$.left)
+       }
+        \caption{Reverse-Order }
+      \end{algorithm}
+    \item 
+  \end{enumerate}
+
 \begin{example} Adding fields to BSTs. We would like to support $k$-largest element extraction. Suggest a field that will be used for computing the $k$-largest element, explain how to maintain it, and write an algorithm that extracts the $k$-largest element.
 
 \end{example}
