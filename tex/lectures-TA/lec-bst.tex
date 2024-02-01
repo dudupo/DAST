@@ -5,7 +5,103 @@
 \else
 \setcounter{chapter}{5}
 \fi
-\chapter{Binary Search Trees.} 
+\chapter{Binary Search Trees and Linear Time Sorts.} 
+
+\section{Linear Time Sorts}
+\paragraph{ Counting sort.} Counting sort assumes that each of the n input elements is an integer at the size at most $k$. It runs in $\Theta \left(n + k\right)$ time, so that when $k = O(n)$, counting sort runs in $\Theta\left(n\right)$ time.
+Counting sort first determines, for each input element $x$, the number of elements less than or equal to $x$. It then uses this information to place element $x$ directly into its position in the output array. For example, if 17 elements are less than or equal to $x$, then $x$ belongs in output position 17. We must modify this scheme slightly to handle the situation in which several elements have the \textbf{same value}, since we do not want them all to end up in the same position.
+
+%\begin{algbox}{Counting-sort$(A, n, k)$}
+  \begin{algorithm}
+  	let B and C be new arrays at size $n$ and $k$ \\ 
+  	\For{ $i \in  [0, k]$}{
+		$C_{i} \leftarrow 0 $
+  	}
+	\For{ $j \leftarrow [1, n]$}{
+	  $C_{A{j}} \leftarrow C_{A_{j}} + 1 $
+ 	}
+	\For{ $i \in  [1, k]$}{
+	  $C_{i} \leftarrow C_{i} + C_{i – 1} $
+ 	}
+	\For{ $i \in [n , 1]$}{
+	  $B_{C_{A_{j}}} \leftarrow A_{j}$ \\
+	  $C_{A_{j}} \leftarrow C_{A{j}} – 1$ \ \ // to handle duplicate values
+	}
+	  return $B$
+  \end{algorithm}
+%\end{algbox}
+
+Notice that the Counting sort can beat the lower bound of $\Omega\left(n \log n\right)$ only because it is not a comparison sort. In fact, no comparisons between input elements occur anywhere in the code. Instead, counting sort uses the actual values of the elements to index into an array.
+
+An important property of the counting sort is that it is \textbf{stable}.
+
+\begin{defbox}{Stable Sort.}
+ We will say that a sorting algorithm is stable if elements with the same value appear in the output array in the same order as they do in the input array. \end{defbox}
+
+Counting sort's stability is important for another reason: counting sort is often used as a subroutine in radix sort. As we shall see in the next section, in order for radix sort to work correctly, counting sort must be stable.
+
+\paragraph{Radix sort}
+Radix sort is the algorithm used by the card-sorting machines you now find only in computer museums. The cards have 80 columns, and in each column, a machine can punch a hole in one of 12 places. The sorter can be mechanically "programmed" to examine a given column of each card in a deck and distribute the card into one of 12 bins depending on which place has been punched. An operator can then gather the cards bin by bin, so that cards with the first place punched are on top of cards with the second place punched, and so on.
+
+The Radix-sort procedure assumes that each element in the array $A$ has d digits, where digit 1 is the lowest-order digit and digit $d$ is the highest-order digit.
+
+
+%\begin{algbox}{radix-sort(A, n, d)}
+  \begin{algorithm}
+    \For{ $ i \in [1,d]$ } {
+        use a stable sort to sort array $A$ on digit $i$
+    }
+  \end{algorithm}
+%\end{algbox}
+
+\paragraph{Correctness Proof.} By induction on the column being sorted.
+\begin{itemize}
+  \item Base. Where $d = 1$, the correctness follows immediately from the correctness of our base sort subroutine. 
+  \item Induction Assumption. Assume that Radix-sort is correct for any array of numbers containing at most $d-1$ digits. 
+  \item Step. Let $A^{\prime}$  be the algorithm output. Consider $x,y \in A$. Assume without losing generality that $x > y$. Denote by $x_{d}, y_{d}$ their $d$-digit and by $x_{/d}, y_{/d}$ the numbers obtained by taking only the first  $d-1$ digits of $x,y$. Separate in two cases:
+
+    \begin{itemize}
+      \item   If $x_{d} > y_{d}$ then a scenario in which $x$ appear prior to $y$ is  imply contradiction to the correctness of our subroutine.
+      \item   So consider the case in which $x_{d} = y_{d}$. In that case, it must hold that $x_{/d} > y_{/d}$. Then the appearance of $x$ prior to $y$ either contradicts the assumption that the base algorithm we have used is stable or that $x$ appears before $y$ at the end of the $d-1$ iteration. Which contradicts the induction assumption. 
+    \end{itemize}
+ \end{itemize}
+
+The analysis of the running time depends on the stable sort used as the intermediate sorting algorithm. When each digit lies in the range $0$ to $k – 1$ (so that it can take on $k$ possible values), and $k$ is not too large, counting sort is the obvious choice. Each pass over $n$ $d$-digit numbers then takes $\Theta(n + k)$ time. There are $d$ passes, and so the total time for radix sort is $\Theta\left(d(n + k)\right)$.
+
+%When d is constant and k = O(n), we can make radix sort run in linear time. More generally, we have some flexibility in how to break each key into digits.
+%Lemma 8.4
+%Given n b-bit numbers and any positive integer r ≤ b, RADIX-SORT correctly sorts these numbers in $\Theta\left((b/r)(n + 2r)\right)$ time if the stable sort it uses takes Θ(n + k) time for inputs in the range 0 to k.
+
+%Proof For a value r ≤ b, view each key as having d = ⌈b/r⌉ digits of r bits each. Each digit is an integer in the range 0 to 2r – 1, so we can use counting sort with k = 2r – 1. (For example, we can view a 32-bit word as having four 8-bit digits, so that b = 32, r = 8, k = 2r – 1 = 255, and d = b/r = 4.) Each pass of counting sort takes $ \Theta \left(n + k \right) = \Theta\left(n + 2r\right)$ time and there are d passes, for a total running time of $\Theta\left(d(n + 2r)\right) = \Theta\left((b/r)(n + 2r)\right)$.
+
+%Given n and b, what value of r ≤ b minimizes the expression (b/r)(n + 2r)? As r decreases, the factor b/r increases, but as r increases so does 2r. The answer depends on whether b < ⌊lg n⌋. If b < ⌊lg n⌋, then r ≤ b implies (n + 2r) = Θ(n). Thus, choosing r = b yields a running time of (b/b)(n + 2b) = Θ(n), which is asymptotically optimal. If b ≥ ⌊lg n⌋, then choosing r = ⌊lg n⌋ gives the best running time to within a constant factor, which we can see as follows.1 Choosing r = ⌊lg n⌋ yields a running time of Θ(bn/log n). As r increases above ⌊lg n⌋, the 2r term in the numerator increases faster than the r term in the denominator, and so increasing r above ⌊lg n⌋ yields a running time of Ω(bn / log n). If instead r were to decrease below ⌊lg n⌋, then the b/r term increases and the n + 2r term remains at Θ(n).
+
+%Is radix sort preferable to a comparison-based sorting algorithm, such as Quicksort? If b = O(log n), as is often the case, and r ≈ log n, then the radix sort's running time is Θ(n), which appears to be better than Quicksort's expected running time of Θ(n log n). The constant factors hidden in the Θ-notation differ, however. Although radix sort may make fewer passes than Quicksort over the n keys, each pass of radix sort may take significantly longer. Which sorting algorithm to prefer depends on the characteristics of the implementations, of the underlying machine (e.g., Quicksort often uses hardware caches more effectively than radix sort), and of the input data. Moreover, the version of radix sort that uses counting sort as the intermediate stable sort does not sort in place, which many of the Θ(n log n)-time comparison sorts do. Thus, when primary memory storage is at a premium, an in-place algorithm such as Quicksort could be the better choice.
+
+
+\paragraph{Bucket sort.}
+%Bucket sort assumes that the input is drawn from a uniform distribution and has an average-case running time of O(n). Like counting sort, bucket sort is fast because it assumes something about the input. Whereas counting sort assumes that the input consists of integers in a small range, bucket sort assumes that the input is generated by a random process that distributes elements uniformly and independently over the interval [0, 1). (See Section C.2 for a definition of a uniform distribution.)
+Bucket sort divides the interval [0, 1) into n equal-sized subintervals, or buckets, and then distributes the n input numbers into the buckets. Since the inputs are uniformly and independently distributed over [0, 1), we do not expect many numbers to fall into each bucket. To produce the output, we simply sort the numbers in each bucket and then go through the buckets in order, listing the elements in each.
+%The BUCKET-SORT procedure on the next page assumes that the input is an array A[1 : n] and that each element A[i] in the array satisfies 0 ≤ A[i] < 1. The code requires an auxiliary array B[0 : n – 1] of linked lists (buckets) and assumes that there is a mechanism for maintaining such lists. (Section 10.2 describes how to implement basic operations on linked lists.) Figure 8.4 shows the operation of bucket sort on an input array of 10 numbers.
+
+%\begin{algbox}{bucket-sort(A, n)}
+  \begin{algorithm}
+    	let B[0 : n – 1] be a new array
+	\For{ $i \leftarrow [0, n – 1]$}{
+	   make $B_{i}$ an empty list
+       	}
+	\For{ $i \leftarrow [1, n]$}{
+	    insert $A_{i}$ into list $B_{ \lfloor n A_{i} \rfloor} ]$
+       	}
+	\For{ $i \leftarrow [0, n – 1]$}{
+	    sort list $B_{i}$
+       	}
+	concatenate the lists $B_{0}, B{1}, .. , B_{n – 1}$ together and\\
+	return the concatenated lists
+  \end{algorithm}
+%\end{algbox}
+
+\input{../texlib/tail}
 
 \section{Binaries Trees and How to Encode Them.} We have already seen, in heaps, that organizing our data in a graph-like structure can offer a speed advantage. For future applications, and in particular for maintaining data in sorted order, we will have to encode our data using binary trees. These trees may not be almost complete and also have to support pointer manipulations, specifically placing a binary tree as a left or right subtree of a given node. To enable this, we will have to treat the \textbf{right}, \textbf{left}, and \textbf{parent} as variables, in contrast to heaps where they are determined completely by the node index. We begin this section by stating definitions.
 
@@ -177,15 +273,16 @@ Let $T$ be a binary search tree, and let $x$ be a node belonging to it. The pred
     }
 }
 \end{algorithm}
-\begin{algorithm}
-\SetAlgoLined
-\KwData{$T$: The input tree, $x$: The key to be deleted}
-\If{$x$ is in $T$}{
-  Remove $x$ from $T$\;
-}
-\caption{Delete($T$, $x$)}
-\end{algorithm}
 
+%\begin{algorithm}
+%\SetAlgoLined
+%\KwData{$T$: The input tree, $x$: The key to be deleted}
+%\If{$x$ is in $T$}{
+%  Remove $x$ from $T$\;
+%}
+%\caption{Delete($T$, $x$)}
+%\end{algorithm}
+%
 %2. Inorder($T$):
 \begin{algorithm}
 \SetAlgoLined
