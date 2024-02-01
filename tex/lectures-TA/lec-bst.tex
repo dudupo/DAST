@@ -171,7 +171,7 @@ Let $T$ be a binary search tree, and let $x$ be a node belonging to it. The pred
     \item Remember that any array sorted in reverse order is also a max heap. This is because if $A_{i} \ge A_{j}$ for any $i < j$, then it follows that $A_{i} \ge A_{2i}, A_{2i+1}$ for any $i$. Therefore, we will output the values of $T$ in reverse order. We do this by applying Inorder in reverse, as given in \Cref{alg:treetoheap}. The running time is $\Theta(n)$ and of course it is also the lower bound (as we must read all the inputs for printing it).
       \begin{algorithm}
        \KwData{$r$ - a vertex in BST}
-       \label{alg:treetoheap}
+       
        \If{$r$.right is not empty/Null}{
          Reverse-Order($r$.right)
        }
@@ -180,6 +180,7 @@ Let $T$ be a binary search tree, and let $x$ be a node belonging to it. The pred
          Reverse-Order($r$.left)
        }
         \caption{Reverse-Order }
+\label{alg:treetoheap}
       \end{algorithm}
     \item We will initialize an empty binary search tree and then add the elements to it one by one. Each insertion will cost the current height of the tree, so it might sum up to $\Theta(n^{2})$. However, next week we will see how those insertions could be done in a way that preserves the balance of the tree, namely guaranteeing that the height of the tree will remain logarithmic.
   \end{enumerate}
