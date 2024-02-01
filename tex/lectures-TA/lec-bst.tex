@@ -168,14 +168,14 @@ Let $T$ be a binary search tree, and let $x$ be a node belonging to it. The pred
 
 \paragraph{Solution.} 
   \begin{enumerate}
-    \item Recall that any reverse-ordered sorted array is also a max heap. This is because if $A_{i} > A_{j}$ for any $i < j$, then it follows that $A_{i} > A_{2i}, A_{2i+1}$ for any $i$. Therefore, we will output the values of $T$ in reverse order.
+    \item Recall that any reverse-ordered sorted array is also a max heap. This is because if $A_{i} \ge A_{j}$ for any $i < j$, then it follows that $A_{i} \ge A_{2i}, A_{2i+1}$ for any $i$. Therefore, we will output the values of $T$ in reverse order.
       \begin{algorithm}
        \KwData{$r$ - a vertex in BST}
        \label{alg:treetoheap}
        \If{$r$.right is not empty/Null}{
          Reverse-Order($r$.right)
        }
-       Print $r$.key
+       Print $r$.key \\
        \If{$r$.left is not empty/Null}{
          Reverse-Order($r$.left)
        }
