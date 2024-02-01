@@ -181,7 +181,7 @@ Let $T$ be a binary search tree, and let $x$ be a node belonging to it. The pred
        }
         \caption{Reverse-Order }
       \end{algorithm}
-    \item 
+    \item We will initialize an empty binary search tree and then add the elements to it one by one. Each insertion will cost the current height of the tree, so it might sum up to $\Theta(n^{2})$. However, next week we will see how those insertions could be done in a way that preserves the balance of the tree, namely guaranteeing that the height of the tree will remain logarithmic.
   \end{enumerate}
 
 \begin{example} Adding fields to BSTs. We would like to support $k$-largest element extraction. Suggest a field that will be used for computing the $k$-largest element, explain how to maintain it, and write an algorithm that extracts the $k$-largest element.
