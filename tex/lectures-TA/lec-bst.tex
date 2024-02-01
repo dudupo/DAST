@@ -159,126 +159,113 @@ Let $T$ be a binary search tree, and let $x$ be a node belonging to it. The pred
 \end{enumerate}
 
 
-\scalebox{0.7}{
-
 \begin{algorithm}
 \SetAlgoLined
-\KwData{$T$ - tree, $key$ - key to search for}
-\KwResult{pointer to vertex with key equal to $key$}
-\SetKwFunction{FSearch}{Search}
-\Fn{\FSearch{$T$, $key$}}{
+\KwData{$T$ - tree, key - key to search for}
+\KwResult{pointer to vertex with key equal to key}
     \If{$T$ is empty}{
         \Return null\;
     }
-    \If{$T.key$ equals $key$}{
+    \If{$T$.key equals key}{
         \Return $T$\;
     }
-    \If{$key$ is less than $T.key$}{
-        \Return \FSearch{$T.left$, $key$}\;
+    \If{key is less than $T$.key}{
+      \Return Search($T$.left, key)\;
     }
     \Else{
-        \Return \FSearch{$T.right$, $key$}\;
+      \Return Search($T$.right, key)\;
     }
-}
+
+\caption{Search} 
 \end{algorithm}
-}
+
 \begin{algorithm}
 \SetAlgoLined
 \KwData{$T$ - tree}
 \KwResult{pointer to vertex with minimum value in $T$}
-\SetKwFunction{FMin}{Min}
-\Fn{\FMin{$T$}}{
     \If{$T$ is empty}{
         \Return null\;
     }
     \If{$T.left$ is empty}{
         \Return $T$\;
     }
-    \Return \FMin{$T.left$}\;
-}
+    \Return Min($T$.left)\;
+\caption{Min} 
 \end{algorithm}
 
 \begin{algorithm}
 \SetAlgoLined
 \KwData{$T$ - tree}
 \KwResult{pointer to vertex with maximum value in $T$}
-\SetKwFunction{FMax}{Max}
-\Fn{\FMax{$T$}}{
     \If{$T$ is empty}{
         \Return null\;
     }
-    \If{$T.right$ is empty}{
+    \If{$T$.right is empty}{
         \Return $T$\;
     }
-    \Return \FMax{$T.right$}\;
-}
+    \Return Max($T$.right)\;
+    \caption{ Max }
 \end{algorithm}
 
 \begin{algorithm}
 \SetAlgoLined
 \KwData{$x$ - vertex}
 \KwResult{pointer to predecessor of $x$}
-\SetKwFunction{FPredecessor}{Predecessor}
-\Fn{\FPredecessor{$x$}}{
-    \If{$x.left$ is not empty}{
-        \Return \FMax{$x.left$}\;
+    \If{$x$.left is not empty}{
+      \Return Max($x$.left)\;
     }
     $y \leftarrow x.parent$\;
-    \While{$y$ is not empty and $x$ is $y.left$}{
+    \While{$y$ is not empty and $x$ is $y$.left}{
         $x \leftarrow y$\;
-        $y \leftarrow y.parent$\;
+        $y \leftarrow y$.parent\;
     }
     \Return $y$\;
-}
+\caption{Predecessor}
 \end{algorithm}
 
 \begin{algorithm}
 \SetAlgoLined
 \KwData{$x$ - vertex}
 \KwResult{pointer to successor of $x$}
-\SetKwFunction{FSuccessor}{Successor}
-\Fn{\FSuccessor{$x$}}{
-    \If{$x.right$ is not empty}{
-        \Return \FMin{$x.right$}\;
+    \If{$x$.right is not empty}{
+      \Return Min($x$.right)\;
     }
-    $y \leftarrow x.parent$\;
-    \While{$y$ is not empty and $x$ is $y.right$}{
+    $y \leftarrow x$.parent\;
+    \While{$y$ is not empty and $x$ is $y$.right}{
         $x \leftarrow y$\;
-        $y \leftarrow y.parent$\;
+        $y \leftarrow y$.parent\;
     }
     \Return $y$\;
-}
+\caption{Successor}
 \end{algorithm}
 
 \begin{algorithm}
 \SetAlgoLined
 \KwData{$T$ - tree, $key$ - key to insert}
 \KwResult{inserts $key$ into $T$}
-\SetKwFunction{FInsert}{Insert}
-\Fn{\FInsert{$T$, $key$}}{
-    $newNode \leftarrow$ create new vertex with key $key$\;
+    newNode $\leftarrow$ create new vertex with key $key$\;
     $y \leftarrow$ null\;
     $x \leftarrow T$\;
     \While{$x$ is not empty}{
         $y \leftarrow x$\;
         \If{$key$ is less than $x.key$}{
-            $x \leftarrow x.left$\;
+            $x \leftarrowi x$.left\;
         }
         \Else{
-            $x \leftarrow x.right$\;
+            $x \leftarrow x$.right\;
         }
     }
-    $newNode.parent \leftarrow y$\;
+    newNode.parent $\leftarrow y$\;
     \If{$y$ is null}{
-        $T \leftarrow newNode$\;
+        $T \leftarrow$ newNode\;
     }
-    \ElseIf{$key$ is less than $y.key$}{
-        $y.left \leftarrow newNode$\;
+    \ElseIf{$key$ is less than $y$.key}{
+        $y$.left $\leftarrow$ newNode\;
     }
     \Else{
-        $y.right \leftarrow newNode$\;
+        $y$.right $\leftarrow$ newNode\;
     }
-}
+\caption{Insert}
 \end{algorithm}
 
 %\begin{algorithm}
