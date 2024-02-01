@@ -188,9 +188,7 @@ Let $T$ be a binary search tree, and let $x$ be a node belonging to it. The pred
 \begin{example} Adding fields to BSTs. We would like to support $k$-largest element extraction. Suggest a field that will be used for computing the $k$-largest element, explain how to maintain it, and write an algorithm that extracts the $k$-largest element.
 \end{example}
 
-\paragraph{Solution.} 
-\begin{enumerate}
-  \item We will associate with any vertex of the tree a field that counts the number of nodes whose keys are lower than it (the size of its left subtree). Let's denote it as left-size.
+\paragraph{Solution.} We will associate with any vertex of the tree a field that counts the number of nodes whose keys are lower than it (the size of its left subtree). Let's denote it as left-size.
 \begin{algorithm}
   \KwData{$r$ - a vertex in BST, $k$-stat parameter}
        $m \leftarrow r$.left-size \\ 
@@ -205,9 +203,6 @@ Let $T$ be a binary search tree, and let $x$ be a node belonging to it. The pred
         \caption{Get-Order }
 \label{alg:kstat}
       \end{algorithm}
-
-\end{enumerate}
-
 %\begin{example}
 %
 %\end{example}
@@ -219,6 +214,7 @@ Let $T$ be a binary search tree, and let $x$ be a node belonging to it. The pred
 %\end{example}
 %
 
+      \newpage
 
 \section{Appendix - BST Methods Source: A Mixture of Cormen, Wikipedia, and Codeforces}
 
