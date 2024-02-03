@@ -196,7 +196,7 @@ Consider the root, and let's separate into cases based on how many elements the 
   \item If the root is greater than strictly fewer than $k-1$ elements, then it is clear that the $k$-smallest element is also greater than it and located in its right subtree. However, in contrast to the previous case, here the order of the $k$-smallest element of the whole tree in the subtree will be the substitution between $k$ and the number of nodes in the $\{$ left-subtree $\cup$ root $\}$.
   \item The third case is when the root is greater than exactly $k-1$ elements, which by definition sets it as the $k$-smallest element.
 \end{enumerate}
-In the first two cases, we are calling Get-Order on trees (BST with our additional field) with smaller height. Therefore, it is clear how one would prove correctness by induction.
+In the first two cases, we are calling Get-Order on trees (BST with our additional field) with smaller height. Therefore, it is clear how one would prove correctness by induction. We will see in the next recitation how to maintain the tree, update the field, and guarantee that the height of the tree will remain logarithmic.
   \begin{algorithm}
   \KwData{$r$ - a vertex in BST, $k$-stat parameter}
        $m \leftarrow r$.left-size \\ 
