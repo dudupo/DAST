@@ -9,8 +9,7 @@
 
 \section{Linear Time Sorts}
 \paragraph{ Counting sort.}
-Counting sort assumes that each of the $n$ input elements is an integer with a size at most $k$. It runs in $\Theta(n + k)$ time, so when $k = O(n)$, counting sort runs in $\Theta(n)$ time.
-Counting sort first determines, for each input element $x$, the number of elements less than or equal to $x$. It then uses this information to place element $x$ directly into its position in the output array. For example, if there are 17 elements less than or equal to $x$, then $x$ belongs in output position 17. We must modify this scheme slightly to handle the situation where several elements have the \textbf{same value}, as we do not want them all to end up in the same position.
+Counting sort assumes that each of the $n$ input elements is an integer with a size at most $k$. It runs in $\Theta(n + k)$ time, so when $k = O(n)$, counting sort runs in $\Theta(n)$ time. It first determines, for each input element $x$, the number of elements less than or equal to $x$. Then, it uses this information to place element $x$ directly into its position in the output array. For example, if there are 17 elements less than or equal to $x$, then $x$ will be placed in position 17. However, we need to make some adjustments to this method to handle cases where multiple elements have the \textbf{same value}. We do not want all of them to end up in the same position.
 
 %\begin{algbox}{Counting-sort$(A, n, k)$}
   \begin{algorithm}
@@ -126,6 +125,8 @@ We encode a binary tree by associating a field to each vertex $x$, representing 
 
 
 If nothing else has been mentioned, then we can assume that we can add additional fields to the vertices.
+
+\section{Sorting in Comparison Model.}
 
 
 \section{Binary Search Trees.} Binary search tree (BST) is a binary tree which any node $x$ of it: 
