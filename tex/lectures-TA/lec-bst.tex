@@ -109,6 +109,21 @@ The analysis of the running time depends on the stable sort used as the intermed
 
 \section{Sorting in Comparison Model.}
 
+\begin{example}
+  Prove that no algorithm can find a peak in less than $\Theta\left( \log n \right)$ time.
+\end{example}
+\begin{proof}
+  Consider the following inputs for the problem, $A^{j}$ will be a tringle that get's is point at position $j$. Namely:  
+  \begin{equation*}
+      A^{j}_{i} = \begin{cases}
+        i & i < j \\
+        j - i & \text{else}
+      \end{cases}
+  \end{equation*}
+\end{proof}
+
+
+
 \section{Binaries Trees and How to Encode Them.} We have already seen, in heaps, that organizing our data in a graph-like structure can offer a speed advantage. For future applications, and in particular for maintaining data in sorted order, we will have to encode our data using binary trees. These trees may not be almost complete and also have to support pointer manipulations, specifically placing a binary tree as a left or right subtree of a given node. To enable this, we will have to treat the \textbf{right}, \textbf{left}, and \textbf{parent} as variables, in contrast to heaps where they are determined completely by the node index. We begin this section by stating definitions.
 
 
