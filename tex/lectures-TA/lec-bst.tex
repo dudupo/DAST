@@ -189,8 +189,15 @@ Let $T$ be a binary search tree, and let $x$ be a node belonging to it. The pred
 \begin{example} Adding fields to BSTs. We would like to support $k$-smallest element extraction. Suggest a field that will be used for computing the $k$-smallest element, explain how to maintain it, and write an algorithm that extracts the $k$-smallest element. 
 \end{example}
 
-\paragraph{Solution.} We will associate with each vertex of the tree a field that counts the number of nodes whose keys are lower than it (the size of its left subtree). Let's denote it as left-size. The code is given in \Cref{alg:kstat}. Guideline for proving correctness: if the root is strictly greater than $k-1$ elements, then the $k$-smallest element is in its left subtree and is also the $k-1$ smallest element in that subtree. If the root is greater than strictly fewer than $k-1$ elements, then it is clear that the $k$-smallest element is also greater than it and located in its right subtree. However, in contrast to the previous case, here the order of the $k$-smallest element of the whole tree in the subtree will be the substitution between $k$ and the number of nodes in the $\{$ left-subtree $\cup$ root $\}$. The third case is when the root is greater than exactly $k-1$ elements, which by definition sets it as the $k$-smallest element.
-\begin{algorithm}
+\paragraph{Solution.} We will associate with each vertex of the tree a field that counts the number of nodes whose keys are lower than it (the size of its left subtree). Let's denote it as left-size. The code is given in \Cref{alg:kstat}. Guideline for proving correctness:
+Consider the root, and let's separate into cases based on how many elements the root is greater than.
+\begin{enumerate}
+  \item If the root is strictly greater than $k-1$ elements, then the $k$-smallest element is in its left subtree and is also the $k-1$ smallest element in that subtree.
+  \item If the root is greater than strictly fewer than $k-1$ elements, then it is clear that the $k$-smallest element is also greater than it and located in its right subtree. However, in contrast to the previous case, here the order of the $k$-smallest element of the whole tree in the subtree will be the substitution between $k$ and the number of nodes in the $\{$ left-subtree $\cup$ root $\}$.
+  \item The third case is when the root is greater than exactly $k-1$ elements, which by definition sets it as the $k$-smallest element.
+\end{enumerate}
+
+  \begin{algorithm}
   \KwData{$r$ - a vertex in BST, $k$-stat parameter}
        $m \leftarrow r$.left-size \\ 
        \If{$m = k -1$ }{
