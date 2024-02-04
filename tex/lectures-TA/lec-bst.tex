@@ -9,10 +9,10 @@
 
 \section{Heapsort (David's group).}
 \begin{algorithm}
-    $A \leftarrow$ Build-Heap($A$)
+    $A \leftarrow$ Build-Heap($A$)\\
   	\For{ $i \in  [n]$}{
-      swap $A_{1} \leftrightarrow A_{n-i+1}$
-      heapsize($A$) $\leftarrow n-i$
+      swap $A_{1} \leftrightarrow A_{n-i+1}$\\
+      heapsize($A$) $\leftarrow n-i$\\
       heapify($A$, 1)
   	}	
 	  return $A$
