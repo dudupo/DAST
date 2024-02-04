@@ -8,6 +8,7 @@
 \chapter{Binary Search Trees and Linear Time Sorts.} 
 
 \section{Heapsort (David's group).}
+We begin by presenting the heap-sort algorithm and giving a proof of its correctness.
 \begin{algorithm}
     $A \leftarrow$ Build-Heap($A$)\\
   	\For{ $i \in  [n]$}{
@@ -18,6 +19,27 @@
 	  return $A$
 \caption{Heap-sort$(A)$}
   \end{algorithm}
+  Correctness, we are going to prove the fowllowing statement, in the end of the $i$th iteration, $A_{n-i+1},A_{n-i+2}..A_{n}$ are the $i$ largest element of $A$ placed by order, and $A_{1},A_{2},..A_{n-i}$ is a maximum heap. 
+  \begin{proof}
+    By induction.
+    \begin{enumerate}
+      \item Base. $A_{n}$ is set in line (3) to be the root of the heap, and therfore is maximum of $A$. After line (4), $A_{1}$ is the parent of heaps roots as line (4) excluds $A_{n}$ from the heap (So the heap inquality holds for any $j\in [2,(n-1)/2]$). Therefore by the correctness of heapify we get that after line (5) $A_{1},A_{2}..A_{n-1}$ is an heap.  
+      \item Assumption. asssume the correctness of the claim for any $i^{\prime}<i$.
+      \item Step. Consider the $i$th iteration. By the induction assumption, $A_{1}$ is a root of the heap $A_{1},A_{2},..A_{n-i+1}$ and there fore is their maximum. So after the swapping in line (3) we get that $A_{n-i+1}$ is the element which greater than $n-i$ elements in $A$ and by using again the induction assumption we know that it also less than $A_{n-i+2},A_{n-i+3},..A_{n}$, so after line (3) and by the fact that  $A_{n-i+2},A_{n-i+3},..A_{n}$ are the $i-1$ largest element placed by order we have that  $A_{n-i+1}A_{n-i+2},A_{n-i+3},..A_{n}$ are the $i$ largest element placed by order. By reapting on the same arguments in the base case we get , by correction of heapify, that after line (5) $A_{1}$ is again a root of an  heap
+    \end{enumerate}
+  \end{proof}
+
+\begin{proof}
+By induction.
+\begin{enumerate}
+  \item Base. $A_{n}$ is set in line (3) to be the root of the heap, and therefore is the maximum of $A$. After line (4), $A_{1}$ is the parent of the heap's roots as line (4) excludes $A_{n}$ from the heap (So the heap inequality holds for any $j\in [2,(n-1)/2]$). Therefore, by the correctness of heapify, we get that after line (5), $A_{1},A_{2},..A_{n-1}$ is a heap.
+  \item Assumption. Assume the correctness of the claim for any $i^{\prime}<i$.
+  \item Step. Consider the $i$th iteration. By the induction assumption, $A_{1}$ is a root of the heap $A_{1},A_{2},..A_{n-i+1}$ and therefore is their maximum. So after the swapping in line (3), we get that $A_{n-i+1}$ is the element which is greater than $n-i$ elements in $A$. By using the induction assumption again, we know that it is also less than $A_{n-i+2},A_{n-i+3},..A_{n}$, so after line (3) and by the fact that $A_{n-i+2},A_{n-i+3},..A_{n}$ are the $i-1$ largest elements placed in order, we have that $A_{n-i+1},A_{n-i+2},A_{n-i+3},..A_{n}$ are the $i$ largest elements placed in order. 
+
+    By repeating the same arguments in the base case, we can conclude, based on the correctness of heapify, that after line (5), $A_{1}$ is either the root of a heap or the heap inequality did not hold for some $i\in [2,(n-i)/2]$. In the latter case, this would contradict the induction assumption (since before line (3), $A_{1}..A_{n-i+1}$ were heaps).
+\end{enumerate}
+\end{proof}
+
 \section{Linear Time Sorts}
 \paragraph{ Counting sort.}
 Counting sort assumes that each of the $n$ input elements is an integer with a size at most $k$. It runs in $\Theta(n + k)$ time, so when $k = O(n)$, counting sort runs in $\Theta(n)$ time. It first determines, for each input element $x$, the number of elements less than or equal to $x$. Then, it uses this information to place element $x$ directly into its position in the output array. For example, if there are 17 elements less than or equal to $x$, then $x$ will be placed in position 17. However, we need to make some adjustments to this method to handle cases where multiple elements have the \textbf{same value}. We do not want all of them to end up in the same position.
