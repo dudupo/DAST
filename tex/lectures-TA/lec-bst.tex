@@ -147,6 +147,9 @@ The height of the comparison tree is (at least) the running time of the algorith
   By applying the pigeonhole principle, we can conclude that there are distinct $j$ and $j^{\prime}$ such that $\mathcal{A}$ reaches the same leaf when given $A^{j}$ and $A^{j^{\prime}}$ as inputs. Since their peaks are set at different positions, it follows that the algorithm will output a wrong answer for at least one of them.
 \end{proof}
 
+\paragraph{Question.} Suppose that $\mathcal{A}$ outputs some number depending on the input, for example, ''Return $A$[$A$[7]]''. Does the argument above still work (and if so, why)?
+
+
 \begin{example}
   Prove that no algorithm, in the comparison model, can merge two sorted arrays in time $\Theta(n^{1-\varepsilon})$ for some $\varepsilon>0$.
 \end{example}
