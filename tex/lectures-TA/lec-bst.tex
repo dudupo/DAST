@@ -125,9 +125,9 @@ The analysis of the running time depends on the stable sort used as the intermed
 
 \section{Sorting in Comparison Model.}
 
-We have seen in the lecture that the runs of any sorting algorithm that doesn't assume anything on the input's structure, but is able to compare elements pair of it, can be modeled as a binary tree. On every node, the algorithm compares between two elements and based on the result, we advance our imaginary position to either the left or right child. Eventually, we get to the leaf of the tree and output. 
+We have learned in the lecture that the runs of any sorting algorithm, which does not assume anything about the input's structure except the ability to compare elements in pairs, can be modeled as a binary tree. At each node, the algorithm compares two elements and, based on the result, moves to either the left or right child. Eventually, we reach the leaf of the tree and output the sorted elements. Notice that the nodes only exist in our imagination; the algorithm is not aware of their existence. We will name that tree the comparison tree.
 
-The height of the binary tree is (at least) the running time of the algorithm. We are about to demonstrate how one can have a lower bound over the find-peak problem.
+The height of the comparison tree is (at least) the running time of the algorithm. We are going to demonstrate how to use these ideas to lower-bound the running time of the find-peak problem in the comparison model.
 
 
 \begin{example}
