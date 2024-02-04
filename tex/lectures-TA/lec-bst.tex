@@ -8,7 +8,8 @@
 \chapter{Binary Search Trees and Linear Time Sorts.} 
 
 \section{Heapsort (David's group).}
-We begin by presenting the heap-sort algorithm and giving a proof of its correctness.
+We will start by introducing the heap-sort algorithm and providing a proof of its correctness.
+
 \begin{algorithm}
     $A \leftarrow$ Build-Heap($A$)\\
   	\For{ $i \in  [n]$}{
@@ -19,16 +20,10 @@ We begin by presenting the heap-sort algorithm and giving a proof of its correct
 	  return $A$
 \caption{Heap-sort$(A)$}
   \end{algorithm}
-  Correctness, we are going to prove the fowllowing statement, in the end of the $i$th iteration, $A_{n-i+1},A_{n-i+2}..A_{n}$ are the $i$ largest element of $A$ placed by order, and $A_{1},A_{2},..A_{n-i}$ is a maximum heap. 
-  \begin{proof}
-    By induction.
-    \begin{enumerate}
-      \item Base. $A_{n}$ is set in line (3) to be the root of the heap, and therfore is maximum of $A$. After line (4), $A_{1}$ is the parent of heaps roots as line (4) excluds $A_{n}$ from the heap (So the heap inquality holds for any $j\in [2,(n-1)/2]$). Therefore by the correctness of heapify we get that after line (5) $A_{1},A_{2}..A_{n-1}$ is an heap.  
-      \item Assumption. asssume the correctness of the claim for any $i^{\prime}<i$.
-      \item Step. Consider the $i$th iteration. By the induction assumption, $A_{1}$ is a root of the heap $A_{1},A_{2},..A_{n-i+1}$ and there fore is their maximum. So after the swapping in line (3) we get that $A_{n-i+1}$ is the element which greater than $n-i$ elements in $A$ and by using again the induction assumption we know that it also less than $A_{n-i+2},A_{n-i+3},..A_{n}$, so after line (3) and by the fact that  $A_{n-i+2},A_{n-i+3},..A_{n}$ are the $i-1$ largest element placed by order we have that  $A_{n-i+1}A_{n-i+2},A_{n-i+3},..A_{n}$ are the $i$ largest element placed by order. By reapting on the same arguments in the base case we get , by correction of heapify, that after line (5) $A_{1}$ is again a root of an  heap
-    \end{enumerate}
-  \end{proof}
-
+Correctness. We are going to prove the following statement.
+  \begin{claim}   
+At the end of the $i$th iteration, $A_{n-i+1},A_{n-i+2},..A_{n}$ are the $i$ largest elements of $A$ placed in order, and $A_{1},A_{2},..A_{n-i}$ is a maximum heap.
+  \end{claim}
 \begin{proof}
 By induction.
 \begin{enumerate}
