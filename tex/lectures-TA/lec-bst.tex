@@ -98,17 +98,6 @@ The Radix-sort procedure assumes that each element in the array $A$ has d digits
 
 The analysis of the running time depends on the stable sort used as the intermediate sorting algorithm. When each digit lies in the range $0$ to $k – 1$ (so that it can take on $k$ possible values), and $k$ is not too large, counting sort is the obvious choice. Each pass over $n$ $d$-digit numbers then takes $\Theta(n + k)$ time. There are $d$ passes, and so the total time for radix sort is $\Theta\left(d(n + k)\right)$.
 
-%When d is constant and k = O(n), we can make radix sort run in linear time. More generally, we have some flexibility in how to break each key into digits.
-%Lemma 8.4
-%Given n b-bit numbers and any positive integer r ≤ b, RADIX-SORT correctly sorts these numbers in $\Theta\left((b/r)(n + 2r)\right)$ time if the stable sort it uses takes Θ(n + k) time for inputs in the range 0 to k.
-
-%Proof For a value r ≤ b, view each key as having d = ⌈b/r⌉ digits of r bits each. Each digit is an integer in the range 0 to 2r – 1, so we can use counting sort with k = 2r – 1. (For example, we can view a 32-bit word as having four 8-bit digits, so that b = 32, r = 8, k = 2r – 1 = 255, and d = b/r = 4.) Each pass of counting sort takes $ \Theta \left(n + k \right) = \Theta\left(n + 2r\right)$ time and there are d passes, for a total running time of $\Theta\left(d(n + 2r)\right) = \Theta\left((b/r)(n + 2r)\right)$.
-
-%Given n and b, what value of r ≤ b minimizes the expression (b/r)(n + 2r)? As r decreases, the factor b/r increases, but as r increases so does 2r. The answer depends on whether b < ⌊lg n⌋. If b < ⌊lg n⌋, then r ≤ b implies (n + 2r) = Θ(n). Thus, choosing r = b yields a running time of (b/b)(n + 2b) = Θ(n), which is asymptotically optimal. If b ≥ ⌊lg n⌋, then choosing r = ⌊lg n⌋ gives the best running time to within a constant factor, which we can see as follows.1 Choosing r = ⌊lg n⌋ yields a running time of Θ(bn/log n). As r increases above ⌊lg n⌋, the 2r term in the numerator increases faster than the r term in the denominator, and so increasing r above ⌊lg n⌋ yields a running time of Ω(bn / log n). If instead r were to decrease below ⌊lg n⌋, then the b/r term increases and the n + 2r term remains at Θ(n).
-
-%Is radix sort preferable to a comparison-based sorting algorithm, such as Quicksort? If b = O(log n), as is often the case, and r ≈ log n, then the radix sort's running time is Θ(n), which appears to be better than Quicksort's expected running time of Θ(n log n). The constant factors hidden in the Θ-notation differ, however. Although radix sort may make fewer passes than Quicksort over the n keys, each pass of radix sort may take significantly longer. Which sorting algorithm to prefer depends on the characteristics of the implementations, of the underlying machine (e.g., Quicksort often uses hardware caches more effectively than radix sort), and of the input data. Moreover, the version of radix sort that uses counting sort as the intermediate stable sort does not sort in place, which many of the Θ(n log n)-time comparison sorts do. Thus, when primary memory storage is at a premium, an in-place algorithm such as Quicksort could be the better choice.
-
-
 \paragraph{Bucket sort.}
 \marginnote[Note 2:  We will return to analyze the expected (average) running time after the lecture on probability.
 ]{Note 2: We will return to analyze the expected (average) running time after the lecture on probability.
@@ -135,6 +124,11 @@ The analysis of the running time depends on the stable sort used as the intermed
 %\input{../texlib/tail}
 
 \section{Sorting in Comparison Model.}
+
+We have seen in the lecture that the runs of any sorting algorithm that doesn't assume anything on the input's structure, but is able to compare elements pair of it, can be modeled as a binary tree. On every node, the algorithm compares between two elements and based on the result, we advance our imaginary position to either the left or right child. Eventually, we get to the leaf of the tree and output. 
+
+The height of the binary tree is (at least) the running time of the algorithm. We are about to demonstrate how one can have a lower bound over the find-peak problem.
+
 
 \begin{example}
   Prove that no algorithm can find a peak in less than $\Theta\left( \log n \right)$ time.
