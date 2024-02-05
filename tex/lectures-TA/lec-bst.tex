@@ -51,7 +51,7 @@ Counting sort assumes that each of the $n$ input elements is an integer with a s
 	\For{ $i \in  [1, k]$}{
 	  $C_{i} \leftarrow C_{i} + C_{i – 1} $
  	}
-	\For{ $i \in [n , 1]$}{
+	\For{ $j \in [n , 1]$}{
 	  $B_{C_{A_{j}}} \leftarrow A_{j}$ \\
 	  $C_{A_{j}} \leftarrow C_{A{j}} – 1$ \ \ // to handle duplicate values
 	}
@@ -106,7 +106,7 @@ The analysis of the running time depends on the stable sort used as the intermed
 
 %\begin{algbox}{bucket-sort(A, n)}
   \begin{algorithm}
-    	let B[0 : n – 1] be a new array
+    	let B[0 : n – 1] be a new array \\
 	\For{ $i \leftarrow [0, n – 1]$}{
 	   make $B_{i}$ an empty list
        	}
@@ -139,7 +139,7 @@ The height of the comparison tree is (at least) the running time of the algorith
   \begin{equation*}
       A^{j}_{i} = \begin{cases}
         i & i < j \\
-        j - i & \text{else}
+         j + j - i & \text{else}
       \end{cases}
   \end{equation*} 
   Now, let's assume, in contradiction, that there exists an algorithm $\mathcal{A}$ in the comparison model that runs in less than $\log n$ time. This implies that the comparison tree representation of its running has a height less than $\log n$ and the number of its leaves, each associated with a possible output, is less than $n$. Remember that we have $n$ inputs of the form $A^{j}$. 
