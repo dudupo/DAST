@@ -22,7 +22,13 @@
 \end{definition}
 
 \begin{example}
-  Consider a dice rolling, each of the faces, indexed by $1,2,3,4,5,6$ has the same chances to rolled out. Thus, our atomic events associated with the rolling result, and $P$ defined to be $P(\omega) = \frac{1}{6}$ for any such atomic event. 
+  Consider a dice rolling, where each of the faces is indexed by $1,2,3,4,5,6$ and has an equal chance of being rolled. Therefore, our atomic events are associated with the rolling result, and $P$ is defined as $P(\omega) = \frac{1}{6}$ for any such atomic event.
+  An example of an event can be $A=$ ''the dice falls on an even number''. The probability of this outcome is:
+  \begin{equation*}
+    \begin{split}
+      P(A)= \sum_{\omega\in A}{ P(\omega) } = P(\{2\}) + P(\{4\}) + P(\{6\}) = 3\cdot \frac{1}{6} = \frac{1}{2} 
+    \end{split}
+  \end{equation*}
 \end{example}
 
 \begin{claim}
