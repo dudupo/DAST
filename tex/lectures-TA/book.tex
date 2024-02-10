@@ -250,7 +250,7 @@ What's the running time? Denote by $T\left( n \right)$ an upper bound on the run
 
  
 
-%\newcommand*{\RECITATION}{}%
+\newcommand*{\RECITATION}{}%
 
 
 \ifdefined\SOLUTION
@@ -554,7 +554,7 @@ Examples of functions \(f\) might be: file saving, summing numbers, or posting a
         \Return \(a_i\)
         }
     } 
-\Return \( \Delta \)   
+\Return \( \Delta \) \\  
 }
 \end{algorithm}
 
@@ -935,6 +935,15 @@ where \(n^{\log 3}  \sim n^{1.58} < n^2 \).
   \chapter{DAST. Exercise 2.}
 \fi
 
+\ifdefined\CHECK
+
+\paragraph{Checking Prioritiy.} (3.3) and (3.6) are more important than (3.5), so if there is no time, (3.5) can be skipped.
+
+
+\paragraph{}
+
+\fi
+
 
 \ctt{ 
   Please note that sections 1, 2, and 4 are optional and do not need to be submitted. However, please ensure that you feel capable of solving them. The problems in the following chapter, 7, 8, and 9, are also optional but are more challenging. It is completely acceptable if you are not able to manage them at this stage of the course.
@@ -981,7 +990,10 @@ where \(n^{\log 3}  \sim n^{1.58} < n^2 \).
           \item Step. Assume, by contradiction, that after the $k$th iteration, the statement does not hold. Then, there must be an $l$ such that $C_{l} > C_{l+1}$. Since in the $k$th iteration, we only set $C_{k}$, either $C_{k-1} > C_{k}$ or in the $k-1$th iteration, $C$ was also not sorted, which contradicts the assumption. Therefore, we are left with only the first option, namely $l = k-1$. Let $j$ and $i$ be the values of the $j$ and $i$ registers at the $k-1$th iteration. Without loss of generality, assume that $C_{k-1}$ was set to be $A_{i}$, thus $A_{i} \le B_{j}$. Additionally, since it is given that $A$ is a sorted array, $A_{i} \le A_{i+1}$. On the other hand, $C_{k}$, by definition, is set to be $C_{k} \leftarrow \min \{ A_{i+1}, B_{j} \}$ and therefore, it has to be greater than $A_{i} = C_{k}$.
         \end{enumerate}
       \end{proof}
-    \item The correctness of the claim guarantees that if we reach the $|A|+|B|$ iteration, then $C$ is sorted. Notice that the algorithm always progresses, by definition. (The increment of the $k$ register is not conditioned).
+    \item The correctness of the claim guarantees that after $k$ iterations, $C$ is sorted and contains $k$ elements. It remains to be shown that if we reach the $|A|+|B|$ iteration, then $C$ contains all the elements in $A$ and $B$. Assume, by contradiction, that there is an element in $A$, denoted by $A_{j}$, that is not in $C$. By the fact that the length of $C$ equals $|A| + |B|$, there must be an element either in $A$ or $B$ that was chosen twice to be placed in $C$. Without loss of generality, let's suppose that it was $A_{j^{\prime}}$, so line number (5) was executed twice for $i = j^{\prime}$. But that contradicts the fact that we proceeded to line number (6), which increases $i$ (and it's the only line that changes $i$'s value).
+
+      
+Notice that solutions in which the claim stated in the first section is "after the $k$th iteration, $C$ contains the $k$ smallest elements of $A\cup B$" obtain the correctness of merge directly.
 \end{enumerate}
 
 \begin{algorithm}
@@ -1001,6 +1013,15 @@ where \(n^{\log 3}  \sim n^{1.58} < n^2 \).
          }
          \Return $C$  
 \end{algorithm}
+
+
+\ifdefined\CHECK
+
+  \paragraph{Check.} Please penalize any solution that does not state a correct claim that refers to the $i$th iteration.
+
+\fi
+
+
 \fi
 
 \section{Master Theorem. (Not a Mandatory).}
@@ -1038,7 +1059,17 @@ When $\alpha, \beta > 1 $ and $\gamma \ge 0$ . Bound $T$ asymptotically tight, n
       &= \alpha S(\frac{m}{\beta}) + m^{\gamma}
     \end{split}
   \end{equation*}
-  Thus, we can formulate the 
+  Thus, using the master theorem, we have that: 
+  \begin{enumerate}
+    \item $ \frac{\alpha}{\beta^{\gamma}} > 1 $ then $S(m) = \Theta(m^{\log_{\beta}\alpha})$ and therfore $T(n) = \Theta( \log^{\log_{\beta}\alpha} n)$. 
+    \item  $ \frac{\alpha}{\beta^{\gamma}} = 1 $ then $S(m) = \Theta(m^{\log_{\beta}\alpha})\log m$ and therfore $T(n) = \Theta( \log^{\log_{\beta}\alpha} n \log \log n)$. 
+    \item $ \frac{\alpha}{\beta^{\gamma}} < 1 $ then $S(m) = \Theta(m^{\gamma})$ and therfore $T(n) = \Theta( \log^{\gamma} n)$. 
+  \end{enumerate}
+
+\ifdefined\CHECK
+  \paragraph{Check.} Please penalize any solution that does not contain a correct return to $n$-representation.
+\fi
+
 \fi 
 
 
@@ -1054,17 +1085,22 @@ Let $\alpha \in (0,1)$, $l\ge 2$ and let $T: \mathbb{N}\rightarrow\mathbb{R}^{+}
 \end{equation*}
 Bound $T$ asymptotically tight. 
 \ifdefined\SOLUTION
-  \paragraph{Solution.}
+  \paragraph{Solution.}  The length of the subarray that is obtained after $i$ left-turns and $j$ right-turns is $\alpha^{i}(1-\alpha)^{j}n$. Therefore, the work associated with these vertices in the recursive tree representation of the running is $(\alpha^{i}(1-\alpha)^{j}n)^{l}$. It can be observed that on the $k$th level, the sum of $i$ and $j$ is equal to $k$, and there are exactly ${k \choose i}$ such vertices. Denote by $h$ a parameter that bounds the recursive height. Then we get that:
   \begin{equation*}
     \begin{split}
-      & \sum_{k}^{h}{\sum_{i}{ { k \choose i  } \left( \alpha^{i}(1-\alpha)^{k-i} n \right)^{l}} } =  n^{l}\sum_{k}^{h}{ \left( \alpha^{l} + (1-\alpha)^{l} \right)^{k} } \\ 
-        & \le n^{l}\sum_{k}^{\infty}{ \left( \alpha^{2} + (1-\alpha)^{2} \right)^{k} } \\ 
-        & \le n^{l} \cdot c 
+      & \sum_{k=0}^{h}{\sum_{i=0}^{k}{ { k \choose i  } \left( \alpha^{i}(1-\alpha)^{k-i} n \right)^{l}} } =  n^{l}\sum_{k=0}^{h}{ \left( \alpha^{l} + (1-\alpha)^{l} \right)^{k} } \\ 
+        & \le n^{l}\sum_{k=0}^{\infty}{ \left( \alpha^{2} + (1-\alpha)^{2} \right)^{k} } \\ 
+        & \le n^{l} \cdot O(1)
     \end{split}
   \end{equation*}
+When the last transition is due to the fact that $\alpha \in (0,1)$, it follows that $\alpha^{2} < \alpha$ and $(1-\alpha)^{2} < 1 - \alpha$. Therefore, in total, $\alpha^{2} + (1-\alpha)^{2} < 1$. On the other hand, the work that has been done is at least $n^{l}$, since in the root of the tree we pay $n^{l}$ regardless of the recursive calls $\Rightarrow T(n) = \Theta(n^{l})$. 
+
+\ifdefined\CHECK
+  \paragraph{Check.} Please give a penalty for any solution that does not contain two-sided bounding, namely treating both the upper and lower bounds. Also, notice that any solution that does not rely on the fact that $l\ge 2$ cannot work. 
 \fi
 
 
+\fi
 \chapter*{Extra Questions. (Not a Mandatory).}
 
 \section{$T_{1},T_{2}$-Running time. (Not a Mandatory).}
@@ -1171,7 +1207,7 @@ Write an algortihm that given the sources of $\mathcal{A}_{1},\mathcal{A}_{2},\m
 \else
 \setcounter{chapter}{4}
 \fi
-\chapter{Reserves Recitation.} 
+\chapter{Recap Recitation.} 
 
 
 
@@ -1187,7 +1223,7 @@ We are about to present another $\Theta(n^{2})$-sorting algorithm, whose correct
 \caption{ "ICan'tBelieveItCanSort"  alg.}
 \For{ $ i \in [n]$} {
   \For{ $ j \in [n]$} {
-    \If { $A_{j} < A_{i} $} {
+    \If { $A_{i} < A_{j} $} {
       swap $A_{i} \leftrightarrow A_{j}$
     }
   }
@@ -1363,6 +1399,724 @@ We observe that $2^{\alpha} > 1$ and therefore we can use the generalized master
 % return \(z_0 + 2^{\frac{n}{2}}z_1 + 2^{n}z_2\) \ \ \ \ \  // \( O \left(n\right) \). 
 % }
 %\end{algorithm}
+
+
+
+
+
+
+\ifdefined\BOOK
+\else
+\setcounter{chapter}{5}
+\fi
+
+\chapter{Linear Time Sorts and Lower Bounds in the Comparison Model.} 
+\section{Heapsort (David's group).}
+We will start by introducing the heap-sort algorithm and providing a proof of its correctness.
+
+\begin{algorithm}
+    $A \leftarrow$ Build-Heap($A$)\\
+  	\For{ $i \in  [n]$}{
+      swap $A_{1} \leftrightarrow A_{n-i+1}$\\
+      heapsize($A$) $\leftarrow n-i$\\
+      heapify($A$, 1)
+  	}	
+	  return $A$
+\caption{Heap-sort$(A)$}
+  \end{algorithm}
+Correctness. We are going to prove the following statement.
+  \begin{claim}   
+At the end of the $i$th iteration, $A_{n-i+1},A_{n-i+2},..A_{n}$ are the $i$ largest elements of $A$ placed in order, and $A_{1},A_{2},..A_{n-i}$ is a maximum heap.
+  \end{claim}
+\begin{proof}
+By induction.
+\begin{enumerate}
+  \item Base. $A_{n}$ is set in line (3) to be the root of the heap, and therefore is the maximum of $A$. After line (4), $A_{1}$ is the parent of the heap's roots as line (4) excludes $A_{n}$ from the heap (So the heap inequality holds for any $j\in [2,(n-1)/2]$). Therefore, by the correctness of heapify, we get that after line (5), $A_{1},A_{2},..A_{n-1}$ is a heap.
+  \item Assumption. Assume the correctness of the claim for any $i^{\prime}<i$.
+  \item Step. Consider the $i$th iteration. By the induction assumption, $A_{1}$ is a root of the heap $A_{1},A_{2},..A_{n-i+1}$ and therefore is their maximum. So after the swapping in line (3), we get that $A_{n-i+1}$ is the element which is greater than $n-i$ elements in $A$. By using the induction assumption again, we know that it is also less than $A_{n-i+2},A_{n-i+3},..A_{n}$, so after line (3) and by the fact that $A_{n-i+2},A_{n-i+3},..A_{n}$ are the $i-1$ largest elements placed in order, we have that $A_{n-i+1},A_{n-i+2},A_{n-i+3},..A_{n}$ are the $i$ largest elements placed in order. 
+
+    By repeating the same arguments in the base case, we can conclude, based on the correctness of heapify, that after line (5), $A_{1}$ is either the root of a heap or the heap inequality did not hold for some $i\in [2,(n-i)/2]$. In the latter case, this would contradict the induction assumption (since before line (3), $A_{1}..A_{n-i+1}$ were heaps).
+\end{enumerate}
+\end{proof}
+
+\section{Linear Time Sorts}
+\paragraph{ Counting sort.}
+Counting sort assumes that each of the $n$ input elements is an integer with a size at most $k$. It runs in $\Theta(n + k)$ time, so when $k = O(n)$, counting sort runs in $\Theta(n)$ time. It first determines, for each input element $x$, the number of elements less than or equal to $x$. Then, it uses this information to place element $x$ directly into its position in the output array. For example, if there are 17 elements less than or equal to $x$, then $x$ will be placed in position 17. However, we need to make some adjustments to this method to handle cases where multiple elements have the \textbf{same value}. We do not want all of them to end up in the same position.
+
+%
+%{Counting-sort$(A, n, k)$}
+  \begin{algorithm}
+  	let B and C be new arrays at size $n$ and $k$ \\ 
+  	\For{ $i \in  [0, k]$}{
+		$C_{i} \leftarrow 0 $
+  	}
+	\For{ $j \leftarrow [1, n]$}{
+	  $C_{A{j}} \leftarrow C_{A_{j}} + 1 $
+ 	}
+	\For{ $i \in  [1, k]$}{
+	  $C_{i} \leftarrow C_{i} + C_{i – 1} $
+ 	}
+	\For{ $j \in [n , 1]$}{
+	  $B_{C_{A_{j}}} \leftarrow A_{j}$ \\
+	  $C_{A_{j}} \leftarrow C_{A{j}} – 1$ \ \ // to handle duplicate values
+	}
+	  return $B$
+\caption{Counting-sort$(A, n, k)$}
+  \end{algorithm}
+%
+
+Notice that the Counting sort can beat the lower bound of $\Omega\left(n \log n\right)$ only because it is not a comparison sort. In fact, no comparisons between input elements occur anywhere in the code. Instead, counting sort uses the actual values of the elements to index into an array.
+
+An important property of the counting sort is that it is \textbf{stable}.
+
+\begin{defbox}{Stable Sort.}
+ We will say that a sorting algorithm is stable if elements with the same value appear in the output array in the same order as they do in the input array. \end{defbox}
+
+Counting sort's stability is important for another reason: counting sort is often used as a subroutine in radix sort. As we shall see in the next section, in order for radix sort to work correctly, counting sort must be stable.
+
+
+\paragraph{Radix sort}
+\marginnote[Note 1: That introduction was copied word by word from a web source. Do not use for commercial purposes. ]{Note 1: That introduction was copied word by word from a web source. Do not use for commercial purposes.} Radix sort is the algorithm used by the card-sorting machines you now find only in computer museums. The cards have 80 columns, and in each column, a machine can punch a hole in one of 12 places. The sorter can be mechanically "programmed" to examine a given column of each card in a deck and distribute the card into one of 12 bins depending on which place has been punched. An operator can then gather the cards bin by bin, so that cards with the first place punched are on top of cards with the second place punched, and so on.
+
+The Radix-sort procedure assumes that each element in the array $A$ has d digits, where digit 1 is the lowest-order digit and digit $d$ is the highest-order digit.
+
+
+%
+%{radix-sort(A, n, d)}
+  \begin{algorithm}
+    \For{ $ i \in [1,d]$ } {
+        use a stable sort to sort array $A$ on digit $i$
+    }
+\caption{radix-sort($A$, $n$, $d$)}
+  \end{algorithm}
+%
+
+\paragraph{Correctness Proof.} By induction on the column being sorted.
+\begin{itemize}
+  \item Base. Where $d = 1$, the correctness follows immediately from the correctness of our base sort subroutine. 
+  \item Induction Assumption. Assume that Radix-sort is correct for any array of numbers containing at most $d-1$ digits. 
+  \item Step. Let $A^{\prime}$  be the algorithm output. Consider $x,y \in A$. Assume without losing generality that $x > y$. Denote by $x_{d}, y_{d}$ their $d$-digit and by $x_{/d}, y_{/d}$ the numbers obtained by taking only the first  $d-1$ digits of $x,y$. Separate in two cases:
+
+    \begin{itemize}
+      \item   If $x_{d} > y_{d}$ then a scenario in which $x$ appear prior to $y$ is  imply contradiction to the correctness of our subroutine.
+      \item   So consider the case in which $x_{d} = y_{d}$. In that case, it must hold that $x_{/d} > y_{/d}$. Then the appearance of $x$ prior to $y$ either contradicts the assumption that the base algorithm we have used is stable or that $x$ appears before $y$ at the end of the $d-1$ iteration. Which contradicts the induction assumption. 
+    \end{itemize}
+ \end{itemize}
+
+The analysis of the running time depends on the stable sort used as the intermediate sorting algorithm. When each digit lies in the range $0$ to $k – 1$ (so that it can take on $k$ possible values), and $k$ is not too large, counting sort is the obvious choice. Each pass over $n$ $d$-digit numbers then takes $\Theta(n + k)$ time. There are $d$ passes, and so the total time for radix sort is $\Theta\left(d(n + k)\right)$.
+
+\paragraph{Bucket sort. \ctt{Only if there is time.} }
+\marginnote[Note 2:  We will return to analyze the expected (average) running time after the lecture on probability.
+]{Note 2: We will return to analyze the expected (average) running time after the lecture on probability.
+}Bucket sort divides the interval [0, 1) into n equal-sized subintervals, or buckets, and then distributes the n input numbers into the buckets. Since the inputs are uniformly and independently distributed over [0, 1), we do not expect many numbers to fall into each bucket. To produce the output, we simply sort the numbers in each bucket and then go through the buckets in order, listing the elements in each.
+
+%
+%{bucket-sort(A, n)}
+  \begin{algorithm}
+    	let B[0 : n – 1] be a new array \\
+	\For{ $i \leftarrow [0, n – 1]$}{
+	   make $B_{i}$ an empty list
+       	}
+	\For{ $i \leftarrow [1, n]$}{
+	    insert $A_{i}$ into list $B_{ \lfloor n A_{i} \rfloor} ]$
+       	}
+	\For{ $i \leftarrow [0, n – 1]$}{
+	    sort list $B_{i}$
+       	}
+	concatenate the lists $B_{0}, B_{1}, .. , B_{n – 1}$ together and\\
+	return the concatenated lists
+\caption{bucket-sort($A$, $n$)}
+  \end{algorithm}
+%
+
+%
+
+\section{Sorting in Comparison Model.}
+
+We have learned in the lecture that the runs of any sorting algorithm, which does not assume anything about the input's structure except the ability to compare elements in pairs, can be modeled as a binary tree. At each node, the algorithm compares two elements and, based on the result, moves to either the left or right child. Eventually, we reach the leaf of the tree and output the sorted elements. Notice that the nodes only exist in our imagination; the algorithm is not aware of their existence. We will name that tree the comparison tree.
+
+The height of the comparison tree is (at least) the running time of the algorithm. We are going to demonstrate how to use these ideas to lower-bound the running time of the find-peak problem in the comparison model.
+
+
+\begin{example}
+  Prove that no algorithm can find a peak in less than $\Theta\left( \log n \right)$ time.
+\end{example}
+\begin{proof}
+  Consider the following inputs for the problem, $A^{j}$ will be a tringle that get's is point at position $j$. Namely:  
+  \begin{equation*}
+      A^{j}_{i} = \begin{cases}
+        i & i < j \\
+         j + j - i & \text{else}
+      \end{cases}
+  \end{equation*} 
+  Now, let's assume, in contradiction, that there exists an algorithm $\mathcal{A}$ in the comparison model that runs in less than $\log n$ time. This implies that the comparison tree representation of its running has a height less than $\log n$ and the number of its leaves, each associated with a possible output, is less than $n$. Remember that we have $n$ inputs of the form $A^{j}$. 
+
+  By applying the pigeonhole principle, we can conclude that there are distinct $j$ and $j^{\prime}$ such that $\mathcal{A}$ reaches the same leaf when given $A^{j}$ and $A^{j^{\prime}}$ as inputs. Since their peaks are set at different positions, it follows that the algorithm will output a wrong answer for at least one of them.
+\end{proof}
+
+%\paragraph{Question.} Suppose that $\mathcal{A}$ outputs some number depending on the input, for example, ''Return $A$[$A$[7]]''. Does the argument above still work (and if so, why)?
+
+
+\begin{example}
+  Prove that no algorithm, in the comparison model, can merge two sorted arrays in time $\Theta(n^{1-\varepsilon})$ for some $\varepsilon>0$.
+\end{example}
+\begin{proof}
+ Assuming, for contradiction, that there exists an algorithm $\mathcal{A}$ in the comparison model that merges two given sorted arrays in time $\Theta\left( n^{1-\varepsilon} \right)$. Now, consider the sorting algorithm obtained by replacing the merge subroutine in merge-sort with $\mathcal{A}$. On one hand, our new algorithm is a sorting algorithm in the comparison model (otherwise it would contradict the correctness of $\mathcal{A}$), while on the other hand, its running time is equal to:
+  \begin{equation*}
+    \begin{split}
+      T(n) = n^{1-\varepsilon} + 2T(n/2) \Rightarrow T(n) = \Theta(n)
+    \end{split}
+  \end{equation*}
+  This contradicts our $\Omega(n\log n)$ lower bound for sorting in the comparison model.
+\end{proof}
+
+\newpage
+
+\section{Binaries Trees and How to Encode Them. \ctt{Only if there is time.}} We have already seen, in heaps, that organizing our data in a graph-like structure can offer a speed advantage. For future applications, and in particular for maintaining data in sorted order, we will have to encode our data using binary trees. These trees may not be almost complete and also have to support pointer manipulations, specifically placing a binary tree as a left or right subtree of a given node. To enable this, we will have to treat the \textbf{right}, \textbf{left}, and \textbf{parent} as variables, in contrast to heaps where they are determined completely by the node index. We begin this section by stating definitions.
+
+
+\begin{definition}
+  \begin{enumerate}
+    \item Binary Tree: A tree in which any vertex has at most two children.
+    \item A descendant of vertex $x$ is a vertex in the subtree whose root is $x$. A left descendant of vertex $x$ is either a vertex in the subtree whose root is the left child of $x$, or $x$'s left child.
+    \item An ancestor of $x$ is a vertex to which $x$ belongs as a descendant.
+    \item A leaf is a vertex without children.
+    \item Height of vertex $x$ is the length of the longest simple path (without cycles) between $x$ and one of the leaves.
+    \item Height of the tree is the height of its root, which is usually denoted by $h$.
+\end{enumerate}
+\end{definition}
+
+We encode a binary tree by associating a field to each vertex $x$, representing its right, left children, and parent. We use the notation $x$.left to refer to the left child of $x$, although the physical implementation may differ conceptually. For example, the way binary trees are implemented in Cormen is through 4 arrays. The first stores the value of $x$, while the others store pointers of specific types. For instance, the array LEFT, where LEFT.$x$ stores the left child of $x$.
+
+
+If nothing else has been mentioned, then we can assume that we can add additional fields to the vertices.
+
+
+\section{Binary Search Trees.} Binary search tree (BST) is a binary tree which any node $x$ of it: 
+\begin{enumerate}
+  \item Contains a field key, storing a number $x$.key. 
+  \item Any left descendant $y$ of $x$ satisfies $y$.key $\le$ $x$.key. 
+  \item Any right descendant $y$ of $x$ satisfies $y$.key $\ge$ $x$.key. 
+\end{enumerate}
+
+\paragraph{Question.} Let $T$ be a binary search tree, Where are the minimum and maximum values of $T$? (most left and right nodes). 
+
+\begin{definition}
+Let $T$ be a binary search tree, and let $x$ be a node belonging to it. The predecessor of $x$ will be defined as a vertex $y$ such that $y$.key $\leq x$.key and $y$.key is maximal among the nodes satisfying this condition. If we were to set the values of $T$ in sorted order, then the predecessor of $x$ would be located on its left. The successor of $x$ will be defined as $y$, where $x$ is the predecessor of $y$.
+\end{definition}
+
+\paragraph{Functionalitiy of BST.}
+\begin{enumerate}
+\item Search($T$, key): returns a pointer to the vertex whose key equals key. 
+  \item Min($T$): returns a pointer to the vertex with the minimum value in $T$.  
+  \item Max($T$): returns a pointer to the vertex with the maximum value in $T$.  
+  \item Predecessor($x$): returns a pointer to the predecessor of $x$.  
+  \item Successor($x$): returns a pointer to the successor of $x$. 
+  \item Insert($T$, key): inserts key into $T$ (creates a new vertex).   
+  \item Delete($T$, $x$): removes $x$ from $T$. 
+  \item Inorder($T$): outputs $T$'s keys in sorted order.
+
+%\begin{algorithm}[H]
+%\SetAlgoLined
+%\KwData{$T$ - tree, $x$ - vertex to delete}
+%\KwResult{removes $x$ from $T$}
+%\Set
+\end{enumerate}
+
+
+\begin{example}Questions from past exams.
+  \begin{enumerate}
+    \item Write an algorithm that, given a binary search tree $T$, returns a max heap containing all the elements of $T$. What is the lower bound for this problem? Explain.
+    \item Write an algorithm that, given a heap $H$, returns a binary search tree containing all the elements of $H$. What is the lower bound for this problem? Explain.
+  \end{enumerate}
+\end{example}
+
+\paragraph{Solution.} 
+  \begin{enumerate}
+    \item Remember that any array sorted in reverse order is also a max heap. This is because if $A_{i} \ge A_{j}$ for any $i < j$, then it follows that $A_{i} \ge A_{2i}, A_{2i+1}$ for any $i$. Therefore, we will output the values of $T$ in reverse order. We do this by applying Inorder in reverse, as given in \Cref{alg:treetoheap}. The running time is $\Theta(n)$ and of course it is also the lower bound (as we must read all the inputs for printing it).
+      \begin{algorithm}
+       \KwData{$r$ - a vertex in BST}
+       
+       \If{$r$.right is not empty/Null}{
+         Reverse-Order($r$.right)
+       }
+       Print $r$.key \\
+       \If{$r$.left is not empty/Null}{
+         Reverse-Order($r$.left)
+       }
+        \caption{Reverse-Order }
+\label{alg:treetoheap}
+      \end{algorithm}
+    \item We will initialize an empty binary search tree and then add the elements to it one by one. Each insertion will cost the current height of the tree, so it might sum up to $\Theta(n^{2})$. However, next week we will see how those insertions could be done in a way that preserves the balance of the tree, namely guaranteeing that the height of the tree will remain logarithmic.
+  \end{enumerate}
+
+\begin{example} Adding fields to BSTs. We would like to support $k$-smallest element extraction. Suggest a field that will be used for computing the $k$-smallest element, explain how to maintain it, and write an algorithm that extracts the $k$-smallest element. 
+\end{example}
+
+\paragraph{Solution.} We will associate with each vertex of the tree a field that counts the number of nodes whose keys are lower than it (the size of its left subtree). Let's denote it as left-size. The code is given in \Cref{alg:kstat}. Guideline for proving correctness:
+Consider the root, and let's separate into cases based on how many elements the root is greater than.
+\begin{enumerate}
+  \item If the root is strictly greater than $k-1$ elements, then the $k$-smallest element is in its left subtree and is also the $k-1$ smallest element in that subtree.
+  \item If the root is greater than strictly fewer than $k-1$ elements, then it is clear that the $k$-smallest element is also greater than it and located in its right subtree. However, in contrast to the previous case, here the order of the $k$-smallest element of the whole tree in the subtree will be the substitution between $k$ and the number of nodes in the $\{$ left-subtree $\cup$ root $\}$.
+  \item The third case is when the root is greater than exactly $k-1$ elements, which by definition sets it as the $k$-smallest element.
+\end{enumerate}
+In the first two cases, we are calling Get-Order on trees (BST with our additional field) with smaller height. Therefore, it is clear how one would prove correctness by induction. We will see in the next recitation how to maintain the tree, update the field, and guarantee that the height of the tree will remain logarithmic.
+  \begin{algorithm}
+  \KwData{$r$ - a vertex in BST, $k$-stat parameter}
+       $m \leftarrow r$.left-size \\ 
+       \If{$m = k -1$ }{
+         \Return $r$.key 
+       }
+      \If{$m > k -1$ }{
+        \Return Get-Order($r$.left, $k$)
+       }\If{$m < k -1$ }{
+         \Return Get-Order($r$.right, $k - (m+1)$)
+       }
+        \caption{Get-Order }
+\label{alg:kstat}
+      \end{algorithm}
+%\begin{example}
+%
+%\end{example}
+%\begin{example}
+%
+%\end{example}
+%\begin{example}
+%
+%\end{example}
+%
+
+      \newpage
+      \newpage
+
+\section{Appendix - BST Methods Source: A Mixture of Cormen, Wikipedia, and Codeforces}
+
+\begin{algorithm}
+\SetAlgoLined
+\KwData{$T$ - tree, key - key to search for}
+\KwResult{pointer to vertex with key equal to key}
+    \If{$T$ is empty}{
+        \Return null\;
+    }
+    \If{$T$.key equals key}{
+        \Return $T$\;
+    }
+    \If{key is less than $T$.key}{
+      \Return Search($T$.left, key)\;
+    }
+    \Else{
+      \Return Search($T$.right, key)\;
+    }
+
+\caption{Search} 
+\end{algorithm}
+
+\begin{algorithm}
+\SetAlgoLined
+\KwData{$T$ - tree}
+\KwResult{pointer to vertex with minimum value in $T$}
+    \If{$T$ is empty}{
+        \Return null\;
+    }
+    \If{$T$.left is empty}{
+        \Return $T$\;
+    }
+    \Return Min($T$.left)\;
+\caption{Min} 
+\end{algorithm}
+
+\begin{algorithm}
+\SetAlgoLined
+\KwData{$T$ - tree}
+\KwResult{pointer to vertex with maximum value in $T$}
+    \If{$T$ is empty}{
+        \Return null\;
+    }
+    \If{$T$.right is empty}{
+        \Return $T$\;
+    }
+    \Return Max($T$.right)\;
+    \caption{ Max }
+\end{algorithm}
+
+\begin{algorithm}
+\SetAlgoLined
+\KwData{$x$ - vertex}
+\KwResult{pointer to predecessor of $x$}
+    \If{$x$.left is not empty}{
+      \Return Max($x$.left)\;
+    }
+    $y \leftarrow x$.parent\;
+    \While{$y$ is not empty and $x$ is $y$.left}{
+        $x \leftarrow y$\;
+        $y \leftarrow y$.parent\;
+    }
+    \Return $y$\;
+\caption{Predecessor}
+\end{algorithm}
+
+\begin{algorithm}
+\SetAlgoLined
+\KwData{$x$ - vertex}
+\KwResult{pointer to successor of $x$}
+    \If{$x$.right is not empty}{
+      \Return Min($x$.right)\;
+    }
+    $y \leftarrow x$.parent\;
+    \While{$y$ is not empty and $x$ is $y$.right}{
+        $x \leftarrow y$\;
+        $y \leftarrow y$.parent\;
+    }
+    \Return $y$\;
+\caption{Successor}
+\end{algorithm}
+
+\begin{algorithm}
+\SetAlgoLined
+\KwData{$T$ - tree, key - key to insert}
+\KwResult{inserts key into $T$}
+    newNode $\leftarrow$ create new vertex with key $key$\;
+    $y \leftarrow$ null\;
+    $x \leftarrow T$\;
+    \While{$x$ is not empty}{
+        $y \leftarrow x$\;
+        \If{$key$ is less than $x$.key}{
+            $x \leftarrow x$.left\;
+        }
+        \Else{
+          $x \leftarrow x$.right\;
+        }
+    }
+    newNode.parent $\leftarrow y$\;
+    \If{$y$ is null}{
+        $T \leftarrow$ newNode\;
+    }
+    \ElseIf{$key$ is less than $y$.key}{
+        $y$.left $\leftarrow$ newNode\;
+    }
+    \Else{
+        $y$.right $\leftarrow$ newNode\;
+    }
+\caption{Insert}
+\end{algorithm}
+
+%\begin{algorithm}
+%\SetAlgoLined
+%\KwData{$T$: The input tree, $x$: The key to be deleted}
+%\If{$x$ is in $T$}{
+%  Remove $x$ from $T$\;
+%}
+%\caption{Delete($T$, $x$)}
+%\end{algorithm}
+%
+%2. Inorder($T$):
+\begin{algorithm}
+\SetAlgoLined
+\KwData{$T$: The input tree}
+\If{$T$ is not empty}{
+  Inorder($T$.left)\;
+  Output $T$.key\;
+  Inorder($T$.right)\;
+}
+\caption{Inorder($T$)}
+\end{algorithm}
+
+
+
+
+
+
+%\newcommand*{\EXERCISE}{}%
+%\input{../tex/texlib/head.tex}
+
+
+ 
+
+%\newcommand*{\RECITATION}{}%
+
+
+\setcounter{chapter}{4}
+\ifdefined\SOLUTION
+  \chapter{DAST. Exercise 4. Solution.}
+\else
+  \chapter{DAST. Exercise 4.}
+\fi
+
+\ifdefined\CHECK
+
+\paragraph{Checking Prioritiy.} (3.3) and (3.6) are more important than (3.5), so if there is no time, (3.5) can be skipped.
+
+
+\paragraph{}
+
+\fi
+
+
+ \section{Stability.} For each of the following sorts, prove or disprove whether they are stable.
+ \begin{enumerate}
+   \item Heap sort. 
+   \item Bubble sort.
+   \item Counting sort.
+ \end{enumerate}
+
+
+ \section{Sorts That Assume Input Properties.}
+ In any of the following sections, we make another assumption about the input. For each section, write an algorithm that uses the assumption to sort the inputs and compute its running time. You don't have to provide a correctness proof.
+ \begin{enumerate} 
+   \item $x_{1},x_{2},...,x_{n} \in \mathbb{R}$ such that $\max_{i} \{x_{i}\} - \min_{i} \{x_{i}\} \leq 5n$ and $|x_{i} - x_{j}| > 1$ for any $i \neq j$.
+%\item $x_{1},x_{2},...,x_{n} \in \mathbb{R}$ and let $k \in \mathbb{N}$, $k < n$ such that $x_{i} \leq x_{i+k}$ for any $i \in [n]$. The running time should depend on $k$.
+   \item $x_1, x_2, ..., x_n \in \mathbb{R}$ such that $\max_{i} \{x_{i}\} -\min_{i} \{x_{i}\} \leq 5n$ and $|x_{i} - x_{j}| > \Delta$ for any $i \neq j$, but it is unknown what $\Delta$ is. The running time should depend on $\Delta$.
+ \end{enumerate}
+
+ \section{Camels.} 
+ Bob is willing to send Alice camels, $c_1, c_2, ..., c_n$ in a specific order. Unfortunately for him, Eve doesn't like him. Hence, she decides to spoil their order by stacking camels as follows: Eve chooses camel $c_i$ and a position $j$, and then moves the $i$th camel $c_i$ between $c_j$ and $c_{j+1}$, She can move as many camels as she wishes. Alice, known for her strictness, wouldn't accept camels standing out of order. Luckily, Bob is allowed to send the camels again in their original order for five times, and Eve cannot choose the same camel twice. In other words, if Eve chooses to move $c_i$ in the first attempt, then she cannot move it in any of the other four attempts.
+
+Alice records the positions of the camels every time they come. Write an algorithm that will help Alice restore the order. (Prove correctness and compute the running time.)
+
+\section{Predecessor in Binary Search Tree}
+\begin{enumerate}
+  \item Write pseudocode for the predecessor subroutine.
+  \item Prove its correctness.
+\end{enumerate}
+\ifdefined\SOLUTION
+
+\fi
+\ifdefined\Book
+\fi
+
+
+
+
+\ifdefined\BOOK
+\else
+\setcounter{chapter}{6}
+\fi
+\chapter{Probability.} 
+
+\section{ Probability Spaces. }
+
+\begin{definition}
+  A probability space is defined by a tuple $(\Omega,P)$, where:
+  \begin{enumerate} 
+    \item $\Omega$ is a set, called the sample space. Any element $\omega\in \Omega$ is an atomic event. Conceptually, we think of atomic events as possible outcomes of our experiment. Any subset $A \subset \Omega$ is an event. 
+    \item $P$, called the probability function, is a function that assigns a number in $[0,1]$ to any event, denoted as $P : 2^\Omega \rightarrow [0,1]$, and satisfies:
+      \begin{enumerate}
+        \item For any event $A \subset \Omega$, $P(A) = \sum_{\omega\in A}P(\omega)$. 
+        \item Normalization over the atomic events to $1$, which means $\sum_{\omega\in\Omega}P(\omega)i~=~1$.
+      \end{enumerate}
+  \end{enumerate}
+\end{definition}
+\begin{example}
+  Consider a dice rolling, where each of the faces is indexed by $1,2,3,4,5,6$ and has an equal chance of being rolled. Therefore, our atomic events are associated with the rolling result, and $P$ is defined as $P(\omega) = \frac{1}{6}$ for any such atomic event.
+  An example of an event can be $A=$ ''the dice falls on an even number''. The probability of this outcome is:
+  \begin{equation*}
+    \begin{split}
+      P(A)= \sum_{\omega\in A}{ P(\omega) } = P(\{2\}) + P(\{4\}) + P(\{6\}) = 3\cdot \frac{1}{6} = \frac{1}{2} 
+    \end{split}
+  \end{equation*}
+\end{example}
+
+%\begin{claim}
+%Probability function  satisfies the following properties:
+%\begin{enumerate}
+%  \item $P(\emptyset) = 0$.
+%  \item Monotonic, If $A \subset B \subset \Omega$ then $P(A) \le P(B)$.
+%  \item Union Bound, $P(A \cup B) \le P(A) + P(B)$.
+%  \item Additivity for disjointness events. If $A\cap B = \emptyset$ then $P(A \cup B) = P(A) + P(B)$.
+%  \item Denote by $\bar{A}$ the complementary event of $A$, which means $A\cup\bar{A} = \Omega$. Then, $P(\bar{A}) = 1 - P(A)$.
+%\end{enumerate}
+%\end{claim}
+%
+\begin{claim}
+The probability function satisfies the following properties:
+\begin{enumerate}
+  \item $P(\emptyset) = 0$.
+  \item Monotonicity: If $A \subset B \subset \Omega$, then $P(A) \le P(B)$.
+  \item Union Bound: $P(A \cup B) \le P(A) + P(B)$.
+  \item Additivity for disjoint events: If $A\cap B = \emptyset$, then $P(A \cup B) = P(A) + P(B)$.
+  \item Complementarity: Denote by $\bar{A}$ the complementary event of $A$, which means $A\cup\bar{A} = \Omega$. Then, $P(\bar{A}) = 1 - P(A)$.
+\end{enumerate}
+\end{claim}
+
+\begin{example}
+  Let's proof the additivity of disjointness property. Let $A,B$ disjointness events, so $A \cap B = \emptyset$ then 
+  
+  \begin{equation*}
+    \begin{split}
+      P(A\cup B) &= \sum_{w \in A \cup B}P(w) \\ 
+      &= \overbrace{\sum_{w \in A, w \notin{B}}P(w)}^{P(A)} + \overbrace{\sum_{w \in B, w \notin A}P(w)}^{P(B)}  +\overbrace{ \sum_{w \in A, w \in  B}P(w) }^{ 0 } \\ 
+      &= P(A) + P(B) 
+    \end{split}
+  \end{equation*}
+\end{example}
+
+\begin{definition}
+  Let $(\Omega,P)$ be a probability space. A random variable $X$ on $(\Omega,P)$ is a function $X : \Omega \rightarrow \mathbb{R}$. An indicator, is a random variable defined by an event $A \subset \Omega$ as follows   
+  \begin{equation*}
+    X(\omega) = \begin{cases}
+      1 & \omega \in A \\
+      0 & \omega \notin A
+    \end{cases}
+  \end{equation*}
+Sometimes, we will use the notation $\{ X = x \}$ to denote the event $A$ such: 
+\begin{equation*}
+  \begin{split}
+    A = \{ \omega : X(\omega) = x \} := \{ X = x \} 
+  \end{split}
+\end{equation*}
+\end{definition}
+\begin{example} \label{example:twodic} Consider rolling a pair of dice. Denote by $X : [6]\times [6] \rightarrow [6] $ the random variable that is set to be the result of the first roll. Let $Y$ be defined in almost the same way, but setting the result of the second die. Namely, if we denote by $\{(i,j)\}$ the atomic event associated with sample $i$ on the first die and $j$ on the second die, then:
+  \begin{equation*}
+    \begin{split}
+      X(\{i,j\}) &= i \\ 
+      Y(\{i,j\}) &= j  
+    \end{split}
+  \end{equation*}
+  In addition, one can define the random variable $z$ as the sum, $Z = X+Y$. Since the sum is also a function from $\Omega$ to $\mathbb{R}$, $Z$ is also a random variable. An example of an indicator could be $W$, which gets $1$ if $Z \in \{2, 7, 8\}$.
+\end{example}
+
+\begin{definition}
+  We will say that two random variable $X,Y : \Omega \rightarrow \mathbb{R}$  are independent if for any $x\in \image X$ and $y \in \image Y$:   
+  \begin{equation*}
+    \begin{split}
+      P(X = x \cap Y = y) &= P(X = x) \cdot P (Y = y) %\Leftrightarrow \\ 
+    \end{split}
+  \end{equation*}
+  \end{definition}
+  \begin{example}
+    $X,Y$ defined in \Cref{example:twodic} are independent. 
+    \begin{equation*}
+      \begin{split}
+        P(\{X = i\} \cap \{Y = j\} ) &= \sum_{i^{\prime} = i \text{ and } j^{\prime}=j }P(\{(i^{\prime}, j^{\prime})\}) = P(\{ (i,j) \} ) \\ 
+        &= \frac{1}{36} = \frac{1}{6} \cdot \frac{1}{6}  = P(X = i)P(Y = j)
+      \end{split}
+    \end{equation*}
+  \end{example}
+
+  \section{ Throwing Keys to Cells. } Imagines that following experiment, we have $m$ cells and $n$ keys (balls, numbers, your favorite object type). We throw each of the keys independently to cells. We would like to analyze how capacity of the cells is distributed.   
+ 
+  \begin{example} %\paragraph{Question.} 
+    \begin{enumerate}
+      \item What is the probability that the first and the second keys will be thrown to the first cell? 
+      \item What is the probability that the first and the second keys will be thrown to the same cell? 
+      \item What is the probability that in each cell there is at most one key? 
+    \end{enumerate}
+    Let us define the indicator $X_{i}^{j}$ which indicate that the $i$th key fallen into the $j$th cell. 
+    \begin{enumerate}
+      \item So first we been asked whether $X_{1}^{1}\cdot  X_{2}^{1} = 1$
+    \end{enumerate}
+  \end{example}
+
+\begin{definition}
+  Let $X : \Omega\rightarrow \mathbb{R}$ be a random variable, the expectation of $X$ is 
+  \begin{equation*}
+    \begin{split}
+      \expp{X} = \sum_{\omega\in \Omega}{X(\omega)P(\omega)} = \sum_{x \in \image X}{ x P(X = x)} 
+    \end{split}
+  \end{equation*}
+  Observes that if $P$ is distributed uniformly, then the expectation of $X$ is just the arithmetic mean: 
+\begin{equation*}
+    \begin{split}
+      \expp{X} = \sum_{\omega\in \Omega}{X(\omega)P(\omega)} =  \frac{1}{|\Omega|}\sum_{\omega\in \Omega}{X(\omega)}  
+    \end{split}
+  \end{equation*}
+\end{definition}
+
+\begin{claim}
+   The expectation satisfies the following properties:
+   \begin{enumerate}
+     \item Monotonic, If $X \le Y$ (for any $\omega \in \Omega$) then $\expp{X} \le \expp{Y}$.   
+     \item Linearity, for $a,b \in \mathbb{R}$ it holds that $\expp{aX + by} = a\expp{X} + b \expp{Y}$.   
+     \item Independently, if $X,Y$ are independent, then $\expp{X\cdot Y} = \expp{X}\cdot \expp{Y}$.  
+     \item For any constant $a \in \mathbb{R}$ we have that $\expp{a} = a$. 
+   \end{enumerate}
+\end{claim}
+
+\begin{proof} 
+  \begin{enumerate}
+\item Monotonic, if $X \le Y$ then : 
+  \begin{equation*}
+    \begin{split}
+      \expp{X} = \sum_{\omega\in \Omega}{X(\omega)P(\omega)} \le  \sum_{\omega\in \Omega}{Y(\omega)P(\omega)} = \expp{Y}
+    \end{split}
+  \end{equation*}
+\item Linearity,
+  \begin{equation*}
+    \begin{split}    
+      \expp{a X + b Y} &=  \sum_{\omega\in \Omega}{ \left( aX(\omega) + bY(\omega) \right) P(\omega)} \\ 
+      &=a\sum_{\omega\in \Omega}{  X(\omega)  P(\omega) } + b \sum_{\omega\in \Omega}{   Y(\omega)  P(\omega)}
+    \end{split}
+  \end{equation*}
+\item Independently, 
+  \begin{equation*}
+    \begin{split}
+      \expp{X Y} &= \sum_{x,y \in \image X \times \image Y}{ xy P(X = x \cap Y = y)} \\
+      &= \sum_{x,y \in \image X \times \image Y}{ xy P(X = x )P(Y = y)} \\
+      &=\sum_{x \in \image X}{\sum_{y \in \image Y}{ xy P(X = x )P(Y = y)}} \\
+      &=\sum_{x \in \image X}{xP(X=x)\sum_{y \in \image Y}{ y P(Y = y)}} \\
+      &=\sum_{x \in \image X}{xP(X=x) \expp{Y} }  \\ 
+      &=\expp{X} \expp{Y}% \sum_{x \in \image X}{xP(X=x) }  \\ 
+    \end{split}
+  \end{equation*}
+\item Let $X$ be the random variable which is also the constant function $X(\omega) = a$ for any $\omega \in \Omega$. Then we have that
+  \begin{equation*}
+    \begin{split}
+      \expp{X} & = \sum_{\omega\in \Omega}{X(\omega)P(\omega)} \\ & = \sum_{\omega\in \Omega}{a P(\omega)} = a \cdot 1 = a  
+    \end{split}
+  \end{equation*}
+  \end{enumerate}
+\end{proof}
+
+\begin{example}
+  \ctt{Expectation of indicators and their multiplication.}
+  Let $X$ be an indicator of event $A$, what are $\expp{X}$ and $\expp{X^{2}}$? Recall that $X(\omega) = 1$ only if $\omega \in A$ and $0$ otherwise, thus: 
+  \begin{equation*}
+    X^{k}(\omega) = \begin{cases}
+      1^{k} = 1 & \omega \in A \\
+      0^{k} = 0 & \text{ else }
+    \end{cases}
+  \end{equation*}
+  Therefore, 
+  \begin{equation*}
+    \begin{split}
+      \expp{X^{k}} = \sum_{\omega \in \Omega}{ X^{k}(\omega)  P(\omega)  } = \sum_{\omega \in \Omega}{ X^{k}(\omega)  P(\omega)  }
+    \end{split}
+  \end{equation*}
+\end{example}
+\begin{example}
+  \ctt{How many keys trowed into the same cell as the first key thrown to?}
+\end{example}
+
+\begin{algorithm}
+    	let B[0 : n – 1] be a new array \\
+	\For{ $i \leftarrow [0, n – 1]$}{
+	   make $B_{i}$ an empty list
+       	}
+	\For{ $i \leftarrow [1, n]$}{
+	    insert $A_{i}$ into list $B_{ \lfloor n A_{i} \rfloor} ]$
+       	}
+	\For{ $i \leftarrow [0, n – 1]$}{
+	    sort list $B_{i}$
+       	}
+	concatenate the lists $B_{0}, B_{1}, .. , B_{n – 1}$ together and\\
+	return the concatenated lists
+\caption{bucket-sort($A$, $n$)}
+  \end{algorithm}
+
+  Denote by $X_{i} : [n] \rightarrow [n]$ then random variable that counts the number of elements fallen in the $i$th bucket. The Expectation of the sorting running time is:   
+  
+  \begin{equation*}
+    \begin{split}
+    \expp{T} &= \expp{  \text{ Inserting into buckets  }   +   \sum_{i} { \text{Sorting $i$th bucket  } }} \\ 
+    & = \expp{ \Theta(n) +   \sum_{i} { X_{i}^{2}  }} = \Theta(n) +  \sum_{i}{ \expp{X_{i}^{2}} }  \\
+  \expp{X_{i}^{2}} &= \expp{\left( \sum X_{i}^{j} \right)^{2}} = \expp{\sum_{j,j^{\prime}} X_{i}^{j} X_{i}^{j^{\prime}} } =  \sum_{j, j^{\prime}} \expp{X_{i}^{j} X_{i}^{j^{\prime}}} \\ 
+  & = \sum_{j \neq j^{\prime}} \expp{X_{i}^{j} X_{i}^{j^{\prime}}} + \sum_{j} \expp{X_{i}^{j} X_{i}^{j}} \\
+    & =  \sum_{j \neq j^{\prime}} \expp{X_{i}^{j} X_{i}^{j^{\prime}}} + \sum_{j} \expp{X_{i}^{j}}  \\
+        & = 2 { n \choose 2  } \left( \frac{1}{n} \right)^{2} +  n\cdot \frac{1}{n} \\ 
+        & = \frac{n-1}{n} + 1  = 2 - \frac{1}{n} \Rightarrow \expp{T} = \Theta(n) + n\left( 2 - \frac{1}{n} \right) = \Theta(n)
+    \end{split}
+  \end{equation*}
+
 
 
 
