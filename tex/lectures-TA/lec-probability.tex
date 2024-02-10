@@ -100,12 +100,24 @@ Sometimes, we will use the notation $\{ X = x \}$ to denote the event $A$ such:
 \begin{claim}
    The expectation satisfies the following properties:
    \begin{enumerate}
-     \item Monotonic, If $X \le Y$ then $\expp{X} \le \expp{Y}$.   
+     \item Monotonic, If $X \le Y$ (for any $\omega \in \Omega$) then $\expp{X} \le \expp{Y}$.   
      \item Linearity, for $a,b \in \mathbb{R}$ it holds that $\expp{aX + by} = a\expp{X} + b \expp{Y}$.   
      \item Independently, if $X,Y$ are independent, then $\expp{X\cdot Y} = \expp{X}\cdot \expp{Y}$.  
      \item For any constant $a \in \mathbb{R}$ we have that $\expp{a} = a$. 
    \end{enumerate}
 \end{claim}
+
+\begin{proof}
+\item Monotonic, if $X \le Y$ then $\expp{X} = \sum_{\omega\in \Omega}{X(\omega)P(\omega)} \le  \sum_{\omega\in \Omega}{Y(\omega)P(\omega)} = \expp{Y}$. 
+\item Linearity
+
+  \begin{equation*}
+    \begin{split}    
+      \expp{a X + b Y} &=  \sum_{\omega\in \Omega}{ \left( aX(\omega) + bY(\omega) \right) P(\omega)} \\ 
+      &=a\sum_{\omega\in \Omega}{  X(\omega)  P(\omega) } + b \sum_{\omega\in \Omega}{   Y(\omega)  P(\omega)}
+    \end{split}
+  \end{equation*}
+\end{proof}
 
 
 \begin{algorithm}
