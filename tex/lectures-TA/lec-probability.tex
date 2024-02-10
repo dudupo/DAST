@@ -35,7 +35,8 @@ Probability function  satisfies the following properties:
   
   \begin{equation*}
     \begin{split}
-      P(A\cup B) &= \sum_{w \in A \cup B}P(w) = \overbrace{\sum_{w \in A, w \notin{B}}P(w)}^{P(A)} + \overbrace{\sum_{w \in B, w \notin A}P(w)}^{P(B)}  +\overbrace{ \sum_{w \in A, w \in  B}P(w) }^{ 0 } \\ 
+      P(A\cup B) &= \sum_{w \in A \cup B}P(w) \\ 
+      &= \overbrace{\sum_{w \in A, w \notin{B}}P(w)}^{P(A)} + \overbrace{\sum_{w \in B, w \notin A}P(w)}^{P(B)}  +\overbrace{ \sum_{w \in A, w \in  B}P(w) }^{ 0 } \\ 
       &= P(A) + P(B) 
     \end{split}
   \end{equation*}
