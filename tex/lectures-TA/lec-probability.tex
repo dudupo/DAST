@@ -109,7 +109,12 @@ Sometimes, we will use the notation $\{ X = x \}$ to denote the event $A$ such:
 
 \begin{proof} 
   \begin{enumerate}
-\item Monotonic, if $X \le Y$ then $\expp{X} = \sum_{\omega\in \Omega}{X(\omega)P(\omega)} \le  \sum_{\omega\in \Omega}{Y(\omega)P(\omega)} = \expp{Y}$. 
+\item Monotonic, if $X \le Y$ then : 
+  \begin{equation*}
+    \begin{split}
+      \expp{X} = \sum_{\omega\in \Omega}{X(\omega)P(\omega)} \le  \sum_{\omega\in \Omega}{Y(\omega)P(\omega)} = \expp{Y}
+    \end{split}
+  \end{equation*}
 \item Linearity,
   \begin{equation*}
     \begin{split}    
