@@ -144,6 +144,19 @@ Sometimes, we will use the notation $\{ X = x \}$ to denote the event $A$ such:
 
 \begin{example}
   \ctt{Expectation of indicators and their multiplication.}
+  Let $X$ be an indicator of event $A$, what are $\expp{X}$ and $\expp{X^{2}}$? Recall that $X(\omega) = 1$ only if $\omega \in A$ and $0$ otherwise, thus: 
+  \begin{equation*}
+    X^{k}(\omega) = \begin{cases}
+      1^{k} = 1 & \omega \in A \\
+      0^{k} = 0 & \text{ else }
+    \end{cases}
+  \end{equation*}
+  Therefore, 
+  \begin{equation*}
+    \begin{split}
+      \expp{X^{k}} = \sum_{\omega \in \Omega}{ X^{k}(\omega)  P(\omega)  } = \sum_{\omega \in \Omega}{ X^{k}(\omega)  P(\omega)  }
+    \end{split}
+  \end{equation*}
 \end{example}
 \begin{example}
   \ctt{How many keys trowed into the same cell as the first key thrown to?}
