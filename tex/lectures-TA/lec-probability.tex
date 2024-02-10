@@ -79,16 +79,15 @@ Sometimes, we will use the notation $\{ X = x \}$ to denote the event $A$ such:
   \end{split}
 \end{equation*}
 \end{definition}
-\begin{example} Consider rolling a pair of dice. Denote by $X : [6]\times [6] \rightarrow [6] $ the random variable that is set to be the result of the first roll. Let $Y$ be defined in almost the same way, but setting the result of the second die. Namely, if we denote by $\{(i,j)\}$ the atomic event associated with sample $i$ on the first die and $j$ on the second die, then:
+\begin{example} \label{example:twodic} Consider rolling a pair of dice. Denote by $X : [6]\times [6] \rightarrow [6] $ the random variable that is set to be the result of the first roll. Let $Y$ be defined in almost the same way, but setting the result of the second die. Namely, if we denote by $\{(i,j)\}$ the atomic event associated with sample $i$ on the first die and $j$ on the second die, then:
   \begin{equation*}
     \begin{split}
       X(\{i,j\}) &= i \\ 
       Y(\{i,j\}) &= j  
     \end{split}
   \end{equation*}
-  In addition, one can define the random variable $z$ as the sum, $Z = X+Y$. Since the sum is also a function from $\Omega$ to $\mathbb{R}$, $Z$ is also a random variable.
+  In addition, one can define the random variable $z$ as the sum, $Z = X+Y$. Since the sum is also a function from $\Omega$ to $\mathbb{R}$, $Z$ is also a random variable. An example of an indicator could be $W$, which gets $1$ if $Z \in \{2, 7, 8\}$.
 \end{example}
-
 
 \begin{definition}
   We will say that two random variable $X,Y : \Omega \rightarrow \mathbb{R}$  are independent if for any $x\in \image X$ and $y \in \image Y$:   
@@ -97,7 +96,16 @@ Sometimes, we will use the notation $\{ X = x \}$ to denote the event $A$ such:
       P(X = x \cap Y = y) &= P(X = x) \cdot P (Y = y) %\Leftrightarrow \\ 
     \end{split}
   \end{equation*}
-\end{definition}
+  \end{definition}
+  \begin{example}
+    $X,Y$ defined in \Cref{example:twodic} are independent. 
+    \begin{equation*}
+      \begin{split}
+        P(\{X = i\} \cap \{Y = j\} ) = \sum_{i^{\prime} = i \text{ and } j^{\prime}=j }P(\{(i^{\prime}, j^{\prime})\}) = P(\{ (i,j) \} ) \\ 
+        &= \frac{1}{36} = \frac{1}{6} \cdot \frac{1}{6}  = P(X = i)P(Y = j)
+      \end{split}
+    \end{equation*}
+  \end{example}
 
 \section{ \ctt{ Throw Keys to Cells. } }
 
