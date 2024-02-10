@@ -108,15 +108,16 @@ Sometimes, we will use the notation $\{ X = x \}$ to denote the event $A$ such:
 \end{claim}
 
 \begin{proof}
+  \begin{enumerate}
 \item Monotonic, if $X \le Y$ then $\expp{X} = \sum_{\omega\in \Omega}{X(\omega)P(\omega)} \le  \sum_{\omega\in \Omega}{Y(\omega)P(\omega)} = \expp{Y}$. 
-\item Linearity
-
+\item Linearity,
   \begin{equation*}
     \begin{split}    
       \expp{a X + b Y} &=  \sum_{\omega\in \Omega}{ \left( aX(\omega) + bY(\omega) \right) P(\omega)} \\ 
       &=a\sum_{\omega\in \Omega}{  X(\omega)  P(\omega) } + b \sum_{\omega\in \Omega}{   Y(\omega)  P(\omega)}
     \end{split}
   \end{equation*}
+  \end{enumerate}
 \end{proof}
 
 
