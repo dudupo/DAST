@@ -172,8 +172,8 @@ Sometimes, we will use the notation $\{ X = x \}$ to denote the event $A$ such:
     \expp{T} &= \expp{  \text{ Inserting into buckets  }   +   \sum_{i} { \text{Sorting $i$th bucket  } }} \\ 
     & = \expp{ \Theta(n) +   \sum_{i} { X_{i}^{2}  }} = \Theta(n) +  \sum_{i}{ \expp{X_{i}^{2}} }  \\
   \expp{X_{i}^{2}} &= \expp{\left( \sum X_{i}^{j} \right)^{2}} = \expp{\sum_{j,j^{\prime}} X_{i}^{j} X_{i}^{j^{\prime}} } \\ 
-  & \sum_{j, j^{\prime}} \expp{X_{i}^{j} X_{i}^{j^{\prime}} = \sum_{j \neq j^{\prime}} \expp{X_{i}^{j} X_{i}^{j^{\prime}}} + \sum_{j} \expp{X_{i}^{j} X_{i}^{j}} \\
-      & =  \sum_{j \neq j^{\prime}} \expp{X_{i}^{j} X_{i}^{j^{\prime}} + \sum_{j} \expp{X_{i}^{j}}  \\
+  & \sum_{j, j^{\prime}} \expp{X_{i}^{j} X_{i}^{j^{\prime}}} = \sum_{j \neq j^{\prime}} \expp{X_{i}^{j} X_{i}^{j^{\prime}}} + \sum_{j} \expp{X_{i}^{j} X_{i}^{j}} \\
+    & =  \sum_{j \neq j^{\prime}} \expp{X_{i}^{j} X_{i}^{j^{\prime}}} + \sum_{j} \expp{X_{i}^{j}}  \\
         & = 2 { n \choose 2  } \left( \frac{1}{n} \right)^{2} +  n\cdot \frac{1}{n} \\ 
         & = \frac{n-1}{n} + 1  
     \end{split}
