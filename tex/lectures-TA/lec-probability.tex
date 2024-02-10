@@ -26,13 +26,19 @@ Probability function  satisfies the following properties:
   \item Monotonic, If $A \subset B \subset \Omega$ then $P(A) \le P(B)$.
   \item Union Bound, $P(A \cup B) \le P(A) + P(B)$.
   \item Additivity for disjointness events. If $A\cap B = \emptyset$ then $P(A \cup B) = P(A) + P(B)$.
-  \item Denote by $\bar{A}$ the complementary event of $A$, which means $A\cap\bar{A} = \Omega$. Then, $P(\bar{A}) = 1 - P(A)$.
+  \item Denote by $\bar{A}$ the complementary event of $A$, which means $A\cup\bar{A} = \Omega$. Then, $P(\bar{A}) = 1 - P(A)$.
 \end{enumerate}
 \end{claim}
 
-
-
 \begin{example}
+  Let's proof the additivity of disjointness property. Let $A,B$ disjointness events, so $A \cap B = \emptyset$ then 
+  
+  \begin{equation*}
+    \begin{split}
+      P(A\cup B) &= \sum_{w \in A \cup B}P(w) = \overbrace{\sum_{w \in A, w \notin{B}}P(w)}^{P(A)} + \overbrace{\sum_{w \in B, w \notin A}P(w)}^{P(B)}  +\overbrace{ \sum_{w \in A, w \in  B}P(w) }^{ 0 } \\ 
+      &= P(A) + P(B) 
+    \end{split}
+  \end{equation*}
 \end{example}
 
 \begin{algorithm}
