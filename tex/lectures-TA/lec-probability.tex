@@ -10,17 +10,16 @@
 \section{ Probability Spaces. }
 
 \begin{definition}
-  A probability space defined by a tuple $(\Omega,P)$ such that:
+  A probability space is defined by a tuple $(\Omega,P)$, where:
   \begin{enumerate} 
-    \item $\Omega$ is a set, called the sample space. Any element $\omega\in \Omega$ is named an atomic event. Conceptually, we think of atomic events as possible outcomes of our experiment. Any subset $A \subset \Omega$ is an event. 
+    \item $\Omega$ is a set, called the sample space. Any element $\omega\in \Omega$ is an atomic event. Conceptually, we think of atomic events as possible outcomes of our experiment. Any subset $A \subset \Omega$ is an event. 
     \item $P$, called the probability function, is a function that assigns a number in $[0,1]$ to any event, denoted as $P : 2^\Omega \rightarrow [0,1]$, and satisfies:
       \begin{enumerate}
-        \item For any event $A \subset \Omega$, $P(A) = \sum_{\omega\in A}P(w)$. 
-        \item Normalization, over the atomic events, to $1$, which means $\sum_{\omega\in\Omega}P(\omega)~=~1$.
+        \item For any event $A \subset \Omega$, $P(A) = \sum_{\omega\in A}P(\omega)$. 
+        \item Normalization over the atomic events to $1$, which means $\sum_{\omega\in\Omega}P(\omega) = 1$.
       \end{enumerate}
   \end{enumerate}
 \end{definition}
-
 \begin{example}
   Consider a dice rolling, where each of the faces is indexed by $1,2,3,4,5,6$ and has an equal chance of being rolled. Therefore, our atomic events are associated with the rolling result, and $P$ is defined as $P(\omega) = \frac{1}{6}$ for any such atomic event.
   An example of an event can be $A=$ ''the dice falls on an even number''. The probability of this outcome is:
