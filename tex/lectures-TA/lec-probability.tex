@@ -79,8 +79,14 @@ Sometimes, we will use the notation $\{ X = x \}$ to denote the event $A$ such:
   \end{split}
 \end{equation*}
 \end{definition}
-\begin{example}
-  \ctt{Add dice roll, as an example.}
+\begin{example} Consider rolling a pair of dices, denote by $X : [6]\times [6] \rightarrow [6] $ the random variable that set to be the result of the first roll, and let $Y$ be defined the all most the same but setting the result of the second dice. Namely if we denote by $\{(i,j)\}$ the atomic event associated with sample $i$ face on the first dice and $j$ face on the second then:  
+  \begin{equation*}
+    \begin{split}
+      X(\{i,j\}) &= i \\ 
+      Y(\{i,j\}) &= j  
+    \end{split}
+  \end{equation*}
+  In addition, one can define the random variable $z$ to be their the sum, $Z = X+Y$, the sum is also a function  $\Omega \rightarrow \mathbb{R}$, and therefore $Z$ is also a random variable.  
 \end{example}
 
 
