@@ -127,7 +127,13 @@ Sometimes, we will use the notation $\{ X = x \}$ to denote the event $A$ such:
       &=\sum_{x \in \image X}{xP(X=x) \expp{Y} }  \\ 
       &=\expp{X} \expp{Y}% \sum_{x \in \image X}{xP(X=x) }  \\ 
     \end{split}
-  \end{equation*}<++>
+  \end{equation*}
+\item Let $X$ be the random variable which is also the constant function $X(\omega) = a$ for any $\omega \in \Omega$. Then we have that
+  \begin{equation*}
+    \begin{split}
+      \expp{X} = \sum_{\omega\in \Omega}{X(\omega)P(\omega)} \\ & = \sum_{\omega\in \Omega}{a P(\omega)} = a \cdot 1 = a  
+    \end{split}
+  \end{equation*}
   \end{enumerate}
 \end{proof}
 
