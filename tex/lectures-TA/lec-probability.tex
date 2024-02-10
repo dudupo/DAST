@@ -42,6 +42,17 @@ Probability function  satisfies the following properties:
   \end{equation*}
 \end{example}
 
+\begin{definition}
+  Let $(\Omega,P)$ be a probability space. A random variable $X$ on $(\Omega,P)$ is a function $X : \Omega \rightarrow \mathbb{R}$. An indicator, is a random variable defined by an event $A \subset \Omega$ as follows   
+  \begin{equation*}
+    X(\omega) = \begin{cases}
+      1 & \omega \in A \\
+      0 & \omega \notin A
+    \end{cases}
+  \end{equation*}
+\end{definition}
+
+
 \begin{algorithm}
 \SetAlgoLined
 \KwResult{Sorting $A_{1},A_{2},..A_{n}$ }
