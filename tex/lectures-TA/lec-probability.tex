@@ -7,6 +7,8 @@
 \fi
 \chapter{Probability.} 
 
+\section{ Probability Spaces. }
+
 \begin{definition}
   A probability space defined by a tuple $(\Omega,P)$ such that:
   \begin{enumerate} 
@@ -76,7 +78,18 @@ Sometimes, we will use the notation $\{ X = x \}$ to denote the event $A$ such:
   \end{equation*}
 \end{definition}
 
+\section{ \ctt{ Throw Keys to Cells. } }
 
+\ctt{Add the description of throwing keys to cells. Define the random variable $X_{i}^{j}$.} 
+
+\begin{definition}
+  Let $X : \Omega\rightarrow \mathbb{R}$ be a random variable, the expectation of $X$ is 
+  \begin{equation*}
+    \begin{split}
+      \expp{X} = \sum_{\omega\in \Omega}{X(\omega)P(\omega)} = \sum_{x \in \image X}{ x P(X = x)} 
+    \end{split}
+  \end{equation*}
+\end{definition}
 
 \begin{algorithm}
 \SetAlgoLined
