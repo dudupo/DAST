@@ -97,6 +97,16 @@ Sometimes, we will use the notation $\{ X = x \}$ to denote the event $A$ such:
   \end{equation*}
 \end{definition}
 
+\begin{claim}
+   The expectation satisfies the following properties:
+   \begin{enumerate}
+     \item Monotonic, If $X \le Y$ then $\expp{X} \le \expp{Y}$.   
+     \item Linearity, for $a,b \in \mathbb{R}$ it holds that $\expp{aX + by} = a\expp{X} + b \expp{Y}$.   
+     \item Independent, if $X,Y$ are independent, then $\expp{X\cdot Y} = \expp{X}\cdot \expp{Y}$.  
+   \end{enumerate}
+\end{claim}
+
+
 \begin{algorithm}
 \SetAlgoLined
 \KwResult{Sorting $A_{1},A_{2},..A_{n}$ }
