@@ -165,6 +165,15 @@ Sometimes, we will use the notation $\{ X = x \}$ to denote the event $A$ such:
 \caption{bucket-sort($A$, $n$)}
   \end{algorithm}
 
+  Denote by $X_{i} : [n] \rightarrow [n]$ then random variable that counts the number of elements fallen in the $i$th bucket. The Expectation of the sorting running time is:   
+  
+  \begin{equation*}
+    \begin{split}
+      \expp{T} &= \expp{\sum_{i} { \text{Sorting $i$th bucket  } }} = \expp{\sum_{i} { X_{i}^{2}  } }\\
+        &= \sum_{i}{ \expp{X_{i}^{2}} }  
+    \end{split}
+  \end{equation*}
+
 \input{../texlib/tail}
 
 
