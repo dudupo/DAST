@@ -30,17 +30,27 @@
   \end{equation*}
 \end{example}
 
+%\begin{claim}
+%Probability function  satisfies the following properties:
+%\begin{enumerate}
+%  \item $P(\emptyset) = 0$.
+%  \item Monotonic, If $A \subset B \subset \Omega$ then $P(A) \le P(B)$.
+%  \item Union Bound, $P(A \cup B) \le P(A) + P(B)$.
+%  \item Additivity for disjointness events. If $A\cap B = \emptyset$ then $P(A \cup B) = P(A) + P(B)$.
+%  \item Denote by $\bar{A}$ the complementary event of $A$, which means $A\cup\bar{A} = \Omega$. Then, $P(\bar{A}) = 1 - P(A)$.
+%\end{enumerate}
+%\end{claim}
+%
 \begin{claim}
-Probability function  satisfies the following properties:
+The probability function satisfies the following properties:
 \begin{enumerate}
   \item $P(\emptyset) = 0$.
-  \item Monotonic, If $A \subset B \subset \Omega$ then $P(A) \le P(B)$.
-  \item Union Bound, $P(A \cup B) \le P(A) + P(B)$.
-  \item Additivity for disjointness events. If $A\cap B = \emptyset$ then $P(A \cup B) = P(A) + P(B)$.
-  \item Denote by $\bar{A}$ the complementary event of $A$, which means $A\cup\bar{A} = \Omega$. Then, $P(\bar{A}) = 1 - P(A)$.
+  \item Monotonicity: If $A \subset B \subset \Omega$, then $P(A) \le P(B)$.
+  \item Union Bound: $P(A \cup B) \le P(A) + P(B)$.
+  \item Additivity for disjoint events: If $A\cap B = \emptyset$, then $P(A \cup B) = P(A) + P(B)$.
+  \item Complementarity: Denote by $\bar{A}$ the complementary event of $A$, which means $A\cup\bar{A} = \Omega$. Then, $P(\bar{A}) = 1 - P(A)$.
 \end{enumerate}
 \end{claim}
-
 
 \begin{example}
   Let's proof the additivity of disjointness property. Let $A,B$ disjointness events, so $A \cap B = \emptyset$ then 
