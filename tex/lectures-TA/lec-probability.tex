@@ -142,21 +142,28 @@ Sometimes, we will use the notation $\{ X = x \}$ to denote the event $A$ such:
   \end{enumerate}
 \end{proof}
 
+\begin{example}
+  \ctt{Expectation of indicators and their multiplication.}
+\end{example}
+\begin{example}
+  \ctt{How many keys trowed into the same cell as the first key thrown to?}
+\end{example}
 
 \begin{algorithm}
-\SetAlgoLined
-\KwResult{Sorting $A_{1},A_{2},..A_{n}$ }
-\caption{ "ICan'tBelieveItCanSort"  alg.}
-\For{ $ i \in [n]$} {
-  \For{ $ j \in [n]$} {
-    \If { $A_{i} < A_{j} $} {
-      swap $A_{i} \leftrightarrow A_{j}$
-    }
-  }
-}
-
-
-\end{algorithm}
+    	let B[0 : n – 1] be a new array \\
+	\For{ $i \leftarrow [0, n – 1]$}{
+	   make $B_{i}$ an empty list
+       	}
+	\For{ $i \leftarrow [1, n]$}{
+	    insert $A_{i}$ into list $B_{ \lfloor n A_{i} \rfloor} ]$
+       	}
+	\For{ $i \leftarrow [0, n – 1]$}{
+	    sort list $B_{i}$
+       	}
+	concatenate the lists $B_{0}, B_{1}, .. , B_{n – 1}$ together and\\
+	return the concatenated lists
+\caption{bucket-sort($A$, $n$)}
+  \end{algorithm}
 
 \input{../texlib/tail}
 
