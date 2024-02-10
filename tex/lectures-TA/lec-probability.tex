@@ -175,7 +175,7 @@ Sometimes, we will use the notation $\{ X = x \}$ to denote the event $A$ such:
   & =  \sum_{j, j^{\prime}} \expp{X_{i}^{j} X_{i}^{j^{\prime}}} = \sum_{j \neq j^{\prime}} \expp{X_{i}^{j} X_{i}^{j^{\prime}}} + \sum_{j} \expp{X_{i}^{j} X_{i}^{j}} \\
     & =  \sum_{j \neq j^{\prime}} \expp{X_{i}^{j} X_{i}^{j^{\prime}}} + \sum_{j} \expp{X_{i}^{j}}  \\
         & = 2 { n \choose 2  } \left( \frac{1}{n} \right)^{2} +  n\cdot \frac{1}{n} \\ 
-        & = \frac{n-1}{n} + 1  
+        & = \frac{n-1}{n} + 1  = 2 - \frac{1}{n} \Rightarrow \expp{T} = \Theta(n) + n\left( 2 - \frac{1}{n} \right) = \Theta(n)
     \end{split}
   \end{equation*}
 
