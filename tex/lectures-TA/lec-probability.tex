@@ -107,7 +107,7 @@ Sometimes, we will use the notation $\{ X = x \}$ to denote the event $A$ such:
    \end{enumerate}
 \end{claim}
 
-\begin{proof} \\
+\begin{proof} 
   \begin{enumerate}
 \item Monotonic, if $X \le Y$ then $\expp{X} = \sum_{\omega\in \Omega}{X(\omega)P(\omega)} \le  \sum_{\omega\in \Omega}{Y(\omega)P(\omega)} = \expp{Y}$. 
 \item Linearity,
@@ -117,6 +117,17 @@ Sometimes, we will use the notation $\{ X = x \}$ to denote the event $A$ such:
       &=a\sum_{\omega\in \Omega}{  X(\omega)  P(\omega) } + b \sum_{\omega\in \Omega}{   Y(\omega)  P(\omega)}
     \end{split}
   \end{equation*}
+\item Independently, 
+  \begin{equation*}
+    \begin{split}
+      \expp{X Y} &= \sum_{x,y \in \image X \times \image Y}{ xy P(X = x \cap Y = y)} \\
+      &= \sum_{x,y \in \image X \times \image Y}{ xy P(X = x )P(Y = y)} \\
+      &=\sum_{x \in \image X}{\sum_{y \in \image Y}{ xy P(X = x )P(Y = y)}} \\
+      &=\sum_{x \in \image X}{xP(X=x)\sum_{y \in \image Y}{ y P(Y = y)}} \\
+      &=\sum_{x \in \image X}{xP(X=x) \expp{Y} }  \\ 
+      &=\expp{X} \expp{Y}% \sum_{x \in \image X}{xP(X=x) }  \\ 
+    \end{split}
+  \end{equation*}<++>
   \end{enumerate}
 \end{proof}
 
