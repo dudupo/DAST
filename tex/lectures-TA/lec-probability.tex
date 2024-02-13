@@ -274,7 +274,8 @@ Randomness might appears in algoritmic context in two main cases, in the first t
     P(A_{i} \in I) = |I|
   \end{split}
 \end{equation*}
-The following algorithm, take the advantage to sort $A$. 
+The following algorithm takes advantage of sorting $A$. It separates the range $[0,1]$ into $n$ buckets $B_{1}..B_{n}$, where $B_{i}$ is associated with all the numbers in the range $[i/n, (i+1)/n]$. First, it inserts any element $A_{i}$ into the $B_{ \lfloor n A_{i} \rfloor} ]$ and then sorts each of the buckets separately (using some naive $\Theta(n^2)$-sort).
+
 
 \begin{algorithm}
     	let B[0 : n – 1] be a new array \\
@@ -292,7 +293,7 @@ The following algorithm, take the advantage to sort $A$.
 \caption{bucket-sort($A$, $n$)}
   \end{algorithm}
 
-  Denote by $X_{i} : [n] \rightarrow [n]$ then random variable that counts the number of elements fallen in the $i$th bucket. The Expectation of the sorting running time is:   
+  Denote by $X_{i} : [n] \rightarrow [n]$ then random variable that counts the number of elements fallen in the $i$th bucket and by $X_{i}^{j}$ the indicator that $A_{i}\in B_{i}$. The Expectation of the sorting running time is:   
   
   \begin{equation*}
     \begin{split}
