@@ -115,7 +115,13 @@ Sometimes, we will use the notation $\{ X = x \}$ to denote the event $A$ such:
     \end{enumerate}
     Let us define the indicator $X_{i}^{j}$ which indicate that the $j$th key fallen into the $i$th cell. 
     \begin{enumerate}
-      \item So first we been asked whether $X_{1}^{1}\cdot  X_{1}^{2} = 1$
+      \item So first we been asked whether $X_{1}^{1}\cdot  X_{1}^{2} = 1$, Since this happens only if both $X_{1}^{1} = 1$, $X_{1}^{2} = 1$ then by independently we have that: 
+        \begin{equation*}
+          \begin{split}
+            P({X_{1}^{1}\cdot  X_{1}^{2} = 1}) &= P(X_{1}^{1} = 1 \cap  X_{1}^{2} = 1) \\
+            & = P(X_{1}^{1} = 1 ) \cdot P( X_{1}^{2} = 1) =\frac{1}{m^2}
+          \end{split}
+        \end{equation*}<++>
       \item Now we been asked whether there exists $i$ such that $X_{j}^{1}\cdot  X_{j}^{2} = 1$
       \item Now we been asked whether there exists $i$ such that $X_{j}^{1}\cdot  X_{j}^{2} = 1$
     \end{enumerate}
