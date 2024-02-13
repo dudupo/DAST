@@ -186,12 +186,12 @@ Sometimes, we will use the notation $\{ X = x \}$ to denote the event $A$ such:
     X^{k}(\omega) = \begin{cases}
       1^{k} = 1 & \omega \in A \\
       0^{k} = 0 & \text{ else }
-    \end{cases}
+    \end{cases} \Rightarrow X^{k}(\omega) = X(\omega)
   \end{equation*}
   Therefore, 
   \begin{equation*}
     \begin{split}
-      \expp{X^{k}} = \sum_{\omega \in \Omega}{ X^{k}(\omega)  P(\omega)  } = \sum_{\omega \in \Omega}{ X^{k}(\omega)  P(\omega)  }
+      \expp{X^{k}} = \sum_{\omega \in \Omega}{ X^{k}(\omega)  P(\omega)  } = \sum_{\omega \in \Omega}{ X(\omega)  P(\omega)  }=\expp{X} 
     \end{split}
   \end{equation*}
 \end{example}
