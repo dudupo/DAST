@@ -274,7 +274,7 @@ Randomness might appears in algoritmic context in two main cases, in the first t
     P(A_{i} \in I) = |I|
   \end{split}
 \end{equation*}
-The following algorithm takes advantage of sorting $A$. It separates the range $[0,1]$ into $n$ buckets $B_{1}..B_{n}$, where $B_{i}$ is associated with all the numbers in the range $[i/n, (i+1)/n]$. First, it inserts any element $A_{i}$ into the $B_{ \lfloor n A_{i} \rfloor} ]$ and then sorts each of the buckets separately (using some naive $\Theta(n^2)$-sort).
+The following algorithm takes advantage of sorting $A$. It separates the range $[0,1]$ into $n$ buckets $B_{1}..B_{n}$, where $B_{i}$ is associated with all the numbers in the range $[i/n, (i+1)/n)$. First, it inserts any element $A_{i}$ into the $B_{ \lfloor n A_{i} \rfloor} ]$ and then sorts each of the buckets separately (using some naive $\Theta(n^2)$-sort).
 
 
 \begin{algorithm}
@@ -292,7 +292,7 @@ The following algorithm takes advantage of sorting $A$. It separates the range $
 	return the concatenated lists
 \caption{bucket-sort($A$, $n$)}
   \end{algorithm} 
-Denote by $X_{i} : [n] \rightarrow [n]$ the random variable that counts the number of elements fallen in the $i$th bucket, and by $X_{i}^{j}$ the indicator that $A_{i}\in B_{i}$. The expectation of the sorting running time is:
+  Denote by $X_{i} : [n] \rightarrow [n]$ the random variable that counts the number of elements fallen in the $i$th bucket, and by $X_{i}^{j}$ the indicator that $A_{i}\in B_{i}$, So $P(X_{i}^{j}=1) = P(A_{i} \in B_{j}) = |[j/n, (j+1)/n)|=1/n$. The expectation of the sorting running time is:
   \begin{equation*}
     \begin{split}
     \expp{T} &= \expp{  \text{ Inserting into buckets  }   +   \sum_{i} { \text{Sorting $i$th bucket  } }} \\ 
