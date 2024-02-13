@@ -159,7 +159,23 @@ Sometimes, we will use the notation $\{ X = x \}$ to denote the event $A$ such:
           \end{split}
         \end{equation*} 
         We are basically done. However, we want to present the same calculation in a different notation that will be useful for computing expectations later on. Note that the random variable that counts ''how many'' cells both the first and the second fall into is $\sum_{i}{X_{i}^{1}\cdot X_{i}^{2} }$. In other words, the sum can be either $0$ if the keys fall into different cells, or $1$ if they both fall into the same cell.
-      \item The event that only the $j$th key falls into the first cell matches to $X_{1}^{j}\prod_{j\neq j^{\prime}}\left( 1 - X_{1}^{j^{\prime}} \right)$, and therefore the indicator for the first cell contains exactly one key is $\sum_{j}{X_{1}^{j}\prod_{j\neq j^{\prime}}\left( 1 - X_{1}^{j^{\prime}} \right)}$. 
+      \item The event that only the $j$th key falls into the first cell matches to 
+        \begin{equation*}
+          \begin{split}
+            X_{1}^{j}\prod_{j\neq j^{\prime}}\left( 1 - X_{1}^{j^{\prime}} \right)
+          \end{split}
+        \end{equation*}
+        Therefore, by disjointness of $1-X_{1}^{j^{\prime}}$, $X_{1}^{j^{\prime}}$ the indicator for the first cell contains exactly one key is 
+        \begin{equation*}
+          \begin{split}
+            \sum_{j}{X_{1}^{j}\prod_{j\neq j^{\prime}}\left( 1 - X_{1}^{j^{\prime}} \right)} 
+          \end{split}
+        \end{equation*} Observes that the terms in the sum are disjointness and the product is a product of independent indicators, so:
+        \begin{equation*}
+          \begin{split}
+            & P\left(\sum_{j}{X_{1}^{j}\prod_{j\neq j^{\prime}}\left( 1 - X_{1}^{j^{\prime}} \right)} \right) = \sum_{j}{X_{1}^{j}\prod_{j\neq j^{\prime}}\left( 1 - X_{1}^{j^{\prime}} \right)}
+          \end{split}
+        \end{equation*}
     \end{enumerate}
   \end{example}
 
