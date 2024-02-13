@@ -89,6 +89,11 @@ Sometimes, we will use the notation $\{ X = x \}$ to denote the event $A$ such:
   In addition, one can define the random variable $z$ as the sum, $Z = X+Y$. Since the sum is also a function from $\Omega$ to $\mathbb{R}$, $Z$ is also a random variable. An example of an indicator could be $W$, which gets $1$ if $Z \in \{2, 7, 8\}$.
 \end{example}
 
+
+\begin{example}
+  Let $X$ be an indicator of event $A$. Then $1 - X$ is the indicator of $\bar{A}$.
+\end{example}
+
 \begin{definition}
   We will say that two random variable $X,Y : \Omega \rightarrow \mathbb{R}$  are independent if for any $x\in \image X$ and $y \in \image Y$:   
   \begin{equation*}
@@ -107,11 +112,16 @@ Sometimes, we will use the notation $\{ X = x \}$ to denote the event $A$ such:
     \end{equation*}
   \end{example}
 
+  \begin{example}
+    Let $X$ and 
+  \end{example}
+
+
   \section{ Throwing Keys to Cells. }  
   \begin{example} Imagine that following experiment, we have $m$ cells and $n$ keys (balls, numbers, or your favorite object type). We throw each of the keys independently into the cells. The cells are identical, so the probability of hitting any of them is the same, $1/m$. We would like to analyze how the capacity of the cells is distributed.
     \begin{enumerate}
       \item What is the probability that the first and the second keys will be thrown to the first cell? What is the probability that the first and the second keys will be thrown to the same cell? 
-      \item What is the probability that in each cell there is at most one key? 
+      \item What is the probability that in the first cell there is exactly one key? 
     \end{enumerate}
     Let us define the indicator $X_{i}^{j}$ which indicate that the $j$th key fallen into the $i$th cell. 
     \begin{enumerate}
@@ -129,8 +139,7 @@ Sometimes, we will use the notation $\{ X = x \}$ to denote the event $A$ such:
           \end{split}
         \end{equation*} 
         We are basically done. However, we want to present the same calculation in a different notation that will be useful for computing expectations later on. Note that the random variable that counts ''how many'' cells both the first and the second fall into is $\sum_{i}{X_{i}^{1}\cdot X_{i}^{2} }$. In other words, the sum can be either $0$ if the keys fall into different cells, or $1$ if they both fall into the same cell.
-      \item Now we been asked whether there exists $i$ such that $X_{j}^{1}\cdot  X_{j}^{2} = 1$
-      \item Now we been asked whether there exists $i$ such that $X_{j}^{1}\cdot  X_{j}^{2} = 1$
+      \item The event that only the $j$th key falls into the first cell matches to $X_{1}^{j}\prod_{j\neq j^{\prime}}\left( 1 - X_{1}^{j^{\prime}} \right)$, and therefore the indicator for the first cell contains exactly one key is $\sum_{j}{X_{1}^{j}\prod_{j\neq j^{\prime}}\left( 1 - X_{1}^{j^{\prime}} \right)}$. 
     \end{enumerate}
   \end{example}
 
