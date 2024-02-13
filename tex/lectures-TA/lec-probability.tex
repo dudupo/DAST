@@ -267,7 +267,8 @@ Sometimes, we will use the notation $\{ X = x \}$ to denote the event $A$ such:
 \begin{equation*}
     \begin{split}
       & \expp{ \sum_{i}\sum_{j}X_{i}^{1}X_{i}^{j}} = \sum_{i}\sum_{j}\expp{X_{i}^{1}X_{i}^{j}} \\  
-      = &   \sum_{i}\sum_{j\neq 1}\expp{X_{i}^{1}}\expp{X_{i}^{j}} +  \overbrace{\sum_{i}\expp{X_{i}^{1}}}^{ j = 1}
+      = &   \sum_{i}\sum_{j\neq 1}\expp{X_{i}^{1}}\expp{X_{i}^{j}} +  \overbrace{\sum_{i}\expp{X_{i}^{1}}}^{ j = 1} \\ 
+      = & m \cdot (n-1) \frac{1}{m^{2}} + m\cdot \frac{1}{m} = \frac{n-1}{m} + 1 
     \end{split}
   \end{equation*}
 \end{example}
