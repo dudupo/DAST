@@ -257,14 +257,8 @@ Sometimes, we will use the notation $\{ X = x \}$ to denote the event $A$ such:
   \end{equation*}
 \end{example}
 \begin{example}
-  \ctt{How many keys trowed into the same cell as the first key thrown to?}
- 
+  Consider the experiment of throwing keys into cells again. What is the expected number of keys that fell into the same cell as the first key?  The indicator of the event $j$ and $1$ falling into the same cell is given by $\sum_{i}X_{i}^{1}X_{i}^{j}$ and it remains to sum over all the $j$'s. So:
   \begin{equation*}
-    \begin{split}
-      \sum_{i}\sum_{j}X_{i}^{1}X_{i}^{j}
-    \end{split}
-  \end{equation*}
-\begin{equation*}
     \begin{split}
       & \expp{ \sum_{i}\sum_{j}X_{i}^{1}X_{i}^{j}} = \sum_{i}\sum_{j}\expp{X_{i}^{1}X_{i}^{j}} \\  
       = &   \sum_{i}\sum_{j\neq 1}\expp{X_{i}^{1}}\expp{X_{i}^{j}} +  \overbrace{\sum_{i}\expp{X_{i}^{1}}}^{ j = 1} \\ 
