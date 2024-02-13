@@ -121,14 +121,14 @@ Sometimes, we will use the notation $\{ X = x \}$ to denote the event $A$ such:
             P({X_{1}^{1}\cdot  X_{1}^{2} = 1}) &= P(X_{1}^{1} = 1 \cap  X_{1}^{2} = 1) \\
             & = P(X_{1}^{1} = 1 ) \cdot P( X_{1}^{2} = 1) =\frac{1}{m^2}
           \end{split}
-        \end{equation*} Now, if we would like to answer whether the first and the second fall into the same cell then we have to ask if there is an $i$ such that $X_{i}^{1}\cdot  X_{i}^{2} = 1$, also notice that for any different $i,i^{\prime}$ the $X_{i}^{j}$ and $X_{i^{\prime}}^{j}$ are indicators of disjointness events, that because $j$ cannot be fallen to both $i$, $i^{\prime}$ cells. Therefore $X_{i}^{1}\cdot  X_{i}^{2}$ and $X_{i^{\prime}}^{1}\cdot  X_{i^{\prime}}^{2}$ are also indicators of disjointness events. Thus:  
-        
+        \end{equation*} Now, to answer if the first and second keys fall into the same cell, we need to check if there exists an $i$ such that $X_{i}^{1}\cdot X_{i}^{2} = 1$. Observes that for any different $i$ and $i^{\prime}$, the $X_{i}^{j}$ and $X_{i^{\prime}}^{j}$ are indicators of disjoint events. This is because $j$ cannot be in both the $i$ and $i^{\prime}$ cells. Therefore, $X_{i}^{1}\cdot X_{i}^{2}$ and $X_{i^{\prime}}^{1}\cdot X_{i^{\prime}}^{2}$ are also indicators of disjoint events. Thus: 
         \begin{equation*}
           \begin{split}
             P(\exists i : X_{i}^1 \cdot X_{i}^{2} = 1) &= P( \bigcup_{i} X_{i}^1 \cdot X_{i}^{2} = 1) = \sum_{i}{P( X_{i}^1 \cdot X_{i}^{2} = 1)} \\
-              &= m\cdot{1}{m^{2}} = \frac{1}{m}
+              &= m\cdot \frac{1}{m^{2}} = \frac{1}{m}
           \end{split}
-        \end{equation*} We basically done. Yet we want to present the same calculation in a different notation that later on will be useful for computing expectations. Observes that the random variable that counts to ''how many'' cells both the first and the second fall is $\sum_{i}{X_{i}^{i}\cdot X_{i}^{2} }$.     
+        \end{equation*} 
+        We are basically done. However, we want to present the same calculation in a different notation that will be useful for computing expectations later on. Note that the random variable that counts ''how many'' cells both the first and the second fall into is $\sum_{i}{X_{1}^{i}\cdot X_{i}^{2} }$. In other words, the sum can be either $0$ if the keys fall into different cells, or $1$ if they both fall into the same cell.
       \item Now we been asked whether there exists $i$ such that $X_{j}^{1}\cdot  X_{j}^{2} = 1$
       \item Now we been asked whether there exists $i$ such that $X_{j}^{1}\cdot  X_{j}^{2} = 1$
     \end{enumerate}
