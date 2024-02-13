@@ -102,7 +102,13 @@ Sometimes, we will use the notation $\{ X = x \}$ to denote the event $A$ such:
 \end{example}
 
 \begin{definition}
-  We will say that two random variable $X,Y : \Omega \rightarrow \mathbb{R}$  are independent if for any $x\in \image X$ and $y \in \image Y$:   
+  We will say that two events $A,B$ are independent if:
+\begin{equation*}
+    \begin{split}
+      P(A \cap B) &= P(A) \cdot P (B) %\Leftrightarrow \\ 
+    \end{split}
+  \end{equation*}
+  Similarly we will say that random variables $X,Y : \Omega \rightarrow \mathbb{R}$  are independent if for any $x\in \image X$ and $y \in \image Y$:   
   \begin{equation*}
     \begin{split}
       P(X = x \cap Y = y) &= P(X = x) \cdot P (Y = y) %\Leftrightarrow \\ 
@@ -120,7 +126,14 @@ Sometimes, we will use the notation $\{ X = x \}$ to denote the event $A$ such:
   \end{example}
 
   \begin{example}
-    Let $X$ and 
+    Let $A$ and $B$ be independent events. Then, $\bar{A}$ and $B$ are also independent events, since:
+    \begin{equation*}
+      \begin{split}
+    P(B) &= P(B \cap \Omega) = P(B \cap (A \cup \bar{A})) = P((B \cap A) \cup (B \cap \bar{A}))\\
+    &= P(B \cap A) + P(B \cap \bar{A}) = P(B)P(A) +    P(B \cap \bar{A} ) \\
+    \Rightarrow & P(B \cap \bar{A} ) = P(B)(1 - P(A)) = P(B)P(\bar{A})
+      \end{split}
+    \end{equation*}
   \end{example}
 
 
