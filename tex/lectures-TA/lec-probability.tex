@@ -291,10 +291,8 @@ The following algorithm takes advantage of sorting $A$. It separates the range $
 	concatenate the lists $B_{0}, B_{1}, .. , B_{n – 1}$ together and\\
 	return the concatenated lists
 \caption{bucket-sort($A$, $n$)}
-  \end{algorithm}
-
-  Denote by $X_{i} : [n] \rightarrow [n]$ then random variable that counts the number of elements fallen in the $i$th bucket and by $X_{i}^{j}$ the indicator that $A_{i}\in B_{i}$. The Expectation of the sorting running time is:   
-  
+  \end{algorithm} 
+Denote by $X_{i} : [n] \rightarrow [n]$ the random variable that counts the number of elements fallen in the $i$th bucket, and by $X_{i}^{j}$ the indicator that $A_{i}\in B_{i}$. The expectation of the sorting running time is:
   \begin{equation*}
     \begin{split}
     \expp{T} &= \expp{  \text{ Inserting into buckets  }   +   \sum_{i} { \text{Sorting $i$th bucket  } }} \\ 
