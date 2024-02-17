@@ -311,7 +311,7 @@ Consider the first call for 'select', and denote by $X_{m}$ the indicator for pi
     T(n,k) &= c\cdot n + \sum_{m < k}{ X_{m} \cdot T(n-m, k -m)} \\ 
     & \ \ \ \ + X_{k} \cdot 1  + \sum_{m > k}{ X_{m} \cdot T(m, k)} \\ 
     & \le c\cdot n + 2c +  2c \sum_{m < k}{ \frac{n-m}{n} }  + 2c\sum_{m > k}{ \frac{m}{n}} \\
-    & \le c\cdot n + +2c + n\cdot 2c\cdot \frac{1}{n} \cdot \max \{ k , n -  k - 1 \}\\
+  & \le c\cdot n + +2c + (n-1)\cdot 2c\cdot \frac{1}{n} \cdot \max \{ k , n -  k - 1 \}\\
     & \le 2c \cdot n 
   \end{split}
 \end{equation*}
