@@ -304,8 +304,7 @@ Randomness might appears in algoritmic context in two main cases, in the first t
 
   \caption{select($A$, left, right,  $k$)}
 \end{algorithm}
-
-Consider the first call for 'select', and denote by $X_{m}$ the indicator for picking on line (4) the index of the $m$ smallest number. Hence, the running time is    
+Consider the first call to 'select' and let $X_{m}$ be the indicator for selecting the index of the $m$th smallest number on line (4). Notice that $X_m$ and the running time of the recursive calls are independent random variables. Therefore, the expected running time is:
 \begin{equation*}
   \begin{split}
     T(n,k) &= c\cdot n + \sum_{m < k}{ X_{m} \cdot T(n-m, k -m)} \\ 
@@ -313,8 +312,6 @@ Consider the first call for 'select', and denote by $X_{m}$ the indicator for pi
      \Rightarrow \expp{T(n,k)} \le & cn +2c  + \sum_{m < k}{ \expp{X_{m} \cdot T(n-m, k -m)}} \\
     & \ \ \ \  \  + \sum_{m > k}{\expp{ X_{m} \cdot T(m, k) }} \\ 
     & \le c\cdot n + 2c +  2c \sum_{m < k}{ \frac{n-m}{n} }  + 2c\sum_{m > k}{ \frac{m}{n}} 
-  %& \le c\cdot n + +2c + (n-1)\cdot 2c\cdot \frac{1}{n} \cdot \max \{ k , n -  k  \}\\
-   % & \le 2c \cdot n 
   \end{split}
 \end{equation*}
 
@@ -322,7 +319,7 @@ Consider the first call for 'select', and denote by $X_{m}$ the indicator for pi
   The sum above is maximal when $k = \lfloor n/2 \rfloor $. 
 \end{claim}
 \begin{proof}
-  We will prove that for $k=i+1$, the sum is greater than $k=i$ if $i<\lfloor n/2 \rfloor$. Denote by $S_{i} =\sum_{m < i}{ \frac{n-m}{n} }  + \sum_{m > i}{ \frac{m}{n}}$, Then the substitute $S_{i+1} - S_{i}$ become    
+  We will prove that for $k=i+1$, the sum is greater than $k=i$ if $i<\lfloor n/2 \rfloor$. Denote $S_{i} =\sum_{m < i}{ \frac{n-m}{n} }  + \sum_{m > i}{ \frac{m}{n}}$. Then, the substitution of $S_{i+1} - S_{i}$ becomes:
   \begin{equation*}
     \begin{split}
       S_{i+1} - S_{i} = \frac{n-i - 1}{n} - \frac{i}{n} = \frac{n-2i-1}{n}
