@@ -325,7 +325,7 @@ Consider the first call to 'select' and let $X_{m}$ be the indicator for selecti
       S_{i+1} - S_{i} = \frac{n-i - 1}{n} - \frac{i}{n} = \frac{n-2i-1}{n}
     \end{split}
   \end{equation*}
-  And that quantity is positive for any $i < \lfloor n/2 \rfloor$.
+  And that quantity is positive for any $i < \lfloor n/2 \rfloor$. By symmetry, we obtain that for any $i > \lceil n/2 \rceil + 1$, the quantity $S_i - S_{i+1}$ is positive. Hence, $\lfloor n/2 \rfloor$ is a global maximum.
 \end{proof}
 Therefore, the expectation is bounded by:
 \begin{equation*}
