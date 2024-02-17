@@ -336,7 +336,7 @@ Therefore, the expectation is bounded by:
   \begin{split}
     \le & c\cdot n + 2c +  2c \sum_{m < \lfloor n/2 \rfloor }{ \frac{n-m}{n} }  + 2c\sum_{m > \lfloor n/2 \rfloor }{ \frac{m}{n}} \\ 
     = &  c\cdot n + 2c +  2 \cdot  2c\sum_{m > \lfloor n/2 \rfloor }{ \frac{m}{n}} \\ 
-    = &  c\cdot n + 2c +  2 \cdot  2c \frac{ \lfloor n/2  \rfloor \lfloor n/2 - 1 \rfloor }{2n} \le cn + 2c + n/2 \cdot 2c  \le 2c \cdot n
+    = &  c\cdot n + 2c +  2 \cdot  2c \cdot \frac{  (n/2) \cdot (n/2 - 1)  }{2n} \le cn + 2c + n/2 \cdot 2c  \le 2c \cdot n
   \end{split}
 \end{equation*}
 
