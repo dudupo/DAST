@@ -322,7 +322,7 @@ Consider the first call for 'select', and denote by $X_{m}$ the indicator for pi
   The sum above is maximal when $k = \lfloor n/2 \rfloor $. 
 \end{claim}
 \begin{proof}
-  We will prove that for $k=i+1$, the sum is greater than $k=i$ if $i<\lfloor n/2 \rfloor$. Denote by $S_{i} =\sum_{m < i}{ \frac{n-m}{n} }  + 2c\sum_{m > i}{ \frac{m}{n}}$, Then the substitute $S_{i+1} - S_{i}$ become    
+  We will prove that for $k=i+1$, the sum is greater than $k=i$ if $i<\lfloor n/2 \rfloor$. Denote by $S_{i} =\sum_{m < i}{ \frac{n-m}{n} }  + \sum_{m > i}{ \frac{m}{n}}$, Then the substitute $S_{i+1} - S_{i}$ become    
   \begin{equation*}
     \begin{split}
       S_{i+1} - S_{i} = \frac{n-i - 1}{n} - \frac{i}{n} = \frac{n-2i-1}{n}
