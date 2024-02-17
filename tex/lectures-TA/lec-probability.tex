@@ -305,7 +305,15 @@ Randomness might appears in algoritmic context in two main cases, in the first t
   \caption{select($A$, left, right,  $k$)}
 \end{algorithm}
 
-
+Consider the first call for 'select', and denote by $X_{m}$ the indicator for picking on line (4) the index of the $m$ smallest number. Hence, the running time is    
+\begin{equation*}
+  \begin{split}
+    T(n,k) &= c\cdot n + \sum_{m < k}{ X_{m} \cdot T(n-m, k -m)} + X_{k} \cdot 1  + \sum_{m > k}{ X_{m} \cdot T(m, k)} \\ 
+    & \le c\cdot n +  c \sum_{m < k}{ \frac{n-m}{n} }  + c\sum_{m > k}{ \frac{m}{n}} \\
+    & =c \cdot n + c \cdot \sum_{m<k}{1} + c \cdot \sum_{m>k}{1}\\
+    &= c\cdot n + c(n-1)+c = 2c n  
+  \end{split}
+\end{equation*}
 
 %\begin{algorithm}
 %    	let B[0 : n – 1] be a new array \\
