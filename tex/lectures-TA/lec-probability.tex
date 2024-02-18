@@ -276,6 +276,7 @@ Randomness might appears in algoritmic context in two main cases, in the first t
 Let us introduce an example for the first case. We are given an array $A_{1}, A_{2}, ..., A_{n}$ and are asked to find the $k$ smallest elements in it. Here, we are going to suggest a random algorithm that is expected to return in linear time, even if we do not make any assumptions about the input, particularly how it is distributed.
 
 
+
 %For example, consider an array $A$ such any number of it is sample uniformly from $[0,1]$ which mean that probabiliy of $A_{i}$ to belong to segment $I \subset [0,1]$ is exactly: 
 %\begin{equation*}
 %  \begin{split}
@@ -307,7 +308,7 @@ Let us introduce an example for the first case. We are given an array $A_{1}, A_
 
   \caption{select($A$, left, right,  $k$)}
 \end{algorithm}
-Consider the first call to 'select' and let $X_{m}$ be the indicator for selecting the index of the $m$th smallest number on line (4). Notice that $X_m$ and the running time of the recursive calls are independent random variables. Therefore, the expected running time is:
+Consider the first call to 'select' and let $X_m$ be the indicator for selecting the index of the $m$th smallest number on line (4). Notice that $X_m$ and the running time of the recursive calls are independent random variables. Additionally, we will assume in induction that $T(n', k) \le 2cn'$ for any $n' < n$. Therefore, the expected running time is:
 \begin{equation*}
   \begin{split}
     T(n,k) &= c\cdot n + \sum_{m < k}{ X_{m} \cdot T(n-m, k -m)} \\ 
