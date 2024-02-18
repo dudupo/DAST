@@ -312,9 +312,10 @@ Consider the first call to 'select' and let $X_m$ be the indicator for selecting
 \begin{equation*}
   \begin{split}
     T(n,k) &= c\cdot n + \sum_{m < k}{ X_{m} \cdot T(n-m, k -m)} \\ 
-    & \ \ \ \ + X_{k} \cdot 1  + \sum_{m > k}{ X_{m} \cdot T(m, k)} \\ 
+    & \ \ \ \ + X_{k} \cdot 1  + \sum_{m > k}{ X_{m} \cdot T(m-1, k)} \\ 
      \Rightarrow \expp{T(n,k)} \le & cn +2c  + \sum_{m < k}{ \expp{X_{m} \cdot T(n-m, k -m)}} \\
-    & \ \ \ \  \  + \sum_{m > k}{\expp{ X_{m} \cdot T(m, k) }} \\ 
+    & \ \ \ \  \  + \sum_{m > k}{\expp{ X_{m} \cdot T(m-1, k) }} \\ 
+    & \le c\cdot n + 2c +  2c \sum_{m < k}{ \frac{n-m}{n} }  + 2c\sum_{m > k}{ \frac{m-1}{n}} \\
     & \le c\cdot n + 2c +  2c \sum_{m < k}{ \frac{n-m}{n} }  + 2c\sum_{m > k}{ \frac{m}{n}} 
   \end{split}
 \end{equation*}
