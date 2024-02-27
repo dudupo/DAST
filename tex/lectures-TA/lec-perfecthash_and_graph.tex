@@ -409,7 +409,7 @@ As its name implies, depth-first search searches "deeper" in the graph whenever 
 
   \end{algorithm}
 
-  \begin{algorithm}
+  \begin{algorithm}[H]
     \bf{Explore}($G,v$): \\
      Previsit($v$)
     \For {$\left( v,u \right) \in E  $}{
@@ -420,12 +420,12 @@ As its name implies, depth-first search searches "deeper" in the graph whenever 
     }
     Postvisit($v$)
   \end{algorithm}
-  \begin{algorithm}
+  \begin{algorithm}[H]
     \bf{Previsit}($v$): \\
     pre($v$) $\leftarrow $ time \\
     time $\leftarrow$ time $+1$
   \end{algorithm}
- \begin{algorithm}
+  \begin{algorithm}[H]
    \bf{Postvisit} ($v$): \\ 
     post($v$) $\leftarrow $ time \\
     time $\leftarrow$ time $+1$
