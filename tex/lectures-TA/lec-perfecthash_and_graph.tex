@@ -45,7 +45,7 @@ Perfect hashing is a method to ensure that no collision occurs, it works only if
   Now we would like to answer for what $m$ the there is no collision on  Therefore if we take $m = n^{2}$ then the expected number of collision is less than $1/2$ so by the Markov inequality the probability to have more than one collision is less than:
   \begin{equation*}
     \begin{split}
-      P( \sum_{x\neq y}{X_{x,y}} > 1 ) \le \expp{\sum_{x\neq y}X_{x,y}} = \frac{1}{2}
+      P\left( \sum_{x\neq y}{X_{x,y}} > 1 \right) \le \expp{\sum_{x\neq y}X_{x,y}} = \frac{1}{2}
     \end{split}
   \end{equation*}
   And therefore the expected number of rounds is less than: 
