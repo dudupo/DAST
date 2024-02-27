@@ -15,7 +15,7 @@ In the past week, we have seen how to store keys in hash tables so that the numb
 
 Perfect hashing is a method to ensure that no collision occurs, it works only if all keys are given in advance, meaning that the table doesn't support insertion. The idea is as follows, we sample an hash function, and then check if, for all $x,y \in U$ such that $x \neq y$ it holds that $h(x)\neq h(y)$. If so then we continue. Otherwise we repeat. 
 
-  \begin{algorithm}[H]
+  \begin{algorithm}
   \caption{perfect-hashing($x_{1},x_{2},..x_{n}$)}
   let collision $\leftarrow$ True\\
   \While { collision } {
@@ -35,7 +35,7 @@ Perfect hashing is a method to ensure that no collision occurs, it works only if
   \Return $T,h$
   \end{algorithm}
 
-  \begin{algorithm}[H]
+  \begin{algorithm}
   \caption{perfect-hashing-linear-space($x_{1},x_{2},..x_{n}$)}
   let toomanycollisions $\leftarrow$ True\\
   \While { toomanycollisions } {
@@ -339,7 +339,7 @@ The breadth-first-search procedure BFS on the following page assumes that the gr
     \item $\pi(v)$ is $v$’s predecessor in the breadth-first tree. If $v$ has no predecessor because it is the source vertex or is undiscovered, then $\pi(v)$ is None/NULL.
 \end{enumerate}
 
-  \begin{algorithm}[H]
+  \begin{algorithm}
   \caption{BFS($G, s$)}
     \For {$v\in V$}{
 	 $v.visited \leftarrow $ False 
@@ -378,7 +378,7 @@ Now we have a way to travel through a graph using the edges. How else can we use
 
 \textbf{Solution}: Consider the following algorithm: 
 
-  \begin{algorithm}[H]
+  \begin{algorithm}
   \caption{CC($G$)}
      count $\leftarrow 0$\\
      \For {$v\in V$ }{
@@ -393,7 +393,7 @@ Now we have a way to travel through a graph using the edges. How else can we use
 \subsection{Depth First Search (DFS)}
 As its name implies, depth-first search searches "deeper" in the graph whenever possible. Depth-first search explores edges out of the most recently discovered vertex $v$ that still has unexplored edges leaving it. Once all of $ v$'s edges have been explored, the search "backtracks" to explore edges leaving the vertex from which $v$ was discovered. This process continues until all vertices that are reachable from the original source vertex have been discovered. If any undiscovered vertices remain, then depth-first search selects one of them as a new source, repeating the search from that source. The algorithm repeats this entire process until it has discovered every vertex.
 
-  \begin{algorithm}[H]
+  \begin{algorithm}
   \caption{DFS($G$)}
    \bf{DFS}( $G$): \\
     \For {$v\in V$}{
@@ -409,7 +409,7 @@ As its name implies, depth-first search searches "deeper" in the graph whenever 
 
   \end{algorithm}
 
-  \begin{algorithm}[H]
+  \begin{algorithm}
     \bf{Explore}($G,v$): \\
      Previsit($v$)
     \For {$\left( v,u \right) \in E  $}{
@@ -420,12 +420,12 @@ As its name implies, depth-first search searches "deeper" in the graph whenever 
     }
     Postvisit($v$)
   \end{algorithm}
-  \begin{algorithm}[H]
+  \begin{algorithm}
     \bf{Previsit}($v$): \\
     pre($v$) $\leftarrow $ time \\
     time $\leftarrow$ time $+1$
   \end{algorithm}
- \begin{algorithm}[H]
+ \begin{algorithm}
    \bf{Postvisit} ($v$): \\ 
     post($v$) $\leftarrow $ time \\
     time $\leftarrow$ time $+1$
