@@ -437,7 +437,7 @@ Another important property of depth-first search is that discovery and finish ti
 
 The following theorem provides another way to characterize the parenthesis structure.
 
-\paragraph{Parenthesis theorem}
+\begin{claim}[Parenthesis theorem]
 In any depth-first search of a (directed or undirected) graph $G = (V, E)$, for any two vertices $u$ and $v$, exactly one of the following three conditions holds:
 
 \begin{enumerate}
@@ -445,9 +445,10 @@ In any depth-first search of a (directed or undirected) graph $G = (V, E)$, for 
   \item the interval [pre($u$), post($u$)] is contained entirely within the interval [pre($v$), post($v$)], and $u$ is a descendant of $v$ in a depth-first tree, or
   \item the interval [pre($v$), post($v$)] is contained entirely within the interval [pre($u$), post($u$)], and $v$ is a descendant of $u$ in a depth-first tree.
   \end{enumerate}
+\end{claim}
 
-  \paragraph{Proof.} We begin with the case in which pre($u$) $<$ pre($v$). We consider two subcases, according to whether pre($v$) $<$ post($u$). The first subcase occurs when pre($v$) $<$ post($u$), so that $v$ was discovered while $u$ was still gray, which implies that $v$ is a descendant of $u$. Moreover, since $v$ was discovered after $u$, all of its outgoing edges are explored, and $v$ is finished before the search returns to and finishes $u$. In this case, therefore, the interval [pre($v$), post($v$)] is entirely contained within the interval [pre($u$), post($u$)]. In the other subcase, post($u$) $<$ pre($v$), and by defintion, pre($u$) $<$ post($u$) $<$ pre(v) $<$ post($v$), and thus the intervals [pre($u$), post($u$)] and [pre($v$), post($v$)] are disjoint. Because the intervals are disjoint, neither vertex was discovered while the other was gray, and so neither vertex is a descendant of the other.
-
+\begin{proof} We begin with the case in which pre($u$) $<$ pre($v$). We consider two subcases, according to whether pre($v$) $<$ post($u$). The first subcase occurs when pre($v$) $<$ post($u$), so that $v$ was discovered while $u$ was still gray, which implies that $v$ is a descendant of $u$. Moreover, since $v$ was discovered after $u$, all of its outgoing edges are explored, and $v$ is finished before the search returns to and finishes $u$. In this case, therefore, the interval [pre($v$), post($v$)] is entirely contained within the interval [pre($u$), post($u$)]. In the other subcase, post($u$) $<$ pre($v$), and by defintion, pre($u$) $<$ post($u$) $<$ pre(v) $<$ post($v$), and thus the intervals [pre($u$), post($u$)] and [pre($v$), post($v$)] are disjoint. Because the intervals are disjoint, neither vertex was discovered while the other was gray, and so neither vertex is a descendant of the other.
+\end{proof}
 
 
 \paragraph{  Corollary. Nesting of descendants' intervals.}
