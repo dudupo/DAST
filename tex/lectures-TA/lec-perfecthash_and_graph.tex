@@ -65,7 +65,9 @@ Perfect hashing is a method to ensure that no collision occurs, it works only if
 Taking $m = \Theta(n)$ is enough to ensure that the expected length of the linked list is $O(1)$. This raises the question of whether the space complexity of perfect hashing can be reduced to linear.
 
 \subsection{Perfect Hashing in Linear Space.}
-The idea is as follows, we first going to look for  
+%The idea is as follows, we are going to hash in two stages. The first hashing function maps keys to hash tables (instead of cells). Each hash table is constructed via the perfect hashing, and might require a space that quadric in the number of elements that stored by it (mapped in the first stage to it). So, if we denote by $n_{i}$ the number of elements that mapped into the $i$th hash table, the space cost is $\sum_{i}n_{i}^{2}$. So, now instead of starting over again when we have collision we would do it when $\sum_{i}n_{i}^{2} > 4n$. 
+
+The idea is as follows: we will use a two-stage hashing process. In the first stage, keys will be mapped to hash tables instead of cells. Each hash table will be constructed using perfect hashing and may require a space that is quadratic in the number of elements stored in it (which were mapped to it in the first stage). Therefore, if we denote by $n_{i}$ the number of elements mapped to the $i$th hash table, the space cost will be $\sum_{i}n_{i}^{2}$. Instead of starting over when a collision occurs, we will do so when $\sum_{i}n_{i}^{2} > 4n$.
   \begin{algorithm}
   \caption{perfect-hashing-linear-space($x_{1},x_{2},..x_{n}$)}
   let toomanycollisions $\leftarrow$ True\\
@@ -90,8 +92,20 @@ The idea is as follows, we first going to look for
   \Return $T,h$
 
   \end{algorithm}
-
-
+  So, now it's left to show that the space complexity is linear, notice that
+  \begin{equation*}
+    \begin{split}
+      n_{i}^{2}= 2{ n_{i} \choose 2 } + n_{i}
+    \end{split}
+  \end{equation*}
+On the other hand, $\sum_{i}{ n_{i}\choose 2  }$ is exactly the number of collisions, as for any $i$, ${ n_{i} \choose 2 }$ counts the number of distinct pairs in the $i$th table, which is equivalent to counting the number of $x\neq y$ such that $h(x) = h(y) = i$. Thus,
+  \begin{equation*}
+    \begin{split}
+      \expp{\sum_{i}n^{2}_{i}} &= \expp{\sum_{i} {2{ n_{i} \choose 2 } + n_{i}}}= 2\cdot \expp{\text{collision}} + \expp{\overbrace{\sum_{n_i}}^{n}}\\
+      &= 2 \cdot { n \choose 2} \frac{1}{m} + n
+    \end{split}
+  \end{equation*}
+  Therefore, by choosing $m = 4n$ for the first stage, the total expected space cost becomes linear in $n$.
 
 \usetikzlibrary{positioning, arrows}
 \tikzset{main node/.style={circle,draw,minimum size=0.8cm,inner sep=0pt},}
