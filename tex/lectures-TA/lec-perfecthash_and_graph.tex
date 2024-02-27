@@ -35,6 +35,35 @@ Perfect hashing is a method to ensure that no collision occurs, it works only if
   \Return $T,h$
   \end{algorithm}
 
+  \begin{algorithm}[H]
+  \caption{perfect-hashing-linear-space($x_{1},x_{2},..x_{n}$)}
+  let toomanycollisions $\leftarrow$ True\\
+  \While { toomanycollisions } {
+    toomanycollisions $\leftarrow$ False\\
+    Let $T$ be array at length $m$ \\
+    Initialize any $T_{i}$ to be an empty linked list. \\ 
+    $h \leftarrow $ sample uniformly random from universal hash family $\mathcal{H}$\\
+    \For { $ x \in x_{1},x_{2}..x_{n} $}{
+      $T_{h(x)}$.insert($x$)\\ 
+      $T_{h(x)}$.size $=$ $T_{h(x)}$.size $+1$\\
+      \If { $T_{h(x)}$.size $\ge \mu$ } {
+       toomanycollisions $\leftarrow$ True\\
+       break the for-loop 
+     }
+     \Else{
+      }
+    }
+  }
+  Let $H$ be an array at length $m$\\
+  \For{ $i \in [m]$}{
+    $T_{i}, h_{i} \leftarrow$ hash the elements in $T_{i}$ using\\
+    \ \ \ \ \ perfect hashing.
+  }
+  \Return $T,h$
+
+  \end{algorithm}
+
+
 
 \usetikzlibrary{positioning, arrows}
 \tikzset{main node/.style={circle,draw,minimum size=0.8cm,inner sep=0pt},}
