@@ -54,8 +54,18 @@ Perfect hashing is a method to ensure that no collision occurs, it works only if
     \begin{split}
       \expp{\text{ rounds }} & = \sum_{t = 0}^{\infty}t P( t \text{ rounds }) \le \sum_{t = 0}^{\infty}t \frac{1}{2^{t-1}} = O(1)
     \end{split}
-  \end{equation*}
+  \end{equation*}  
+  \textbf{Question.} What is the space complexities? We have to allocate an array at length $m$ which is $\Theta(n^{2})$ memory. Is that good? So remember that in standard hash tables, the expected number of elements that were hashed into the same cell as the key $x$ is 
+  \begin{equation*}
+    \begin{split}
+      1 + \frac{n-1}{m} 
+    \end{split}
+  \end{equation*} 
+  And taking $m = \Theta(n)$ is enough for ensuring that the expected length of the linked list is $O(1)$. That rise the question whether the space complexity can be reduce to linear. We are about to answer in affirmative.  
+Taking $m = \Theta(n)$ is enough to ensure that the expected length of the linked list is $O(1)$. This raises the question of whether the space complexity of perfect hashing can be reduced to linear.
 
+\subsection{Perfect Hashing in Linear Space.}
+The idea is as follows, we first going to look for  
   \begin{algorithm}
   \caption{perfect-hashing-linear-space($x_{1},x_{2},..x_{n}$)}
   let toomanycollisions $\leftarrow$ True\\
@@ -67,13 +77,10 @@ Perfect hashing is a method to ensure that no collision occurs, it works only if
     \For { $ x \in x_{1},x_{2}..x_{n} $}{
       $T_{h(x)}$.insert($x$)\\ 
       $T_{h(x)}$.size $=$ $T_{h(x)}$.size $+1$\\
-      \If { $T_{h(x)}$.size $\ge \mu$ } {
-       toomanycollisions $\leftarrow$ True\\
-       break the for-loop 
-     }
-     \Else{
-      }
     }
+    \If { $\sum_{i}T_{h(i)}$.size$^{2}$ $\ge \mu$ } {
+       toomanycollisions $\leftarrow$ True
+     }
   }
   let $H$ be an array at length $m$\\
   \For{ $i \in [m]$}{
