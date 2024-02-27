@@ -60,9 +60,8 @@ Perfect hashing is a method to ensure that no collision occurs, it works only if
     \begin{split}
       1 + \frac{n-1}{m} 
     \end{split}
-  \end{equation*} 
-  And taking $m = \Theta(n)$ is enough for ensuring that the expected length of the linked list is $O(1)$. That rise the question whether the space complexity can be reduce to linear. We are about to answer in affirmative.  
-Taking $m = \Theta(n)$ is enough to ensure that the expected length of the linked list is $O(1)$. This raises the question of whether the space complexity of perfect hashing can be reduced to linear.
+  \end{equation*}  
+Taking $m = \Theta(n)$ is enough to ensure that the expected running time of an access is $O(1)$. This raises the question of whether the space complexity of perfect hashing can be reduced to linear.
 
 \subsection{Perfect Hashing in Linear Space.}
 %The idea is as follows, we are going to hash in two stages. The first hashing function maps keys to hash tables (instead of cells). Each hash table is constructed via the perfect hashing, and might require a space that quadric in the number of elements that stored by it (mapped in the first stage to it). So, if we denote by $n_{i}$ the number of elements that mapped into the $i$th hash table, the space cost is $\sum_{i}n_{i}^{2}$. So, now instead of starting over again when we have collision we would do it when $\sum_{i}n_{i}^{2} > 4n$. 
