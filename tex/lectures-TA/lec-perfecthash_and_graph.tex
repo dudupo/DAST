@@ -35,6 +35,28 @@ Perfect hashing is a method to ensure that no collision occurs, it works only if
   \Return $T,h$
   \end{algorithm}
 
+  \textbf{Question.} What's the probability to choose $h$ with no collisions on the first trail? Notice that the answer depends on $m$, (to see that imagine the case that $m=1$ then there must to be collisions). So, the right question is, for what $m$ values we succeeds to find no collision hash function on the first trail. Denote by $X_{x,y}$ the indicator of the event $h(x)=h(y)$. So the number of expected collisions is: 
+
+  \begin{equation*}
+    \begin{split}
+      \expp{\sum_{x\neq y}X_{x,y}} = \sum_{x\neq y}{\expp{X_{x,y}}}= { n \choose 2 } \frac{1}{m}
+    \end{split}
+  \end{equation*}
+  Now we would like to answer for what $m$ the there is no collision on  Therefore if we take $m = n^{2}$ then the expected number of collision is less than $1/2$ so by the Markov inequality the probability to have more than one collision is less than:
+  \begin{equation*}
+    \begin{split}
+      P( \sum_{x\neq y}{X_{x,y}} > 1 ) \le \expp{\sum_{x\neq y}X_{x,y}} = \frac{1}{2}
+    \end{split}
+  \end{equation*}
+  And therefore the expected number of rounds is less than: 
+  
+  \begin{equation*}
+    \begin{split}
+      \expp{\text{ rounds }} & = \sum_{t = 0}^{\infty}t P( t \text{ rounds }) \le \sum_{t = 0}^{\infty}t \frac{1}{2^{t-1}} \\
+        &= O(1)
+    \end{split}
+  \end{equation*}
+
   \begin{algorithm}
   \caption{perfect-hashing-linear-space($x_{1},x_{2},..x_{n}$)}
   let toomanycollisions $\leftarrow$ True\\
