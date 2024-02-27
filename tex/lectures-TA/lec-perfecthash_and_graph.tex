@@ -20,7 +20,7 @@ Perfect hashing is a method to ensure that no collision occurs, it works only if
   let collision $\leftarrow$ True\\
   \While { collision } {
     collision $\leftarrow$ False\\
-    Let $T$ be array at length $m$ \\
+    let $T$ be array at length $m$ \\
     $h \leftarrow $ sample uniformly random from universal hash family $\mathcal{H}$\\
     \For { $ x \in x_{1},x_{2}..x_{n} $}{
       \If { $T_{h(x)}$ is not empty } {
@@ -40,8 +40,8 @@ Perfect hashing is a method to ensure that no collision occurs, it works only if
   let toomanycollisions $\leftarrow$ True\\
   \While { toomanycollisions } {
     toomanycollisions $\leftarrow$ False\\
-    Let $T$ be array at length $m$ \\
-    Initialize any $T_{i}$ to be an empty linked list. \\ 
+    let $T$ be array at length $m$ \\
+    initialize any $T_{i}$ to be an empty linked list. \\ 
     $h \leftarrow $ sample uniformly random from universal hash family $\mathcal{H}$\\
     \For { $ x \in x_{1},x_{2}..x_{n} $}{
       $T_{h(x)}$.insert($x$)\\ 
@@ -54,7 +54,7 @@ Perfect hashing is a method to ensure that no collision occurs, it works only if
       }
     }
   }
-  Let $H$ be an array at length $m$\\
+  let $H$ be an array at length $m$\\
   \For{ $i \in [m]$}{
     $T_{i}, h_{i} \leftarrow$ hash the elements in $T_{i}$ using\\
     \ \ \ \ \ perfect hashing.
