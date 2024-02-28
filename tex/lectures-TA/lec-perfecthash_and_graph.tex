@@ -100,7 +100,7 @@ The idea is as follows: we will use a two-stage hashing process. In the first st
 On the other hand, $\sum_{i}{ n_{i}\choose 2  }$ is exactly the number of collisions, as for any $i$, ${ n_{i} \choose 2 }$ counts the number of distinct pairs in the $i$th table, which is equivalent to counting the number of $x\neq y$ such that $h(x) = h(y) = i$. Thus,
   \begin{equation*}
     \begin{split}
-      \expp{\sum_{i}n^{2}_{i}} &= \expp{\sum_{i} {2{ n_{i} \choose 2 } + n_{i}}}= 2\cdot \expp{\text{collision}} + \expp{\overbrace{\sum_{n_i}}^{n}}\\
+      \expp{\sum_{i}n^{2}_{i}} &= \expp{\sum_{i} {2{ n_{i} \choose 2 } + n_{i}}}= 2\cdot \expp{\text{collision}} + \expp{\overbrace{\sum_{i}{n_i}}^{n}}\\
       &= 2 \cdot { n \choose 2} \frac{1}{m} + n
     \end{split}
   \end{equation*}
