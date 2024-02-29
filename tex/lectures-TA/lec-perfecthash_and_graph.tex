@@ -13,7 +13,7 @@
 
 In the past week, we have seen how to store keys in hash tables so that the number of mapped keys in a specific cell is $O(1)$ in expectation. The table is constructed using a hashing function $h : \text{key space} \rightarrow m \text{cells}$, randomly chosen from a universal hash function family. This function maps keys to cells, and in each cell, the keys are stored using a linked list. The cost of supported subroutines depends on the length of the list. We named any pair of different keys $x\neq y$ that are mapped to the same cell in the table, namely $h(x) = h(y)$, a collision.
 
-Perfect hashing is a method to ensure that no collision occurs, it works only if all keys are given in advance, meaning that the table doesn't support insertion. The idea is as follows, we sample an hash function, and then check if, for all $x,y \in U$ such that $x \neq y$ it holds that $h(x)\neq h(y)$. If so then we continue. Otherwise we repeat. 
+Perfect hashing is a method to ensure that no collision occurs, it works only if all keys are given in advance and they are unique, meaning that the table doesn't support insertion. The idea is as follows, we sample an hash function, and then check if, for all $x,y$ in the input, it holds that $h(x)\neq h(y)$. If so then we continue. Otherwise we repeat. 
 
   \begin{algorithm}
   \caption{perfect-hashing($x_{1},x_{2},..x_{n}$)}
@@ -91,7 +91,7 @@ The idea is as follows: we will use a two-stage hashing process. In the first st
   \Return $T,h$
 
   \end{algorithm}
-  So, now it's left to show that the space complexity is linear. Notice that
+  So, now it's left to show that we expect $\sum_{i} n^{2}_{i}$ to be linear, which implies that the expected number of rounds is constant.
   \begin{equation*}
     \begin{split}
       n_{i}^{2}= 2{ n_{i} \choose 2 } + n_{i}
@@ -104,7 +104,7 @@ On the other hand, $\sum_{i}{ n_{i}\choose 2  }$ is exactly the number of collis
       &= 2 \cdot { n \choose 2} \frac{1}{m} + n
     \end{split}
   \end{equation*}
-  Therefore, by choosing $m = 4n$ for the first stage, the total expected space cost becomes linear in $n$.
+  Therefore, by choosing $m = 4n$ for the first stage, the probability of failing to choose a proper hash function is less than $1/2$.
 
 \usetikzlibrary{positioning, arrows}
 \tikzset{main node/.style={circle,draw,minimum size=0.8cm,inner sep=0pt},}
