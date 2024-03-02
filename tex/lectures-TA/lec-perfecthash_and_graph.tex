@@ -413,23 +413,6 @@ The for loop starts iterating once per vertex, and then the number of its iterat
 \end{itemize}
 So all in all we get a runtime of $O(|V|+|E|)$
 
-\subsection{Usage of BFS}
-Now we have a way to travel through a graph using the edges. How else can we use it?\\ \\ 
-\textbf{Exercise}: Present and analyse an algorithm $CC(G)$ which receives some undirected graph $G$ and outputs the number of connected components in $G$ in $O(|V|+|E|)$. \\
-
-\textbf{Solution}: Consider the following algorithm: 
-
-  \begin{algorithm}
-  \caption{CC($G$)}
-     count $\leftarrow 0$\\
-     \For {$v\in V$ }{
-	\If {$v$.visited = False} {
-	  count$\leftarrow$count$+1$ \\
-	  BFS($G, v$)
-	}
-      }
-	\Return count
-  \end{algorithm}
 
   \begin{claim}
     Consider the $\pi$ returned from running the BFS routine on vertex $v$. Let $\delta(u)$ denote the distance between $u$ and $v$. Then,
@@ -448,6 +431,24 @@ Now we have a way to travel through a graph using the edges. How else can we use
 It remains to be shown that any vertex $u$ such that $\delta(u) = m+1$ satisfies $\delta(u) = \delta(\pi(u)) + 1$. Suppose not, which means that either $\delta(\pi(u))$ also does not satisfy the equality, contradicting the induction assumption, or that $\delta(\pi(u)) > m$. Let $\braket{v,v_1 ,v_2, .. ,v_{m},u}$ be the minimal path between $v$ and $u$, where $\delta(v_m) = m$. As shown earlier, $v_m$ is removed from the queue before $\pi(u)$, and at the time of its removal, $u$ is not yet colored. Therefore, by the definition of the algorithm, $\pi(u)$ is set to be $v_m$, which contradicts the assumption that $\delta(\pi(u)) > m$.
     \end{enumerate}
   \end{proof}
+
+\subsection{Usage of BFS}
+Now we have a way to travel through a graph using the edges. How else can we use it?\\ \\ 
+\textbf{Exercise}: Present and analyse an algorithm $CC(G)$ which receives some undirected graph $G$ and outputs the number of connected components in $G$ in $O(|V|+|E|)$. \\
+
+\textbf{Solution}: Consider the following algorithm: 
+
+  \begin{algorithm}
+  \caption{CC($G$)}
+     count $\leftarrow 0$\\
+     \For {$v\in V$ }{
+	\If {$v$.visited = False} {
+	  count$\leftarrow$count$+1$ \\
+	  BFS($G, v$)
+	}
+      }
+	\Return count
+  \end{algorithm}
 
   \ifdefined\DFS
 %Consider a vertex $u$ such that $\delta(u) = m$, and let $w$ a vertex such $\delta(w) > \delta(u)$. If $w$ doesn't enter at all into the queue then the state holds trivially. Suppose it is, so $\pi(w)$ is defined. Let $y$ be the vertex such $y = \pi(\pi(\pi(..\pi(w))))$ and also $\delta(y)= m$. And let $y^{\prime}$ be the vertex such $\pi(u) = y^{\prime}$. By the second property we have that $\delta(y^\prime) = m - 1$ therefore using again the induction assumption, $y^{\prime}$ is extracted before $y$. Therefore $y^\prime$ enqueues $u$ before $y$ is extracted form the queue, and will be extracted before any of the successors (according to $\pi$) of $y$ will be extracted including $w$. 
