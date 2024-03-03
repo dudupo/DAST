@@ -373,6 +373,7 @@ Okay, so now we know what graphs are. But how can we represent them in a compute
 
 One natural thing we might want to do is to travel around inside a graph. That is, we would like to visit all of the vertices in a graph in some order that relates to the edges. 
 Breadth-first search constructs a breadth-first tree, initially containing only its root, which is the source vertex $s$. Whenever the search discovers a white vertex $v$ in the course of scanning the adjacency list of a gray vertex $u$, the vertex $v$ and the edge ($u$, $v$) are added to the tree. We say that $u$ is the predecessor or parent of $v$ in the breadth-first tree. Since every vertex reachable from $s$ is discovered at most once, each vertex reachable from $s$ has exactly one parent. (There is one exception: because $s$ is the root of the breadth-first tree, it has no parent.) Ancestor and descendant relationships in the breadth-first tree are defined relative to the root $s$ as usual: if $u$ is on the simple path in the tree from the root $s$ to vertex $v$, then $u$ is an ancestor of $v$, and $v$ is a descendant of $u$.
+
 The breadth-first-search procedure BFS on the following page assumes that the graph $G = (V, E)$ is represented using adjacency lists. It denotes the queue by $Q$, and it attaches three additional attributes to each vertex $v$ in the graph:
 
 \begin{enumerate}
@@ -414,8 +415,11 @@ The for loop starts iterating once per vertex, and then the number of its iterat
 So all in all we get a runtime of $O(|V|+|E|)$
 
 
+\subsection{Paths in the BFS Tree are Shortest Paths.}
+We are about to prove a useful property of BFS scanning: the algorithm discovers vertices in the order of their distance from the source. In particular, $\pi$ defines a tree in which the path from $s$ to $u$ is the shortest path in the original graph $G$ from $s$ to $u$.
+
   \begin{claim}
-    Consider the $\pi$ returned from running the BFS routine on vertex $v$. Let $\delta(u)$ denote the distance between $u$ and $v$. Then,
+    Consider the $\pi$ returned from running the BFS routine on vertex $s$. Let $\delta(u)$ denote the distance between $u$ and $s$. Then,
 \begin{enumerate}
     \item For every $u$ and $w$ where $\delta(u) < \delta(w)$, $u$ will be extracted from the queue before $w$.
     \item $\delta(u) = \delta(\pi(u)) + 1$. 
@@ -424,7 +428,7 @@ So all in all we get a runtime of $O(|V|+|E|)$
   \begin{proof}
     By induction, on $\delta(u)$.
     \begin{enumerate}
-      \item  Base. Consider $u$ and $w$ such that $\delta(u) = 0$ and $\delta(w) > 0$. In this case, $u$ is $v$, and the statement holds by definition. Furthermore, for any vertex $u$ that is a neighbor of $v$, the algorithm sets $\pi(u) \leftarrow v$, and it is easy to see that $\delta(u) = 1 = 1 + \delta(v)$.
+      \item  Base. Consider $u$ and $w$ such that $\delta(u) = 0$ and $\delta(w) > 0$. In this case, $u$ is $s$, and the statement holds by definition. Furthermore, for any vertex $u$ that is a neighbor of $s$, the algorithm sets $\pi(u) \leftarrow v$, and it is easy to see that $\delta(u) = 1 = 1 + \delta(v)$.
       \item Assumption. Assuming correctness for any $u$ such that $\delta(u) < m$ and $\delta(w) > \delta(u)$, $u$ is extracted before $w$. Additionally, for any $u$ such that $\delta(u) \le m$, it holds that $\delta(u) = \delta(\pi(u)) + 1$.
       \item Step. Consider a vertex $u$ such that $\delta(u) = m$, and let $w$ be a vertex such that $\delta(w) > \delta(u)$. If $w$ does not enter the queue at all, then the statement holds trivially. Suppose it does, so $\pi(w)$ is defined.
 
@@ -433,7 +437,7 @@ So all in all we get a runtime of $O(|V|+|E|)$
         Let $y^{\prime}$ be the vertex such that $\pi(u) = y^{\prime}$. By the second property, we have $\delta(y^\prime) = m - 1$. Therefore, using the induction assumption again, $y^{\prime}$ is extracted before $y$. This means that $y^\prime$ enqueues $u$ before $y$ is extracted from the queue, and will be extracted before any of the successors (according to $\pi$) of $y$ are extracted, including $w$. 
 
         
-        It remains to be shown that any vertex $u$ such that $\delta(u) = m+1$ satisfies $\delta(u) = \delta(\pi(u)) + 1$. Suppose not, which means that either $\delta(\pi(u))$ also does not satisfy the equality, contradicting the induction assumption, or that $\delta(\pi(u)) > m$. Let $\braket{v,v_1 ,v_2, .. ,v_{m},u}$ be the minimal path between $v$ and $u$, where $\delta(v_m) = m$. As shown earlier, $v_m$ is removed from the queue before $\pi(u)$, and at the time of its removal, $u$ is not yet colored. Therefore, by the definition of the algorithm, $\pi(u)$ is set to be $v_m$, which contradicts the assumption that $\delta(\pi(u)) > m$.
+        It remains to be shown that any vertex $u$ such that $\delta(u) = m+1$ satisfies $\delta(u) = \delta(\pi(u)) + 1$. Suppose not, which means that either $\delta(\pi(u))$ also does not satisfy the equality, contradicting the induction assumption, or that $\delta(\pi(u)) > m$. Let $\braket{s,v_1 ,v_2, .. ,v_{m},u}$ be the minimal path between $s$ and $u$, where $\delta(v_m) = m$. As shown earlier, $v_m$ is removed from the queue before $\pi(u)$, and at the time of its removal, $u$ is not yet colored. Therefore, by the definition of the algorithm, $\pi(u)$ is set to be $v_m$, which contradicts the assumption that $\delta(\pi(u)) > m$.
     \end{enumerate}
   \end{proof}
 
