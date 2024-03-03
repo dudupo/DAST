@@ -426,7 +426,9 @@ So all in all we get a runtime of $O(|V|+|E|)$
     \begin{enumerate}
       \item  Base. Consider $u$ and $w$ such that $\delta(u) = 0$ and $\delta(w) > 0$. In this case, $u$ is a neighbor of $v$, and the statement holds by definition. Furthermore, for any vertex $u$ that is a neighbor of $v$, the algorithm sets $\pi(u) \leftarrow v$, and it is easy to see that $\delta(u) = 1 = 1 + \delta(v)$.
       \item Assumption. Assuming correctness for any $u$ such that $\delta(u) < m$ and $\delta(w) > \delta(u)$, $u$ is extracted before $w$. Additionally, for any $u$ such that $\delta(u) \le m$, it holds that $\delta(u) = \delta(\pi(u)) + 1$.
-      \item Step. Consider a vertex $u$ such that $\delta(u) = m$, and let $w$ be a vertex such that $\delta(w) > \delta(u)$. If $w$ does not enter the queue at all, then the statement holds trivially. Suppose it does, so $\pi(w)$ is defined. Let $y$ be $\pi(w)$, and we can assume that $\delta(y) = m$, otherwise we repeat the proof by taking $y$ instead of $w$ as the vertex at distance $\delta(y) > \delta(u)$. This is because, by definition, $\pi(w)$ is extracted before $w$, Thus proving that $\pi(w)$ extracted after $u$ is sufficient. 
+      \item Step. Consider a vertex $u$ such that $\delta(u) = m$, and let $w$ be a vertex such that $\delta(w) > \delta(u)$. If $w$ does not enter the queue at all, then the statement holds trivially. Suppose it does, so $\pi(w)$ is defined.
+
+        Let $y$ be $\pi(w)$, and we can assume that $\delta(y) = m$, otherwise we repeat the proof by taking $y$ instead of $w$ as the vertex at distance $\delta(y) > \delta(u)$. This is because, by definition, $\pi(w)$ is extracted before $w$, Thus proving that $\pi(w)$ extracted after $u$ is sufficient. 
 
         Let $y^{\prime}$ be the vertex such that $\pi(u) = y^{\prime}$. By the second property, we have $\delta(y^\prime) = m - 1$. Therefore, using the induction assumption again, $y^{\prime}$ is extracted before $y$. This means that $y^\prime$ enqueues $u$ before $y$ is extracted from the queue, and will be extracted before any of the successors (according to $\pi$) of $y$ are extracted, including $w$. 
 
