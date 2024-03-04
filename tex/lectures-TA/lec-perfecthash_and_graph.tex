@@ -428,7 +428,7 @@ We are about to prove a useful property of BFS scanning: the algorithm discovers
   \begin{proof}
     By induction, on $\delta(u)$.
     \begin{enumerate}
-      \item  Base. Consider $u$ and $w$ such that $\delta(u) = 0$ and $\delta(w) > 0$. In this case, $u$ is $s$, and the statement holds by definition. Furthermore, for any vertex $u$ that is a neighbor of $s$, the algorithm sets $\pi(u) \leftarrow v$, and it is easy to see that $\delta(u) = 1 = 1 + \delta(v)$.
+      \item  Base. Consider $u$ and $w$ such that $\delta(u) = 0$ and $\delta(w) > 0$. In this case, $u$ is $s$, and the statement holds by definition. Furthermore, for any vertex $u$ that is a neighbor of $s$, the algorithm sets $\pi(u) \leftarrow s$, and it is easy to see that $\delta(u) = 1 = 1 + \delta(s)$.
       \item Assumption. Assuming correctness for any $u$ such that $\delta(u) < m$ and $\delta(w) > \delta(u)$, $u$ is extracted before $w$. Additionally, for any $u$ such that $\delta(u) \le m$, it holds that $\delta(u) = \delta(\pi(u)) + 1$.
       \item Step. Consider a vertex $u$ such that $\delta(u) = m$, and let $w$ be a vertex such that $\delta(w) > \delta(u)$. If $w$ does not enter the queue at all, then the statement holds trivially. Suppose it does, so $\pi(w)$ is defined.
 
