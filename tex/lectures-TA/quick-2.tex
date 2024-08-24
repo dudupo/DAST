@@ -1,0 +1,15 @@
+
+    % Drawing a graph using the PG 3.0 graphdrawing library
+% Author: Mark Wibrow
+%\documentclass[tikz,border=10pt]{article}
+%\usepackage{tikz}
+%\usetikzlibrary{positioning}
+%\begin{document}
+
+\newcommand{\vet}[1]{\foreach \num in {#1}{\el{\num}}}
+\newcommand{\el}[1]{\tikz{\node[font=\footnotesize, minimum size=16pt, draw]{#1}}}
+\newcommand{\bl}{\color{blue}}
+\newcommand{\gr}{\color{gray}}
+\newcommand{\re}{\color{red}}
+\begin{tabular}{cccc}
+    \vet{3, 4, 2, 5, 6, 2, 1, 2, 6, 7, 10, 5} & &\vet{1, 2, 2, 2, 6, 3, 4, 5, 6, \re7, 5, 10} & \\ \vet{\bl3, 4, 2, 5, 6, 2, 1, 2, 6, 7, 10, \bl5} & quicksort$(A,0,11)$&\vet{1, 2, 2, 2, 6, 3, 4, 5, 6, 7, \re5, 10} & \\ \vet{3, 4, \re5, 5, 6, 2, 1, 2, 6, 7, 10, \re2} & &\vet{1, 2, 2, 2, \bl6, 3, 4, 5, 6, 7, \bl5, 10} & quicksort$(A,4,10)$\\ \vet{\re2, 4, 5, 5, 6, \re3, 1, 2, 6, 7, 10, 2} & &\vet{1, 2, 2, 2, 6, \re5, 4, 5, 6, 7, \re3, 10} & \\ \vet{2, \re1, 5, 5, 6, 3, \re4, 2, 6, 7, 10, 2} & &\vet{1, 2, 2, 2, \re3, 5, 4, 5, 6, 7, \re6, 10} & \\ \vet{2, 1, \re2, 5, 6, 3, 4, \re5, 6, 7, 10, 2} & &\vet{1, 2, 2, 2, 3, \bl5, 4, 5, 6, 7, \bl6, 10} & quicksort$(A,5,10)$\\ \vet{2, 1, 2, \re2, 6, 3, 4, 5, 6, 7, 10, \re5} & &\vet{1, 2, 2, 2, 3, 5, \re6, 5, 6, 7, \re4, 10} & \\ \vet{\bl2, 1, \bl2, 2, 6, 3, 4, 5, 6, 7, 10, 5} & quicksort$(A,0,2)$&\vet{1, 2, 2, 2, 3, \re4, 6, 5, 6, 7, \re5, 10} & \\ \vet{\re2, 1, \re2, 2, 6, 3, 4, 5, 6, 7, 10, 5} & &\vet{1, 2, 2, 2, 3, 4, \bl6, 5, 6, 7, \bl5, 10} & quicksort$(A,6,10)$\\ \vet{\re2, 1, 2, 2, 6, 3, 4, 5, 6, 7, 10, 5} & &\vet{1, 2, 2, 2, 3, 4, 6, 5, 6, \re5, \re7, 10} & \\ \vet{2, \re1, 2, 2, 6, 3, 4, 5, 6, 7, 10, 5} & &\vet{1, 2, 2, 2, 3, 4, \re6, 5, 6, 5, 7, 10} & \\ \vet{\bl2, \bl1, 2, 2, 6, 3, 4, 5, 6, 7, 10, 5} & quicksort$(A,0,1)$&\vet{1, 2, 2, 2, 3, 4, 6, \re5, 6, 5, 7, 10} & \\ \vet{\re1, \re2, 2, 2, 6, 3, 4, 5, 6, 7, 10, 5} & &\vet{1, 2, 2, 2, 3, 4, 6, 5, \re6, 5, 7, 10} & \\ \vet{\re1, 2, 2, 2, 6, 3, 4, 5, 6, 7, 10, 5} & &\vet{1, 2, 2, 2, 3, 4, 6, 5, 6, \re5, 7, 10} & \\ \vet{1, 2, 2, 2, \bl6, 3, 4, 5, 6, 7, 10, \bl5} & quicksort$(A,4,11)$&\vet{1, 2, 2, 2, 3, 4, \bl6, 5, 6, \bl5, 7, 10} & quicksort$(A,6,9)$\\ \vet{1, 2, 2, 2, 6, 3, 4, 5, 6, 7, \re5, \re10} & &\vet{1, 2, 2, 2, 3, 4, 6, \re5, 6, \re5, 7, 10} & \\ \vet{1, 2, 2, 2, \re6, 3, 4, 5, 6, 7, 5, 10} & &\vet{1, 2, 2, 2, 3, 4, \re5, \re6, 6, 5, 7, 10} & \\ \vet{1, 2, 2, 2, 6, \re3, 4, 5, 6, 7, 5, 10} & &\vet{1, 2, 2, 2, 3, 4, 5, \re5, 6, \re6, 7, 10} & \\ \vet{1, 2, 2, 2, 6, 3, \re4, 5, 6, 7, 5, 10} & &\vet{1, 2, 2, 2, 3, 4, 5, 5, \bl6, \bl6, 7, 10} & quicksort$(A,8,9)$\\ \vet{1, 2, 2, 2, 6, 3, 4, \re5, 6, 7, 5, 10} & &\vet{1, 2, 2, 2, 3, 4, 5, 5, \re6, \re6, 7, 10} & \\ \vet{1, 2, 2, 2, 6, 3, 4, 5, \re6, 7, 5, 10} & &\vet{1, 2, 2, 2, 3, 4, 5, 5, \re6, 6, 7, 10} & \\ \end{tabular}

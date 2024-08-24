@@ -1,5 +1,9 @@
-[0] Config.pm:311> INFO - This is Biber 2.16
-[0] Config.pm:314> INFO - Logfile is 'lec-02-v2.blg'
-[71] biber:340> INFO - === Sat Nov  5, 2022, 17:21:40
-[84] Biber.pm:415> INFO - Reading 'lec-02-v2.bcf'
-[141] Utils.pm:395> WARN - No data sources defined!
+[0] Config.pm:307> INFO - This is Biber 2.19
+[0] Config.pm:310> INFO - Logfile is 'lec-02-v2.blg'
+[82] biber:340> INFO - === Sat Jan 13, 2024, 17:53:43
+[98] Biber.pm:419> INFO - Reading 'lec-02-v2.bcf'
+[157] Biber.pm:979> INFO - Found 0 citekeys in bib section 0
+[168] bbl.pm:660> INFO - Writing 'lec-02-v2.bbl' with encoding 'UTF-8'
+[169] bbl.pm:763> INFO - Output to lec-02-v2.bbl
+[169] Biber.pm:131> WARN - The file 'lec-02-v2.bcf' does not contain any citations!
+[169] Biber.pm:133> INFO - WARNINGS: 1

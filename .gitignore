@@ -4,3 +4,5 @@
 *.fls
 *.log
 *.passwords
+*.lyx
+./lyx/*

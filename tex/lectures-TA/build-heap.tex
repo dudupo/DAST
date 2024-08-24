@@ -1,0 +1,34 @@
+\paragraph{Question.} How to construct a heap? And how much time will it take?   
+\begin{algbox}{Build.}
+\begin{algorithm}[H]
+% \SetAlgoLined
+  Given arbitrary array $ H = H_{1} .. H_{n} $  
+  $ i \leftarrow \lfloor \frac{1}{2}n  \rfloor $ \\
+  \While { $ i > 1 $ }
+  { 
+    Heapify-down $\left( H, i \right)$ \\ 
+    $ i \leftarrow i - 1 $  
+  }
+return $H_{1} .. H_{n}$
+\end{algorithm}
+\end{algbox}
+We can compute a simple upper bound on the running time of Build  as follows. Each call to Heapify costs $O(\log n)$ time, and Build  makes $O(n)$ such calls. Thus, the running time is $O(n \log n)$. This upper bound, though correct, is not as tight as it can be.
+
+Let's compute the a tight bound. Denote by $m_i$ the number of reqursive calls made by heapify-down callled initially over $i$th elemenet. As in each reqursive call the algorithm progress the index at factor at least two we have that  $2^{m_i} i \le n$. Hence, $m_{i} = \log\left( \lfloor \frac{n}{i}  \rfloor  \right)$. Also let $c > 0$ be the constant quantify the work that is done in each reqursive step, then we can express the total cost as being bonded from above by: 
+
+\begin{equation*}
+  \begin{split}
+    T\left( n \right) &= \sum_{i=1}^{\lfloor \frac{n}{2} \rfloor}{c \cdot m_{i}   } = c \sum_{i=1}^{\lfloor \frac{n}{2} \rfloor}{   \log\left( \lfloor \frac{n}{i}  \rfloor \right) } 
+  \end{split}
+\end{equation*}
+
+In the class you 
+
+\begin{equation*}
+  \begin{split}
+    T\left( n + 1 \right) - T\left( n \right) & \le \log\left( \lfloor \frac{n+1}{ \frac{n+1}{2}  }  \rfloor  \right) + \sum_{i=1}^{\lfloor \frac{n}{2} \rfloor}{ \log \left( \lfloor \frac{n+1}{i} \rfloor \left( \lfloor \frac{n}{i} \rfloor \right)^{-1}  \right)  } \\  & \le  \log\left( 2  \right) + \sum_{i=1}^{\lfloor \frac{n}{2} \rfloor}{ \log \left( \frac{n+100}{i}  \frac{i}{n-100}   \right)  } \le  1  + \sum_{i=1}^{\lfloor \frac{n}{2} \rfloor}{ \log \left( 1+ \frac{200}{n-100} \right)  } \\ 
+    & = 1 + \log \left( \left( 1+ \frac{200}{n-100} \right)^{ \lfloor \frac{n}{2} \rfloor } \right) \le 1 + \lim_{n \rightarrow \infty}   \log \left( \left( 1+ \frac{200}{n-100} \right)^{ \lfloor \frac{n}{2} \rfloor } \right) \le 1  + e^{200}  \\ 
+     \end{split}
+\end{equation*}
+Namley we got that the diffrence $T(n+1) - T(n)$ is bounded by constant and therefore $T\left( n \right) = \Theta\left( n \right)$.
+

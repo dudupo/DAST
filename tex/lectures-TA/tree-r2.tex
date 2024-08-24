@@ -1,0 +1,25 @@
+
+    % Drawing a graph using the PG 3.0 graphdrawing library
+% Author: Mark Wibrow
+%\documentclass[tikz,border=10pt]{article}
+%\usepackage{tikz}
+%\usetikzlibrary{positioning}
+%\begin{document}
+
+\tikzset{%
+  every neuron/.style={
+    circle,
+    draw,
+    %fill=black,
+    radius=0.1mm
+  },
+  neuron missing/.style={
+    draw=none,
+    scale=2,
+    text height=0.25cm,
+    execute at begin node=\color{black}$\vdots$
+  },
+}
+
+\begin{tikzpicture}
+    \node [every  neuron ] (v-1) at ( 0.0 ,-0) { $143$  };\node [every  neuron ] (v-2) at ( 0.0 ,-1) { $140$  };\node [every  neuron ] (v-3) at ( 4.0 ,-1) { $142$  };\node [every  neuron ] (v-4) at ( 0.0 ,-2) { $124$  };\node [every  neuron ] (v-5) at ( 2.0 ,-2) { $129$  };\node [every  neuron ] (v-6) at ( 4.0 ,-2) { $134$  };\node [every  neuron ] (v-7) at ( 6.0 ,-2) { $131$  };\node [every  neuron ] (v-8) at ( 0.0 ,-3) { $113$  };\node [every  neuron ] (v-9) at ( 1.0 ,-3) { $29$  };\node [every  neuron ] (v-10) at ( 2.0 ,-3) { $16$  };\node [every  neuron ] (v-11) at ( 3.0 ,-3) { $87$  };\node [every  neuron ] (v-12) at ( 4.0 ,-3) { $113$  };\node [every  neuron ] (v-13) at ( 5.0 ,-3) { $24$  };\node [every  neuron ] (v-14) at ( 6.0 ,-3) { $44$  };\node [every  neuron ] (v-15) at ( 7.0 ,-3) { $130$  };\node [every  neuron ] (v-16) at ( 0.0 ,-4) { $77$  };\node [every  neuron ] (v-17) at ( 1.0 ,-4) { $78$  };\draw [->] (v-1) -- (v-2);\draw [->] (v-1) -- (v-3);\draw [->] (v-2) -- (v-4);\draw [->] (v-2) -- (v-5);\draw [->] (v-3) -- (v-6);\draw [->] (v-3) -- (v-7);\draw [->] (v-4) -- (v-8);\draw [->] (v-4) -- (v-9);\draw [->] (v-5) -- (v-10);\draw [->] (v-5) -- (v-11);\draw [->] (v-6) -- (v-12);\draw [->] (v-6) -- (v-13);\draw [->] (v-7) -- (v-14);\draw [->] (v-7) -- (v-15);\draw [->] (v-8) -- (v-16);\draw [->] (v-8) -- (v-17);\end{tikzpicture}

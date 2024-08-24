@@ -1,5 +1,15 @@
-[0] Config.pm:311> INFO - This is Biber 2.16
-[0] Config.pm:314> INFO - Logfile is 'book.blg'
-[92] biber:340> INFO - === Thu Nov 10, 2022, 21:32:52
-[110] Biber.pm:415> INFO - Reading 'book.bcf'
-[192] Utils.pm:395> WARN - No data sources defined!
+[0] Config.pm:307> INFO - This is Biber 2.19
+[0] Config.pm:310> INFO - Logfile is 'book.blg'
+[102] biber:340> INFO - === Sat Feb 10, 2024, 15:15:02
+[116] Biber.pm:419> INFO - Reading 'book.bcf'
+[179] Biber.pm:979> INFO - Found 2 citekeys in bib section 0
+[190] Biber.pm:4419> INFO - Processing section 0
+[205] Biber.pm:4610> INFO - Looking for bibtex file './sample.bib' for section 0
+[208] bibtex.pm:1713> INFO - LaTeX decoding ...
+[260] bibtex.pm:1519> INFO - Found BibTeX data source './sample.bib'
+[308] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'variable = shifted' with 'variable = non-ignorable'
+[309] UCollate.pm:68> INFO - Overriding locale 'en-US' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[309] Biber.pm:4239> INFO - Sorting list 'ynt/global//global/global' of type 'entry' with template 'ynt' and locale 'en-US'
+[309] Biber.pm:4245> INFO - No sort tailoring available for locale 'en-US'
+[317] bbl.pm:660> INFO - Writing 'book.bbl' with encoding 'UTF-8'
+[318] bbl.pm:763> INFO - Output to book.bbl

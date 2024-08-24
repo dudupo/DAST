@@ -72,22 +72,17 @@ And that completes the Conservation part. Termination, followed by the conservat
 
 
   \newpage
-\subsection*{Heaps.}
-  \paragraph{Task: The Superpharm Problem. (Motivation for Heaps) }\textit{You are requested to maintain a pharmacy line. In each turn, you get one of the following queries, either a new customer enters the shop, or the pharmacist requests the next person to stand in front. In addition, different customers have different priorities, So you are asked to guarantee that in each turn, the person with the height priority will be at the front.}
 
-Before we consider a sophisticated solution, What is the running time for the naive solution? (maintaining the line as a linear array) ($\sim O\left( n^2 \right)$).
 
-Heaps are structures that enable computing the maximum efficiency in addition to supporting adding and removing elements.
-We have seen in the Lecture that no Algorithm can compute the $\max$ function with less than $n-1$ comparisons. So our solution above is indeed the best we could expect for. The same is true for the element-finding problem. Yet, we saw that if we are interested in storing the numbers, then, by keeping them according to sorted order, we could compute each query in logarithmic time via binary search. That raises the question, is it possible to have a similar result regarding the max problem?
-
+  \paragraph{Leading Problem.} find $k$ largest elements. \ctt{ Next year present the finding $k$-largest elements in $\Theta(n +k\log k)$ time as the goal of the recitation. } 
 \begin{defbox}{Heap}
   Let $n \in \mathbb{N}$ and consider the sequence $H = H_{1}, H_{2} \cdots H_{n} \in \mathbb{R} \left( * \right)$. we will say that $H$ is a Heap if for every $i \in [n]$ we have that: $H_{i} \le H_{2i}, H_{2i + 1}$ when we think of the value at indices greater than $n$ as $H_{i>n} = -\infty$. 
   \begin{equation*}
     \begin{split}
       \Leftrightarrow
     \end{split}
-  \end{equation*}
-  That definition is equivalent to the following recursive definition: Consider a binary tree in that we associate a number for each node. Then, we will say that this binary tree is a heap if the root's value is lower than its sons' values, and each subtree defined by its children is also a heap. 
+  \end{equation*} 
+That definition is equivalent to the following recursive definition: Consider an almost complete binary tree where each node is associated with a number. Then, we will say that this binary tree is a heap if the root's value is lower than its children's values, and each subtree defined by its children is also a heap. There is a one-to-one mapping between these definitions by setting the array elements on the tree in order.
 \end{defbox}
 
 \input{tree-1.tex}

@@ -1,0 +1,15 @@
+
+    % Drawing a graph using the PG 3.0 graphdrawing library
+% Author: Mark Wibrow
+%\documentclass[tikz,border=10pt]{article}
+%\usepackage{tikz}
+%\usetikzlibrary{positioning}
+%\begin{document}
+
+\newcommand{\vet}[1]{\foreach \num in {#1}{\el{\num}}}
+\newcommand{\el}[1]{\tikz{\node[font=\footnotesize, minimum size=16pt, draw]{#1}}}
+\newcommand{\bl}{\color{blue}}
+\newcommand{\gr}{\color{gray}}
+\newcommand{\re}{\color{red}}
+\begin{tabular}{cccc}
+    \vet{1, 5, 8, 5, 3, 2, 1} & &\vet{1, 1, 2, \re3, 5, 8, \re5} & \\ \vet{\bl1, 5, 8, 5, 3, 2, \bl1} & quicksort$(A,0,6)$&\vet{1, 1, 2, 3, \bl5, 8, \bl5} & quicksort$(A,4,6)$\\ \vet{\re1, 5, 8, 5, 3, 2, \re1} & &\vet{1, 1, 2, 3, 5, \re5, \re8} & \\ \vet{\re1, 5, 8, 5, 3, 2, 1} & &\vet{1, 1, 2, 3, \re5, 5, 8} & \\ \vet{1, \re1, 8, 5, 3, 2, \re5} & &\vet{1, 1, 2, 3, 5, \re5, 8} & \\ \vet{1, 1, \bl8, 5, 3, 2, \bl5} & quicksort$(A,2,6)$&\vet{1, 1, 2, 3, \bl5, \bl5, 8} & quicksort$(A,4,5)$\\ \vet{1, 1, 8, 5, \re5, 2, \re3} & &\vet{1, 1, 2, 3, \re5, \re5, 8} & \\ \vet{1, 1, \re2, 5, 5, \re8, 3} & &\vet{1, 1, 2, 3, \re5, 5, 8} & \\ \end{tabular}

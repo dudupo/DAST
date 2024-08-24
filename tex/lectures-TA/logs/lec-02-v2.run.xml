@@ -78,5 +78,8 @@
     <requires type="dynamic">
       <file>lec-02-v2.bcf</file>
     </requires>
+    <requires type="editable">
+      <file>./sample.bib</file>
+    </requires>
   </external>
 </requests>

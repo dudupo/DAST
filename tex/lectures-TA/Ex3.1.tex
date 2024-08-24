@@ -1,0 +1,467 @@
+\documentclass{article}
+\usepackage{geometry}
+\usepackage{culmus}
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+\usepackage[english,hebrew]{babel}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{soul}
+\usepackage{setspace}
+\usepackage{amssymb}
+\usepackage{mathrsfs}
+\usepackage{tcolorbox}
+\usepackage{mathtools}
+\usepackage{fancyhdr}
+\usepackage{xspace}
+\usepackage{blindtext}
+\usepackage{framed}
+\usepackage{ulem}
+\usepackage{tikz-cd}
+\usepackage{amsthm}
+\usepackage{faktor}
+\usepackage[export]{adjustbox}
+\usepackage[new]{old-arrows}
+\usepackage{graphicx}
+ \usepackage{booktabs}
+\usepackage{color}
+\usepackage{mdframed}
+
+
+
+
+\ProvidesPackage{alexmath}
+\newcommand{\Ring}{\ensuremath{(R, \cdot ,+ , 1 , 0)}}
+\newcommand{\Matnf}{\ensuremath{M_n(\mathbb{F})}}
+%Letters
+\newcommand{\CC}{\ensuremath{\mathbb{C}}}
+\newcommand{\ZZ}{\ensuremath{\mathbb{Z}}}
+\newcommand{\HH}{\ensuremath{\mathbb{H}}}
+\newcommand{\FF}{\ensuremath{\mathbb{F}}}
+\newcommand{\KK}{\ensuremath{\mathbb{K}}}
+\newcommand{\LL}{\ensuremath{\mathbb{L}}}
+\newcommand{\EE}{\ensuremath{\mathbb{E}}}
+\newcommand{\RR}{\ensuremath{\mathbb{R}}}
+\newcommand{\NN}{\ensuremath{\mathbb{N}}}
+\newcommand{\QQ}{\ensuremath{\mathbb{Q}}}
+\newcommand{\PP}{\ensuremath{\mathbb{P}}}
+\newcommand{\Aa}{\ensuremath{\mathcal{A}}}
+\newcommand{\Gg}{\ensuremath{\mathcal{G}}}
+\newcommand{\Hh}{\ensuremath{\mathcal{H}}}
+\newcommand{\Bb}{\ensuremath{\mathcal{B}}}
+\newcommand{\Rr}{\ensuremath{\mathcal{R}}}
+\newcommand{\Qq}{\ensuremath{\mathcal{Q}}}
+\newcommand{\Vv}{\ensuremath{\mathcal{V}}}
+\newcommand{\Uu}{\ensuremath{\mathcal{U}}}
+\newcommand{\Ll}{\ensuremath{\mathcal{L}}}
+\newcommand{\Mm}{\ensuremath{\mathcal{M}}}
+\newcommand{\Tt}{\ensuremath{\mathcal{T}}}
+\newcommand{\Pp}{\ensuremath{\mathcal{P}}}
+\newcommand{\Ff}{\ensuremath{\mathcal{F}}}
+\newcommand{\Ww}{\ensuremath{\mathcal{W}}}
+\newcommand{\Nn}{\ensuremath{\mathcal{N}}}
+\newcommand{\Rn}{\ensuremath{\RR^n}}
+\newcommand{\Ii}{\ensuremath{\mathcal{I}}}
+\newcommand{\Ee}{\ensuremath{\mathcal{E}}}
+\newcommand{\Cc}{\ensuremath{\mathcal{C}}}
+\newcommand{\Dd}{\ensuremath{\mathcal{D}}}
+\newcommand{\Zz}{\ensuremath{\mathcal{Z}}}
+\newcommand{\Ss}{\ensuremath{\mathcal{S}}}
+\newcommand{\Oo}{\ensuremath{\mathcal{O}}}
+
+
+%Notations
+\newcommand{\To}{\ensuremath{\longrightarrow}}
+\newcommand{\nto}{\ensuremath{\nim{n\to \infty}\longrightarrow}}
+\newcommand{\mto}{\ensuremath{\nim{m\to \infty}\longrightarrow}}
+\newcommand{\emm}{\ensuremath{\Longleftrightarrow}}
+\newcommand{\embed}{\ensuremath{\longhookrightarrow}}
+\newcommand{\nim}{\stackrel}
+\newcommand{\SA}{$\sigma$- אלגברה}
+\newcommand{\SAs}{$\sigma$- אלגבראות}
+\newcommand{\isoto}{\ensuremath{\widetilde{\rightarrow}}}
+
+\newcommand{\quot}[2]{{\faktor{#1}{#2}}}
+\newcommand{\Prod}{\ensuremath{\displaystyle{\prod_{i=1}^\infty}}}
+\newcommand{\Unom}{\ensuremath{\displaystyle{\bigcup_{\omega \in \Omega}}}}
+\newcommand{\Inom}{\ensuremath{\displaystyle{\bigcap_{\omega \in \Omega}}}}
+\newcommand{\Sum}{\ensuremath{\displaystyle{\sum_{i=1}^\infty}}}
+\newcommand{\Sumn}{\ensuremath{\displaystyle{\sum_{i=0}^n}}}
+\newcommand{\Summ}{\ensuremath{\displaystyle{\sum_{i=0}^m}}}
+\newcommand{\Prodn}{\ensuremath{\displaystyle{\prod_{i=0}^n}}}
+\newcommand{\VF}{\ensuremath{{\overrightarrow{F}}}}
+\newcommand{\VG}{\ensuremath{{\overrightarrow{G}}}}
+\newcommand{\dif}[2]{\ensuremath{\frac{d #1 }{d #2} }}
+\newcommand{\diff}[2]{\ensuremath{\frac{d^2 #1 }{d #2^2} }}
+
+\newcommand{\Vxy}[2]{\ensuremath{\begin{pmatrix}
+#1\\
+#2
+\end{pmatrix}}}
+
+
+%Series
+\newcommand{\an}{(a_n)_{n=1}^\infty}
+\newcommand{\Xn}{(X_n)_{n=1}^\infty}
+\newcommand{\An}{(A_n)_{n=1}^\infty}
+\newcommand{\xn}{(x_n)_{n=1}^\infty}
+\newcommand{\xnk}{(x_{n_k})_{k=1}^\infty}
+\newcommand{\zn}{(z_n)_{n=1}^\infty}
+\newcommand{\znm}{(z_{n_m})_{m=1}^\infty}
+\newcommand{\yn}{(y_n)_{n=1}^\infty}
+\newcommand{\Kn}{(K_n)_{n=1}^\infty}
+\newcommand{\Bn}{(B_n)_{n=1}^\infty}
+\newcommand{\Aan}{(\mathcal{A}_n)_{n=1}^\infty}
+\newcommand{\bn}{(b_n)_{n=1}^\infty}
+\newcommand{\limn}{\lim_{n\to\infty}}
+\newcommand{\muto}{\nim{\mu}\to}
+\newcommand{\aeto}{\nim{a.e}\to}
+\newcommand{\muTo}{\nim{\mu}\To}
+\newcommand{\aeTo}{\nim{a.e}\To}
+
+%Groups
+\newcommand{\Aut}{\text{Aut}}
+
+
+%Categories
+\newcommand{\Rel}{\text{Rel}}
+\newcommand{\Grp}{\text{Grp}}
+\newcommand{\Set}{\text{Set}}
+\newcommand{\Met}{\text{Met}}
+\newcommand{\Ordgal}{\widetilde{\text{Ord}}}
+\newcommand{\Com}{\text{Com}}
+\newcommand{\Rng}{\text{Rng}}
+\newcommand{\Ab}{\text{Ab}}
+\newcommand{\Vect}{\text{Vec}}
+\newcommand{\Mat}{\text{Mat}}
+\newcommand{\Fun}{\text{Fun}}
+\newcommand{\Nat}{\text{Nat}}
+\newcommand{\Cat}{\text{Cat}}
+\newcommand{\Log}{\text{Log}}
+
+
+\usepackage{mdframed}
+
+\setlength{\textwidth}{6.5in}
+\setlength{\evensidemargin}{0.0in}
+\setlength{\oddsidemargin}{0.0in}
+\setlength{\topmargin}{-1in}
+\setlength{\textheight}{9.4in}
+\setlength{\baselineskip}{1.3\baselineskip}
+\setlength{\parindent}{.0in}
+\setstretch{1.3}
+
+
+
+\begin{document}
+\title{תרגול 4 - הסתברות ואלגוריתמים הסתברותיים}
+\author{}
+\date{}
+\maketitle
+\begin{abstract}
+הסתברות היא אחד הכלים החשובים ביותר בתחומי המדעים המדויקים, ובכלל. בפרט, במדעי המחשב יש להסתברות תפקידים חשובים, מגוונים ומפתיעים לפעמים. המטרה היום היא להציג )בזריזות( את היסודות ההסתברותיים שאנחנו נשתמש בהם, ולראות שימוש ראשון בכלים הסתברותיים - ניתוח זמן ריצה ממוצע )זמן ריצה בתוחלת(.\\
+\textbf{התרגול כולל הרבה רעיונות ומושגים חדשים; מומלץ בחום לעבור על סיכום התרגול בעצמכם גם אחרי התרגול!}
+\end{abstract}
+
+\section{מרחב הסתברות}
+\begin{framed}
+\textbf{מרחב הסתברות }הוא זוג $(\Omega,\Pp)$ כך שמתקיים:
+\begin{itemize}
+\item קבוצה $\Omega$ הנקראת \textbf{מרחב המדגם}, ואיבריה נקראים \textbf{מאורעות אטומיים}. כל תת קבוצה של $\Omega$ נקראת \textbf{מאורע}. המטרה של קבוצה זו היא לתאר את התוצאות האפשריות של ניסוי, או כל תהליך שיש בו חוסר ודאות.
+\item הפונקציה $\Pp:2^\Omega \to [0,1]$ היא \textbf{פונקציית הסתברות}, המקיימת:
+\begin{enumerate}
+\item $\displaystyle{\sum_{\omega\in \Omega}\Pp(\omega) = 1}$ )כלומר, המאורעות האטומיים נסכמים ל$1$. "משהו בוודאות קורה".(
+\item $\displaystyle{\forall A\subset \Omega \quad \Pp(A) = \sum_{\omega\in A} \Pp(\omega)}$
+\end{enumerate}
+\end{itemize}
+\end{framed}
+%\textcolor{blue}{\textit{כדאי להקביל את מרחב המדגם למלבן, ואת המאורעות השונים לאיזורים שונים של המלבן. הסתברות מודדת את החלק היחסי של האיזורים מתוך למלבן.}}
+\subsubsection*{תכונות פונקציית ההסתברות}
+\begin{itemize}
+\item $\Pp(\emptyset) = 0$
+\item מונוטוניות: נניח
+$A\subset B$, אז
+$\Pp(A)\leq \Pp(B)$
+\item תת אדטיביות: $\Pp(A\cup B) \leq \Pp(A)+ \Pp(B)$
+\item אדטיביות למאורעות זרים: אם 
+$A\cap B=\emptyset$ )כלומר, המאורעות \textbf{זרים}( אז $\Pp(A\cup B) = \Pp(A) + \Pp(B)$.
+\item יהא
+$A\subset \Omega$, אז \textbf{המאורע המשלים} $A^c$ מקיים
+$\Pp(A^c) = 1-\Pp(A)$
+\end{itemize}
+\newpage
+
+\subsubsection{דוגמה חישובית}
+ לדוגמה, נרצה לתאר ניסוי שבו מטילים קוביה הוגנת פעם אחת. עלינו לתאר את מרחב המדגם )כלומר,  קבוצת התוצאות האפשריות(, ואת ההסתברות לכל אחת מהתוצאות האלו. נוכל לדוגמה להגדיר
+$\Omega = \{1,2,3,4,5,6\} =: [6]$, ולהגדיר
+$\Pp(i) = \frac{1}{6}$. 
+
+\textbf{כמה שאלות:}
+\begin{itemize}
+\item מה הסיכוי שתצא תוצאה זוגית?
+\item מה הסיכוי שתצא תוצאה שמתחלקת ב$3$?
+\end{itemize}
+\textbf{כמה תשובות:}
+\begin{itemize}
+\item המאורע "יצאה תוצאה זוגית" הוא 
+$E = \{2,4,6\}$, ולכן:
+$\Pp(E) = \sum_{i\in E} \Pp(i) = \Pp(2) + \Pp(4) + \Pp(6) = \frac{1}{2}$
+\item המאורע "יצאה תוצאה המתחלקת ב
+$3$" הוא $\{3,6\}$ ולכן:
+$\Pp(\{3,6\}) = \frac{1}{6} + \frac{1}{6} = \frac{1}{3}$
+\end{itemize}
+\subsubsection{דוגמה להוכחת טענה}
+עבור שני מאורעות זרים, מתקיים: $\Pp(A) + \Pp(B) = \Pp(A\cup B)$.
+\begin{proof}
+$$\Pp(A) + \Pp(B) = \sum_{\omega\in A} \Pp(\omega) + \sum_{\omega\in B} \Pp(\omega) \nim{(1)}= \sum_{\omega\in A\cup B} \Pp(\omega) = \Pp(A\cup B)$$
+כאשר $(1)$ מתקיים כי המאורעות זרים, ולכן לא ספרנו אף נסכם פעמיים.
+\end{proof}
+
+\section*{מעבר למשתנים מקריים}
+\subsubsection*{מוטיבציה}
+כדי לנסח טענות ולהוכיחן באמצעות הכלים שבנינו עד עכשיו, נדרשנו לתאר במפורש את מרחב המדגם $\Omega$. עם זאת, לפעמים מרחב המדגם לא נתון מפורשות. יתרה מכך - עבור תהליך מורכב הכולל כמה שלבים )נגיד, כמה הטלות קוביה ומטבע לסירוגין( לפעמים קשה לתאר מרחב מדגם במדויק. שני קשיים אלו מעלים צורך בכלי שמאפשר \textbf{להתעלם מהתיאור המדויק של מרחב המדגם, ולהתייחס להיבטים יותר קונקרטיים של הניסוי}. לכלי הזה קוראים \textbf{משתנה מקרי}.
+
+\subsection{הגדרה}
+\begin{framed}
+יהי
+$(\Omega, \Pp)$ מרחב הסתברות. \textbf{משתנה מקרי }על מרחב ההסתברות הוא פונקציה
+$X:\Omega \to \RR$.\\
+נכניס כעת סימון חדש:
+$$\Pp\left(\{\omega\mid X(\omega) = r\}\right) = \Pp(X=r)$$
+\end{framed}
+%\textcolor{blue}{\textit{כדאי להדגיש - זו רק פונקציה! היא לא בעלת משמעות מיוחדת עד שאנחנו יוצקים לתוכה משמעות! היא כלי כדי לאפשר לנו לעשות ניתוח יותר מעמיק.}}
+\subsubsection*{דוגמאות}
+\begin{enumerate}
+\item נניח שאנו מתבוננים בהטלת קוביה הוגנת. יהא
+$X:\Omega\to \RR$ המשתנה המקרי המתאר את תוצאת הטלת הקוביה. כלומר,
+$ X=i$ כאשר ההטלה יצאה 
+$i$. אז
+$\Pp(X = 2) = \Pp(\textit{the result was } 2) = \frac{1}{6}$
+\item )קצת יותר מתוחם( עבור אותה קוביה, יהא
+$Y$ משתנה מקרי המוגדר האופן הבא:
+\begin{flalign*}
+Y=\begin{cases}1 & \text{the result was odd}\\
+0 & \text{the result was even}
+\end{cases}
+\end{flalign*}
+זה משתנה מקרי המציין את המאורע "יצאה תוצאה אי זוגית". לכן:
+$\Pp(Y = 0) = \Pp(\text{the result was even}) = \frac{1}{3}$
+
+\item )קפיצת מדרגה!( אנחנו נמצאים בפארק שעשועים ומשחקים משחק: מולנו $n$ כדורים, ו
+$m$ תאים. אנחנו זורקים את כל הכדורים אחד אחרי השני לתאים, והסיכוי של כל כדור להיכנס לתא ה
+$j$ הוא 
+$\frac{1}{m}$ )כלומר -הסתברות אחידה(.
+מה הסיכוי שהכדור הראשון נכנס לתא שמספרו לכל היותר$k$?\\
+ננקוט בגישה קצת שונה ממה שעשינו קודם. נסמן את המשתנים המקריים
+$X^i_j$ המציינים את המאורע "הכדור ה$i$ נכנס לתא ה$j$" . בשפה של המשתנים המקריים האלו, המאורע הרצוי מיתרגם לכך ש
+$X^1_j = 1$ עבור
+$j\leq k$. בגלל שכדור לא יכול להיכנס לשני תאים, זה בדיוק כמו לומר
+$\sum_{j=1}^k X^1_j = 1$ )להתעכב על זה, זה עדין!(. נחשב:
+$$\Pp\left(\sum_{j=1}^k X^1_j = 1\right) = \Pp\left(\bigsqcup_{j=1}^k (X^1_j = 1) \right) = \sum_{j=1}^k \Pp(X^1_j = 1) = \sum_{j=1}^k \frac{1}{m} = \frac{k}{m}$$
+\end{enumerate}
+ומה אם היינו רוצים לחשב את הסיכוי ששני כדורים נכנסו לאותו התא? אנחנו צריכים לומר משהו על הקשר בין שתי זריקות. בגלל שהסיכוי להכניס כדור לתא מסוים לא מושפע מכמות הכדורים שכבר נמצאים בתא, בעצם זריקה של כדור אחד לתא מסוים, לא משפיעה על סיכויי הכניסה של כדור אחר לאותו התא. בשפה פורמלית - הזריקות בלתי תלויות.
+\subsection{אי תלות של משתנים מקריים}
+\begin{framed}
+עבור שני משתנים מקריים
+$X,Y:\Omega \to \RR$ נאמר שהם \textbf{בלתי תלויים} אם לכל 
+$\alpha\in Im(X), \beta\in Im(Y)$ מתקיים:
+$$\Pp(X = \alpha, Y=\beta) = \Pp(X=\alpha)\cdot\Pp(Y=\beta)$$
+
+\end{framed}
+%\textcolor{blue}{\textit{אפשר לומר בעל פה שזה סוג של "תוצאת משתנה אחד אינה משפיעה על המשתנה השני". לא נפרמל כי לא נכנסים להתניה.}}
+\subsubsection{דוגמאות}
+\begin{enumerate}
+\item מה הסיכוי שהכדור הראשון והשני נכנסו שניהם לתא ה$j$? מכיוון שהזריקות לכדים הן בלתי תלויות, מתקיים:
+$$\Pp(X^1_j = 1, X^2_j = 1) = \Pp(X^1_j = 1)\Pp(X^2_j=1) = \frac{1}{m^2}$$
+\item מה הסיכוי שהכדור הראשון והשני נכנסו \textbf{לאותו התא}? במקרה הזה, לא משנה לי לאן הכדור הראשון נכנס, רק שהכדור השני ייכנס לאותו התא אחר כך. מכיוון שהמאורעות "שני הכדורים נכנסו לתא $j$" ו"שני הכדורים נכנסו לתא $j'$" הם מאורעות זרים, נוכל לסכום את הסיכוי שחישבנו קודם על כל 
+$j$, ולקבל את הסיכוי שהכדורים נכנסו לאותו התא. פורמלית:
+$$\Pp\left(\exists j \quad X^1_j = 1, X^2_j = 1\right) =\Pp\left(\bigsqcup_{j=1}^m (X^1_j = 1, X^2_j = 1)\right) = \sum_{j=1}^m \Pp(X^1_j = 1, X^2_j = 1) = m\cdot\frac{1}{m^2} = \frac{1}{m}$$
+\item )קפיצת מדרגה נוספת(  מה הסיכוי שאחרי זריקת כל הכדורים, בתא $1$ יש לכל בדיוק כדור אחד?\\
+זה בדיוק המאורע
+$\sum_{i=1}^n X^i_1 = 1$.\\
+זה קורה בדיוק כאשר
+$X^i_1 = 1$ עבור
+$i$ כלשהו, ולכל
+$k\neq i$ מתקיים
+$X^k_1 = 0$. מה הסיכוי למאורע כזה?
+$$\Pp(X^i_1 =1, \forall k\neq i \quad X^k_1 = 0) = \frac{1}{m}\prod_{k\neq i} \left(1-\frac{1}{m}\right) = \frac{1}{m}\left(1-\frac{1}{m}\right)^{n-1}$$
+זה חלק מהתהליך. הרי אותנו לא מעניין הערך המדויק של $i$, אלא רק שיש אחד כזה. למעשה, אם 
+$i=1$ או 
+$i=5$ הם מאורעות זרים, ולכן החישוב הוא:
+\begin{flalign*}&\Pp\left(\sum_{i=1}^n X^i_1 = 1\right) = \Pp\left(\bigsqcup_{i=1}^n \big(X^i_1 =1, \forall k\neq i \quad X^k_1 =0\big) \right)=\sum_{i=1}^n\Pp(X^i_1 =1, \forall k\neq i \quad X^k_1 = 0)=\\
+&\sum_{i=1}^n\frac{1}{m}\left(1-\frac{1}{m}\right)^{n-1} = n\cdot \frac{1}{m}\left(1-\frac{1}{m}\right)^{n-1}
+\end{flalign*}
+\end{enumerate}
+\subsection{תוחלת}
+%\textcolor{blue}{\textit{מוזמנים לספר כל סיפור העולה על רוחכם. אפשר  לדבר על לקבל $4$ נקודות בונוס לכל תרגיל מוקלד, או להטיל קוביה הוגנת. אלטרנטיבה נוספת היא גישת "מציעים לי $4$ שקלים או להטיל קוביה, מה כדאי לי?". העיקר שהרעיון של תוחלת יעבור. הרבה פעמים האינטואיציה שם, אבל קשה להכליל ולפרמל אותה.}}
+
+במשחק "מבוכים ודרקונים" יש הרבה סוגי קוביות )חוץ מהקוביה הרגילה(. כשמכשף עולה רמה, הוא יכול לבחור: או להוסיף $4$ נקודות ליכולת הכישוף שלו, או להטיל קוביה רגילה, ולהוסיף את תוצאת ההטלה. מה כדאי לו לבחור?\\
+כמובן שאי אפשר לדעת בוודאות, אבל אנחנו הולכים לעלות הרבה רמות במשחק - הרבה הזדמנויות להטיל את הקוביה. בגלל שלכל תוצאה יש סיכוי שווה - סביר שממוצע ההטלות שלנו יהיה כמו ממוצע התוצאות האפשריות.\\
+נסמן ב$X$ את תוצאת הטלת קוביה הוגנת. ממוצע התוצאות של $X$ הוא:
+$\frac{1}{6}\cdot\left(1+2+3+4+5+6\right) = 3.5$. כלומר, בממוצע בכל תור נרוויח $3.5$ נקודות. דרך אחרת לכתוב את זה היא 
+$\frac{1}{6} \cdot 1 + \frac{1}{6} \cdot 2 + \frac{1}{6} \cdot 3 + \frac{1}{6} \cdot 4 + \frac{1}{6} \cdot 5 + \frac{1}{6} \cdot 6 $, כלומר סכימת כל תוצאה אפשרית, כפול ההסתברות שהיא תקרה.\\
+
+אבל מה יקרה אם הקוביה לא הוגנת? מה יקרה אם הפאות על הקוביה הן$1,2,3,4,5,3$? יש יותר מקרים בהם אנו נטיל $3$. נחשב כמו קודם - הערך הצפוי של תוצאת ההטלה: $\frac{1}{6} \cdot 1 + \frac{1}{6} \cdot 2 + \frac{1}{6} \cdot 3 + \frac{1}{6} \cdot 4 + \frac{1}{6} \cdot 5 + \frac{1}{6}\cdot 3= 3$. נכליל:
+\begin{framed}
+יהא
+$X:\Omega\to \RR$ משתנה מקרי. נגדיר את \textbf{התוחלת }של $X$ להיות:
+$$\EE(X) = \sum_{\omega\in \Omega} X(\omega)\Pp(\omega)$$
+\end{framed}
+%\textcolor{blue}{\textit{אפשר להסביר את המשמעות באנגלית, וכדאי להזכיר שמדובר בממוצע משוקלל לפי ההסתברויות. למי שזה לא מסתדר - עוד רגע נראה את ההגדרה השקולה, ואולי היא תעשה סדר.}}
+\subsubsection{תכונות}
+\begin{itemize}
+\item הגדרה אלטרנטיבית:
+$\EE(X) = \sum_{x\in Im(x)} x\Pp(X=x)$.
+\item מונוטוניות התוחלת: אם 
+$X\leq Y$ אז
+$\EE(X)\leq \EE(Y)$.
+\item לינאריות התוחלת: לכל 
+$a,b\in \RR$ מתקיים
+$\EE(aX+bY) = a\EE(X) + b\EE(Y)$.
+\item תוחלת ואי תלות: אם 
+$X,Y$ בלתי תלויים, אז
+$\EE(X\cdot Y) = \EE(X)\EE(Y)$
+\end{itemize}
+\subsubsection{דוגמאות}
+\begin{enumerate}
+\item מטילים קוביה הוגנת עם $20$ פאות. מה תוחלת התוצאה שיצאה? נחשב:
+$\EE(X) = \sum_{k=1}^{20} \frac{1}{20}\cdot k = \frac{1}{20}\cdot \frac{(20+1)(20)}{2} = \frac{21}{2}$
+\item נניח $X$ משתנה מקרי מציין )כלומר, מקבל $0$ או $1$( עם
+$\Pp(X=1) = p$, מה התוחלת שלו?\\
+נחשב:
+$\EE(X) = \sum_{x\in \{0,1\}} x\Pp(X=x) = 1\cdot p + 0\cdot(1-p) = p$ כלומר - לכל משתנה מציין, התוחלת שלו היא הסיכוי שיצא $1$.
+\item נחזור למשחק התאים בפארק השעשועים. כמה כדורים ייכנסו לתא עם הכדור הראשון?\\
+כמובן שלא נוכל לחשב בוודאות, אבל נוכל לחשב את התוחלת של מספר הכדורים באותו התא. נגדיר
+$Y_i$ משתנה מקרי המציין "הכדור ה
+$i$ נכנס לאותו התא כמו הכדור ה$1$". נרצה לחשב את תוחלת
+$\sum_{i=1}^n Y_i$.\\
+בדיקת שפיות, מהו
+$Y_1$? הוא תמיד $1$!\\
+מהו
+$\Pp(Y_i = 1)$? חישבנו זאת קודם - הסיכוי ש
+$i$ ו$1$ יכנסו לאותו התא הוא בדיוק
+$\frac{1}{m}$. 
+$Y_i$ הוא משתנה מציין, ולכן
+$\EE(Y_i) = \frac{1}{m}$. כעת ניעזר בלינאריות התוחלת ויתקיים:
+$$\EE\left(\sum_{i=1}^n Y_i \right) = \EE\left(1 + \sum_{i=2}^n Y_i \right) = 1+\sum_{i=2}^n \EE(Y_i) = 1+\sum_{i=2}n \frac{1}{m} = 1+\frac{(n-1)}{m}$$
+
+\end{enumerate}
+\section*{מיון מהיר אקראי}
+\subsection*{תזכורת: מיון מהיר}
+בשבוע שעבר הוכחנו את \textbf{נכונות} האלגוריתם מיון מהיר. בשיעור עם לאו דיברתם על זמן הריצה הגרוע של האלגוריתם. מה הוביל לזמן ריצה כזה?\\
+הבעיה היא שכשאנחנו בוחרים את הציר בצורה \textbf{שרירותית} - תמיד יכולים "להנדס" קלט שיוביל לזמן ריצה של המקרה הגרוע. כדי להתמודד עם זה, נרצה להוסיף אקראיות - גם אנחנו לא יודעים איזה איבר ייבחר בתור ציר, ולכן "יותר קשה" )פחות סביר( שיהיה קלט רע.
+\subsection*{מיון מהיר אקראי}
+השינוי שנעשה יתמודד בדיוק עם הקושי שהעלינו - לא נבחר ציר שרירותית, אלא \textbf{אקראית}:
+\begin{flushright}
+\begin{otherlanguage}{english}
+\includegraphics[scale=0.5]{Alg.jpg}
+\end{otherlanguage}
+\end{flushright}
+כעת בגלל שהוספנו אקראיות, למעשה זמן הריצה, כפונקציה של גודל הקלט, הופך להיות משתנה מקרי. אז לאיזה זמן ריצה אפשר \textbf{לצפות}? במילים אחרות, נרצה לשאול מהי תוחלת זמן הריצה.\\
+\subsection{ניתוח זמן הריצה}
+נסמן את זמן הריצה ב
+$T(n)$. אנו יודעים שאם הציר הנבחר הוא האיבר ה$k$ בגודלו במערך, זמן הריצה יהיה
+
+$T(n\text{ (with pivot }k\text{)}) =\Theta(n) + T(n-k) + T(k-1)$. אנחנו לא יודעים מראש איזה ציר ייבחר. נמדל זאת באמצעות משתנים מקריים: יהא
+$X_k$ משתנה המציין את הבחירה בציר
+$k$, אז מתקיים:
+$$T(n) = \Theta(n) + \sum_{k=1}^n X_k \cdot \left(T(n-k) + T(k-1)\right)$$
+אנחנו מתעניינים בתוחלת זמן הריצה, כלומר:
+\begin{flalign*}
+&\EE(T(n)) = \EE\left(\Theta(n) + \sum_{k=1}^n \big[ X_k \cdot \left(T(n-k) + T(k-1)\right)\big] \right) \nim{\text{linearity}}=\\
+& \Theta(n) +\sum_{k=1}^n\big[ \EE(X_k \cdot \left(T(n-k) + T(k-1)\right))\big] \nim{\text{independent}}=\Theta(n) + \sum_{k=1}^n \big[\EE(X_k) \cdot\EE \left(T(n-k) + T(k-1)\right)\big] =\\
+&\Theta(n) + \frac{1}{n} \sum_{k=1}^n \big[\EE(T(n-k)) + \EE(T(k-1))\big]  =\Theta(n) + \frac{2}{n}\sum_{k=0}^n\EE(T(k))
+\end{flalign*}
+ובסך הכל
+$\EE(T(n)) = \Theta(n) + \frac{2}{n}\sum_{k=0}^n\EE(T(k)) $. נרצה לחסום את התוחלת הזו. \\
+%\textcolor{blue}{\textit{להבהיר - נגמר החלק ההסתברותי! השתמשנו במשתנים מקריים בשביל למדל "כל בחירת ציר אפשרי", ומעכשיו מדובר בחישוב אלגברי.}}\\
+לשם הנוחות נסמן
+$R(n) = \EE(T(n))$ ולכן נקבל את הנוסחה הרקורסיבית
+$$R(n) =\Theta(n) + \frac{1}{n}\sum_{k=0}^{n-1} R(k) \nim{\star}\leq \frac{2}{n}\sum_{k=0}^{n-1} R(k) +cn$$
+נגדיר $U(n) = \frac{2}{n} \sum_{k=0}^{n-1} U(k) + cn$. מתקיים  שלכל
+$n$, 
+$R(n)\leq U(n)$ ולכן נרצה לשערך את 
+$U(n)$.
+
+\textbf{תרגילים:}
+\begin{enumerate}
+\item כדי ש$\star$ יהיה נכון, צריך להוכיח כי אם
+$f(n) = O(n)$, אז קיים
+$C>0$ כך שלכל
+$n\in \NN$ מתקיים
+$f(n) \leq Cn$. הוכיחו זאת.
+\item הוכיחו כי לכל 
+$n\in\NN$ מתקיים
+$R(n)\leq U(n)$.
+\end{enumerate}
+
+ נעשה טריק )דיי סטנדרטי(:
+
+\begin{flalign}
+&U(n) = \frac{2}{n} \sum_{k=0}^{n-1} U(k) + cn \Longrightarrow nU(n) = cn^2 + 2\sum_{k=0}^{n-1} U(k)\\
+& (n+1)U(n+1) = c(n+1)^2 + 2\sum_{k=0}^{n} U(k)
+\end{flalign}
+נחסר את $1$ מ$2$:
+\begin{flalign*}
+&(n+1)U(n+1) - nU(n) = c(n+1)^2 - cn^2 + 2U(n)\\
+&U(n+1) = \frac{2cn + c}{n+1} + \frac{n+2}{n+1}U(n) \leq  \frac{2cn + 2c}{n+1} + \frac{n+2}{n+1}U(n) = 2c + \frac{n+2}{n+1}U(n)
+\end{flalign*}
+נסמן
+$2c = d$. כלומר קיבלנו שמתקיים:
+$$U(n+1) \leq d + \frac{n+2}{n+1}U(n)$$
+נפתח איטרטיבית את האי שוויון:
+\begin{flalign*}
+&U(n+1) \leq d + \frac{n+2}{n+1}U(n) \leq d+ \frac{n+2}{n+1}\left( d + \frac{n+1}{n}U(n-1) \right) =\\
+&d+\frac{n+2}{n+1}d + \frac{n+2}{n}U(n-1) \leq d+\frac{n+2}{n+1}d +\frac{n+2}{n}\left(d + \frac{n}{n-1}U(n-2)\right) = \\
+&d+\frac{n+2}{n+1}d + \frac{n+2}{n}d + \frac{n+2}{n-1}U(n-2) = (n+2)\left( d\left(1 + \frac{1}{n+1} + \frac{1}{n} \right)  +\frac{1}{2-1} U(n-2)\right)
+\end{flalign*}
+אם נפתח אותו עד הסוף )ניתן להוכיח באינדוקציה( נקבל:
+$$U(n+1) \leq (n+2)\left(d\left(\frac{1}{n+1}+\frac{1}{n} + \frac{1}{n-1} + \ldots + \frac{1}{2} + U(1)\right)\right) = (n+2)d\sum_{k=2}^{n+1} \frac{1}{k} + U(1)$$
+וכמסקנה מתרגיל $0$, נקבל
+$U(n) = O(n\log n)$.\\
+לסיכום, הראינו כי
+$\EE(T(n)) = R(n) \leq U(n) = O(n\log n)$ ולכן
+$\EE(T(n)) = O(n\log n)$.\\
+
+את הצד השני ניתן לחסום באמצעות חישוב דומה.
+
+\end{document}
+
+
+ נתון מטבע \textbf{לא הוגן}, כשהסיכוי שיוצא $H$ הוא $\frac{1}{3}$. מטילים את המטבע $3$ פעמים. לאיזה מאורעות הסתברות גבוהה יותר: יצא $HHT$, או שיצא $HTH$?\\
+מדובר באותו הסיכוי. נסמן ב$X_i$ את המשתנה המציין של המאורע "יצא $H$ בהטלה ה$i$". מתקיים:
+$$\Pp(X_1 = 1, X_2 = 0, X_3 = 1) = \Pp(X_1 = 1)\Pp(X_2 = 0)\Pp(X_3=1) = \frac{1}{3}\cdot\frac{2}{3}\cdot\frac{1}{3} = \frac{2}{27}$$
+חישוב סימטרי יראה ש
+$\Pp(X_1 = 1,X_2 = 1, X_3 = 0)  = \frac{1}{3}\cdot\frac{1}{3}\cdot\frac{2}{3} = \frac{2}{27}$
+
+
+
+
+\item )דוגמה לשימוש יותר מתוחכם( אנחנו משחקים משחק: מטילים קוביה הוגנת פעמיים. אחרי ההטלה הראשונה אנחנו מקבלים מספר מטבעות השווה לתוצאת ההטלה, ואחרי ההטלה השניה אנחנו מקבלים מספר מטבעות השווה פי 2 מתוצאת ההטלה השניה. לדוגמה, אם בהטלה הראשונה יצא 3 ובהטלה השניה יצא 5, נקבל בסך הכל
+$3+2\cdot 5 = 13$ מטבעות.\\
+מה הסיכוי שנקבל לכל היותר $4$ מטבעות במשחק?\\
+\textbf{פתרון:} נרצה למצוא דרך לתאר את סכום המטבעות שקיבלנו במשחק כולו. בגלל שיש שתי הטלות, נגדיר שני משתנים מקריים, 
+$X_1, X_2$ המתארים את תוצאת ההטלה הראשונה ואת תוצאת ההטלה השניה. מההטלה הראשונה נקבל 
+$X_1$ מטבעות, ומההטלה השניה נקבל 
+$2\cdot X_2$ מטבעות, לכן בסך הכל נקבל
+$X_1 + 2X_2$ מטבעות. שימו לב - כמו שבאינפי חיברנו וכפלנו פונקציות, זה בדיוק מה שאנחנו עושים כאן! זה משתנה מקרי חדש המתאר את סך המטבעות שקיבלנו במשחק.  אנחנו מחפשים את 
+$\Pp(X_1 + 2X_2\leq 4)$. נבחין כי זה קורה רק בשני מקרים:
+$X_1 = , X_2 = 2$ וכן
+$X_1 = 2, X_2 = 2$, ולכן:
+$$	\Pp(X_1 + 2X_2\leq 4) = \Pp(X_1 =1 , X_2 = 2 \text{ OR }X_1 = 2, X_2 = 2)\nim{\text{\footnotesize disjoint events}}=  \Pp(X_1 = 2, X_2 = 2) + \Pp(X_1 = 2, X_2 = 2) = \frac{1}{36} + \frac{1}{36}
+$$
+
+מה ההצדקה לשוויון האחרון? מכיוון שיש 
+$36$ זוגות הטלות אפשריים, והקוביות הוגנות, הסיכוי לקבל אחת מהן היא בדיוק
+$\frac{1}{36}$. למעשה, יש פה שימוש בקשר אפשרי בין משתנים מקריים.
+
+
+
+\item עבור הדוגמה הקודמת - מדובר בשתי הטלות קוביה אחת אחרי השניה. תוצאה של אחת אינה משפיעה על התוצאה של אחרת, לכן$X_1, X_2$ בלתי תלויים. בפרט מתקיים:
+$$\Pp(X_1 = 1, X_2 = 2) = \Pp(X_1=1)\cdot\Pp(X_2 = 2) = \frac{1}{6}\cdot\frac{1}{6} = \frac{1}{36}$$
+
+
+ניזכר במשחק הקוביות ששיחקנו מוקדם יותר. מה תוחלת מספר המטבעות הכולל שנרוויח?\\
+כבר היה לנו את המשתנה המקרי 
+$X_1 + 2X_2$ שתיאר את כמות המטבעות שנרוויח. נחשב באמצעות לינאריות התוחלת:
+$$\EE(X_1 + 2X_2) = \EE(X_1) + 2\EE(X_2) = 3.5 + 2\cdot 3.5 = 3\cdot 3.5$$
