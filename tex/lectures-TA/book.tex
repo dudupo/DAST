@@ -245,6 +245,8 @@ What's the running time? Denote by $T\left( n \right)$ an upper bound on the run
 
  
 
+
+
 \ifdefined\SOLUTION
   \chapter{DAST. Exercise 0. Solution.}
 \else
@@ -911,7 +913,6 @@ where \(n^{\log 3}  \sim n^{1.58} < n^2 \).
 
 
 %\newcommand*{\EXERCISE}{}%
-%\input{../tex/texlib/head.tex}
 
 
  
@@ -1818,7 +1819,6 @@ In the first two cases, we are calling Get-Order on trees (BST with our addition
 
 
 %\newcommand*{\EXERCISE}{}%
-%\input{../tex/texlib/head.tex}
 
 
  
@@ -3868,8 +3868,10 @@ In any depth-first search of a (directed or undirected) graph $G = (V, E)$, for 
   Let $T$ be an MST of $G$. Consider a forest $F \subset T$ and a cut $X$ that respects $X$ (i.e. $F \cap X = \emptyset$). Then $F \cup \text{ arg}\min_{e} w(e)$ is also contained in some MST. Note that it does not necessarily have to be the same tree $T$. 
 \end{lemma}
 
-\begin{proof}
-If $e \in T$, then $F \cup \{ e \} \subset T$ and we are done. Otherwise, consider the second case where $e \notin T$. This means that $T \cup \{ e \}$ has $|V|$ edges and therefore must have a cycle. Let $\Gamma = T \cup \{ e \}$ and let $x$ and $y$ be the endpoints of $e$ (namely $e = (x,y)$). Denote the subset of vertices defining the cut $X$ by $U$. Without loss of generality, let's assume $x \in U$ and $y \in \bar{U}$.
+\begin{proof} Separate to cases: 
+  \begin{itemize}
+    \item If $e \in T$, then $F \cup \{ e \} \subset T$ and we done.
+    \item Otherwise, consider the second case where $e \notin T$. This means that $T \cup \{ e \}$ has $|V|$ edges and therefore must have a cycle. Let $\Gamma = T \cup \{ e \}$ and let $x$ and $y$ be the endpoints of $e$ (namely $e = (x,y)$). Denote the subset of vertices defining the cut $X$ by $U$. Without loss of generality, let's assume $x \in U$ and $y \in \bar{U}$.
 
 
 Since $T$ is connected, there is a path $x \rightsquigarrow y$ in $T$, denote it by $\mathcal{P}$. Additionally, because $e \notin T$, we have that $e \notin \mathcal{P}$. This means that there must be another edge in $\mathcal{P}$ connecting a vertex in $U$ to a vertex in $\bar{U}$\footnote{Otherwise, walking along $\mathcal{P}$ cannot take one out of $U$, leading to a contradiction as $\mathcal{P}$ leads to $y$.}. Let $e^{\prime}$ be that edge, we have:\begin{enumerate}
@@ -3884,6 +3886,7 @@ By using the fact that subtracting an edge from a cycle doesn't harm connectivit
     \end{split}
   \end{equation*}
   So $\Gamma/\{e^{\prime}\}$ is an MST.  Finally, to close the proof, observe that $F \cup \{e\} \subset \Gamma/\{e^{\prime}\}$. This means that, we have found an MST that contains $F \cup \{e\}$. 
+  \end{itemize}
 
 \end{proof}
 \section{Kruskal Algorithm.} This algorithm constructs the MST iteratively by holding a forest $F$ contained in an MST and then looking for the minimal edge in a cut that it respects. Note, that since $F$ has no cycles, any edge $e \subset E$ that does not create a cycle in $F$ must belong to a cut $X$ that is respected by $F$.
@@ -3894,7 +3897,7 @@ By ensuring that the edges are examined in increasing weight order, we can deter
 \SetAlgoLined
 \KwResult{Returns MST of given $G=(V,E, w)$ }
 \caption{ Kruskal alg.}
-sorts the $E$ according to $w$ \\
+sorts  $E$ according to $w$ \\
 define $F_{0} = \emptyset$ and $i \leftarrow 0$ \\
 \For{ $ e \in E$ in sorted order } {
   \If { $F_{i} \cup \{e\}$ has no cycle} {
@@ -3929,14 +3932,17 @@ So, if $F_{i-1}$ respects $X$ and $e$ is the minimal edge in $X$, then it follow
   Let $E^{\prime} \subset E$ such $E$ contains both an MST $T$ and a cycle $C$. Let $e$ be a maximal edge in $C$ prove that $E^{\prime}/ \{e\}$ contains an MST.  
 \end{problem}
 
-\begin{solution}
-If $e \notin T$, then we are done. So, it is left to prove for $e \in T$. Let $(x,y) = e$ and consider the forest $F = T/\{e\}$.
+\begin{solution} Separate to cases:
+  \begin{itemize}
+    \item If $e \notin T$, then we are done.
+    \item So, it is left to prove for $e \in T$. Let $(x,y) = e$ and consider the forest $F = T/\{e\}$.
 
 Since $T$ is a spanning tree, subtracting $e$ from $T$ divides $T$ into two connected components, $U$ and $\bar{U}$, corresponding to all vertices that can be reached from $x$ and $y$, respectively. Let $X$ be the cut $X = (U, \bar{U})$. Note that $F$ respects $X$. On the other hand, since $(x,y)$ is an edge in cycle $C$, there is another path from $x$ to $y$ that does not contain $e$. This path must have a non-trivial intersection with $X$ (otherwise, walking through the path cannot lead to a vertex in $\bar{U}$).
 
 Therefore, there exists an edge $e^{\prime} \neq e$ such that $e \in C \cap X$. Let $e^{\prime} = (u,v)$ and assume, without loss of generality, that $u \in U$ and $v \in \bar{U}$. Since $U$ and $\bar{U}$ are connected components, there are paths $x \rightsquigarrow u$ and $v \rightsquigarrow y$ that connect with $e$ and $e^{\prime}$. This creates a cycle in $T \cup \{e^{\prime}\}$. Using the fact that subtracting an edge from a cycle does not harm the graph's connectivity, it follows that $T^{\prime} = T \cup \{e^{\prime}\} / \{e\}$ is connected and therefore a spanning tree as well.
 
 Furthermore, $w(T^{\prime}) = w(T) - w(e) + w(e^{\prime}) \leq w(T)$. Finally, observe that $T^{\prime} \subset E^{\prime} / \{e\}$, and we get the required result.
+  \end{itemize}
 \end{solution}
 
 
