@@ -91,14 +91,17 @@ So, if $F_{i-1}$ respects $X$ and $e$ is the minimal edge in $X$, then it follow
   Let $E^{\prime} \subset E$ such $E$ contains both an MST $T$ and a cycle $C$. Let $e$ be a maximal edge in $C$ prove that $E^{\prime}/ \{e\}$ contains an MST.  
 \end{problem}
 
-\begin{solution}
-If $e \notin T$, then we are done. So, it is left to prove for $e \in T$. Let $(x,y) = e$ and consider the forest $F = T/\{e\}$.
+\begin{solution} Separate to cases:
+  \begin{itemize}
+    \item If $e \notin T$, then we are done.
+    \item So, it is left to prove for $e \in T$. Let $(x,y) = e$ and consider the forest $F = T/\{e\}$.
 
 Since $T$ is a spanning tree, subtracting $e$ from $T$ divides $T$ into two connected components, $U$ and $\bar{U}$, corresponding to all vertices that can be reached from $x$ and $y$, respectively. Let $X$ be the cut $X = (U, \bar{U})$. Note that $F$ respects $X$. On the other hand, since $(x,y)$ is an edge in cycle $C$, there is another path from $x$ to $y$ that does not contain $e$. This path must have a non-trivial intersection with $X$ (otherwise, walking through the path cannot lead to a vertex in $\bar{U}$).
 
 Therefore, there exists an edge $e^{\prime} \neq e$ such that $e \in C \cap X$. Let $e^{\prime} = (u,v)$ and assume, without loss of generality, that $u \in U$ and $v \in \bar{U}$. Since $U$ and $\bar{U}$ are connected components, there are paths $x \rightsquigarrow u$ and $v \rightsquigarrow y$ that connect with $e$ and $e^{\prime}$. This creates a cycle in $T \cup \{e^{\prime}\}$. Using the fact that subtracting an edge from a cycle does not harm the graph's connectivity, it follows that $T^{\prime} = T \cup \{e^{\prime}\} / \{e\}$ is connected and therefore a spanning tree as well.
 
 Furthermore, $w(T^{\prime}) = w(T) - w(e) + w(e^{\prime}) \leq w(T)$. Finally, observe that $T^{\prime} \subset E^{\prime} / \{e\}$, and we get the required result.
+  \end{itemize}
 \end{solution}
 
 
