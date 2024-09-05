@@ -10,17 +10,20 @@
 
 \section{The Spanning Tree Problem.}
 
-
 \begin{definition}
-  A spanning tree $T$ of a graph $G=(V,E)$ is an edges subset of $E$ such that $T$ is a tree (having no cycles), and the graph $(V,T)$ is connected.   
+  A spanning tree $T$ of a graph $G=(V,E)$ is a subset of edges in $E$ such that $T$ is a tree (having no cycles), and the graph $(V,T)$ is connected.   
 \end{definition}
 
-\begin{problem}[MST] Let $G = (V,E)$ be a weight graph with weight function $w : E \rightarrow \mathbb{R}$. Let's extends the weight for $E$'s subsets by defining for the weight of $X\subset E$ to be $w(X)= \sum_{e \in X}w(e)$. The minimum spanning tree of $G$ is the spanning tree of $G$ that has the minimal weight according to $w$.
+\begin{problem}[MST] Let $G = (V,E)$ be a weighted graph with weight function $w : E \rightarrow \mathbb{R}$. We extend the weight function to subsets of $E$ by defining the weight of $X\subset E$ to be $w(X)= \sum_{e \in X}w(e)$. The minimum spanning tree (MST) of $G$ is the spanning tree of $G$ that has the minimal weight according to $w$. Note that in general, there might be more than one MST for $G$. 
 \end{problem}
 
 \begin{definition}
-  Let $U \subset V$ we will define the cut associated by $U$ as the outer edges of $U$, namely all the edges $(u,v)\in E$ such $u\in U$ and $v \notin U$. We use the following $C = (U, \bar{U})$ to denote the cut. We will say that $X \subset E$ respects the cut if $X \cap C = \emptyset$.
+  Let $U \subset V$. We define the cut associated with $U$ as the set of outer edges of $U$, namely all the edges $(u,v)\in E$ such that $u\in U$ and $v \notin U$. We use the notation $X = (U, \bar{U})$ to represent the cut. We say that $E^{\prime} \subset E$ respects the cut if $E^{\prime} \cap X = \emptyset$.
 \end{definition} 
+
+\begin{lemma}[The Cut-Lemma] 
+  Let $T$ be an MST of $G$. Consider a forest $F \subset T$ and a cut $X$ that respects $X$ (i.e. $F \cap X = \emptyset$). Then $F \cup \text{ arg}\min_{e} w(e)$ is also contained in some MST. Note that it does not necessarily have to be the same tree $T$. 
+\end{lemma}
 \input{../texlib/tail}
 
 
