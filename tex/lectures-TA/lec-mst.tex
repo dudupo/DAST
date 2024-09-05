@@ -46,8 +46,7 @@ By using the fact that subtracting an edge from a cycle doesn't harm connectivit
 
 \end{proof}
 
-
-In the lecture, you have seen the Kruskal algorithm for finding an MST. This algorithm constructs the MST iteratively, where in each step it holds a forest $F$ contained in the MST and then looks for the minimal edge in a cut that it respects. Note that since $F$ has no cycles, any edge $e \subset E$ that does not close a cycle in $F$ must belong to some cut $X$ that is respected by $F$. By enforcing the order of edges being examined to be increasing in weight, it follows that the first edge that does not close a cycle is also the one with the minimum weight among them. Therefore, by \Cref{lemma:cut}, we can conclude that the forest obtained by adding $e$ into $F$ is contained in the MST, and we can continue with it.
+Kruskal algorithm for finding an MST. This algorithm constructs the MST iteratively by holding a forest $F$ contained in the MST and then looking for the minimal edge in a cut that it respects. It is important to note that since $F$ has no cycles, any edge $e \subset E$ that does not create a cycle in $F$ must belong to a cut $X$ that is respected by $F$. By ensuring that the edges are examined in increasing weight order, we can determine that the first edge that does not create a cycle is also the one with the minimum weight among them. Therefore, according to \Cref{lemma:cut}, we can conclude that the forest obtained by adding $e$ into $F$ is contained in the MST, and we can continue with it.
 
 \begin{algorithm}
 \SetAlgoLined
