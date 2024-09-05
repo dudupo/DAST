@@ -28,7 +28,10 @@
 \end{lemma}
 
 \begin{proof}
-If $e \in T$, then $F \cup \{ e \} \subset T$ and we are done. Otherwise, consider the second case where $e \notin T$. This means that $T \cup \{ e \}$ has $|V|$ edges and therefore must have a cycle. Let $\Gamma = T \cup \{ e \}$. Let $x$ and $y$ be the endpoints of $e$ (namely $e = (x,y)$). Denote the subset of vertices defining the cut $X$ by $U$. Since $T$ is connected, there is a path $x \rightsquigarrow y$ in $T$, denoted by $\mathcal{P}$. Additionally, because $e \notin T$, we have that $e \notin \mathcal{P}$. This means that there must be another edge in $\mathcal{P}$ connecting a vertex in $U$ to a vertex in $\bar{U}$\footnote{Otherwise, walking along $\mathcal{P}$ cannot take one out of $U$, leading to a contradiction as $\mathcal{P}$ leads to $y$.}. Let $e^{\prime}$ be that edge, we have:\begin{enumerate}
+If $e \in T$, then $F \cup \{ e \} \subset T$ and we are done. Otherwise, consider the second case where $e \notin T$. This means that $T \cup \{ e \}$ has $|V|$ edges and therefore must have a cycle. Let $\Gamma = T \cup \{ e \}$. Let $x$ and $y$ be the endpoints of $e$ (namely $e = (x,y)$). Denote the subset of vertices defining the cut $X$ by $U$. Without loss of generality, let's assume $x \in U$ and $y \in \bar{U}$.
+
+
+Since $T$ is connected, there is a path $x \rightsquigarrow y$ in $T$, denote it by $\mathcal{P}$. Additionally, because $e \notin T$, we have that $e \notin \mathcal{P}$. This means that there must be another edge in $\mathcal{P}$ connecting a vertex in $U$ to a vertex in $\bar{U}$\footnote{Otherwise, walking along $\mathcal{P}$ cannot take one out of $U$, leading to a contradiction as $\mathcal{P}$ leads to $y$.}. Let $e^{\prime}$ be that edge, we have:\begin{enumerate}
     \item Both $e^{\prime}, e \in X$ So $w(e) \le w(e^{\prime})$.
     \item $e \cup \mathcal{P}$ is a cycle in $\Gamma$. 
   \end{enumerate}
