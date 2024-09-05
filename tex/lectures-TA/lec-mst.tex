@@ -35,8 +35,7 @@ If $e \in T$, then $F \cup \{ e \} \subset T$ and we are done. Otherwise, consid
     \item $e \cup \mathcal{P}$ is a cycle in $\Gamma$. 
   \end{enumerate}
 
-  By using the fact that subtracting an edge from a cycle dosn't harm connectivity \Cref{claim:subtract}, we have that $\Gamma/\{e^{\prime}\}$ is connected, and since it has $|V|-1$ edges we conclude that it has to be a spanning tree. On the otherhand, by :   
-  \begin{equation*}
+  By using the fact that subtracting an edge from a cycle dosn't harm connectivity \Cref{claim:subtract}, we have that $\Gamma/\{e^{\prime}\}$ is connected, and since it has $|V|-1$ edges we conclude that it has to be a spanning tree. On the otherhand, by: \begin{equation*}
     \begin{split}
       w\left( \Gamma/\{e^{\prime}\} \right) = w\left( T \right) + \overbrace{w(e) - w(e^{\prime})}^{ \le 0} \le w\left( T \right) 
     \end{split}
