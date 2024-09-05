@@ -24,6 +24,23 @@
 \begin{lemma}[The Cut-Lemma] 
   Let $T$ be an MST of $G$. Consider a forest $F \subset T$ and a cut $X$ that respects $X$ (i.e. $F \cap X = \emptyset$). Then $F \cup \text{ arg}\min_{e} w(e)$ is also contained in some MST. Note that it does not necessarily have to be the same tree $T$. 
 \end{lemma}
+
+
+\begin{algorithm}
+\SetAlgoLined
+\KwResult{Sorting $A_{1},A_{2},..A_{n}$ }
+\caption{ Kruskal alg.}
+\For{ $ i \in [n]$} {
+  \For{ $ j \in [n]$} {
+    \If { $A_{i} < A_{j} $} {
+      swap $A_{i} \leftrightarrow A_{j}$
+    }
+  }
+}
+
+
+\end{algorithm}
+
 \input{../texlib/tail}
 
 
