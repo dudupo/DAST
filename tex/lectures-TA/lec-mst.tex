@@ -1,0 +1,26 @@
+
+\input{../texlib/head}
+\begin{document}
+\ifdefined\BOOK
+\else
+\setcounter{chapter}{10}
+\fi
+\chapter{Minimum Spanning Tree Recitation.} 
+
+
+\section{The Spanning Tree Problem.}
+
+
+\begin{definition}
+  A spanning tree $T$ of a graph $G=(V,E)$ is an edges subset of $E$ such that $T$ is a tree (having no cycles), and the graph $(V,T)$ is connected.   
+\end{definition}
+
+\begin{problem}[MST] Let $G = (V,E)$ be a weight graph with weight function $w : E \rightarrow \mathbb{R}$. Let's extends the weight for $E$'s subsets by defining for the weight of $X\subset E$ to be $w(X)= \sum_{e \in X}w(e)$. The minimum spanning tree of $G$ is the spanning tree of $G$ that has the minimal weight according to $w$.
+\end{problem}
+
+\begin{definition}
+  Let $U \subset V$ we will define the cut associated by $U$ as the outer edges of $U$ we use the following $C = (U, \bar{U})$ to denote the cut. 
+\end{definition} 
+\input{../texlib/tail}
+
+
