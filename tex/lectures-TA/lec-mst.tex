@@ -60,11 +60,23 @@ define $F_{0} = \emptyset$ and $i \leftarrow 0$ \\
   }
 }
 \Return $F_{i}$
-
   \label{alg:krus}
 \end{algorithm}
+
+\begin{claim}
+  For any $i$, $F_{i} \subset $ of an MST.
+\end{claim}
+\begin{proof}
+  By induction. 
+  \begin{enumerate}
+    \item Base. Let $T$ be an arbitrary MST of $G$. $F_{0} = \emptyset \subset T $.
+    \item Assumption. Assume correctness for any $j < i$. 
+    \item Step. By the induction assumption there is an MST $T$ such $F_{i-1} \subset T$. Denote by $e$ the edge for which $F_{i} = F_{i-1}\cup \{e\}$. By algorithm definition, $F_{i} = F_{i-1} \cup \{e\}$ has no cycles (line number (4)).   
+  \end{enumerate}
+\end{proof}
+
 \begin{proof}[Correctness of \Cref{alg:krus}]
-  
+ 
 \end{proof}
 
 
