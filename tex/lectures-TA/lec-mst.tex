@@ -28,11 +28,13 @@
 \end{lemma}
 
 \begin{proof}
-  If $e \in T$ then $F \cup \{ e \} \subset T$ and we done. So consider the second case $ e \notin{T} $. The intersection $T\cap X$ must not be empty, otherwise there is no path connecting vertices on the opposite ends of the cut (In notations of \Cref{def:cut}, no path connects vertices in $U$ to vertices in $\var{U}$), and that is contradiction for $T$ be a spanning tree. Denote by $e^{\prime} = T \cap X$.
+  If $e \in T$ then $F \cup \{ e \} \subset T$ and we done. So consider the second case $ e \notin{T} $. The intersection $T\cap X$ must not be empty, otherwise there is no path connecting vertices on the opposite ends of the cut (In notations of \Cref{def:cut}, no path connects vertices in $U$ to vertices in $\bar{U}$), and that is contradiction for $T$ be a spanning tree. Denote by $e^{\prime} = T \cap X$. And consider $T^{\prime} = T / \{e^{\prime}\} \up \{e\}$.
+
+  First assume that 
 \end{proof}
 
 
-In the lecture, you learned about the Kruskal algorithm for finding an MST. This algorithm constructs the MST iteratively, where in each step it holds a forest $F$ contained in the MST and then looks for the minimal edge in a cut that it respects. Note that since $F$ has no cycles, any edge $e \subset E$ that does not close a cycle in $F$ must belong to some cut $X$ that is respected by $F$. By enforcing the order of edges being examined to be increasing in weight, it follows that the first edge that does not close a cycle is also the one with the minimum weight among them. Therefore, by \Cref{lemma:cut}, we can conclude that the forest obtained by adding $e$ into $F$ is contained in the MST, and we can continue with it.
+In the lecture, you have seen the Kruskal algorithm for finding an MST. This algorithm constructs the MST iteratively, where in each step it holds a forest $F$ contained in the MST and then looks for the minimal edge in a cut that it respects. Note that since $F$ has no cycles, any edge $e \subset E$ that does not close a cycle in $F$ must belong to some cut $X$ that is respected by $F$. By enforcing the order of edges being examined to be increasing in weight, it follows that the first edge that does not close a cycle is also the one with the minimum weight among them. Therefore, by \Cref{lemma:cut}, we can conclude that the forest obtained by adding $e$ into $F$ is contained in the MST, and we can continue with it.
 
 \begin{algorithm}
 \SetAlgoLined
