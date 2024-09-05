@@ -48,7 +48,6 @@ By using the fact that subtracting an edge from a cycle doesn't harm connectivit
 \section{Kruskal Algorithm.} This algorithm constructs the MST iteratively by holding a forest $F$ contained in an MST and then looking for the minimal edge in a cut that it respects. Note, that since $F$ has no cycles, any edge $e \subset E$ that does not create a cycle in $F$ must belong to a cut $X$ that is respected by $F$. By ensuring that the edges are examined in increasing weight order, we can determine that the first edge that does not create a cycle is also the one with the minimum weight among them. Therefore, according to \Cref{lemma:cut}, we can conclude that the forest obtained by adding $e$ into $F$ is contained in an MST.
 
 \begin{algorithm} 
-  \label{alg:krus}
 \SetAlgoLined
 \KwResult{Returns MST of given $G=(V,E, w)$ }
 \caption{ Kruskal alg.}
@@ -61,6 +60,8 @@ define $F_{0} = \emptyset$ and $i \leftarrow 0$ \\
   }
 }
 \Return $F_{i}$
+
+  \label{alg:krus}
 \end{algorithm}
 \begin{proof}[Correctness of \Cref{alg:krus}]
   
