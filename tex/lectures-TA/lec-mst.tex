@@ -30,7 +30,7 @@
 \begin{proof}
   If $e \in T$ then $F \cup \{ e \} \subset T$ and we done. So consider the second case $ e \notin{T} $. The intersection $T\cap X$ must not be empty, otherwise there is no path connecting vertices on the opposite ends of the cut (In notations of \Cref{def:cut}, no path connects vertices in $U$ to vertices in $\bar{U}$), and that is contradiction for $T$ be a spanning tree. Denote by $e^{\prime} \in T \cap X$ (If there are more than one pick arbitrary edge) . And consider $T^{\prime} = T / \{e^{\prime}\} \cup \{e\}$.
 
-  Our goal is to prove that $T^{\prime}$ is a minimum spanning tree, let's start with showing that $T^{\prime}$ is a spanning tree. Assume that $T^{\prime}$ is not a spanning tree, since $T^{\prime}$ has $|V|-1$ edges, $T$ must have cycle (otherwise is a tree with $|V$ vertices $\Rightarrow$ a spanning tree). Denote by $u,v$ the ends of $e$ (i.e $(u,v) = e$).   
+  Our goal is to prove that $T^{\prime}$ is a minimum spanning tree, let's start with showing that $T^{\prime}$ is a spanning tree. Assume that $T^{\prime}$ is not a spanning tree, since $T^{\prime}$ has $|V|-1$ edges, $T$ must have cycle (otherwise is a tree with $|V|$ vertices $\Rightarrow$ a spanning tree). Denote by $u,v$ the ends vertices of $e$ (i.e $(u,v) = e$) .   
 \end{proof}
 
 
