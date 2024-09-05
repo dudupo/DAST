@@ -31,10 +31,10 @@
 \KwResult{Returns MST of given S $G=(V,E, w)$ }
 \caption{ Kruskal alg.}
 sorts the $E$ according to $w$ \\
-define $F_{0} = \emptyset$ and $i \leftarrow 0$
+define $F_{0} = \emptyset$ and $i \leftarrow 0$ \\
 \For{ $ e \in E$ in sorted order } {
-  \If { $F_{i} \cup e$ has no cycle} {
-    Define $F_{i+1} \leftarrow F_{i} \cup e$ \\
+  \If { $F_{i} \cup \{e\}$ has no cycle} {
+    $F_{i+1} \leftarrow F_{i} \cup \{e\}$ \\
     $i \leftarrow i + 1$
   }
 }
