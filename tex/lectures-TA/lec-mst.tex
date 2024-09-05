@@ -28,17 +28,17 @@
 
 \begin{algorithm}
 \SetAlgoLined
-\KwResult{Sorting $A_{1},A_{2},..A_{n}$ }
+\KwResult{Returns MST of given S $G=(V,E, w)$ }
 \caption{ Kruskal alg.}
-\For{ $ i \in [n]$} {
-  \For{ $ j \in [n]$} {
-    \If { $A_{i} < A_{j} $} {
-      swap $A_{i} \leftrightarrow A_{j}$
-    }
+sorts the $E$ according to $w$ \\
+define $F_{0} = \emptyset$ and $i \leftarrow 0$
+\For{ $ e \in E$ in sorted order } {
+  \If { $F_{i} \cup e$ has no cycle} {
+    Define $F_{i+1} \leftarrow F_{i} \cup e$ \\
+    $i \leftarrow i + 1$
   }
 }
-
-
+\Return $F_{i}$
 \end{algorithm}
 
 \input{../texlib/tail}
