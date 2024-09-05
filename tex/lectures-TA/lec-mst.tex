@@ -73,6 +73,7 @@ define $F_{0} = \emptyset$ and $i \leftarrow 0$ \\
     \item Assumption. Assume correctness for any $j < i$. 
     \item Step. By the induction assumption there is an MST $T$ such $F_{i-1} \subset T$. Denote by $e=(x,y)$ the edge for which $F_{i} = F_{i-1}\cup \{e\}$. By algorithm definition, $F_{i} = F_{i-1} \cup \{e\}$ has no cycles (line number (4)). That means that in respect to $F_{i-1}$ $x$ and $y$ belongs to two different connected components, Denote $x$ connected component by $U$, and the cut it defines by $X = (U, \bar{U})$. Clearly $F_{i-1}$ respects\footnote{Otherwise $U$ would not be a connected component of $F_{i-1}$} $X$.  
       
+
 On the other hand, $w(e) \leq \min_{e^{\prime} \in X}w(e^{\prime})$. Any other $e^{\prime}$ with $w(e^{\prime}) < w(e)$ is either already in $F_{i-1}$ and therefore cannot be in $X$, or it closes a cycle in $F_{j}$ for some $j<i$. Since $F_{j} \subset F_{i-1}$, it also closes a cycle in $F_{i-1}$. Therefore, it cannot be an edge connecting between $U$ and $\bar{U}$ and does not belong to $X$.
   \end{enumerate}
 \end{proof}
