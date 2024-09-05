@@ -27,9 +27,9 @@
   Let $T$ be an MST of $G$. Consider a forest $F \subset T$ and a cut $X$ that respects $X$ (i.e. $F \cap X = \emptyset$). Then $F \cup \text{ arg}\min_{e} w(e)$ is also contained in some MST. Note that it does not necessarily have to be the same tree $T$. 
 \end{lemma}
 
-\begin{proof}
+\begin{proof} Separate to cases: 
   \begin{itemize}
-    \item If $e \in T$, then $F \cup \{ e \} \subset T$ and we are done.
+    \item If $e \in T$, then $F \cup \{ e \} \subset T$ and we done.
     \item Otherwise, consider the second case where $e \notin T$. This means that $T \cup \{ e \}$ has $|V|$ edges and therefore must have a cycle. Let $\Gamma = T \cup \{ e \}$ and let $x$ and $y$ be the endpoints of $e$ (namely $e = (x,y)$). Denote the subset of vertices defining the cut $X$ by $U$. Without loss of generality, let's assume $x \in U$ and $y \in \bar{U}$.
 
 
