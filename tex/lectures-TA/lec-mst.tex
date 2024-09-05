@@ -58,7 +58,13 @@ define $F_{0} = \emptyset$ and $i \leftarrow 0$ \\
 \begin{proof}
   Assume trough contradiction that a graph $G^{\prime} = G / \{ e \} $, where $e \in C$ is not connected. Means that there are two vertices $u$ and $v$ that has a path between them in $G$ but, no such a path in $G^{\prime}$ denote that path by $\mathcal{P}$ and observes that $e \in \mathcal{P}$ otherwise $\mathcal{P}$ would be also $u \rightsquigarrow v$ path in $G^{\prime}$. 
 
-Denote the ends of $e$ by $(x,y)=e$. Also, denote $C$ by $\braket{x_{0},x_{1},..x_{i},x,y,y_{0},..,y_{j}}$, where $y_{j}=x_{0}$ and there is an inequality for any other pair of vertices (we used the cycle definition). Then, there is a path $x \rightsquigarrow y$ in $C$, defined by~$\braket{x_{i},x_{i-1},..,x_{1},x_{0},y_{j-1},y_{j-2},..,y_{0},y}$. We denote this path by $\mathcal{P}^{\prime}$. By replacing $e$ in $\mathcal{P}$ with $\mathcal{P}^{\prime}$, we obtain a path $u \rightsquigarrow x \rightsquigarrow^{\mathcal{P}^\prime} y \rightsquigarrow v$, which is a path between $u$ and $v$ that does not contain $e$. This contradicts the assumption that there is no path between $u$ and $v$ in $G^{\prime}$.
+Denote the ends of $e$ by $(x,y)=e$. Also, denote $C$ by $\braket{x_{0},x_{1},..x_{i},x,y,y_{0},..,y_{j}}$, where $y_{j}=x_{0}$ and there is an inequality for any other pair of vertices (we used the cycle definition). Then, there is a path $x \rightsquigarrow y$ in $C$, defined by 
+\begin{equation*}
+  \begin{split}
+\braket{x_{i},x_{i-1},..,x_{1},x_{0},y_{j-1},y_{j-2},..,y_{0},y}
+  \end{split}
+\end{equation*}
+ We denote this path by $\mathcal{P}^{\prime}$. By replacing $e$ in $\mathcal{P}$ with $\mathcal{P}^{\prime}$, we obtain a path $u \rightsquigarrow x \rightsquigarrow^{\mathcal{P}^\prime} y \rightsquigarrow v$, which is a path between $u$ and $v$ that does not contain $e$. This contradicts the assumption that there is no path between $u$ and $v$ in $G^{\prime}$.
 \end{proof}
 
 
