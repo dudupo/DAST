@@ -71,7 +71,7 @@ define $F_{0} = \emptyset$ and $i \leftarrow 0$ \\
   \begin{enumerate}
     \item Base. Let $T$ be an arbitrary MST of $G$. $F_{0} = \emptyset \subset T $.
     \item Assumption. Assume correctness for any $j < i$. 
-    \item Step. By the induction assumption there is an MST $T$ such $F_{i-1} \subset T$. Denote by $e$ the edge for which $F_{i} = F_{i-1}\cup \{e\}$. By algorithm definition, $F_{i} = F_{i-1} \cup \{e\}$ has no cycles (line number (4)).   
+    \item Step. By the induction assumption there is an MST $T$ such $F_{i-1} \subset T$. Denote by $e=(x,y)$ the edge for which $F_{i} = F_{i-1}\cup \{e\}$. By algorithm definition, $F_{i} = F_{i-1} \cup \{e\}$ has no cycles (line number (4)). That means that in respect to $F_{i-1}$ $x$ and $y$ belongs to two different connected components, Denote $x$ connected component by $U$, and the cut it defines by $X = (U, \bar{U})$.
   \end{enumerate}
 \end{proof}
 
