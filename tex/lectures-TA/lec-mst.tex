@@ -30,7 +30,7 @@
 \begin{proof}
   If $e \in T$ then $F \cup \{ e \} \subset T$ and we done. So consider the second case $ e \notin{T} $. The intersection $T\cap X$ must not be empty, otherwise there is no path connecting vertices on the opposite ends of the cut \footnote{In notations of \Cref{def:cut}, no path connects vertices in $U$ to vertices in $\bar{U}$}, and that is contradiction for $T$ be a spanning tree. Denote by $e^{\prime} \in T \cap X$ \footnote{If $F$ spans either $U$ or $\bar{U}$ then there is only one such $e^{\prime}$. A good exercise would be prove it. }. And consider $T^{\prime} = T / \{e^{\prime}\} \cup \{e\}$.
 
-  Our goal is to prove that $T^{\prime}$ is a minimum spanning tree, let's start with showing that $T^{\prime}$ is a spanning tree. Assume that $T^{\prime}$ is not a spanning tree, since $T^{\prime}$ has $|V|-1$ edges, $T$ must have cycle (otherwise $T^{\prime}$ is a tree with $|V|$ vertices $\Rightarrow T^{\prime}$ is a spanning tree). Denote by $u,v$ the ends vertices of $e$ (i.e $(u,v) = e$) .   
+  Our goal is to prove that $T^{\prime}$ is a minimum spanning tree, let's start with showing that $T^{\prime}$ is a spanning tree. Assume that $T^{\prime}$ is not a spanning tree, since $T^{\prime}$ has $|V|-1$ edges, $T$ must have cycle (otherwise $T^{\prime}$ is a tree with $|V|$ vertices $\Rightarrow T^{\prime}$ is a spanning tree). Denote by $u$ and $v$ the ends vertices of $e$ (i.e $(u,v) = e$) .   
 \end{proof}
 
 
@@ -50,6 +50,16 @@ define $F_{0} = \emptyset$ and $i \leftarrow 0$ \\
 }
 \Return $F_{i}$
 \end{algorithm}
+
+
+\begin{claim}
+  Let $G$ be a connected graph containing a cycle $C$. Then subtracting an edge of $C$ gives a connected graph. 
+\end{claim}
+\begin{proof}
+  Assume trough contradiction that a graph $G^{\prime} = G / \{ e \} $, where $e \in C$ is not connected. Means that there are two vertices $u$ and $v$ that has a path between them in $G$ but, no such a path in $G^{\prime}$ denote that path by $P$ and observes that $e \in P$ otherwise $P$ would be also $u \rightsquigarrow v$ path in $G^{\prime}$. 
+\end{proof}
+
+
 
 \input{../texlib/tail}
 
