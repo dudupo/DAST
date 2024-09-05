@@ -86,14 +86,18 @@ So, if $F_{i-1}$ respects $X$ and $e$ is the minimal edge in $X$, then it follow
 \end{problem}
 
 \begin{solution}
+  If $e \notin T$ then we done. So it left to prove for $e \in T$. Denote $(x,y) = e$. And consider the forest $F = T/\{e\}$. 
 
+  Since $T$ is a spanning tree, we have that subtracting $T$ into two connected components, $U$ and $\bar{U}$ correspond to all vertices that can be reached from $x$ and $y$ respectively, Let $X$ be the cut $X = (U, \bar{U})$. Note that $F$ respects $X$. On the other hand, since $(x,y)$ is an edge in cycle $C$ there is another path, which does not contain $e$ from $x$ to $y$. That path has non trivial intersection with $X$ (Otherwise walking trough the path can not lead to a vertex in $\bar{U}$).
+
+  So, there exists edge $e^{\prime} \neq e $ such $ e \in C \cap X $. Consider $T^{\prime} \cup e^{\prime}$.   
 \end{solution}
 
 \section{Appendix.}
 
 \begin{claim}
   \label{claim:subtract}
-  Let $G$ be a connected graph containing a cycle $C$. Then the subtraction of any an edge in $C$ gives a connected graph. 
+  Let $G$ be a connected graph containing a cycle $C$. Then the subtraction of any edge in $C$ gives a connected graph. 
 \end{claim}
 \begin{proof}
 Assume, by contradiction, that a graph $G^{\prime} = G / \{ e \} $, where $e \in C$, is not connected. This means that there are two vertices $u$ and $v$ that have a path between them in $G$, but no such path exists in $G^{\prime}$. Denote this path by $\mathcal{P}$ and observe that $e \in \mathcal{P}$, otherwise, $\mathcal{P}$ would also be a path from $u$ to $v$ in $G^{\prime}$.
