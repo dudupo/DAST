@@ -86,11 +86,13 @@ So, if $F_{i-1}$ respects $X$ and $e$ is the minimal edge in $X$, then it follow
 \end{problem}
 
 \begin{solution}
-  If $e \notin T$ then we done. So it left to prove for $e \in T$. Denote $(x,y) = e$. And consider the forest $F = T/\{e\}$. 
+If $e \notin T$, then we are done. So, it is left to prove for $e \in T$. Let $(x,y) = e$ and consider the forest $F = T/\{e\}$.
 
-  Since $T$ is a spanning tree, we have that subtracting $T$ into two connected components, $U$ and $\bar{U}$ correspond to all vertices that can be reached from $x$ and $y$ respectively, Let $X$ be the cut $X = (U, \bar{U})$. Note that $F$ respects $X$. On the other hand, since $(x,y)$ is an edge in cycle $C$ there is another path, which does not contain $e$ from $x$ to $y$. That path has non trivial intersection with $X$ (Otherwise walking trough the path can not lead to a vertex in $\bar{U}$).
+Since $T$ is a spanning tree, subtracting $e$ from $T$ divides $T$ into two connected components, $U$ and $\bar{U}$, corresponding to all vertices that can be reached from $x$ and $y$, respectively. Let $X$ be the cut $X = (U, \bar{U})$. Note that $F$ respects $X$. On the other hand, since $(x,y)$ is an edge in cycle $C$, there is another path from $x$ to $y$ that does not contain $e$. This path must have a non-trivial intersection with $X$ (otherwise, walking through the path cannot lead to a vertex in $\bar{U}$).
 
-  So, there exists edge $e^{\prime} \neq e $ such $ e \in C \cap X $. Consider $T^{\prime} \cup e^{\prime}$.   
+Therefore, there exists an edge $e^{\prime} \neq e$ such that $e \in C \cap X$. Let $e^{\prime} = (u,v)$ and assume, without loss of generality, that $u \in U$ and $v \in \bar{U}$. Since $U$ and $\bar{U}$ are connected components, there are paths $x \rightsquigarrow u$ and $v \rightsquigarrow y$ that connect with $e$ and $e^{\prime}$. This creates a cycle in $T \cup \{e^{\prime}\}$. Using the fact that subtracting an edge from a cycle does not harm the graph's connectivity, it follows that $T^{\prime} = T \cup \{e^{\prime}\} / \{e\}$ is connected and therefore a spanning tree as well.
+
+Furthermore, $w(T^{\prime}) = w(T) - w(e) + w(e^{\prime}) \leq w(T)$. Finally, observe that $T^{\prime} \subset E^{\prime} / \{e\}$, and we get the required result.
 \end{solution}
 
 \section{Appendix.}
