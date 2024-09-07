@@ -93,7 +93,7 @@ So, if $F_{i-1}$ respects $X$ and $e$ is the minimal edge in $X$, then it follow
 
 \begin{solution} Separate to cases:
   \begin{itemize}
-    \item If $e \notin T$, then we are done.
+    \item If $e \notin T$, then we done.
     \item So, it is left to prove for $e \in T$. Let $(x,y) = e$ and consider the forest $F = T/\{e\}$.
 
 Since $T$ is a spanning tree, subtracting $e$ from $T$ divides $T$ into two connected components, $U$ and $\bar{U}$, corresponding to all vertices that can be reached from $x$ and $y$, respectively. Let $X$ be the cut $X = (U, \bar{U})$. Note that $F$ respects $X$. On the other hand, since $(x,y)$ is an edge in cycle $C$, there is another path from $x$ to $y$ that does not contain $e$. This path must have a non-trivial intersection with $X$ (otherwise, walking through the path cannot lead to a vertex in $\bar{U}$).
