@@ -79,7 +79,7 @@ define $F_{0} = \emptyset$ and $i \leftarrow 0$ \\
     \item Step. By the induction assumption, there is an MST $T$ such that $F_{i-1} \subset T$. Denote by $e=(x,y)$ the edge for which $F_{i} = F_{i-1}\cup \{e\}$. According to the algorithm definition, $F_{i} = F_{i-1} \cup \{e\}$ has no cycles (line number (4)). This means that with respect to $F_{i-1}$, $x$ and $y$ belong to two different connected components. Denote the connected component of $x$ by $U$, and the cut it defines by $X = (U, \bar{U})$. It is clear that $F_{i-1}$ respects $X$ (otherwise $U$ would not be a connected component of $F_{i-1}$).
       
 
-On the other hand, $w(e) = \min_{e^{\prime} \in X}w(e^{\prime})$. Any other $e^{\prime}$ with $w(e^{\prime}) < w(e)$ is either already in $F_{i-1}$ and therefore cannot be in $X$, or it closes a cycle in $F_{j}$ for some $j<i$. Since $F_{j} \subset F_{i-1}$, it also closes a cycle in $F_{i-1}$. Therefore, it cannot be an edge connecting between $U$ and $\bar{U}$ and does not belong to $X$.
+      We calim that $e$ is the minaiml edge in $X$. Any other $e^{\prime}$ with $w(e^{\prime}) < w(e)$ is either already in $F_{i-1}$ and therefore cannot be in $X$, or it closes a cycle in $F_{j}$ for some $j<i$. Since $F_{j} \subset F_{i-1}$, it also closes a cycle in $F_{i-1}$. Therefore, it cannot be an edge connecting between $U$ and $\bar{U}$, namely $e^{\prime} \notin X$.
 
 
 So, if $F_{i-1}$ respects $X$ and $e$ is the minimal edge in $X$, then it follows from \Cref{lemma:cut} that $F_{i} = F_{i-1} \cup \{ e\}$ is contained in an MST.
@@ -88,7 +88,7 @@ So, if $F_{i-1}$ respects $X$ and $e$ is the minimal edge in $X$, then it follow
 
 \begin{problem}
   \label{problem:opkrus}
-  Let $E^{\prime} \subset E$ such $E$ contains both an MST $T$ and a cycle $C$. Let $e$ be a maximal edge in $C$ prove that $E^{\prime}/ \{e\}$ contains an MST.  
+  Let $E^{\prime} \subset E$ such $E$ contains both an MST $T$ and a cycle $C$. Let $e$ be a maximal edge in $C$. Prove that $E^{\prime}/ \{e\}$ contains an MST.  
 \end{problem}
 
 \begin{solution} Separate to cases:
