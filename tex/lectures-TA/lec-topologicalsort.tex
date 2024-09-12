@@ -23,7 +23,7 @@ As its name implies, depth-first search searches "deeper" in the graph whenever 
   \begin{algorithm}[H]
    \textbf{DFS( $G$):}\\
     \For {$v\in V$}{
- 	$vi$.visited $\leftarrow False$
+ 	$v$.visited $\leftarrow False$
     }
     time $ \leftarrow 1 $\\
     \For {$v\in V$}{
@@ -37,7 +37,7 @@ As its name implies, depth-first search searches "deeper" in the graph whenever 
 
   \begin{algorithm}[H]
     \textbf{Explore($G,v$):}\\
-     Previsit($v$)
+     Previsit($v$)\\
     \For {$\left( v,u \right) \in E  $}{
       \If { not $u$.visited } {
 	$ \pi \left( u \right) \leftarrow v $ \\ 
