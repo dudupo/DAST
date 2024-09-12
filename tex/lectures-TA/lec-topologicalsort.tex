@@ -92,14 +92,12 @@ In any depth-first search of a (directed or undirected) graph $G = (V, E)$, for 
 \text{pre}(v) - \text{pre}(w) < \text{pre}(v) - \text{pre}(u) = t
 		      \end{split}
 		    \end{equation*}
-		     and also  
-		     \begin{equation*}
+		     and also \begin{equation*}
 		       \begin{split}
 \text{pre}(w) - \text{pre}(u) < \text{pre}(v) - \text{pre}(u) = t
 		       \end{split}
 		     \end{equation*}
-		      Therefore by induction assumption 
-		      \begin{equation*}
+		      Therefore by induction assumption \begin{equation*}
 			\begin{split}
 [\pre(v),\post(v)] \subset [\pre(w),\post(w)]\subset [\pre(u),\post(u)]
 			\end{split}
