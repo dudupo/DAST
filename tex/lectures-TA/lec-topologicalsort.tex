@@ -119,6 +119,9 @@ In any depth-first search of a (directed or undirected) graph $G = (V, E)$, for 
 
 \section{DFS on DAGS}
 the pre is well calibrated on DAGS. 
+\begin{claim}
+  Let $G=(V,E)$ be a DAG, and let $v,u \in V$ such $u \rightarrow v$. Then for any $w \in V$ the call \textbf{DFS$(G,\pi)$} assigns $\post(u)>\post(v)$. 
+\end{claim}
   
   %%\paragraph{Problem. Two Chess Pieces.}
  %Moti has a tree with n nodes. He is willing to share it with you, which means you can operate on it.
