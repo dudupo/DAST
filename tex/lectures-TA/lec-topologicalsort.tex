@@ -102,7 +102,7 @@ In any depth-first search of a (directed or undirected) graph $G = (V, E)$, for 
 [\pre(v),\post(v)] \subset [\pre(w),\post(w)]\subset [\pre(u),\post(u)]
 			\end{split}
 		      \end{equation*} and in addition $w$ is a descendant of $u$ and $v$ is a descendant of $w$. Hence $v$ is a descendant of $u$ and the third case holds. 
-		    \item Or $\text{post}(w) < \text{pre}(v)$ for any $w$ satisfies $\pre(u) < \pre(w) < \pre(v)$. That means that any call for $\textbf{Explore}(G,w)$ at line $6$ (over suited $w$'s) returned, and at time $t$ a new child of $u$ has been discovered (otherwise it is contradiction for $\post(u) > t$), namely $v$ is a direct child of $u$ and we back to the base.
+		    \item Or $\text{post}(w) < \text{pre}(v)$ for any $w$ satisfies $\pre(u) < \pre(w) < \pre(v)$. That means that any call for $\textbf{Explore}(G,w)$ at line $6$ (over suited $w$'s) returned, and at time $t$ a new child of $u$ has been discovered\footnote{otherwise it is contradiction for $\post(u) > t$}, namely $v$ is a direct child of $u$ and we back to the base.
 		\end{enumerate}
 	    \end{enumerate}
 	    
