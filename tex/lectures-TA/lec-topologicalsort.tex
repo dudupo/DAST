@@ -85,7 +85,7 @@ In any depth-first search of a (directed or undirected) graph $G = (V, E)$, for 
 	    \begin{enumerate}
 	      \item Base. $\text{pre}(v)-\text{pre}(u) = 1$, Then clearly $\{u,v\}$, i.e $v$ is a direct child of $u$. Showing that the value of $\text{post}(v)$ has to be set before  $\text{post}(v)$ is left as an exercise. 
 	      \item Assumption. Assume correctness for any $\text{pre}(v)-\text{pre}(u) < t < \text{post}(u)$.
-	      \item Step. Consider $t > 1$ such  $\text{pre}(v)-\text{pre}(u) = t$. Since $t > 1$ there is must to be vertex $w$ for which $\text{pre}(w) < \text{pre(v)} = t$. Split again:  
+	      \item Step. Consider $t > 1$ such  $\text{pre}(v)-\text{pre}(u) = t$. Since $t > 1$ there is must to be vertex $w$ for which $\pre(u) < \text{pre}(w) < \text{pre(v)} = t$. Split again:  
 		\begin{enumerate}
 		  \item Either $\text{post}(w) > \text{pre}(v)$. Observes that \begin{equation*}
 		      \begin{split}
