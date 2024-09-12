@@ -87,17 +87,17 @@ In any depth-first search of a (directed or undirected) graph $G = (V, E)$, for 
 	      \item Assumption. Assume correctness for any $\text{pre}(v)-\text{pre}(u) < t < \text{post}(u)$.
 	      \item Step. Consider $t > 1$ such  $\text{pre}(v)-\text{pre}(u) = t$. Since $t > 1$ there is must to be vertex $w$ for which $\pre(u) < \text{pre}(w) < \text{pre(v)} = t$. Split again:  
 		\begin{enumerate}
-		  \item Either $\text{post}(w) > \text{pre}(v)$. Observes that \begin{equation*}
+		  \item Either $\text{post}(w) > \text{pre}(v)$. Observes that: \begin{equation*}
 		      \begin{split}
 \text{pre}(v) - \text{pre}(w) < \text{pre}(v) - \text{pre}(u) = t
 		      \end{split}
 		    \end{equation*}
-		     and also \begin{equation*}
+		     and also: \begin{equation*}
 		       \begin{split}
 \text{pre}(w) - \text{pre}(u) < \text{pre}(v) - \text{pre}(u) = t
 		       \end{split}
 		     \end{equation*}
-		      Therefore by induction assumption \begin{equation*}
+		      Therefore by the induction assumption: \begin{equation*}
 			\begin{split}
 [\pre(v),\post(v)] \subset [\pre(w),\post(w)]\subset [\pre(u),\post(u)]
 			\end{split}
