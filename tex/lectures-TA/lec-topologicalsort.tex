@@ -79,10 +79,19 @@ In any depth-first search of a (directed or undirected) graph $G = (V, E)$, for 
   \end{enumerate}
 \end{theorem}
   \begin{proof} 
-      Assume without loss of generality that pre($u$) $<$ pre($v$).
+      Assume without loss of generality that pre($u$) $<$ pre($v$). Split to the following:
 	\begin{enumerate}
-	  \item pre($v$) $<$ post($u$), so that $v$ was discovered while $u$ was still gray, which implies that $v$ is a descendant of $u$. Moreover, since $v$ was discovered after $u$, all of its outgoing edges are explored, and $v$ is finished before the search returns to and finishes $u$. In this case, therefore, the interval [pre($v$), post($v$)] is entirely contained within the interval [pre($u$), post($u$)].
-	  \item In the other subcase, post($u$) $<$ pre($v$), and by definition, pre($u$) $<$ post($u$) $<$ pre(v) $<$ post($v$), and thus the intervals [pre($u$), post($u$)] and [pre($v$), post($v$)] are disjoint. Because the intervals are disjoint, neither vertex was discovered while the other was gray, and so neither vertex is a descendant of the other.
+	  \item Either pre($v$) $<$ post($u$). In that case, we will prove, by induction on $\text{pre}(v)-\text{pre}(u)$, that for any $u,v$ satisfies the relations, the third case holds. 
+	    \begin{enumerate}
+	      \item Base. $\text{pre}(v)-\text{pre}(u) = 1$, Then clearly $\{u,v\}$, i.e $v$ is a direct child of $u$. Showing that the value of $\text{post}(v)$ has to be set before  $\text{post}(v)$ is left as an exercise. 
+	      \item Assumption. Assume correctness for any $\text{pre}(v)-\text{pre}(u) < t < \text{post}(u)$.
+	      \item Step. Consider $t > 1$ such  $\text{pre}(v)-\text{pre}(u) = t$. Since $t > 1$ there is must to be vertex $w$ for which $\text{pre}(w) < \text{pre(v)} = t$. Split again:  
+		\begin{enumerate}
+		  \item Either $\text{post}(w) > \text{pre}(v)$. Observes that $\text{pre}(v) - \text{pre}(w) < \text{pre}(v) - \text{pre}(u) = t$, and also  $\text{pre}(w) - \text{pre}(u) < \text{pre}(v) - \text{pre}(u) = t$. Therefore by induction assumption $[\pre(v),\post(v)] \subset [\pre(w),\post(w)]\subset [\pre(u),\post(u)]$, and in addition $w$ is a descendant of $u$ and $v$ is a descendant of $w$. Hence $v$ is a descendant of $u$.  
+		\end{enumerate}
+	    \end{enumerate}
+	    so that $v$ was discovered while $u$ was still gray, which implies that $v$ is a descendant of $u$. Moreover, since $v$ was discovered after $u$, all of its outgoing edges are explored, and $v$ is finished before the search returns to and finishes $u$. In this case, therefore, the interval [pre($v$), post($v$)] is entirely contained within the interval [pre($u$), post($u$)].
+	  \item Or, post($u$) $<$ pre($v$), and by definition, pre($u$) $<$ post($u$) $<$ pre(v) $<$ post($v$), and thus the intervals [pre($u$), post($u$)] and [pre($v$), post($v$)] are disjoint. Because the intervals are disjoint, neither vertex was discovered while the other was gray, and so neither vertex is a descendant of the other.
 	\end{enumerate}
 \end{proof}
 
