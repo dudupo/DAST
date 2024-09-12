@@ -101,8 +101,7 @@ In any depth-first search of a (directed or undirected) graph $G = (V, E)$, for 
 			\begin{split}
 [\pre(v),\post(v)] \subset [\pre(w),\post(w)]\subset [\pre(u),\post(u)]
 			\end{split}
-		      \end{equation*}
-		      and in addition $w$ is a descendant of $u$ and $v$ is a descendant of $w$. Hence $v$ is a descendant of $u$.  
+		      \end{equation*} and in addition $w$ is a descendant of $u$ and $v$ is a descendant of $w$. Hence $v$ is a descendant of $u$.  
 		\end{enumerate}
 	    \end{enumerate}
 	    so that $v$ was discovered while $u$ was still gray, which implies that $v$ is a descendant of $u$. Moreover, since $v$ was discovered after $u$, all of its outgoing edges are explored, and $v$ is finished before the search returns to and finishes $u$. In this case, therefore, the interval [pre($v$), post($v$)] is entirely contained within the interval [pre($u$), post($u$)].
