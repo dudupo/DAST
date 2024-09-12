@@ -16,7 +16,7 @@
 
 \subsection{Depth First Search (DFS)}
 As its name implies, depth-first search searches "deeper" in the graph whenever possible. Depth-first search explores edges out of the most recently discovered vertex $v$ that still has unexplored edges leaving it. Once all of $ v$'s edges have been explored, the search "backtracks" to explore edges leaving the vertex from which $v$ was discovered. This process continues until all vertices that are reachable from the original source vertex have been discovered. If any undiscovered vertices remain, then depth-first search selects one of them as a new source, repeating the search from that source. The algorithm repeats this entire process until it has discovered every vertex.
-\begin{minipage}{0.46\textwidth}
+%\begin{minipage}{0.46\textwidth}
 
   \begin{algorithm}
    \caption{DFS( $G$):}
@@ -44,9 +44,9 @@ As its name implies, depth-first search searches "deeper" in the graph whenever 
     }
     Postvisit($v$)
   \end{algorithm}
-  \end{minipage}
-   \hfill
-\begin{minipage}{0.46\textwidth}
+ % \end{minipage}
+  % \hfill
+%\begin{minipage}{0.46\textwidth}
   \begin{algorithm}
     \caption{Previsit($v$):}
     pre($v$) $\leftarrow $ time \\
@@ -58,7 +58,7 @@ As its name implies, depth-first search searches "deeper" in the graph whenever 
     time $\leftarrow$ time $+1$
   \end{algorithm}
 
-  \end{minipage}
+ % \end{minipage}
 
 \paragraph{Properties of depth-first search.} Depth-first search yields valuable information about the structure of a graph. Perhaps the most basic property of depth-first search is that the predecessor subgraph $G_{\pi}$ does indeed form a forest of trees since the structure of the depth-first trees exactly mirrors the structure of recursive calls of explore-function. That is, $u$ = $\pi\left( v \right)$ if and only if explore($G, v$) was called during a search of $ u$'s adjacency list. Additionally, vertex $v$ is a descendant of vertex $u$ in the depth-first forest if and only if $v$ is discovered during the time in which $u$ is gray.
 Another important property of depth-first search is that discovery and finish times have a parenthesis structure. If the explore procedure were to print a left parenthesis "$(u$" when it discovers vertex $u$ and to print a right parenthesis r``$u)$" when it finishes $u$, then the printed expression would be well-formed in the sense that the parentheses are properly nested.
