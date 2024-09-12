@@ -106,7 +106,7 @@ In any depth-first search of a (directed or undirected) graph $G = (V, E)$, for 
 		\end{enumerate}
 	    \end{enumerate}
 	    so that $v$ was discovered while $u$ was still gray, which implies that $v$ is a descendant of $u$. Moreover, since $v$ was discovered after $u$, all of its outgoing edges are explored, and $v$ is finished before the search returns to and finishes $u$. In this case, therefore, the interval [pre($v$), post($v$)] is entirely contained within the interval [pre($u$), post($u$)].
-	  \item Or, post($u$) $<$ pre($v$), and by definition, pre($u$) $<$ post($u$) $<$ pre(v) $<$ post($v$), and thus the intervals [pre($u$), post($u$)] and [pre($v$), post($v$)] are disjoint. Because the intervals are disjoint, neither vertex was discovered while the other was gray, and so neither vertex is a descendant of the other.
+	  \item Or, post($u$) $<$ pre($v$), and by definition, pre($u$) $<$ post($u$) $<$ pre(v) $<$ post($v$) and thus the intervals [pre($u$), post($u$)] and [pre($v$), post($v$)] are disjoint. Showing that $v$ is not a descendant of $u$ can be proved in similar manner to the above, by induction on $\pre(v) - \post(u)$. Completing the proof is left as an exercise. 
 	\end{enumerate}
 \end{proof}
 
