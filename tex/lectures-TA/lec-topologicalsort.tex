@@ -19,7 +19,7 @@ As its name implies, depth-first search searches "deeper" in the graph whenever 
 \begin{minipage}{0.46\textwidth}
 
   \begin{algorithm}
-   \textbf{DFS}( $G$): \\
+   \caption{DFS( $G$):}
     \For {$v\in V$}{
  	$vi$.visited $\leftarrow False$
     }
@@ -34,7 +34,7 @@ As its name implies, depth-first search searches "deeper" in the graph whenever 
   \end{algorithm}
 
   \begin{algorithm}
-    \textbf{Explore}($G,v$): \\
+    \caption{Explore($G,v$):}
      Previsit($v$)
     \For {$\left( v,u \right) \in E  $}{
       \If { not $u$.visited } {
@@ -48,12 +48,12 @@ As its name implies, depth-first search searches "deeper" in the graph whenever 
    \hfill
 \begin{minipage}{0.46\textwidth}
   \begin{algorithm}
-    \textbf{Previsit}($v$): \\
+    \caption{Previsit($v$):}
     pre($v$) $\leftarrow $ time \\
     time $\leftarrow$ time $+1$
   \end{algorithm}
  \begin{algorithm}
-   \textbf{Postvisit} ($v$): \\ 
+   \caption{Postvisit($v$):} 
     post($v$) $\leftarrow $ time \\
     time $\leftarrow$ time $+1$
   \end{algorithm}
