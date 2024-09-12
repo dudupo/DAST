@@ -105,7 +105,7 @@ In any depth-first search of a (directed or undirected) graph $G = (V, E)$, for 
 		    \item Or $\text{post}(w) < \text{pre}(v)$ for any $w$ satisfies $\pre(u) < \pre(w) < \pre(v)$. That means that any call for $\textbf{Explore}(G,w)$ at line $6$ (over suited $w$'s) returned, and at time $t$ a new child of $u$ has been discovered (otherwise it is contradiction for $\post(u) > t$), namely $v$ is a direct child of $u$ and we back to the base.
 		\end{enumerate}
 	    \end{enumerate}
-	    so that $v$ was discovered while $u$ was still gray, which implies that $v$ is a descendant of $u$. Moreover, since $v$ was discovered after $u$, all of its outgoing edges are explored, and $v$ is finished before the search returns to and finishes $u$. In this case, therefore, the interval [pre($v$), post($v$)] is entirely contained within the interval [pre($u$), post($u$)].
+	    
 	  \item Or, post($u$) $<$ pre($v$), and by definition, pre($u$) $<$ post($u$) $<$ pre(v) $<$ post($v$) and thus the intervals [pre($u$), post($u$)] and [pre($v$), post($v$)] are disjoint. 
 
 	    Showing that $v$ is not a descendant of $u$ can be proved in similar manner to the above, by induction on $\pre(v) - \post(u)$. Completing the proof is left as an exercise. 
