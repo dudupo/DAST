@@ -85,7 +85,7 @@ In any depth-first search of a (directed or undirected) graph $G = (V, E)$, for 
 	    \begin{enumerate}
 	      \item Base. $\text{pre}(v)-\text{pre}(u) = 1$, Then clearly $\{u,v\}$, i.e $v$ is a direct child of $u$. Showing that the value of $\text{post}(v)$ has to be set before  $\text{post}(v)$ is left as an exercise. 
 	      \item Assumption. Assume correctness for any $\text{pre}(v)-\text{pre}(u) < t < \text{post}(u)$.
-	      \item Step. Consider $t > 1$ such  $\text{pre}(v)-\text{pre}(u) = t$. Since $t > 1$ there is must to be vertex $w$ for which $\pre(u) < \text{pre}(w) < \text{pre(v)} = t$. Split again:  
+	      \item Step. Consider $t > 1$ such  $\text{pre}(v)-\text{pre}(u) = t$. Since $t > 1$ there is must to be vertex $w$ for which $\pre(u) < \text{pre}(w) < \text{pre(v)} = t$. Splits again:  
 		\begin{enumerate}
 		  \item Either $\text{post}(w) > \text{pre}(v)$. Observes that: \begin{equation*}
 		      \begin{split}
@@ -102,7 +102,7 @@ In any depth-first search of a (directed or undirected) graph $G = (V, E)$, for 
 [\pre(v),\post(v)] \subset [\pre(w),\post(w)]\subset [\pre(u),\post(u)]
 			\end{split}
 		      \end{equation*} and in addition $w$ is a descendant of $u$ and $v$ is a descendant of $w$. Hence $v$ is a descendant of $u$ and the third case holds. 
-		    \item Or $\text{post}(w) < \text{pre}(v)$ for any $w$ satisfies $\pre(u) < \pre(w) < \pre(v)$.
+		    \item Or $\text{post}(w) < \text{pre}(v)$ for any $w$ satisfies $\pre(u) < \pre(w) < \pre(v)$. That means that any call for $\textbf{Explore}(G,w)$ at line $6$ (over suited $w$'s) returned, and at time $t$ a new child of $u$ has been discovered (otherwise it is contradiction for $\post(u) > t$), namely $v$ is a direct child of $u$ and we back to the base.
 		\end{enumerate}
 	    \end{enumerate}
 	    so that $v$ was discovered while $u$ was still gray, which implies that $v$ is a descendant of $u$. Moreover, since $v$ was discovered after $u$, all of its outgoing edges are explored, and $v$ is finished before the search returns to and finishes $u$. In this case, therefore, the interval [pre($v$), post($v$)] is entirely contained within the interval [pre($u$), post($u$)].
