@@ -17,7 +17,7 @@
 \subsection{Depth First Search (DFS)}
 As its name implies, depth-first search searches "deeper" in the graph whenever possible. Depth-first search explores edges out of the most recently discovered vertex $v$ that still has unexplored edges leaving it. Once all of $ v$'s edges have been explored, the search "backtracks" to explore edges leaving the vertex from which $v$ was discovered. This process continues until all vertices that are reachable from the original source vertex have been discovered. If any undiscovered vertices remain, then depth-first search selects one of them as a new source, repeating the search from that source. The algorithm repeats this entire process until it has discovered every vertex.
 
-  \begin{algorithm}[H]
+  \begin{algorithm}
    \bf{DFS}( $G$): \\
     \For {$v\in V$}{
  	$vi$.visited $\leftarrow False$
@@ -32,7 +32,7 @@ As its name implies, depth-first search searches "deeper" in the graph whenever 
 
   \end{algorithm}
 
-  \begin{algorithm}[H]
+  \begin{algorithm}
     \bf{Explore}($G,v$): \\
      Previsit($v$)
     \For {$\left( v,u \right) \in E  $}{
@@ -43,12 +43,12 @@ As its name implies, depth-first search searches "deeper" in the graph whenever 
     }
     Postvisit($v$)
   \end{algorithm}
-  \begin{algorithm}[H]
+  \begin{algorithm}
     \bf{Previsit}($v$): \\
     pre($v$) $\leftarrow $ time \\
     time $\leftarrow$ time $+1$
   \end{algorithm}
- \begin{algorithm}[H]
+ \begin{algorithm}
    \bf{Postvisit} ($v$): \\ 
     post($v$) $\leftarrow $ time \\
     time $\leftarrow$ time $+1$
