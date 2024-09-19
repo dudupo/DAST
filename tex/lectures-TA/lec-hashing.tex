@@ -14,8 +14,7 @@
 
 
 
-
-\section{Perfect Hashing.}
+\section{ Universal Hashing. } 
 
 
 \begin{definition}
@@ -30,6 +29,10 @@
   We named any pair of different keys $x\neq y$ that are mapped to the same cell in the table, namely $h(x) = h(y)$, a collision.
 
 \end{definition}
+
+
+\section{Perfect Hashing.}
+
 
 
 In the past week, we have seen how to store keys in hash tables so that the number of mapped keys in a specific cell is $O(1)$ in expectation. The table is constructed using a hashing function $h : \text{key space} \rightarrow m \text{cells}$, randomly chosen from a universal hash function family. This function maps keys to cells, and in each cell, the keys are stored using a linked list. The cost of supported subroutines depends on the length of the list. We named any pair of different keys $x\neq y$ that are mapped to the same cell in the table, namely $h(x) = h(y)$, a collision.
