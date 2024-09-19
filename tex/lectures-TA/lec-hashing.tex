@@ -12,7 +12,7 @@
 \chapter{Hashing}
 Up to this point, all the data structures we saw in that course assume nothing but comparability about the inputs keys they expected to mange. Hash functions, in general, are functions\footnote{projections.} from the keys space into lower diminsional space, that in the most basic version can be thought as our memory storage. 
 
-For example, assume the keys are taken form the integers, and the hash function $h : \mathbb{N} \rightarrow [10]$ sends numbers to theirs residue module $10$, namely $h(x) = x \text{ mod } 10$. Now one might using $h$ and $10$-length array $A$ to store numbers. Any time he would like to insert a number $x$ into the structure he would set~$A[h(x)]~\leftarrow~x$.  
+For example, assume the keys are taken form the integers, and the hash function $h : \mathbb{N} \rightarrow [10]$ sends numbers to theirs residue module $10$, namely $h(x)~=~x~\text{ mod }~10$. Now one might using $h$ and $10$-length array $A$ to store numbers. Any time he would like to insert a number $x$ into the structure he would set~$A[h(x)]~\leftarrow~x$.  
 
 
 \section{ Universal Hashing. } 
