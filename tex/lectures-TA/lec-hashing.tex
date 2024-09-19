@@ -10,17 +10,16 @@
 \fi
 
 \chapter{Hashing}
-Up to this point, all the data structures we saw in that course assume nothing but comparability about the inputs keys they expected to mange. Hash functions, in general, are functions\footnote{projections.} from the keys space into lower diminsional space, that in the most basic version can be thought as our memory storage. 
+Up to this point, all the data structures we have seen in this course assume nothing but comparability about the input keys they are expected to manage. Hash functions, in general, are functions\footnote{projections.} from the key space into a lower dimensional space, which can be thought of as our memory storage. 
 \begin{example}
-For example, assume the keys are taken form the integers, and the hash function $h : \mathbb{N} \rightarrow [10]$ sends numbers to theirs residue module $10$, namely $h(x)~=~x~\text{ mod }~10$. Now one might using $h$ and $10$-length array $A$ to store numbers. Any time he would like to insert a number $x$ into the structure he would set~$A[h(x)]~\leftarrow~x$. 
+  \label{example:bad}
+For example, assume the keys are taken from the integers, and the hash function $h : \mathbb{N} \rightarrow [10]$ sends numbers to their residue modulo $10$, namely $h(x)~=~x~\text{ mod }~10$. Now, one might use $h$ and a $10$-length array $A$ to store numbers. Any time he would like to insert a number $x$ into the structure, he would set~$A[h(x)]~\leftarrow~x$. 
 \end{example}
-That is not a ``good`` method thouw, since two different keys with the same residual module $10$ are mapped into the same cell in $A$, we count such pair as collision:  
-\begin{definition}[collison.]
-  Fix a function $h : U \rightarrow \star$. We name any pair of different keys $x\neq y \in U$ that are mapped by $h$ to the same value, namely $h(x) = h(y)$, a collision.
+However, this is not a ``good`` method, since two different keys with the same residue modulo $10$ are mapped into the same cell in $A$, which we count as a collision:  
+\begin{definition}[collision.]
+  Given a function $h : U \rightarrow \star$, we name any pair of different keys $x\neq y \in U$ that are mapped by $h$ to the same value, namely $h(x) = h(y)$, a collision.
 \end{definition}
-Clearly, if it given to us that no collision are going to appear, then
-
-
+Clearly, if we assume that no collisions are going to occur, i.e. all the given keys through the running of the program $x_{1},x_{2},..,x_{n}$ satisfy that for any $x_{i}\neq x_j$, it follows that $h(x_{i}) \neq h(x_{j})$, then the method in \Cref{example:bad} provides a data structure that\footnote{Again, relative to assumptions on the input.} supports access, insertion, and deletion in constant time. This gives us the intuition that the complexity of a general data structure which uses a hash function depends on the way it resolves collisions. In this recitation, we will present ways to handle collisions. The first is a heuristic called \textbf{open addressing} (or \textbf{closed hashing}). The second, \textbf{open hashing}, will also be analyzed, and we will show a characterization that, if satisfied, then we get a good running time in expectation. Finally, we will also show examples of function families that satisfy the characterization and examples of functions that do not.
 \section{ Universal Hashing. } 
 
 
