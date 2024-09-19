@@ -18,6 +18,16 @@
 \section{Perfect Hashing.}
 
 
+\begin{definition}
+  Let $\mathcal{H} = \left\{ h_{i} : U \rightarrow [m] \right\}$ be a  family of function from the domain $U$ into $[m] = \{0, 1, .. m-1\} $. 
+\end{definition}
+
+\begin{definition}[collison.]
+  We named any pair of different keys $x\neq y$ that are mapped to the same cell in the table, namely $h(x) = h(y)$, a collision.
+
+\end{definition}
+
+
 In the past week, we have seen how to store keys in hash tables so that the number of mapped keys in a specific cell is $O(1)$ in expectation. The table is constructed using a hashing function $h : \text{key space} \rightarrow m \text{cells}$, randomly chosen from a universal hash function family. This function maps keys to cells, and in each cell, the keys are stored using a linked list. The cost of supported subroutines depends on the length of the list. We named any pair of different keys $x\neq y$ that are mapped to the same cell in the table, namely $h(x) = h(y)$, a collision.
 
 Perfect hashing is a method to ensure that no collision occurs, it works only if all keys are given in advance and they are unique, meaning that the table doesn't support insertion. The idea is as follows, we sample an hash function, and then check if, for all $x,y$ in the input, it holds that $h(x)\neq h(y)$. If so then we continue. Otherwise we repeat. 
