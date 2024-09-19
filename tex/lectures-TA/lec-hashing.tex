@@ -23,6 +23,7 @@ Clearly, if we assume that no collisions are going to occur, i.e. all the given 
 
 
 \section{ Open Addressing (Closed Hashing).}
+Open addressing uses a static $m$-length array $T$, hash function $h$, and handles collisions by probing cells in a specific order. For example, linear probing will first check if the cell at position $h(x)$ is not occupied or already contains $x$. If it is, then $h(x)$ is considered the correct place to store $x$. Otherwise, the next cell is probed, namely the cell at position $h(x)+1$, and so on.
   \begin{algorithm}
   \caption{linear probing - access}
   let $i \leftarrow 0 $ \\ 
