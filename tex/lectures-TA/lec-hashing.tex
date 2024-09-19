@@ -1,0 +1,116 @@
+
+\input{../texlib/head}
+\newcommand{\image}{\text{ Im } }
+
+
+\begin{document}
+\ifdefined\BOOK
+\else
+\setcounter{chapter}{8}
+\fi
+
+\chapter{Hashing}
+
+
+
+
+
+\section{Perfect Hashing.}
+
+
+In the past week, we have seen how to store keys in hash tables so that the number of mapped keys in a specific cell is $O(1)$ in expectation. The table is constructed using a hashing function $h : \text{key space} \rightarrow m \text{cells}$, randomly chosen from a universal hash function family. This function maps keys to cells, and in each cell, the keys are stored using a linked list. The cost of supported subroutines depends on the length of the list. We named any pair of different keys $x\neq y$ that are mapped to the same cell in the table, namely $h(x) = h(y)$, a collision.
+
+Perfect hashing is a method to ensure that no collision occurs, it works only if all keys are given in advance and they are unique, meaning that the table doesn't support insertion. The idea is as follows, we sample an hash function, and then check if, for all $x,y$ in the input, it holds that $h(x)\neq h(y)$. If so then we continue. Otherwise we repeat. 
+
+  \begin{algorithm}
+  \caption{perfect-hashing($x_{1},x_{2},..x_{n}$)}
+  let collision $\leftarrow$ True\\
+  \While { collision } {
+    collision $\leftarrow$ False\\
+    let $T$ be array at length $m$ \\
+    $h \leftarrow $ sample uniformly random from universal hash family $\mathcal{H}$\\
+    \For { $ x \in x_{1},x_{2}..x_{n} $}{
+      \If { $T_{h(x)}$ is not empty } {
+       collision $\leftarrow$ True\\
+       break the for-loop 
+     }
+     \Else{
+       $T_{h(x)} \leftarrow x $ 
+      }
+    }
+  }
+  \Return $T,h$
+  \end{algorithm}
+
+  \textbf{Question.} What is the probability of choosing $h$ with no collisions on the first trial? Notice that the answer depends on $m$. (To see this, imagine the case where $m=1$. In this case, there must be collisions.) Therefore, the correct question is: for what values of $m$ do we succeed in finding a hash function with no collisions on the first trial? Let $X_{x,y}$ be the indicator of the event $h(x)=h(y)$. The expected number of collisions is then:
+
+  \begin{equation*}
+    \begin{split}
+      \expp{\sum_{x\neq y}X_{x,y}} = \sum_{x\neq y}{\expp{X_{x,y}}}= { n \choose 2 } \frac{1}{m}
+    \end{split}
+  \end{equation*} 
+Now, we would like to answer for what value of $m$ there is no collision. Therefore, if we take $m = n^{2}$, then the expected number of collisions is less than $1/2$. By the Markov inequality, the probability of having more than one collision is less than:
+  \begin{equation*}
+    \begin{split}
+      P\left( \sum_{x\neq y}{X_{x,y}} > 1 \right) \le \expp{\sum_{x\neq y}X_{x,y}} = \frac{1}{2}
+    \end{split}
+  \end{equation*}
+  And therefore the expected number of rounds is less than: 
+  
+  \begin{equation*}
+    \begin{split}
+      \expp{\text{ rounds }} & = \sum_{t = 0}^{\infty}t P( t \text{ rounds }) \le \sum_{t = 0}^{\infty}t \frac{1}{2^{t-1}} = O(1)
+    \end{split}
+  \end{equation*}  
+  \textbf{Question.} What is the space complexities? We have to allocate an array at length $m$ which is $\Theta(n^{2})$ memory. Is that good? So remember that in standard hash tables, the expected number of elements that were hashed into the same cell as the key $x$ is 
+  \begin{equation*}
+    \begin{split}
+      1 + \frac{n-1}{m} 
+    \end{split}
+  \end{equation*} 
+   Taking $m = \Theta(n)$ is enough to ensure that the expected running time of in insertion/deletion/access is $O(1)$. This raises the question of whether the space complexity of perfect hashing can be reduced to linear.
+
+\subsection{Perfect Hashing in Linear Space.}
+The idea is as follows: we will use a two-stage hashing process. In the first stage, keys will be mapped to hash tables instead of cells. Each hash table will be constructed using perfect hashing and may require a space that is quadratic in the number of elements stored in it (which were mapped to it in the first stage). Therefore, if we denote by $n_{i}$ the number of elements mapped to the $i$th hash table, the space cost will be $\sum_{i}n_{i}^{2}$. Instead of starting over when a collision occurs, we will do so when $\sum_{i}n_{i}^{2} > 4n$.
+  \begin{algorithm}
+  \caption{perfect-hashing-linear-space($x_{1},x_{2},..x_{n}$)}
+  let toomanycollisions $\leftarrow$ True\\
+  \While { toomanycollisions } {
+    toomanycollisions $\leftarrow$ False\\
+    let $T$ be array at length $m$ \\
+    initialize any $T_{i}$ to be an empty linked list. \\ 
+    $h \leftarrow $ sample uniformly random from universal hash family $\mathcal{H}$\\
+    \For { $ x \in x_{1},x_{2}..x_{n} $}{
+      $T_{h(x)}$.insert($x$)\\ 
+      $T_{h(x)}$.size $=$ $T_{h(x)}$.size $+1$\\
+    }
+    \If { $\sum_{i}T_{h(i)}$.size$^{2}$ $\ge \mu$ } {
+       toomanycollisions $\leftarrow$ True
+     }
+  }
+  let $H$ be an array at length $m$\\
+  \For{ $i \in [m]$}{
+    $T_{i}, h_{i} \leftarrow$ hash the elements in $T_{i}$ using\\
+    \ \ \ \ \ perfect hashing.
+  }
+  \Return $T,h$
+
+  \end{algorithm}
+  So, now it's left to show that we expect $\sum_{i} n^{2}_{i}$ to be linear, which implies that the expected number of rounds is constant.
+  \begin{equation*}
+    \begin{split}
+      n_{i}^{2}= 2{ n_{i} \choose 2 } + n_{i}
+    \end{split}
+  \end{equation*}
+On the other hand, $\sum_{i}{ n_{i}\choose 2  }$ is exactly the number of collisions, as for any $i$, ${ n_{i} \choose 2 }$ counts the number of distinct pairs in the $i$th table, which is equivalent to counting the number of $x\neq y$ such that $h(x) = h(y) = i$. Thus,
+  \begin{equation*}
+    \begin{split}
+      \expp{\sum_{i}n^{2}_{i}} &= \expp{\sum_{i} {2{ n_{i} \choose 2 } + n_{i}}}= 2\cdot \expp{\text{collisions}} + \expp{\overbrace{\sum_{i}{n_i}}^{n}}\\
+      &= 2 \cdot { n \choose 2} \frac{1}{m} + n
+    \end{split}
+  \end{equation*}
+  Therefore, by choosing $m = 4n$ for the first stage, the probability of failing to choose a proper hash function is less than $1/2$.
+
+\input{../texlib/tail}
+
+
