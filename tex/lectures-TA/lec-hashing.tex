@@ -19,7 +19,11 @@ However, this is not a ``good`` method, since two different keys with the same r
 \begin{definition}[collision.]
   Given a function $h : U \rightarrow \star$, we name any pair of different keys $x\neq y \in U$ that are mapped by $h$ to the same value, namely $h(x) = h(y)$, a collision.
 \end{definition}
-Clearly, if we assume that no collisions are going to occur, i.e. all the given keys through the running of the program $x_{1},x_{2},..,x_{n}$ satisfy that for any $x_{i}\neq x_j$, it follows that $h(x_{i}) \neq h(x_{j})$, then the method in \Cref{example:bad} provides a data structure that\footnote{Again, relative to assumptions on the input.} supports access, insertion, and deletion in constant time. This gives us the intuition that the complexity of a general data structure which uses a hash function depends on the way it resolves collisions. In this recitation, we will present ways to handle collisions. The first is a heuristic called \textbf{open addressing} (or \textbf{closed hashing}). The second, \textbf{open hashing}, will also be analyzed, and we will show a characterization that, if satisfied, then we get a good running time in expectation. Finally, we will also show examples of function families that satisfy the characterization and examples of functions that do not.
+Clearly, if we assume that no collisions are going to occur, i.e. all the given keys through the running of the program $x_{1},x_{2},..,x_{n}$ satisfy that for any $x_{i}\neq x_j$, it follows that $h(x_{i}) \neq h(x_{j})$, then the method in \Cref{example:bad} provides a data structure that\footnote{Again, relative to assumptions on the input.} supports access, insertion, and deletion in constant time. This gives us the intuition that the complexity of a general data structure which uses a hash function depends on the way it resolves collisions. In this recitation, we will present ways to handle collisions. The first is a heuristic called \textbf{open addressing} (or \textbf{closed hashing}). The second, \textbf{open hashing}, will also be analyzed, and we will show a characterization that, if satisfied, then we get a good running time in expectation. Finally, we will also show examples of function families that satisfy the characterization and examples of families that do not.
+
+
+\section{ Open Addressing (Closed Hashing).}
+
 \section{ Universal Hashing. } 
 
 
