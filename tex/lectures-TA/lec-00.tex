@@ -60,15 +60,15 @@ Indeed, there is. Instead of proving that he can reach the door, he can prove th
     \node[anchor=south west,inner sep=0] at (0,0) {\includegraphics[scale=2]{./dommino-256x256}};
     \node (A) at (7,5.5) { $P(n-1)$ };
     \node (B) at (8,5.7) { $P(n)$ };
-    \node (C) at (7, 4) { $P(n)$ };
-    \node (D) at (8, 4) { $P(n)$ };
+    \node (C) at (7, 4);
+    \node (D) at (8, 4);
     \draw [draw = blue, thick,
          arrows={
            Computer Modern Rightarrow [sep]
          - Latex[blue!50,length=8pt,bend,line width=0pt]
            Stealth[length=8pt,open,bend,sep]}]
     (C) edge [bend left=45] (A)
-    (D) edge [in=-110, out=-70,looseness=8] (B);
+    (D) edge [in=-10, out=-70,looseness=8] (B);
     %\draw[red,ultra thick,rounded corners] (7.5,5.3)  (9.4,6.2);
 \end{tikzpicture}
     \caption{ domino line falling.}
