@@ -110,7 +110,7 @@ Prove that $ \forall n \in  \mathbb{N}$:
 \end{example}
 \begin{example}[Weak induction.] 
   \label{example:sumweak2}
-  Let \(q\in \mathbb{R} / \{1\}\), consider the geometric series \( 1,q,q^2,q^3....q^k...\). Prove that the sum of the first \(k\) elements is \begin{equation*}
+  Let \(q\in \mathbb{R}^{+} / \{1\}\), consider the geometric series \( 1,q,q^2,q^3....q^k\). Prove that the sum of the first \(k\) elements is \begin{equation*}
      1+q+q^2+...+q^{k-1}+q^k = \frac{q^{k+1}-1}{q-1}
 \end{equation*}
 
@@ -166,6 +166,7 @@ Prove that $ \forall n \in  \mathbb{N}$:
 
 \draw[dashed] (intersection-1) -- (intersection-1|-O) node[below]{$N$};
 \end{tikzpicture}
+\caption{Here $f_{1} (x) \sim  x^{2} + \sin(x)$, and $f_{2} \sim x + \sin(x)$, both defined up to additive and multiplicative terms. So, $f_{1} = \Omega(f_{2})$ and $f_{2} = O(f_{1})$. } 
 \end{figure}
 
 
