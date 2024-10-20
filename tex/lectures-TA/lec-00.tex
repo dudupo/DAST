@@ -128,14 +128,14 @@ Prove that $ \forall n \in  \mathbb{N}$:
 , then \(f(n) = O(g(n)) \) (Draw the graphs) for \(n \ge 5 \):
 \(f(n) = n + 10 \le n + 2n = 3n \le n \cdot n = n^2\)
 \end{example}
-\begin{figure}[h!]
+\begin{figure}[h]
   \label{fig:bigO}
 \begin{tikzpicture}
     \draw[->]  (0,0)coordinate(O) -- (8,0) node[anchor=north] {$n$};
     \draw[->]  (0,0) -- (0,5);
 
-\draw[domain=0:8,smooth,variable=\x,blue,name path=c1] plot ({\x},{0.5*\x+2*sin(\x r)+1})node[right]{$f_1(n)$};
-\draw[domain=0:8,smooth,variable=\x,red,name path=c2] plot ({\x},{0.2*\x+0.5*sin(\x r)+2})node[right,black]{$f_2(n)$};
+\draw[domain=0:4,smooth,variable=\x,blue,name path=c1] plot ({\x},{0.5*\x+2*sin(\x r)+1})node[right]{$f_1(n)$};
+\draw[domain=0:4,smooth,variable=\x,red,name path=c2] plot ({\x},{0.2*\x+0.5*sin(\x r)+2})node[right,black]{$f_2(n)$};
 \fill[red,name intersections={of=c1 and c2}]
     (intersection-1) circle (2pt)
     (intersection-2) circle (2pt)
@@ -155,14 +155,14 @@ We say that \(f(n) = \Omega(g(n))\) if \(g(n) = O(f(n))\), equivalently,
   Also if \( f(n) = 5n\) and \(g(n) = n^2\), then \(f(n) = O(g(n))\) (Now discuss intuition - no matter how much we “stretch” \(f, g\) is still the winner)
 \end{example}
 
-\begin{figure}[h!]
+\begin{figure}[h]
   \label{fig:bigOmega}
 \begin{tikzpicture}
     \draw[->]  (0,0)coordinate(O) -- (8,0) node[anchor=north] {$n$};
     \draw[->]  (0,0) -- (0,5);
 
-\draw[domain=0:8,smooth,variable=\x,blue,name path=c1] plot ({\x},{0.5*\x+2*sin(\x r)+1})node[right]{$f_1(n)$};
-\draw[domain=0:8,smooth,variable=\x,red,name path=c2] plot ({\x},{0.2*\x+0.5*sin(\x r)+2})node[right,black]{$f_2(n)$};
+\draw[domain=0:4,smooth,variable=\x,blue,name path=c1] plot ({\x},{0.5*\x+2*sin(\x r)+1})node[right]{$f_1(n)$};
+\draw[domain=0:4,smooth,variable=\x,red,name path=c2] plot ({\x},{0.2*\x+0.5*sin(\x r)+2})node[right,black]{$f_2(n)$};
 \fill[red,name intersections={of=c1 and c2}]
     (intersection-1) circle (2pt)
     (intersection-2) circle (2pt)
@@ -181,14 +181,14 @@ For exmaple, if \(f(n) = n + 10\) and \(g(n) = n^2\)
 , then \(g(n) = \Omega(f(n))\)
 \end{example}
 
-\begin{figure}[h!]
+\begin{figure}[h]
   \label{fig:bigTheta}
 \begin{tikzpicture}
     \draw[->]  (0,0)coordinate(O) -- (8,0) node[anchor=north] {$n$};
     \draw[->]  (0,0) -- (0,5);
 
-\draw[domain=0:8,smooth,variable=\x,blue,name path=c1] plot ({\x},{0.5*\x+2*sin(\x r)+1})node[right]{$f_1(n)$};
-\draw[domain=0:8,smooth,variable=\x,red,name path=c2] plot ({\x},{0.2*\x+0.5*sin(\x r)+2})node[right,black]{$f_2(n)$};
+\draw[domain=0:4,smooth,variable=\x,blue,name path=c1] plot ({\x},{0.5*\x+2*sin(\x r)+1})node[right]{$f_1(n)$};
+\draw[domain=0:4,smooth,variable=\x,red,name path=c2] plot ({\x},{0.2*\x+0.5*sin(\x r)+2})node[right,black]{$f_2(n)$};
 \fill[red,name intersections={of=c1 and c2}]
     (intersection-1) circle (2pt)
     (intersection-2) circle (2pt)
