@@ -137,7 +137,7 @@ Prove that $ \forall n \in  \mathbb{N}$:
     \draw[domain=0:6,smooth,variable=\x,blue,name path=c1] plot ({\x},{0.5*( (0.5*\x)^2+2*sin(\x r)+1)})node[right]{$f_1(n)$};
     \draw[domain=0:11,smooth,variable=\x,red,name path=c2] plot ({\x},{0.5*(0.2*\x+0.5*sin(\x r)+2)})node[right]{$f_2(n)$};
 \fill[red,name intersections={of=c1 and c2}]
-    (intersection-1) circle (2pt)
+    (intersection-1) circle (2pt);
 
 \draw[dashed] (intersection-1) -- (intersection-1|-O) node[below]{$N$};
 \end{tikzpicture}
@@ -175,7 +175,7 @@ For exmaple, if \(f(n) = n + 10\) and \(g(n) = n^2\)
     (intersection-2) circle (2pt)
         (intersection-3) circle (2pt) ;
 
-\draw[dashed] (intersection-2) -- (intersection-2|-O) node[below]{n};
+%\draw[dashed] (intersection-2) -- (intersection-2|-O) node[below]{n};
 \end{tikzpicture}
 \end{figure}
 
