@@ -119,7 +119,6 @@ Step:
 \end{equation*}
 \end{proof}
 \end{example}
-% \ctt{Finish the induction proof and add alternative proof by counting. I am not sure what is favored, exposing both ways (at the first example) will make clear that induction is only a single proofing tool and surly not the only one. Yet from didactic point of view, it might confuses. }
 
 \begin{example}[Strong induction] 
   Let there be a chocolate bar that consists of \(n\) square chocolate blocks. Then it takes exactly \(n - 1\) snaps to separate it into the \(n\) squares no matter how we split it.
@@ -185,10 +184,6 @@ Let's prove correction by induction.
 \end{enumerate}
 
 \end{proof}
-
-\ctt{  
-  In the previous version of the recitation, the first recursive call was to find-peak$\left(A_{i},A_{i+1}..A_{n}\right)$. However, in the case where $n=2$, we have that $A_{i}=A_1$, so it does not hold that $|A^{\prime}| < |A|$. And we cann't use the induction assumption. 
-}
 
 
 What's the running time? Denote by $T\left( n \right)$ an upper bound on the running time. We claim that $T(n) \le c \log (n) + c$, let's prove it by induction.
