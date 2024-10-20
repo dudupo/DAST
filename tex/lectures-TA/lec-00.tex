@@ -128,7 +128,7 @@ Prove that $ \forall n \in  \mathbb{N}$:
 , then \(f(n) = O(g(n)) \) (Draw the graphs) for \(n \ge 5 \):
 \(f(n) = n + 10 \le n + 2n = 3n \le n \cdot n = n^2\)
 \end{example}
-\begin{figure}[h]
+\begin{figure}[h!]
   \label{fig:bigO}
 \begin{tikzpicture}
     \draw[->]  (0,0)coordinate(O) -- (8,0) node[anchor=north] {$n$};
@@ -155,7 +155,7 @@ We say that \(f(n) = \Omega(g(n))\) if \(g(n) = O(f(n))\), equivalently,
   Also if \( f(n) = 5n\) and \(g(n) = n^2\), then \(f(n) = O(g(n))\) (Now discuss intuition - no matter how much we “stretch” \(f, g\) is still the winner)
 \end{example}
 
-\begin{figure}[h]
+\begin{figure}[h!]
   \label{fig:bigOmega}
 \begin{tikzpicture}
     \draw[->]  (0,0)coordinate(O) -- (8,0) node[anchor=north] {$n$};
@@ -181,7 +181,7 @@ For exmaple, if \(f(n) = n + 10\) and \(g(n) = n^2\)
 , then \(g(n) = \Omega(f(n))\)
 \end{example}
 
-\begin{figure}[h]
+\begin{figure}[h!]
   \label{fig:bigTheta}
 \begin{tikzpicture}
     \draw[->]  (0,0)coordinate(O) -- (8,0) node[anchor=north] {$n$};
