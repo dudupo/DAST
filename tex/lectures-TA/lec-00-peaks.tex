@@ -186,17 +186,23 @@ Let's prove correction by induction.
 \end{proof}
 
 
-What's the running time? Denote by $T\left( n \right)$ an upper bound on the running time. We claim that $T(n) \le c \log (n) + c$, let's prove it by induction.
+What's the running time? Denote by $T\left( n \right)$ an upper bound on the running time. We claim that $T(n) \le c_{1} \log (n) - c_{2}$, let's prove it by induction.
 \begin{proof}
      
 \begin{enumerate}
-  \item Base. For the base case, $n=1$ we get that $c \log(1) + c =  c$ on the other hand only a single check made by the algorithm, so indeed the base case holds.
-  \item Induction Assumption. Assume that for any $m < n$, the algorithm runs in at most $c \log(m) + c$ time.
-  \item Step. Notice that in the worst case, $\lceil n/2 \rceil$ is not a peak, and the algorithm calls itself recursively immediately after paying $c$ in the first check. Hence: \begin{equation*}
+  \item Base. For the base case, $n \le 3$ we get that $c_{1} \log(1) + c_{2} =  c_{2}$ on the other hand only a single check made by the algorithm, so indeed the base case holds (Choosing $c_{2} \ge$ the cost of a single check).
+  \item Induction Assumption. Assume that for any $m < n$, the algorithm runs in at most $c_{1} \log(m) + c_{2}$ time.
+  \item Step. Notice that in the worst case, $\lceil n/2 \rceil$ is not a peak, and the algorithm calls itself recursively immediately after paying $c_{2}$ in the first check. Hence: \begin{equation*}
       \begin{split}    
-    T\left(n\right) & \le c + T\left(n/2\right) \le c + c \log\left( \lceil n/2 \rceil \right) + c\\
-  & = c \log (2) +  c \log\left( \lceil n/2 \rceil  \right) + c = c \log\left(2 \left(\lceil n/2 \rceil \right) \right) + c\\
-  & \le c \log \left( n  \right)    
+	T\left(n\right) & \le c_{2} + T\left(n/2\right) \le c_{2} + c_{1} \log\left( \lceil n/2 \rceil \right) + c_{2}\\
+	& = c_{1} - c_{1} +  c_{2} + T\left(n/2\right) \le c_{2} + c_{1} \log\left( \lceil n/2 \rceil \right) + c_{2}\\
+	& = c_{1} \log (2) +  c \log\left( \lceil n/2 \rceil  \right) + 2c_{2} - c_{1} = c_{1} \log\left(2 \left(\lceil n/2 \rceil \right) \right) + 2c_{2} - c_{1}\\
+      \end{split}
+    \end{equation*}
+    So, choosing $c_{1} > c_{2}$ gives $2c_{2} - c_{1} < c_{2}$ and therefore:
+    \begin{equation*}
+      \begin{split}
+	T\left(n\right) \le c_{1} \log \left( n  \right) + c_{2}  
       \end{split}
     \end{equation*}
 \end{enumerate}
