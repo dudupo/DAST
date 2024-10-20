@@ -407,5 +407,204 @@ Let’s find an asymptotic upper bound for \(f(n)\). let's guess \( f(n) = O(\lo
 % k+1 − 1 of the
 % series. The total area of the rect angle here is 2.
 
+\section{Peaks-Finding.}
+\begin{example}[Leading Example.]
+Consider an \(n\)-length array $A$ such that~$A_1,A_2,....,A_n~\in~\mathbb{R}$. We will say that $A_{j}$ is a peak (local minimum) if he's greater than his neighbors. Namely, $A_{i} \ge A_{i\pm1}$ if $i\pm 1 \in [n]$. Whenever $i\pm 1$ is not in the range $[n]$, we will define the inequality $A_{i} \ge A_{i\pm 1}$ to hold trivially. For example, for $n=1$, $A_{1}=A_{n}$ is always a peak. Write an algorithm that, given $A$, returns the position of an arbitrary peak.
+\end{example}
+
+
+\begin{example}{Warming up.} \label{example:func} How many peaks do the following arrays contain?
+  \begin{enumerate}
+    \item $A[i] = 1$   $\forall i \in [n]$
+    \item $A[i] = \begin{cases}
+        i & i < n/2 \\
+        n/2 - i & \text{else}
+      \end{cases}$
+    \item $A[i] = i $  $\forall i \in [n]$
+  \end{enumerate}
+\end{example}
+
+\section{Naive solution.}
+To better understand the problem, let's first examine a simple solution before proposing a more intriguing one. Consider the algorithm examining each of the items $A_{i}$ one by one.
+\begin{algorithm}
+\KwResult{returns a peak of \(A_1 ... A_n \in \mathbb{R}^n \)  }
+\caption{naive peak-find alg.}
+ \For{ \(i \in [n] \) } { 
+   \If { $A_{i}$ is a peak }{
+        \Return $i$
+        }
+    } 
+\end{algorithm}
+\paragraph{Correctness.}
+We will say that an algorithm is correct, with respect to a given task, if it computes the task for any input. Let's prove that the above algorithm is doing the job. 
+
+\begin{proof}
+%  Assume towards contradiction that there exists an $n$-length array $A$ such that the algorithm peak-find fails to find one of its peaks, in particular, the Alg. either returns $j^{\prime}\in [n]$ such that $A_{j^{\prime}}$ is not a peak or not return at all (never reach line (3)). Let's handle first the case in which retruning indeed occurred. Denote by $j$ the first position of a peak in $A$, and note that if the algorithm gets to line (2) in the $j$th iteration then either it returns $j$ or $A_{j}$ is not a peak.
+%  Hence it must hold that $j^{\prime} < j$. But a satisfaction of the condition on line (2) can happen only if $A_{j^{\prime}}$ is a peak, which contradicts the minimality of $j$.
+%
+%  In the case that no position has been returned, In particular the algorithm didn't return in any of the first $j$ iterations and get's in to iteration number $j+1$, which means that the conidition on line (2) was not satisfied in contradiction to the fact that $A_{j}$ is a peak. 
+%
+Assume towards contradiction that there exists an $n$-length array $A$ such that the algorithm peak-find fails to find one of its peaks, in particular, the Alg. either returns $j^{\prime}\in [n]$ such that $A_{j^{\prime}}$ is not a peak or does not return at all (never reach line (3)). Let's handle first the case in which returning indeed occurred. Denote by $j$ the first position of a peak in $A$, and note that if the algorithm gets to line (2) in the $j$th iteration then either it returns $j$ or $A_{j}$ is not a peak.
+  Hence it must hold that $j^{\prime} < j$. But satisfaction of the condition on line (2) can happen only if $A_{j^{\prime}}$ is a peak, which contradicts the minimality of $j$. In the case that no position has been returned, it follows that the algorithm didn't return in any of the first $j$ iterations and gets to iteration number $j+1$, which means that the condition on line (2) was not satisfied in contradiction to the fact that $A_{j}$ is a peak.
+\end{proof}
+
+\paragraph{Running Time.} 
+Question, How would you compare the performance of two different algorithms? What will be the running time of the naive peak-find algorithm? On the lecture you will see a well-defined way to treat such questions, but for the sake of getting the general picture, let's assume that we pay for any comparison a quanta of processing time, and in overall, checking if an item in a given position is a peak, cost at most $c\in \mathbb{N}$ time, a constant independent on $n$.
+
+Question, In the worst case scenario, how many local checks does peak-finding do? For the third example in~\Cref{example:func}, the naive algorithm will have to check each item, so the running time adds up to at most $c \cdot n$.
+
+\section{Naive alg. recursive version.}
+Now, we will show a recursive version of the navie peak-find algorithm for demonstrating how correctness can be proved by induction. 
+\begin{algorithm}
+\KwResult{returns a peak of \(A_1 ... A_n \in \mathbb{R}^n \)  }
+\caption{naive recursive peak-find alg.}
+ \If { $A_{1} \ge A[2]$ or $n=1$ }{
+   \Return 1
+ }
+ \Return 1 + peak-find$(A_{2}, .. A_{n})$
+ \end{algorithm}
+
+ \begin{claim} \label{claim:subarray} 
+Let $A = A_1, \dots, A_n$ be an array, and $A' = A_2, A_3, \dots, A_n$ be the $n-1$ length array obtained by taking all of $A$'s items except the first. If $A_1 \le A_2$, then any peak of $A'$ is also a peak of $A$.
+\end{claim}
+\begin{proof} 
+Let $A^{\prime}_{j}$ be a peak of $A^{\prime}$. Split into cases upon on the value of $j$. If $n-1 > j > 1$, then $A^{\prime}_{j} \ge A^{\prime}_{j \pm 1}$, but for any $j \in [2, n-2]$ we have $A^{\prime}_{j} = A_{j+1}$ and therefore $A_{j+1} \ge A_{j+1 \pm 1} \Rightarrow A_{j+1}$ is a peak in $A$. If $j^{\prime} = 1$, then $A^{\prime}_{1} > A^{\prime}_{2} \Rightarrow A_{2} \ge A_{3}$ and by combining the assumption that $A_{1} \le A_{2}$ we have that $A_{2} \ge A_{1}, A_{3}$. So $A_{2} = A^{\prime}_{1}$ is also a peak. The last case $j = n-1$ is left as an exercise.
+\end{proof}
+
+One can prove a much more general claim by following almost the same argument presented above.
+
+ \begin{claim} \label{claim:subarraymiddle} 
+   Let $A = A_1, \dots, A_n$ be an array, and $A' = A_{j+1}, A_{j+2}, \dots, A_n$ be the $n-j$ length array. If $A_j \le A_{j+1}$, then any peak of $A'$ is also a peak of $A$.
+\end{claim}
+%\section{Induction. (Might not appear in the recitation.)} 
+%\ifdefined\RECITATION
+%\else
+%Suppose that a teacher, who is standing in front of his class, is willing to prove that he can reach the door at the corner. One obvious way to do so is to actually reach the door; that is, move physically to it and declare success. For small classes containing a small number of students, this protocol might even be efficient, lasting less than several seconds. But what if the class is really big, maybe the length and width of a football stadium? In that case, proving by doing might take time. So the obvious question to ask is, what else can we do? Is there a more efficient way to prove this?
+%
+%Indeed, there is. Instead of proving that he can reach the door, he can prove that while he do not stand next to the door, nothing can stop him from keeping moving forward. If that is indeed the case, then it's clear that not reaching the door in the end would be a contradiction to being just one step away from it (why?), which, in turn, would also contradict being two steps away from it. Repeating this argument leads to a contradiction for the fact that the teacher was in the classroom at the beginning.
+%\fi
+%\paragraph{What is induction?}~\begin{enumerate}
+%    \item A mathematical proof technique. It is essentially used to prove that a property \(P(n)\) holds for every natural number \(n\).
+%    \item The method of induction requires two cases to be proved:
+%    \begin{enumerate}
+%        \item The first case, called the base case, proves that the property holds for the first element.
+%        \item The second case, called the induction step, proves that if the property holds for one natural number, then it holds for the next natural number.
+%    \end{enumerate}
+%    \item The domino metaphor. 
+%\end{enumerate}
+%\paragraph{The two types of induction, their steps, and why it makes sense} (Strong vs Weak) - Emphasize the change in the induction step.
+%\begin{example}[Weak induction] Prove that $ \forall n \in  \mathbb{N}$,$\sum_{i=0}^{n}{i} = \frac{n(n+1)}{2}$.
+%\begin{proof} Base: For \(n = 1\), \(\sum_{i=0}^{1}{1} = 1 = \frac{(1+1)\cdot 1}{2} \). Assumption: Assume that the claim holds for \(n\).Step: 
+%\begin{equation*}
+%  \begin{split}
+% \sum_{i=0}^{n+1}{i} = & \left( \sum_{i=0}^{n}{i} \right) + n+1 = \frac{n(n+1)}{2} + n + 1 \\
+% = & \frac{n(n+1) + 2\cdot (n+1)}{2} = \frac{(n+1)(n+2)}{2} 
+%  \end{split}
+%\end{equation*}
+%\end{proof}
+%\end{example}
+%\begin{example}[Weak induction.] Let \(q\in \mathbb{R} / \{1\}\), consider the geometric series \( 1,q,q^2,q^3....q^k...\). Prove that the sum of the first \(k\) elements is \begin{equation*}
+%     1+q+q^2+...+q^{k-1}+q^k = \frac{q^{k+1}-1}{q-1}
+%\end{equation*}
+%
+%\begin{proof} Base: For \(n = 1\), we get \( \frac{q^{k+1}-1}{q-1} = \frac{q-1}{q-1} = 1\). 
+%Assumption: Assume that the claim holds for \(k\). then:
+%Step: 
+%\begin{equation*}
+%\begin{split}
+%    1+q+q^2+...+q^{k-1}+q^k + q^{k+1} &=  \frac{q^{k}-1}{q-1} + q^{k+1}  = \frac{q^{k+1}-1 +q^{k+1}\left(q-1\right) }{q-1} = \\ &\frac{\textcolor{red}{q^{k+1}}-1 +q^{k+2} - \textcolor{red}{q^{k+1}}  }{q-1} = \frac{q^{k+2}-1}{q-1} 
+%\end{split}
+%\end{equation*}
+%\end{proof}
+%\end{example}
+%
+%\begin{example}[Strong induction] 
+%  Let there be a chocolate bar that consists of \(n\) square chocolate blocks. Then it takes exactly \(n - 1\) snaps to separate it into the \(n\) squares no matter how we split it.
+%
+%  \begin{proof} By strong induction. Base: For \(n = 1\), it is clear that we need \(0\) snaps. Assumption: Assume that for \textbf{every} \(m < n \), this claim holds.
+%
+%
+%Step: We have in our hand the given chocolate bar with \(n\) square chocolate blocks. Then we may snap it anywhere we like, to get two new chocolate bars: one with some \( k \in [n]\) chocolate blocks and one with \(n - k\) chocolate blocks. From the induction assumption, we know that it takes \(k - 1\) snaps to separate the first bar, and \(n - k - 1\) snaps for the second one. And to sum them up, we got exactly \[ (k - 1) + (n - k - 1) + 1 = n - 1 \] snaps.
+%\end{proof}
+%\end{example}
+
+We are ready to prove the correctness of the recursive version by induction using \Cref{claim:subarray}. 
+
+\begin{enumerate}
+  \item Base, single element array. Trivial. 
+  \item Assumption, Assume that for any $m$-length array, such that $m<n$ the alg returns a peak. 
+  \item Step, consider an array $A$ of length $n$. If $A_1$ is a peak, then the algorithm answers affirmatively on the first check, returning $1$ and we are done. If not, namely $A_1 < A_2$, then by using \Cref{claim:subarray} we have that any peak of $A' = A_2, A_3, \dots, A_n$ is also a peak of $A$. The length of $A'$ is $n-1 < n$. Thus, by the induction assumption, the algorithm succeeds in returning on $A'$ a peak which is also a peak of $A$.
+\end{enumerate}
+
+\section{An attempt for sophisticated solution.}
+We saw that we can find an arbitrary peak at $c\cdot n$ time, which raises the question, can we do better? Do we really have to touch all the elements to find a local maxima? Next, we will see two attempts to catch a peak at logarithmic cost. The first attempt fails to achieve correctness, but analyzing exactly why will guide us on how to come up with both an efficient and correct algorithm.
+\begin{algorithm}
+\KwResult{returns a peak of \(A_1 ... A_n \in \mathbb{R}^n \)  }
+\caption{fail attempt for more sophisticated alg. }
+        $ i \leftarrow  \lceil n/2 \rceil $\\
+        \If { $A_{i}$ is a peak }{
+          \Return $i$
+        }
+        \Else { 
+          \Return $i - 1  + $ find-peak$\left(A_{i},A_{i+1}..A_{n}\right)$
+        }
+\end{algorithm}
+
+Let's try to 'prove' it.  
+\begin{enumerate}
+ \item Base, single element array. Trivial. 
+  \item Assumption, Assume that for any $m$-length array, such that $m<n$ the alg returns a peak. 
+  \item Step. If $A_{n/2}$ is a peak, we're done. What happens if it isn't? Is it still true that any peak of $A_{i},A_{i+1}, \ldots, A_{n}$ is also a peak of $A$? Consider, for example, $A[i] = n - i$.
+\end{enumerate}
+
+\section{Sophisticated solution.}
+The example above points to the fact that we would like to have a similar claim to \Cref{claim:subarraymiddle} that relates the peaks of the split array to the original one.  
+\begin{algorithm}
+\KwResult{returns a peak of \(A_1 ... A_n \in \mathbb{R}^n \)  }
+\caption{sophisticated alg.}
+$ i \leftarrow  \lceil n/2 \rceil $\\
+        \If { $A_{i}$ is a peak }{
+          \Return $i$
+        }
+        \ElseIf { $A_{i-1} \le A_{i}$ } { 
+          \Return $i + $ find-peak$\left(A_{i+1}..A_{n}\right)$
+        }
+        \Else { 
+          \Return find-peak$\left(A_{1},A_{2},A_{3}..A_{i-1}\right)$
+        }
+\end{algorithm}
+Let's prove correction by induction.
+\begin{proof}
+\begin{enumerate}
+  \item Base, single element array. Trivial. 
+  \item Assumption, Assume that for any $m$-length array, such that $m<n$ the alg returns a peak. 
+  \item Step, Consider an array $A$ of length $n$. If $A_{\lceil n/2 \rceil}$ is a peak, then the algorithm answers affirmatively on the first check, returning $\lceil n/2 \rceil$ and we are done. If not, then either $A_{\lceil n/2 \rceil} < A_{\lceil n/2 \rceil - 1}$ or $A_{\lceil n/2 \rceil} < A_{\lceil n/2 \rceil + 1}$. We have already handled the first case, that is, using \Cref{claim:subarraymiddle} we have that any peak of $A' = A_{\lceil n/2 \rceil + 1}, A_{\lceil n/2 \rceil + 2}, \dots, A_n$ is also a peak of $A$. The length of $A'$ is $n/2 < n$. So by the induction assumption, in the case where $A_{\lceil n/2 \rceil} < A_{\lceil n/2 \rceil - 1}$ the algorithm returns a peak. In the other case, we have $A_{\lceil n/2 \rceil} < A_{\lceil n/2 \rceil + 1}$ (otherwise $A_{\lceil n/2 \rceil}$ would be a peak). We leave finishing the proof as an exercise.
+\end{enumerate}
+
+\end{proof}
+
+
+What's the running time? Denote by $T\left( n \right)$ an upper bound on the running time. We claim that $T(n) \le c_{1} \log (n) - c_{2}$, let's prove it by induction.
+\begin{proof}
+     
+\begin{enumerate}
+  \item Base. For the base case, $n \le 3$ we get that $c_{1} \log(1) + c_{2} =  c_{2}$ on the other hand only a single check made by the algorithm, so indeed the base case holds (Choosing $c_{2} \ge$ the cost of a single check).
+  \item Induction Assumption. Assume that for any $m < n$, the algorithm runs in at most $c_{1} \log(m) + c_{2}$ time.
+  \item Step. Notice that in the worst case, $\lceil n/2 \rceil$ is not a peak, and the algorithm calls itself recursively immediately after paying $c_{2}$ in the first check. Hence: \begin{equation*}
+      \begin{split}    
+	T\left(n\right) & \le c_{2} + T\left(n/2\right) \le c_{2} + c_{1} \log\left( \lceil n/2 \rceil \right) + c_{2}\\
+	& = c_{1} - c_{1} + c_{2} + c_{1} \log\left( \lceil n/2 \rceil \right) + c_{2}\\
+	& = c_{1} \log (2) +  c \log\left( \lceil n/2 \rceil  \right) + 2c_{2} - c_{1} \\
+	& = c_{1} \log\left(2 \left(\lceil n/2 \rceil \right) \right) + 2c_{2} - c_{1}
+      \end{split}
+    \end{equation*}
+    So, choosing $c_{1} > c_{2}$ gives $2c_{2} - c_{1} < c_{2}$ and therefore:
+    \begin{equation*}
+      \begin{split}
+	T\left(n\right) \le c_{1} \log \left( n  \right) + c_{2}  
+      \end{split}
+    \end{equation*}
+\end{enumerate}
+\end{proof}
 
 \input{../texlib/tail}
