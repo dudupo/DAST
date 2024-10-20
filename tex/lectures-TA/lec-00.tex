@@ -56,8 +56,11 @@ Indeed, there is. Instead of proving that he can reach the door, he can prove th
     \item The domino metaphor. 
 \begin{figure}[h]
   \centering
-  \includegraphics[scale=2]{./dommino-256x256}
-  \caption{ domino line falling.}
+  \begin{tikzpicture}
+    \node[anchor=south west,inner sep=0] at (0,0) {\includegraphics[scale=2]{./dommino-256x256}};
+    \draw[red,ultra thick,rounded corners] (7.5,5.3) rectangle (9.4,6.2);
+\end{tikzpicture}
+    \caption{ domino line falling.}
   \label{fig:domino}
 \end{figure}
 \end{enumerate}
