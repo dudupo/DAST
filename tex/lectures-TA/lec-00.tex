@@ -1,4 +1,5 @@
 \input{../texlib/head.tex}
+\newcommand*{\RECITATION}{}%
 \begin{document}
 \chapter{Induction and Asymptotic Notations.}
 Computer science differs from other scientific disciplines in that it focuses not on solving or making discoveries, but on questioning how good is our current understanding. The fact that one has successfully come up with an idea for a certain problem immediately raises the question of optimality. At the most basic level, we would like to answer what is the 'best' \marginnote[Note 1: text for left-hand side text]{Note 1: text for right-hand side of pages, it is set justified.} program that exists for a particular problem. To do so, we must have a notation that allows us to determine if an algorithm is indeed solving the task, quantify its performance, and compare it to other algorithms. In this chapter, we introduce this basic notation. The chapter is divided into two main parts: the first is about induction, a mathematical technique for proving claims, and the second presents asymptotic notation, which we use to describe the behavior of algorithms over large inputs.
@@ -117,6 +118,24 @@ Prove that $ \forall n \in  \mathbb{N}$:
 \end{proof}
 \end{example}
 \section{Asymptotic Notations.}
+
+
+\begin{figure}
+\begin{tikzpicture}
+    \draw[->]  (0,0)coordinate(O) -- (8,0) node[anchor=north] {$n$};
+    \draw[->]  (0,0) -- (0,5);
+
+\draw[domain=0:8,smooth,variable=\x,blue,name path=c1] plot ({\x},{0.5*\x+2*sin(\x r)+1})node[right]{$f_1(n)$};
+\draw[domain=0:8,smooth,variable=\x,red,name path=c2] plot ({\x},{0.2*\x+0.5*sin(\x r)+2})node[right,black]{$f_2(n)$};
+\fill[red,name intersections={of=c1 and c2}]
+    (intersection-1) circle (2pt)
+    (intersection-2) circle (2pt)
+        (intersection-3) circle (2pt) ;
+
+\draw[dashed] (intersection-2) -- (intersection-2|-O) node[below]{n};
+\end{tikzpicture}
+\end{figure}
+
 \begin{definition}
   Let \( f, g : \mathbb{N} \rightarrow \mathbb{R}^{+} \). We say that \( f(n) = O(g(n))\)  if \( \exists N \in \mathbb{N}, \exists c > 0 \) s.t. \( \forall n \ge N \ : \ f(n) \le c \cdot g(n)\)
 \end{definition}
