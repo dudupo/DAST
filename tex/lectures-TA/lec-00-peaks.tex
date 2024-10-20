@@ -195,8 +195,9 @@ What's the running time? Denote by $T\left( n \right)$ an upper bound on the run
   \item Step. Notice that in the worst case, $\lceil n/2 \rceil$ is not a peak, and the algorithm calls itself recursively immediately after paying $c_{2}$ in the first check. Hence: \begin{equation*}
       \begin{split}    
 	T\left(n\right) & \le c_{2} + T\left(n/2\right) \le c_{2} + c_{1} \log\left( \lceil n/2 \rceil \right) + c_{2}\\
-	& = c_{1} - c_{1} +  c_{2} + T\left(n/2\right) \le c_{2} + c_{1} \log\left( \lceil n/2 \rceil \right) + c_{2}\\
-	& = c_{1} \log (2) +  c \log\left( \lceil n/2 \rceil  \right) + 2c_{2} - c_{1} = c_{1} \log\left(2 \left(\lceil n/2 \rceil \right) \right) + 2c_{2} - c_{1}\\
+	& = c_{1} - c_{1} + c_{2} + c_{1} \log\left( \lceil n/2 \rceil \right) + c_{2}\\
+	& = c_{1} \log (2) +  c \log\left( \lceil n/2 \rceil  \right) + 2c_{2} - c_{1} \\
+	& = c_{1} \log\left(2 \left(\lceil n/2 \rceil \right) \right) + 2c_{2} - c_{1}
       \end{split}
     \end{equation*}
     So, choosing $c_{1} > c_{2}$ gives $2c_{2} - c_{1} < c_{2}$ and therefore:
