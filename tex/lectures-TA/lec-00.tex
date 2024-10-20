@@ -141,6 +141,9 @@ Prove that $ \forall n \in  \mathbb{N}$:
     \
   \end{subfigure}
   \begin{subfigure}[b]{0.25\textwidth} 
+\begin{definition}
+  Let \( f, g : \mathbb{N} \rightarrow \mathbb{R}^{+} \). We say that \( f(n) = O(g(n))\)  if \( \exists N \in \mathbb{N}, \exists c > 0 \) s.t. \( \forall n \ge N \ : \ f(n) \le c \cdot g(n)\)
+\end{definition}
 
   \end{subfigure} 
 \end{figure}
@@ -148,9 +151,6 @@ Prove that $ \forall n \in  \mathbb{N}$:
 %\begin{figure}
 %\end{figure}
 
-\begin{definition}
-  Let \( f, g : \mathbb{N} \rightarrow \mathbb{R}^{+} \). We say that \( f(n) = O(g(n))\)  if \( \exists N \in \mathbb{N}, \exists c > 0 \) s.t. \( \forall n \ge N \ : \ f(n) \le c \cdot g(n)\)
-\end{definition}
 \begin{example}
   For exmaple, if \(f(n) = n + 10 \) and \( g(n) = n^2\)
 , then \(f(n) = O(g(n)) \) (Draw the graphs) for \(n \ge 5 \):
