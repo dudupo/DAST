@@ -120,6 +120,14 @@ Prove that $ \forall n \in  \mathbb{N}$:
 \section{Asymptotic Notations.}
 
 
+\begin{definition}
+  Let \( f, g : \mathbb{N} \rightarrow \mathbb{R}^{+} \). We say that \( f(n) = O(g(n))\)  if \( \exists N \in \mathbb{N}, \exists c > 0 \) s.t. \( \forall n \ge N \ : \ f(n) \le c \cdot g(n)\). 
+\end{definition}
+\begin{example}
+  For exmaple, if \(f(n) = n + 10 \) and \( g(n) = n^2\)
+, then \(f(n) = O(g(n)) \) (Draw the graphs) for \(n \ge 5 \):
+\(f(n) = n + 10 \le n + 2n = 3n \le n \cdot n = n^2\)
+\end{example}
 \begin{figure}
   \label{fig:bigO}
 \begin{tikzpicture}
@@ -138,6 +146,14 @@ Prove that $ \forall n \in  \mathbb{N}$:
 \end{figure}
 
 
+\begin{definition} 
+Let \( f, g : \mathbb{N} \rightarrow \mathbb{R} \)
+We say that \(f(n) = \Omega(g(n))\) if \(g(n) = O(f(n))\), equivalently,
+\( \exists N \in \mathbb{N}, \exists c > 0 \) s.t. \( \forall n \ge N c_0· g(n) \le f(n) \)
+\end{definition}
+\begin{example}
+  Also if \( f(n) = 5n\) and \(g(n) = n^2\), then \(f(n) = O(g(n))\) (Now discuss intuition - no matter how much we “stretch” \(f, g\) is still the winner)
+\end{example}
 
 \begin{figure}
   \label{fig:bigOmega}
@@ -155,6 +171,15 @@ Prove that $ \forall n \in  \mathbb{N}$:
 \draw[dashed] (intersection-2) -- (intersection-2|-O) node[below]{n};
 \end{tikzpicture}
 \end{figure}
+
+\begin{definition} 
+Let \( f, g : \mathbb{N} \rightarrow \mathbb{R} \), We say that \(f(n) = \Omega(g(n))\) if:
+\( \exists N \in \mathbb{N}, \exists c > 0 \) s.t \( \forall n \ge N \ f(n) \ge c \cdot g(n) \).
+\end{definition}
+\begin{example}
+For exmaple, if \(f(n) = n + 10\) and \(g(n) = n^2\)
+, then \(g(n) = \Omega(f(n))\)
+\end{example}
 
 \begin{figure}
   \label{fig:bigTheta}
@@ -174,30 +199,6 @@ Prove that $ \forall n \in  \mathbb{N}$:
 \end{figure}
 
 
-\begin{definition}
-  Let \( f, g : \mathbb{N} \rightarrow \mathbb{R}^{+} \). We say that \( f(n) = O(g(n))\)  if \( \exists N \in \mathbb{N}, \exists c > 0 \) s.t. \( \forall n \ge N \ : \ f(n) \le c \cdot g(n)\). 
-\end{definition}
-\begin{example}
-  For exmaple, if \(f(n) = n + 10 \) and \( g(n) = n^2\)
-, then \(f(n) = O(g(n)) \) (Draw the graphs) for \(n \ge 5 \):
-\(f(n) = n + 10 \le n + 2n = 3n \le n \cdot n = n^2\)
-\end{example}
-\begin{definition} 
-Let \( f, g : \mathbb{N} \rightarrow \mathbb{R} \)
-We say that \(f(n) = \Omega(g(n))\) if \(g(n) = O(f(n))\), equivalently,
-\( \exists N \in \mathbb{N}, \exists c > 0 \) s.t. \( \forall n \ge N c_0· g(n) \le f(n) \)
-\end{definition}
-\begin{example}
-  Also if \( f(n) = 5n\) and \(g(n) = n^2\), then \(f(n) = O(g(n))\) (Now discuss intuition - no matter how much we “stretch” \(f, g\) is still the winner)
-\end{example}
-\begin{definition} 
-Let \( f, g : \mathbb{N} \rightarrow \mathbb{R} \), We say that \(f(n) = \Omega(g(n))\) if:
-\( \exists N \in \mathbb{N}, \exists c > 0 \) s.t \( \forall n \ge N \ f(n) \ge c \cdot g(n) \).
-\end{definition}
-\begin{example}
-For exmaple, if \(f(n) = n + 10\) and \(g(n) = n^2\)
-, then \(g(n) = \Omega(f(n))\)
-\end{example}
 \begin{definition}
 Let \( f, g : \mathbb{N} \rightarrow \mathbb{R} \), We say that \(f(n) = \Theta(g(n))\) if:
 \(f(n) = O(g(n))\) and \(f(n) = \Omega(g(n))\)
