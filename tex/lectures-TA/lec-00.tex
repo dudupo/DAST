@@ -54,9 +54,15 @@ Indeed, there is. Instead of proving that he can reach the door, he can prove th
     \end{enumerate}
     \item The domino metaphor. 
 \end{enumerate}
-\subsection{Two types of induction.}
+\subsection{Two Types of Induction Strategies.}
 We keep in mind two types of induction strategies: the first is Weak Induction, which refers to proofs that, in their step stage, only require assuming the correctness of the previous step, i.e. $P(n-1)$, in order to prove correctness for $P(n)$. This differs from the Strong Induction strategy, for which the step stage assumes the correctness of the claim for any value less than $n$, namely assuming that all $P(1), P(2), ..., P(n-1)$ are correct.
-\begin{example}[Weak induction] Prove that $ \forall n \in  \mathbb{N}$: 
+
+
+\Cref{example:chockstrong} and \Cref{example:sumweak2} demonstrate the use of weak induction to prove the formulas for arithmetic and geometric sums. \Cref{example:sumweak} uses strong induction to determine the number of splits required to separate a chocolate bar.
+
+\begin{example}[Weak induction] 
+  \label{example:sumweak}
+Prove that $ \forall n \in  \mathbb{N}$: 
   \begin{equation*}
     \begin{split}
   \sum_{i=0}^{n}{i} = \frac{n(n+1)}{2}
@@ -76,7 +82,9 @@ We keep in mind two types of induction strategies: the first is Weak Induction, 
   \end{enumerate}
 \end{proof}
 \end{example}
-\begin{example}[Weak induction.] Let \(q\in \mathbb{R} / \{1\}\), consider the geometric series \( 1,q,q^2,q^3....q^k...\). Prove that the sum of the first \(k\) elements is \begin{equation*}
+\begin{example}[Weak induction.] 
+  \label{example:sumweak2}
+  Let \(q\in \mathbb{R} / \{1\}\), consider the geometric series \( 1,q,q^2,q^3....q^k...\). Prove that the sum of the first \(k\) elements is \begin{equation*}
      1+q+q^2+...+q^{k-1}+q^k = \frac{q^{k+1}-1}{q-1}
 \end{equation*}
 
@@ -97,6 +105,7 @@ We keep in mind two types of induction strategies: the first is Weak Induction, 
 % \ctt{Finish the induction proof and add alternative proof by counting. I am not sure what is favored, exposing both ways (at the first example) will make clear that induction is only a single proofing tool and surly not the only one. Yet from didactic point of view, it might confuses. }
 
 \begin{example}[Strong induction] 
+  \label{example:chockstrong}
   Let there be a chocolate bar that consists of \(n\) square chocolate blocks. Then it takes exactly \(n - 1\) snaps to separate it into the \(n\) squares no matter how we split it.
 
   \begin{proof} By strong induction. 
