@@ -153,23 +153,6 @@ We say that \(f(n) = \Omega(g(n))\) if \(g(n) = O(f(n))\), equivalently,
   Also if \( f(n) = 5n\) and \(g(n) = n^2\), then \(f(n) = O(g(n))\) (Now discuss intuition - no matter how much we “stretch” \(f, g\) is still the winner)
 \end{example}
 
-\begin{figure}[h]
-  \label{fig:bigOmega}
-\begin{tikzpicture}
-    \draw[->]  (0,0)coordinate(O) -- (8,0) node[anchor=north] {$n$};
-    \draw[->]  (0,0) -- (0,5);
-
-    \draw[domain=0:8,smooth,variable=\x,blue,name path=c1] plot ({\x},{0.5*( 0.5*\x+2*sin(\x r)+1)})node[right]{$f_1(n)$};
-    \draw[domain=0:8,smooth,variable=\x,red,name path=c2] plot ({\x},{0.5*(0.2*\x+0.5*sin(\x r)+2)})node[right]{$f_2(n)$};
-\fill[red,name intersections={of=c1 and c2}]
-    (intersection-1) circle (2pt)
-    (intersection-2) circle (2pt)
-        (intersection-3) circle (2pt) ;
-
-\draw[dashed] (intersection-2) -- (intersection-2|-O) node[below]{n};
-\end{tikzpicture}
-\end{figure}
-
 \begin{definition} 
 Let \( f, g : \mathbb{N} \rightarrow \mathbb{R} \), We say that \(f(n) = \Omega(g(n))\) if:
 \( \exists N \in \mathbb{N}, \exists c > 0 \) s.t \( \forall n \ge N \ f(n) \ge c \cdot g(n) \).
