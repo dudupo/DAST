@@ -149,9 +149,12 @@ Prove that $ \forall n \in  \mathbb{N}$:
   Let \( f, g : \mathbb{N} \rightarrow \mathbb{R}^{+} \). We say that \( f = O(g)\)  if there exists $ N \in \mathbb{N}$ and $c > 0$  such that for all $n \ge N$ we have $f(n) \le c \cdot g(n)$. 
 \end{definition}
 \begin{example}
-  For exmaple, if \(f(n) = n + 10 \) and \( g(n) = n^2\)
-, then \(f(n) = O(g(n)) \) (Draw the graphs) for \(n \ge 5 \):
+  For example, if \(f(n) = n + 10 \) and \( g(n) = n^2\)
+, then \(f = O(g) \) (Draw the graphs) for \(n \ge 5 \):
 \(f(n) = n + 10 \le n + 2n = 3n \le n \cdot n = n^2\)
+\end{example}
+\begin{example}
+  Also if \( f(n) = 5n\) and \(g(n) = n^2\), then \(f(n) = O(g(n))\) 
 \end{example}
 \begin{figure}[h]
   \label{fig:bigO}
@@ -172,21 +175,29 @@ Prove that $ \forall n \in  \mathbb{N}$:
 
 \begin{definition} 
 Let \( f, g : \mathbb{N} \rightarrow \mathbb{R} \)
-We say that \(f(n) = \Omega(g(n))\) if \(g(n) = O(f(n))\), equivalently,
-\( \exists N \in \mathbb{N}, \exists c > 0 \) s.t. \( \forall n \ge N c_0· g(n) \le f(n) \)
+We say that \(f = \Omega(g)\) if \(g = O(f)\), equivalently,
+there exist $N \in \mathbb{N}$ and $ c > 0$ s.t. $\forall n \ge N \Rightarrow c· g(n) \le f(n)$
 \end{definition}
+
 \begin{example}
-  Also if \( f(n) = 5n\) and \(g(n) = n^2\), then \(f(n) = O(g(n))\) (Now discuss intuition - no matter how much we “stretch” \(f, g\) is still the winner)
+For example, if \(f(n) = n + 10\) and \(g(n) = n^2\)
+, then \(g= \Omega(f)\)
 \end{example}
 
 \begin{definition} 
-Let \( f, g : \mathbb{N} \rightarrow \mathbb{R} \), We say that \(f(n) = \Omega(g(n))\) if:
-\( \exists N \in \mathbb{N}, \exists c > 0 \) s.t \( \forall n \ge N \ f(n) \ge c \cdot g(n) \).
+Let $ f, g : \mathbb{N} \rightarrow \mathbb{R}$, We say that $f = \Omega(g)$ if:
+there exist $N \in \mathbb{N}$ and $\exists c > 0$ s.t $ \forall n \ge N \Rightarrow f(n) \ge c \cdot g(n)$.
 \end{definition}
-\begin{example}
-For exmaple, if \(f(n) = n + 10\) and \(g(n) = n^2\)
-, then \(g(n) = \Omega(f(n))\)
-\end{example}
+
+
+
+\begin{definition}
+Let \( f, g : \mathbb{N} \rightarrow \mathbb{R} \), We say that \(f = \Theta(g)\) if:
+\(f = O(g)\) and \(f = \Omega(g)\)
+That is, we say that \(f = \Theta(g)\) if:
+\( \exists N \in \mathbb{N}, \exists c_1, c_2 > 0\) s.t. \(\forall n \ge N \ c_1\cdot g(n) \le f(n) \le c_2 \cdot g(n)\)
+\end{definition}
+
 
 \begin{figure}[h]
   \label{fig:bigTheta}
@@ -205,12 +216,7 @@ For exmaple, if \(f(n) = n + 10\) and \(g(n) = n^2\)
 \end{figure}
 
 
-\begin{definition}
-Let \( f, g : \mathbb{N} \rightarrow \mathbb{R} \), We say that \(f(n) = \Theta(g(n))\) if:
-\(f(n) = O(g(n))\) and \(f(n) = \Omega(g(n))\)
-That is, we say that \(f(n) = \Theta(g(n))\) if:
-\( \exists N \in \mathbb{N}, \exists c_1, c_2 > 0\) s.t. \(\forall n \ge N \ c_1\cdot g(n) \le f(n) \le c_2 \cdot g(n)\)
-\end{definition}
+
 \begin{example} For every \(f : \mathbb{N} \rightarrow \mathbb{R}, f(n) = \Theta(f(n))\) \end{example}
 \begin{example} If \(p(n) = n^5\) and \(q(n) = 0.5n^5 + n\), then \(p(n) = \Theta(q(n))\)\end{example}
 But why is this example true? This next Lemma helps for intuition:
