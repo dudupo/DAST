@@ -1,11 +1,11 @@
 \input{../texlib/head.tex}
 \newcommand*{\RECITATION}{}%
 \begin{document}
-\chapter{Induction and Asymptotic Notations.}
+\section{Induction and Asymptotic Notations.}
 Computer science differs from other scientific disciplines in that it focuses not on solving or making discoveries, but on questioning how good is our current understanding. The fact that one has successfully come up with an idea for a certain problem immediately raises the question of optimality. At the most basic level, we would like to answer what is the 'best' \marginnote[Note 1: text for left-hand side text]{Note 1: text for right-hand side of pages, it is set justified.} program that exists for a particular problem. To do so, we must have a notation that allows us to determine if an algorithm is indeed solving the task, quantify its performance, and compare it to other algorithms. In this chapter, we introduce this basic notation. The chapter is divided into two main parts: the first is about induction, a mathematical technique for proving claims, and the second presents asymptotic notation, which we use to describe the behavior of algorithms over large inputs.
  
 
-% \section{Time Planning.}
+% \subsection{Time Planning.}
 % \begin{enumerate}
 %     \item Welcome words, general information, listing the recitation topics \& QA. 7\textbf{m} (section 1).
 %     \item Explain (remind) induction and presenting the first first example. 10\textbf{m}.
@@ -21,7 +21,7 @@ Computer science differs from other scientific disciplines in that it focuses no
 %     \item Example 23 7\textbf{m} (should take more time, the above claims will pay the tax). 
 %     \item Logarithmic Rules 7\textbf{m}. 
 % \end{enumerate}
-% \section{General Course Information.}
+% \subsection{General Course Information.}
 % \begin{enumerate}
 %     \item Introduce yourself
 %     \item course mail: huji.dast.2022a@gmail.com
@@ -37,7 +37,7 @@ Computer science differs from other scientific disciplines in that it focuses no
 
 % \paragraph{Abstract.} Today we will cover induction, infinite series, and asymptotic notation. These tools will come in handy (in the next couple of weeks) when we want to find the runtime complexity of an algorithm, specifically using the ’Master Theorem’, to give asymptotic bounds for recursion relations, and to prove loop invariants using (finite) induction.
 
-\section{Induction.}
+\subsection{Induction.}
 %Suppose that a teacher who standing in front of his class is willing to prove that he can reach the door. One obivieus way to do so is to actully reach the door, that's it, move physiclly to her and declere sucsses. For small classes contian small nummer of students that protcol even might be efficient,lasting less than servel secondes. But what if the class is really big one? mabye at the length and wide of a football stadium? In that case, the proving by doing might take time. So the obvious question to ask, what else can we do? is there more efficient way to prove that? 
 
 %Suppose that a teacher, who's standing in front of his class, is willing to prove that he can reach the door at the corner. One obvious way to do so is to actually reach the door, that's it, move physically to it and declare success. For small classes containing a small number of students, this protocol might even be efficient, lasting less than several seconds. But what if the class is really big, maybe the length and width of a football stadium? In that case, the proving by doing might take time. So the obvious question to ask is, what else can we do? Is there a more efficient way to prove this?
@@ -142,7 +142,7 @@ Prove that $ \forall n \in  \mathbb{N}$:
     \end{enumerate}
 \end{proof}
 \end{example}
-\section{Asymptotic Notations.}
+\subsection{Asymptotic Notations.}
 
 
 \begin{definition}
@@ -228,7 +228,7 @@ But why is this example true? This next Lemma helps for intuition:
 \( \frac{f(n)}{g(n)} < l + 1 \Rightarrow f(n) < (l + 1) · g(n) \)
 Which is exactly what we wanted.
 \end{proof}
-\section{Examples with proofs.}
+\subsection{Examples with proofs.}
 % EXAMPLES WITH PROOFS
 
 \begin{claim} \(n = O(2^n)\)
@@ -273,7 +273,7 @@ Now let's manipulate their quotient:
 And now we can use the lemma that we have proved earlier. 
 \end{proof}
 
-\section{Logarithmic Rules.}
+\subsection{Logarithmic Rules.}
 
 Just a quick reminder of logarithmic rules:
 \begin{enumerate}
@@ -310,7 +310,7 @@ Let’s find an asymptotic upper bound for \(f(n)\). let's guess \( f(n) = O(\lo
 \end{proof}
 \end{example}
 
-% \section{Another Example.}
+% \subsection{Another Example.}
 
 
 % Now let’s try to analyze something we’re going to encounter in this course: Recursively defined functions (Like Fibonacci’s
@@ -354,7 +354,7 @@ Let’s find an asymptotic upper bound for \(f(n)\). let's guess \( f(n) = O(\lo
 % last proof, we chose that \(N\) to be \(N = 1\), but it does not has to be 1.
 
 
-% \section{SERIES AND CONVERGENCE.}
+% \subsection{SERIES AND CONVERGENCE.}
 
 % \paragraph{Definition 3.} Let \( \{a_n\}^{\infty}_{n = N} \) be a sequence of real number. The sequence of partial sums corresponding to this sequence is \(S_k = \sum^{k}_{n=N}{a_n} \) an which is also a sequence of real numbers, with indices ranging from \(N\) to \(\infty\).
 % \paragraph{Definition 4.} Let \( \{a_n\}^{\infty}_{n=N} \) be a sequence of real number. We say that the infinite series \( \sum^{\infty}_{n=N}{a_n} \)  converges when the sequence of partial sums converges, i.e. \(S_{k \rightarrow \infty} \rightarrow L \in \mathbb{R} \). In which case we say \( \sum^{\infty}_{n=N}{a_n} = L \). Otherwise, we say it diverges.
@@ -410,13 +410,17 @@ Let’s find an asymptotic upper bound for \(f(n)\). let's guess \( f(n) = O(\lo
 
 
 
-\chapter{Introduction to Algorithms.}
+\newcommand*{\RECITATION}{}%
+\newcommand*{\BOOK}{}%
+
+
+\section{Introduction to Algorithms.}
 %, Correctness and Efficiency
 \ifdefined\RECITATION
 \else
 Computer science differs from other scientific disciplines in that it focuses not on solving or making discoveries, but on questioning how good is our current understanding. The fact that one has successfully come up with an idea for a certain problem immediately raises the question of optimality. At the most basic level, we would like to answer what is the 'best' \marginnote[Note 1: text for left-hand side text]{Note 1: text for right-hand side of pages, it is set justified.} program that exists for a particular problem. To do so, we must have a notation that allows us to determine if an algorithm is indeed solving the task, quantify its performance, and compare it to other algorithms. In this chapter, we introduce this basic notation. The chapter is divided into two main parts: the first is about induction, a mathematical technique for proving claims, and the second presents asymptotic notation, which we use to describe the behavior of algorithms over large inputs.
 \fi
-\section{Peaks-Finding.}
+\subsection{Peaks-Finding.}
 \begin{example}[Leading Example.]
 Consider an \(n\)-length array $A$ such that~$A_1,A_2,....,A_n~\in~\mathbb{R}$. We will say that $A_{j}$ is a peak (local minimum) if he's greater than his neighbors. Namely, $A_{i} \ge A_{i\pm1}$ if $i\pm 1 \in [n]$. Whenever $i\pm 1$ is not in the range $[n]$, we will define the inequality $A_{i} \ge A_{i\pm 1}$ to hold trivially. For example, for $n=1$, $A_{1}=A_{n}$ is always a peak. Write an algorithm that, given $A$, returns the position of an arbitrary peak.
 \end{example}
@@ -433,7 +437,7 @@ Consider an \(n\)-length array $A$ such that~$A_1,A_2,....,A_n~\in~\mathbb{R}$. 
   \end{enumerate}
 \end{example}
 
-\section{Naive solution.}
+\subsection{Naive solution.}
 To better understand the problem, let's first examine a simple solution before proposing a more intriguing one. Consider the algorithm examining each of the items $A_{i}$ one by one.
 \begin{algorithm}
 \KwResult{returns a peak of \(A_1 ... A_n \in \mathbb{R}^n \)  }
@@ -462,7 +466,7 @@ Question, How would you compare the performance of two different algorithms? Wha
 
 Question, In the worst case scenario, how many local checks does peak-finding do? For the third example in~\Cref{example:func}, the naive algorithm will have to check each item, so the running time adds up to at most $c \cdot n$.
 
-\section{Naive alg. recursive version.}
+\subsection{Naive alg. recursive version.}
 Now, we will show a recursive version of the navie peak-find algorithm for demonstrating how correctness can be proved by induction. 
 \begin{algorithm}
 \KwResult{returns a peak of \(A_1 ... A_n \in \mathbb{R}^n \)  }
@@ -485,7 +489,7 @@ One can prove a much more general claim by following almost the same argument pr
  \begin{claim} \label{claim:subarraymiddle} 
    Let $A = A_1, \dots, A_n$ be an array, and $A' = A_{j+1}, A_{j+2}, \dots, A_n$ be the $n-j$ length array. If $A_j \le A_{j+1}$, then any peak of $A'$ is also a peak of $A$.
 \end{claim}
-%\section{Induction. (Might not appear in the recitation.)} 
+%\subsection{Induction. (Might not appear in the recitation.)} 
 %\ifdefined\RECITATION
 %\else
 %Suppose that a teacher, who is standing in front of his class, is willing to prove that he can reach the door at the corner. One obvious way to do so is to actually reach the door; that is, move physically to it and declare success. For small classes containing a small number of students, this protocol might even be efficient, lasting less than several seconds. But what if the class is really big, maybe the length and width of a football stadium? In that case, proving by doing might take time. So the obvious question to ask is, what else can we do? Is there a more efficient way to prove this?
@@ -545,7 +549,7 @@ We are ready to prove the correctness of the recursive version by induction usin
   \item Step, consider an array $A$ of length $n$. If $A_1$ is a peak, then the algorithm answers affirmatively on the first check, returning $1$ and we are done. If not, namely $A_1 < A_2$, then by using \Cref{claim:subarray} we have that any peak of $A' = A_2, A_3, \dots, A_n$ is also a peak of $A$. The length of $A'$ is $n-1 < n$. Thus, by the induction assumption, the algorithm succeeds in returning on $A'$ a peak which is also a peak of $A$.
 \end{enumerate}
 
-\section{An attempt for sophisticated solution.}
+\subsection{An attempt for sophisticated solution.}
 We saw that we can find an arbitrary peak at $c\cdot n$ time, which raises the question, can we do better? Do we really have to touch all the elements to find a local maxima? Next, we will see two attempts to catch a peak at logarithmic cost. The first attempt fails to achieve correctness, but analyzing exactly why will guide us on how to come up with both an efficient and correct algorithm.
 \begin{algorithm}
 \KwResult{returns a peak of \(A_1 ... A_n \in \mathbb{R}^n \)  }
@@ -566,7 +570,7 @@ Let's try to 'prove' it.
   \item Step. If $A_{n/2}$ is a peak, we're done. What happens if it isn't? Is it still true that any peak of $A_{i},A_{i+1}, \ldots, A_{n}$ is also a peak of $A$? Consider, for example, $A[i] = n - i$.
 \end{enumerate}
 
-\section{Sophisticated solution.}
+\subsection{Sophisticated solution.}
 The example above points to the fact that we would like to have a similar claim to \Cref{claim:subarraymiddle} that relates the peaks of the split array to the original one.  
 \begin{algorithm}
 \KwResult{returns a peak of \(A_1 ... A_n \in \mathbb{R}^n \)  }
@@ -619,7 +623,7 @@ What's the running time? Denote by $T\left( n \right)$ an upper bound on the run
 
 
 
-% \section{Time Planning.}
+% \subsection{Time Planning.}
 % \begin{enumerate}
 %     \item Welcome words, general information, listing the recitation topics \& QA. 7\textbf{m} (section 1).
 %     \item Explain (remind) induction and presenting the first first example. 10\textbf{m}.
@@ -635,7 +639,7 @@ What's the running time? Denote by $T\left( n \right)$ an upper bound on the run
 %     \item Example 23 7\textbf{m} (should take more time, the above claims will pay the tax). 
 %     \item Logarithmic Rules 7\textbf{m}. 
 % \end{enumerate}
-% \section{General Course Information.}
+% \subsection{General Course Information.}
 % \begin{enumerate}
 %     \item Introduce yourself
 %     \item course mail: huji.dast.2022a@gmail.com
@@ -659,14 +663,15 @@ What's the running time? Denote by $T\left( n \right)$ an upper bound on the run
 
  
 
+\newcommand*{\RECITATION}{}%
 
 
 \ifdefined\SOLUTION
-  \chapter{DAST. Exercise 0. Solution.}
+  \section{DAST. Exercise 0. Solution.}
 \else
-  \chapter{DAST. Exercise 0.}
+  \section{DAST. Exercise 0.}
 \fi
-\section{Peaks-Finding.} Recall the logarithmic-time version of find-peak. Prove its correctness. You can continue directly from the point we have reached to in the recitation.
+\subsection{Peaks-Finding.} Recall the logarithmic-time version of find-peak. Prove its correctness. You can continue directly from the point we have reached to in the recitation.
 
 \begin{algorithm}
 \KwResult{returns a peak of \(A_1 ... A_n \in \mathbb{R} \)  }
@@ -697,7 +702,7 @@ $ i \leftarrow  \lceil n/2 \rceil $\\
 \end{enumerate}
 \fi
 
-\section{Peaks-Finding on the Cycle.} Consider the following variation of the peaks-finding problem. We will define the peaks again to be the local maximas of given array $A$. However instead of thinking on position ${1,2..n}$ as coordinates on the line we will think about them as cordinates on the cycle. Namely $A_{1}$ is the right neighbor of $A_{n}$. 
+\subsection{Peaks-Finding on the Cycle.} Consider the following variation of the peaks-finding problem. We will define the peaks again to be the local maximas of given array $A$. However instead of thinking on position ${1,2..n}$ as coordinates on the line we will think about them as cordinates on the cycle. Namely $A_{1}$ is the right neighbor of $A_{n}$. 
 
 
 Show a series of arrays $\left\{ A_{n} \right\}_{n=3}^{\infty}$ for which the recursive version of peak-find always fails. Explain in one line why the naive algorithm is still correct (You don't have to provide a formal correctness proof).
@@ -737,7 +742,7 @@ Hence, the algorithm will answer affirmatively on line (5) and will look in recu
 
 
 
-\section{$k$-range peaks.} In this section we define $k$-range peak to be all the items satisfiey:  
+\subsection{$k$-range peaks.} In this section we define $k$-range peak to be all the items satisfiey:  
 \begin{equation*}
   \begin{split}
     A_{i}= \max_{|i-j| \le k } \left\{ A_{j} \right\} 
@@ -795,7 +800,7 @@ Thus, if we denote $c^{\prime}=c\cdot k$, we obtain the same recursive formula w
 
 \ifdefined\DPEAK
 
-\section{Extract $d$ peaks.} Write an algorithm that given $A$ prints $d$ different peaks. The algorithm has to run in time at most $3d\log(n)$ up to constant factor indepandet on $d$ and $n$. In this section you don't have to prove correctness. 
+\subsection{Extract $d$ peaks.} Write an algorithm that given $A$ prints $d$ different peaks. The algorithm has to run in time at most $3d\log(n)$ up to constant factor indepandet on $d$ and $n$. In this section you don't have to prove correctness. 
 
 \ifdefined\SOLUTION
 
@@ -830,7 +835,7 @@ $ i \leftarrow  \lceil n/2 \rceil $\\
 \fi
 
   
-\section{2D-peaks.} Let $A$ be a $n\times n$ matrix. We will say that $A_{ij}$ is a peak if: 
+\subsection{2D-peaks.} Let $A$ be a $n\times n$ matrix. We will say that $A_{ij}$ is a peak if: 
 \begin{equation*}
   \begin{split}
     A_{ij} \ge A_{i-1,j}, A_{i+1,j}, A_{i,j-1}, A_{i,j+1}
@@ -888,7 +893,7 @@ Correctness. Assuming contradiction, suppose there exists a matrix $A$ on which 
 \ifdefined\SOLUTION
 
 
-\section{2D-peaks of a tensor.} Consider the problem above, but assume that $A$ is the outer product of two positive vectors $u,v \in \mathbb{R}^{+}$, namely $A_{ij} = v_i \times u_j$.
+\subsection{2D-peaks of a tensor.} Consider the problem above, but assume that $A$ is the outer product of two positive vectors $u,v \in \mathbb{R}^{+}$, namely $A_{ij} = v_i \times u_j$.
 
 Write an algorithm that returns a peak in at most $c \cdot 2 \log(n)$ time for some constant $c$.
 
@@ -918,8 +923,9 @@ Then consider the following algorithm: first look for a peak in $A_{1,1},A_{2,1}
 
 
 
+
     
-\chapter{Correctness - Recitation 2} 
+\section{Correctness - Recitation 2} 
 %\author{Correctness proofs and computational complexity. }
 %\makechapter 
 %\begin{paragraph}
@@ -930,7 +936,7 @@ Then consider the following algorithm: first look for a peak in $A_{1,1},A_{2,1}
 \begin{example}[Leading Example.]
 Consider \(n\) numbers \(a_1,a_2,....,a_n \in \mathbb{R}\). Given set \(Q\) of \(|Q|\) queries, such each query \(q \in Q\) is a tuple \( (i,j) \in [n] \times [n] \). Write an algorithm that calculates the \(\max_{i\le k\le j}{a_k} \). 
 \end{example}
-\section{Correctness And Loop Invariant.}
+\subsection{Correctness And Loop Invariant.}
 
 \paragraph{Correctness.} We will say that an algorithm \( \mathcal{A}\) (an ordered set of operations) computes \( f:D_1 \rightarrow D_2 \) if for every \(x \in D_1\) the following equality holds \(f(x) = \mathcal{A}(x)\). Sometimes when it's obvious what is the goal function \(f\), we will abbreviate and say that \( \mathcal{A}\) is correct.       
 
@@ -992,7 +998,7 @@ Assume by induction, that for every \(m < j\) the property is correct, and consi
 
 What is the Loop Invariant here? \textit{"at the \(i\)-th iteration, \(b = \max{ \{ a_1 ... a_{i-1} \} } \)"}. The proof is almost identical to the naive case.   
 \end{example}
-\section{Non-Linear Space Complexity Algorithms. }
+\subsection{Non-Linear Space Complexity Algorithms. }
 \paragraph{Sub-Array Maximum.} Consider the leading example; It's easy to write an algorithm that answers the queries at a total time of a \( O\left( |Q| \cdot n \right) \) by answers separately on each query. Can we achieve a better upper bound?
 
 
@@ -1072,7 +1078,7 @@ What is the Loop Invariant here? \textit{"at the \(i\)-th iteration, \(b = \max{
 
 
 \setcounter{chapter}{2}
-\chapter{Recursive Analysis.} 
+\section{Recursive Analysis.} 
 %\author{Master theorem and recursive trees.}
 % 
 %\begin{paragraph}
@@ -1080,7 +1086,7 @@ What is the Loop Invariant here? \textit{"at the \(i\)-th iteration, \(b = \max{
 %\end{paragraph}
 %
 
-\section{Bounding recursive functions by hands.} Our primary tool to handle recursive relation is the Master Theorem, which was proved in the lecture. As we would like to have a more solid grasp, let's return on the calculation in the proof over a specific case. 
+\subsection{Bounding recursive functions by hands.} Our primary tool to handle recursive relation is the Master Theorem, which was proved in the lecture. As we would like to have a more solid grasp, let's return on the calculation in the proof over a specific case. 
 Assume that your algorithm analysis has brought the following recursive relation:
     \begin{example}\( T\left(n\right)  = \left\{ \begin{array}{rcl}
 & 4T\left(\frac{n}{2}\right)+c\cdot n & \mbox{for }  n > 1  \\
@@ -1110,7 +1116,7 @@ where \(n^{\log 3}  \sim n^{1.58} < n^2 \).
 \end{example}
 
 
-\section{Master Theorem, one Theorem to bound them all. }
+\subsection{Master Theorem, one Theorem to bound them all. }
 As you might already notice, the same pattern has been used to bound both algorithms. The master theorem is the result of the recursive expansion. it classifies recursive functions at the form of \(T\left(n\right) = a\cdot T\left( \frac{n}{b} \right) + f\left(n\right) \), for positive function \(f : \mathbb{N} \rightarrow \mathbb{R}^{+} \).       
 
 \begin{defbox}{Master Theorem, simple version.} First, Consider the case that \(f = n^c\). Let \( a \ge 1, b > 1\) and \( c \ge 0 \). then: 
@@ -1151,7 +1157,7 @@ Now, let's generalize the simple version for arbitrary positive \(f\) and let~\(
 \end{enumerate}
 \end{example}
 
-\section{Recursive trees.}
+\subsection{Recursive trees.}
 There are still cases which aren't treated by the \textit{Master Theorem}. For example consider the function \(T\left(n\right) = 2T\left(\frac{n}{2}\right) + n\log n \). Note, that \(f = \Omega\left( n^{\log_{b}(a)} \right) = \Omega\left(n\right)\). Yet for every \( \varepsilon > 0 \Rightarrow f = n\log n = O\left( n^{1+\varepsilon} \right) \) therefore the third case  doesn't hold. How can such cases still be analyzed? 
 
 \paragraph{Recursive trees Recipe}
@@ -1264,7 +1270,7 @@ The tree matches the recursive calls made by \Cref{alg:unmerge}. Each node prese
 \ifdefined\BOOK
 
 
-\section{Appendix. Recursive Functions In Computer Science. (Beyond the scope of the 2024 course.)}
+\subsection{Appendix. Recursive Functions In Computer Science. (Beyond the scope of the 2024 course.)}
 
 
 %\ctt{The current section repeats over part of the content above as it was designed to be self-contained. Also, notice that this part is considered as optional material and you are not required to remember the following algorithms for the final exam. Its primary goal is to expose you to "strange" running times. }
@@ -1337,9 +1343,9 @@ where \(n^{\log 3}  \sim n^{1.58} < n^2 \).
 
 \setcounter{chapter}{2}
 \ifdefined\SOLUTION
-  \chapter{DAST. Exercise 2. Solution.}
+  \section{DAST. Exercise 2. Solution.}
 \else
-  \chapter{DAST. Exercise 2.}
+  \section{DAST. Exercise 2.}
 \fi
 
 \ifdefined\CHECK
@@ -1356,7 +1362,7 @@ where \(n^{\log 3}  \sim n^{1.58} < n^2 \).
   Please note that sections 1, 2, and 4 are optional and do not need to be submitted. However, please ensure that you feel capable of solving them. The problems in the following chapter, 7, 8, and 9, are also optional but are more challenging. It is completely acceptable if you are not able to manage them at this stage of the course.
  }
 
- \section{Small $o,\omega$, True or False? (Not a Mandatory). }
+ \subsection{Small $o,\omega$, True or False? (Not a Mandatory). }
  Let $f,g,h,k : \mathbb{N} \rightarrow \mathbb{R}^{+}$. Either prove or provide a counterexample:
 \begin{enumerate}
   \item $f = o(g) \Leftrightarrow g = \omega(f)$. 
@@ -1367,7 +1373,7 @@ where \(n^{\log 3}  \sim n^{1.58} < n^2 \).
 \ifdefined\SOLUTION
 \fi
 
-\section{Logaritmic Arithmetic Recap. (Not a Mandatory).} 
+\subsection{Logaritmic Arithmetic Recap. (Not a Mandatory).} 
  Prove that for any $x,y > 0$:
 \begin{enumerate}
   \item we have $x>y$ if and only if $\log x > \log y$. 
@@ -1379,7 +1385,7 @@ where \(n^{\log 3}  \sim n^{1.58} < n^2 \).
 
 \fi
 
-\section{Merge Sort Correction.}
+\subsection{Merge Sort Correction.}
 \begin{enumerate}
 \item Consider the Merge subroutine used in the Merge-Sort algorithm. Let $A$ and $B$ be the given input arrays, and let $C$ be the output array returned by the subroutine. State, in your own words, a claim referring to the structure of $C$ at the $i$th iteration. Prove it.
 \item Prove the correctness of Merge using your claim.
@@ -1431,7 +1437,7 @@ Notice that solutions in which the claim stated in the first section is "after t
 
 \fi
 
-\section{Master Theorem. (Not a Mandatory).}
+\subsection{Master Theorem. (Not a Mandatory).}
 Bound the following recursive functions. In each case, assume that $T(1)=T(0)=~1$.
 \begin{enumerate}
   \item $T(n) = 7T(n/3) + n^{3}$
@@ -1446,7 +1452,7 @@ Bound the following recursive functions. In each case, assume that $T(1)=T(0)=~1
 \end{enumerate}
 \fi 
 
-\section{$\beta$-Root Master Theorem Varition.}
+\subsection{$\beta$-Root Master Theorem Varition.}
 Consider the following recursice ralation: 
 \begin{equation*}
     T\left(n\right)  = \left\{ \begin{array}{rcl}
@@ -1480,7 +1486,7 @@ When $\alpha, \beta > 1 $ and $\gamma \ge 0$ . Bound $T$ asymptotically tight, n
 \fi 
 
 
-\section{Recursive Trees.}
+\subsection{Recursive Trees.}
 Let $\alpha \in (0,1)$, $l\ge 2$ and let $T: \mathbb{N}\rightarrow\mathbb{R}^{+}$ definied as follow:
 \begin{equation*}
   \begin{split}
@@ -1508,9 +1514,9 @@ When the last transition is due to the fact that $\alpha \in (0,1)$, it follows 
 
 
 \fi
-\chapter*{Extra Questions. (Not a Mandatory).}
+\section*{Extra Questions. (Not a Mandatory).}
 
-\section{$T_{1},T_{2}$-Running time. (Not a Mandatory).}
+\subsection{$T_{1},T_{2}$-Running time. (Not a Mandatory).}
 Let $a,b>0$ and $T_{1},T_{2} : \mathbb{N} \rightarrow \mathbb{R}^{+}$ be functions satisfying the equations:
 \begin{equation*}
   \begin{split}
@@ -1591,7 +1597,7 @@ for any $n>1$, and equal to $1$ otherwise. Bound $T_{1}, T_{2}$ asymptotically t
 \fi 
 \fi 
 
-  \section{Tensor-calculus-program running time analysis. (Not a Mandatory).}
+  \subsection{Tensor-calculus-program running time analysis. (Not a Mandatory).}
 Let $\mathcal{A}_{1},\mathcal{A}_{2},\mathcal{A}_{3},...,\mathcal{A}_{m}$ be algorithms, where each of their source codes is at most $N$ bits long. These algorithms are restricted to the following format: any operation they perform is either iterating over a $k$-nested loop and performing a finite amount of work in each iteration, or calling one of the other algorithms on an input of length $n/2$. Additionally, it is assumed that any $\mathcal{A}_{i}$ can be called by $\mathcal{A}_{j}$ a finite number of times, independent of $N$ and $m$. To clarify, calls to other algorithms cannot be made inside one of the for loops.
 
 
@@ -1599,7 +1605,7 @@ Write an algortihm that given the sources of $\mathcal{A}_{1},\mathcal{A}_{2},\m
 % $\alpha/\beta^{c} > 1$
 
 
-\section{2D-Peaks in linear time. (Not a Mandatory).} Write an algorithm that, given a matrix $M \in \mathbb{R}^{n\times n}$, returns a local peak in linear time. Prove correctness.
+\subsection{2D-Peaks in linear time. (Not a Mandatory).} Write an algorithm that, given a matrix $M \in \mathbb{R}^{n\times n}$, returns a local peak in linear time. Prove correctness.
 
 \ifdefined\SOLUTION
 
@@ -1614,11 +1620,11 @@ Write an algortihm that given the sources of $\mathcal{A}_{1},\mathcal{A}_{2},\m
 \else
 \setcounter{chapter}{4}
 \fi
-\chapter{Recap Recitation.} 
+\section{Recap Recitation.} 
 
 
 
-\section{More Sorting, More Correctness.}
+\subsection{More Sorting, More Correctness.}
 Until now, all the algorithms that we have seen were, in some sense, intuitive. We could describe in words, step by step, exactly what the algorithm does. For example, bubble and heapsort both bubble up the greatest element among the remaining elements in each iteration. Merge sort divides the task into subtasks on smaller inputs, starting with sorting the first and second halves of the given array, and then merging the sorted subarrays.
 
 We are about to present another $\Theta(n^{2})$-sorting algorithm, whose correctness is not so obvious. The algorithm was developed by Stanley P. Y. Fung, \cite{Simplesort}, who coined its name - "ICan'tBelieveItCanSort" - due to the surprise of having such a simple sorting algorithm. It's worth mentioning that, despite its simplicity, Fung came up with this algorithm in 2021.
@@ -1736,7 +1742,7 @@ We are about to present another $\Theta(n^{2})$-sorting algorithm, whose correct
   \end{enumerate}
 \end{proof}
 
-%\section{Master Theorem.} Let $\alpha > 2, \beta > 0, \gamma > 0$ satisfing $2^{\alpha} < \beta$, defining the following running time function:    
+%\subsection{Master Theorem.} Let $\alpha > 2, \beta > 0, \gamma > 0$ satisfing $2^{\alpha} < \beta$, defining the following running time function:    
 %\begin{equation*}
 %  \begin{split}
 %    T\left( n \right) = \beta T \left( n - \alpha \right) + n^{\gamma}
@@ -1758,7 +1764,7 @@ We are about to present another $\Theta(n^{2})$-sorting algorithm, whose correct
 %    S(m) = \Theta \left(m^{\log_{2^\alpha}(\beta)} \right) \Rightarrow T(n) = \Theta\left( 2^{m \log_{2^\alpha}(\beta)} \right)
 %  \end{split}
 %\end{equation*}
-\section{Master Theorem}
+\subsection{Master Theorem}
 Let $\alpha > 2, \beta > 0, \gamma > 0$ satisfying $2^{\alpha} < \beta$, define the following running time function:
 \begin{equation*}
   \begin{split}
@@ -1817,8 +1823,8 @@ We observe that $2^{\alpha} > 1$ and therefore we can use the generalized master
 \setcounter{chapter}{5}
 \fi
 
-\chapter{Linear Time Sorts and Lower Bounds in the Comparison Model.} 
-\section{Heapsort (David's group).}
+\section{Linear Time Sorts and Lower Bounds in the Comparison Model.} 
+\subsection{Heapsort (David's group).}
 We will start by introducing the heap-sort algorithm and providing a proof of its correctness.
 
 \begin{algorithm}
@@ -1846,7 +1852,7 @@ By induction.
 \end{enumerate}
 \end{proof}
 
-\section{Linear Time Sorts}
+\subsection{Linear Time Sorts}
 \paragraph{ Counting sort.}
 Counting sort assumes that each of the $n$ input elements is an integer with a size at most $k$. It runs in $\Theta(n + k)$ time, so when $k = O(n)$, counting sort runs in $\Theta(n)$ time. It first determines, for each input element $x$, the number of elements less than or equal to $x$. Then, it uses this information to place element $x$ directly into its position in the output array. For example, if there are 17 elements less than or equal to $x$, then $x$ will be placed in position 17. However, we need to make some adjustments to this method to handle cases where multiple elements have the \textbf{same value}. We do not want all of them to end up in the same position.
 
@@ -1938,7 +1944,7 @@ The analysis of the running time depends on the stable sort used as the intermed
 
 %
 
-\section{Sorting in Comparison Model.}
+\subsection{Sorting in Comparison Model.}
 
 We have learned in the lecture that the runs of any sorting algorithm, which does not assume anything about the input's structure except the ability to compare elements in pairs, can be modeled as a binary tree. At each node, the algorithm compares two elements and, based on the result, moves to either the left or right child. Eventually, we reach the leaf of the tree and output the sorted elements. Notice that the nodes only exist in our imagination; the algorithm is not aware of their existence. We will name that tree the comparison tree.
 
@@ -1979,7 +1985,7 @@ The height of the comparison tree is (at least) the running time of the algorith
 
 \newpage
 
-\section{Binaries Trees and How to Encode Them. \ctt{Only if there is time.}} We have already seen, in heaps, that organizing our data in a graph-like structure can offer a speed advantage. For future applications, and in particular for maintaining data in sorted order, we will have to encode our data using binary trees. These trees may not be almost complete and also have to support pointer manipulations, specifically placing a binary tree as a left or right subtree of a given node. To enable this, we will have to treat the \textbf{right}, \textbf{left}, and \textbf{parent} as variables, in contrast to heaps where they are determined completely by the node index. We begin this section by stating definitions.
+\subsection{Binaries Trees and How to Encode Them. \ctt{Only if there is time.}} We have already seen, in heaps, that organizing our data in a graph-like structure can offer a speed advantage. For future applications, and in particular for maintaining data in sorted order, we will have to encode our data using binary trees. These trees may not be almost complete and also have to support pointer manipulations, specifically placing a binary tree as a left or right subtree of a given node. To enable this, we will have to treat the \textbf{right}, \textbf{left}, and \textbf{parent} as variables, in contrast to heaps where they are determined completely by the node index. We begin this section by stating definitions.
 
 
 \begin{definition}
@@ -1999,7 +2005,7 @@ We encode a binary tree by associating a field to each vertex $x$, representing 
 If nothing else has been mentioned, then we can assume that we can add additional fields to the vertices.
 
 
-\section{Binary Search Trees.} Binary search tree (BST) is a binary tree which any node $x$ of it: 
+\subsection{Binary Search Trees.} Binary search tree (BST) is a binary tree which any node $x$ of it: 
 \begin{enumerate}
   \item Contains a field key, storing a number $x$.key. 
   \item Any left descendant $y$ of $x$ satisfies $y$.key $\le$ $x$.key. 
@@ -2096,7 +2102,7 @@ In the first two cases, we are calling Get-Order on trees (BST with our addition
       \newpage
       \newpage
 
-\section{Appendix - BST Methods Source: A Mixture of Cormen, Wikipedia, and Codeforces}
+\subsection{Appendix - BST Methods Source: A Mixture of Cormen, Wikipedia, and Codeforces}
 
 \begin{algorithm}
 \SetAlgoLined
@@ -2244,9 +2250,9 @@ In the first two cases, we are calling Get-Order on trees (BST with our addition
 
 \setcounter{chapter}{4}
 \ifdefined\SOLUTION
-  \chapter{DAST. Exercise 4. Solution.}
+  \section{DAST. Exercise 4. Solution.}
 \else
-  \chapter{DAST. Exercise 4.}
+  \section{DAST. Exercise 4.}
 \fi
 
 \ifdefined\CHECK
@@ -2258,7 +2264,7 @@ In the first two cases, we are calling Get-Order on trees (BST with our addition
 \fi
 
 
- \section{Stability.} For each of the following sorts, prove or disprove whether they are stable.
+ \subsection{Stability.} For each of the following sorts, prove or disprove whether they are stable.
  \begin{enumerate}
    \item Heap sort. 
    \item Bubble sort.
@@ -2280,7 +2286,7 @@ In the first two cases, we are calling Get-Order on trees (BST with our addition
  \end{enumerate}
 \fi
 
- \section{Sorts That Assume Input Properties.}
+ \subsection{Sorts That Assume Input Properties.}
  In any of the following sections, we make another assumption about the input. For each section, write an algorithm that uses the assumption to sort the inputs and compute its running time. You don't have to provide a correctness proof.
  \begin{enumerate} 
    \item $x_{1},x_{2},...,x_{n} \in \mathbb{R}$ such that $\max_{i} \{x_{i}\} - \min_{i} \{x_{i}\} \leq 5n$ and $|x_{i} - x_{j}| > 1$ for any $i \neq j$.
@@ -2341,7 +2347,7 @@ In the first two cases, we are calling Get-Order on trees (BST with our addition
 
 \end{enumerate}
 \fi 
- \section{Camels.} 
+ \subsection{Camels.} 
  Bob is willing to send Alice camels, $c_1, c_2, ..., c_n$ in a specific order. Unfortunately for him, Eve doesn't like him. Hence, she decides to spoil their order by stacking camels as follows: Eve chooses camel $c_i$ and a position $j$, and then moves the $i$th camel $c_i$ between $c_j$ and $c_{j+1}$, She can move as many camels as she wishes. Alice, known for her strictness, wouldn't accept camels standing out of order. Luckily, Bob is allowed to send the camels again in their original order for five times, and Eve cannot choose the same camel twice. In other words, if Eve chooses to move $c_i$ in the first attempt, then she cannot move it in any of the other four attempts.
 
 Alice records the positions of the camels every time they come. Write an algorithm that will help Alice restore the order. (Prove correctness and compute the running time.)
@@ -2390,7 +2396,7 @@ If the $j$th camel appears before the $j^{\prime}$th camel in the original order
 
 \fi
 
-\section{Predecessor in Binary Search Tree}
+\subsection{Predecessor in Binary Search Tree}
 \begin{enumerate}
   \item Write pseudocode for the predecessor subroutine.
   \item Prove its correctness.
@@ -2429,9 +2435,9 @@ Let $y \leftarrow x$.parent \\
 \else
 \setcounter{chapter}{6}
 \fi
-\chapter{Probability.} 
+\section{Probability.} 
 
-\section{ Probability Spaces. }
+\subsection{ Probability Spaces. }
 
 \begin{definition}
   A probability space is defined by a tuple $(\Omega,P)$, where:
@@ -2564,7 +2570,7 @@ Sometimes, we will use the notation $\{ X = x \}$ to denote the event $A$ such:
     Let $X$ and $Y$ be indicators of independent events $A$ and $B$. Then $P(X\cdot Y = 1) = P(X = 1)\cdot P(Y = 1)$. The proof is left as an exercise.
   \end{example}
 
-  \section{ Throwing Keys to Cells. }  
+  \subsection{ Throwing Keys to Cells. }  
   \begin{example} Imagine that following experiment, we have $m$ cells and $n$ keys (balls, numbers, or your favorite object type). We throw each of the keys independently into the cells. The cells are identical, so the probability of hitting any of them is the same, $1/m$. We would like to analyze how the capacity of the cells is distributed.
     \begin{enumerate}
       \item What is the probability that the first and the second keys will be thrown to the first cell? What is the probability that the first and the second keys will be thrown to the same cell? 
@@ -2691,7 +2697,7 @@ Consider the experiment of throwing keys into cells again. What is the expected 
     \end{split}
   \end{equation*}
 \end{example}
-\section{Running Time as a Random Variable.}
+\subsection{Running Time as a Random Variable.}
 Randomness might appears in algoritmic context in two main cases, in the first the algorithm might behave randomly, means that it flips coins and decided what to do conditioning on the outcomes. In the second case, the input might distributed according to probability function. In both cases the result and running time of the algorithm are random variable. And it's interesting to ask what is the expected running time.
 
 Let us introduce an example for the first case. We are given an array $A_{1}, A_{2}, ..., A_{n}$ and are asked to find the $k$ smallest elements in it. Here, we are going to suggest a random algorithm that is expected to return in linear time, even if we do not make any assumptions about the input, particularly how it is distributed.
@@ -2794,7 +2800,7 @@ Therefore, the expectation is bounded by:
 
 
 
-\chapter{Heaps - Recitation 4} 
+\section{Heaps - Recitation 4} 
 \author{Correctness, Loop Invariant And Heaps.}
 
 
@@ -3126,7 +3132,7 @@ return median
 \iffalse 
   \newpage
 
-\section{ Appendix. Exercise from last year }
+\subsection{ Appendix. Exercise from last year }
 
 \paragraph{Question.} Consider the sets $X = \{x_1,x_2 .. x_n\}$, $Y = \{y_1, y_2 .. y_n\}$. Assume that each of the values $x_i,y_i$ is unique. Write an Algorithm which compute the $k$ most small items in $X \oplus Y = \{ x_{i} + y_{j} : x_{i} \in X , y_{j} \in Y  \} $ at $ O \left( n + k\log k  \right) $ time. 
 
@@ -3153,7 +3159,7 @@ return extract-$k$ ( $H_{XY}$ )
 
 
 
-\chapter{Quicksort And Liner Time Sorts  - Recitation 6} 
+\section{Quicksort And Liner Time Sorts  - Recitation 6} 
 \author{Quicksort, Countingsort, Radixsort, And Bucketsort.}
 
 
@@ -3324,7 +3330,7 @@ Bucket sort divides the interval [0, 1) into n equal-sized subintervals, or buck
 
 
 
-\chapter{AVL Trees  - Recitation 7} 
+\section{AVL Trees  - Recitation 7} 
 
 
 %\begin{paragraph}
@@ -3332,7 +3338,7 @@ Bucket sort divides the interval [0, 1) into n equal-sized subintervals, or buck
     In this recitation, we will review the new data structures you have seen - Binary search trees and, specifically, AVL trees. We will revise the different operations, review the essential concepts of balance factor and rotations and see some examples. Finally, if there is time left - we will prove that the height of an AVL tree is $O(\log(n))$.
 %\end{paragraph}
     
-\section{AVL trees}
+\subsection{AVL trees}
     Reminders:
     \begin{defbox}{Binary Tree.}
         A binary tree is a tree $(T,r)$ with $r\in V$, such that $\deg(v)
@@ -3790,7 +3796,7 @@ Combining the fact that we maintain the AVL property, it follows that the total 
 
 
 
-\section*{Appendix}
+\subsection*{Appendix}
 \subsection{AVL tree's height}
 Let $n_h$ be the minimal number of nodes in an AVL tree of height
 $h$.\\
@@ -3846,7 +3852,7 @@ $n_{h-2}$ nodes (once again, by minimality), and thus the whole tree has
     tighter bound on $n_h$.
 \end{remark}
 
-\chapter{Graphs  - Recitation 9} 
+\section{Graphs  - Recitation 9} 
 
 \usetikzlibrary{positioning, arrows}
 \tikzset{main node/.style={circle,draw,minimum size=0.8cm,inner sep=0pt},}
@@ -3909,7 +3915,7 @@ array element/.style = {
 
 %\vspace{0.2in}
 
-\section{Graphs}
+\subsection{Graphs}
 This is an important section, as you'll see graphs A LOT in this course and in the courses to follow. 
 
 \subsection{Definitions, Examples, and Basics}
@@ -4262,10 +4268,10 @@ In any depth-first search of a (directed or undirected) graph $G = (V, E)$, for 
 \else
 \setcounter{chapter}{10}
 \fi
-\chapter{Minimum Spanning Tree Recitation.} 
+\section{Minimum Spanning Tree Recitation.} 
 
 
-\section{The MST Problem.}
+\subsection{The MST Problem.}
 
 \begin{definition}
   A spanning tree $T$ of a graph $G=(V,E)$ is a subset of edges in $E$ such that $T$ is a tree (having no cycles), and the graph $(V,T)$ is connected.   
@@ -4305,7 +4311,7 @@ By using the fact that subtracting an edge from a cycle doesn't harm connectivit
   \end{itemize}
 
 \end{proof}
-\section{Kruskal Algorithm.} This algorithm constructs the MST iteratively by holding a forest $F$ contained in an MST and then looking for the minimal edge in a cut that it respects. Note, that since $F$ has no cycles, any edge $e \subset E$ that does not create a cycle in $F$ must belong to a cut $X$ that is respected by $F$.
+\subsection{Kruskal Algorithm.} This algorithm constructs the MST iteratively by holding a forest $F$ contained in an MST and then looking for the minimal edge in a cut that it respects. Note, that since $F$ has no cycles, any edge $e \subset E$ that does not create a cycle in $F$ must belong to a cut $X$ that is respected by $F$.
 
 By ensuring that the edges are examined in increasing weight order, we can determine that the first edge that does not create a cycle is also the one with the minimum weight among them. Therefore, according to \Cref{lemma:cut}, we can conclude that the forest obtained by adding $e$ into $F$ is contained in an MST.
 
@@ -4370,7 +4376,7 @@ Furthermore, $w(T^{\prime}) = w(T) - w(e) + w(e^{\prime}) \leq w(T)$. Finally, o
   Give an example to a graph with unique MST in which the second spanning tree, share no edge with the MST. 
 \end{problem}
 
-\section{Appendix.}
+\subsection{Appendix.}
 
 \begin{claim}
   \label{claim:subtract}
@@ -4393,7 +4399,7 @@ Denote the ends of $e$ by $(x,y)=e$. Also, denote $C$ by $\braket{x_{0},x_{1},..
 
 
 
-\chapter{Union Find - Recitation 11} 
+\section{Union Find - Recitation 11} 
 
 \usetikzlibrary{positioning, arrows}
 \tikzset{main node/.style={circle,draw,minimum size=0.8cm,inner sep=0pt},}
@@ -4456,7 +4462,7 @@ Denote the ends of $e$ by $(x,y)=e$. Also, denote $C$ by $\braket{x_{0},x_{1},..
 
 %\vspace{0.2in}
 
-\section{Union Find.} 
+\subsection{Union Find.} 
 
 We have mentioned that to find efficiently the minimal spanning tree using Kruskal, One has to answer quickly about whether a pair of vertices $v,u$ share the same connectivity component. In this recitation, we will present a data structure that will allow us to query the belonging of a given item and merge groups at an efficient time cost. 
 
