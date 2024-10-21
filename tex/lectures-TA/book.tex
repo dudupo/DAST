@@ -2800,8 +2800,305 @@ Therefore, the expectation is bounded by:
 
 
 
-\newcommand*{\SOLUTION}{}
-\input{./ex6-2024.tex}
+
+
+%\newcommand*{\EXERCISE}{}%
+%\input{../tex/texlib/head.tex}
+
+
+ 
+
+%\newcommand*{\RECITATION}{}%
+
+
+\setcounter{chapter}{6}
+\ifdefined\SOLUTION
+  \section{DAST. Exercise 6. Solution.}
+\else
+  \section{DAST. Exercise 6.}
+\fi
+
+\ifdefined\CHECK
+
+
+  \paragraph{Checking.} Please only check (7.1.1.2) [input is also distributed randomly], (7.1.2.4) [computing $\expp{Z^{2}}$], and (7.4) bucket sort. Please be brutal when it's clear that the student didn't pay any real effort.
+\paragraph{}
+
+\fi
+
+\subsection{Probability.} 
+\subsection{All zeros vs half ones} Consider \Cref{alg:allzeros}, from the lecture, to distinguish whether all the elements of given $n$-length array $A_{1},..A_{n}$ are zeros or half of the elements are zeros and half of the elements are ones. 
+
+\begin{algorithm}
+  Pick uniformly random $t$ different indices. $i_{1},i_{2}..i_{t} \subset [n]$ \\
+\If { $A_{i_{1}} = A_{i_{2}} = .. =A_{i_{t}}=0$  }{ 
+  \Return all zeros 
+}
+\Else{
+  \Return half-half
+}
+\caption{All-zeros-vs-half-ones($A_{1},A_{2}..A_{n}$)}
+  \label{alg:allzeros}
+  \end{algorithm} 
+\begin{enumerate}
+  \item For each of these cases, state \textbf{what the outcomes space ($\Omega$) is and what the probability function ($P$) is}. Compute the probability that the algorithm succeeds if it samples $t$ elements of the array.  
+  \item Consider now the following problem. You are given an array such that with probability $\frac{1}{2}$ all of its elements are zeros, and with probability $\frac{1}{2}$ half of it are zeros and half of it are ones. \textbf{Explain in one line}, in what the current probability space differs from the previews one, It's enough to point out the difference between the atomic events. And compute again the probability that the suggested algorithm succeeds if it samples $t$ elements. 
+
+
+\end{enumerate}
+
+\ifdefined\SOLUTION
+  \paragraph{Solution.} \\ 
+  \begin{enumerate}
+    \item Let's denote by $(\Omega_0, P_0)$ and $(\Omega_{\frac{1}{2}}, P_{\frac{1}{2}})$ the probability spaces for each case. Here, $(\Omega_0, P_0)$ is the probability space for the case where all elements of the array are zeros, while $(\Omega_{\frac{1}{2}}, P_{\frac{1}{2}})$ is the probability space for the case where half of the elements are zeros and half are ones. Thus we have:
+      \begin{itemize}
+        \item Each $\omega \in \Omega_{0}$ corresponds to a chosen $t$-subset of \textbf{indices}. $P$ is defined to give a uniform weight, meaning that for any $J \subset [n]$ such that $|J| = t$, the probability of choosing $J$ is 
+          \begin{equation*}
+            \begin{split}
+              P(\text{choose } J) = \frac{1}{n \cdot (n -1 ) \cdot (n-2) \cdot .. (n-t)}
+            \end{split}
+          \end{equation*}
+          (Answers in which the indices were chosen with repetition, meaning $P(\text{choose } J) = 1/n^{t}$, are also acceptable). In this case, the probability of returning 'all zeros' is exactly $1$, as no matter which indices were chosen, their corresponding elements are all zeros. So the algorithm succeeds with probability 1.  
+        \item In the second case, the atomic events are defined the same, and the probability function still give a uniform weight over the choices of $t$-subsets. But the events correspond to the sampled elements values are different. In particular the probability that $A_{i_1},A_{i_2},..,A_{i_t}$ will contains $x$ zeros is equal to:
+          \begin{equation*}
+            \begin{split}
+            & P(\text{choose exactly } x \text{ zeros positions }  ) = \\
+              & \frac{ \overbrace{n/2 \cdot (n/2 -1 ) \cdot .. (n/2-x)}^{\text{ choose zeros }} \cdot \overbrace{ n/2 \cdot (n/2 -1 ) \cdot .. (n/2-(t-x))}^{\text{ choose ones}}}{ n \cdot (n-1) \cdot .. \cdot (n-t)}
+            \end{split}
+          \end{equation*}
+          In particular sampling only zeros from $A$ occurs with probability: 
+          \begin{equation*}
+            \begin{split}
+               P(\text{choose only zeros positions}  ) & =  \frac{ n/2 \cdot (n/2 -1 ) \cdot .. (n/2-t)}{ n \cdot (n-1) \cdot .. \cdot (n-t)} \\ 
+              & = \prod_{i=0}^{t}\frac{n/2 -i}{n - i} \le \left(\frac{1}{2}\right)^{t} 
+            \end{split}
+          \end{equation*}
+          Therefore, the algorithm fails with a probability  $\leq 1/2^{t}$, meaning it succeeds with a probability at least $1 - 1/2^{t}$.
+      \end{itemize}
+     In each case, the probability of success is greater than $1 - 1/2^{t}$, so the algorithm will succeed with at least that probability.
+   \item Here, the main difference is that the random choice made by the algorithm \textbf{is not the only source of randomness}. In this setting of the problem, the input is chosen randomly to be either an array that contains only zeros or an array where half of it is zeros and the other half is ones. This means that any atomic event $\omega \in \Omega$ corresponds to both the indices chosen by the algorithm and the type of the sampled array.
+     \begin{equation*}
+       \begin{split}
+         \omega = \left( \overbrace{ \text{ array type  } }^{ \in \text{all zeros / half-half }} , \overbrace{J}^{ \text{ subset of } t \text{ indices } }\right)
+       \end{split}
+     \end{equation*}
+And therefore the probability for failure is now:
+\begin{equation*}
+  \begin{split}
+    \overbrace{\frac{1}{2}}^{ \text{ half-half } } \cdot P\left( \text{ only zeros positions were chosen} \right) \le \frac{1}{2} \cdot \left( \frac{1}{2} \right)^{t}
+  \end{split}
+\end{equation*}
+Thus the success probability greater than $1 - \left(\frac{1}{2}\right)^{t+1}$. 
+  \end{enumerate}
+  \ctt{ Solutions in which the atomic events were associated with the sampled values from the array (namely, $(A_{i_{1}}, A_{i_{2}}, ..., A_{i_{t}})$ are atomic events), or solutions in which the indices sampled with repetitions receive a complete grade. The main idea of the question is to point on the randomness's source. } 
+\fi 
+
+
+\ifdefined\CHECK
+  \paragraph{checking.} Accept solutions in which the $\Omega$'s were defined to encode the sampled values, or that the sampling of the indices was done with repetitions. Penalize any solution that doesn't mention the fact that only in the second section is the input distributed randomly.
+\fi 
+
+\subsection{Basic Probability.} 
+\begin{enumerate}
+
+  \item \ctt{\textbf{Not a mandatory.}} Let $X,Y$ be the indicators of events $A,B$, prove that $ XY$ is the indicator ([Hebrew] 'MISHTANE MICRI METAYEN') of $A \cap B$. And that $X + Y - XY$ is the indicator of $ A\cup B$.  
+\item \ctt{\textbf{Not a mandatory.}} Define the conditional probability conditioned on $B \subset \Omega$ to be the function $2^{\Omega} \rightarrow [0,1]$ defined   
+  \begin{equation*}
+    \begin{split}
+      \text{ probability of } A \text { given } B := P(A | B) = \frac{P(A\cap B)}{P(B)} 
+    \end{split}
+  \end{equation*}
+  \begin{enumerate}
+    \item Prove that $P( \cdot | B) : 2^{\Omega} \rightarrow [0,1]$ is indeed probability function. 
+    \item Prove that for any events $A,B \subset \Omega$ it holds that:
+      \begin{equation*}
+        \begin{split}
+          P(A) = P(A | B)\cdot P(B) + P(A | \bar{B})P(\bar{B})
+        \end{split}
+      \end{equation*}
+    \item Let $\mathcal{A}$ be the following randomized recursive algorithm. $\mathcal{A}$ flips a fair coin, and if it gets head, it stops. Otherwise, it calls itself recursively. Compute the expected running time using the equality in (b).
+  \end{enumerate}
+\item Assume that $X: \Omega \rightarrow \mathbb{R}$ is positive, namely $X(\omega) \ge 0 $ for any $\omega \in \Omega$. Prove the Markov inequality: 
+\begin{equation*}
+  \begin{split}
+    P(X > t) \le \frac{\expp{X}}{t}
+  \end{split}
+\end{equation*} 
+\ifdefined\SOLUTION
+  \paragraph{Solution.} Using the definition of expectation, we have:
+  \begin{equation*}
+    \begin{split}
+      \expp{X} &= \sum_{x \in Im(X)}{xP(X =x)} \ge \sum_{\substack{ x \in Im(X) \\ x > t}}{xP(X =x)} \\
+      & \ge  \sum_{\substack{ x \in Im(X) \\ x > t}}{tP(X =x)} =  t \sum_{\substack{ x \in Im(X) \\ x > t}}{P(X =x)} = t \cdot P(X > t) \\
+            \Rightarrow & P(X > t) \le \frac{\expp{X}}{t} 
+    \end{split}
+  \end{equation*}
+  
+So if algorithm $\mathcal{A}$ runs in expected time $cn\log n$, then the probability of it taking more than $n^2$ time is less than:
+  \begin{equation*}
+    \begin{split}
+      P(\mathcal{A} \text{ run at } \ge n^2) \le \frac{c n \log n}{n^{2}} = c \frac{\log n}{n}
+    \end{split}
+  \end{equation*}
+\fi 
+\item Consider again throwing $n$ keys independently into $m$ cells (As presented in the recitation). Denote by $Z$ the number of keys that fell into the same cell as the first key. What is the expectation of $Z^{2}$?
+\ifdefined\SOLUTION
+  \paragraph{Solution.} Let $X_{i}^{j}$ be the indicator of the event that the $j$th key fell into the $i$th cell (as defined in the recitation). As shown in the recitation, we have $Z = \sum_{i,j}{X_{i}^{1}X_{i}^{j}}$ and $X^{1}_{i}X^{1}_{i^{\prime}}$ can only be nonzero if $i=i^{\prime}$. Therefore:
+  \begin{equation*}
+    \begin{split}
+      Z^{2} &=  \left(\sum_{i,j}{X_{i}^{1}X_{i}^{j}}\right)^{2} = \sum_{i,j,i^{\prime},j^{\prime}}{X_{i}^{1}X_{i}^{j}X_{i^{\prime}}^{1}X_{i^{\prime}}^{j^{\prime}}}\\
+      &= \sum_{i,j,j^{\prime}}{X_{i}^{1}X_{i}^{j}X_{i}^{j^{\prime}}}\\
+      &= \sum_{ \substack{ i,j \neq j^{\prime} \\ j \neq 1, j^{\prime}\neq 1 }}{X_{i}^{1}X_{i}^{j}X_{i}^{j^{\prime}}}  + \sum_{ \substack{ i,j = j^{\prime} \\ j \neq 1 }}{X_{i}^{1}X_{i}^{j}} + \sum_{ \substack{ i,j = j^{\prime} = 1 }}{X_{i}^{1}} \\  
+ & + \sum_{ \substack{ i,j \neq j^{\prime} \\ j = 1, j^{\prime}\neq 1 }}{X_{i}^{1}X_{i}^{j^{\prime}}}  + \sum_{ \substack{ i,j \neq j^{\prime} \\ j \neq 1, j^{\prime} = 1 }}{X_{i}^{1}X_{i}^{j}}  
+ \end{split}
+ \end{equation*}
+ In the above, we split the products into cases such that each summation sums up product of independent variables. For example, if $j=j^{\prime}=1$, then we have that $X_{i}^{1}X_{i}^{j}X_{i}^{j^{\prime}} = \left( X_{i}^{1}\right)^{3} = X_{i}^{1}$. Now, by independence, the expectation of each product is equal to the product of the expectations.
+\begin{equation*}
+\begin{split}
+      \Rightarrow \expp{Z^2} &= \sum_{i,j,i^{\prime},j^{\prime}}{\expp{X_{i}^{1}X_{i}^{j}X_{i^{\prime}}^{1}X_{i}^{j^{\prime}}}} \\
+      &= m (n-1)(n-2) \cdot \frac{1}{m^{3}} + m(n-1) \cdot \frac{1}{m^{2}} + m \cdot \frac{1}{m} \\  
+      &+ m \cdot (n-1) \cdot \frac{1}{m^{2}} + m \cdot (n-1) \cdot \frac{1}{m^{2}} \\
+      &= (n-1)(n-2) \cdot \frac{1}{m^{2}} + 3 (n-1) \frac{1}{m} + 1 
+    %& + m(m-1)\cdot (n-1)  \frac{1}{m^{3}} \\
+    \end{split}
+  \end{equation*}
+\fi
+\ifdefined\CHECK
+  \paragraph{checking.} Penalize any solution that does not split the sum into sums over independent random variables.
+\fi 
+
+\item \ctt{\textbf{Not a mandatory.}} Let $\mathcal{A}$ be an algorithm that sorts in $c \cdot n\log n$ expected time, and let $k$ be a fixed integer. Write a sorting algorithm, that uses $\mathcal{A}$, such that the probability that it will run for more than $2ck \cdot n\log n$ time is less than $\frac{1}{2^{k}}$. [Hint: use the Markov inequality].
+
+  \ctt{ [Update] Show that \Cref{alg:randsort} satisfies the requirement. }  
+
+
+\begin{algorithm}
+  Copy $A$ for $k+1$ times. Store the $i$th copy in $B_{i}$\\
+\For { $ i \in [k] $ }{
+  Run $\mathcal{A}$ on $B_{i}$ for $2cn\log n$ steps. \\
+  \If{ $B_{i}$ is sorted } {
+    \Return $B_{i}$
+  }
+}
+\Return $\mathcal{A}(B_{k+1})$ 
+\caption{ Amplifier-$\mathcal{A}$ }
+  \label{alg:randsort}
+  \end{algorithm} 
+
+\ifdefined\SOLUTION
+  \textbf{Solution.} Note that checking if an array is sorted takes linear time (we simply check if for every $i$, $A_{i}\le A_{i+1}$). By using the Markov inequality, we get that the probability of $\mathcal{A}$ taking more than $2cn\log n$ steps is less than $1/2$. Therefore, since the runs over the $B_{i}$s are independent, the probability of exceeding $2cn\log n$ steps on every one of the $k$ attempts is less than $1/2^{k}$. With a probability greater than $1- 1/2^{k}$, we have that for $i \le k$, on the $i$th attempt, $\mathcal{A}$ successfully sorts $B_{i}$ in less than $2c n\log n$ steps. In this case, the condition on line (4) is satisfied and the algorithm returns the sorted array.
+\fi
+\item  \ctt{\textbf{Not a mandatory.}} Let $M$ be an $n\times m$ random binary matrix, where each entry $M_{i,j}$ is chosen to be either $1$ or $0$ with probability $\frac{1}{2}$. Let $u$ and $v$ be a pair of fixed vectors in $\mathbb{F}_{2}^{n}$. What is the probability that $Mv = Mu$ (note that the multiplication is over $\mathbb{F}_{2}^n$)? Consider both the case where $u\neq v$ and the case where $u=v$.
+\ifdefined\SOLUTION
+
+  \textbf{Solution.} First note that if $u=v$ the with probability $1$ we have that $Mu = Mv$. Now, consider the case in which $u\neq v$, therefore there must to be at least one coordinate $l$ on which $u_{l}\neq v_{l}$. Observes that: 
+  \begin{equation*}
+    \begin{split}
+      (Mu)_{j} & = \sum_{i}M_{ji}u_{i} = M_{jl}u_{l} + \sum_{i\neq l }M_{ji}u_{i} 
+    \end{split}
+  \end{equation*}
+  So for $(Mu)_{j}$ to be equal $(Mv)_{j}$ it must holds that: 
+  \begin{equation*}
+  \begin{split}
+    M_{jl}u_{l} + M_{jl}v_{l}  = \overbrace{\sum_{i\neq l }M_{ji}u_{i} + \sum_{i\neq l }M_{ji}v_{i}}^{\star} 
+    \end{split}
+  \end{equation*}
+  Now, imagine the following experiment: first, we roll the values of $M_{ji}$ for any $i\neq l$, and then we roll $M_{jl}$.
+
+  If $\star$ equals 0, then we have equality only if $M_{jl}u_{l} + M_{jl}v_{l} =0$. However, since $u_{l} \neq v_{l}$, one of them is zero while the other is not. Then the right term zeros out only if $M_{jl} = 0$, so in that case, we have the equality with probability $1/2$.
+
+  In the other case, where $\star$ equals 1, the equality holds only if $M_{jl}u_{l} + M_{jl}v_{l} =1$. Again, by the same argument as above, this can only happen if $M_{jl} = 1$, which occurs with probability $\frac{1}{2}$.
+
+  Another way to think about this is that if we fix the whole coordinates of an atomic event but one, there is only one way (out of two) to complete it such that the equality holds. Thus, the number of $\omega$'s that satisfy the equality is $\frac{1}{2}|\Omega|$. So the probability sums up to: 
+  \begin{equation*}
+    \begin{split}
+      P( (Mu)_{j} = (Mv)_{j}) &= \frac{| \{ \omega \in \{(Mu)_{j} = (Mv)_{j}\} \}}{ | \{ \omega \in \Omega \} | } = \frac{1}{2}
+    \end{split}
+  \end{equation*} 
+To finish, we need to answer what the probability is of having equality on all coordinates. Since the rows of the matrix are sampled independently, we have that 
+\begin{equation*}
+    \begin{split}
+      P( Mu = Mv) &= P( \bigcap_{j} (Mu)_{j} = (Mv)_{j})\\
+      &= \prod_{j} P( (Mu)_{j} = (Mv)_{j}) = \frac{1}{2^{m}}
+    \end{split}
+  \end{equation*}
+\fi
+\end{enumerate}
+\subsection{Partition.} \ctt{\textbf{Not a mandatory.}} Write an algorithm that, given an array $A_{1},A_{2},...,A_{n}$ and a pivot $p \in [n]$, arranges the given array such that the elements smaller than $A_{p}$ are placed to its left, and the elements greater than $A_{p}$ are placed to its right. The algorithm should not use any extra memory. 
+
+
+%\subsection{Differents between random alg to random inputs.}
+
+\subsection{ Lowerbound For Randomized Sorting Alg. \\ \ctt{\textbf{Not a mandatory.}} }   
+Consider the comparison model again. Recall that we have proven that any deterministic algorithm in it must perform at least $\Omega(n\log n)$ comparisons for sorting. This question guides to prove that the statement is also true for any randomized algorithm.
+
+\begin{enumerate}
+  \item Fix an integer $n$, and recall that $T(n)$, the running time of the algorithm on $n$-length input, is a random variable. Explain in two lines why $T(n)$ can be written in the form of:
+    \begin{equation*}
+      \begin{split}
+        T(n) = \sum_{\omega \in \Omega}{ X_{\omega} T_{\omega}(n) }
+      \end{split}
+    \end{equation*} 
+ When $X_{\omega}$ is an indicator for the atomic event $\omega\in \Omega$, and $T_{\omega}$ is a function that depends only on $n$.
+  \item Show that if a randomized algorithm $\mathcal{A}$ succeeds in sorting with probability 1, then it must run in at least $\Omega(n\log n)$ time, regardless of the value of $\omega$ that is sampled. Stress exactly where you used the fact that $\mathcal{A}$ succeeds with probability 1.
+
+  %\item When the alg sucsses with probability $\ge \frac{1}{2}$.
+\end{enumerate}
+
+\paragraph{Solution. (2)} Saying that the success probability is 1 implies that any of the $T_{\omega}(n)$ is a running time function of a deterministic algorithm which is \textbf{correct}. Otherwise, there is a positive probability to fall on $\omega \in \Omega$ associated with an algorithm that fails on at least one input. Therefore, as the algorithm is in the comparison model, each of the deterministic algorithms has to perform at least $\Omega(n\log n)$ comparisons. So the running time of the algorithm is at least $\Omega(n\log n)$. In other words, randomized algorithms that succeed with probability 1 cannot break deterministic lower bounds.
+
+
+\subsection{Bucket sort.} Assume that you have an $n$-length array $A$ as input, where any number in $A$ is sampled uniformly from $[0,1]$. This means that the probability of $A_{i}$ belonging to a segment $I \subset [0,1]$ is exactly:
+\begin{equation*}
+  \begin{split}
+    P(A_{i} \in I) = |I|
+  \end{split}
+\end{equation*}
+For instance, let's take the intervals $[0,\frac{1}{2})$ and $[\frac{1}{2}, 1)$. For any $i$, the probability of $A_{i}$ falling into each of these segments is $\frac{1}{2}$.
+\begin{enumerate}
+  \item Let $B_{0}, B_{1}, ..., B_{m-1}$ be a partition of the segment $[0,1]$, where $B_{i}$ is $[i/m, (i+1)/m)$. Explain, in one line without a formal proof, why the indicators $X_{i}^{j}$ for the events $A_{j} \in B_{i}$ are distributed exactly as in the $n$ keys $\mapsto m$ cells problem.
+  \item Consider \Cref{alg:bucket} for sorting, Notice that $m$ is a fixed number, yet the expectation will depend on both $m$ and $n$. Compute the expected running time.  \ctt{Just to avoid endcases, assume that $\lfloor m \rfloor = m-1$.}
+
+\begin{algorithm}
+    	let $B$ be a new $m$-length array \\
+	\For{ $i \leftarrow [0, m – 1]$}{
+	   make $B_{i}$ an empty list
+       	}
+	\For{ $i \leftarrow [1, n]$}{
+	    insert $A_{i}$ into list $B_{ \lfloor m A_{i} \rfloor} ]$
+       	}
+	\For{ $i \leftarrow [0, m – 1]$}{
+    sort list $B_{i}$ using bubble-sort
+       	}
+	concatenate the lists $B_{0}, B_{1}, .. , B_{m – 1}$ and\\
+	return the concatenated lists
+\caption{bucket-sort($A$, $n$)}
+  \label{alg:bucket}
+  \end{algorithm} 
+
+\end{enumerate}
+
+\ifdefined\SOLUTION
+  \textbf{Solution.} Denote by $X_i: \Omega \rightarrow [n]$ the random variable that counts the number of elements fallen in the $i$th bucket, and by $X_i^j$ the indicator that $A_i \in B_j$. So $P(X_i^j = 1) = P(A_i \in B_j) = |[j/m, (j+1)/m)| = 1/m$. Note that due to the independence of the throws, the indicators are independent random variables. Thus, the expectation of the sorting running time is:
+  \begin{equation*}
+    \begin{split}
+    \expp{T} &= \expp{  \text{ Inserting into buckets  }   +   \sum_{i} { \text{Sorting $i$th bucket  } }} \\ 
+    & = \expp{ \Theta(n) +   \sum_{i} { X_{i}^{2}  }} = \Theta(n) +  \sum_{i}{ \expp{X_{i}^{2}} }  \\
+  \expp{X_{i}^{2}} &= \expp{\left( \sum X_{i}^{j} \right)^{2}} = \expp{\sum_{j,j^{\prime}} X_{i}^{j} X_{i}^{j^{\prime}} } =  \sum_{j, j^{\prime}} \expp{X_{i}^{j} X_{i}^{j^{\prime}}} \\ 
+  & = \sum_{j \neq j^{\prime}} \expp{X_{i}^{j} X_{i}^{j^{\prime}}} + \sum_{j} \expp{X_{i}^{j} X_{i}^{j}} \\
+    & =  \sum_{j \neq j^{\prime}} \expp{X_{i}^{j} X_{i}^{j^{\prime}}} + \sum_{j} \expp{X_{i}^{j}}  \\
+        & = 2 { n \choose 2  } \left( \frac{1}{m} \right)^{2} +  n\cdot \frac{1}{m} \\ 
+        & = \frac{n(n-1)}{m^{2}} + \frac{n}{m}  \\
+        \Rightarrow & \expp{T} = \Theta(n) +m \cdot \frac{n(n-1)}{m^{2}} + m \cdot \frac{n}{m}  = \Theta(n + \frac{n^{2}}{m})
+    \end{split}
+  \end{equation*}
+\fi
+\ifdefined\CHECK
+  \paragraph{checking.} Penalize any solution that does not yield a $\Theta(n^{2})$ time for $m=O(1)$.
+\fi 
+\ifdefined\Book
+\fi
+
 \chapter{Heaps - Recitation 4} 
 \author{Correctness, Loop Invariant And Heaps.}
 
