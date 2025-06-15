@@ -1,0 +1,9 @@
+[0] Config.pm:307> INFO - This is Biber 2.19
+[0] Config.pm:310> INFO - Logfile is 'lec-hashing.blg'
+[81] biber:340> INFO - === Thu Sep 19, 2024, 19:38:41
+[96] Biber.pm:419> INFO - Reading 'lec-hashing.bcf'
+[158] Biber.pm:979> INFO - Found 0 citekeys in bib section 0
+[170] bbl.pm:660> INFO - Writing 'lec-hashing.bbl' with encoding 'UTF-8'
+[170] bbl.pm:763> INFO - Output to lec-hashing.bbl
+[170] Biber.pm:131> WARN - The file 'lec-hashing.bcf' does not contain any citations!
+[170] Biber.pm:133> INFO - WARNINGS: 1

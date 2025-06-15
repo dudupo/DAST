@@ -1,0 +1,9 @@
+[0] Config.pm:307> INFO - This is Biber 2.19
+[0] Config.pm:310> INFO - Logfile is 'lec-mst.blg'
+[81] biber:340> INFO - === Sun Sep  8, 2024, 08:21:57
+[97] Biber.pm:419> INFO - Reading 'lec-mst.bcf'
+[159] Biber.pm:979> INFO - Found 0 citekeys in bib section 0
+[171] bbl.pm:660> INFO - Writing 'lec-mst.bbl' with encoding 'UTF-8'
+[172] bbl.pm:763> INFO - Output to lec-mst.bbl
+[172] Biber.pm:131> WARN - The file 'lec-mst.bcf' does not contain any citations!
+[172] Biber.pm:133> INFO - WARNINGS: 1

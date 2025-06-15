@@ -238,6 +238,7 @@ Note that most of the data structures we discussed so far - Stack, Queue, Heap, 
 
 Now let's define some things in graphs:
 
+
 \begin{definition} (Path, circle, degree)
 \begin{enumerate} 
 \item A \textbf{simple path} in the graph $G$ is a series of unique vertices (that is, no vertex appears twice in the series) $v_1, v_2, ..., v_n$ that are connected with edges in that order. 
@@ -251,13 +252,16 @@ Note that for all $u,v,w\in V$ the triangle inequality holds regarding path leng
 $$dist(u,w)\leq dist(u,v) + dist(v, w)$$
 \end{remark}
 
-\begin{definition} (connectivity)
-\begin{enumerate}
-  \item Let $ G =\left( V,E \right)$ be a non-directed graph. A \textbf{connected component} of $G$ is a subset $U \subseteq V$ of maximal size in which there exists a path between every two vertices. 
-\item A non-directed graph $G$ is said to be a \textbf{connected} graph if it only has one connected component.
-\item Let $ G = \left(V, E\right)$ be a directed graph. A \textbf{strongly connected component} of $G$ is a subset $U \subseteq V$ of maximal size in which for any pair of vertices $u,v \in U$ there exist both directed path from $u$ to $v$ and a directed path form $v$ to $u$.   
-\end{enumerate}
-\end{definition}
+\input{defconnectivity.tex}
+%\begin{definition} (connectivity)
+%  \label{def:connectivity}
+%\begin{enumerate}
+%  \item Let $ G =\left( V,E \right)$ be a non-directed graph. A \textbf{connected component} of $G$ is a subset $U \subseteq V$ of maximal size in which there exists a path between every two vertices. 
+%\item A non-directed graph $G$ is said to be a \textbf{connected} graph if it only has one connected component.
+%\item Let $ G = \left(V, E\right)$ be a directed graph. A \textbf{strongly connected component} of $G$ is a subset $U \subseteq V$ of maximal size in which for any pair of vertices $u,v \in U$ there exist both directed path from $u$ to $v$ and a directed path form $v$ to $u$.   
+%\end{enumerate}
+%\end{definition}
+
 %\begin{figure}[h]
   %\begin{subfigure}[b]{0.4\textwidth} 
 %An \textbf{example} of a non-connected graph: \\ \\ \\  \\

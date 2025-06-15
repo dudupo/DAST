@@ -1,0 +1,15 @@
+
+\ifdefined\DEFconnectivity
+\else
+\providecommand{\DEFconnectivity}{DEFconnectivity}
+
+
+\begin{definition} (connectivity)
+  \label{def:connectivity}
+\begin{enumerate}
+  \item Let $ G =\left( V,E \right)$ be a non-directed graph. A \textbf{connected component} of $G$ is a subset $U \subseteq V$ of maximal size in which there exists a path between every two vertices. 
+\item A non-directed graph $G$ is said to be a \textbf{connected} graph if it only has one connected component.
+\item Let $ G = \left(V, E\right)$ be a directed graph. A \textbf{strongly connected component} of $G$ is a subset $U \subseteq V$ of maximal size in which for any pair of vertices $u,v \in U$ there exist both directed path from $u$ to $v$ and a directed path form $v$ to $u$.   
+\end{enumerate}
+\end{definition}
+\fi

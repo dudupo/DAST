@@ -1,0 +1,9 @@
+[0] Config.pm:307> INFO - This is Biber 2.19
+[0] Config.pm:310> INFO - Logfile is 'lec-probability.blg'
+[89] biber:340> INFO - === Thu Sep  5, 2024, 13:06:08
+[104] Biber.pm:419> INFO - Reading 'lec-probability.bcf'
+[173] Biber.pm:979> INFO - Found 0 citekeys in bib section 0
+[188] bbl.pm:660> INFO - Writing 'lec-probability.bbl' with encoding 'UTF-8'
+[189] bbl.pm:763> INFO - Output to lec-probability.bbl
+[189] Biber.pm:131> WARN - The file 'lec-probability.bcf' does not contain any citations!
+[189] Biber.pm:133> INFO - WARNINGS: 1
