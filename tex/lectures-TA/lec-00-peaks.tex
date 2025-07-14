@@ -46,8 +46,12 @@ We will say that an algorithm is correct, with respect to a given task, if it co
 %
 %  In the case that no position has been returned, In particular the algorithm didn't return in any of the first $j$ iterations and get's in to iteration number $j+1$, which means that the conidition on line (2) was not satisfied in contradiction to the fact that $A_{j}$ is a peak. 
 %
-Assume towards contradiction that there exists an $n$-length array $A$ such that the algorithm peak-find fails to find one of its peaks, in particular, the Alg. either returns $j^{\prime}\in [n]$ such that $A_{j^{\prime}}$ is not a peak or does not return at all (never reach line (3)). Let's handle first the case in which returning indeed occurred. Denote by $j$ the first position of a peak in $A$, and note that if the algorithm gets to line (2) in the $j$th iteration then either it returns $j$ or $A_{j}$ is not a peak.
-  Hence it must hold that $j^{\prime} < j$. But satisfaction of the condition on line (2) can happen only if $A_{j^{\prime}}$ is a peak, which contradicts the minimality of $j$. In the case that no position has been returned, it follows that the algorithm didn't return in any of the first $j$ iterations and gets to iteration number $j+1$, which means that the condition on line (2) was not satisfied in contradiction to the fact that $A_{j}$ is a peak.
+Assume towards contradiction that there exists an $n$-length array $A$ such that the algorithm peak-find fails to find one of its peaks, in particular, the Alg. either returns $j^{\prime}\in [n]$ such that $A_{j^{\prime}}$ is not a peak or does not return at all (never reach line (3)). 
+\begin{enumerate}
+  \item Let's handle first the case in which returning indeed occurred. Denote by $j$ the first position of a peak in $A$, and note that if the algorithm gets to line (2) in the $j$th iteration then either it returns $j$ or $A_{j}$ is not a peak.
+  Hence it must hold that $j^{\prime} < j$. But satisfaction of the condition on line (2) can happen only if $A_{j^{\prime}}$ is a peak, which contradicts the minimality of $j$.
+\item In the case that no position has been returned, it follows that the algorithm didn't return in any of the first $j$ iterations and gets to iteration number $j+1$, which means that the condition on line (2) was not satisfied in contradiction to the fact that $A_{j}$ is a peak.
+\end{enumerate}
 \end{proof}
 
 \paragraph{Running Time.} 
@@ -70,7 +74,13 @@ Now, we will show a recursive version of the navie peak-find algorithm for demon
 Let $A = A_1, \dots, A_n$ be an array, and $A' = A_2, A_3, \dots, A_n$ be the $n-1$ length array obtained by taking all of $A$'s items except the first. If $A_1 \le A_2$, then any peak of $A'$ is also a peak of $A$.
 \end{claim}
 \begin{proof} 
-Let $A^{\prime}_{j}$ be a peak of $A^{\prime}$. Split into cases upon on the value of $j$. If $n-1 > j > 1$, then $A^{\prime}_{j} \ge A^{\prime}_{j \pm 1}$, but for any $j \in [2, n-2]$ we have $A^{\prime}_{j} = A_{j+1}$ and therefore $A_{j+1} \ge A_{j+1 \pm 1} \Rightarrow A_{j+1}$ is a peak in $A$. If $j^{\prime} = 1$, then $A^{\prime}_{1} > A^{\prime}_{2} \Rightarrow A_{2} \ge A_{3}$ and by combining the assumption that $A_{1} \le A_{2}$ we have that $A_{2} \ge A_{1}, A_{3}$. So $A_{2} = A^{\prime}_{1}$ is also a peak. The last case $j = n-1$ is left as an exercise.
+Let $A^{\prime}_{j}$ be a peak of $A^{\prime}$. Split into cases upon on the value of $j$.
+
+\begin{enumerate}
+  \item If $n-1 > j > 1$, then $A^{\prime}_{j} \ge A^{\prime}_{j \pm 1}$, but for any $j \in [2, n-2]$ we have $A^{\prime}_{j} = A_{j+1}$ and therefore $A_{j+1} \ge A_{j+1 \pm 1} \Rightarrow A_{j+1}$ is a peak in $A$.
+  \item If $j^{\prime} = 1$, then $A^{\prime}_{1} > A^{\prime}_{2} \Rightarrow A_{2} \ge A_{3}$ and by combining the assumption that $A_{1} \le A_{2}$ we have that $A_{2} \ge A_{1}, A_{3}$. So $A_{2} = A^{\prime}_{1}$ is also a peak.
+  \item The last case $j = n-1$ is left as an exercise.
+\end{enumerate}
 \end{proof}
 
 One can prove a much more general claim by following almost the same argument presented above.
@@ -187,9 +197,9 @@ Let's prove correction.
 \end{proof}
 
 
-What's the running time? Denote by $T\left( n \right)$ an upper bound on the running time. We claim that $T(n) \le c_{1} \log (n) - c_{2}$, let's prove it by induction.
+What's the running time? Denote by $T\left( n \right)$ an upper bound on the running time. We claim that $T(n) \le c_{1} \log (n) - c_{2}$. 
 \begin{proof}
-     
+  By induction. 
 \begin{enumerate}
   \item Base. For the base case, $n \le 3$ we get that $c_{1} \log(1) + c_{2} =  c_{2}$ on the other hand only a single check made by the algorithm, so indeed the base case holds (Choosing $c_{2} \ge$ the cost of a single check).
   \item Induction Assumption. Assume that for any $m < n$, the algorithm runs in at most $c_{1} \log(m) + c_{2}$ time.
