@@ -38,7 +38,7 @@ Computer science differs from other scientific disciplines in that it focuses no
     %\draw[->]  (0,0) -- (0,5);
 
     \draw[domain=0:4,smooth,variable=\x,blue,name path=c1] plot ({\x},{ 1 })node[right]{$1$};
-    \draw[domain=5:8,smooth,variable=\x,blue,name path=c2] plot ({\x},{ \x-5});
+    \draw[domain=5:7.1,smooth,variable=\x,blue,name path=c2] plot ({\x},{ \x-5});
     \draw[domain=7:9,smooth,variable=\x,blue,name path=c3] plot ({\x},{ 2-(\x-7)})node[right]{$2$};
     \draw[domain=10:14,smooth,variable=\x,blue,name path=c4] plot ({\x},{\x-10})node[right]{$3$};
 \fill[red,name intersections={of=c2 and c3}]
