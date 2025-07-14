@@ -10,7 +10,7 @@
 Computer science differs from other scientific disciplines in that it focuses not on solving or making discoveries, but on questioning how good our current understanding is. The fact that one has successfully come up with an idea for a certain problem immediately raises the question of optimality. At the most basic level, we would like to answer what the 'best' program is that exists for a particular problem. To do so, we must have a notation that allows us to determine if an algorithm is indeed solving the task, quantify its performance, and compare it to other algorithms. In this chapter, we introduce this basic notation. The chapter is divided into two main parts: the first is about induction, a mathematical technique for proving claims, and the second presents asymptotic notation, which we use to describe the behavior of algorithms over large inputs.
 \fi
 \section{Peaks-Finding.}
-\begin{example}[Leading Example.]
+\begin{example}
   Consider an $n$-length array $A$ such that $A_1, A_2, \ldots, A_n \in \mathbb{R}$. We will say that $A_{j}$ is a \textbf{peak} (local maximum) if it is greater than its neighbors. Namely, $A_{i} \ge A_{i\pm1}$ if $i\pm 1 \in [n]$. Whenever $i\pm 1$ is not in the range $[n]$, we will define the inequality $A_{i} \ge A_{i\pm 1}$ to hold trivially. For example, for $n=1$, $A_{1}=A_{n}$ is always a peak.
 
   Write an algorithm that, given $A$, returns the position of an arbitrary peak.
