@@ -11,7 +11,7 @@ Computer science differs from other scientific disciplines in that it focuses no
 \fi
 \section{Peaks-Finding.}
 \begin{example}[Leading Example.]
-Consider an $n$-length array $A$ such that~$A_1,A_2,....,A_n~\in~\mathbb{R}$. We will say that $A_{j}$ is a peak (local minimum) if he's greater than his neighbors. Namely, $A_{i} \ge A_{i\pm1}$ if $i\pm 1 \in [n]$. Whenever $i\pm 1$ is not in the range $[n]$, we will define the inequality $A_{i} \ge A_{i\pm 1}$ to hold trivially. For example, for $n=1$, $A_{1}=A_{n}$ is always a peak. Write an algorithm that, given $A$, returns the position of an arbitrary peak.
+Consider an $n$-length array $A$ such that $A_1,A_2,....,A_n \in \mathbb{R}$. We will say that $A_{j}$ is a peak (local minimum) if he's greater than his neighbors. Namely, $A_{i} \ge A_{i\pm1}$ if $i\pm 1 \in [n]$. Whenever $i\pm 1$ is not in the range $[n]$, we will define the inequality $A_{i} \ge A_{i\pm 1}$ to hold trivially. For example, for $n=1$, $A_{1}=A_{n}$ is always a peak. Write an algorithm that, given $A$, returns the position of an arbitrary peak.
 \end{example}
 
 
@@ -175,8 +175,9 @@ $ i \leftarrow  \lceil n/2 \rceil $\\
           \Return find-peak$\left(A_{1},A_{2},A_{3}..A_{i-1}\right)$
         }
 \end{algorithm}
-Let's prove correction by induction.
+Let's prove correction.
 \begin{proof}
+  By induction. 
 \begin{enumerate}
   \item Base, single element array. Trivial. 
   \item Assumption, Assume that for any $m$-length array, such that $m<n$ the alg returns a peak. 
