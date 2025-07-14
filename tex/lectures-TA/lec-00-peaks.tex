@@ -17,7 +17,8 @@ Computer science differs from other scientific disciplines in that it focuses no
 \end{example}
 
 
-\begin{example}{Warming up.} \label{example:func} How many peaks do the following arrays contain?
+\begin{example}{Warming up.} \label{example:func} 
+  How many peaks do the following arrays contain?
   \begin{enumerate}
     \item $A[i] = 1$   $\forall i \in [n]$
     \item $A[i] = \begin{cases}
@@ -40,10 +41,10 @@ To better understand the problem, let's first examine a simple solution before p
     } 
 \end{algorithm}
 \paragraph{Correctness.}
-We will say that an algorithm is correct, with respect to a given task, if it computes the task for any input. Let's prove that the above algorithm is doing the job. 
+We will say that an algorithm is correct with respect to a given task if it computes the task for any input. Let's prove that the above algorithm is doing the job.
 
 \begin{proof}
-Assume, for the sake of contradiction, that there exists an $n$-length array $A$ such that the algorithm peak-find fails to find one of its peaks. In particular, the algorithm either returns $j^{\prime} \in [n]$ such that $A_{j^{\prime}}$ is not a peak or does not return at all (never reaches line (3)).
+Assume, trough contradiction, that there exists an $n$-length array $A$ such that the algorithm peak-find fails to find one of its peaks. In particular, the algorithm either returns $j^{\prime} \in [n]$ such that $A_{j^{\prime}}$ is not a peak or does not return at all (never reaches line (3)).
 \begin{enumerate}
   \item Let's handle first the case in which returning indeed occurred. Denote by $j$ the first position of a peak in $A$, and note that if the algorithm gets to line (2) in the $j$th iteration then either it returns $j$ or $A_{j}$ is not a peak.
   Hence it must hold that $j^{\prime} < j$. But satisfaction of the condition on line (2) can happen only if $A_{j^{\prime}}$ is a peak, which contradicts the minimality of $j$.
@@ -52,7 +53,7 @@ Assume, for the sake of contradiction, that there exists an $n$-length array $A$
 \end{proof}
 
 \paragraph{Running Time.} 
-Question, How would you compare the performance of two different algorithms? What will be the running time of the naive peak-find algorithm? On the lecture you will see a well-defined way to treat such questions, but for the sake of getting the general picture, let's assume that we pay for any comparison a quanta of processing time, and in overall, checking if an item in a given position is a peak, cost at most $c\in \mathbb{N}$ time, a constant independent on $n$.
+Question, How would you compare the performance of two different algorithms? What will be the running time of the naive peak-find algorithm? At the lecture, you will see a well-defined way to treat such questions, but for the sake of getting the general picture, let's assume that we pay for any comparison quanta of processing time and, overall, checking if an item in a given position is a peak, cost at most $c\in \mathbb{N}$ time, a constant independent on $n$.
 
 Question, In the worst case scenario, how many local checks does peak-finding do? For the third example in~\Cref{example:func}, the naive algorithm will have to check each item, so the running time adds up to at most $c \cdot n$.
 
