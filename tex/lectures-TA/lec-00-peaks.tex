@@ -34,8 +34,8 @@ Computer science differs from other scientific disciplines in that it focuses no
 \begin{figure}[h]
   \label{fig:peaks}
 \begin{tikzpicture}
-    \draw[->]  (0,0)coordinate(O) -- (14,0) node[anchor=north] {$n$};
-    \draw[->]  (0,0) -- (0,5);
+    %\draw[->]  (0,0)coordinate(O) -- (14,0) node[anchor=north] {$n$};
+    %\draw[->]  (0,0) -- (0,5);
 
     \draw[domain=0:4,smooth,variable=\x,blue,name path=c1] plot ({\x},{ 1 })node[right]{$1$};
     \draw[domain=5:7,smooth,variable=\x,blue,name path=c2] plot ({\x},{ \x-5});
