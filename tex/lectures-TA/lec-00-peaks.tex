@@ -29,6 +29,29 @@ Computer science differs from other scientific disciplines in that it focuses no
   \end{enumerate}
 \end{example}
 
+
+
+\begin{figure}[h]
+  \label{fig:peaks}
+\begin{tikzpicture}
+    \draw[->]  (0,0)coordinate(O) -- (11,0) node[anchor=north] {$n$};
+    \draw[->]  (0,0) -- (0,5);
+
+    \draw[domain=0:4,smooth,variable=\x,blue,name path=c1] plot ({\x},{ 1 })node[right]{$f_1(n)$};
+    \draw[domain=4.5:6.5,smooth,variable=\x,red,name path=c2] plot ({\x},{ \x-4.5})node[right]{$f_2(n)$};
+    \draw[domain=6.5:8.5,smooth,variable=\x,red,name path=c2] plot ({\x},{ 2-(\x-4.5)})node[right]{$f_2(n)$};
+    \draw[domain=9:13,smooth,variable=\x,red,name path=c2] plot ({\x},{\x-9})node[right]{$f_2(n)$};
+%\fill[red,name intersections={of=c1 and c2}]
+%    (intersection-1) circle (2pt)
+ %   (intersection-2) circle (2pt)
+  %      (intersection-3) circle (2pt) ;
+\end{tikzpicture}
+\caption{Here both $f_{1}(x)$ and $f_{2}(x)$ behave like $\sim  x+ \sin(x)$ up to additive and multiplicative terms. So, $f_{1} = \Theta(f_{2})$.} 
+\end{figure}
+
+
+
+
 \section{Naive solution.}
 To better understand the problem, let's first examine a simple solution before proposing a more intriguing one. Consider the algorithm examining each of the items $A_i$ one by one.
 \begin{algorithm}
