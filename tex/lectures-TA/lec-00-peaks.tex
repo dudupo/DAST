@@ -38,15 +38,15 @@ Computer science differs from other scientific disciplines in that it focuses no
     %\draw[->]  (0,0) -- (0,5);
 
     \draw[domain=0:4,smooth,variable=\x,blue,name path=c1] plot ({\x},{ 1 })node[right]{$1$};
-    \draw[domain=5:7,smooth,variable=\x,blue,name path=c2] plot ({\x},{ \x-5});
-    \draw[domain=7:9,smooth,variable=\x,blue,name path=c2] plot ({\x},{ 2-(\x-7)})node[right]{$2$};
-    \draw[domain=10:14,smooth,variable=\x,blue,name path=c2] plot ({\x},{\x-10})node[right]{$3$};
-%\fill[red,name intersections={of=c1 and c2}]
-%    (intersection-1) circle (2pt)
+    \draw[domain=5:8,smooth,variable=\x,blue,name path=c2] plot ({\x},{ \x-5});
+    \draw[domain=7:9,smooth,variable=\x,blue,name path=c3] plot ({\x},{ 2-(\x-7)})node[right]{$2$};
+    \draw[domain=10:14,smooth,variable=\x,blue,name path=c4] plot ({\x},{\x-10})node[right]{$3$};
+\fill[red,name intersections={of=c2 and c3}]
+    (intersection-1) circle (2pt);
  %   (intersection-2) circle (2pt)
   %      (intersection-3) circle (2pt) ;
 \end{tikzpicture}
-\caption{Here both $f_{1}(x)$ and $f_{2}(x)$ behave like $\sim  x+ \sin(x)$ up to additive and multiplicative terms. So, $f_{1} = \Theta(f_{2})$.} 
+\caption{The arrays.} 
 \end{figure}
 
 
