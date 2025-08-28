@@ -74,9 +74,13 @@ To better understand the problem, let's first examine a simple solution before p
 We will say that an algorithm is correct with respect to a given task if it computes the task for any input. Let's prove that the above algorithm is doing the job.
 
 \begin{proof}
+  Denote by $j$ the position of the first peak in $A$, we will prove that \Cref{alg:simp} returns $A_{j}$. 
+
+  Denote by $i$ the current iteration setp\footnote{ In our course, in terms of terminology, usually 'step' = 'iteration' = 'iteration number' = 'turn' = 'index'. } 
+
   Assume, trough contradiction, that there exists an $n$-length array $A$ such that the \Cref{alg:simp} fails to find one of its peaks. In particular, the algorithm either returns $j^{\prime} \in [n]$ such that $A_{j^{\prime}}$ is not a peak or does not return at all (never reaches line (3)).
 \begin{enumerate}
-  \item Let's handle first the case in which returning indeed occurred. Denote by $j$ the first position of a peak in $A$, and note that if the algorithm gets to line (2) in the $j$th iteration then either it returns $j$ or $A_{j}$ is not a peak.  \marginpar[Note: text for left-hand side text]{Note 1: text for right-hand side of pages, it is set justified.}
+  \item Let's handle first the case in which returning indeed occurred., and note that if the algorithm gets to line (2) in the $j$th iteration then either it returns $j$ or $A_{j}$ is not a peak. 
   Hence it must hold that $j^{\prime} < j$. But satisfaction of the condition on line (2) can happen only if $A_{j^{\prime}}$ is a peak, which contradicts the minimality of $j$.
 \item In the case that no position has been returned, it follows that the algorithm didn't return in any of the first $j$ iterations and gets to iteration number $j+1$, which means that the condition on line (2) was not satisfied in contradiction to the fact that $A_{j}$ is a peak.
 \end{enumerate}
