@@ -81,9 +81,10 @@ We will say that an algorithm is correct with respect to a given task if it comp
   \begin{enumerate}
     \item If $i < j$, then by the minimality of $j$ ($A_{j}$ was defined to be the first peak), it has to hold that $A_{i}$ is not a peak. Therefore, the condition on line (2) is not satisfied $ \Rightarrow $ the algorithm skips to line (4) and from there continues to the next iteration.   
     \item If $i = j$, then by definition of $A_{j}$, the condition on line (2) is satisfied, so the algorithm enters line (3) and returns $A_{j}$.  
+    \item Else, consider the case when $i > j$. In that case, the algorithm will not reach the $i$th iteration. That is because the algorithm is defined to scan the elements in 'continuous' order, meaning that if the algorithm indeed gets into the $i$ iteration, it implies that it passed through any $i^\prime < i$ iteration and didn't return, specifically at the $j$ iteration, which contradicts $A_{j}$ being a peak. 
   \end{enumerate}
 \end{proof}
-
+Note that in the third bullet, in the case $i>j$, we proved a general claim about the behavior of simple 'for loop' programs. From now on, whenever we analyze a similar 'loop' that scans elements iteratively, we will not consider cases beyond the returning point and will be satisfied with proving analogous cases to 1 and 2. Also, in the exam/exercises, unless it is the main issue of the question, you are not expected to treat that case. (Spend your time wisely on what really matters.)
 \paragraph{Running Time.} 
 Question, How would you compare the performance of two different algorithms? What will be the running time of the naive peak-find algorithm? At the lecture, you will see a well-defined way to treat such questions, but for the sake of getting the general picture, let's assume that we pay for any comparison quanta of processing time and, overall, checking if an item in a given position is a peak, cost at most $c\in \mathbb{N}$ time, a constant independent on $n$.
 
