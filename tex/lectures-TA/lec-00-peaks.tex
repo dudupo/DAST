@@ -124,7 +124,9 @@ We are ready to prove the correctness of the recursive version by induction usin
 \begin{enumerate}
   \item Base. Single element array. Trivial. 
   \item Assumption. Assume that for any $m$-length array, such that $m<n$ the alg returns a peak. 
-  \item Step. Consider an array $A$ of length $n$. If $A_1$ is a peak, then the algorithm answers affirmatively on the first check, returning $1$ and we are done. If not, namely $A_1 < A_2$, then by using \Cref{claim:subarray} we have that any peak of $A' = A_2, A_3, \dots, A_n$ is also a peak of $A$. The length of $A'$ is $n-1 < n$. Thus, by the induction assumption, the algorithm succeeds in returning on $A'$ a peak which is also a peak of $A$.
+  \item Step. Consider an array $A$ of length $n$. If $A_1$ is a peak, then the algorithm answers affirmatively on the first check, returning $1$ and we are done. If not, namely $A_1 < A_2$, then by using \Cref{claim:subarray} we have that any peak of $A' = A_2, A_3, \dots, A_n$ is also a peak of $A$. 
+
+    The length of $A'$ is $n-1 < n$. Thus, by the induction assumption, the algorithm succeeds in returning on $A'$ a peak which is also a peak of $A$.
 \end{enumerate}
 
 \section{An attempt for sophisticated solution.}
