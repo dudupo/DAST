@@ -156,10 +156,10 @@ The reason we didn't succeed, and actually do not have a chance, to complete the
 \KwResult{returns a peak of \(A_1 ... A_n \in \mathbb{R}^n \)  }
 \caption{sophisticated alg.}
 $ i \leftarrow  \lceil n/2 \rceil $\\
-        \If { $A_{i}$ is a peak }{
+        \If { $A_{i}$ is a peak in $A$ }{
           \Return $i$
         }
-        \ElseIf { $A_{i-1} \le A_{i}$ } { 
+        \ElseIf { $i=1$ or $A_{i-1} \le A_{i}$ } { 
           \Return $i + $ find-peak$\left(A_{i+1}..A_{n}\right)$
         }
         \Else { 
@@ -173,7 +173,9 @@ Let's prove correction.
 \begin{enumerate}
   \item Base. Single element array. Trivial. 
   \item Assumption. Assume that for any $m$-length array, such that $m<n$ the alg returns a peak. 
-  \item Step. Consider an array $A$ of length $n$. If $A_{\lceil n/2 \rceil}$ is a peak, then the algorithm answers affirmatively on the first check, returning $\lceil n/2 \rceil$ and we are done. If not, then either $A_{\lceil n/2 \rceil} < A_{\lceil n/2 \rceil - 1}$ or $A_{\lceil n/2 \rceil} < A_{\lceil n/2 \rceil + 1}$. We have already handled the first case, that is, using \Cref{claim:subarraymiddle} we have that any peak of $A' = A_{\lceil n/2 \rceil + 1}, A_{\lceil n/2 \rceil + 2}, \dots, A_n$ is also a peak of $A$. The length of $A'$ is $n/2 < n$. So by the induction assumption, in the case where $A_{\lceil n/2 \rceil} < A_{\lceil n/2 \rceil - 1}$ the algorithm returns a peak. In the other case, we have $A_{\lceil n/2 \rceil} < A_{\lceil n/2 \rceil + 1}$ (otherwise $A_{\lceil n/2 \rceil}$ would be a peak). We leave finishing the proof as an exercise.
+  \item Step. Consider an array $A$ of length $n$. If $A_{\lceil n/2 \rceil}$ is a peak, then the algorithm answers affirmatively on the first check, returning $\lceil n/2 \rceil$ and we are done.
+
+    If not, then either $A_{\lceil n/2 \rceil} < A_{\lceil n/2 \rceil - 1}$ or $A_{\lceil n/2 \rceil} < A_{\lceil n/2 \rceil + 1}$. We have already handled the first case, that is, using \Cref{claim:subarraymiddle} we have that any peak of $A' = A_{\lceil n/2 \rceil + 1}, A_{\lceil n/2 \rceil + 2}, \dots, A_n$ is also a peak of $A$. The length of $A'$ is $n/2 < n$. So by the induction assumption, in the case where $A_{\lceil n/2 \rceil} < A_{\lceil n/2 \rceil - 1}$ the algorithm returns a peak. In the other case, we have $A_{\lceil n/2 \rceil} < A_{\lceil n/2 \rceil + 1}$ (otherwise $A_{\lceil n/2 \rceil}$ would be a peak). We leave finishing the proof as an exercise.
 \end{enumerate}
 
 \end{proof}
