@@ -145,14 +145,15 @@ We saw that we can find an arbitrary peak at $c\cdot n$ time, which raises the q
 
 Let's try to 'prove' it.  
 \begin{enumerate}
- \item Base, single element array. Trivial. 
-  \item Assumption, Assume that for any $m$-length array, such that $m<n$ the alg returns a peak. 
+ \item Base. Single element array. Trivial. 
+  \item Assumption. Assume that for any $m$-length array, such that $m<n$ the alg returns a peak. 
   \item Step. If $A_{n/2}$ is a peak, we're done. What happens if it isn't? Is it still true that any peak of $A_{i},A_{i+1}, \ldots, A_{n}$ is also a peak of $A$? Consider, for example, $A[i] = n - i$.
 \end{enumerate}
 
 \section{Sophisticated solution.}
-The example above points to the fact that we would like to have a similar claim to \Cref{claim:subarraymiddle} that relates the peaks of the split array to the original one.  
+The reason we didn't succeed, and actually do not have a chance, to complete the induction step is that we didn't enforce any relation between the subarray $A^{\prime}$ and its ancestor $A$. We would like to have a claim similar to \Cref{claim:subarray}. That brings us to define \Cref{alg:workreq} and use \Cref{claim:subarraymiddle} to prove its correctness.
 \begin{algorithm}
+        \label{alg:wrokreq}
 \KwResult{returns a peak of \(A_1 ... A_n \in \mathbb{R}^n \)  }
 \caption{sophisticated alg.}
 $ i \leftarrow  \lceil n/2 \rceil $\\
