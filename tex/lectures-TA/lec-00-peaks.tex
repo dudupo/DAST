@@ -101,14 +101,14 @@ Now, we will show a recursive version of the navie peak-find algorithm for demon
  \end{algorithm}
 
  \begin{claim} \label{claim:subarray} 
-   Let $A = A_1, \dots, A_n$ be an array, and $$A' = A^{\prime}_1, A^{\prime}_2, \dots, A^{\prime}_{n-1} =  A_2, A_3, \dots, A_n$$ be the $n-1$ length array obtained by taking all of $A$'s items except the first. If $A_1 < A_2$\footnote{ weak inequality ($\le$) is sufficient.}, then any peak of $A'$ is also a peak of $A$.
+   Let $A = A_1, \dots, A_n$ be an array, and $$A' = A^{\prime}_1, A^{\prime}_2, \dots, A^{\prime}_{n-1} =  A_2, A_3, \dots, A_n$$ be the $n-1$ length array obtained by taking all of $A$'s items except the first. If $A_1 < A_2$,\footnote{ weak inequality ($\le$) is sufficient.} then any peak of $A'$ is also a peak of $A$.
 \end{claim}
 \begin{proof} 
 Let $A^{\prime}_{j}$ be a peak of $A^{\prime}$. Split into cases upon on the value of $j$.
 
 \begin{enumerate}
   \item If $n-1 > j > 1$, then $A^{\prime}_{j} \ge A^{\prime}_{j \pm 1}$, but for any $j \in [2, n-2]$ we have $A^{\prime}_{j} = A_{j+1}$ and therefore $A_{j+1} \ge A_{j+1 \pm 1} \Rightarrow A_{j+1}$ is a peak in $A$.
-  \item If $j^{\prime} = 1$, then $A^{\prime}_{1} \ge A^{\prime}_{2} \Rightarrow A_{2} \ge A_{3}$ and by combining the assumption that $A_{1} \le A_{2}$ we have that $A_{2} \ge A_{1}, A_{3}$. So $A_{2} = A^{\prime}_{1}$ is also a peak.
+  \item If $j^{\prime} = 1$, then $A^{\prime}_{1} \ge A^{\prime}_{2} \Rightarrow A_{2} \ge A_{3}$ and by combining the assumption that $A_{1} < A_{2}$ we have that $A_{2} \ge A_{1}, A_{3}$. So $A_{2} = A^{\prime}_{1}$ is also a peak.
   \item The last case $j = n-1$ is left as an exercise.
 \end{enumerate}
 \end{proof}
