@@ -67,7 +67,9 @@ Open addressing uses a static $m$-length array $T$, hash function $h$, and handl
   $U$ is the set of all matrices $\mathbb{F}_{2}^{n\times n}$ and $h_{x}(A) = x^{\top} A x$. 
 \end{exercise}
 
-
+\begin{exercise}
+  $U$ is the set of all binary vectors $\mathbb{F}_{2}^{n}$  containing more $1$'s than $0$'s. And $h_{a}(x) = \braket{a,x}$ for any $a$ such $\braket{a,1} = 0$. 
+\end{exercise}
 \section{Perfect Hashing.}
 In the past week, we have seen how to store keys in hash tables so that the number of mapped keys in a specific cell is $O(1)$ in expectation. The table is constructed using a hashing function $h : \text{key space} \rightarrow m \text{cells}$, randomly chosen from a universal hash function family. This function maps keys to cells, and in each cell, the keys are stored using a linked list. The cost of supported subroutines depends on the length of the list. We named any pair of different keys $x\neq y$ that are mapped to the same cell in the table, namely $h(x) = h(y)$, a collision.
 
