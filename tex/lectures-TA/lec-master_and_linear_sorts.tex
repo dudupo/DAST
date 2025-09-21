@@ -3,10 +3,53 @@
 \begin{document}
 \ifdefined\BOOK
 \else
-\setcounter{chapter}{5}
+\setcounter{chapter}{2}
 \fi
 
 \chapter{Master Theorem and Linear Time Sorts.} 
+
+\section{Master Theorem, one Theorem to bound them all. }
+As you might already notice, the same pattern has been used to bound both algorithms. The master theorem is the result of the recursive expansion. it classifies recursive functions at the form of \(T\left(n\right) = a\cdot T\left( \frac{n}{b} \right) + f\left(n\right) \), for positive function \(f : \mathbb{N} \rightarrow \mathbb{R}^{+} \).       
+
+\begin{defbox}{Master Theorem, simple version.} First, Consider the case that \(f = n^c\). Let \( a \ge 1, b > 1\) and \( c \ge 0 \). then: 
+\begin{enumerate}
+    \item if \(\frac{a}{b^c} < 1 \) then \( T\left(n\right) = \Theta \left( n^c \right) \) \ \ \ \textbf{(\(f\) wins)}.
+    \item if \(\frac{a}{b^c} = 1 \) then \( T\left(n\right) = \Theta \left( n^c \log_{b} \left(n\right) \right) \).
+    \item if \(\frac{a}{b^c} > 1 \) then \( T\left(n\right) = \Theta \left( n^{\log_{b} \left(a\right)} \right) \) \ \ \ \textbf{(\(f\) loose)}.
+  \end{enumerate}
+\end{defbox}
+
+\begin{example}  \( T\left(n\right)  =4T\left(\frac{n}{2}\right)+d\cdot n \Rightarrow
+T\left(n\right) = \Theta\left(n^2\right)\) according to case (3). And \(T\left(n\right)  = 3T\left(\frac{n}{2}\right) + d\cdot n \Rightarrow T\left(n\right) = \Theta \left( n^{\log_{2}\left(3\right)}\right)\)
+also due to case (3).
+\end{example}
+\begin{defbox}{Master Theorem, strong version.} 
+Now, let's generalize the simple version for arbitrary positive \(f\) and let~\(a~\ge~1~,~b~>~1\). 
+
+\newcommand{\logab}{\log_{b} \left(a\right)}
+
+\begin{enumerate}
+    \item if  \(f\left(n\right) = O \left( n^{\logab - \varepsilon }\right)\) for some \( \varepsilon > 0 \) then \( T\left(n\right) = \theta \left( n^{\logab} \right) \) \ \ \ \textbf{(\(f\) loose)}.
+    
+    \item if  \(f\left(n\right) = \Theta \left( n^{\logab} \right) \) then \( T\left(n\right) = \Theta \left( n^{\logab}  \log\left(n\right)\right) \)
+    
+    \item if there exist \(\varepsilon >0 ,c<1\) and \(n_0 \in \mathbb{N} \) such that  \(f\left(n\right) = \Omega \left( n^{\logab + \varepsilon }\right)\) and for every \( n > n_0 \) \(a \cdot f\left( \frac{n}{b} \right) \le c f\left(n\right)\)  then \( T\left(n\right) = \theta \left( f\left(n\right) \right) \) \ \ \ \textbf{(\(f\) wins)}.
+    
+\end{enumerate}
+\end{defbox}
+\newcommand{\TT}[2]{#1 T\left(\frac{n}{#2}\right)}
+
+\begin{example} 
+\begin{enumerate}
+    \item \( T\left(n\right) =  T\left(\frac{2n}{3}\right) + 1 \rightarrow f\left(n\right) = 1 =\Theta \left( n^{\log_{\frac{3}{2}} \left(1\right)}\right)\) matches the second case. i.e  \( T\left(n\right) = \Theta \left( n^{\log_{\frac{3}{2}} \left(1\right)}\log n \right)\).
+    
+    \item \( T\left(n\right) = \TT{3}{4} + n\log n \rightarrow f\left(n\right) = \Omega\left( n^{\log_{4}\left(3\right) + \varepsilon}  \right) \) and notice that \( af\left( \frac{n}{b}\right) = \frac{3n}{4}\log\left(\frac{n}{4}\right)\) . Thus, it's matching to the third case. \(\Rightarrow T\left(n\right) = \Theta\left(n\log n\right)\).
+    
+    \item \(T\left(n\right) = 3T\left( n^{\frac{1}{3}}\right) + \log\log n\). Let \( m = \log n \Rightarrow T\left( n\right) = T \left(2^m \right) = 3T\left(2^{\frac{m}{3}} \right) + \log m\).  Denote by \(S = S\left(m\right) = T\left(2^m\right) \rightarrow S\left(m\right) = 3T\left(2^{\frac{m}{3}} \right) + \log m = 3S\left(\frac{m}{3} \right) + \log m\). And by the fact that \(\log m = O\left(m^{\log_{3}\left(3\right)-\varepsilon} \right) \rightarrow T\left(n\right) = T\left(2^m\right) = S\left(m\right) = \Theta\left(m\right) = \Theta\left( \log(n)\right) \).  
+\end{enumerate}
+\end{example}
+
+
 
 \section{Linear Time Sorts}
 \paragraph{ Counting sort.}
@@ -138,256 +181,6 @@ The height of the comparison tree is (at least) the running time of the algorith
 
 \newpage
 %\ctt{Only if there is time.}
-\section{Binaries Trees and How to Encode Them. } We have already seen, in heaps, that organizing our data in a graph-like structure can offer a speed advantage. For future applications, and in particular for maintaining data in sorted order, we will have to encode our data using binary trees. These trees may not be almost complete and also have to support pointer manipulations, specifically placing a binary tree as a left or right subtree of a given node. To enable this, we will have to treat the \textbf{right}, \textbf{left}, and \textbf{parent} as variables, in contrast to heaps where they are determined completely by the node index. We begin this section by stating definitions.
-
-
-\begin{definition}
-  \begin{enumerate}
-    \item Binary Tree: A tree in which any vertex has at most two children.
-    \item A descendant of vertex $x$ is a vertex in the subtree whose root is $x$. A left descendant of vertex $x$ is either a vertex in the subtree whose root is the left child of $x$, or $x$'s left child.
-    \item An ancestor of $x$ is a vertex to which $x$ belongs as a descendant.
-    \item A leaf is a vertex without children.
-    \item Height of vertex $x$ is the length of the longest simple path (without cycles) between $x$ and one of the leaves.
-    \item Height of the tree is the height of its root, which is usually denoted by $h$.
-\end{enumerate}
-\end{definition}
-
-We encode a binary tree by associating a field to each vertex $x$, representing its right, left children, and parent. We use the notation $x$.left to refer to the left child of $x$, although the physical implementation may differ conceptually. For example, the way binary trees are implemented in Cormen is through 4 arrays. The first stores the value of $x$, while the others store pointers of specific types. For instance, the array LEFT, where LEFT.$x$ stores the left child of $x$.
-
-
-If nothing else has been mentioned, then we can assume that we can add additional fields to the vertices.
-
-
-\section{Binary Search Trees.} Binary search tree (BST) is a binary tree which any node $x$ of it: 
-\begin{enumerate}
-  \item Contains a field key, storing a number $x$.key. 
-  \item Any left descendant $y$ of $x$ satisfies $y$.key $\le$ $x$.key. 
-  \item Any right descendant $y$ of $x$ satisfies $y$.key $\ge$ $x$.key. 
-\end{enumerate}
-
-\paragraph{Question.} Let $T$ be a binary search tree, Where are the minimum and maximum values of $T$? (most left and right nodes). 
-
-\begin{definition}
-Let $T$ be a binary search tree, and let $x$ be a node belonging to it. The predecessor of $x$ will be defined as a vertex $y$ such that $y$.key $\leq x$.key and $y$.key is maximal among the nodes satisfying this condition. If we were to set the values of $T$ in sorted order, then the predecessor of $x$ would be located on its left. The successor of $x$ will be defined as $y$, where $x$ is the predecessor of $y$.
-\end{definition}
-
-\paragraph{Functionalitiy of BST.}
-\begin{enumerate}
-\item Search($T$, key): returns a pointer to the vertex whose key equals key. 
-  \item Min($T$): returns a pointer to the vertex with the minimum value in $T$.  
-  \item Max($T$): returns a pointer to the vertex with the maximum value in $T$.  
-  \item Predecessor($x$): returns a pointer to the predecessor of $x$.  
-  \item Successor($x$): returns a pointer to the successor of $x$. 
-  \item Insert($T$, key): inserts key into $T$ (creates a new vertex).   
-  \item Delete($T$, $x$): removes $x$ from $T$. 
-  \item Inorder($T$): outputs $T$'s keys in sorted order.
-
-%\begin{algorithm}[H]
-%\SetAlgoLined
-%\KwData{$T$ - tree, $x$ - vertex to delete}
-%\KwResult{removes $x$ from $T$}
-%\Set
-\end{enumerate}
-
-
-\begin{example}Questions from past exams.
-  \begin{enumerate}
-    \item Write an algorithm that, given a binary search tree $T$, returns a max heap containing all the elements of $T$. What is the lower bound for this problem? Explain.
-    \item Write an algorithm that, given a heap $H$, returns a binary search tree containing all the elements of $H$. What is the lower bound for this problem? Explain.
-  \end{enumerate}
-\end{example}
-
-\paragraph{Solution.} 
-  \begin{enumerate}
-    \item Remember that any array sorted in reverse order is also a max heap. This is because if $A_{i} \ge A_{j}$ for any $i < j$, then it follows that $A_{i} \ge A_{2i}, A_{2i+1}$ for any $i$. Therefore, we will output the values of $T$ in reverse order. We do this by applying Inorder in reverse, as given in \Cref{alg:treetoheap}. The running time is $\Theta(n)$ and of course it is also the lower bound (as we must read all the inputs for printing it).
-      \begin{algorithm}
-       \KwData{$r$ - a vertex in BST}
-       
-       \If{$r$.right is not empty/Null}{
-         Reverse-Order($r$.right)
-       }
-       Print $r$.key \\
-       \If{$r$.left is not empty/Null}{
-         Reverse-Order($r$.left)
-       }
-        \caption{Reverse-Order }
-\label{alg:treetoheap}
-      \end{algorithm}
-    \item We will initialize an empty binary search tree and then add the elements to it one by one. Each insertion will cost the current height of the tree, so it might sum up to $\Theta(n^{2})$. However, next week we will see how those insertions could be done in a way that preserves the balance of the tree, namely guaranteeing that the height of the tree will remain logarithmic.
-  \end{enumerate}
-
-\begin{example} Adding fields to BSTs. We would like to support $k$-smallest element extraction. Suggest a field that will be used for computing the $k$-smallest element, explain how to maintain it, and write an algorithm that extracts the $k$-smallest element. 
-\end{example}
-
-\paragraph{Solution.} We will associate with each vertex of the tree a field that counts the number of nodes whose keys are lower than it (the size of its left subtree). Let's denote it as left-size. The code is given in \Cref{alg:kstat}. Guideline for proving correctness:
-Consider the root, and let's separate into cases based on how many elements the root is greater than.
-\begin{enumerate}
-  \item If the root is strictly greater than $k-1$ elements, then the $k$-smallest element is in its left subtree and is also the $k-1$ smallest element in that subtree.
-  \item If the root is greater than strictly fewer than $k-1$ elements, then it is clear that the $k$-smallest element is also greater than it and located in its right subtree. However, in contrast to the previous case, here the order of the $k$-smallest element of the whole tree in the subtree will be the substitution between $k$ and the number of nodes in the $\{$ left-subtree $\cup$ root $\}$.
-  \item The third case is when the root is greater than exactly $k-1$ elements, which by definition sets it as the $k$-smallest element.
-\end{enumerate}
-In the first two cases, we are calling Get-Order on trees (BST with our additional field) with smaller height. Therefore, it is clear how one would prove correctness by induction. We will see in the next recitation how to maintain the tree, update the field, and guarantee that the height of the tree will remain logarithmic.
-  \begin{algorithm}
-  \KwData{$r$ - a vertex in BST, $k$-stat parameter}
-       $m \leftarrow r$.left-size \\ 
-       \If{$m = k -1$ }{
-         \Return $r$.key 
-       }
-      \If{$m > k -1$ }{
-        \Return Get-Order($r$.left, $k$)
-       }\If{$m < k -1$ }{
-         \Return Get-Order($r$.right, $k - (m+1)$)
-       }
-        \caption{Get-Order }
-\label{alg:kstat}
-      \end{algorithm}
-%\begin{example}
-%
-%\end{example}
-%\begin{example}
-%
-%\end{example}
-%\begin{example}
-%
-%\end{example}
-%
-
-      \newpage
-      \newpage
-
-\section{Appendix - BST Methods Source: A Mixture of Cormen, Wikipedia, and Codeforces}
-
-\begin{algorithm}
-\SetAlgoLined
-\KwData{$T$ - tree, key - key to search for}
-\KwResult{pointer to vertex with key equal to key}
-    \If{$T$ is empty}{
-        \Return null\;
-    }
-    \If{$T$.key equals key}{
-        \Return $T$\;
-    }
-    \If{key is less than $T$.key}{
-      \Return Search($T$.left, key)\;
-    }
-    \Else{
-      \Return Search($T$.right, key)\;
-    }
-
-\caption{Search} 
-\end{algorithm}
-
-\begin{algorithm}
-\SetAlgoLined
-\KwData{$T$ - tree}
-\KwResult{pointer to vertex with minimum value in $T$}
-    \If{$T$ is empty}{
-        \Return null\;
-    }
-    \If{$T$.left is empty}{
-        \Return $T$\;
-    }
-    \Return Min($T$.left)\;
-\caption{Min} 
-\end{algorithm}
-
-\begin{algorithm}
-\SetAlgoLined
-\KwData{$T$ - tree}
-\KwResult{pointer to vertex with maximum value in $T$}
-    \If{$T$ is empty}{
-        \Return null\;
-    }
-    \If{$T$.right is empty}{
-        \Return $T$\;
-    }
-    \Return Max($T$.right)\;
-    \caption{ Max }
-\end{algorithm}
-
-\begin{algorithm}
-\SetAlgoLined
-\KwData{$x$ - vertex}
-\KwResult{pointer to predecessor of $x$}
-    \If{$x$.left is not empty}{
-      \Return Max($x$.left)\;
-    }
-    $y \leftarrow x$.parent\;
-    \While{$y$ is not empty and $x$ is $y$.left}{
-        $x \leftarrow y$\;
-        $y \leftarrow y$.parent\;
-    }
-    \Return $y$\;
-\caption{Predecessor}
-\end{algorithm}
-
-\begin{algorithm}
-\SetAlgoLined
-\KwData{$x$ - vertex}
-\KwResult{pointer to successor of $x$}
-    \If{$x$.right is not empty}{
-      \Return Min($x$.right)\;
-    }
-    $y \leftarrow x$.parent\;
-    \While{$y$ is not empty and $x$ is $y$.right}{
-        $x \leftarrow y$\;
-        $y \leftarrow y$.parent\;
-    }
-    \Return $y$\;
-\caption{Successor}
-\end{algorithm}
-
-\begin{algorithm}
-\SetAlgoLined
-\KwData{$T$ - tree, key - key to insert}
-\KwResult{inserts key into $T$}
-    newNode $\leftarrow$ create new vertex with key $key$\;
-    $y \leftarrow$ null\;
-    $x \leftarrow T$\;
-    \While{$x$ is not empty}{
-        $y \leftarrow x$\;
-        \If{$key$ is less than $x$.key}{
-            $x \leftarrow x$.left\;
-        }
-        \Else{
-          $x \leftarrow x$.right\;
-        }
-    }
-    newNode.parent $\leftarrow y$\;
-    \If{$y$ is null}{
-        $T \leftarrow$ newNode\;
-    }
-    \ElseIf{$key$ is less than $y$.key}{
-        $y$.left $\leftarrow$ newNode\;
-    }
-    \Else{
-        $y$.right $\leftarrow$ newNode\;
-    }
-\caption{Insert}
-\end{algorithm}
-
-%\begin{algorithm}
-%\SetAlgoLined
-%\KwData{$T$: The input tree, $x$: The key to be deleted}
-%\If{$x$ is in $T$}{
-%  Remove $x$ from $T$\;
-%}
-%\caption{Delete($T$, $x$)}
-%\end{algorithm}
-%
-%2. Inorder($T$):
-\begin{algorithm}
-\SetAlgoLined
-\KwData{$T$: The input tree}
-\If{$T$ is not empty}{
-  Inorder($T$.left)\;
-  Output $T$.key\;
-  Inorder($T$.right)\;
-}
-\caption{Inorder($T$)}
-\end{algorithm}
-
-
 \input{../texlib/tail}
 
 
