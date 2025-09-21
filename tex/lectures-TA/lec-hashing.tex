@@ -72,13 +72,13 @@ Observe that in $\mathbb{F}_{2}$, the equivalence $h(x) = h(y) \Leftrightarrow h
   Thus: 
   \begin{equation*}
     \begin{split}
-      \prb{ h_{a}(x) = h_{a}(y)  } =  \sum_{\omega : a_{i} =  \sum_{j \neq i } a_{j}( x_{j} + y_{j})} \mathcal{P}(\omega) \prb{ h_{a}(x) = h_{a}(y)  } 
+      \prb{ h_{a}(x) = h_{a}(y)  } &=  \sum_{z \in \mathbb{F}_{2} } \prb{   a_{i} = z \cap  \{ \sum_{j \neq i } a_{j}( x_{j} + y_{j}) = z \}  } \\
+    &=  \sum_{z \in \mathbb{F}_{2} } \prb{   a_{i} = z } \cdot \prb{ \{ \sum_{j \neq i } a_{j}( x_{j} + y_{j}) = z \}  } \\
+    &=   \sum_{z \in \mathbb{F}_{2}} \frac{1}{2} \cdot \prb{ \{ \sum_{j \neq i } a_{j}( x_{j} + y_{j}) = z \}  } \\
+    &=   \frac{1}{2}\overbrace{\sum_{z \in \mathbb{F}_{2}} \prb{ \{ \sum_{j \neq i } a_{j}( x_{j} + y_{j}) = z \}  } }^{ 1}  = \frac{1}{2}
     \end{split}
-  \end{equation*}<++>
-
-
-  Now, any atomic event $\omega \in \Omega$ corresponds to an assignment of $a_{1}, a_{2}, \ldots, a_{n}$. Assuming we set all the values of $a_{j\neq i}$ 
-
+  \end{equation*}
+When in the second pass we used independence, and in the last, we used that probabilities sum to $1$.
 \end{example}
 \begin{example}
   $\mathcal{H}$ is the set of all binary matrices $ : \mathbb{F}_{2}^{n} \rightarrow \mathbb{F}_{2}^{k}$.
