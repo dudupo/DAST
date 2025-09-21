@@ -54,6 +54,24 @@ Open addressing uses a static $m$-length array $T$, hash function $h$, and handl
 
 
 \begin{example}
+  $\mathcal{H}$ is all the inner products by a $n$-length binary vector. Namely, 
+
+  \begin{equation*}
+    \begin{split}
+  \mathcal{H} = \{ h_{a} :  \mathbb{F}_{2}^{n} \rightarrow \mathbb{F}_2, h_{a}(x) = \braket{a,x} : a \in  \mathbb{F}_{2}^{n}\}
+    \end{split}
+  \end{equation*}
+Observe that in $\mathbb{F}_{2}$, the equivalence $h(x) = h(y) \Leftrightarrow h(x) + h(y) = 0$ holds. If $x \neq y$, then there is at least one coordinate $i$ such that $x_{i} \neq y_{i}$. In other words, $x_{i} + y_{i} = 1$. Thus:
+  \begin{equation*}
+    \begin{split}
+      h_{a}(x) + h_{a}(y) &=  \braket{a, x +y } = a_{i}(x_{i} + y_{i})  +  \sum_{j \neq i } a_{j}( x_{j} + y_{j}) \\ 
+      & = a_{i} +  \sum_{j \neq i } a_{j}( x_{j} + y_{j}) 
+    \end{split}
+  \end{equation*}
+Now, any atomic event $\omega \in \Omega$ corresponds to an assignment of $a_{1}, a_{2}, \ldots, a_{n}$.
+
+\end{example}
+\begin{example}
   $\mathcal{H}$ is the set of all binary matrices $ : \mathbb{F}_{2}^{n} \rightarrow \mathbb{F}_{2}^{k}$.
 
 
