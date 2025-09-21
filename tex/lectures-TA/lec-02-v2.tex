@@ -190,7 +190,7 @@ Let \(n_i\) be the size of the subset which is processed at the \(i\)-th node. T
 The tree matches the recursive calls made by \Cref{alg:unmerge}. Each node presents a rectangle with a length equal to the array given as input to the recursive call. The length of all the elements in a single level is equal to the original array length, thus we have that the linear work in each level sums up to $\Theta(n)$.
 }
 \end{figure}
-\ifdefined\BOOK
+
 
 
 \section{Appendix. Recursive Functions In Computer Science. (Beyond the scope of the 2024 course.)}
@@ -248,7 +248,7 @@ Let's analyze the running time of the algorithm above, assume that \(n = 2^{m}\)
 \end{equation*}
 where \(n^{\log 3}  \sim n^{1.58} < n^2 \).
 
-\fi
+
 
 \input{../texlib/tail}
 
