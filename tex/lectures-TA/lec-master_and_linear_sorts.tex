@@ -68,10 +68,16 @@ Now, let's generalize the simple version for arbitrary positive \(f\) and let~\(
 
 \section{Linear Time Sorts (Assumptions over the inputs)}
 You will see in the next lecture that any comparison sort, namely a sorting algorithm that assumes nothing about the given input except that its items can be compared, has an \(\Omega(n\log n)\) lower bound on its running time. We will now see how adding assumptions about the input structure might help us bypass the limit and achieve an asymptotically better running time.
-\paragraph{ Counting sort.}
+
+\begin{example} \textbf{Problem} Assume that input is array consists of only $0$'s and $1$'s. For example $A = 0,1,1,1,0,0,1,0,1$. Write an algorithm that sort given the assumption.
+
+\end{example}
+
+
+
+\paragraph{Counting sort.}
 Counting sort assumes that each of the $n$ input elements is an \textbf{integer} with a size at most $k$. It runs in $\Theta(n + k)$ time, so when $k = O(n)$, counting sort runs in $\Theta(n)$ time. It first determines, for each input element $x$, the number of elements less than or equal to $x$. Then, it uses this information to place element $x$ directly into its position in the output array. For example, if there are 17 elements less than or equal to $x$, then $x$ will be placed in position 17. However, we need to make some adjustments to this method to handle cases where multiple elements have the \textbf{same value}. We do not want all of them to end up in the same position.
 
-%\begin{algbox}{Counting-sort$(A, n, k)$}
   \begin{algorithm}
   	let B and C be new arrays at size $n$ and $k$ \\ 
   	\For{ $i \in  [0, k]$}{
@@ -90,7 +96,6 @@ Counting sort assumes that each of the $n$ input elements is an \textbf{integer}
 	  return $B$
 \caption{Counting-sort$(A, n, k)$}
   \end{algorithm}
-%\end{algbox}
 
 Notice that the Counting sort can beat the lower bound of $\Omega\left(n \log n\right)$ only because it is not a comparison sort. In fact, no comparisons between input elements occur anywhere in the code. Instead, counting sort uses the actual values of the elements to index into an array.
 
@@ -152,51 +157,6 @@ The analysis of the running time depends on the stable sort used as the intermed
 	return the concatenated lists
 \caption{bucket-sort($A$, $n$)}
   \end{algorithm}
-%\end{algbox}
-
-%\input{../texlib/tail}
-
-\section{Sorting in Comparison Model.}
-
-We have learned in the lecture that the runs of any sorting algorithm, which does not assume anything about the input's structure except the ability to compare elements in pairs, can be modeled as a binary tree. At each node, the algorithm compares two elements and, based on the result, moves to either the left or right child. Eventually, we reach the leaf of the tree and output the sorted elements. Notice that the nodes only exist in our imagination; the algorithm is not aware of their existence. We will name that tree the comparison tree.
-
-The height of the comparison tree is (at least) the running time of the algorithm. We are going to demonstrate how to use these ideas to lower-bound the running time of the find-peak problem in the comparison model.
-
-
-\begin{example}
-  Prove that no algorithm can find a peak in less than $\Theta\left( \log n \right)$ time.
-\end{example}
-\begin{proof}
-  Consider the following inputs for the problem, $A^{j}$ will be a tringle that get's is point at position $j$. Namely:  
-  \begin{equation*}
-      A^{j}_{i} = \begin{cases}
-        i & i < j \\
-         j + j - i & \text{else}
-      \end{cases}
-  \end{equation*} 
-  Now, let's assume, in contradiction, that there exists an algorithm $\mathcal{A}$ in the comparison model that runs in less than $\log n$ time. This implies that the comparison tree representation of its running has a height less than $\log n$ and the number of its leaves, each associated with a possible output, is less than $n$. Remember that we have $n$ inputs of the form $A^{j}$. 
-
-  By applying the pigeonhole principle, we can conclude that there are distinct $j$ and $j^{\prime}$ such that $\mathcal{A}$ reaches the same leaf when given $A^{j}$ and $A^{j^{\prime}}$ as inputs. Since their peaks are set at different positions, it follows that the algorithm will output a wrong answer for at least one of them.
-\end{proof}
-
-%\paragraph{Question.} Suppose that $\mathcal{A}$ outputs some number depending on the input, for example, ''Return $A$[$A$[7]]''. Does the argument above still work (and if so, why)?
-
-
-\begin{example}
-  Prove that no algorithm, in the comparison model, can merge two sorted arrays in time $\Theta(n^{1-\varepsilon})$ for some $\varepsilon>0$.
-\end{example}
-\begin{proof}
- Assuming, for contradiction, that there exists an algorithm $\mathcal{A}$ in the comparison model that merges two given sorted arrays in time $\Theta\left( n^{1-\varepsilon} \right)$. Now, consider the sorting algorithm obtained by replacing the merge subroutine in merge-sort with $\mathcal{A}$. On one hand, our new algorithm is a sorting algorithm in the comparison model (otherwise it would contradict the correctness of $\mathcal{A}$), while on the other hand, its running time is equal to:
-  \begin{equation*}
-    \begin{split}
-      T(n) = n^{1-\varepsilon} + 2T(n/2) \Rightarrow T(n) = \Theta(n)
-    \end{split}
-  \end{equation*}
-  This contradicts our $\Omega(n\log n)$ lower bound for sorting in the comparison model.
-\end{proof}
-
-\newpage
-%\ctt{Only if there is time.}
 \input{../texlib/tail}
 
 
