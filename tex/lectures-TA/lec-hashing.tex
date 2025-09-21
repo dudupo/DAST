@@ -54,6 +54,7 @@ Open addressing uses a static $m$-length array $T$, hash function $h$, and handl
 
 
 \begin{example}
+  \label{example:vec}
   $\mathcal{H}$ is all the inner products by a $n$-length binary vector. Namely, 
   \begin{equation*}
     \begin{split}
@@ -81,13 +82,12 @@ When in the second pass we used independence, and in the last, we used that prob
 \begin{example}
   $\mathcal{H}$ is the set of all binary matrices $ : \mathbb{F}_{2}^{n} \rightarrow \mathbb{F}_{2}^{k}$.
 
-
+Observe that the equivalence $h(x) = h(y)$ implies an equivalence in any coordinate. Since the $i$th coordinate of $h(x)$, namely $h(x)_{i}$, is given by an inner product of the $i$th row of $h$, which is picked randomly from the $n$-length binary vectors, we get by \Cref{example:vec} that the probability of equivalence in the $i$th coordinate is $\frac{1}{2}$, and since the rows are picked independently, we get:
   \begin{equation*}
     \begin{split}
-      h(x) = h(y) \Leftrightarrow \sum h_{ij} x_{j} = \sum h_{ij} y_{j} 
+      \prb{ h(x) = h(y)} = \prb{ \bigcap_{i}^{k} h(x)_{i} = h(y)_{i}}  = \left( \frac{1}{2} \right)^{k}
     \end{split}
   \end{equation*}
-
 \end{example}
 
 \begin{example}
