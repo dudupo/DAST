@@ -61,9 +61,10 @@ Now, let's generalize the simple version for arbitrary positive \(f\) and let~\(
 
 
 
-\section{Linear Time Sorts}
+\section{Linear Time Sorts (Assumptions over the inputs)}
+You will see in the next lecture that any comparison sort, namely a sorting algorithm that assumes nothing about the given input except that its items can be compared, has an \(\Omega(n\log n)\) lower bound on its running time. We will now see how adding assumptions about the input structure might help us bypass the limit and achieve an asymptotically better running time.
 \paragraph{ Counting sort.}
-Counting sort assumes that each of the $n$ input elements is an integer with a size at most $k$. It runs in $\Theta(n + k)$ time, so when $k = O(n)$, counting sort runs in $\Theta(n)$ time. It first determines, for each input element $x$, the number of elements less than or equal to $x$. Then, it uses this information to place element $x$ directly into its position in the output array. For example, if there are 17 elements less than or equal to $x$, then $x$ will be placed in position 17. However, we need to make some adjustments to this method to handle cases where multiple elements have the \textbf{same value}. We do not want all of them to end up in the same position.
+Counting sort assumes that each of the $n$ input elements is an \textbf{integer} with a size at most $k$. It runs in $\Theta(n + k)$ time, so when $k = O(n)$, counting sort runs in $\Theta(n)$ time. It first determines, for each input element $x$, the number of elements less than or equal to $x$. Then, it uses this information to place element $x$ directly into its position in the output array. For example, if there are 17 elements less than or equal to $x$, then $x$ will be placed in position 17. However, we need to make some adjustments to this method to handle cases where multiple elements have the \textbf{same value}. We do not want all of them to end up in the same position.
 
 %\begin{algbox}{Counting-sort$(A, n, k)$}
   \begin{algorithm}
