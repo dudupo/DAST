@@ -47,7 +47,9 @@ Now, let's generalize the simple version for arbitrary positive \(f\) and let~\(
 \begin{enumerate}
     \item \( T(n) =  T(\frac{2n}{3}) + 1 \rightarrow f(n) = 1 =\Theta ( n^{\log_{\frac{3}{2}} (1)})\) matches the second case. i.e  \( T(n) = \Theta ( n^{\log_{\frac{3}{2}} (1)}\log n )\).
     
-    \item \( T(n) = \TT{3}{4} + n\log n \rightarrow f(n) = \Omega( n^{\log_{4}(3) + \varepsilon}  ) \) and notice that \( af( \frac{n}{b}) = \frac{3n}{4}\log(\frac{n}{4})\) . Thus, it's matching the third case. \(\Rightarrow T(n) = \Theta(n\log n)\).
+    \item \( T(n) = \TT{3}{4} + n\log n \rightarrow f(n) = \Omega( n^{\log_{4}(3) + \varepsilon}  ) \) and notice that \( af( \frac{n}{b})~=\frac{3n}{4}\log(\frac{n}{4})\). 
+
+      Thus, it's matching the third case. \(\Rightarrow T(n) = \Theta(n\log n)\).
     
     \item \(T(n) = 3T( n^{\frac{1}{3}}) + \log\log n\). 
 
