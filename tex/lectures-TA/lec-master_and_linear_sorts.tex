@@ -55,14 +55,12 @@ Now, let's generalize the simple version for arbitrary positive \(f\) and let~\(
 
       Let $ m = \log n $, thus: $$\Rightarrow T( n) = T (2^m ) = 3T(2^{\frac{m}{3}} ) + \log m $$  
       And denote by $ S = S(m) = T(2^m) $ so we get the recursive form: $$\rightarrow S(m) = 3T(2^{\frac{m}{3}} ) + \log m = 3S(\frac{m}{3} ) + \log m $$ 
-      So we can apply the master theorem according to the first case: 
-
-      \begin{equation*}
+      So we can apply the master theorem according to the first case:  \begin{equation*}
         \begin{split}
       \log m &= O(m^{\log_{3}(3)-\varepsilon} ) \\ 
       & \rightarrow T(n) = T(2^m) = S(m) = \Theta(m) = \Theta( \log(n)) 
         \end{split}
-      \end{equation*}<++>
+      \end{equation*}
 \end{enumerate}
 \end{example}
 
