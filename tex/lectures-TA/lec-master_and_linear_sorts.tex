@@ -33,11 +33,11 @@ Now, let's generalize the simple version for arbitrary positive \(f\) and let~\(
 \newcommand{\logab}{\log_{b} \left(a\right)}
 
 \begin{enumerate}
-    \item if  \(f\left(n\right) = O \left( n^{\logab - \varepsilon }\right)\) for some \( \varepsilon > 0 \) then \( T\left(n\right) = \theta \left( n^{\logab} \right) \) \ \ \ \textbf{(\(f\) loose)}.
+    \item if  \(f\left(n\right) = O \left( n^{\logab - \varepsilon }\right)\) for some \( \varepsilon > 0 \) then \( T\left(n\right)~=\theta\left( n^{\logab} \right) \) \ \ \ \textbf{(\(f\) loose)}.
     
-    \item if  \(f\left(n\right) = \Theta \left( n^{\logab} \right) \) then \( T\left(n\right) = \Theta \left( n^{\logab}  \log\left(n\right)\right) \)
+    \item if  \(f\left(n\right) = \Theta \left( n^{\logab} \right) \) then \( T\left(n\right)~=\Theta \left( n^{\logab}  \log\left(n\right)\right) \)
     
-    \item if there exist \(\varepsilon >0 ,c<1\) and \(n_0 \in \mathbb{N} \) such that  \(f\left(n\right) = \Omega \left( n^{\logab + \varepsilon }\right)\) and for every \( n > n_0 \) \(a \cdot f\left( \frac{n}{b} \right) \le c f\left(n\right)\)  then \( T\left(n\right) = \theta \left( f\left(n\right) \right) \) \ \ \ \textbf{(\(f\) wins)}.
+    \item if there exist \(\varepsilon >0 ,c<1\) and \(n_0 \in \mathbb{N} \) such that  \(f\left(n\right) = \Omega \left( n^{\logab + \varepsilon }\right)\) and for every \( n > n_0 \) \(a \cdot f\left( \frac{n}{b} \right) \le c f\left(n\right)\)  then \( T\left(n\right)~=\theta\left( f\left(n\right) \right) \) \ \ \ \textbf{(\(f\) wins)}.
     
 \end{enumerate}
 \end{defbox}
