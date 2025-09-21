@@ -21,9 +21,9 @@ The master theorem is the result of the recursive expansion. It handles recursiv
 
 \begin{example}\
   \begin{enumerate}
-    \item \( T\left(n\right)  =4T\left(\frac{n}{2}\right)+d\cdot n \Rightarrow
-      T\left(n\right) = \Theta\left(n^2\right)\) according to case (3).
-    \item \(T\left(n\right)  = 3T\left(\frac{n}{2}\right) + d\cdot n \Rightarrow T\left(n\right) = \Theta \left( n^{\log_{2}\left(3\right)}\right)\)
+    \item \( T(n)  =4T(\frac{n}{2})+d\cdot n \Rightarrow
+      T(n) = \Theta(n^2)\) according to case (3).
+    \item \(T(n)  = 3T(\frac{n}{2}) + d\cdot n \Rightarrow T(n) = \Theta ( n^{\log_{2}(3)})\)
       also due to case (3).
   \end{enumerate}
 \end{example}
@@ -45,11 +45,11 @@ Now, let's generalize the simple version for arbitrary positive \(f\) and let~\(
 
 \begin{example}\ 
 \begin{enumerate}
-    \item \( T\left(n\right) =  T\left(\frac{2n}{3}\right) + 1 \rightarrow f\left(n\right) = 1 =\Theta \left( n^{\log_{\frac{3}{2}} \left(1\right)}\right)\) matches the second case. i.e  \( T\left(n\right) = \Theta \left( n^{\log_{\frac{3}{2}} \left(1\right)}\log n \right)\).
+    \item \( T(n) =  T(\frac{2n}{3}) + 1 arrow f(n) = 1 =\Theta ( n^{\log_{\frac{3}{2}} (1)})\) matches the second case. i.e  \( T(n) = \Theta ( n^{\log_{\frac{3}{2}} (1)}\log n )\).
     
-    \item \( T\left(n\right) = \TT{3}{4} + n\log n \rightarrow f\left(n\right) = \Omega\left( n^{\log_{4}\left(3\right) + \varepsilon}  \right) \) and notice that \( af\left( \frac{n}{b}\right) = \frac{3n}{4}\log\left(\frac{n}{4}\right)\) . Thus, it's matching to the third case. \(\Rightarrow T\left(n\right) = \Theta\left(n\log n\right)\).
+    \item \( T(n) = \TT{3}{4} + n\log n arrow f(n) = \Omega( n^{\log_{4}(3) + \varepsilon}  ) \) and notice that \( af( \frac{n}{b}) = \frac{3n}{4}\log(\frac{n}{4})\) . Thus, it's matching the third case. \(\Rightarrow T(n) = \Theta(n\log n)\).
     
-    \item \(T\left(n\right) = 3T\left( n^{\frac{1}{3}}\right) + \log\log n\). Let \( m = \log n \Rightarrow T\left( n\right) = T \left(2^m \right) = 3T\left(2^{\frac{m}{3}} \right) + \log m\).  Denote by \(S = S\left(m\right) = T\left(2^m\right) \rightarrow S\left(m\right) = 3T\left(2^{\frac{m}{3}} \right) + \log m = 3S\left(\frac{m}{3} \right) + \log m\). And by the fact that \(\log m = O\left(m^{\log_{3}\left(3\right)-\varepsilon} \right) \rightarrow T\left(n\right) = T\left(2^m\right) = S\left(m\right) = \Theta\left(m\right) = \Theta\left( \log(n)\right) \).  
+    \item \(T(n) = 3T( n^{\frac{1}{3}}) + \log\log n\). Let \( m = \log n \Rightarrow T( n) = T (2^m ) = 3T(2^{\frac{m}{3}} ) + \log m\).  Denote by \(S = S(m) = T(2^m) arrow S(m) = 3T(2^{\frac{m}{3}} ) + \log m = 3S(\frac{m}{3} ) + \log m\). And by the fact that \(\log m = O(m^{\log_{3}(3)-\varepsilon} ) arrow T(n) = T(2^m) = S(m) = \Theta(m) = \Theta( \log(n)) \).  
 \end{enumerate}
 \end{example}
 
