@@ -48,11 +48,21 @@ Open addressing uses a static $m$-length array $T$, hash function $h$, and handl
 
 \begin{example}
   $\mathcal{H}$ is the set of all function from $U \rightarrow [m]$.
+
+  Picking a function randomly from the set of all functions is equivalent to picking the targets $h(x)$, for each $x$, independently. So the probability that $h(x) = h(y)$ equals the probability that two specific balls ($x$ and $y$ in our case) will be thrown into the same cell. As we computed in the last recitation, that probability equals $1/m$.
 \end{example}
 
 
 \begin{example}
   $\mathcal{H}$ is the set of all binary matrices $ : \mathbb{F}_{2}^{n} \rightarrow \mathbb{F}_{2}^{k}$.
+
+
+  \begin{equation*}
+    \begin{split}
+      h(x) = h(y) \Leftrightarrow \sum h_{ij} x_{j} = \sum h_{ij} y_{j} 
+    \end{split}
+  \end{equation*}
+
 \end{example}
 
 \begin{example}
