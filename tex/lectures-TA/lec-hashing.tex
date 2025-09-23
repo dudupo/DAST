@@ -200,7 +200,7 @@ Now, we would like to answer for what value of $m$ there is no collision. Theref
   
   \begin{equation*}
     \begin{split}
-      \expp{\text{ rounds }} & = \sum_{t = 0}^{\infty}t P( t \text{ rounds }) \le \sum_{t = 0}^{\infty}t \frac{1}{2^{t-1}} = O(1)
+    \expp{\text{ rounds }} & = \sum_{t = 0}^{\infty}t \prb{t \text{ rounds }}  \le \sum_{t = 0}^{\infty}t \frac{1}{2^{t-1}} = O(1)
     \end{split}
   \end{equation*}  
   \textbf{Question.} What is the space complexities? We have to allocate an array at length $m$ which is $\Theta(n^{2})$ memory. Is that good? So remember that in standard hash tables, the expected number of elements that were hashed into the same cell as the key $x$ is 
