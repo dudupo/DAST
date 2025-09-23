@@ -159,7 +159,7 @@ If $h$ is sampled uniformly at random from a $2$-universal family $\mathcal{H}$,
 
 
 \subsection{How Hashing is Implemented in Python?} 
-In most modern programming languages, the Dictionary data structure is implemented by a variation of Cuckoo hashing, which works as follows: We sample two functions from $\mathcal{H}$, denoted by $h_{1}$ and $h_{2}$. Checking if an element $x$ is in the table is done by checking if it is in either $T[h_{1}(x)]$ or $T[h_{2}(x)]$. Inserting it into the table is done by the following:\footnote{Here we lie, a slightly clever (but not too mach) rule is used to pick $i$. }\
+In most modern programming languages, the Dictionary data structure is implemented by a variation of Cuckoo hashing, which works as follows: We sample two functions from $\mathcal{H}$, denoted by $h_{1}$ and $h_{2}$. Checking if an element $x$ is in the table is done by checking if it is in either $T[h_{1}(x)]$ or $T[h_{2}(x)]$. Inserting it into the table is done by the following:\footnote{Here we lie, a slightly clever (but not too mach) rule is used to pick $i$. }
 
   \begin{algorithm}
     \label{alg:cucko}
@@ -169,7 +169,7 @@ In most modern programming languages, the Dictionary data structure is implement
       \Return
     }
     \Else {
-      $i \leftarrow $ flip a coin\ 
+      $i \leftarrow $ flip a coin. \\
       $z \leftarrow h_{i}(x)$\\
       set $T[h_{i}(x)] \leftarrow x$\\
       Call Insert$(z)$.
