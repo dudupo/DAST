@@ -96,11 +96,16 @@ Observe that the equivalence $h(x) = h(y)$ implies an equivalence in any coordin
 
 \newcommand*{\TR}{\mathbf{Tr}}
 \begin{exercise}
-  %Let $J \subset [n] $, namely a subset of $\{ 1, 2, .., n \}$, for a $n\times n$ matrix $M$ we define the partial trace $\Tr_{J} M$ to be      
   $U$ is the set of all matrices $\mathbb{F}_{2}^{n\times n}$ and $h_{X}(A) = \mathbf{Tr} \left(XA\right) $. 
 \end{exercise}
 
 \begin{solution}
+  \begin{equation*}
+    \begin{split}
+    h_{X}(A) = \mathbf{Tr} \left(XA\right) = \sum_{i}^{n} (XA)_{ii} =  \sum_{i}^{n} X_{ij}A_{ji}
+    \end{split}
+  \end{equation*}
+  So, the hashing is equivalence to flattening $ A $ into an $ n \times n $ binary vector and then multiplying it by a randomly chosen vector. Which was proved in \Cref{example:vec} to be a $2$-universal. 
 \end{solution}
 
 
