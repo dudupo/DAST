@@ -116,7 +116,6 @@ By induction on the heap size.
  \end{proof}
 
 \paragraph{Question.} How to construct a heap? And how much time will it take?   
-\begin{algbox}{Build.}
 \begin{algorithm}[H]
   \SetKwInOut{Input}{input}
 % \SetAlgoLined
@@ -153,7 +152,7 @@ And by the Ratio test for inifinte serires $ \lim_{j\rightarrow \infty} \frac{(j
 
 \paragraph{Heap Sort.}   
 Combining the above, we obtain a new sorting algorithm. Given an array, we could first Heapify it (build a heap from it) and then extract the elements by their order. As we saw, the construction requires linear time, and then each extraction costs $\log n$ time. So, the overall cost is $O\left( n\log n  \right)$. Correction follows immediately from Build and Extract correction.  
-\begin{algorithm}[H]
+\begin{algorithm}
 \SetKwInOut{Input}{input}
  \Input{ Array  $ H_1, H_2, .. H_n $  }
 % \SetAlgoLined
@@ -167,8 +166,7 @@ Combining the above, we obtain a new sorting algorithm. Given an array, we could
 
 \paragraph{Adding Elements Into The Heap.} (Skip if there is no time).
 
-\begin{algbox}{Heapify-up.}
-\begin{algorithm}[H]
+\begin{algorithm}
   \SetKwInOut{Input}{input}
  \Input{ Heap  $ H_1, H_2, .. H_n $  }
 % \SetAlgoLined
@@ -181,7 +179,7 @@ parent $\leftarrow \lfloor i/2 \rfloor $ \\
 \end{algorithm}
 
 
-\begin{algorithm}[H]
+\begin{algorithm}
 \SetKwInOut{Input}{input}
  \Input{ Heap  $ H_1, H_2, .. H_n $  }
 % \SetAlgoLined
@@ -200,8 +198,7 @@ $ n \leftarrow n + 1 $
 
 \paragraph{Soultlion.} We will define two separate Heaps, the first will be a maximum heap and store the first $ \lfloor n/2 \rfloor $ smallest elements, and the second will be a minimum heap and contain the $ \lceil n/2 \rceil$ greatest elements. So, it's clear that the root of the maximum heap is the median of the elements. Therefore to guarantee correctness, we should maintain the balance between the heap's size. Namely, promising that after each insertion or extraction, the difference between the heap's size is either $0$ or $1$.
 
-\begin{algbox}{Median-Insert-key.}
-\begin{algorithm}[H]  
+\begin{algorithm}
 \SetKwInOut{Input}{input} 
 \Input{ Array  $ H_1, H_2, .. H_n , v $  } 
 \If {$ H_{\max, 1} \le v \le  H_{\min, 1}$ } {
@@ -226,7 +223,7 @@ median $\leftarrow$ Median-Extract $H$ \\
 \caption{Median Insert key.}
 \end{algorithm}
 
-\begin{algorithm}[H]
+\begin{algorithm}
 \SetKwInOut{Input}{input}
  \Input{ Array  $ H_1, H_2, .. H_n $  }
 % \SetAlgoLined
@@ -257,7 +254,7 @@ return median
 
 \textbf{Solution.} Notice that If $a \in X$ is greater than $i$ elements of $X$ and $b \in Y$ greater than $j$ elements of $Y$. Then, $a + b$  greater than $i\cdot j$ elements of $X \oplus Y$. Denote by $X^\prime = \{ x^{\prime}_{1} .. x^{\prime}_{n}$ ( $Y^{\prime}$ ) The elements of $X$ in sorted order. So it's clear that if $x_{i}+y_{j} = x^{\prime}_{i^{\prime}} + y^{\prime}_{j^{\prime}}$ is one of the $k$ smallest elements of $X\oplus Y$ then $i^{\prime}j^{\prime} \ge k$. So we will create a heap of elements that respect that inequality and then query that heap.
 
-\begin{algorithm}[H]
+\begin{algorithm}
 % \SetAlgoLined
 $ H_{X} \leftarrow $ build $\left( X \right)$  \\ 
 $ H_{Y} \leftarrow $ build $\left( Y \right)$  \\
