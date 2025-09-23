@@ -159,7 +159,7 @@ If $h$ is sampled uniformly at random from a $2$-universal family $\mathcal{H}$,
 
 
 \subsection{How Hashing is Implemented in Python?} 
-In the most of the nowadays programming languish the Dictionary data structure is implemented by the variation of Cuckoo-hashing which works as follow: We sample two functions from $\mathcal{H}$, denote them by $h_{1},h_{2}$. Checking if an element $x$ is in the table is done by checking if it is in either $T[h_{1}(x)]$ or in $T[h_{2}(x)]$. Inserting it into the table done by the following: 
+In most modern programming languages, the Dictionary data structure is implemented by a variation of Cuckoo hashing, which works as follows: We sample two functions from $\mathcal{H}$, denoted by $h_{1}$ and $h_{2}$. Checking if an element $x$ is in the table is done by checking if it is in either $T[h_{1}(x)]$ or $T[h_{2}(x)]$. Inserting it into the table is done by the following:
 
   \begin{algorithm}
     \label{alg:cucko}
@@ -169,13 +169,14 @@ In the most of the nowadays programming languish the Dictionary data structure i
       \Return
     }
     \Else {
-      $i \leftarrow $ flip a random bit\\ 
+      $i \leftarrow $ flip a coin\footnote{Here we lie, a slightly clever (but not too mach) rule is used to pick $i$. }\\ 
       $z \leftarrow h_{i}(x)$\\
       set $T[h_{i}(x)] \leftarrow x$\\
       Call Insert$(z)$.
     }
   \end{algorithm}
-  
+Roughly speaking, the algorithm fails when we close a cycle, namely after several recursive calls, back to the point where we were called to insert $x$. The idea of the analysis is that if the functions $h_{1}, h_{2}$ were picked randomly, or very similar to randomly (i.e., from $k$-universal families), that event is unlikely, and the number of scanned spots is constant.
+
 \section{Perfect Hashing.}
 In the past week, we have seen how to store keys in hash tables so that the number of mapped keys in a specific cell is $O(1)$ in expectation. The table is constructed using a hashing function $h : \text{key space} \rightarrow m \text{cells}$, randomly chosen from a universal hash function family. This function maps keys to cells, and in each cell, the keys are stored using a linked list. The cost of supported subroutines depends on the length of the list. We named any pair of different keys $x\neq y$ that are mapped to the same cell in the table, namely $h(x) = h(y)$, a collision.
 
