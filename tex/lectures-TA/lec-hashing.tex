@@ -104,13 +104,34 @@ Observe that the equivalence $h(x) = h(y)$ implies an equivalence in any coordin
 \end{solution}
 
 
+%\begin{exercise}
+  %$U$ is the set of all binary vectors $\mathbb{F}_{2}^{n}$  containing more $1$'s than $0$'s. And $h_{a}(x) = \braket{a,x}$ for any $a$ such $\braket{a,1} = 0$. 
+%\end{exercise}
+%
+%\begin{exercise}
+%$U$ is the set of all matrices $\mathbb{F}_{2}^{n\times n}$, and $h_{x}(A) = x^{\top} A x$. Show that $\mathcal{H}$ is not $2$-universal.
+%\end{exercise}
+%
 \begin{exercise}
-  $U$ is the set of all binary vectors $\mathbb{F}_{2}^{n}$  containing more $1$'s than $0$'s. And $h_{a}(x) = \braket{a,x}$ for any $a$ such $\braket{a,1} = 0$. 
+Let $\mathcal{H}$ be a $2$-universal family from $U \rightarrow [m]$. Show that $\mathcal{H}^{\star} : U \times U \rightarrow [m]$ is defined by:
+  \begin{equation*}
+    \begin{split}
+      h^{\star}(x,y) = h(x) + h(y)  \text{ for } h\in \mathcal{H}
+    \end{split}
+  \end{equation*}
+  is not $2$-universal.
 \end{exercise}
 
-\begin{exercise}
-$U$ is the set of all matrices $\mathbb{F}_{2}^{n\times n}$, and $h_{x}(A) = x^{\top} A x$. Show that $\mathcal{H}$ is not $2$-universal.
-\end{exercise}
+\begin{solution}
+  Let $x, y \in U$. Consider the elements $z_{1} = (x, y)$ and $z_{2} = (y, x)$. On one hand, $z_{1} \neq z_{2} \in U \times U$, on the other hand, for any $h^{\star} \in \mathcal{H}^{\star}$, there is $h \in \mathcal{H}$ such that:
+  \begin{equation*}
+    \begin{split}
+      h^{\star}(z_{1}) =  h^{\star}( (x,y) ) = h(x) + h(y) = h(y) + h(x) =  h^{\star}( (y,x) )  = h^{\star}(z_{2})
+    \end{split}
+  \end{equation*}
+So, we get that with probability $1$, $h(z_{1}) = h(z_{2})$, and hence $\mathcal{H}^{\star}$ is not $2$-universal.
+\end{solution}
+
 
 Equipped with $2$-universal hash functions, we can now say intelligent 'things' about the expected number of collisions. Specifically, denote by $h \sim \mathcal{H}$ a sampled hash function. Let us denote by $I$ the input: $I = \{ x_{1}, x_{2}, \ldots, x_{n} \} \subset U$. We can define for each $x \in I$ the random variable $C_{x}$, which counts the number of collisions in $I$ involving $x$. Namely:
 \begin{equation*}
