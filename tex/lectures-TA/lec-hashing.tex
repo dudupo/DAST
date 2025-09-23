@@ -120,6 +120,16 @@ Equipped with $2$-universal hash functions, we can now say intelligent 'things' 
   If $\mathcal{H}$ is $2$-universal hash family, then $\expp{C_{x}} = 1 + \frac{n-1}{m}$.\marginnote[ Note 1: Despite the ease of computing the expectation, calculating the exact probability of $\sum_{i}\sum_{j}X_{i}^{1}X_{i}^{j} = L$ for some arbitrary $L$ is a difficult task.]{Note 1: Despite the ease of computing the expectation, calculating the exact probability of $\sum_{i}\sum_{j}X_{i}^{1}X_{i}^{j} = L$ for some arbitrary $L$ is a difficult task.}
 \end{claim}
 
+\begin{proof}
+For any $x, y \in I$, let $X_{x,y}$ be the indicator of the event $h(x) = h(y)$. Observe that $C_{x} = \sum_{y \in I} X_{x,y}$. Therefore, by the linearity of expectation and $\mathcal{H}$ being a $2$-universal hash family, we have:
+
+\begin{equation*}
+  \begin{split}
+    \expp{C_{x}} &= \expp{\sum_{y\in I} X_{x,y}} =  \sum_{y\in I}\expp{ X_{x,y}} =  \sum_{y = x \in I}\expp{ X_{x,y}} + \sum_{y \neq x \in I}\expp{ X_{x,y}} \\ 
+    & = 1 + \sum_{y\neq x \in I} \prb{ h(x) = h(y) } \le 1 + \frac{n-1}{m}
+  \end{split}
+\end{equation*}
+\end{proof}
 
 
 \subsection{ Universal Hashing Table. (Open Hashing)} 
