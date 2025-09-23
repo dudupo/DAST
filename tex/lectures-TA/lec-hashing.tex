@@ -109,14 +109,25 @@ Observe that the equivalence $h(x) = h(y)$ implies an equivalence in any coordin
 $U$ is the set of all matrices $\mathbb{F}_{2}^{n\times n}$, and $h_{x}(A) = x^{\top} A x$. Show that $\mathcal{H}$ is not $2$-universal.
 \end{exercise}
 
+Equipped with $2$-universal hash functions, we can now analayze the complexity of 
 
 \subsection{ Universal Hashing Table. (Open Hashing)} 
+Universal Hashing Table also defined by an $m$-array (table), and an hash function $h$ which index keys $x \in U$ to $T[h(x)]$ cells, Yet in contrast to open addressing each cell might contains multiple keys by maintaining a linked list. Accessing to a stored key, or checking if it is in $T$, is done by iterating the linked list at suited cell. Appending a key, is done by first checking the key is not already stored in the table and then appending it to the tail of the suited linked list. 
 
+\textbf{Question.} Fix a table, and consider $x \in U$. What will be the running time of each of the operation: Insert $x$, Access $x$, Delete $x$?. (Linear at the number of keys in the list as $T[h(x)]$).  
+
+\textbf{Question.} In hashing terms, what is the length of $T[h(x)]$ equal to? The number of collision with $x$.  
+
+
+Hence, we infer that the expected running time is bounded by the expected number of collision with $x$. 
+
+
+If $h$ is sampled uniformly random from a $2$-universal family $\mathcal{H}$ then on expectation 
   \begin{algorithm}
     \label{alg:openhash}
   \caption{Universal Hashing Table - access}
-  link $\leftarrow  T[h(x)] $  \\
-  \For {  node $\in $ link } {
+  linked $\leftarrow  T[h(x)] $  \\
+  \For {  node $\in $ linked } {
     \If { node.value $= x $ } {
       \Return node
     }
