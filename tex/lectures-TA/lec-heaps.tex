@@ -155,6 +155,8 @@ By counting arguments, we have the inequality $ 2^{\log n - h_{i}}|U_{i}| \le n 
 And by the Ratio test for inifinte serires $ \lim_{j\rightarrow \infty} \frac{(j+1)2^{-j-1}}{j2^{-j}} \rightarrow \frac{1}{2}$ we have that the serire covergence to constant. Hence: $ T\left( n \right) = \Theta\left( n \right) $. 
 
 
+\newpage
+
 \paragraph{Heap Sort.}   
 Combining the above, we obtain a new sorting algorithm. Given an array, we could first Heapify it (build a heap from it) and then extract the elements by their order. As we saw, the construction requires linear time, and then each extraction costs $\log n$ time. So, the overall cost is $O\left( n\log n  \right)$. Correction follows immediately from Build and Extract correction.  
 \begin{algorithm}
@@ -201,7 +203,7 @@ $ n \leftarrow n + 1 $
 
 \paragraph{Task:}Write a datastructure that support insertion and deltion at $O\left( \log n \right) $ time and in addition enable to extract the median in $O\left( \log n  \right)$ time. 
 
-\paragraph{Soultlion.} We will define two separate Heaps, the first will be a maximum heap and store the first $ \lfloor n/2 \rfloor $ smallest elements, and the second will be a minimum heap and contain the $ \lceil n/2 \rceil$ greatest elements. So, it's clear that the root of the maximum heap is the median of the elements. Therefore to guarantee correctness, we should maintain the balance between the heap's size. Namely, promising that after each insertion or extraction, the difference between the heap's size is either $0$ or $1$.
+\paragraph{Solution.} We will define two separate Heaps, the first will be a maximum heap and store the first $ \lfloor n/2 \rfloor $ smallest elements, and the second will be a minimum heap and contain the $ \lceil n/2 \rceil$ greatest elements. So, it's clear that the root of the maximum heap is the median of the elements. Therefore to guarantee correctness, we should maintain the balance between the heap's size. Namely, promising that after each insertion or extraction, the difference between the heap's size is either $0$ or $1$.
 
 \begin{algorithm}
 \SetKwInOut{Input}{input} 
