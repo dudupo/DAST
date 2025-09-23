@@ -135,6 +135,8 @@ For any $x, y \in I$, let $X_{x,y}$ be the indicator of the event $h(x) = h(y)$.
 \subsection{ Universal Hashing Table. (Open Hashing)} 
 Universal Hashing Table also defined by an $m$-array (table), and an hash function $h$ which index keys $x \in U$ to $T[h(x)]$ cells, Yet in contrast to open addressing each cell might contains multiple keys by maintaining a linked list. Accessing to a stored key, or checking if it is in $T$, is done by iterating the linked list at suited cell. Appending a key, is done by first checking the key is not already stored in the table and then appending it to the tail of the suited linked list. 
 
+
+
 \textbf{Question.} Fix a table, and consider $x \in U$. What will be the running time of each of the operation: Insert $x$, Access $x$, Delete $x$?. (Linear at the number of keys in the list as $T[h(x)]$).  
 
 \textbf{Question.} In hashing terms, what is the length of $T[h(x)]$ equal to? The number of collision with $x$.  
