@@ -109,7 +109,18 @@ Observe that the equivalence $h(x) = h(y)$ implies an equivalence in any coordin
 $U$ is the set of all matrices $\mathbb{F}_{2}^{n\times n}$, and $h_{x}(A) = x^{\top} A x$. Show that $\mathcal{H}$ is not $2$-universal.
 \end{exercise}
 
-Equipped with $2$-universal hash functions, we can now analayze the complexity of 
+Equipped with $2$-universal hash functions, we can now say intelligent 'things' about the expected number of collisions. Specifically, denote by $h \sim \mathcal{H}$ a sampled hash function. Let us denote by $I$ the input: $I = \{ x_{1}, x_{2}, \ldots, x_{n} \} \subset U$. We can define for each $x \in I$ the random variable $C_{x}$, which counts the number of collisions in $I$ involving $x$. Namely:
+\begin{equation*}
+  \begin{split}
+    C_{x} = | \{ y \in I : h(x) = h(y) \} | 
+  \end{split}
+\end{equation*}
+
+\begin{claim}
+  If $\mathcal{H}$ is $2$-universal hash family, then $\expp{C_{x}} = 1 + \frac{n-1}{m}$.\marginnote[ Note 1: Despite the ease of computing the expectation, calculating the exact probability of $\sum_{i}\sum_{j}X_{i}^{1}X_{i}^{j} = L$ for some arbitrary $L$ is a difficult task.]{Note 1: Despite the ease of computing the expectation, calculating the exact probability of $\sum_{i}\sum_{j}X_{i}^{1}X_{i}^{j} = L$ for some arbitrary $L$ is a difficult task.}
+\end{claim}
+
+
 
 \subsection{ Universal Hashing Table. (Open Hashing)} 
 Universal Hashing Table also defined by an $m$-array (table), and an hash function $h$ which index keys $x \in U$ to $T[h(x)]$ cells, Yet in contrast to open addressing each cell might contains multiple keys by maintaining a linked list. Accessing to a stored key, or checking if it is in $T$, is done by iterating the linked list at suited cell. Appending a key, is done by first checking the key is not already stored in the table and then appending it to the tail of the suited linked list. 
