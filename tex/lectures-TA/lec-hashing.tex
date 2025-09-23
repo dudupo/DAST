@@ -34,11 +34,9 @@ Open addressing uses a static $m$-length array $T$, hash function $h$, and handl
   \end{algorithm}
 
 \section{ Universal Hashing. } 
-
-
-
+Now that it is understood that collisions govern the running time, we are ready to study a classification of mappings which generate a low number of collisions in expectation.
 \begin{definition}
-  Let $\mathcal{H} = \left\{ h_{i} : U \rightarrow [m] \right\}$ be a  family of function from the domain $U$ into $[m] = \{0, 1, .. m-1\} $. $\mathcal{H}$ will be said universial if for any $x\neq y \in U$: \begin{equation*}
+  Let $\mathcal{H} = \left\{ h_{i} : U \rightarrow [m] \right\}$ be a  family of function from the domain $U$ into $[m] = \{0, 1, .. m-1\} $. $\mathcal{H}$ will be said universal if for any $x\neq y \in U$: \begin{equation*}
     \begin{split}
       \prbm{h(x) = h(y)}{h \sim \mathcal{H}} \le \frac{1}{m}
     \end{split}
@@ -100,7 +98,7 @@ Observe that the equivalence $h(x) = h(y)$ implies an equivalence in any coordin
     h_{X}(A) = \mathbf{Tr} \left(XA\right) = \sum_{i}^{n} (XA)_{ii} =  \sum_{i}^{n} X_{ij}A_{ji}
     \end{split}
   \end{equation*}
-  So, the hashing is equivalence to flattening $ A $ into an $ n \times n $ binary vector and then multiplying it by a randomly chosen vector. Which was proved in \Cref{example:vec} to be a $2$-universal. 
+  So, the hashing is equivalence to flattening $ A $ into an $ n \times n $ binary vector and then multiplying it by a randomly chosen vector. Which was proved in \Cref{example:vec} to be a universal. 
 \end{solution}
 
 
@@ -109,17 +107,17 @@ Observe that the equivalence $h(x) = h(y)$ implies an equivalence in any coordin
 %\end{exercise}
 %
 %\begin{exercise}
-%$U$ is the set of all matrices $\mathbb{F}_{2}^{n\times n}$, and $h_{x}(A) = x^{\top} A x$. Show that $\mathcal{H}$ is not $2$-universal.
+%$U$ is the set of all matrices $\mathbb{F}_{2}^{n\times n}$, and $h_{x}(A) = x^{\top} A x$. Show that $\mathcal{H}$ is not universal.
 %\end{exercise}
 %
 \begin{exercise}
-Let $\mathcal{H}$ be a $2$-universal family from $U \rightarrow [m]$. Show that $\mathcal{H}^{\star} : U \times U \rightarrow [m]$ is defined by:
+Let $\mathcal{H}$ be a universal family from $U \rightarrow [m]$. Show that $\mathcal{H}^{\star} : U \times U \rightarrow [m]$ is defined by:
   \begin{equation*}
     \begin{split}
       h^{\star}(x,y) = h(x) + h(y)  \text{ for } h\in \mathcal{H}
     \end{split}
   \end{equation*}
-  is not $2$-universal.
+  is not universal.
 \end{exercise}
 
 \begin{solution}
@@ -129,11 +127,11 @@ Let $\mathcal{H}$ be a $2$-universal family from $U \rightarrow [m]$. Show that 
       h^{\star}(z_{1}) =  h^{\star}( (x,y) ) = h(x) + h(y) = h(y) + h(x) =  h^{\star}( (y,x) )  = h^{\star}(z_{2})
     \end{split}
   \end{equation*}
-So, we get that with probability $1$, $h(z_{1}) = h(z_{2})$, and hence $\mathcal{H}^{\star}$ is not $2$-universal.
+So, we get that with probability $1$, $h(z_{1}) = h(z_{2})$, and hence $\mathcal{H}^{\star}$ is not universal.
 \end{solution}
 
 
-Equipped with $2$-universal hash functions, we can now say intelligent 'things' about the expected number of collisions. Specifically, denote by $h \sim \mathcal{H}$ a sampled hash function. Let us denote by $I$ the input: $I = \{ x_{1}, x_{2}, \ldots, x_{n} \} \subset U$. We can define for each $x \in I$ the random variable $C_{x}$, which counts the number of collisions in $I$ involving $x$. Namely:
+Equipped with universal hash functions, we can now say intelligent 'things' about the expected number of collisions. Specifically, denote by $h \sim \mathcal{H}$ a sampled hash function. Let us denote by $I$ the input: $I = \{ x_{1}, x_{2}, \ldots, x_{n} \} \subset U$. We can define for each $x \in I$ the random variable $C_{x}$, which counts the number of collisions in $I$ involving $x$. Namely:
 \begin{equation*}
   \begin{split}
     C_{x} = | \{ y \in I : h(x) = h(y) \} | 
@@ -142,11 +140,11 @@ Equipped with $2$-universal hash functions, we can now say intelligent 'things' 
 
 \begin{claim}
   \label{claim:u_coll}
-  If $\mathcal{H}$ is $2$-universal hash family, then $\expp{C_{x}} = 1 + \frac{n-1}{m}$.\marginnote[Note, How to recall: at least $1$ element for $x$ itself, and $\frac{n-1}{m}$ is what we would guess to have by throwing $n-1$ balls to $m$ bins.]{Note, How to recall: at least $1$ element for $x$ itself, and $\frac{n-1}{m}$ is what we would guess to have by throwing $n-1$ balls to $m$ bins.}
+  If $\mathcal{H}$ is universal hash family, then $\expp{C_{x}} = 1 + \frac{n-1}{m}$.\marginnote[Note, How to recall: at least $1$ element for $x$ itself, and $\frac{n-1}{m}$ is what we would guess to have by throwing $n-1$ balls to $m$ bins.]{Note, How to recall: at least $1$ element for $x$ itself, and $\frac{n-1}{m}$ is what we would guess to have by throwing $n-1$ balls to $m$ bins.}
 \end{claim}
 
 \begin{proof}
-For any $x, y \in I$, let $X_{x,y}$ be the indicator of the event $h(x) = h(y)$. Observe that $C_{x} = \sum_{y \in I} X_{x,y}$. Therefore, by the linearity of expectation and $\mathcal{H}$ being a $2$-universal hash family, we have:
+For any $x, y \in I$, let $X_{x,y}$ be the indicator of the event $h(x) = h(y)$. Observe that $C_{x} = \sum_{y \in I} X_{x,y}$. Therefore, by the linearity of expectation and $\mathcal{H}$ being a universal hash family, we have:
 
 \begin{equation*}
   \begin{split}
@@ -179,7 +177,7 @@ Hence, we infer that the expected running time is bounded by the expected number
   }
   \Return last node
   \end{algorithm}
-If $h$ is sampled uniformly at random from a $2$-universal family $\mathcal{H}$, then by \Cref{claim:u_coll}, the expected running time is $1 + \frac{n-1}{m} = O(1)$.
+If $h$ is sampled uniformly at random from a universal family $\mathcal{H}$, then by \Cref{claim:u_coll}, the expected running time is $1 + \frac{n-1}{m} = O(1)$.
 
 
 \subsection{How Hashing is Implemented in Python?} 
