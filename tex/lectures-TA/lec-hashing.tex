@@ -117,6 +117,7 @@ Equipped with $2$-universal hash functions, we can now say intelligent 'things' 
 \end{equation*}
 
 \begin{claim}
+  \label{claim:u_coll}
   If $\mathcal{H}$ is $2$-universal hash family, then $\expp{C_{x}} = 1 + \frac{n-1}{m}$.\marginnote[ Note 1: Despite the ease of computing the expectation, calculating the exact probability of $\sum_{i}\sum_{j}X_{i}^{1}X_{i}^{j} = L$ for some arbitrary $L$ is a difficult task.]{Note 1: Despite the ease of computing the expectation, calculating the exact probability of $\sum_{i}\sum_{j}X_{i}^{1}X_{i}^{j} = L$ for some arbitrary $L$ is a difficult task.}
 \end{claim}
 
@@ -133,7 +134,7 @@ For any $x, y \in I$, let $X_{x,y}$ be the indicator of the event $h(x) = h(y)$.
 
 
 \subsection{ Universal Hashing Table. (Open Hashing)} 
-Universal Hashing Table also defined by an $m$-array (table), and an hash function $h$ which index keys $x \in U$ to $T[h(x)]$ cells, Yet in contrast to open addressing each cell might contains multiple keys by maintaining a linked list. Accessing to a stored key, or checking if it is in $T$, is done by iterating the linked list at suited cell. Appending a key, is done by first checking the key is not already stored in the table and then appending it to the tail of the suited linked list. 
+Universal Hashing Table also defined by an $m$-array (table), and an hash function $h$ which index keys $x \in U$ to $T[h(x)]$ cells, Yet in contrast to open addressing each cell might contains multiple keys by maintaining a linked list. Accessing to a stored key, or checking if it is in $T$, is done by iterating the linked list at suited cell. Appending a key, is done by first checking the key is not already stored in the table and then appending it to the tail of the suited linked list. \Cref{alg:openhash} exhibits the access routine, you are encouraged to completes the others.    
 
 
 
@@ -145,7 +146,6 @@ Universal Hashing Table also defined by an $m$-array (table), and an hash functi
 Hence, we infer that the expected running time is bounded by the expected number of collision with $x$. 
 
 
-If $h$ is sampled uniformly random from a $2$-universal family $\mathcal{H}$ then on expectation 
   \begin{algorithm}
     \label{alg:openhash}
   \caption{Universal Hashing Table - access}
@@ -157,6 +157,7 @@ If $h$ is sampled uniformly random from a $2$-universal family $\mathcal{H}$ the
   }
   \Return last node
   \end{algorithm}
+If $h$ is sampled uniformly at random from a $2$-universal family $\mathcal{H}$, then by \Cref{claim:u_coll}, the expected running time is $1 + \frac{n-1}{m} = O(1)$.
 
 \section{Perfect Hashing.}
 In the past week, we have seen how to store keys in hash tables so that the number of mapped keys in a specific cell is $O(1)$ in expectation. The table is constructed using a hashing function $h : \text{key space} \rightarrow m \text{cells}$, randomly chosen from a universal hash function family. This function maps keys to cells, and in each cell, the keys are stored using a linked list. The cost of supported subroutines depends on the length of the list. We named any pair of different keys $x\neq y$ that are mapped to the same cell in the table, namely $h(x) = h(y)$, a collision.
