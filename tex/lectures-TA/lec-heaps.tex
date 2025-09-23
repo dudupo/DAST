@@ -7,6 +7,272 @@
 \fi
 
 \chapter{Heaps.} 
+
+  \paragraph{Leading Problem.} find $k$ largest elements. \ctt{ Next year present the finding $k$-largest elements in $\Theta(n +k\log k)$ time as the goal of the recitation. } 
+
+  \begin{definition}
+    
+  Let $n \in \mathbb{N}$ and consider the sequence $H = H_{1}, H_{2} \cdots H_{n} \in \mathbb{R} \left( * \right)$. we will say that $H$ is a Heap if for every $i \in [n]$ we have that: $H_{i} \le H_{2i}, H_{2i + 1}$ when we think of the value at indices greater than $n$ as $H_{i>n} = -\infty$. 
+  \begin{equation*}
+    \begin{split}
+      \Leftrightarrow
+    \end{split}
+  \end{equation*} 
+That definition is equivalent to the following recursive definition: Consider an almost complete binary tree where each node is associated with a number. Then, we will say that this binary tree is a heap if the root's value is lower than its children's values, and each subtree defined by its children is also a heap. There is a one-to-one mapping between these definitions by setting the array elements on the tree in order.
+
+  \end{definition}
+\input{tree-1.tex}
+\paragraph{Checking vital signs.}Are the following sequences are heaps? 
+\begin{enumerate}
+  \item 1,2,3,4,5,6,7,8,9,10 (Y)
+  \item 1,1,1,1,1,1,1,1,1,1  (Y)
+  \item 1,4,3,2,7,8,9,10     (N)
+  \item 1,4,2,5,6,3	     (Y)
+\end{enumerate}
+\begin{figure}[h]
+  \centering
+  \begin{subfigure}[b]{0.3\textwidth}
+	\input{tree-2.tex}
+  \end{subfigure}
+\begin{subfigure}[b]{0.3\textwidth}
+	\input{tree-3.tex}
+  \end{subfigure}
+\begin{subfigure}[b]{0.3\textwidth}
+	\input{tree-4.tex}
+  \end{subfigure}
+  \caption{The trees representations of the heaps above. The node which fails to satisfy the Heap inequality is colorized.}
+\end{figure}
+How much is the cost (running time) to compute the min of $H$? (without changing the heap). ($O\left( 1 \right)$). Assume that option 4 is our Superpharm Line. Let's try to imagine how we should maintain the line. After serving the customer at the top, what can be said on $ \{ H_{2}, H_{3}\}$? or $\{H_{i>3}\}?$ (the second highest value is in $\{H_{2}, H_{3} \}$.)   
+\paragraph{Subtask: Extracting Heap's Minimum.} \textit{Let $H$ be an Heap at size $n$, Write algorithm which return $H_1$, erase it and returns $H^\prime$, an Heap which contain all the remain elements.} 
+\textbf{Solution:} 
+
+\begin{algorithm}[H]
+\SetKwInOut{Input}{input}
+ \Input{ Heap  $ H_1, H_2, .. H_n $  }
+% \SetAlgoLined
+ret $\leftarrow H_{1} $ \\
+$ H_{1} \leftarrow H_{n} $  \\
+$ n \leftarrow n -1 $ \\
+Heapify-down$\left( 1 \right)$ \\
+return ret  
+\end{algorithm}
+
+
+\begin{algorithm}[H]
+\SetKwInOut{Input}{input}
+ \Input{ Array  $ a_1, a_2, .. a_n $  }
+% \SetAlgoLined
+next  $\leftarrow i  $ \\
+left  $\leftarrow 2i $ \\
+right $\rightarrow 2i +1 $ \\ 
+\If{ left $ < n \text{ and }  H_{\text{left}} < H_{\text{next}}$ } {
+  next $\leftarrow$ left 
+}
+\If{ right $ < n \text{ and }  H_{\text{right}} < H_{\text{next}}$ } {
+  next $\leftarrow$  right
+}
+\If{ $ i \neq $ next } {
+  $ H_{i} \leftrightarrow H_{\text{next}} $ \\ 
+  Heapify-down$\left( \text{next}  \right)$
+}
+\end{algorithm}
+
+
+\begin{figure}[h]
+  \centering
+  \begin{subfigure}[b]{0.23\textwidth}
+	\input{tree-41.tex}
+  \end{subfigure}
+\begin{subfigure}[b]{0.23\textwidth}
+	\input{tree-42.tex}
+  \end{subfigure}
+\begin{subfigure}[b]{0.23\textwidth}
+	\input{tree-43.tex}
+  \end{subfigure}
+\begin{subfigure}[b]{0.23\textwidth}
+	\input{tree-44.tex}
+  \end{subfigure}
+  \caption{Running Example, Extract.} 
+\end{figure}
+
+
+\begin{claim}
+  
+Assume that $H$ satisfies the Heap inequality for all the elements except the root. Namely for any $i \neq 1$ we have that $H_{i} \le H_{2i}, H_{2i+1}$. Then applying Heapify-down on $H$ at index $1$ returns a heap.  
+\end{claim}
+
+\begin{proof}
+  
+By induction on the heap size.  
+ 
+\begin{itemize} 
+  \item Base, Consider a heap at the size at most three and prove for each by considering each case separately. (lefts as exercise).  
+  \item Assumption, assume the correctness of the Claim for any tree that satisfies the heap inequality except the root, at size $n^{\prime} < n$. 
+  \item Induction step. Consider a tree at size $n$ which and assume w.l.g (why could we?) that the right child of the root is the minimum between the triple. Then, by the definition of the algorithm, at line 9, the root exchanges its value with its right child. Given that before the swapping, all the elements of the heap, except the root, had satisfied the heap inequality, we have that after the exchange, all the right subtree's elements, except the root of that subtree (the original root's right child) still satisfy the inequality. As the size of the right subtree is at most $n-1$, we could use the assumption and have that after line (10), the right subtree is a heap.  
+
+    Now, as the left subtree remains the same (the values of the nodes of the left side didn't change), we have that this subtree is also a heap. So it's left to show that the new tree's root is smaller than its children's. Suppose that is not the case, then it's clear that the root of the right subtree (heap) is smaller than the new root. Combining the fact that its origin must be the right subtree, we have a contradiction to the fact that the original right subtree was a heap (as its root wasn't the minimum element in that subtle).  
+ 
+\end{itemize} 
+ \end{proof}
+
+\paragraph{Question.} How to construct a heap? And how much time will it take?   
+\begin{algbox}{Build.}
+\begin{algorithm}[H]
+  \SetKwInOut{Input}{input}
+% \SetAlgoLined
+  \Input{ Array $ H = H_{1} .. H_{n} $ }
+  $ i \leftarrow \lfloor \frac{1}{2}n  \rfloor $ \\
+  \While { $ i > 1 $ }
+  { 
+    Heapify-down $\left( H, i \right)$ \\ 
+    $ i \leftarrow i - 1 $  
+  }
+return $H_{1} .. H_{n}$
+\caption{ Build a heap. } 
+\end{algorithm}
+We can compute a simple upper bound on the running time of Build as follows. Each call to Heapify costs $O(\log n)$ time, and Build makes $O(n)$ such calls. Thus, the running time is $O(n \log n)$. This upper bound, though correct, is not as tight as it can be.
+
+Let's compute the tight bound. Denote by $U_h$ the subset of vertices in a heap at height $h_{i}$. Also, let $c > 0 $ be the constant quantify the work that is done in each recursive step, then we can express the total cost as being bonded from above by: 
+
+\begin{equation*}
+  \begin{split}
+    T\left( n \right) & \le \sum_{ h_{i} =1}^{ \log n }{c \cdot \left( \log n -  h_{i} \right)  |U_{h_{i}}|   } 
+  \end{split}
+\end{equation*}
+
+By counting arguments, we have the inequality $ 2^{\log n - h_{i}}|U_{i}| \le n $ (Proving this argument is left as an exercise). We thus obtain:  
+
+\begin{equation*}
+  \begin{split}
+    T\left( n \right)  & \le  \sum_{ h_{i} =1}^{ \log n }{c \cdot \left( \log n -  h_{i} \right) \frac{n}{2^{log n - h_{i}} }} = c n \sum_{ j = 1}^{ \log n }{ 2^{-j} \cdot j  }  \\ 
+      \le &  c n \sum_{ j = 1}^{ \infty }{ 2^{-j} \cdot j  } 
+  \end{split}
+\end{equation*}
+And by the Ratio test for inifinte serires $ \lim_{j\rightarrow \infty} \frac{(j+1)2^{-j-1}}{j2^{-j}} \rightarrow \frac{1}{2}$ we have that the serire covergence to constant. Hence: $ T\left( n \right) = \Theta\left( n \right) $. 
+
+
+\paragraph{Heap Sort.}   
+Combining the above, we obtain a new sorting algorithm. Given an array, we could first Heapify it (build a heap from it) and then extract the elements by their order. As we saw, the construction requires linear time, and then each extraction costs $\log n$ time. So, the overall cost is $O\left( n\log n  \right)$. Correction follows immediately from Build and Extract correction.  
+\begin{algorithm}[H]
+\SetKwInOut{Input}{input}
+ \Input{ Array  $ H_1, H_2, .. H_n $  }
+% \SetAlgoLined
+  $H \leftarrow $ build $ \left( x_1, x_2 .. x_{n}  \right) $ \\ 
+  ret $ \leftarrow $ Array $ \{ \} $ \\
+  \For {  $ i \in [n] $ } {
+  ret$_{i}$ $\leftarrow$ extract $H$
+  }
+  return ret. 
+\end{algorithm}
+
+\paragraph{Adding Elements Into The Heap.} (Skip if there is no time).
+
+\begin{algbox}{Heapify-up.}
+\begin{algorithm}[H]
+  \SetKwInOut{Input}{input}
+ \Input{ Heap  $ H_1, H_2, .. H_n $  }
+% \SetAlgoLined
+parent $\leftarrow \lfloor i/2 \rfloor $ \\
+\If{ \text{parent} $  > 0 \text{ and }  H_{\text{parent}} \le H_{i}$ } { 
+  $ H_{i} \leftrightarrow H_{\text{parent}} $ \\ 
+  Heapify-up$\left( \text{parent}  \right)$
+}
+\caption{Heapify-up.}
+\end{algorithm}
+
+
+\begin{algorithm}[H]
+\SetKwInOut{Input}{input}
+ \Input{ Heap  $ H_1, H_2, .. H_n $  }
+% \SetAlgoLined
+$ H_{n} \leftarrow v $ \\ 
+Heapify-up$\left( n \right)$\\
+$ n \leftarrow n + 1 $ 
+\caption{Insert-key}
+\end{algorithm}
+
+
+
+\newpage 
+\subsection*{Example, Median Heap}
+
+\paragraph{Task:}Write a datastructure that support insertion and deltion at $O\left( \log n \right) $ time and in addition enable to extract the median in $O\left( \log n  \right)$ time. 
+
+\paragraph{Soultlion.} We will define two separate Heaps, the first will be a maximum heap and store the first $ \lfloor n/2 \rfloor $ smallest elements, and the second will be a minimum heap and contain the $ \lceil n/2 \rceil$ greatest elements. So, it's clear that the root of the maximum heap is the median of the elements. Therefore to guarantee correctness, we should maintain the balance between the heap's size. Namely, promising that after each insertion or extraction, the difference between the heap's size is either $0$ or $1$.
+
+\begin{algbox}{Median-Insert-key.}
+\begin{algorithm}[H]  
+\SetKwInOut{Input}{input} 
+\Input{ Array  $ H_1, H_2, .. H_n , v $  } 
+\If {$ H_{\max, 1} \le v \le  H_{\min, 1}$ } {
+	\If{ size $(H_{\max}) - $ size$(H_{\min}) = 1$} {
+       Insert-key ( $H_{min}$, $v$ )
+    }
+    \Else{
+	    Insert-key ( $H_{max}$, $v$ )
+    }
+}
+\Else{
+median $\leftarrow$ Median-Extract $H$ \\
+\If{ $v < $ median  }{
+   Insert-key ( $H_{max}$, $v$ ) \\
+   Insert-key ( $H_{min}$, $median$ ) \\
+}
+\Else{
+   Insert-key ( $H_{min}$, $v$ ) \\
+   Insert-key ( $H_{max}$, $median$ ) \\
+}
+}
+\caption{Median Insert key.}
+\end{algorithm}
+
+\begin{algorithm}[H]
+\SetKwInOut{Input}{input}
+ \Input{ Array  $ H_1, H_2, .. H_n $  }
+% \SetAlgoLined
+median $\leftarrow$ extract $H_{max}$ \\   
+\If{ size($H_{min}$) - size($H_{max}$) $> 0$ }{
+  temp $ \leftarrow $ extract $H_{\min}$ \\
+  Insert-key ( $H_{max}$, temp )    \\
+}
+return median 
+\caption{Median-Extract.}
+\end{algorithm}
+
+\begin{figure}[h]
+  \centering
+  \begin{subfigure}[b]{0.49\textwidth}
+	\input{tree-r2.tex}
+  \end{subfigure}
+\begin{subfigure}[b]{0.49\textwidth}
+	\input{tree-r1.tex}
+  \end{subfigure}
+  \caption{ Example for Median-Heap, the left and right trees are maximum and minimum heaps.  }
+\end{figure}
+
+
+\section{ Appendix. Exercise from last year }
+
+\paragraph{Question.} Consider the sets $X = \{x_1,x_2 .. x_n\}$, $Y = \{y_1, y_2 .. y_n\}$. Assume that each of the values $x_i,y_i$ is unique. Write an Algorithm which compute the $k$ most small items in $X \oplus Y = \{ x_{i} + y_{j} : x_{i} \in X , y_{j} \in Y  \} $ at $ O \left( n + k\log k  \right) $ time. 
+
+\textbf{Solution.} Notice that If $a \in X$ is greater than $i$ elements of $X$ and $b \in Y$ greater than $j$ elements of $Y$. Then, $a + b$  greater than $i\cdot j$ elements of $X \oplus Y$. Denote by $X^\prime = \{ x^{\prime}_{1} .. x^{\prime}_{n}$ ( $Y^{\prime}$ ) The elements of $X$ in sorted order. So it's clear that if $x_{i}+y_{j} = x^{\prime}_{i^{\prime}} + y^{\prime}_{j^{\prime}}$ is one of the $k$ smallest elements of $X\oplus Y$ then $i^{\prime}j^{\prime} \ge k$. So we will create a heap of elements that respect that inequality and then query that heap.
+
+\begin{algorithm}[H]
+% \SetAlgoLined
+$ H_{X} \leftarrow $ build $\left( X \right)$  \\ 
+$ H_{Y} \leftarrow $ build $\left( Y \right)$  \\
+$ S_{X} \leftarrow $ extract-$k$ $\left( H_{X} \right)$  \\ 
+$ S_{Y} \leftarrow $ extract-$k$ $\left( H_{Y} \right)$  \\
+$ H_{XY} \leftarrow $ Heap $(\{ \} )$ \\
+\For{ $i \in [k]$ } {
+  \For { $j \in [k/i]$ } {
+  	Heappush( $H_{XY}$, $S_{X,i} + S_{Y, j}$ )    
+  }
+}
+return extract-$k$ ( $H_{XY}$ ) 
+\end{algorithm}
+
+
 \section{Heapsort (David's group).}
 
 We will start by introducing the heap-sort algorithm and providing a proof of its correctness.
