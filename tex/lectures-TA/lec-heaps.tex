@@ -21,7 +21,6 @@
 That definition is equivalent to the following recursive definition: Consider an almost complete binary tree where each node is associated with a number. Then, we will say that this binary tree is a heap if the root's value is lower than its children's values, and each subtree defined by its children is also a heap. There is a one-to-one mapping between these definitions by setting the array elements on the tree in order.
 
   \end{definition}
-\input{tree-1.tex}
 \paragraph{Checking vital signs.}Are the following sequences are heaps? 
 \begin{enumerate}
   \item 1,2,3,4,5,6,7,8,9,10 (Y)
@@ -31,6 +30,10 @@ That definition is equivalent to the following recursive definition: Consider an
 \end{enumerate}
 \begin{figure}[h]
   \centering
+  \begin{subfigure}[b]{\textwidth}
+  \input{tree-1.tex}
+  \end{subfigure}
+  \\
   \begin{subfigure}[b]{0.45\textwidth}
 	\input{tree-2.tex}
   \end{subfigure}
