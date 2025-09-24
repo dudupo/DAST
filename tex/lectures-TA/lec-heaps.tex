@@ -7,20 +7,19 @@
 \fi
 
 \chapter{Heaps.} 
+Heap is the first data structure exhibiting a non-trivial algorithmic mechanism. It allows extracting the min (max) value at a logarithmic time cost. It plays a crucial role in finding shortest-path algorithms, which we will see at the end of the course.
 
-  \paragraph{Leading Problem.} find $k$ largest elements. \ctt{ Next year present the finding $k$-largest elements in $\Theta(n +k\log k)$ time as the goal of the recitation. } 
+\section{Review.}
+  \begin{definition}    
+    Consider the sequence $H = H_{1}, H_{2}, \cdots, H_{n} \in \mathbb{R} \left( * \right)$. We will say that $H$ is a min-Heap if for every $i \in [n]$, we have that $H_{i} \le H_{2i}, H_{2i + 1}$\footnote{When we think of the values at indices greater than $n$ as $H_{i>n} = -\infty$}.
 
-  \begin{definition}
-    
-  Let $n \in \mathbb{N}$ and consider the sequence $H = H_{1}, H_{2} \cdots H_{n} \in \mathbb{R} \left( * \right)$. we will say that $H$ is a Heap if for every $i \in [n]$ we have that: $H_{i} \le H_{2i}, H_{2i + 1}$ when we think of the value at indices greater than $n$ as $H_{i>n} = -\infty$. 
-  \begin{equation*}
-    \begin{split}
-      \Leftrightarrow
-    \end{split}
-  \end{equation*} 
+
+Max-Heap is defined the same way, but by flipping the directions of the inequalities.
+  \end{definition}
+
 That definition is equivalent to the following recursive definition: Consider an almost complete binary tree where each node is associated with a number. Then, we will say that this binary tree is a heap if the root's value is lower than its children's values, and each subtree defined by its children is also a heap. There is a one-to-one mapping between these definitions by setting the array elements on the tree in order.
 
-  \end{definition}
+
 \paragraph{Checking vital signs.}Are the following sequences are heaps? 
 \begin{enumerate}
   \item 1,2,3,4,5,6,7,8,9,10 (Y)
