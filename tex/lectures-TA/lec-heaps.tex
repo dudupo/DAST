@@ -65,22 +65,45 @@ We will start by introducing the heap-sort algorithm and providing a proof of it
 \caption{Heap-sort$(A)$}
   \label{alg:heapsort} 
   \end{algorithm}
-Correctness. We are going to prove the following statement.
+  Correctness. We are going to prove the following statement. For convenience, we use the following notation: $A^{(t)}_{i}$ is the $i$th item of $A$ at iteration $t$ immediately after line (3), and $A^{\prime (t)}_{i}$ is the $i$th item of $A$ at iteration $t$ after line (5) (or equivalently at the beginning of the $t+1$ iteration). Observe that by the definition of the algorithms, line (3) touches only the $1$st and the $(n-t-1)$th elements, so $A^{\prime (t-1)}_{j} = A^{(t)}_{j}$ for any $j \neq 1, n-t-1$.
   \begin{claim}   
 At the end of the $i$th iteration:
 \begin{enumerate}
-  \item $A_{n-i+1},A_{n-i+2},..A_{n}$ are the $i$ largest elements of $A$ placed in order
-    \item $A_{1},A_{2},..A_{n-i}$ is a maximum heap.
+  \item $A^{\prime(i)}_{n-i+1},A^{\prime(i)}_{n-i+2},..A^{\prime(i)}_{n}$ are the $i$ largest elements of $A$ placed in order
+    \item $A^{\prime(i)}_{1},A^{\prime(i)}_{2},..A^{\prime(i)}_{n-i}$ is a maximum heap.
 \end{enumerate}
   \end{claim}
 \begin{proof}
 By induction.
 \begin{enumerate}
-  \item Base. $A_{n}$ is set in line (3) to be the root of the heap, and therefore is the maximum of $A$. After line (4), $A_{1}$ is the parent of the heap's roots as line (4) excludes $A_{n}$ from the heap (So the heap inequality holds for any $j\in [2,(n-1)/2]$). Therefore, by the correctness of heapify, we get that after line (5), $A_{1},A_{2},..A_{n-1}$ is a heap.
-  \item Assumption. Assume the correctness of the claim for any $i^{\prime}<i$.
-  \item Step. Consider the $i$th iteration. By the induction assumption, $A_{1}$ is a root of the heap $A_{1},A_{2},..A_{n-i+1}$ and therefore is their maximum. So after the swapping in line (3), we get that $A_{n-i+1}$ is the element which is greater than $n-i$ elements in $A$. By using the induction assumption again, we know that it is also less than $A_{n-i+2},A_{n-i+3},..A_{n}$, so after line (3) and by the fact that $A_{n-i+2},A_{n-i+3},..A_{n}$ are the $i-1$ largest elements placed in order, we have that $A_{n-i+1},A_{n-i+2},A_{n-i+3},..A_{n}$ are the $i$ largest elements placed in order. 
+  \item Base. 
+    \begin{itemize}
+      \item $A^{(1)}_{n}$ is set in line (3) to be the root of the heap, and therefore is the maximum of $A$. Since, at line (4), we decrease the length size of the heap, and by the correctness of heapify, we have that $A^{(1)}_{n}$ is untapped, or in other words, $A^{\prime (1)}_{n} = A^{(1)}_{n} = A^{(0)}_{1} = \max A$, so we have the first part of the claim.
 
-    By repeating the same arguments in the base case, we can conclude, based on the correctness of heapify, that after line (5), $A_{1}$ is either the root of a heap or the heap inequality did not hold for some $i\in [2,(n-i)/2]$. In the latter case, this would contradict the induction assumption (since before line (3), $A_{1}..A_{n-i+1}$ were heaps).
+        \item Since earlier in line (5), any other element but $A^{(0)}_{1}, A^{(0)}_{n}$ was untapped, we have that for any $j \in [2,n-1]$, $A_{j}^{(1)} = A^{\prime, (0)}_{j}$. Thus, for any $j \in [2,n-1]$, $A_{j}$ satisfies the heap inequality, or in other words, $A^{(1)}_{1}$ is a root of two heaps.
+
+        Hence, by the correctness of the heapify-down algorithm and the decreasing of the heap length at line (4), we have that $A^{\prime (1)}_{1}, A^{\prime (1)}_{2}, \ldots, A^{\prime (1)}_{n-1}$ is a heap, and we have the correctness of the second part of the claim.
+    \end{itemize}
+
+  \item Assumption. Assume the correctness of the claim for any $i^{\prime}<i$.
+  \item Step. Consider the $i$th iteration. 
+
+    \begin{itemize}
+        \item By the first part of the induction assumption, $A^{\prime (i-1)}_{1}$ is a root of the heap $A^{\prime (i-1) }_{1},A^{\prime (i-1) }_{2},..A^{\prime (i-1) }_{n-i+1}$  and therefore is their maximum.
+
+        So after the swapping in line (3), we get that $A^{(i)}_{n-i+1}$ is the element which is greater than $n-i$ elements in $A$. By using the second part of the induction assumption, we know that it is also less than $A_{n-i+2},A_{n-i+3},..A_{n}$, so after line (3) and by that 
+        $A^{prime (i-1) }_{n-i+2},A^{prime (i-1) }_{n-i+3},..A^{prime (i-1) }_{n}$ are the $i-1$ largest elements placed in order,
+        we have that:
+        \begin{equation*}
+          \begin{split}
+            A^{(i) }_{n-i+1},A^{(i) }_{n-i+2},A^{(i) }_{n-i+3},..A^{(i) }_{n} = A^{(i) }_{n-i+1},A^{\prime (i-1) }_{n-i+2},A^{\prime (i-1) }_{n-i+3},..A^{ \prime (i-1) }_{n}
+          \end{split}
+        \end{equation*}
+        are the $i$ largest elements placed in order. 
+
+       \item Similarly to the base case, line (4) confines the 'heap' into $A^{(i)}_{1}, \ldots, A^{(i)}_{n-i}$. Any element $A^{\prime (i-1)}_{j}$, such that $j \neq 1, n-i+1$, is untouched by line (3), and therefore $A^{(i)}_{j} = A^{\prime (i-1)}_{j}$ for any $j \in [2, n-i]$. Thus, all the elements in the range satisfy the heap inequality, and by the correctness of heapify-down, we get that $A^{\prime (i)}_{1}, \ldots, A^{\prime (i)}_{n-i}$ is a heap.
+
+    \end{itemize}
 \end{enumerate}
 \end{proof}
 
