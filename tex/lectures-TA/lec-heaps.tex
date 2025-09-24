@@ -78,7 +78,7 @@ By induction.
 \begin{enumerate}
   \item Base. 
     \begin{itemize}
-      \item $A^{(1)}_{n}$ is set in line (3) to be the root of the heap, and therefore is the maximum of $A$. Since, at line (4), we decrease the length size of the heap, and by the correctness of heapify, we have that $A^{(1)}_{n}$ is untapped, or in other words, $A^{\prime (1)}_{n} = A^{(1)}_{n} = A^{(0)}_{1} = \max A$, so we have the first part of the claim.
+      \item $A^{(1)}_{n}$ is set in line (3) to be the root of the heap and therefore is the maximum of $A$. Since, at line (4), we decrease the length size of the heap, and by the correctness of heapify, we have that $A^{(1)}_{n}$ is untouched when executing heapify-down, or in other words, $A^{\prime (1)}_{n} = A^{(1)}_{n} = A^{(0)}_{1} = \max A$, so we have the first part of the claim.
 
         \item Since earlier in line (5), any other element but $A^{(0)}_{1}, A^{(0)}_{n}$ was untapped, we have that for any $j \in [2,n-1]$, $A_{j}^{(1)} = A^{\prime, (0)}_{j}$. Thus, for any $j \in [2,n-1]$, $A_{j}$ satisfies the heap inequality, or in other words, $A^{(1)}_{1}$ is a root of two heaps.
 
