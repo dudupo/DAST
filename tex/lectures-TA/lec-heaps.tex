@@ -51,11 +51,11 @@ Why do we\footnote{Here: we $=$ any entity that teaches data structure, not the 
 \end{remark} 
 
 
-\section{Heapsort (David's group).}
-
-We will start by introducing the heap-sort algorithm and providing a proof of its correctness.
+\section{Heapsort.}
+We will start by introducing the heap-sort algorithm and providing a proof of its correctness, assuming the correctness of the heapify-down. The heapify-down assumes it is over the root of two heaps, the root itself might not satisfy the heap inequality, and in that case, it is bubbled down until the array becomes a heap. The heap-sort is given in \Cref{alg:heapsort}.
 
 \begin{algorithm}
+  \label{alg:heapsort} 
     $A \leftarrow$ Build-Heap($A$)\\
   	\For{ $i \in  [n]$}{
       swap $A_{1} \leftrightarrow A_{n-i+1}$\\
