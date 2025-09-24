@@ -67,7 +67,11 @@ We will start by introducing the heap-sort algorithm and providing a proof of it
   \end{algorithm}
 Correctness. We are going to prove the following statement.
   \begin{claim}   
-At the end of the $i$th iteration, $A_{n-i+1},A_{n-i+2},..A_{n}$ are the $i$ largest elements of $A$ placed in order, and $A_{1},A_{2},..A_{n-i}$ is a maximum heap.
+At the end of the $i$th iteration:
+\begin{enumerate}
+  \item $A_{n-i+1},A_{n-i+2},..A_{n}$ are the $i$ largest elements of $A$ placed in order
+    \item $A_{1},A_{2},..A_{n-i}$ is a maximum heap.
+\end{enumerate}
   \end{claim}
 \begin{proof}
 By induction.
