@@ -46,6 +46,40 @@ That definition is equivalent to the following recursive definition: Consider an
   \caption{The trees representations of the heaps above. The node which fails to satisfy the Heap inequality is colorized.}
 \end{figure}
 
+\begin{remark}
+Why do we\footnote{Here: we $=$ any entity that teaches data structure, not the HUJI course in particular.} stick to the array representation of heaps when the binary tree representation might seem more convenient? The reason is that the array representation exhibits an in-place sorting algorithm, namely a sorting algorithm that does not allocate additional memory for the target input.
+\end{remark} 
+
+
+\section{Heapsort (David's group).}
+
+We will start by introducing the heap-sort algorithm and providing a proof of its correctness.
+
+\begin{algorithm}
+    $A \leftarrow$ Build-Heap($A$)\\
+  	\For{ $i \in  [n]$}{
+      swap $A_{1} \leftrightarrow A_{n-i+1}$\\
+      heapsize($A$) $\leftarrow n-i$\\
+      heapify($A$, 1)
+  	}	
+	  return $A$
+\caption{Heap-sort$(A)$}
+  \end{algorithm}
+Correctness. We are going to prove the following statement.
+  \begin{claim}   
+At the end of the $i$th iteration, $A_{n-i+1},A_{n-i+2},..A_{n}$ are the $i$ largest elements of $A$ placed in order, and $A_{1},A_{2},..A_{n-i}$ is a maximum heap.
+  \end{claim}
+\begin{proof}
+By induction.
+\begin{enumerate}
+  \item Base. $A_{n}$ is set in line (3) to be the root of the heap, and therefore is the maximum of $A$. After line (4), $A_{1}$ is the parent of the heap's roots as line (4) excludes $A_{n}$ from the heap (So the heap inequality holds for any $j\in [2,(n-1)/2]$). Therefore, by the correctness of heapify, we get that after line (5), $A_{1},A_{2},..A_{n-1}$ is a heap.
+  \item Assumption. Assume the correctness of the claim for any $i^{\prime}<i$.
+  \item Step. Consider the $i$th iteration. By the induction assumption, $A_{1}$ is a root of the heap $A_{1},A_{2},..A_{n-i+1}$ and therefore is their maximum. So after the swapping in line (3), we get that $A_{n-i+1}$ is the element which is greater than $n-i$ elements in $A$. By using the induction assumption again, we know that it is also less than $A_{n-i+2},A_{n-i+3},..A_{n}$, so after line (3) and by the fact that $A_{n-i+2},A_{n-i+3},..A_{n}$ are the $i-1$ largest elements placed in order, we have that $A_{n-i+1},A_{n-i+2},A_{n-i+3},..A_{n}$ are the $i$ largest elements placed in order. 
+
+    By repeating the same arguments in the base case, we can conclude, based on the correctness of heapify, that after line (5), $A_{1}$ is either the root of a heap or the heap inequality did not hold for some $i\in [2,(n-i)/2]$. In the latter case, this would contradict the induction assumption (since before line (3), $A_{1}..A_{n-i+1}$ were heaps).
+\end{enumerate}
+\end{proof}
+
 
 \section{ Heapify-Down. }
 
@@ -284,36 +318,6 @@ return extract-$k$ ( $H_{XY}$ )
 
 
 \newpage
-
-\section{Heapsort (David's group).}
-
-We will start by introducing the heap-sort algorithm and providing a proof of its correctness.
-
-\begin{algorithm}
-    $A \leftarrow$ Build-Heap($A$)\\
-  	\For{ $i \in  [n]$}{
-      swap $A_{1} \leftrightarrow A_{n-i+1}$\\
-      heapsize($A$) $\leftarrow n-i$\\
-      heapify($A$, 1)
-  	}	
-	  return $A$
-\caption{Heap-sort$(A)$}
-  \end{algorithm}
-Correctness. We are going to prove the following statement.
-  \begin{claim}   
-At the end of the $i$th iteration, $A_{n-i+1},A_{n-i+2},..A_{n}$ are the $i$ largest elements of $A$ placed in order, and $A_{1},A_{2},..A_{n-i}$ is a maximum heap.
-  \end{claim}
-\begin{proof}
-By induction.
-\begin{enumerate}
-  \item Base. $A_{n}$ is set in line (3) to be the root of the heap, and therefore is the maximum of $A$. After line (4), $A_{1}$ is the parent of the heap's roots as line (4) excludes $A_{n}$ from the heap (So the heap inequality holds for any $j\in [2,(n-1)/2]$). Therefore, by the correctness of heapify, we get that after line (5), $A_{1},A_{2},..A_{n-1}$ is a heap.
-  \item Assumption. Assume the correctness of the claim for any $i^{\prime}<i$.
-  \item Step. Consider the $i$th iteration. By the induction assumption, $A_{1}$ is a root of the heap $A_{1},A_{2},..A_{n-i+1}$ and therefore is their maximum. So after the swapping in line (3), we get that $A_{n-i+1}$ is the element which is greater than $n-i$ elements in $A$. By using the induction assumption again, we know that it is also less than $A_{n-i+2},A_{n-i+3},..A_{n}$, so after line (3) and by the fact that $A_{n-i+2},A_{n-i+3},..A_{n}$ are the $i-1$ largest elements placed in order, we have that $A_{n-i+1},A_{n-i+2},A_{n-i+3},..A_{n}$ are the $i$ largest elements placed in order. 
-
-    By repeating the same arguments in the base case, we can conclude, based on the correctness of heapify, that after line (5), $A_{1}$ is either the root of a heap or the heap inequality did not hold for some $i\in [2,(n-i)/2]$. In the latter case, this would contradict the induction assumption (since before line (3), $A_{1}..A_{n-i+1}$ were heaps).
-\end{enumerate}
-\end{proof}
-
 
 
 \input{../texlib/tail}
