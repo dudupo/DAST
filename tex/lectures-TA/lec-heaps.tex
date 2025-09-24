@@ -222,6 +222,8 @@ And by the Ratio test for inifinte serires $ \lim_{j\rightarrow \infty} \frac{(j
 
 \newpage
 
+\ifdefined\Book
+
 \paragraph{Heap Sort.}   
 Combining the above, we obtain a new sorting algorithm. Given an array, we could first Heapify it (build a heap from it) and then extract the elements by their order. As we saw, the construction requires linear time, and then each extraction costs $\log n$ time. So, the overall cost is $O\left( n\log n  \right)$. Correction follows immediately from Build and Extract correction.  
 \begin{algorithm}
@@ -261,7 +263,7 @@ $ n \leftarrow n + 1 $
 \caption{Insert-key}
 \end{algorithm}
 
-
+\fi
 
 \newpage 
 \subsection{Example, Median Heap}
