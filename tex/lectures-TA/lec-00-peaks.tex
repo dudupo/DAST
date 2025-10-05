@@ -194,7 +194,7 @@ What's the running time? Denote by $T\left( n \right)$ an upper bound on the run
   \item Induction Assumption. Assume that for any $m < n$, the algorithm runs in at most $c_{1} \log(m) + c_{2}$ time.
   \item Step. Notice that in the worst case, $\lceil n/2 \rceil$ is not a peak, and the algorithm calls itself recursively immediately after paying $c_{2}$ in the first check.
 
-    The recursive call is over an array length of $\lceil n/2 \rceil - 1$ ($\le \lfloor n/2 \rfloor$). Hence: \begin{equation*}
+    The recursive call is over an array length of $\lceil n/2 \rceil - 1$ \footnote{ Notice $ \lceil n/2 \rceil - 1 \le \lfloor n/2 \rfloor$.}. Hence: \begin{equation*}
       \begin{split}    
 	T\left(n\right) & \le c_{2} + T\left(n/2\right) \le c_{2} + c_{1} \log\left( \lfloor n/2 \rfloor \right) + c_{2}\\
 	& = c_{1} - c_{1} + c_{2} + c_{1} \log\left( \lfloor n/2 \rfloor \right) + c_{2}\\
