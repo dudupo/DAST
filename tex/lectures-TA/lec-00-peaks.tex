@@ -192,12 +192,14 @@ What's the running time? Denote by $T\left( n \right)$ an upper bound on the run
 \begin{enumerate}
   \item Base. For the base case, $n \le 3$ we get that $c_{1} \log(1) + c_{2} =  c_{2}$ on the other hand only a single check made by the algorithm, so indeed the base case holds (Choosing $c_{2} \ge$ the cost of a single check).
   \item Induction Assumption. Assume that for any $m < n$, the algorithm runs in at most $c_{1} \log(m) + c_{2}$ time.
-  \item Step. Notice that in the worst case, $\lceil n/2 \rceil$ is not a peak, and the algorithm calls itself recursively immediately after paying $c_{2}$ in the first check. Hence: \begin{equation*}
+  \item Step. Notice that in the worst case, $\lceil n/2 \rceil$ is not a peak, and the algorithm calls itself recursively immediately after paying $c_{2}$ in the first check.
+
+    The recursive call is over an array length of $\lceil n/2 \rceil - 1$ ($\le \lfloor n/2 \rfloor$). Hence: \begin{equation*}
       \begin{split}    
-	T\left(n\right) & \le c_{2} + T\left(n/2\right) \le c_{2} + c_{1} \log\left( \lceil n/2 \rceil \right) + c_{2}\\
-	& = c_{1} - c_{1} + c_{2} + c_{1} \log\left( \lceil n/2 \rceil \right) + c_{2}\\
-	& = c_{1} \log (2) +  c \log\left( \lceil n/2 \rceil  \right) + 2c_{2} - c_{1} \\
-	& = c_{1} \log\left(2 \left(\lceil n/2 \rceil \right) \right) + 2c_{2} - c_{1}
+	T\left(n\right) & \le c_{2} + T\left(n/2\right) \le c_{2} + c_{1} \log\left( \lfloor n/2 \rfloor \right) + c_{2}\\
+	& = c_{1} - c_{1} + c_{2} + c_{1} \log\left( \lfloor n/2 \rfloor \right) + c_{2}\\
+	& = c_{1} \log (2) +  c \log\left( \lfloor n/2 \rfloor  \right) + 2c_{2} - c_{1} \\
+	& = c_{1} \log\left(2 \left(\lfloor n/2 \rfloor \right) \right) + 2c_{2} - c_{1}
       \end{split}
     \end{equation*}
     So, choosing $c_{1} > c_{2}$ gives $2c_{2} - c_{1} < c_{2}$ and therefore:
