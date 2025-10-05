@@ -189,10 +189,16 @@ By induction on the heap size.
   \item Assumption, assume the correctness of the Claim for any tree that satisfies the heap inequality except the root, at size $n^{\prime} < n$. 
   \item Induction step. Consider a tree at size $n$ and assume w.l.g (why could we?) that the right child of the root is the minimum between the triple. Then, by the definition of the algorithm, at line 9, the root exchanges its value with its right child.
 
+    \begin{figure}[h]
+      \centering
+      \includegraphics{tree-41.tex}
+      \caption{The heap after the exchange, at line (10).}
+      \label{fig:<+label+>}
+    \end{figure}
 
-    Given that before the swapping, all the elements of the heap, except the root, had being satisfied the heap inequality, we have that after the exchange, all the right subtree's elements, except the root of that subtree (the original root's right child) still satisfy the inequality.
+    Given that before the swapping, all the elements of the heap, except the root, had being satisfied the heap inequality, we have that after the exchange, all the right subtree's elements, except the root of that subtree (the original root's right child) still satisfy the inequality. 
 
-    As the size of the right subtree is at most $n-1$, we could use the assumption and have that after line (10), the right subtree is a heap.  
+    As the size of the right subtree is at most $n-1$, we can use the induction assumption and have that after line (10), the right subtree is a heap.  
 
     Now, as the left subtree remains the same (the values of the nodes of the left side didn't change), we have that this subtree is also a heap. So it's left to show that the new tree's root is smaller than its children's. Suppose that is not the case, then it's clear that the root of the right subtree (heap) is smaller than the new root. Combining the fact that its origin must be the right subtree, we have a contradiction to the fact that the original right subtree was a heap (as its root wasn't the minimum element in that subtle).  
  
