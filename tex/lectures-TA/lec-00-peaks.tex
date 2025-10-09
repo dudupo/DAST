@@ -6,19 +6,20 @@
 %\renewcommand{\headrulewidth}{0pt}
 %\renewcommand{\bibsection}{}
 
-%\fancypagestyle{firststyle}
-%{
-%   \fancyhf{}
-%   \lhead{\includegraphics[width = 2cm]{logo.jpg}}
-%}
+\fancypagestyle{firststyle}
+{
+   \fancyhf{}
+  \fancyhead[RO,LE]{\textbf{The performance of new graduates}}
+   %\lhead{\includegraphics[width = 2cm]{logo.jpg}}
+}
 \begin{document}
 \ifdefined\BOOK
 \chapter{Introduction to Algorithms}
 \else
 
-\fancyhead[RO,LE]{\textbf{The performance of new graduates}}
+
 \chapter*{Introduction to Algorithms}
-%\thispagestyle{firststyle}
+\thispagestyle{firststyle}
 \fi
 %, Correctness and Efficiency
 \ifdefined\RECITATION
