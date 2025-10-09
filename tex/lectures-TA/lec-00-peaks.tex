@@ -6,7 +6,17 @@
 \ifdefined\BOOK
 \chapter{Introduction to Algorithms}
 \else
-  \includegraphics[width=0.4\textwidth]{logo.jpg}
+
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}
+%\renewcommand{\bibsection}{}
+
+\fancypagestyle{firststyle}
+{
+   \fancyhf{}
+   \lhead{\includegraphics[width = 2cm]{logo.jpg}}
+}
+
 \chapter*{Introduction to Algorithms}
 \fi
 %, Correctness and Efficiency
