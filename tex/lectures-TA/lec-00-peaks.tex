@@ -1,15 +1,19 @@
 \input{../texlib/head.tex}
 \newcommand*{\RECITATION}{}%
-\newcommand*{\BOOK}{}%
+%\newcommand*{\BOOK}{}%
 
 \begin{document}
-\chapter{Introduction to Algorithms.}
+\ifdefined\BOOK
+\chapter{Introduction to Algorithms}
+\else
+\chapter*{Introduction to Algorithms}
+\fi
 %, Correctness and Efficiency
 \ifdefined\RECITATION
 \else
 Computer science differs from other scientific disciplines in that it focuses not on solving or making discoveries, but on questioning how good our current understanding is. The fact that one has successfully come up with an idea for a certain problem immediately raises the question of optimality. At the most basic level, we would like to answer what the 'best' program is that exists for a particular problem. To do so, we must have a notation that allows us to determine if an algorithm is indeed solving the task, quantify its performance, and compare it to other algorithms. In this chapter, we introduce this basic notation. The chapter is divided into two main parts: the first is about induction, a mathematical technique for proving claims, and the second presents asymptotic notation, which we use to describe the behavior of algorithms over large inputs.
 \fi
-\section{Peaks-Finding.}
+\section{Peaks Finding}
 \begin{example}
   Consider an $n$-length array $A$ such that $A_1, A_2, \ldots, A_n \in \mathbb{R}$. We will say that $A_{j}$ is a \textbf{peak} (local maximum) if it is greater than its neighbors. Namely, $A_{i} \ge A_{i\pm1}$ if $i\pm 1 \in [n]$. Whenever $i\pm 1$ is not in the range $[n]$, we will define the inequality $A_{i} \ge A_{i\pm 1}$ to hold trivially. For example, for $n=1$, $A_{1}=A_{n}$ is always a peak.
 
@@ -58,7 +62,7 @@ Computer science differs from other scientific disciplines in that it focuses no
 
 
 
-\section{Naive solution.}
+\section{Naive solution}
 To better understand the problem, let's first examine a simple solution before proposing a more intriguing one. Consider the algorithm examining each of the items $A_i$ one by one.
 \begin{algorithm}
 \KwResult{returns a peak of \(A_1 ... A_n \in \mathbb{R}^n \)  }
@@ -89,7 +93,7 @@ Note that in the third bullet, in the case $i>j$, we proved a general claim abou
 
 Question, In the worst case scenario, how many local checks does peak-finding do? For the third example in~\Cref{example:func}, the naive algorithm will have to check each item, so the running time adds up to at most $c \cdot n$.
 
-\section{Naive alg. recursive version.}
+\section{Naive alg. recursive version}
 Now, we will show a recursive version of the navie peak-find algorithm for demonstrating how correctness can be proved by induction. 
 \begin{algorithm}[h]
 \KwResult{returns a peak of \(A_1 ... A_n \in \mathbb{R}^n \)  }
@@ -123,17 +127,17 @@ We are ready to prove the correctness of the recursive version by induction usin
 
 \begin{enumerate}
   \item Base. Single element array. Trivial. 
-  \item Assumption. Assume that for any $m$-length array, such that $m<n$ the alg returns a peak. 
+  \item Assumption. Assume that for any $m$-length array, such that $m<n$ the algorithm returns a peak. 
   \item Step. Consider an array $A$ of length $n$. If $A_1$ is a peak, then the algorithm answers affirmatively on the first check, returning $1$ and we are done. If not, namely $A_1 < A_2$, then by using \Cref{claim:subarray} we have that any peak of $A' = A_2, A_3, \dots, A_n$ is also a peak of $A$. 
 
     The length of $A'$ is $n-1 < n$. Thus, by the induction assumption, the algorithm succeeds in returning on $A'$ a peak which is also a peak of $A$.
 \end{enumerate}
 
-\section{An attempt for sophisticated solution.}
+\section{An attempt for improved solution.}
 We saw that we can find an arbitrary peak at $c\cdot n$ time, which raises the question, can we do better? Do we really have to touch all the elements to find a local maxima? Next, we will see two attempts to catch a peak at logarithmic cost. The first attempt fails to achieve correctness, but analyzing exactly why will guide us on how to come up with both an efficient and correct algorithm.
 \begin{algorithm}
 \KwResult{returns a peak of \(A_1 ... A_n \in \mathbb{R}^n \)  }
-\caption{fail attempt for more sophisticated alg. }
+\caption{fail attempt for more improved alg. }
         $ i \leftarrow  \lceil n/2 \rceil $\\
         \If { $A_{i}$ is a peak }{
           \Return $i$
@@ -146,15 +150,15 @@ We saw that we can find an arbitrary peak at $c\cdot n$ time, which raises the q
 Let's try to 'prove' it.  
 \begin{enumerate}
  \item Base. Single element array. Trivial. 
-  \item Assumption. Assume that for any $m$-length array, such that $m<n$ the alg returns a peak. 
+  \item Assumption. Assume that for any $m$-length array, such that $m<n$ the algorithm returns a peak. 
   \item Step. If $A_{n/2}$ is a peak, we're done. What happens if it isn't? Is it still true that any peak of $A_{i},A_{i+1}, \ldots, A_{n}$ is also a peak of $A$? Consider, for example, $A[i] = n - i$.
 \end{enumerate}
 
-\section{Sophisticated solution.}
+\section{Sophisticated solution}
 The reason we didn't succeed, and actually do not have a chance, to complete the induction step is that we didn't enforce any relation between the subarray $A^{\prime}$ and its ancestor $A$. We would like to have a claim similar to \Cref{claim:subarray}. That brings us to define \Cref{alg:workreq} and use \Cref{claim:subarraymiddle} to prove its correctness.
 \begin{algorithm}
 \KwResult{returns a peak of \(A_1 ... A_n \in \mathbb{R}^n \)  }
-\caption{sophisticated alg.}
+\caption{improved algorithm}
 $ i \leftarrow  \lceil n/2 \rceil $\\
         \If { $A_{i}$ is a peak in $A$ }{
           \Return $i$
@@ -172,7 +176,7 @@ Let's prove correction.
   By induction. 
 \begin{enumerate}
   \item Base. Single element array. Trivial. 
-  \item Assumption. Assume that for any $m$-length array, such that $m<n$ the alg returns a peak. 
+  \item Assumption. Assume that for any $m$-length array, such that $m<n$ the algorithm returns a peak. 
   \item Step. Consider an array $A$ of length $n$. If $A_{\lceil n/2 \rceil}$ is a peak, then the algorithm answers affirmatively on the first check, returning $\lceil n/2 \rceil$ and we are done.
 
   If not, then either $A_{\lceil n/2 \rceil} < A_{\lceil n/2 \rceil - 1}$ or $A_{\lceil n/2 \rceil} < A_{\lceil n/2 \rceil + 1}$. We have already handled the first case, that is, using \Cref{claim:subarraymiddle} we have that any peak of $A' = A_{\lceil n/2 \rceil + 1}, A_{\lceil n/2 \rceil + 2}, \dots, A_n$ is also a peak of $A$. The length of $A'$ is $ n - \lceil n/2 \rceil - 1 \le  \lfloor n/2 \rfloor < n$. So by the induction assumption, in the case where $A_{\lceil n/2 \rceil} < A_{\lceil n/2 \rceil - 1}$ the algorithm returns a peak. 
