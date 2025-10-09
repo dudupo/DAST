@@ -2,11 +2,6 @@
 \newcommand*{\RECITATION}{}%
 %\newcommand*{\BOOK}{}%
 
-\begin{document}
-\ifdefined\BOOK
-\chapter{Introduction to Algorithms}
-\else
-
 \pagestyle{fancy}
 \renewcommand{\headrulewidth}{0pt}
 %\renewcommand{\bibsection}{}
@@ -16,6 +11,11 @@
    \fancyhf{}
    \lhead{\includegraphics[width = 2cm]{logo.jpg}}
 }
+\begin{document}
+\ifdefined\BOOK
+\chapter{Introduction to Algorithms}
+\else
+
 \thispagestyle{firststyle}
 \chapter*{Introduction to Algorithms}
 \fi
