@@ -13,7 +13,7 @@
 \section{Master Theorem, one Theorem to bound them all }
 The master theorem is the result of the recursive expansion. It handles recursive functions at the form of \(T\left(n\right) = a\cdot T\left( \frac{n}{b} \right) + f\left(n\right) \), for positive function \(f : \mathbb{N} \rightarrow \mathbb{R}^{+} \).       
 
-\begin{framed}\textbf{Master Theorem, simple version.}\
+\begin{framed}\textbf{Master Theorem, simple version.}\\
   First, Consider the case that \(f = n^c\). Let \( a \ge 1, b > 1\) and \( c \ge 0 \). then: 
 \begin{enumerate}
     \item if \(\frac{a}{b^c} < 1 \) then \( T\left(n\right) = \Theta \left( n^c \right) \) \ \ \ \textbf{(\(f\) wins)}.
