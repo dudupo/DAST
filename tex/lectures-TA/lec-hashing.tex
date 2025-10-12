@@ -5,11 +5,13 @@
 
 \begin{document}
 \ifdefined\BOOK
+\chapter{Hashing}
 \else
 \setcounter{chapter}{8}
+\chapter{Hashing*}
+\thispagestyle{firststyle}
 \fi
 
-\chapter{Hashing}
 Up to this point, all the data structures we have seen in this course assume nothing but comparability about the input keys they are expected to manage. Hash functions, in general, are functions\footnote{projections.} from the key space into a lower dimensional space, which can be thought of as our memory storage. 
 \begin{example}
   \label{example:bad}
@@ -22,7 +24,7 @@ However, this is not a ``good`` method, since two different keys with the same r
 Clearly, if we assume that no collisions are going to occur, i.e. all the given keys through the running of the program $x_{1},x_{2},..,x_{n}$ satisfy that for any $x_{i}\neq x_j$, it follows that $h(x_{i}) \neq h(x_{j})$, then the method in \Cref{example:bad} provides a data structure that\footnote{Again, relative to assumptions on the input.} supports access, insertion, and deletion in constant time. This gives us the intuition that the complexity of a general data structure which uses a hash function depends on the way it resolves collisions. In this recitation, we will present ways to handle collisions. The first is a heuristic called \textbf{open addressing} (or \textbf{closed hashing}). The second, \textbf{open hashing}, will also be analyzed, and we will show a characterization that, if satisfied, then we get a good running time in expectation. Finally, we will also show examples of function families that satisfy the characterization and examples of families that do not.
 
 
-\section{ Open Addressing (Closed Hashing).}
+\section{ Open Addressing (Closed Hashing)}
 Open addressing uses a static $m$-length array $T$, hash function $h$, and handles collisions by probing cells in a specific order. For example, linear probing will first check if the cell at position $h(x)$ is not occupied or already contains $x$. If it is, then $h(x)$ is considered the correct place to store $x$. Otherwise, the next cell is probed, namely the cell at position $h(x)+1$, and so on.
   \begin{algorithm}
   \caption{linear probing - access}
@@ -33,7 +35,7 @@ Open addressing uses a static $m$-length array $T$, hash function $h$, and handl
   \Return $h(x) + i$
   \end{algorithm}
 
-\section{ Universal Hashing. } 
+\section{ Universal Hashing } 
 Now that it is understood that collisions govern the running time, we are ready to study a classification of mappings which generate a low number of collisions in expectation.
 \begin{definition}
   Let $\mathcal{H} = \left\{ h_{i} : U \rightarrow [m] \right\}$ be a  family of function from the domain $U$ into $[m] = \{0, 1, .. m-1\} $. $\mathcal{H}$ will be said universal if for any $x\neq y \in U$: \begin{equation*}
@@ -155,7 +157,7 @@ For any $x, y \in I$, let $X_{x,y}$ be the indicator of the event $h(x) = h(y)$.
 \end{proof}
 
 
-\subsection{ Universal Hashing Table. (Open Hashing)} 
+\subsection{ Universal Hashing Table (Open Hashing)} 
 Universal Hashing Table also defined by an $m$-array (table), and an hash function $h$ which index keys $x \in U$ to $T[h(x)]$ cells, Yet in contrast to open addressing each cell might contains multiple keys by maintaining a linked list. Accessing to a stored key, or checking if it is in $T$, is done by iterating the linked list at suited cell. Appending a key, is done by first checking the key is not already stored in the table and then appending it to the tail of the suited linked list. \Cref{alg:openhash} exhibits the access routine, you are encouraged to complete the others.
 \\
 
@@ -199,7 +201,7 @@ In most modern programming languages, the Dictionary data structure is implement
   \end{algorithm}
 Roughly speaking, the algorithm fails when we close a cycle, namely after several recursive calls, back to the point where we were called to insert $x$. The idea of the analysis is that if the functions $h_{1}, h_{2}$ were picked randomly, or very similar to randomly (i.e., from $k$-universal families), that event is unlikely, and the number of scanned spots is constant.
 
-\section{Perfect Hashing.}
+\section{Perfect Hashing}
 In the past week, we have seen how to store keys in hash tables so that the number of mapped keys in a specific cell is $O(1)$ in expectation. The table is constructed using a hashing function $h : \text{key space} \rightarrow m \text{cells}$, randomly chosen from a universal hash function family. This function maps keys to cells, and in each cell, the keys are stored using a linked list. The cost of supported subroutines depends on the length of the list. We named any pair of different keys $x\neq y$ that are mapped to the same cell in the table, namely $h(x) = h(y)$, a collision.
 
 Perfect hashing is a method to ensure that no collision occurs, it works only if all keys are given in advance and they are unique, meaning that the table doesn't support insertion. The idea is as follows, we sample an hash function, and then check if, for all $x,y$ in the input, it holds that $h(x)\neq h(y)$. If so then we continue. Otherwise we repeat. 
@@ -252,7 +254,7 @@ Now, we would like to answer for what value of $m$ there is no collision. Theref
   \end{equation*} 
    Taking $m = \Theta(n)$ is enough to ensure that the expected running time of in insertion/deletion/access is $O(1)$. This raises the question of whether the space complexity of perfect hashing can be reduced to linear.
 
-\subsection{Perfect Hashing in Linear Space.}
+\subsection{Perfect Hashing in Linear Space}
 The idea is as follows: we will use a two-stage hashing process. In the first stage, keys will be mapped to hash tables instead of cells. Each hash table will be constructed using perfect hashing and may require a space that is quadratic in the number of elements stored in it (which were mapped to it in the first stage). Therefore, if we denote by $n_{i}$ the number of elements mapped to the $i$th hash table, the space cost will be $\sum_{i}n_{i}^{2}$. Instead of starting over when a collision occurs, we will do so when $\sum_{i}n_{i}^{2} > 4n$.
   \begin{algorithm}
   \caption{perfect-hashing-linear-space($x_{1},x_{2},..x_{n}$)}
