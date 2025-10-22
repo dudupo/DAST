@@ -18,7 +18,7 @@ The master theorem is the result of the recursive expansion. It handles recursiv
 \begin{enumerate}
     \item if \(\frac{a}{b^c} < 1 \) then \( T\left(n\right) = \Theta \left( n^c \right) \) \ \ \ \textbf{(\(f\) wins)}.
     \item if \(\frac{a}{b^c} = 1 \) then \( T\left(n\right) = \Theta \left( n^c \log_{b} \left(n\right) \right) \).
-    \item if \(\frac{a}{b^c} > 1 \) then \( T\left(n\right) = \Theta \left( n^{\log_{b} \left(a\right)} \right) \) \ \ \ \textbf{(\(f\) loose)}.
+    \item if \(\frac{a}{b^c} > 1 \) then \( T\left(n\right) = \Theta \left( n^{\log_{b} \left(a\right)} \right) \) \ \ \ \textbf{(\(f\) loses)}.
   \end{enumerate}
 \end{framed}
 
@@ -36,7 +36,7 @@ Now, let's generalize the simple version for arbitrary positive \(f\) and let~\(
 \newcommand{\logab}{\log_{b} \left(a\right)}
 
 \begin{enumerate}
-    \item if  \(f\left(n\right) = O \left( n^{\logab - \varepsilon }\right)\) for some \( \varepsilon > 0 \) then~\(T\left(n\right)=\theta\left( n^{\logab}\right)\) \ \ \ \textbf{(\(f\)~loose)}.
+    \item if  \(f\left(n\right) = O \left( n^{\logab - \varepsilon }\right)\) for some \( \varepsilon > 0 \) then~\(T\left(n\right)=\theta\left( n^{\logab}\right)\) \ \ \ \textbf{(\(f\)~loses)}.
     
     \item if  \(f\left(n\right) = \Theta \left( n^{\logab} \right) \) then \(T\left(n\right)=\Theta\left( n^{\logab}\log\left(n\right)\right)\)
     
