@@ -11,10 +11,10 @@
 
 
 \section{Master Theorem, one Theorem to bound them all }
-The master theorem is the result of the recursive expansion. It handles recursive functions at the form of \(T\left(n\right) = a\cdot T\left( \frac{n}{b} \right) + f\left(n\right) \), for positive function \(f : \mathbb{N} \rightarrow \mathbb{R}^{+} \).       
+The master theorem is the result of the recursive expansion. It handles recursive functions at the form of \(T\left(n\right) = a\cdot T\left( \frac{n}{b} \right) + f\left(n\right) \), for a positive function \(f : \mathbb{N} \rightarrow \mathbb{R}^{+} \).       
 
-\begin{framed} \noindent \textbf{Master Theorem, simple version.}\\
-  First, Consider the case that \(f = n^c\). Let \( a \ge 1, b > 1\) and \( c \ge 0 \). then: 
+\begin{framed} \noindent \textbf{Master Theorem.}\\
+  First, Consider the case that \(f = n^c\). Let \( a \ge 1, b > 1\) and \( c \ge 0 \). Then: 
 \begin{enumerate}
     \item if \(\frac{a}{b^c} < 1 \) then \( T\left(n\right) = \Theta \left( n^c \right) \) \ \ \ \textbf{(\(f\) wins)}.
     \item if \(\frac{a}{b^c} = 1 \) then \( T\left(n\right) = \Theta \left( n^c \log_{b} \left(n\right) \right) \).
@@ -30,8 +30,8 @@ The master theorem is the result of the recursive expansion. It handles recursiv
       also due to case (3).
   \end{enumerate}
 \end{example}
-\begin{framed}\noindent \textbf{Master Theorem, strong version.}\\
-Now, let's generalize the simple version for arbitrary positive \(f\) and let~\(a~\ge~1~,~b~>~1\). 
+\begin{framed}\noindent \textbf{Master Theorem, General Version.}\\
+Now, let's generalize the simple version for an arbitrary positive \(f\) and let~\(a~\ge~1~,~b~>~1\). 
 
 \newcommand{\logab}{\log_{b} \left(a\right)}
 
@@ -48,7 +48,7 @@ Now, let's generalize the simple version for arbitrary positive \(f\) and let~\(
 
 \begin{example}\ 
 \begin{enumerate}
-    \item \( T(n) =  T(\frac{2n}{3}) + 1 \rightarrow f(n) = 1 =\Theta ( n^{\log_{\frac{3}{2}} (1)})\) matches the second case. i.e  \( T(n) = \Theta ( n^{\log_{\frac{3}{2}} (1)}\log n )\).
+    \item \( T(n) =  T(\frac{2n}{3}) + 1 \rightarrow f(n) = 1 =\Theta ( n^{\log_{\frac{3}{2}} (1)})\) matches the second case i.e  \( T(n) = \Theta ( n^{\log_{\frac{3}{2}} (1)}\log n )\).
     
     \item \( T(n) = \TT{3}{4} + n\log n \rightarrow f(n) = \Omega( n^{\log_{4}(3) + \varepsilon}  ) \) and notice that \( af( \frac{n}{b})~=\frac{3n}{4}\log(\frac{n}{4})\). 
 
