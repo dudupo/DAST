@@ -126,7 +126,7 @@ If nothing else has been mentioned, then we can assume that we can add additiona
 
 
 
-\textbf{Answer.}  Consider the algorithm which getting down by taking only left turns until hitting edge, as in \Cref{alg:leftleft}, Guideline for correctness: denote by $z, r$ the minimal vertex by both value and height, or in other words, the highest vertex among the vertices with minimal value, and the root. Consider the path descending from $r$ to $z$. Suppose that while walking through the path, we take a right turn at vertex $y$. Then, by the BST property, $y \le z$. If $y < z$, then it contradicts $z$ being minimal by value. Otherwise, if $y = z$, then it contradicts $z$ being the highest vertex among the minimal vertices by value.
+\textbf{Answer.}  Consider the algorithm which gets down by taking only left turns until hitting edge, as in \Cref{alg:leftleft}, Guideline for correctness: denote by $z, r$ the minimal vertex by both value and height, or in other words, the highest vertex among the vertices with minimal value, and the root. Consider the path descending from $r$ to $z$. Suppose that while walking through the path, we take a right turn at vertex $y$. Then, by the BST property, $y \le z$. If $y < z$, then it contradicts $z$ being minimal by value. Otherwise, if $y = z$, then it contradicts $z$ being the highest vertex among the minimal vertices by value.
 
 \begin{algorithm}
 \SetAlgoLined
