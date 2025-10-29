@@ -11,9 +11,9 @@
 \fi
 
 \chapter*{Binary Trees.} 
-Arrays, Linked Lists, Heaps, and Hash Tables are all ways to maintain collections. Each offers a different trade-off in query running times. For some of them, we imposed good worst-case bounds, while for others we can only compute expected costs (Hash Tables). The obvious question is whether one could guarantee both fast access and update running times in the worst-case. 
+Arrays, Linked Lists, Heaps, and Hash Tables are all ways to maintain collections. Each offers a different trade-off in query running times. For some of them, we imposed good worst-case bounds, while for others we can only compute expected costs (Hash Tables), detail are supplied in \Cref{tab:datastructs}. The obvious question is whether one could guarantee both fast access and update running times in the worst-case. 
 
-In the following two lectures, we will that using Balanced Binary Search Trees, we can guarantee both Insertion/Deletion and access.
+In the following two lectures, we will see that using Balanced Binary Search Trees, one can provide both access and insertion/deletion in $O(\log n $. 
 
 \begin{table}[h!]
 \centering
@@ -24,8 +24,8 @@ Linked-List             & $O(n)$          & $O(n)$           & $O(1)$           
 Heap                    & $O(n)$          & $O(\log n)$      & $O(\log n) $           & $O(\log n)$          \\ 
 Hash Table              & $O(n)$          & $O( )$           & $O( )$                 & $O(\log n)$          \\ 
 \end{tabularx}
-\caption{A Simple Table Example}
-\label{tab:example}
+\caption{Running times respecting to data structure and task }
+\label{tab:datastructs}
 \end{table}
 
 
