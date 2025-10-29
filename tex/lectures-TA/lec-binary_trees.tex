@@ -56,7 +56,20 @@ We have already seen, in heaps, that organizing our data in a graph-like structu
     \end{figure}
 
 
-    \textbf{Question.} What's are the maximal and minimal heights of binary tree with $n$ vertices? 
+    \textbf{Question.} What's are the maximal and minimal heights of binary tree with $n$ vertices?
+    \textbf{Answer.} The maximal hight is $n-1$, and matches to trees for which any vertices has at most one child. The minimal length is $\log n$, let's proof it by induction. Denote by $H_{n}$ the minimal hight of a binary tree over $n$ vertices. 
+    \begin{enumerate}
+      \item Base. $n=1$, The tree consisite from a single vertex which is both the root and a leaf. Thus, the longest path is at length $0$, and also $\log 1 = 0 $. 
+      \item Assumption. Assume the correctness of the claim for any $m < n$. 
+      \item Step. Consider a binary tree over $n$ vertices with minimal hight. Assume that,  
+        \begin{equation*}
+          \begin{split}
+            H_{n} & \ge 1 + \max \left( H_{x}, H_{n-x} \right) \le 1 + H_{n/2} \\ 
+            & = 1 + \log(\frac{n}{2}) = \log(n)
+          \end{split}
+        \end{equation*}
+    \end{enumerate}
+
 
     \begin{figure}[h]
       \centering
