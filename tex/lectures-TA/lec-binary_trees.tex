@@ -69,11 +69,11 @@ We have already seen, in heaps, that organizing our data in a graph-like structu
             H_{n} & \ge 1 + \max \left( H_{x}, H_{n-x} \right) 
           \end{split}
         \end{equation*}
-By the monotonic property of $H_{n}$, we have that the above is minimized when both $H_{x}=H_{n-x}=H_{n/2}$ if $n$ is even, or $\max(x,n-x) = \left\ceil n/2 \right\ceil$ when $n$ is odd. So we get:
+By the monotonic property of $H_{n}$, we have that the above is minimized when both $H_{x}=H_{n-x}=H_{n/2}$ if $n$ is even, or $\max(x,n-x) = \lceil n/2 \rceil$ when $n$ is odd. So we get:
         \begin{equation*}
           \begin{split}
-            \ge & 1 + H_{\left\ceil n/2 \right\ceil} \\ 
-            = & 1 + \log(\left\ceil \frac{n}{2} \right\ceil ) = \log(n+1)
+            \ge & 1 + H_{\lceil n/2 \rceil} \\ 
+            = & 1 + \log(\lceil \frac{n}{2} \rceil ) = \log(n+1)
           \end{split}
         \end{equation*}
     \end{enumerate}
