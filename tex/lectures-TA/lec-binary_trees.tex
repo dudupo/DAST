@@ -142,8 +142,33 @@ Now, we are ready to understand to store numbers (or keys), by binary trees.
 \caption{Min} 
 \label{alg:leftleft}
 \end{algorithm}
+\textbf{Question.}  Given that the value $x$ is in $T$ and that it's unique, how do you find the vertex that stores it?
 
 
+
+\textbf{Answer.} Consider algorithm \Cref{alg:search}.
+
+
+\begin{algorithm}
+  \label{alg:search}
+\SetAlgoLined
+\KwData{$T$ - tree, key - key to search for}
+\KwResult{pointer to vertex with key equal to key}
+    \If{$T$ is empty}{
+        \Return null
+    }
+    \If{$T$.key equals key}{
+        \Return $T$
+    }
+    \If{key is less than $T$.key}{
+      \Return Search($T$.left, key)
+    }
+    \Else{
+      \Return Search($T$.right, key)
+    }
+
+\caption{Search} 
+\end{algorithm}
 
 \begin{framed}
   \begin{definition}Let $T$ be a binary search tree, and let $x$ be a node belonging to it. 
@@ -154,59 +179,10 @@ Now, we are ready to understand to store numbers (or keys), by binary trees.
   \end{definition}
 \end{framed}
 
-\paragraph{Functionalitiy of BST.}
-\begin{enumerate}
-\item Search($T$, key): returns a pointer to the vertex whose key equals key. 
-  \item Min($T$): returns a pointer to the vertex with the minimum value in $T$.  
-  \item Max($T$): returns a pointer to the vertex with the maximum value in $T$.  
-  \item Predecessor($x$): returns a pointer to the predecessor of $x$.  
-  \item Successor($x$): returns a pointer to the successor of $x$. 
-  \item Insert($T$, key): inserts key into $T$ (creates a new vertex).   
-  \item Delete($T$, $x$): removes $x$ from $T$. 
-  \item Inorder($T$): outputs $T$'s keys in sorted order.
 
-%\begin{algorithm}[H]
-%\SetAlgoLined
-%\KwData{$T$ - tree, $x$ - vertex to delete}
-%\KwResult{removes $x$ from $T$}
-%\Set
-\end{enumerate}
+\textbf{Question.}
 
-%\begin{example}
-%
-%\end{example}
-%\begin{example}
-%
-%\end{example}
-%\begin{example}
-%
-%\end{example}
-%
-
-      \newpage
-      \newpage
-
-\section{Appendix - BST Methods Source: A Mixture of Cormen, Wikipedia, and Codeforces}
-
-\begin{algorithm}
-\SetAlgoLined
-\KwData{$T$ - tree, key - key to search for}
-\KwResult{pointer to vertex with key equal to key}
-    \If{$T$ is empty}{
-        \Return null\;
-    }
-    \If{$T$.key equals key}{
-        \Return $T$\;
-    }
-    \If{key is less than $T$.key}{
-      \Return Search($T$.left, key)\;
-    }
-    \Else{
-      \Return Search($T$.right, key)\;
-    }
-
-\caption{Search} 
-\end{algorithm}
+\textbf{Answer.}
 
 
 \begin{algorithm}
@@ -225,21 +201,6 @@ Now, we are ready to understand to store numbers (or keys), by binary trees.
 \caption{Predecessor}
 \end{algorithm}
 
-\begin{algorithm}
-\SetAlgoLined
-\KwData{$x$ - vertex}
-\KwResult{pointer to successor of $x$}
-    \If{$x$.right is not empty}{
-      \Return Min($x$.right)\;
-    }
-    $y \leftarrow x$.parent\;
-    \While{$y$ is not empty and $x$ is $y$.right}{
-        $x \leftarrow y$\;
-        $y \leftarrow y$.parent\;
-    }
-    \Return $y$\;
-\caption{Successor}
-\end{algorithm}
 
 
 \input{../texlib/tail}
