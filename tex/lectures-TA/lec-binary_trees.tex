@@ -53,18 +53,27 @@ We encode a binary tree by associating a field to each vertex $x$, representing 
 If nothing else has been mentioned, then we can assume that we can add additional fields to the vertices.
 
 
-\section{Binary Search Trees.} Binary search tree (BST) is a binary tree which any node $x$ of it: 
-\begin{enumerate}
-  \item Contains a field key, storing a number $x$.key. 
-  \item Any left descendant $y$ of $x$ satisfies $y$.key $\le$ $x$.key. 
-  \item Any right descendant $y$ of $x$ satisfies $y$.key $\ge$ $x$.key. 
-\end{enumerate}
+\section{Binary Search Trees.}
+
+\begin{framed}
+  \begin{definition} \hfill
+
+    Binary search tree (BST) is a binary tree which any node $x$ of it: 
+    \begin{enumerate}
+      \item Contains a field key, storing a number $x$.key. 
+      \item Any left descendant $y$ of $x$ satisfies $y$.key $\le$ $x$.key. 
+      \item Any right descendant $y$ of $x$ satisfies $y$.key $\ge$ $x$.key. 
+    \end{enumerate}
+  \end{definition}
+\end{framed}
 
 \paragraph{Question.} Let $T$ be a binary search tree, Where are the minimum and maximum values of $T$? (most left and right nodes). 
 
-\begin{definition}
-Let $T$ be a binary search tree, and let $x$ be a node belonging to it. The predecessor of $x$ will be defined as a vertex $y$ such that $y$.key $\leq x$.key and $y$.key is maximal among the nodes satisfying this condition. If we were to set the values of $T$ in sorted order, then the predecessor of $x$ would be located on its left. The successor of $x$ will be defined as $y$, where $x$ is the predecessor of $y$.
-\end{definition}
+\begin{framed}
+  \begin{definition} \hfill
+    Let $T$ be a binary search tree, and let $x$ be a node belonging to it. The \textbf{predecessor} of $x$ will be defined as a vertex $y$ such that $y$.key $\leq x$.key and $y$.key is maximal among the nodes satisfying this condition. If we were to set the values of $T$ in sorted order, then the predecessor of $x$ would be located on its left. The \textbf{successor} of $x$ will be defined as $y$, where $x$ is the predecessor of $y$.
+  \end{definition}
+\end{framed}
 
 \paragraph{Functionalitiy of BST.}
 \begin{enumerate}
