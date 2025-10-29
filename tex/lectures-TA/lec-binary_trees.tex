@@ -149,58 +149,6 @@ If nothing else has been mentioned, then we can assume that we can add additiona
 %\Set
 \end{enumerate}
 
-
-\begin{example}Questions from past exams.
-  \begin{enumerate}
-    \item Write an algorithm that, given a binary search tree $T$, returns a max heap containing all the elements of $T$. What is the lower bound for this problem? Explain.
-    \item Write an algorithm that, given a heap $H$, returns a binary search tree containing all the elements of $H$. What is the lower bound for this problem? Explain.
-  \end{enumerate}
-\end{example}
-
-\paragraph{Solution.} 
-  \begin{enumerate}
-    \item Remember that any array sorted in reverse order is also a max heap. This is because if $A_{i} \ge A_{j}$ for any $i < j$, then it follows that $A_{i} \ge A_{2i}, A_{2i+1}$ for any $i$. Therefore, we will output the values of $T$ in reverse order. We do this by applying Inorder in reverse, as given in \Cref{alg:treetoheap}. The running time is $\Theta(n)$ and of course it is also the lower bound (as we must read all the inputs for printing it).
-      \begin{algorithm}
-       \KwData{$r$ - a vertex in BST}
-       
-       \If{$r$.right is not empty/Null}{
-         Reverse-Order($r$.right)
-       }
-       Print $r$.key \\
-       \If{$r$.left is not empty/Null}{
-         Reverse-Order($r$.left)
-       }
-        \caption{Reverse-Order }
-\label{alg:treetoheap}
-      \end{algorithm}
-    \item We will initialize an empty binary search tree and then add the elements to it one by one. Each insertion will cost the current height of the tree, so it might sum up to $\Theta(n^{2})$. However, next week we will see how those insertions could be done in a way that preserves the balance of the tree, namely guaranteeing that the height of the tree will remain logarithmic.
-  \end{enumerate}
-
-\begin{example} Adding fields to BSTs. We would like to support $k$-smallest element extraction. Suggest a field that will be used for computing the $k$-smallest element, explain how to maintain it, and write an algorithm that extracts the $k$-smallest element. 
-\end{example}
-
-\paragraph{Solution.} We will associate with each vertex of the tree a field that counts the number of nodes whose keys are lower than it (the size of its left subtree). Let's denote it as left-size. The code is given in \Cref{alg:kstat}. Guideline for proving correctness:
-Consider the root, and let's separate into cases based on how many elements the root is greater than.
-\begin{enumerate}
-  \item If the root is strictly greater than $k-1$ elements, then the $k$-smallest element is in its left subtree and is also the $k-1$ smallest element in that subtree.
-  \item If the root is greater than strictly fewer than $k-1$ elements, then it is clear that the $k$-smallest element is also greater than it and located in its right subtree. However, in contrast to the previous case, here the order of the $k$-smallest element of the whole tree in the subtree will be the substitution between $k$ and the number of nodes in the $\{$ left-subtree $\cup$ root $\}$.
-  \item The third case is when the root is greater than exactly $k-1$ elements, which by definition sets it as the $k$-smallest element.
-\end{enumerate}
-In the first two cases, we are calling Get-Order on trees (BST with our additional field) with smaller height. Therefore, it is clear how one would prove correctness by induction. We will see in the next recitation how to maintain the tree, update the field, and guarantee that the height of the tree will remain logarithmic.
-  \begin{algorithm}
-  \KwData{$r$ - a vertex in BST, $k$-stat parameter}
-       $m \leftarrow r$.left-size \\ 
-       \If{$m = k -1$ }{
-         \Return $r$.key 
-       }
-      \If{$m > k -1$ }{
-        \Return Get-Order($r$.left, $k$)
-       }\If{$m < k -1$ }{
-         \Return Get-Order($r$.right, $k - (m+1)$)
-       }
-        \caption{Get-Order }
-\label{alg:kstat}
-      \end{algorithm}
 %\begin{example}
 %
 %\end{example}
