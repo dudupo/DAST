@@ -34,16 +34,18 @@ We have already seen, in heaps, that organizing our data in a graph-like structu
 
 
 
-\begin{definition}
-  \begin{enumerate}
-    \item Binary Tree: A tree in which any vertex has at most two children.
-    \item A descendant of vertex $x$ is a vertex in the subtree whose root is $x$. A left descendant of vertex $x$ is either a vertex in the subtree whose root is the left child of $x$, or $x$'s left child.
-    \item An ancestor of $x$ is a vertex to which $x$ belongs as a descendant.
-    \item A leaf is a vertex without children.
-    \item Height of vertex $x$ is the length of the longest simple path (without cycles) between $x$ and one of the leaves.
-    \item Height of the tree is the height of its root, which is usually denoted by $h$.
-\end{enumerate}
-\end{definition}
+\begin{framed}
+  \begin{definition}
+    \begin{enumerate}
+      \item Binary Tree: A tree in which any vertex has at most two children.
+      \item A descendant of vertex $x$ is a vertex in the subtree whose root is $x$. A left descendant of vertex $x$ is either a vertex in the subtree whose root is the left child of $x$, or $x$'s left child.
+      \item An ancestor of $x$ is a vertex to which $x$ belongs as a descendant.
+      \item A leaf is a vertex without children.
+      \item Height of vertex $x$ is the length of the longest simple path (without cycles) between $x$ and one of the leaves.
+      \item Height of the tree is the height of its root, which is usually denoted by $h$.
+    \end{enumerate}
+  \end{definition}
+\end{framed}
 
 We encode a binary tree by associating a field to each vertex $x$, representing its right, left children, and parent. We use the notation $x$.left to refer to the left child of $x$, although the physical implementation may differ conceptually. For example, the way binary trees are implemented in Cormen is through 4 arrays. The first stores the value of $x$, while the others store pointers of specific types. For instance, the array LEFT, where LEFT.$x$ stores the left child of $x$.
 
