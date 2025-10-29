@@ -49,9 +49,17 @@
 \pgfplotsset{compat=newest}
 
 
+\ifdefined\BOOK
+\else
+\usepackage{chngcntr}
+\counterwithout{section}{chapter}
+
+\fi
 \newcommand{\mynewtheorem}[2]{  
   \newtheorem{#1}{#2}
+  \ifdefined\BOOK
   \numberwithin{#1}{section}
+  \fi
 
 }
 \newcommand{\mynewtheoremstar}[2]{  
