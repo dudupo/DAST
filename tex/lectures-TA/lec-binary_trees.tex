@@ -58,7 +58,15 @@ We have already seen, in heaps, that organizing our data in a graph-like structu
 
     \textbf{Question.} What's are the maximal and minimal heights of binary tree with $n$ vertices? 
 
+    \begin{figure}[h]
+      \centering
+      \input{tikz-binary_2.tex}
+      \caption{ Example of a binary tree with $12$ vertices. In blue, one of the longest paths from the root to one of the leaves, which is of length $4$. }
+      \label{fig:<+label+>}
+    \end{figure}
 
+
+    \subsection{Encoding}
 
 We encode a binary tree by associating a field to each vertex $x$, representing its right, left children, and parent. We use the notation $x$.left to refer to the left child of $x$, although the physical implementation may differ conceptually. For example, the way binary trees are implemented in Cormen is through 4 arrays. The first stores the value of $x$, while the others store pointers of specific types. For instance, the array LEFT, where LEFT.$x$ stores the left child of $x$.
 
