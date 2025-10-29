@@ -124,6 +124,20 @@ If nothing else has been mentioned, then we can assume that we can add additiona
 
 \paragraph{Question.} Let $T$ be a binary search tree, Where are the minimum and maximum values of $T$? (most left and right nodes). 
 
+\begin{algorithm}
+\SetAlgoLined
+\KwData{$T$ - tree}
+\KwResult{pointer to vertex with minimum value in $T$}
+    \If{$T$ is empty}{
+        \Return null\;
+    }
+    \If{$T$.left is empty}{
+        \Return $T$\;
+    }
+    \Return Min($T$.left)\;
+\caption{Min} 
+\end{algorithm}
+
 
 
 \begin{framed}
@@ -189,33 +203,6 @@ If nothing else has been mentioned, then we can assume that we can add additiona
 \caption{Search} 
 \end{algorithm}
 
-\begin{algorithm}
-\SetAlgoLined
-\KwData{$T$ - tree}
-\KwResult{pointer to vertex with minimum value in $T$}
-    \If{$T$ is empty}{
-        \Return null\;
-    }
-    \If{$T$.left is empty}{
-        \Return $T$\;
-    }
-    \Return Min($T$.left)\;
-\caption{Min} 
-\end{algorithm}
-
-\begin{algorithm}
-\SetAlgoLined
-\KwData{$T$ - tree}
-\KwResult{pointer to vertex with maximum value in $T$}
-    \If{$T$ is empty}{
-        \Return null\;
-    }
-    \If{$T$.right is empty}{
-        \Return $T$\;
-    }
-    \Return Max($T$.right)\;
-    \caption{ Max }
-\end{algorithm}
 
 \begin{algorithm}
 \SetAlgoLined
@@ -247,56 +234,6 @@ If nothing else has been mentioned, then we can assume that we can add additiona
     }
     \Return $y$\;
 \caption{Successor}
-\end{algorithm}
-
-\begin{algorithm}
-\SetAlgoLined
-\KwData{$T$ - tree, key - key to insert}
-\KwResult{inserts key into $T$}
-    newNode $\leftarrow$ create new vertex with key $key$\;
-    $y \leftarrow$ null\;
-    $x \leftarrow T$\;
-    \While{$x$ is not empty}{
-        $y \leftarrow x$\;
-        \If{$key$ is less than $x$.key}{
-            $x \leftarrow x$.left\;
-        }
-        \Else{
-          $x \leftarrow x$.right\;
-        }
-    }
-    newNode.parent $\leftarrow y$\;
-    \If{$y$ is null}{
-        $T \leftarrow$ newNode\;
-    }
-    \ElseIf{$key$ is less than $y$.key}{
-        $y$.left $\leftarrow$ newNode\;
-    }
-    \Else{
-        $y$.right $\leftarrow$ newNode\;
-    }
-\caption{Insert}
-\end{algorithm}
-
-%\begin{algorithm}
-%\SetAlgoLined
-%\KwData{$T$: The input tree, $x$: The key to be deleted}
-%\If{$x$ is in $T$}{
-%  Remove $x$ from $T$\;
-%}
-%\caption{Delete($T$, $x$)}
-%\end{algorithm}
-%
-%2. Inorder($T$):
-\begin{algorithm}
-\SetAlgoLined
-\KwData{$T$: The input tree}
-\If{$T$ is not empty}{
-  Inorder($T$.left)\;
-  Output $T$.key\;
-  Inorder($T$.right)\;
-}
-\caption{Inorder($T$)}
 \end{algorithm}
 
 
