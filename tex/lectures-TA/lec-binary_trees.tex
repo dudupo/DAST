@@ -56,16 +56,24 @@ We have already seen, in heaps, that organizing our data in a graph-like structu
     \end{figure}
 
 
-    \textbf{Question.} What's are the maximal and minimal heights of binary tree with $n$ vertices?
-    \textbf{Answer.} The maximal hight is $n-1$, and matches to trees for which any vertices has at most one child. The minimal length is $\log n$, let's proof it by induction. Denote by $H_{n}$ the minimal hight of a binary tree over $n$ vertices. 
+    \textbf{Question.} What are the maximal and minimal heights of binary trees over $n$ vertices?
+    \textbf{Answer.}  The maximal height is $n-1$, and matches to trees in which any vertex has at most one child. The minimal height is $\log n$. Let's prove it by induction. 
+
+    Denote by $H_{n}$ the minimal height of a binary tree with $n$ vertices. Observe that $H_{n+1} \ge H_{n}$, That's because adding a vertex to an $n$-size binary tree can't shorten any of the paths from root to leaves, particularly not the longest one.
     \begin{enumerate}
-      \item Base. $n=1$, The tree consisite from a single vertex which is both the root and a leaf. Thus, the longest path is at length $0$, and also $\log 1 = 0 $. 
+      \item Base. $n=1$, The tree consists of a single vertex, which is both the root and a leaf. Thus, the longest path is of length $0$, and also $\log 1 = 0$.
       \item Assumption. Assume the correctness of the claim for any $m < n$. 
-      \item Step. Consider a binary tree over $n$ vertices with minimal hight. Assume that,  
+      \item Step. Consider a binary tree over $n$ vertices with minimal hight. The longest path consists of an edge between the root and one of its children. Denote by $x$ the size of the root's left subtree, so the size of root's right subtree is $n-x$, Thus we get:
         \begin{equation*}
           \begin{split}
-            H_{n} & \ge 1 + \max \left( H_{x}, H_{n-x} \right) \le 1 + H_{n/2} \\ 
-            & = 1 + \log(\frac{n}{2}) = \log(n)
+            H_{n} & \ge 1 + \max \left( H_{x}, H_{n-x} \right) 
+          \end{split}
+        \end{equation*}
+By the monotonic property of $H_{n}$, we have that the above is minimized when both $H_{x}=H_{n-x}=H_{n/2}$ if $n$ is even, or $\max(x,n-x) = \left\ceil n/2 \right\ceil$ when $n$ is odd. So we get:
+        \begin{equation*}
+          \begin{split}
+            \ge & 1 + H_{\left\ceil n/2 \right\ceil} \\ 
+            = & 1 + \log(\left\ceil \frac{n}{2} \right\ceil ) = \log(n+1)
           \end{split}
         \end{equation*}
     \end{enumerate}
