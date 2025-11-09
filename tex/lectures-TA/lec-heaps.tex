@@ -60,10 +60,11 @@ Why do we\footnote{Here: we $=$ any entity that teaches data structure, not the 
 
 
 \section{Heapsort}
-We will start by introducing the heap-sort algorithm and providing a proof of its correctness, assuming the correctness of the heapify-down. The heapify-down assumes it is over the root of two heaps, the root itself might not satisfy the heap inequality, and in that case, it is bubbled down until the array becomes a heap. The heap-sort is given in \Cref{alg:heapsort}.
+We will start by introducing the heap-sort algorithm and providing a proof of its correctness, assuming the correctness of the heapify-down. 
+The heapify-down assumes that its input is the root of two heaps. Yet, the root itself might not satisfy the heap inequality, and in that case, it is bubbled down until the array becomes a heap. The heap-sort is given in \Cref{alg:heapsort}.
 
 \begin{algorithm}
-    $A \leftarrow$ Build-Heap($A$)\\
+    $A \leftarrow$ Build-MaxHeap($A$)\\
   	\For{ $i \in  [n]$}{
       swap $A_{1} \leftrightarrow A_{n-i+1}$\\
       heapsize($A$) $\leftarrow n-i$\\
@@ -73,7 +74,9 @@ We will start by introducing the heap-sort algorithm and providing a proof of it
 \caption{Heap-sort$(A)$}
   \label{alg:heapsort} 
   \end{algorithm}
-  Correctness. We are going to prove the following statement. For convenience, we use the following notation: $A^{(t)}_{i}$ is the $i$th item of $A$ at iteration $t$ immediately after line (3), and $A^{\prime (t)}_{i}$ is the $i$th item of $A$ at iteration $t$ after line (5) (or equivalently at the beginning of the $t+1$ iteration). Observe that by the definition of the algorithms, line (3) touches only the $1$st and the $(n-t-1)$th elements, so $A^{\prime (t-1)}_{j} = A^{(t)}_{j}$ for any $j \neq 1, n-t-1$.
+  Correctness. We are going to prove the following statement. For convenience, we use the following notation: $A^{(t)}_{i}$ is the $i$th item of $A$ at iteration $t$ immediately after line (3), and $A^{\prime (t)}_{i}$ is the $i$th item of $A$ at iteration $t$ after line (5) (or equivalently at the beginning of the $t+1$ iteration).
+
+  Observe that, by the definition of the algorithm, line (3) touches only the $1$st and the $(n-t-1)$th elements, so $A^{\prime (t-1)}_{j} = A^{(t)}_{j}$ for any $j \neq 1, n-t-1$.
   \begin{claim}   
 At the end of the $i$th iteration:
 \begin{enumerate}
