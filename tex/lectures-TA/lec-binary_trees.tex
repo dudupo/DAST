@@ -171,7 +171,8 @@ Now, we are ready to understand to store numbers (or keys), by binary trees.
 \end{algorithm}
 
 \begin{framed}
-  \begin{definition}Let $T$ be a binary search tree, and let $x$ be a node belonging to it. 
+  \begin{definition} \hfill
+    Let $T$ be a binary search tree, and let $x$ be a node belonging to it. 
     \begin{enumerate}
         \item The \textbf{predecessor} of $x$ will be defined as a vertex $y$ such that $y$.key $\leq x$.key and $y$.key is maximal among the nodes satisfying this condition. If we were to set the values of $T$ in sorted order, then the predecessor of $x$ would be located on its left.
           \item The \textbf{successor} of $x$ will be defined as $y$, where $x$ is the predecessor of $y$.
@@ -201,16 +202,12 @@ Now, we are ready to understand to store numbers (or keys), by binary trees.
 \caption{Predecessor}
 \end{algorithm}
 
-Last time, we saw some operations that can be performed on BSTs, and
-proved correctness for some of them. These were: $Search(x), Min(T), Max(T), Pred(x), Succ(x),
-Insert(x), Delete(x)$. All of these operations take $O(h(T))$ in the worst case.\\
+\section{AVL Trees}
 
-The main two operations that may cause problems are $Insert$ and $Delete$, as
-they change the tree's height (consider inserting $81,82,83,84$ to our
-working example).
-To address this problem, we introduce another field: for each node $v$, add a field of $h(v)$ = the height of the subtree whose root is $v$. This allows us to maintain the AVL property:
+The main two operations that may cause problems are $Insert$ and $Delete$, as they change the tree's height (consider inserting $81,82,83,84$ to our
+working example). To address this problem, we introduce another field: for each node $v$, add a field of $h(v)$ = the height of the subtree whose root is $v$. This allows us to maintain the AVL property:
 \begin{framed}
-  \begin{definition}
+  \begin{definition}\hfill
     AVL tree is a balanced BST, such that for any node $x$, its left and right subtrees' height differs in no more than $1$. In other words:
     $$|h(left(x)) - h(right(x))|\leq 1$$
   \end{definition}
@@ -219,7 +216,7 @@ To address this problem, we introduce another field: for each node $v$, add a fi
     (1)$:
 
     \begin{framed}
-      \begin{definition}
+      \begin{definition} \hfill
         For each node $x\in T$, it's Balance Factor is defined 
         $$hd (x) := h(left(x)) - h(right(x))$$ In AVL trees, we would like to maintain
         $|hd(x)| \leq 1$
@@ -333,8 +330,8 @@ rotations. Since rotations can be done in $O(1)$, the entire correction
 process will take $O(\log(n))$, so we maintain a good time complexity.
 
 
-\begin{framed}{AVL Insert(r,x)}
-  \begin{algorithm}[H]
+\begin{framed} 
+  \begin{algorithm}
     Call Insert $(r,x)$ // (The standard insertion routine for BST) \\  
     Let $p$ be the new node appended to the tree. \\
     \While{ $p$.parent $\neq \emptyset $ } {
@@ -343,6 +340,7 @@ process will take $O(\log(n))$, so we maintain a good time complexity.
       Update the height of each touched vertex  \\
       $p \leftarrow$ $p$.parent \\  
     }
+    \caption{ AVL Insert(r,x) } 
   \end{algorithm}
 \end{framed}
 
@@ -535,88 +533,10 @@ tree and detect violations (if occurred).\\
 
 \end{example}
 
-\newpage
 \fi
-\subsection{Exam Question.}
-Consider the following question from 2018 exam. 
-\begin{figure}[h]
-  \centering
-  \includegraphics[scale=0.8]{avl-q-exam.png}\\
-\end{figure}
 
-
-
-\begin{figure}[H]
-  \begin{subfigure}[b]{0.47\textwidth}
-    \paragraph{Solution.} 
-
-How would it look like an algorithm which computes the 'sum over' query? Or for given $x$, which vertices have a key less than $x$? 
-Consider the path $v_1,v_2,v_3...v_n$ on which the Search subroutine went over when looking for $x$. If $v_i$.key $ <  v_{i+1}$.key then it means that $x$ is 
-greater then $v_{i}$.key. Furthermore, $x$ is also greater than all the keys in the left subtree of $v_{i}$.
-
-\paragraph{}
-
-Let us transform that insight into an 
-Algorithm. Define for each vertex a field that stores the summation of all its left subtree keys plus its own key; call it 'Leftsum'.  
-Then computing the sumover query will be done by summing these fields of the vertices in the right turn on the searching path. 
-\end{subfigure} 
-\hfill
-\begin{subfigure}[b]{0.49\textwidth}
-  \includegraphics[scale=0.07]{oavl-q.png}
-   \end{subfigure} 
-   \hfill
-\end{figure}
-
-
-\begin{framed}{Sumover($r$,$x$)}
-  \begin{algorithm}[H]
-    \If{ $r$ is None }{
-      return $0$ 
-    }\Else{
-      \If{$x > r$.key }{
-	return $r$.Leftsum + Sumover( $r$.right, $x$ )  
-      }\Else{
-      	return Sumover( $r$.left, $x$ )  
-      }
-    }
-  \end{algorithm}
-\end{framed}
-
-So it has left to show how one could maintain the tree and guarantee a logarithmic height. Consider a vertex $v$ and suppose that both
-his direct children are correct AVL trees and have the correct value at the Leftsum field. We know that:
-\begin{enumerate}
-  \item There is a rotation that balances the tree at the cost of $O(1)$ time.
-  \item All the descendants of $v$, at a distance at least two from it,  will remain the same in the sense that their subtree has not changed. 
-\end{enumerate}
-Therefore we will have to recompute the Sumleft filed for only a $O(1)$ vertices (which are the children and the grandchildren of $v$ previews the rotation). 
-Each computation could be done in $O(1)$ time. 
-
-
-\begin{framed}{AVL-Leftsum Insert(r,x)}
-  \begin{algorithm}[H]
-    Call Insert $(r,x)$ // (The standard insertion routine for BST) \\  
-    Let $p$ be the new node appended to the tree. \\
-    \While{ $p$.parent $\neq \emptyset $ } {
-      Apply the right rotation. \\
-      \For{ any vertex $v$ such that its pointers have changed, sorted by height } {
-	$v$.Leftsum $\leftarrow$ $v$.key + $v$.left.Leftsum + $v$.left.right.Leftism 		
-      }
-      $p \leftarrow$ $p$.parent \\  
-    }
-  \end{algorithm}
-\end{framed}
-
-\paragraph{Running time.} The work is done over vertices along a single path, and on each vertex only $O(1)$ time 
-is spent, Then we have that the total running time of the algorithm is proportional to the tree height. 
-Combining the fact that we maintain the AVL property, it follows that the total time is $\Theta\left( \log n \right)$.  
-
-
-
-
-\section*{Appendix}
-\subsection{AVL tree's height}
-Let $n_h$ be the minimal number of nodes in an AVL tree of height
-$h$.\\
+\section{AVL's Height}
+Let $n_h$ be the minimal number of nodes in an AVL tree of height $h$.
 \begin{claim}
     $n_h$ is strictly increasing in $h$.
 \end{claim}
@@ -626,7 +546,7 @@ $h$.\\
 $n_{h} = n_{h-1} + n_{h-2} + 1$.
 \end{claim}
 \begin{proof}For an AVL tree of height $0$, $n_0 = 1$,
-and of height $1$, $n_1 = 2 $ (by checking directly).\\
+and of height $1$, $n_1 = 2 $ (by checking directly).
     Let's look at a minimal AVL tree of height $h$. By the AVL property, one
 of its subtrees is of height $h-1$ (WLOG - the left subtree) and by
 minimality, its left subtree has to have $n_{h-1}$ nodes. $T$'s right subtree
