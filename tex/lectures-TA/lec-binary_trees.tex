@@ -331,7 +331,7 @@ process will take $O(\log(n))$, so we maintain a good time complexity.
 
   \begin{algorithm}
     \SetAlgoLined
-    Call Insert $(r,x)$  \\ % // (The standard insertion routine for BST) \\  
+    Call Insert $(r,x)$   // (The standard insertion routine for BST) \\  
     Let $p$ be the new node appended to the tree. \\
     \While{ $p$.parent $\neq \emptyset $ } {
       Check which of the four states we are in.\\ 
@@ -339,7 +339,7 @@ process will take $O(\log(n))$, so we maintain a good time complexity.
       Update the height of each touched vertex  \\
       $p \leftarrow$ $p$.parent \\  
     }
-    %\caption{ AVL Insert(r,x) } 
+    \caption{ AVL Insert(r,x) } 
   \end{algorithm}
 
 
@@ -562,15 +562,19 @@ $n_{h-2}$ nodes (once again, by minimality), and thus the whole tree has
 \begin{proof}
     Assume $k$ is even (why can we assume that?).
     It can be shown by induction that:
-    \[
-        n_h>2n_{h-2}+1>2(2n_{h-4}+1)+1=4n_{h-4}+(1+2)\ldots >
-        2^{\frac{h}{2}}+\sum_{i=0}^{\frac{h}{2}-1}
-        2^i=\sum_{i=1}^{\frac{h}{2}}2^i = \frac{2^\frac{h}{2} - 1}{2-1} =  2^{\frac{h}{2}} - 1
-    \]
+        \begin{equation*}
+          \begin{split}
+        n_h &> 2n_{h-2}+1 >2(2n_{h-4}+1)+1 = 4n_{h-4}+(1+2)\ldots  \\
+         & > 2^{\frac{h}{2}}+\sum_{i=0}^{\frac{h}{2}-1} 2^i=\sum_{i=1}^{\frac{h}{2}}2^i \\
+         & = \frac{2^\frac{h}{2} - 1}{2-1} =  2^{\frac{h}{2}} - 1
+          \end{split}
+        \end{equation*}
     So $n_h \geq 2^{\frac{h}{2}} - 1$, thus
-    \[
+        \begin{equation*}
+          \begin{split}
         h\leq 2\log(n_h + 1)
-    \]
+          \end{split}
+        \end{equation*}
     and for general AVL tree with $n$ nodes and height $h$:
     \[
          h\leq 2\log(n_h + 1) \leq 2\log(n + 1) = O(\log(n))
