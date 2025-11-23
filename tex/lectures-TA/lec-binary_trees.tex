@@ -237,27 +237,26 @@ So to make sure that we can actually maintain time complexity $O(\log(n))$, we w
 \subsection{Rotations}
 \begin{figure}[h]
   \centering
-\includegraphics[scale=.3]{Recitations/rotations.png}\\
+      \input{tikz-binary_1.tex}
 \end{figure}
 Rotations allow us to maintain the AVL property in $O(1)$ time (you have
 discussed this in the lecture - changing subtree's roots).
-In this schematic representation of rotations, $x,y$ are nodes and $\alpha,\beta,\gamma$ are subtrees.
-Note that the BST property is maintained! \\
+In this schematic representation of rotations, $x,y$ are nodes and $\alpha,\beta,\gamma$ are subtrees. Note that the BST property is maintained! 
 
 %\includegraphics[scale=.5]{Recitations/rotationEg.png}
 
 The Balance factor allows us to identify if the AVL property was violated, and moreover -
 the exact values of the bad Balance factors will tell us which rotations to do to fix
-this:\\
-Taken from last year's recitation:\\
+this:
+Taken from last year's recitation:
 \includegraphics[scale=.6]{Recitations/violations.png}
 
-Let us analyze one of these cases:\\
-\begin{example} Let us see why R rotation Fixes LL violation:\\
+Let us analyze one of these cases:
+\begin{example} Let us see why R rotation Fixes LL violation:
 \begin{figure}[h]
   \centering
-\includegraphics[scale=.5]{Recitations/LLviolation.jpg}\\
-This is the general form of LL violations.
+      \input{tikz-binary_1.tex}
+%This is the general form of LL violations.
 \end{figure}
 
 Let us analyze the heights of subtrees. Denote $h$ the height of $A_L$ before inserting $v$. So $A_R$'s height has also to be $h$.
@@ -271,8 +270,8 @@ After the rotation, the tree looks like this:
   \includegraphics[scale=.9]{Recitations/LLviolationfix.jpg}
 \end{figure}
 So all the nodes here maintain AVL property; why is it maintained?
-\end{example}\\
-Detect the violation in the following tree, and perform the necessary rotations:\\
+\end{example}
+Detect the violation in the following tree, and perform the necessary rotations:
 \begin{figure}[h]
   \centering
   \begin{subfigure}[b]{0.31\textwidth}
