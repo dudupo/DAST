@@ -207,7 +207,7 @@ Now, we are ready to understand to store numbers (or keys), by binary trees.
 The main two operations that may cause problems are $Insert$ and $Delete$, as they change the tree's height (consider inserting $81,82,83,84$ to our
 working example). To address this problem, we introduce another field: for each node $v$, add a field of $h(v)$ = the height of the subtree whose root is $v$. This allows us to maintain the AVL property:
 \begin{framed}
-  \begin{definition}\hfill
+  \begin{definition}
     AVL tree is a balanced BST, such that for any node $x$, its left and right subtrees' height differs in no more than $1$. In other words:
     $$|h(left(x)) - h(right(x))|\leq 1$$
   \end{definition}
@@ -216,7 +216,7 @@ working example). To address this problem, we introduce another field: for each 
     (1)$:
 
     \begin{framed}
-      \begin{definition} \hfill
+      \begin{definition}
         For each node $x\in T$, it's Balance Factor is defined 
         $$hd (x) := h(left(x)) - h(right(x))$$ In AVL trees, we would like to maintain
         $|hd(x)| \leq 1$
