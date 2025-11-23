@@ -209,16 +209,21 @@ The main two operations that may cause problems are $Insert$ and $Delete$, as
 they change the tree's height (consider inserting $81,82,83,84$ to our
 working example).
 To address this problem, we introduce another field: for each node $v$, add a field of $h(v)$ = the height of the subtree whose root is $v$. This allows us to maintain the AVL property:
-\begin{framed}{AVL Tree.} An AVL tree is a balanced BST, such that for any node $x$, its left and right subtrees' height differs in no more than $1$. In other words:
-        $$|h(left(x)) - h(right(x))|\leq 1$$
+\begin{framed}
+  \begin{definition}
+    AVL tree is a balanced BST, such that for any node $x$, its left and right subtrees' height differs in no more than $1$. In other words:
+    $$|h(left(x)) - h(right(x))|\leq 1$$
+  \end{definition}
     \end{framed}
     This field allows us to calculate the Balance Factor for each node in $O
     (1)$:
 
-    \begin{framed}{Balance Factor.} For each node $x\in T$, it's Balance Factor is defined 
-    $$hd
-    (x) := h(left(x)) - h(right(x))$$ In AVL trees, we would like to maintain
-    $|hd(x)| \leq 1$
+    \begin{framed}
+      \begin{definition}
+        For each node $x\in T$, it's Balance Factor is defined 
+        $$hd (x) := h(left(x)) - h(right(x))$$ In AVL trees, we would like to maintain
+        $|hd(x)| \leq 1$
+      \end{definition}
     \end{framed}
 \begin{example} For our working example, the node $60$'s $hd$ is $h(50) - h
 (70) = 1$, and $hd(50) = h(45)- h(55) = -1$. You can check and see that this is an AVL tree.
@@ -239,10 +244,7 @@ So to make sure that we can actually maintain time complexity $O(\log(n))$, we w
 \end{figure}
 Rotations allow us to maintain the AVL property in $O(1)$ time (you have
 discussed this in the lecture - changing subtree's roots).
-In
-this
-schematic
-representation of rotations, $x,y$ are nodes and $\alpha,\beta,\gamma$ are subtrees.
+In this schematic representation of rotations, $x,y$ are nodes and $\alpha,\beta,\gamma$ are subtrees.
 Note that the BST property is maintained! \\
 
 %\includegraphics[scale=.5]{Recitations/rotationEg.png}
@@ -263,8 +265,7 @@ This is the general form of LL violations.
 
 Let us analyze the heights of subtrees. Denote $h$ the height of $A_L$ before inserting $v$. So $A_R$'s height has also to be $h$.
 If its height were $h+1$, the insertion would not have created a violation in
-$B$ ($A$'s height would have stayed the same). If it were $h-1$, the violation would have appeared first in $A$ (not in $B$). Thus, $A$'s height is $h+1$.
-$B_R$'s height is also $h$: If it was $h+1$ or $h+2$, no violation in $B$ had
+$B$ ($A$'s height would have stayed the same). If it were $h-1$, the violation would have appeared first in $A$ (not in $B$). Thus, $A$'s height is $h+1$. $B_R$'s height is also $h$: If it was $h+1$ or $h+2$, no violation in $B$ had
 occurred.
 
 After the rotation, the tree looks like this:
