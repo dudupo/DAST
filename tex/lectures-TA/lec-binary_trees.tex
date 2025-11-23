@@ -616,14 +616,14 @@ Combining the fact that we maintain the AVL property, it follows that the total 
 \subsection{AVL tree's height}
 Let $n_h$ be the minimal number of nodes in an AVL tree of height
 $h$.\\
-\begin{thm}
+\begin{claim}
     $n_h$ is strictly increasing in $h$.
-\end{thm}
+\end{claim}
 \begin{proof} Exercise.
 \end{proof}
-\begin{thm}
+\begin{claim}
 $n_{h} = n_{h-1} + n_{h-2} + 1$.
-\end{thm}
+\end{claim}
 \begin{proof}For an AVL tree of height $0$, $n_0 = 1$,
 and of height $1$, $n_1 = 2 $ (by checking directly).\\
     Let's look at a minimal AVL tree of height $h$. By the AVL property, one
@@ -636,10 +636,10 @@ less nodes in $T$, contradicting minimality. So the right subtree has
 $n_{h-2}$ nodes (once again, by minimality), and thus the whole tree has
     $n_{h} = n_{h-1} + n_{h-2} + 1$ (added the root) nodes.
 \end{proof}
-\begin{cor}$n_h > 2n_{h-2} + 1$
-\end{cor}
-\begin{cor}$h = O(\log(n))$
-\end{cor}
+\begin{corollary}$n_h > 2n_{h-2} + 1$
+\end{corollary}
+\begin{corollary}$h = O(\log(n))$
+\end{corollary}
 \begin{proof}
     Assume $k$ is even (why can we assume that?).
     It can be shown by induction that:
@@ -652,7 +652,7 @@ $n_{h-2}$ nodes (once again, by minimality), and thus the whole tree has
     \[
         h\leq 2\log(n_h + 1)
     \]
-    and for generall AVL tree with $n$ nodes and height $h$:
+    and for general AVL tree with $n$ nodes and height $h$:
     \[
          h\leq 2\log(n_h + 1) \leq 2\log(n + 1) = O(\log(n))
     \]
