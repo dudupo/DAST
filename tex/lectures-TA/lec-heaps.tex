@@ -147,7 +147,7 @@ We are now ready to prove correction of the bubbling routine.
 % \SetAlgoLined
 next  $\leftarrow i  $ \\
 left  $\leftarrow 2i $ \\
-right $\rightarrow 2i +1 $ \\ 
+right $\leftarrow 2i +1 $ \\ 
 \If{ left $ < n \text{ and }  H_{\text{left}} < H_{\text{next}}$ } {
   next $\leftarrow$ left 
 }
@@ -304,7 +304,7 @@ $ n \leftarrow n + 1 $
 
 \section{Example, Maintaing The Median}
 
-\begin{exercise}
+\begin{exercise} 
 Write a data structure that supports insertion and deletion in \(O(\log n)\) time and, in addition, enables extracting the median in \(O(\log n)\) time.
 \end{exercise}
 
