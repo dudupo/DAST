@@ -148,10 +148,10 @@ We are now ready to prove correction of the bubbling routine.
 next  $\leftarrow i  $ \\
 left  $\leftarrow 2i $ \\
 right $\leftarrow 2i +1 $ \\ 
-\If{ left $ < n \text{ and }  H_{\text{left}} < H_{\text{next}}$ } {
+\If{ left $ \le n \text{ and }  H_{\text{left}} < H_{\text{next}}$ } {
   next $\leftarrow$ left 
 }
-\If{ right $ < n \text{ and }  H_{\text{right}} < H_{\text{next}}$ } {
+\If{ right $ \le n \text{ and }  H_{\text{right}} < H_{\text{next}}$ } {
   next $\leftarrow$  right
 }
 \If{ $ i \neq $ next } {
