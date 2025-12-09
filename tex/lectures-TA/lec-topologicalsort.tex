@@ -91,10 +91,10 @@ Let us use the following notation: we say that line ($x$) of the recursive call 
 
 
 
-Now, suppose that indeed $\text{pre}(v) < \text{pre}(u) < \text{post}(v)$. Consider the call 'Explore($G,v$)'. Since the algorithm sets the value of $\text{post}(v)$ at line number (9), and it makes all of its recursive calls between lines (3)-(8), we have that the algorithm returns from its recursive calls before time $\text{post}(v)$. Furthermore, any line that has been executed during times $\text{pre}(v), \text{post}(v)$ is either a line of the call 'Explore($G,v$)' or a line of one of the recursive calls.
+Now, suppose that indeed $\text{pre}(v) < \text{pre}(u) < \text{post}(v)$. Consider the call 'Explore($G,v$)'. Since the algorithm sets the value of $\text{post}(v)$ at line number (9), and it makes all of its recursive calls between lines (3)-(8), we have that the algorithm returns from its recursive calls before time $\text{post}(v)$. Furthermore, any line that has been executed during times $[\text{pre}(v), \text{post}(v)]$ is either a line of the call 'Explore($G,v$)' or a line of one of the recursive calls.
 
 
-In particular, we have that the line which sets $\text{pre}(u)$ executed during  times $\text{pre}(v), \text{post}(v)$, and therefore as part of the 
+In particular, we have that the line which sets $\text{pre}(u)$ executed during  times $[\text{pre}(v), \text{post}(v)]$, and therefore as part of the 
 
 \end{proof}
 
