@@ -68,7 +68,8 @@ As its name implies, depth-first search searches "deeper" in the graph whenever 
 \paragraph{Properties of depth-first search.} Depth-first search yields valuable information about the structure of a graph. Perhaps the most basic property of depth-first search is that the predecessor subgraph $G_{\pi}$ does indeed form a forest of trees since the structure of the depth-first trees exactly mirrors the structure of recursive calls of explore-function. That is, $u$ = $\pi\left( v \right)$ if and only if explore($G, v$) was called during a search of $ u$'s adjacency list.
 
 
-Additionally, vertex $v$ is a descendant of vertex $u$ in the depth-first forest if and only if $v$ is discovered during the time in which $u$ is gray. Another important property of depth-first search is that discovery and finish times have a parenthesis structure. If the explore procedure were to print a left parenthesis "$(u$" when it discovers vertex $u$ and to print a right parenthesis "$u)$" when it finishes $u$, then the printed expression would be well-formed in the sense that the parentheses are properly nested.
+Additionally, vertex $v$ is a descendant of vertex $u$ in the depth-first forest if and only if $v$ is discovered during the time in which pre$(u)$ has already been set but post$(u)$ hasn't \footnote{In terms of the presentation from last week, when $u$'s color is gray}.
+Another important property of depth-first search is that discovery and finish times have a parenthesis structure. If the explore procedure were to print a left parenthesis "$(u$" when it discovers vertex $u$ and to print a right parenthesis "$u)$" when it finishes $u$, then the printed expression would be well-formed in the sense that the parentheses are properly nested.
 
 The following theorem provides another way to characterize the parenthesis structure.
 
@@ -81,38 +82,19 @@ In any depth-first search of a (directed or undirected) graph $G = (V, E)$, for 
   \item the interval [pre($v$), post($v$)] is contained entirely within the interval [pre($u$), post($u$)], and $v$ is a descendant of $u$ in a depth-first tree.
   \end{enumerate}
 \end{theorem}
-  \begin{proof} 
-      Assume without loss of generality that pre($u$) $<$ pre($v$). Split to the following:
-	\begin{enumerate}
-	  \item Either pre($v$) $<$ post($u$). In that case, we will prove, by induction on $\text{pre}(v)-\text{pre}(u)$, that for any $u,v$ satisfies the relations, the third case holds. 
-	    \begin{enumerate}
-	      \item Base. $\text{pre}(v)-\text{pre}(u) = 1$, Then clearly $\{u,v\}$, i.e $v$ is a direct child of $u$. Showing that the value of $\text{post}(v)$ has to be set before  $\text{post}(v)$ is left as an exercise. 
-	      \item Assumption. Assume correctness for any $\text{pre}(v)-\text{pre}(u) < t < \text{post}(u)$.
-	      \item Step. Consider $t > 1$ such  $\text{pre}(v)-\text{pre}(u) = t$. Since $t > 1$ there is must to be vertex $w$ for which $\pre(u) < \text{pre}(w) < \text{pre(v)} = t$. Splits again:  
-		\begin{enumerate}
-		  \item Either $\text{post}(w) > \text{pre}(v)$. Observes that: \begin{equation*}
-		      \begin{split}
-\text{pre}(v) - \text{pre}(w) < \text{pre}(v) - \text{pre}(u) = t
-		      \end{split}
-		    \end{equation*}
-		     and also: \begin{equation*}
-		       \begin{split}
-\text{pre}(w) - \text{pre}(u) < \text{pre}(v) - \text{pre}(u) = t
-		       \end{split}
-		     \end{equation*}
-		      Therefore by the induction assumption: \begin{equation*}
-			\begin{split}
-[\pre(v),\post(v)] \subset [\pre(w),\post(w)]\subset [\pre(u),\post(u)]
-			\end{split}
-		      \end{equation*} and in addition $w$ is a descendant of $u$ and $v$ is a descendant of $w$. Hence $v$ is a descendant of $u$ and the third case holds. 
-		    \item Or $\text{post}(w) < \text{pre}(v)$ for any $w$ satisfies $\pre(u) < \pre(w) < \pre(v)$. That means that any call for $\textbf{Explore}(G,w)$ at line $6$ (over suited $w$'s) returned, and at time $t$ a new child of $u$ has been discovered\footnote{otherwise we get a contradiction for $\post(u) > t$}, namely $v$ is a direct child of $u$ and we back to the base.
-		\end{enumerate}
-	    \end{enumerate}
-	    
-	  \item Or, post($u$) $<$ pre($v$), and by definition, pre($u$) $<$ post($u$) $<$ pre(v) $<$ post($v$) and thus the intervals [pre($u$), post($u$)] and [pre($v$), post($v$)] are disjoint. 
 
-	    Showing that $v$ is not a descendant of $u$ can be proved in similar manner to the above, by induction on $\pre(v) - \post(u)$. Completing the proof is left as an exercise. 
-	\end{enumerate}
+\begin{proof}
+  
+It's enough to prove that for any pair of vertices $v, u$, the inequality $\text{pre}(v) < \text{pre}(u) < \text{post}(v)$ implies $\text{pre}(v) < \text{pre}(u) < \text{post}(u) < \text{post}(v)$. 
+
+Let us use the following notation: we say that line ($x$) of the recursive call 'Explore($G,v$)' is executed at time $t$ if at time $t$ we execute line number $x$ of the algorithm Explore where the vertex argument is $v$. Notice that since Explore is called only once on each vertex, we have that the notation is well defined.
+
+
+Now, suppose that indeed $\text{pre}(v) < \text{pre}(u) < \text{post}(v)$. Consider the call 'Explore($G,v$)'. Since the algorithm sets the value of $\text{post}(v)$ at line number (9), and it makes all of its recursive calls between lines (3)-(8), we have that the algorithm returns from its recursive calls before time $\text{post}(v)$. Furthermore, any line that has been executed during times $\text{pre}(v), \text{post}(v)$ is either a line of the call 'Explore($G,v$)' or a line of one of the recursive calls.
+
+
+In particular, we have that the line which sets the $\text{pre}(u)$ executed in 
+
 \end{proof}
 
 \begin{corollary}
