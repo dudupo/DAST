@@ -90,6 +90,7 @@ It's enough to prove that for any pair of vertices $v, u$, the inequality $\text
 Let us use the following notation: we say that line ($x$) of the recursive call 'Explore($G,v$)' is executed at time $t$ if at time $t$ we execute line number $x$ of the algorithm Explore where the vertex argument is $v$. Notice that since Explore is called only once on each vertex, we have that the notation is well defined.
 
 
+
 Now, suppose that indeed $\text{pre}(v) < \text{pre}(u) < \text{post}(v)$. Consider the call 'Explore($G,v$)'. Since the algorithm sets the value of $\text{post}(v)$ at line number (9), and it makes all of its recursive calls between lines (3)-(8), we have that the algorithm returns from its recursive calls before time $\text{post}(v)$. Furthermore, any line that has been executed during times $\text{pre}(v), \text{post}(v)$ is either a line of the call 'Explore($G,v$)' or a line of one of the recursive calls.
 
 
