@@ -94,7 +94,7 @@ It's enough to prove that for any pair of vertices $v, u$, the inequality $\text
 Consider the call 'Explore($G,v$)'. Since the algorithm sets the value of $\text{post}(v)$ at line number (9), and it makes all of its recursive calls between lines (3)-(8), we have that the algorithm returns from its recursive calls before time $\text{post}(v)$. Furthermore, any line that has been executed during times $[\text{pre}(v), \text{post}(v)]$ is either a line of the call 'Explore($G,v$)' or a line of one of the recursive calls.\\
 
 
-In particular, we have that the line which sets $\text{pre}(u)$ is executed during times $[\text{pre}(v), \text{post}(v)]$, and therefore as part of a recursive call. In addition, because the recursive call was returned during the time interval, the assignment of $\text{post}(u)$ is made before $\text{post}(v)$. Thus, we have both $\text{pre}(v) < \text{pre}(u) < \text{post}(u) < \text{post}(v)$ and that $u$ is a descendant of $v$ in $\pi$.
+In particular, we have that the line which sets $\text{pre}(u)$ is executed during times $[\text{pre}(v), \text{post}(v)]$, and therefore as part of a recursive call. In addition, because the recursive call was returned during the time interval, the assignment of $\text{post}(u)$ is made before $\text{post}(v)$. Thus, we have both $\text{pre}(v) < \text{pre}(u) < \text{post}(u) < \text{post}(v)$ and that $u$ is a descendant of $v$ in $\pi$\footnote{The algorithm defines $\pi$ to be the recursive tree}. 
 
 \end{proof}
 
