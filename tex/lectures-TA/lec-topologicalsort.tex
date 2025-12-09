@@ -85,7 +85,7 @@ In any depth-first search of a (directed or undirected) graph $G = (V, E)$, for 
 
 \begin{proof}
   
-It's enough to prove that for any pair of vertices $v, u$, the inequality $\text{pre}(v) < \text{pre}(u) < \text{post}(v)$ implies $\text{pre}(v) < \text{pre}(u) < \text{post}(u) < \text{post}(v)$. 
+It's enough to prove that for any pair of vertices $v, u$, the inequality $\text{pre}(v) < \text{pre}(u) < \text{post}(v)$ implies $\text{pre}(v) < \text{pre}(u) < \text{post}(u) < \text{post}(v)$. \\
 
 Let us use the following notation: we say that line ($x$) of the recursive call 'Explore($G,v$)' is executed at time $t$ if at time $t$ we execute line number $x$ of the algorithm Explore where the vertex argument is $v$. Notice that since Explore is called only once on each vertex, the notation is well defined.\\
 
@@ -94,7 +94,7 @@ Let us use the following notation: we say that line ($x$) of the recursive call 
 Now, suppose that indeed $\text{pre}(v) < \text{pre}(u) < \text{post}(v)$. Consider the call 'Explore($G,v$)'. Since the algorithm sets the value of $\text{post}(v)$ at line number (9), and it makes all of its recursive calls between lines (3)-(8), we have that the algorithm returns from its recursive calls before time $\text{post}(v)$. Furthermore, any line that has been executed during times $\text{pre}(v), \text{post}(v)$ is either a line of the call 'Explore($G,v$)' or a line of one of the recursive calls.
 
 
-In particular, we have that the line which sets the $\text{pre}(u)$ executed in 
+In particular, we have that the line which sets $\text{pre}(u)$ executed during  times $\text{pre}(v), \text{post}(v)$, and therefore as part of the 
 
 \end{proof}
 
