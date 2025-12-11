@@ -105,6 +105,23 @@ In particular, we have that the line which sets $\pre(u)$ is executed during tim
 
 \section{DFS on DAGS}
 the pre is well calibrated on DAGS. 
+
+\begin{claim}
+  Let $G=(V,E)$ be a graph, and let $v,u \in V$ such $u \rightarrow v$ (There is a path from $u$ to $v$ in $G$). And let $\pi$ be a forest returned from the call \textbf{DFS$(G)$}, If $\pre(u) < \pre(v)$ then $v$ is a descendant of $u$ in $G$. 
+\end{claim}
+\begin{proof}
+  By induction on the graph structure. Consider the $\pre$ order on the vertices, $V = v_{1},v_{2},..,v_{n}$, and the graphs seria $G_{1} = \{u\}$ and $G_{i+1} = G_{i} \cup \{v_{i}\}$. Denote also by $\pi_{i}$ the recursive tree returned by the application of the algorithm on $G_{i}$. We will prove by induction on $i$ that the claim hold for every $u,v$ in $G_{i}$, namely that if $\pre(u) < \pre(v) \le i$, then $v$ is a descendent of $u$ in $\pi_{i}$. 
+  \begin{enumerate}
+    \item Base, Consider $G_{1}$ and one can shoe by bruteforce that the claim holds. 
+    \item Assumption. Assume the correctness of the claim for any $i^{\prime} < i$. 
+    \item Step. Consider vertices $v,u$ such $u\rightarrow v$, in $G_{i}$ and that $\pre(u) < \pre(v)$. Since the running of the algorithm over $G_{i}$ preceding the explore call of $v_{i}$ is identical to the running over $G_{i-1}$ it is left to prove where $v = v_{i}$. Let $v^{\prime}$ be predecessor to $v$ on that path, namely the last vertex on the path before $v$. 
+      \begin{itemize}
+        \item If $v^{\prime}=v_{i-1}$, then consider the call 'Explore($G_{i},v_{i-1}$)', since $\pre(v_{i-1}) = i-1  < \pre(v_{i})$, then at the beginning of the recursive call $v_{i}$ has not yet visited and the algorithm sets $\pi(v_{i}) \leftarrow v_{i-1}$, now using the induction assumption, $v_{i-1}$ is a descendant of $u$ in $\pi_{i-1} \subset \pi_{i}$ we have also that $v_{i}$ is a descendant of $u$ in $\pi_{i}$. 
+          Else, If $v^{\prime} \neq v_{i-1}$. 
+      \end{itemize}
+  \end{enumerate}
+\end{proof}
+
 \begin{claim}
   Let $G=(V,E)$ be a DAG, and let $v,u \in V$ such $u \rightarrow v$ (There is a path from $u$ to $v$ in $G$). Then the call \textbf{DFS$(G)$} assigns $\post(u)>\post(v)$. 
 \end{claim}
@@ -113,7 +130,7 @@ the pre is well calibrated on DAGS.
 Suppose, toward a contradiction, that $\post(u) < \post(v)$, and split into cases:
   \begin{itemize}
     \item Either $\pre(v) < \pre(u)$ thus, from the parenthesis theorem, $\pre(v) < \pre(u) < \post(u) < \post(v)$, and $u$ is a descendant of $v$ in $\pi$. Therefore, there is a path from $v$ to $u$ in $G$. Combining this with the given that there is a path from $u$ to $v$, there is a cycle in $G$, which contradicts $G$ being a DAG.
-    \item Or, $\pre(v) > \pre(u)$ thus, from the parenthesis theorem, $\pre(u) < \post(u) < \pre(v) < \post(v)$, and $u$ is not an ancestor of $v$ in $\pi$. Hence, there is no path from $u$ to $v$ in $G$ which contradicts the given. 
+    \item Or, $\pre(v) > \pre(u)$ thus, from the parenthesis theorem, $\pre(u) < \post(u) < \pre(v) < \post(v)$, and $u$ is not an ancestor of $v$ in $\pi$. Let $w$ be a vertex on the path between $u$ to $v$, it can be shown that if   Hence, there is no path from $u$ to $v$ in $G$ which contradicts the given. 
   \end{itemize}
 \end{proof}
 
