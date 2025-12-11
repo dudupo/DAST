@@ -114,10 +114,12 @@ the pre is well calibrated on DAGS.
   \begin{enumerate}
     \item Base, Consider $G_{1}$ and one can shoe by bruteforce that the claim holds. 
     \item Assumption. Assume the correctness of the claim for any $i^{\prime} < i$. 
-    \item Step. Consider vertices $v,u$ such $u\rightarrow v$, in $G_{i}$ and that $\pre(u) < \pre(v)$. Since the running of the algorithm over $G_{i}$ preceding the explore call of $v_{i}$ is identical to the running over $G_{i-1}$ it is left to prove where $v = v_{i}$. Let $v^{\prime}$ be predecessor to $v$ on that path, namely the last vertex on the path before $v$. 
+    \item Step. Consider vertices $v,u$ such $u\rightarrow v$, in $G_{i}$ and that $\pre(u) < \pre(v)$. Since the running of the algorithm over $G_{i}$ preceding the explore call of $v_{i}$ is identical to the running over $G_{i-1}$, we get that $\pi_{i-1} \subset \pi_{i}$ and it is left to prove where $v = v_{i}$. Let $v^{\prime}$ be predecessor to $v$ on that path, namely the last vertex on the '$u\rightarrow v$' path before $v$. 
       \begin{itemize}
-        \item If $v^{\prime}=v_{i-1}$, then consider the call 'Explore($G_{i},v_{i-1}$)', since $\pre(v_{i-1}) = i-1  < \pre(v_{i})$, then at the beginning of the recursive call $v_{i}$ has not yet visited and the algorithm sets $\pi(v_{i}) \leftarrow v_{i-1}$, now using the induction assumption, $v_{i-1}$ is a descendant of $u$ in $\pi_{i-1} \subset \pi_{i}$ we have also that $v_{i}$ is a descendant of $u$ in $\pi_{i}$. 
-          Else, If $v^{\prime} \neq v_{i-1}$. 
+        \item If $v^{\prime}=v_{j}$ for $j<i$, then consider the call 'Explore($G_{i},v_{j}$)', since $\pre(v_{i-1}) = i-1  < \pre(v_{i})$, then at the beginning of the recursive call $v_{i}$ has not yet visited and the algorithm sets $\pi(v_{i}) \leftarrow v_{i-1}$, now using the induction assumption, $v_{i-1}$ is a descendant of $u$ in $\pi_{i-1} \subset \pi_{i}$ we have also that $v_{i}$ is a descendant of $u$ in $\pi_{i}$. 
+        \item  Else, $v^{\prime} = v_{j}$ for $j > i$. That means that the algorithm got to $v$ trough the iteration loop in the DFS routine, and not trough a sibling vertex. Therefore any of the paths between $u$ to $v$, there is a vertex $w$ on that path such $w = v_{j}$ for $j < i$. Take $w$ to be the minimal according the $\pre$ order. And consider the recursive call 'Explore$(G_{i}, w)$'. Since 
+
+          Denote by $w^{\prime}$ be its successor on that path. 
       \end{itemize}
   \end{enumerate}
 \end{proof}
