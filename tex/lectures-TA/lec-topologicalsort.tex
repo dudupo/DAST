@@ -111,7 +111,7 @@ the pre is well calibrated on DAGS.
   Let $G=(V,E)$ be a graph, and let $v,u \in V$ such $u \rightarrow v$ (There is a path from $u$ to $v$ in $G$). And let $\pi$ be a forest returned from the call \textbf{DFS$(G)$}, If $\pre(u) < \pre(v)$ then $v$ is a descendant of $u$ in $G$. 
 \end{claim}
 
-To prove \Cref{claim:dag}, we will define a graph $G^{\prime}$ as that satisfies:
+To prove \Cref{claim:dag}, we will define a graph $G^{\prime}$ that satisfies:
 \begin{enumerate}
   \item There is only single path between $u$ to $v$ in $G^{\prime}$. 
   \item Let $\pi^{\prime}$ be the depth forest returned by the running of DFS over $G^{\prime}$, then if $v$ is a descendant of $u$ in $\pi^{\prime}$ then is also a descendant of $u$ in $\pi$. 
