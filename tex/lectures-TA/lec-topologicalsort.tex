@@ -141,7 +141,7 @@ So, let's focus on the case where $\pre(v) < \pre(v^{\prime})$. Let $v^{\prime \
 Suppose, toward a contradiction, that $\post(u) < \post(v)$, and split into cases:
   \begin{itemize}
     \item Either $\pre(v) < \pre(u)$ thus, from the parenthesis theorem, $\pre(v) < \pre(u) < \post(u) < \post(v)$, and $u$ is a descendant of $v$ in $\pi$. Therefore, there is a path from $v$ to $u$ in $G$. Combining this with the given that there is a path from $u$ to $v$, there is a cycle in $G$, which contradicts $G$ being a DAG.
-    \item Or, $\pre(v) > \pre(u)$ thus, from the parenthesis theorem, $\pre(u) < \post(u) < \pre(v) < \post(v)$, and $u$ is not an ancestor of $v$ in $\pi$. Let $w$ be a vertex on the path between $u$ to $v$, it can be shown that if   Hence, there is no path from $u$ to $v$ in $G$ which contradicts the given. 
+    \item Or, $\pre(v) > \pre(u)$, Thus, by \Cref{claim:dag}, we get that $v$ is a descendant of $u$ in $\pi$, and by combining the parenthesis theorem, we get the desired.
   \end{itemize}
 \end{proof}
 
