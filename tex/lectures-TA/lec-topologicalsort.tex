@@ -123,9 +123,10 @@ Consider a graph $G$ and vertices $u, v$ such that there is a path from $u$ to $
 
 
 \begin{proof}
-     Consider vertices $v,u$ such $u\rightarrow v$, in $G$, $\pre(u) < \pre(v)$ and $G^{\prime}$ as defined above. Assume without loss of generality that $v$ is the first of such vertex on the path that is not a descendant of $u$ in $\pi$. Let $v^{\prime}$ be predecessor to $v$ on that path, namely the last vertex on the '$u\rightarrow v$' path before $v$.
+  Consider vertices $v,u$ such $u\rightarrow v$, in $G$, $\pre(u) < \pre(v)$ and $G^{\prime}$ as defined above. Assume without loss of generality that $v$ is the first of such vertex on the path that is not a descendant of $u$ in $\pi^{\prime}$. Let $v^{\prime}$ be predecessor to $v$ on that path, namely the last vertex on the '$u\rightarrow v$' path before $v$.
 
-      So either $\pre(v^{\prime}) < \pre(u)$ or $v^{\prime}$ is a descendant of $u$. In the first case we get an immediate contradiction to $\pre(v) < \pre(u)$ in the second case we consider the recursive call 'Explore($G,v^{\prime})$', and we have that $\pre(v) < \pre(v^{\prime})$, or otherwise the algorithm will set $\pi(v) \leftarrow v^{\prime}$ and hence $v$ is a descendant of $u$ in $\pi$. 
+      
+Either $\pre(v^{\prime}) < \pre(u)$ or $v^{\prime}$ is a descendant of $u$. In the first case, we get an immediate contradiction to $\pre(v) < \pre(u)$. In the second case, we consider the recursive call 'Explore($G,v^{\prime}$)', and we have that $\pre(v) < \pre(v^{\prime})$, or otherwise the algorithm will set $\pi(v) \leftarrow v^{\prime}$, and hence $v$ is a descendant of $u$ in $\pi$.
 
       
 So, let's focus on the case where $\pre(v) < \pre(v^{\prime})$. Let $v^{\prime \prime}$ be the predecessor of $v^\prime$. Notice that since there is a single path from $u$ to $v$, we have that $\pre(v) < \pre(v^{\prime})$ implies $\pre(v) < \pre(v^{\prime \prime})$.\footnote{That is, upon calling 'Explore($G^{\prime}, v^{\prime \prime}$)', the algorithm will first walk through paths that do not reach $v$, and then call 'Explore($G^{\prime}, v^{\prime}$)'.} Then we continue by induction until we get $\pre(u) < \pre(v)$, which is a contradiction.
