@@ -203,7 +203,7 @@ Now we present \Cref{alg:scc_fast}, an algorithm to find the strongly connected 
 
 \begin{corollary}
   \label{corollary:DAG} 
-  For $v \in V$, denote by $[v]$ the delegate of $v$ according to $\sim$. Running the topological sort on $G$ returns the vertices of $G$ according to the topological order of $G^\prime$, namely that $v$ appears before $u$ only if there is no path form $[u]$ to $[v]$ in $G^{\prime}$. The proof is identical to the proof of \Cref{claim:toposort}.
+  For $v \in V$, denote by $[v]$ the delegate of $v$ according to $\sim$. Running the topological sort on $G$ returns the vertices of $G$ according to the topological order of $G^\prime$, namely that $v$ appears before $u$ only if there is no a directed path form $[u]$ to $[v]$ in $G^{\prime}$. The proof is identical to the proof of \Cref{claim:toposort}.
 \end{corollary}
 
 \begin{figure}[h]
@@ -215,7 +215,7 @@ Now we present \Cref{alg:scc_fast}, an algorithm to find the strongly connected 
 \textbf{Correctness} Denote by $C_{1}, C_{2}, C_{3}, .., C_{l}$ the strongly connected components of $G$ ordered by the topological sort of $G^{\top}$. We will prove by induction that upon the $i$th calling to 'Explore' form the second DFS call (line (3)), the algorithm scans only the vertices at $C_{i}$.
 
 \begin{enumerate}
-  \item Base. The first call to Explore is over the first vertex in the topological order of $G^{\top}$. That vertex belongs to $C_{1}$, and from it, there is a directed path to any other vertex of $C_{1}$, so it's left to show that no vertex outside $C_{1}$ is being scanned on the first call. If there were $u \in C_{j}$ for $j > 1$ that were scanned, then it means that the algorithm crossed through an edge of the form $(v^{\prime}, u^{\prime})$ such that $v^{\prime} \in C_{1}$ and $u^{\prime} \in C_{j}$. But if $\left( v^{\prime}, u^{\prime} \right) \in E$, then $ \left(u^{\prime}, v^{\prime} \right) \in E^{\top} $. Thus, there is a directed path from $C_{j}$ to $C_{1}$, and therefore the vertices of $C_{j}$ have to appear before $C_{1}$, which is a contradiction to $C_{1}$ being the strongly connected component of the first vertex.
+  \item Base. The first call to Explore is over the first vertex in the topological order of $G^{\top}$. That vertex belongs to $C_{1}$, and from it, there is a directed path to any other vertex of $C_{1}$, so it's left to show that no vertex outside $C_{1}$ is being scanned on the first call. If there were $u \in C_{j}$ for $j > 1$ that were scanned, then it means that the algorithm crossed through an edge of the form $(v^{\prime}, u^{\prime})$ such that $v^{\prime} \in C_{1}$ and $u^{\prime} \in C_{j}$. But if $\left( v^{\prime}, u^{\prime} \right) \in E$, then $ \left(u^{\prime}, v^{\prime} \right) \in E^{\top} $. Thus, there is a directed path from $u^{\prime}$ to $v$ in $G^{\top}$, and therefore $u$ have to appear before $C_{1}$, which is a contradiction to $C_{1}$ being the strongly connected component of the first vertex.
  
   \item Assumption. Assume correction for any $i^{\prime} < i$. 
   \item Step. Almost identical to the base case and left as an exercise.
