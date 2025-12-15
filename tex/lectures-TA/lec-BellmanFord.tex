@@ -1,0 +1,48 @@
+
+\input{../texlib/head}
+\begin{document}
+
+\ifdefined\BOOK
+\chapter{Dijkstra and Bellman–Ford} 
+\else
+\setcounter{chapter}{5}
+\chapter*{Dijkstra and Bellman–Ford} 
+\thispagestyle{firststyle}
+\fi
+
+\section{Dijkstra}
+
+\begin{exercise}
+  Give an example 
+\end{exercise}
+
+
+
+  \begin{algorithm}[h]
+    \For { $v \in V$ }{ 
+      $d[v] \leftarrow \infty $  \\
+      $\pi[v] \leftarrow $ null  \\
+    }
+    $d[s] \leftarrow 0 $\\
+
+    \For{ $i \in [n]$ }{
+      \For { $(u,v) \in E$ } {
+        \If{ $d[v] > d[u] + w(u,v)$ }{ 
+          $d[v] \leftarrow d[u] + w(u,v)$ \\
+          $\pi[v] \leftarrow u $ 
+        }
+      }
+    }
+    \For{ $(u,v) \in E$ }{
+        \If{ $d[v] > d[u] + w(u,v)$ }{ 
+          \Retuen Negative Cycle 
+        }
+    }
+    \caption{Bellman–Ford.}
+    \label{alg:bellman-ford}
+  \end{algorithm}
+
+
+\input{../texlib/tail}
+
+
