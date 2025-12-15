@@ -153,7 +153,7 @@ Suppose, toward a contradiction, that $\post(u) < \post(v)$, and split into case
 
 \Cref{claim:toposort} defines an algorithm for sorting the vertices of a directed graph according to dependency, which we provide in \Cref{alg:topo}. Notice that since the $\post$ values are integers bounded by $|E|$, the sorting can be done using counting sort, and the overall running time is $O(|V| + |E|)$.
 
-  \begin{algorithm}[H]
+  \begin{algorithm}[h]
    $\pre, \post \leftarrow $ Call DFS($G$)\\
    \Return $G$'s vertices in $\post$-reversed ordered. 
   \caption{TopologicalSort( $G$)}
