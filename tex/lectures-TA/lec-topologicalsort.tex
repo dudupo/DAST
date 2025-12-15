@@ -113,7 +113,7 @@ We are about to come with an algorithm for sorting a DAG's vertices according to
 
 \begin{claim}
   \label{claim:dag}
-  Let $G=(V,E)$ be a graph, and let $v,u \in V$ such $u \rightarrow v$ (There is a path from $u$ to $v$ in $G$). And let $\pi$ be a forest returned from the call \textbf{DFS$(G)$}, If $\pre(u) < \pre(v)$ then $v$ is a descendant of $u$ in $G$. 
+  Let $G=(V,E)$ be a graph, and let $v,u \in V$ such $u \leadsto v$ (There is a path from $u$ to $v$ in $G$). And let $\pi$ be a forest returned from the call \textbf{DFS$(G)$}, If $\pre(u) < \pre(v)$ then $v$ is a descendant of $u$ in $G$. 
 \end{claim}
 
 To prove \Cref{claim:dag}, we will define a graph $G^{\prime}$ that satisfies:
@@ -128,7 +128,7 @@ Consider a graph $G$ and vertices $u, v$ such that there is a path from $u$ to $
 
 
 \begin{proof}
-  Consider vertices $v,u$ such $u\rightarrow v$, in $G$, $\pre(u) < \pre(v)$ and $G^{\prime}$ as defined above. Assume without loss of generality that $v$ is the first of such vertex on the path that is not a descendant of $u$ in $\pi^{\prime}$. Let $v^{\prime}$ be predecessor to $v$ on that path, namely the last vertex on the '$u\rightarrow v$' path before $v$.
+  Consider vertices $v,u$ such $u\leadsto v$, in $G$, $\pre(u) < \pre(v)$ and $G^{\prime}$ as defined above. Assume without loss of generality that $v$ is the first of such vertex on the path that is not a descendant of $u$ in $\pi^{\prime}$. Let $v^{\prime}$ be predecessor to $v$ on that path, namely the last vertex on the '$u\leadsto v$' path before $v$.
 
       
   Either $\pre(v^{\prime}) < \pre(u)$ or $v^{\prime}$ is a descendant of $u$. In the first case, we get an immediate contradiction to $\pre(v) < \pre(u)$. In the second case, we consider the recursive call 'Explore($G^{\prime},v^{\prime}$)', and we have that $\pre(v) < \pre(v^{\prime})$, or otherwise the algorithm will set $\pi^{\prime}(v) \leftarrow v^{\prime}$, and hence $v$ is a descendant of $u$ in $\pi^{\prime}$.
@@ -140,7 +140,7 @@ So, let's focus on the case where $\pre(v) < \pre(v^{\prime})$. Let $v^{\prime \
 
 \begin{claim}
   \label{claim:toposort}
-  Let $G=(V,E)$ be a DAG, and let $v,u \in V$ such $u \rightarrow v$ (There is a path from $u$ to $v$ in $G$). Then the call \textbf{DFS$(G)$} assigns $\post(u)>\post(v)$. 
+  Let $G=(V,E)$ be a DAG, and let $v,u \in V$ such $u \leadsto v$ (There is a path from $u$ to $v$ in $G$). Then the call \textbf{DFS$(G)$} assigns $\post(u)>\post(v)$. 
 \end{claim}
 
 \begin{proof}
