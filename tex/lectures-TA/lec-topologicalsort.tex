@@ -175,6 +175,13 @@ Suppose, toward a contradiction, that $\post(u) < \post(v)$, and split into case
 
   \textbf{Correctness}, Denote by $C_{w}$ the subset of vertices that is printed at line (4) when the iteration is over $w$. Let $u, v$ be vertices belonging to $C_{w}$. By the correctness of Explore, line (2) guarantees that $w \leadsto u, v$, and line (3) guarantees that $u, v \leadsto w$. Therefore, we get both $u \leadsto v$ and $v \leadsto u$. To complete the proof, one also has to show that the extension $C_{w} \cup \{z\}$ for any $z \in V \setminus C_{w}$ is not strongly connected. Showing that contradicts the correctness of Explore is left as an exercise.
 
+  \textbf{Running Time,} Denote by $T(G)$ the running time of the algorithm when called on graph $G$, and denote by $C_{1}$ the first strongly connected component that is found. Then:
+   \begin{equation*}
+    \begin{split}
+      T(G) &= \Theta(|V| + |E|) + T(G/C_{1}) = O(|E| \cdot |V|)
+    \end{split}
+  \end{equation*}
+
   \begin{algorithm}[h]
     Run DFS on $G$ according to the topological order of $G^{\top}$. 
     \caption{Find SCCs fast version.}
