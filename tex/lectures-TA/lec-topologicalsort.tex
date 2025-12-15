@@ -162,13 +162,6 @@ Suppose, toward a contradiction, that $\post(u) < \post(v)$, and split into case
 
   \section{ Strongly Connected Components }
 
-\begin{claim}
-  Define the relation $v\sim u$ to holds if $u$ and $v$ are on the same strong connected components. Then:\begin{enumerate}
-    \item $\sim$ is an equivalence relation. 
-    \item Define the graph $G^{\prime}=(V^\prime, E^\prime)$ such that $V^{\prime}$ are the equivalence class respecting to $\sim$ and $\{u,v\} \in E^{\prime}$ if there is a directed path in $G$ from a vertex in $u$ into a vertex in $v$. Then $G^{\prime}$ is a DAG.  
-  \end{enumerate}
-\end{claim}
-
   \begin{algorithm}[H]
     \For{ $v$ in $V$ }{
       $\pi \leftarrow $ Explore($G$, $v$) \\
@@ -180,11 +173,21 @@ Suppose, toward a contradiction, that $\post(u) < \post(v)$, and split into case
     \label{alg:scc_slow}
   \end{algorithm}
 
+  \textbf{Correctness}, Denote by $C_{w}$ the subset of vertices that is printed at line (4) when the iteration is over $w$. Let $u, v$ be vertices belonging to $C_{w}$. By the correctness of Explore, line (2) guarantees that $w \leadsto u, v$, and line (3) guarantees that $u, v \leadsto w$. Therefore, we get both $u \leadsto v$ and $v \leadsto u$. To complete the proof, one also has to show that the extension $C_{w} \cup \{z\}$ for any $z \in V \setminus C_{w}$ is not strongly connected. Showing that contradicts the correctness of Explore is left as an exercise.
+
   \begin{algorithm}[H]
     Run DFS on $G$ according to the topological order of $G^{\top}$. 
     \caption{Find SCCs fast version.}
     \label{alg:scc_fast}
   \end{algorithm}
+
+\begin{claim}
+  Define the relation $v\sim u$ to holds if $u$ and $v$ are on the same strong connected components. Then:\begin{enumerate}
+    \item $\sim$ is an equivalence relation. 
+    \item Define the graph $G^{\prime}=(V^\prime, E^\prime)$ such that $V^{\prime}$ are the equivalence class respecting to $\sim$ and $\{u,v\} \in E^{\prime}$ if there is a directed path in $G$ from a vertex in $u$ into a vertex in $v$. Then $G^{\prime}$ is a DAG.  
+  \end{enumerate}
+
+\end{claim}
 
 \begin{claim}
   Let $u$ the vertex with the minimal post value, then \textbf{Explore$(G,u)$} colorize only the vertices on $u$'s strong connected components.
