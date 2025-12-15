@@ -161,7 +161,7 @@ Suppose, toward a contradiction, that $\post(u) < \post(v)$, and split into case
   \end{algorithm}
 
   \section{ Strongly Connected Components }
-
+  Denote by $G^{\top}$ the graph obtained by flipping the direction of each edge in $G$, namely, if $(u,v) \in G$, then $(v,u) \in G^{\top}$. Let's introduce the first version of an algorithm that extracts from a given graph $G$ all its strongly connected components.
   \begin{algorithm}[h]
     \For{ $v$ in $V$ }{
       $\pi \leftarrow $ Explore($G$, $v$) \\
