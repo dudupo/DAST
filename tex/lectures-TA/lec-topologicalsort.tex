@@ -169,6 +169,23 @@ Suppose, toward a contradiction, that $\post(u) < \post(v)$, and split into case
   \end{enumerate}
 \end{claim}
 
+  \begin{algorithm}[H]
+    \For{ $v$ in $V$ }{
+      $\pi \leftarrow $ Explore($G$, $v$) \\
+      $ \pi^{\prime} \leftarrow$ Explore($G^\top$, $v$) \\
+      print $\pi \cap \pi^{\prime}$\\
+      $ V \leftarrow V / \pi \cap \pi^{\prime}$
+    }
+    \caption{ Find SCCs slow version.}
+    \label{alg:scc_slow}
+  \end{algorithm}
+
+  \begin{algorithm}[H]
+    Run DFS on $G$ according to the topological order of $G^{\top}$. 
+    \caption{Find SCCs fast version.}
+    \label{alg:scc_fast}
+  \end{algorithm}
+
 \begin{claim}
   Let $u$ the vertex with the minimal post value, then \textbf{Explore$(G,u)$} colorize only the vertices on $u$'s strong connected components.
 \end{claim}
