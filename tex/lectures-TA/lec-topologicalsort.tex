@@ -151,7 +151,7 @@ Suppose, toward a contradiction, that $\post(u) < \post(v)$, and split into case
   \end{itemize}
 \end{proof}
 
-\Cref{claim:toposort} defines an algorithm for sorting the vertices of a directed graph according to dependency, which we provide in \Cref{alg:topo}.
+\Cref{claim:toposort} defines an algorithm for sorting the vertices of a directed graph according to dependency, which we provide in \Cref{alg:topo}. Notice that since the $\post$ values are integers bounded by $|E|$, the sorting can be done using counting sort, and the overall running time is $O(|V| + |E|)$.
 
   \begin{algorithm}[H]
    $\pre, \post \leftarrow $ Call DFS($G$)\\
