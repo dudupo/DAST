@@ -183,7 +183,7 @@ Suppose, toward a contradiction, that $\post(u) < \post(v)$, and split into case
   \end{equation*}
 
   \section{SCCs in Linear Time}
-
+Now we present \Cref{alg:scc_fast}, an algorithm to find the strongly connected components in linear time.
   \begin{algorithm}[h]
     $\pre, \ \post \leftarrow $ DFS($G^{\top}$) \\
     $V \leftarrow$ sorts $V$ in reverse order of $\post$. \\
