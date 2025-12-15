@@ -206,6 +206,12 @@ Now we present \Cref{alg:scc_fast}, an algorithm to find the strongly connected 
   For $v \in V$, denote by $[v]$ the delegate of $v$ according to $\sim$. Running the topological sort on $G$ returns the vertices of $G$ according to the topological order of $G^\prime$, namely that $v$ appears before $u$ only if there is no path form $[u]$ to $[v]$ in $G^{\prime}$. The proof is identical to the proof of \Cref{claim:toposort}.
 \end{corollary}
 
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.9\textwidth]{sccout.png}
+  \caption{The vertices are 'ordered' according to the components' reversed order. One can imagine that at line (3), the algorithm calls 'Explore' first on the vertices in $C_{1}$, then on the vertices in $C_{2}$, and so on. Since there are no edges from $C_{i}$ to $C_{j}$ where $j > i$, it guarantees that the 'Explore' call will not get outside $C_{i}$. Hence, each tree in the returned $\pi$ is associated with a single strongly connected component.}
+  \label{fig:scc}
+\end{figure}
   \textbf{Correctness}, Assume for the sake of contradiction that the algorithm reurnts a subset $C^{\prime}$ which is not a strongly connected component. And denote by $C_{1}, C_{2}, C_{3}, .., C_{l}$ the strongly connected components of $G$ ordered by \ctt{ddd }. Then:
   \begin{itemize}
     \item Either, there is $u,v \in C^{\prime}$ such $u$ and $v$ belong to different strongly components. In that case, let $C_{i}$ and $C_{j}$ be the strongly connected components such $v \in C_{i}$ and $u \in C_{j}$. By \Cref{corollary:DAG}.
@@ -213,12 +219,6 @@ Now we present \Cref{alg:scc_fast}, an algorithm to find the strongly connected 
 
 
 
-\begin{figure}[h]
-  \centering
-  \includegraphics[width=0.9\textwidth]{sccout.png}
-  \caption{ Topological sort - the numbers $x/y$ denote the entering and the exiting times to and from the vertex ($\pre$ and $\post$).}
-  \label{fig:scc}
-\end{figure}
 
 \begin{claim}
   Let $u$ the vertex with the minimal post value, then \textbf{Explore$(G,u)$} colorize only the vertices on $u$'s strong connected components.
