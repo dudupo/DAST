@@ -203,7 +203,7 @@ Suppose, toward a contradiction, that $\post(u) < \post(v)$, and split into case
 
 \begin{corollary}
   \label{corollary:DAG} 
-For $v \in V$, denote by $[v]$ the delegate of $v$ according to $\sim$. Running the topological sort on $G$ returns the vertices of $G$ according to the topological order of $G^\prime$, namely that $v$ appears before/after $u$ if $[v]$ appears before/after $[u]$ in $G^{\prime}$ in the topological order of $G^{\prime}$.
+  For $v \in V$, denote by $[v]$ the delegate of $v$ according to $\sim$. Running the topological sort on $G$ returns the vertices of $G$ according to the topological order of $G^\prime$, namely that $v$ appears before $u$ only if there is no path form $[u]$ to $[v]$ in $G^{\prime}$. The proof is identical to the proof of \Cref{claim:toposort}.
 \end{corollary}
 
   \textbf{Correctness}, Assume for the sake of contradiction that the algorithm reurnts a subset $C^{\prime}$ which is not a strongly connected component. And denote by $C_{1}, C_{2}, C_{3}, .., C_{l}$ the strongly connected components of $G$ ordered by \ctt{ddd }. Then:
