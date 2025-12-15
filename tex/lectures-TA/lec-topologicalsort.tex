@@ -139,6 +139,7 @@ So, let's focus on the case where $\pre(v) < \pre(v^{\prime})$. Let $v^{\prime \
 \end{proof}
 
 \begin{claim}
+  \label{claim:toposort}
   Let $G=(V,E)$ be a DAG, and let $v,u \in V$ such $u \rightarrow v$ (There is a path from $u$ to $v$ in $G$). Then the call \textbf{DFS$(G)$} assigns $\post(u)>\post(v)$. 
 \end{claim}
 
@@ -150,8 +151,10 @@ Suppose, toward a contradiction, that $\post(u) < \post(v)$, and split into case
   \end{itemize}
 \end{proof}
 
+\Cref{claim:toposort} defines an algorithm for sorting the vertices of a directed graph according to dependency, which we provide in \Cref{alg:topo}.
 
   \begin{algorithm}[H]
+    \label{alg:topo}
    $\pre, \post \leftarrow $ Call DFS($G$)\\
    \Return $G$'s vertices in $\post$-reversed ordered. 
   \caption{TopologicalSort( $G$)}
