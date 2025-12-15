@@ -190,6 +190,23 @@ Suppose, toward a contradiction, that $\post(u) < \post(v)$, and split into case
     \label{alg:scc_fast}
   \end{algorithm}
 
+\begin{claim}
+  \label{claim:toDag}
+  Define the relation $v\sim u$ to holds if $u$ and $v$ are on the same strong connected components. Then:\begin{enumerate}
+    \item $\sim$ is an equivalence relation. 
+    \item Define the graph $G^{\prime}=(V^\prime, E^\prime)$ such that $V^{\prime}$ are the equivalence class respecting to $\sim$ and $\{u,v\} \in E^{\prime}$ if there is a directed path in $G$ from a vertex in $u$ into a vertex in $v$. Then $G^{\prime}$ is a DAG.  
+  \end{enumerate}
+\end{claim}
+
+\begin{corollary}
+  \label{corollary:DAG} 
+For $v \in V$, denote by $[v]$ the delegate of $v$ according to $sim$. Running the topological sort on $G$ returns the vertices of $G$ according to the topological order of $G^\prime$, namely that $v$ appears before/after $u$ if $[v]$ appears before/after $[u]$ in $G^{\prime}$ in the topological order of $G^{\prime}$.
+\end{corollary}
+
+  \textbf{Correctness}, Assume for the sake of contradiction that the algorithm reurnts a subset $C^{\prime}$ which is not a strongly connected component. And denote by $C_{1}, C_{2}, C_{3}, .., C_{l}$ the strongly connected components of $G$ ordered by \ctt{ddd }. Then:
+  \begin{itemize}
+    \item Either, there is $u,v \in C^{\prime}$ such $u$ and $v$ belong to different strongly components. In that case, let $C_{i}$ and $C_{j}$ be the strongly connected components such $v \in C_{i}$ and $u \in C_{j}$. By \Cref{corollary:DAG}.
+  \end{itemize}
 
 
 
@@ -199,13 +216,6 @@ Suppose, toward a contradiction, that $\post(u) < \post(v)$, and split into case
   \caption{ Topological sort - the numbers $x/y$ denote the entering and the exiting times to and from the vertex ($\pre$ and $\post$).}
   \label{fig:scc}
 \end{figure}
-\begin{claim}
-  Define the relation $v\sim u$ to holds if $u$ and $v$ are on the same strong connected components. Then:\begin{enumerate}
-    \item $\sim$ is an equivalence relation. 
-    \item Define the graph $G^{\prime}=(V^\prime, E^\prime)$ such that $V^{\prime}$ are the equivalence class respecting to $\sim$ and $\{u,v\} \in E^{\prime}$ if there is a directed path in $G$ from a vertex in $u$ into a vertex in $v$. Then $G^{\prime}$ is a DAG.  
-  \end{enumerate}
-
-\end{claim}
 
 \begin{claim}
   Let $u$ the vertex with the minimal post value, then \textbf{Explore$(G,u)$} colorize only the vertices on $u$'s strong connected components.
