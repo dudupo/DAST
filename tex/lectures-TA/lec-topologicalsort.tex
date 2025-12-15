@@ -162,7 +162,7 @@ Suppose, toward a contradiction, that $\post(u) < \post(v)$, and split into case
 
   \section{ Strongly Connected Components }
 
-  \begin{algorithm}[H]
+  \begin{algorithm}[h]
     \For{ $v$ in $V$ }{
       $\pi \leftarrow $ Explore($G$, $v$) \\
       $ \pi^{\prime} \leftarrow$ Explore($G^\top$, $v$) \\
@@ -175,7 +175,7 @@ Suppose, toward a contradiction, that $\post(u) < \post(v)$, and split into case
 
   \textbf{Correctness}, Denote by $C_{w}$ the subset of vertices that is printed at line (4) when the iteration is over $w$. Let $u, v$ be vertices belonging to $C_{w}$. By the correctness of Explore, line (2) guarantees that $w \leadsto u, v$, and line (3) guarantees that $u, v \leadsto w$. Therefore, we get both $u \leadsto v$ and $v \leadsto u$. To complete the proof, one also has to show that the extension $C_{w} \cup \{z\}$ for any $z \in V \setminus C_{w}$ is not strongly connected. Showing that contradicts the correctness of Explore is left as an exercise.
 
-  \begin{algorithm}[H]
+  \begin{algorithm}[h]
     Run DFS on $G$ according to the topological order of $G^{\top}$. 
     \caption{Find SCCs fast version.}
     \label{alg:scc_fast}
