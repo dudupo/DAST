@@ -17,6 +17,26 @@
 \end{exercise}
 
 
+  \begin{algorithm}[h]
+    \For { $v \in V$ }{ 
+      $d[v] \leftarrow \infty $  \\
+      $\pi[v] \leftarrow $ null  \\
+    }
+    $d[s] \leftarrow 0 $\\
+    $Q \leftarrow $ Heap($d[v_{1}], d[v_{2}], .. d[v_{n}]$)\\
+    \While{ $Q$ is not empty }{
+      $u \leftarrow $ extract-min $(Q)$ \\
+      \For { $(u,v) \in E$ } {
+        \If{ $d[v] > d[u] + w(u,v)$ }{ 
+          $d[v] \leftarrow d[u] + w(u,v)$ \\
+          Update $(Q, d[v])$\\
+          $\pi[v] \leftarrow u $ 
+        }
+      }
+    }
+    \caption{Dijkstra.}
+    \label{alg:dijkstra}
+  \end{algorithm}
 
   \begin{algorithm}[h]
     \For { $v \in V$ }{ 
