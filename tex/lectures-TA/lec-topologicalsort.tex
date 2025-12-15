@@ -215,7 +215,9 @@ Now we present \Cref{alg:scc_fast}, an algorithm to find the strongly connected 
 \textbf{Correctness} Denote by $C_{1}, C_{2}, C_{3}, .., C_{l}$ the strongly connected components of $G$ ordered by the topological sort of $G^{\top}$. We will prove by induction that upon the $i$th calling to 'Explore' form the second DFS call (line (3)), the algorithm scans only the vertices at $C_{i}$.
 
 \begin{enumerate}
-  \item Base. The first call to Explore is over the first vertex in the topological of $G^{\top}$. That vertex is belong to $C_{1}$ and from it there is a directed path to any other vertex of $C_{1}$, so it's left to show that no vertex outside $C_{1}$ is being scaned on the first call. If there where $u \in C_{j}$ for $j > 1$ that were scanned, then it means that the algorithm cross trough an edge at the form $(v^{\prime}, u^{\prime})$ such that $v^{\prime} \in C_{1}$ and $u^{\prime} \in C_{j}$. But if $\left( v^{\prime}, u^{\prime} \right) \in E$ then $ \left(u^{\prime}, v^{\prime} \right) \in E^{\top} $. Thus $u^{\prime}$ appers before $v^{\prime}$ in the topological order of $G^{\top}$. 
+  \item Base. The first call to Explore is over the first vertex in the topological of $G^{\top}$. That vertex is belong to $C_{1}$ and from it there is a directed path to any other vertex of $C_{1}$, so it's left to show that no vertex outside $C_{1}$ is being scaned on the first call. If there where $u \in C_{j}$ for $j > 1$ that were scanned, then it means that the algorithm cross trough an edge at the form $(v^{\prime}, u^{\prime})$ such that $v^{\prime} \in C_{1}$ and $u^{\prime} \in C_{j}$. But if $\left( v^{\prime}, u^{\prime} \right) \in E$ then $ \left(u^{\prime}, v^{\prime} \right) \in E^{\top} $ Thus there is a directed path form $C_{j}$ to $C_{1}$ and therefore the vertices of $C_{j}$ have to appear before $C_{1}$ which is contradiction to $C_{1}$ be the strongly connected component of the first vertex.
+
+   
   \item Assumption. Assume correction for any $i^{\prime} < i$. 
   \item Step. 
 \end{enumerate}
