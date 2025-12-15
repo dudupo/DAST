@@ -188,6 +188,15 @@ Suppose, toward a contradiction, that $\post(u) < \post(v)$, and split into case
     \label{alg:scc_fast}
   \end{algorithm}
 
+
+
+
+\begin{figure}[h]
+  \centering
+  \includegraphics[width=0.8\textwidth]{sccout.png}
+  \caption{ Topological sort - the numbers $x/y$ denote the entering and the exiting times to and from the vertex ($\pre$ and $\post$).}
+  \label{fig:scc}
+\end{figure}
 \begin{claim}
   Define the relation $v\sim u$ to holds if $u$ and $v$ are on the same strong connected components. Then:\begin{enumerate}
     \item $\sim$ is an equivalence relation. 
