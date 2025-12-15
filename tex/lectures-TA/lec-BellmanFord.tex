@@ -54,6 +54,7 @@
       }
     }
     \For{ $(u,v) \in E$ }{
+      \label{line:Belcon}
         \If{ $d[v] > d[u] + w(u,v)$ }{ 
           \Return Negative Cycle 
         }
@@ -62,6 +63,23 @@
     \label{alg:bellman-ford}
   \end{algorithm}
 
+
+  \textbf{Detecting a Negative Cycle.} Suppose that $v_{1},v_{1},\cdots v_{k}=v_{1}$ is a negative cycle. This means that: 
+
+  \begin{equation*}
+    \begin{split}
+      \sum^{k}_{i}w(v_{i},v_{i+1}) < 0 
+    \end{split}
+  \end{equation*}
+
+  Assume that the algorithm doesn't detect the cycle, namely the condition at \Cref{line:Belcon} is not satisfied for any of the edges. Then: 
+
+  \begin{equation*}
+    \begin{split}
+      & \forall v_{i}  d[v] < d[u] + w(u,v) \\
+    \Rightarrow & \sum^{k}_{i}d[v_{i}] < \sum^{k}_{i}d[v_{i-1]} + \sum^{k}_{i}w(v_{i},v_{i+1}) 
+    \end{split}
+  \end{equation*}
 
 \input{../texlib/tail}
 
