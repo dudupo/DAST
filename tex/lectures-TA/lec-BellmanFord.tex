@@ -24,6 +24,19 @@ Initially the distances from the source are initialized to $\infty$ and along th
 Dijkstra can be thought of as BFS where the FIFO queue is replaced by a min-heap. Each time we extract the closest unvisited vertex, we scan its edges and check for each of its neighbors if getting to it through their edge defines a shorter path than what is currently known. If so, we update the heap. \Cref{alg:dijkstra} gives an implementation.   
 
 
+
+
+
+
+
+\textbf{What's wrong with negative weights?} Consider the following graph, 
+
+    \begin{figure}[h]
+      \centering
+      \input{tikz-negative-dij.tex}
+      \caption{ Example of a binary tree with $12$ vertices. In blue, one of the longest paths from the root to one of the leaves, which is of length $4$. }
+      \label{fig:negative}
+    \end{figure}
   \begin{algorithm}[h]
     \For { $v \in V$ }{ 
       $d[v] \leftarrow \infty $  \\
