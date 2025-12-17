@@ -20,6 +20,24 @@ Two main algorithms are used to solve the shortest path problem. The first is Di
 
 Initially the distances from the source are initialized to $\infty$ and along the running their are decreased closer to their real value by application of relaxations. 
 
+
+
+\begin{claim}
+  Given a weighted (can be directed) graph $G$ with weights $w : E \rightarrow \mathbb{R}$, let $ v_{0},v_{1},..v_{k}$ be a shortest path from $v_{0}$ to $v_{k}$ then for any $0\le i<j \le k$ the path $v_{i},v_{i+1},..,v_{j-1},v_{j}$ is a shortest path from $v_{i}$ to $v_{j}$.
+\end{claim}
+\begin{proof}
+  Assume by contradiction that there is a path $v_{i}, u_{i+1}, .., u_{j-1}, v_{j}$ that has a lower weight than $v_{i},v_{i+1},..,v_{j-1},v_{j}$ then: 
+  
+  \begin{equation*}
+    \begin{split}
+      w\left(     v_{0},v_{1},..v_{k} \right) &=w\left( v_{0},v_{1},..,v_{i}  \right) + w\left( v_{i},v_{i+1},..,v_{j} \right) + w\left( v_{j},v_{j+1},..,v_{k} \right) \\
+      & > w\left( v_{0},v_{1},..,v_{i}  \right) + w\left( v_{i},u_{i+1},..,u_{j-1}, u_{j} \right) + w\left( v_{j},v_{j+1},..,v_{k} \right) \\
+      & = w\left(     v_{0},v_{1},..,v_{i},u_{i+1},..,u_{j-1},v_{j}, .., v_{k} \right) 
+    \end{split}
+  \end{equation*}
+\end{proof}
+
+
 \section{Dijkstra}
 Dijkstra can be thought of as BFS where the FIFO queue is replaced by a min-heap. Each time we extract the closest unvisited vertex, we scan its edges and check for each of its neighbors if getting to it through their edge defines a shorter path than what is currently known. If so, we update the heap. \Cref{alg:dijkstra} gives an implementation.   
 
