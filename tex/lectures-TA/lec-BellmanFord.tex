@@ -73,9 +73,18 @@ Initially the distances from the source are initialized to $\infty$ and along th
   \end{claim}
 
   \begin{claim}[Path-relaxation property]
-    \ctt{Not sure that we need it} 
+    Let $s = v_{0},v_{1},v_{2},..,v_{k}$ be a shortest path from $s$ to $v_{k}$. After an application of a sequence relaxation steps that includes, in order, $(v_{0},v_{1}),(v_{1},v_{2}),..,(v_{k-1},v_{k})$ we have that $d[v_{k}] = \delta(s,v_{k})$.
   \end{claim}
+  \begin{proof}
+    We show by induction on $i$ that after the relaxation of $(v_{i-1},v_{i})$ we have $d[v_{i}] = \delta(s,v_{i})$.
 
+    \begin{enumerate}
+      \item Base. 
+      \item Assumption. 
+      \item Step.
+    \end{enumerate}
+
+  \end{proof}
 \section{Dijkstra}
 Dijkstra can be thought of as BFS where the FIFO queue is replaced by a min-heap. Each time we extract the closest unvisited vertex, we scan its edges and check for each of its neighbors if getting to it through their edge defines a shorter path than what is currently known. If so, we update the heap. \Cref{alg:dijkstra} gives an implementation.   
 
