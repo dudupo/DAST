@@ -10,11 +10,18 @@
 \thispagestyle{firststyle}
 \fi
 
-\section{Dijkstra}
 
-\begin{exercise}
-  Give an example 
-\end{exercise}
+\section{Shortest Paths} 
+
+Recall that a weighted graph $G$ is a graph equipped with a weight function $w : E \rightarrow \mathbb{R}$, where the weight of a path is defined as the sum of the weights of the edges along the path. The shortest path between two vertices is a path that connects them and is also minimal in its weight. One native application of this formulation is to model routes between destinations, where edges correspond to roads and vertices to mid-stations.
+
+Two main algorithms are used to solve the shortest path problem. The first is Dijkstra, which is required only when the weight function is \textbf{non-negative} and runs in time $\Theta(|E| \log |V|)$ \footnote{Can be improved to $|E| + |V|\log|V|$, but that is beyond the scope of the course.}. The second is Bellman-Ford, which handles \textbf{negative} weights, yet it does so at a higher running time cost of $\Theta(|E| \cdot |V|)$.
+
+
+Initially the distances from the source are initialized to $\infty$ and along the running their are decreased closer to their real value by application of relaxations. 
+
+\section{Dijkstra}
+Dijkstra can be thought of as BFS where the FIFO queue is replaced by a min-heap. Each time we extract the closest unvisited vertex, we scan its edges and check for each of its neighbors if getting to it through their edge defines a shorter path than what is currently known. If so, we update the heap. \Cref{alg:dijkstra} gives an implementation.   
 
 
   \begin{algorithm}[h]
@@ -37,6 +44,9 @@
     \caption{Dijkstra.}
     \label{alg:dijkstra}
   \end{algorithm}
+
+
+  \section{Bellman-Ford}
 
   \begin{algorithm}[h]
     \For { $v \in V$ }{ 
