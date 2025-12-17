@@ -37,6 +37,44 @@ Initially the distances from the source are initialized to $\infty$ and along th
   \end{equation*}
 \end{proof}
 
+\textbf{Relaxation.}
+
+  \begin{algorithm}[h]
+      \If{ $d[v] > d[u] + w(u,v)$ }{ 
+        $d[v] \leftarrow d[u] + w(u,v)$ \\
+        Update $(Q, d[v])$\\
+        $\pi[v] \leftarrow u $ 
+      }
+    \caption{Relaxation.}
+    \label{relax}
+  \end{algorithm}
+
+  \textbf{Shortest-paths Properties}
+
+  \begin{claim}[Triangle inequality]
+    For all edges $(u,v) \in E$ we have:
+    \begin{equation*}
+      \begin{split}
+        \delta(s,v) \le \delta(s,u) + w(u,v)
+      \end{split}
+    \end{equation*}
+  \end{claim}
+
+  \begin{claim}[Upper-bound property]
+    Suppose that that for every $v$ $d[v]$ initialized such that $d[v] > \delta(s,v)$ then any application of any sequence relaxation steps   $d[v] > \delta(s,v)$
+  \end{claim}
+
+  \begin{claim}[No-path property] 
+    Like above for $\delta(s,v) = \infty$ 
+  \end{claim}
+
+  \begin{claim}[Convergence property] 
+    $s \leadsto u \rightarrow v $ , last stage. 
+  \end{claim}
+
+  \begin{claim}[Path-relaxation property]
+    
+  \end{claim}
 
 \section{Dijkstra}
 Dijkstra can be thought of as BFS where the FIFO queue is replaced by a min-heap. Each time we extract the closest unvisited vertex, we scan its edges and check for each of its neighbors if getting to it through their edge defines a shorter path than what is currently known. If so, we update the heap. \Cref{alg:dijkstra} gives an implementation.   
