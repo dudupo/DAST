@@ -73,7 +73,7 @@ Initially the distances from the source are initialized to $\infty$ and along th
   \end{claim}
 
   \begin{claim}[Path-relaxation property]
-    
+    \ctt{Not sure that we need it} 
   \end{claim}
 
 \section{Dijkstra}
@@ -162,6 +162,9 @@ Dijkstra can be thought of as BFS where the FIFO queue is replaced by a min-heap
       0 & \le \sum^{k}_{i=2}w(v_{i-1},v_{i})  
     \end{split}
   \end{equation*}
+
+
+  \textbf{Correctness.} at the $i$ iteration, we apply the relaxtion $(v_{i-1},v_{i})$ after we apply it over $(v_{1},v_{2}), (v_{2},v_{3}), .., ( v_{i-2},v_{i-1} )$
 
 \input{../texlib/tail}
 
