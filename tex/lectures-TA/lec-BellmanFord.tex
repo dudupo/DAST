@@ -154,7 +154,7 @@ Dijkstra can be thought of as BFS where the FIFO queue is replaced by a min-heap
     \begin{equation*}
       \begin{split}
         & \delta(s,y) \le \delta(s,u) \le d[u] \le d[y] = \delta(s,y)\\ 
-        \Rightarrow \delta(s,u) = d[u]
+        \Rightarrow & \delta(s,u) = d[u]
       \end{split}
     \end{equation*}
     In contradiction to $u$ be the first vertex to have a strictly greater $d[u]$ than $\delta(s,u)$ at the extraction time.  
