@@ -48,8 +48,7 @@ Initially the distances from the source are initialized to $\infty$ and along th
     \label{relax}
   \end{algorithm}
 
-  \textbf{Shortest-paths Properties.} Let $G$ be (can be directed) a graph, For any $v,u \in E$ denote by $\delta(v,u)$ the length of a shortest path from $v$ to $u$. For a source vertex $s \in V$ and any vertex $v \in V $, associate a register $d[v]$ initialize as: 
-  
+  \textbf{Shortest-paths Properties.} Let $G$ be (can be directed) a graph, For any $v,u \in E$ denote by $\delta(v,u)$ the length of a shortest path from $v$ to $u$. For a source vertex $s \in V$ and any vertex $v \in V $, associate a register $d[v]$ initialize as:  
   \begin{equation*}
     \begin{split}
       d[v] = \begin{cases}
@@ -58,21 +57,32 @@ Initially the distances from the source are initialized to $\infty$ and along th
       \end{cases}
     \end{split}
   \end{equation*}
-
+  Then the following properties hold:
   \begin{itemize}
-    \item \textbf{Triangle inequality}
-        For all edges $(u,v) \in E$ we have:
-        \begin{equation*}
+    \item \textbf{Triangle inequality.}
+        For all edges $(u,v) \in E$ we have: \begin{equation*}
           \begin{split}
             \delta(s,v) \le \delta(s,u) + w(u,v)
           \end{split}
         \end{equation*}
+        \begin{proof}
+          By definition, $\delta(s,v)$ is the weight of the minimal path from $s$ to $v$, thus it lower or equal than the weight of any other path from $s$ to $v$, Particularly the weight of path obtained by chaining a shortest from $s$ to $u$ with the edge from $u$ to $v$. The weight of such path is $\delta(s,u) + w(u,v)$ and we get the desired inequality.
+        \end{proof}
 
       \item \textbf{[Upper-bound property}
-        Suppose that that for every $v$ $d[v]$ initialized such that $d[v] > \delta(s,v)$ then any application of any sequence relaxation steps   $d[v] > \delta(s,v)$
-
-      \item \textbf{No-path property}
-        Like above for $\delta(s,v) = \infty$ 
+          After application of any sequence relaxation steps we have  $d[v] \ge \delta(s,v)$. 
+          \begin{proof}
+            By induction on the $i$th relaxation step. We present only the induction step. If $d[v]$ was changed after the step, then it was setted to be $d[u] + w(u,v)$ for some $u \in V$ such $(u,v) \in E$. However: 
+            \begin{equation*}
+              \begin{split}
+                d[u] + w(u,v) & \ge \delta(s,u) + w(u,v) \\ 
+                & \ge \delta(s,v)
+              \end{split}
+            \end{equation*}
+            Where the first inequality uses the induction assumption for the $i-1$ previews relaxation steps, and the second is follow by the triangle inequality. 
+          \end{proof}
+      %\item \textbf{No-path property}
+        %If there is  $\delta(s,v) = \infty$ 
 
       \item \textbf{Convergence property}
         $s \leadsto u \rightarrow v $ , last stage. 
