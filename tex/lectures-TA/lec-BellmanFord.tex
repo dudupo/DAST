@@ -120,6 +120,8 @@ Dijkstra can be thought of as BFS where the FIFO queue is replaced by a min-heap
       \label{fig:negative}
     \end{figure}
 
+
+
   \begin{algorithm}[h]
     \For { $v \in V$ }{ 
       $d[v] \leftarrow \infty $  \\
@@ -141,6 +143,22 @@ Dijkstra can be thought of as BFS where the FIFO queue is replaced by a min-heap
     \label{alg:dijkstra}
   \end{algorithm}
 
+  \begin{claim}[Dijkstra Correctness]
+    At the time that $u$ is being extracted out of $Q$, we have $d[u] = \delta(s,u)$.
+  \end{claim}
+  \begin{proof}
+    Assume for the sake of contradiction that the claim is false, and let $u$ be the first vertex that at the time its being extracted, the value of $d[u]$ is strictly grater than $\delta(s,u)$. If $u=s$ the contradiction is immediate. By the \textbf{Upper-bound property}, if $u$ is not reachable from $s$ then $d[u] > \infty $ for the whole running, and the again the contradiction follows directly. Hence it's left to deal the case where $u$ is reachable from $v$. Let $x$ and $y$ be a two adjacent vertices on a shortest path $s \leadsto u$, such $x$ has extracted out from $Q$ before $u$ and $y$ not. Notice that $x$ can be equals to $s$ and $y$ can be equals to $u$.
+
+    From the assumption that $u$ is the first vertex to be extracted out that violates the claim, we have that $d[x]=\delta(s,x)$, and by the \textbf{Convergence property} also $d[y] = \delta(s,y)$. Yet by the correctness of min-heap extraction, we have that $d[u] \le d[y]$. Combing that $\delta(s,y) \le \delta(s,u)$ (by the \textbf{Triangle inequality}) we have:   
+    
+    \begin{equation*}
+      \begin{split}
+        & \delta(s,y) \le \delta(s,u) \le d[u] \le d[y] = \delta(s,y)\\ 
+        \Rightarrow \delta(s,u) = d[u]
+      \end{split}
+    \end{equation*}
+    In contradiction to $u$ be the first vertex to have a strictly greater $d[u]$ than $\delta(s,u)$ at the extraction time.  
+  \end{proof}
 
   \section{Bellman-Ford}
 
