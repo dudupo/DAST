@@ -141,12 +141,13 @@ Dijkstra can be thought of as BFS where the FIFO queue is replaced by a min-heap
   \end{algorithm}
 
   \begin{claim}[Dijkstra Correctness]
-    At the time that $u$ is being extracted out of $Q$, we have $d[u] = \delta(s,u)$.
+At the time $u$ is extracted from $Q$, we have $d[u] = \delta(s,u)$.
   \end{claim}
   \begin{proof}
-    Assume for the sake of contradiction that the claim is false, and let $u$ be the first vertex that at the time its being extracted, the value of $d[u]$ is strictly grater than $\delta(s,u)$. If $u=s$ the contradiction is immediate. By the \textbf{Upper-bound property}, if $u$ is not reachable from $s$ then $d[u] > \infty $ for the whole running, and the again the contradiction follows directly. Hence it's left to deal the case where $u$ is reachable from $v$. Let $x$ and $y$ be a two adjacent vertices on a shortest path $s \leadsto u$, such $x$ has extracted out from $Q$ before $u$ and $y$ not. Notice that $x$ can be equals to $s$ and $y$ can be equals to $u$.
+Assume for the sake of contradiction that the claim is false, and let $u$ be the first vertex such that at the time it is being extracted, the value of $d[u]$ is strictly greater than $\delta(s,u)$. If $u=s$, the contradiction is immediate. By the \textbf{Upper-bound property}, if $u$ is not reachable from $s$, then $d[u] > \infty$ for the whole running, and again the contradiction follows directly. Hence, it is left to deal with the case where $u$ is reachable from $s$. Let $x$ and $y$ be two adjacent vertices on a shortest path $s \leadsto u$, such that $x$ has been extracted from $Q$ before $u$ and $y$ not. Notice that $x$ can be equal to $s$ and $y$ can be equal to $u$.
 
-    From the assumption that $u$ is the first vertex to be extracted out that violates the claim, we have that $d[x]=\delta(s,x)$, and by the \textbf{Convergence property} also $d[y] = \delta(s,y)$. Yet by the correctness of min-heap extraction, we have that $d[u] \le d[y]$. Combing that $\delta(s,y) \le \delta(s,u)$ ($\star$) we have:   
+
+From the assumption that $u$ is the first vertex to be extracted that violates the claim, we have $d[x]=\delta(s,x)$, and by the \textbf{Convergence property}, also $d[y] = \delta(s,y)$. Yet, by the correctness of min-heap extraction, we have $d[u] \le d[y]$. Combining that with $\delta(s,y) \le \delta(s,u)$ ($\star$), we have:
     
     \begin{equation*}
       \begin{split}
@@ -154,14 +155,14 @@ Dijkstra can be thought of as BFS where the FIFO queue is replaced by a min-heap
         \Rightarrow & \delta(s,u) = d[u]
       \end{split}
     \end{equation*}
-    In contradiction to $u$ be the first vertex to have a strictly greater $d[u]$ than $\delta(s,u)$ at the extraction time.  
+In contradiction to $u$ being the first vertex to have a strictly greater $d[u]$ than $\delta(s,u)$ at the extraction time.
   \end{proof}
 
   \begin{exercise}
-    Where is the exactly points in which the proof fails for negative weight? 
+Where is the exact point at which the proof fails for negative weights?
   \end{exercise}
   \begin{solution}
-    At $(\star)$, the inequality $\delta(s,y) \le \delta(s,v)$ is correct only if we assume that $w \ge 0$, In that case by \textbf{Triangle inequality } we have that for adjacent vertices on a shortest path $x,y$ we have that:  
+At $(\star)$, the inequality $\delta(s,y) \le \delta(s,v)$ is correct only if we assume that $w \ge 0$. In that case, by the \textbf{Triangle inequality}, we have that for adjacent vertices on a shortest path $x, y$, we have that:
     \begin{equation*}
       \begin{split}
         \delta(s,x) = \delta(s,y) + w(y,x) \le \delta(s,y)
