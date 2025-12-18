@@ -48,7 +48,16 @@ Initially the distances from the source are initialized to $\infty$ and along th
     \label{relax}
   \end{algorithm}
 
-  \textbf{Shortest-paths Properties}
+  \textbf{Shortest-paths Properties.} Let $G$ be (can be directed) a graph, For any $v,u in E$ denote by $\delta(v,u)$ the length of a shortest path from $v$ to $u$. For a source vertex $s \in V$ and any vertex $v \in $, associate a register $d[v]$ initialize as: 
+  
+  \begin{equation*}
+    \begin{split}
+      d[v] = \begin{cases}
+        \infty & v \neq s \\
+        0 & v = s
+      \end{cases}
+    \end{split}
+  \end{equation*}
 
   \begin{claim}[Triangle inequality]
     For all edges $(u,v) \in E$ we have:
