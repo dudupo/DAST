@@ -40,7 +40,7 @@ Initially, estimators of the distances from the source are set to $\infty$, and 
 
 \textbf{Relaxation.} For $v, u \in V$, let $\delta(v, u)$ be the length of the shortest path from $v$ to $u$. Sometimes we will say that $\delta(v, u)$ is the distance between $v$ and $u$\footnote{Notice that for an undirected graph, the term distance is not well defined.}. For a source $s \in V$, let $d[v]$ be an estimator of $\delta(s, v)$. The relaxation method takes a directed edge $(u, v) \in E$ and updates $d[v]$ as follows:
 
-  \begin{algorithm}[h]
+  \begin{algorithm}[H]
       \If{ $d[v] > d[u] + w(u,v)$ }{ 
         $d[v] \leftarrow d[u] + w(u,v)$ \\
         $\pi[v] \leftarrow u $ 
