@@ -218,27 +218,6 @@ Consider the graph with 4 vertices, denoted by \( V = \{1, 2, 3, 4\} \). Assume 
 
   Showing that Bellman-ford detects negative cycle is left as exercise.  
 
-  \textbf{Detecting a Negative Cycle.} Suppose that $v_{1},v_{1},\cdots v_{k}=v_{1}$ is a negative cycle. This means that: 
-
-  \begin{equation*}
-    \begin{split}
-      \sum^{k}_{i=2}w(v_{i-1},v_{i}) < 0 
-    \end{split}
-  \end{equation*}
-
-  Assume that the algorithm doesn't detect the cycle, namely the condition at \Cref{line:Belcon} is not satisfied for any of the edges. Then: 
-
-  \begin{equation*}
-    \begin{split}
-      & \forall v_{i} \ d[v] < d[u] + w(u,v) \\
-      \Rightarrow & \sum^{k}_{i=2}d[v_{i}] < \sum^{k}_{i=2}d[v_{i-1}] + \sum^{k}_{i=2}w(v_{i-1},v_{i}) \\ 
-      & =  \sum^{k}_{i=2}d[v_{i}] + \sum^{k}_{i=2}w(v_{i-1},v_{i}) \\
-      0 & \le \sum^{k}_{i=2}w(v_{i-1},v_{i})  
-    \end{split}
-  \end{equation*}
-
-
-  \textbf{Correctness.} at the $i$ iteration, we apply the relaxtion $(v_{i-1},v_{i})$ after we apply it over $(v_{1},v_{2}), (v_{2},v_{3}), .., ( v_{i-2},v_{i-1} )$
 
 \input{../texlib/tail}
 
