@@ -59,40 +59,42 @@ Initially the distances from the source are initialized to $\infty$ and along th
     \end{split}
   \end{equation*}
 
-  \begin{claim}[Triangle inequality]
-    For all edges $(u,v) \in E$ we have:
-    \begin{equation*}
-      \begin{split}
-        \delta(s,v) \le \delta(s,u) + w(u,v)
-      \end{split}
-    \end{equation*}
-  \end{claim}
+  \begin{itemize}
+    \item \begin{claim}[Triangle inequality]
+        For all edges $(u,v) \in E$ we have:
+        \begin{equation*}
+          \begin{split}
+            \delta(s,v) \le \delta(s,u) + w(u,v)
+          \end{split}
+        \end{equation*}
+      \end{claim}
 
-  \begin{claim}[Upper-bound property]
-    Suppose that that for every $v$ $d[v]$ initialized such that $d[v] > \delta(s,v)$ then any application of any sequence relaxation steps   $d[v] > \delta(s,v)$
-  \end{claim}
+    \item \begin{claim}[Upper-bound property]
+        Suppose that that for every $v$ $d[v]$ initialized such that $d[v] > \delta(s,v)$ then any application of any sequence relaxation steps   $d[v] > \delta(s,v)$
+      \end{claim}
 
-  \begin{claim}[No-path property] 
-    Like above for $\delta(s,v) = \infty$ 
-  \end{claim}
+    \item \begin{claim}[No-path property] 
+        Like above for $\delta(s,v) = \infty$ 
+      \end{claim}
 
-  \begin{claim}[Convergence property] 
-    $s \leadsto u \rightarrow v $ , last stage. 
-  \end{claim}
+      \begin{claim}[Convergence property] 
+        $s \leadsto u \rightarrow v $ , last stage. 
+      \end{claim}
 
-  \begin{claim}[Path-relaxation property]
-    Let $s = v_{0},v_{1},v_{2},..,v_{k}$ be a shortest path from $s$ to $v_{k}$. After an application of a sequence relaxation steps that includes, in order, $(v_{0},v_{1}),(v_{1},v_{2}),..,(v_{k-1},v_{k})$ we have that $d[v_{k}] = \delta(s,v_{k})$.
-  \end{claim}
-  \begin{proof}
-    We show by induction on $i$ that after the relaxation of $(v_{i-1},v_{i})$ we have $d[v_{i}] = \delta(s,v_{i})$.
+      \begin{claim}[Path-relaxation property]
+        Let $s = v_{0},v_{1},v_{2},..,v_{k}$ be a shortest path from $s$ to $v_{k}$. After an application of a sequence relaxation steps that includes, in order, $(v_{0},v_{1}),(v_{1},v_{2}),..,(v_{k-1},v_{k})$ we have that $d[v_{k}] = \delta(s,v_{k})$.
+      \end{claim}
+      \begin{proof}
+        We show by induction on $i$ that after the relaxation of $(v_{i-1},v_{i})$ we have $d[v_{i}] = \delta(s,v_{i})$.
 
-    \begin{enumerate}
-      \item Base. 
-      \item Assumption. 
-      \item Step.
-    \end{enumerate}
+        \begin{enumerate}
+          \item Base. 
+          \item Assumption. 
+          \item Step.
+        \end{enumerate}
 
-  \end{proof}
+      \end{proof}
+  \end{itemize}
 \section{Dijkstra}
 Dijkstra can be thought of as BFS where the FIFO queue is replaced by a min-heap. Each time we extract the closest unvisited vertex, we scan its edges and check for each of its neighbors if getting to it through their edge defines a shorter path than what is currently known. If so, we update the heap. \Cref{alg:dijkstra} gives an implementation.   
 
