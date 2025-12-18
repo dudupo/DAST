@@ -51,7 +51,7 @@ Initially, estimators of the distances from the source are set to $\infty$, and 
 
 The standard algorithms to find shortest paths apply relaxation steps, where they differ in how they choose the next edge to be relaxed. Next, we show general properties that hold for all such algorithms, for both non-negative and possibly negative weights.
 
-  \section{Shortest-Paths Properties} Let $G$ be (can be directed) a graph, For any $v,u \in E$ denote by $\delta(v,u)$ the length of a shortest path from $v$ to $u$. For a source vertex $s \in V$ and any vertex $v \in V $, associate a register $d[v]$ initialize as:  
+  \section{Shortest-Paths Properties} Let $G$ be (can be directed) a graph, For any $v,u \in E$ denote by $\delta(v,u)$ the length of a shortest path from $v$ to $u$. For a source vertex $s \in V$ and any vertex $v \in V $, associate an estimator $d[v]$ initialize as:  
   \begin{equation*}
     \begin{split}
       d[v] = \begin{cases}
@@ -69,20 +69,20 @@ The standard algorithms to find shortest paths apply relaxation steps, where the
           \end{split}
         \end{equation*}
         \begin{proof}
-          By definition, $\delta(s,v)$ is the weight of the minimal path from $s$ to $v$, thus it lower or equal than the weight of any other path from $s$ to $v$, Particularly the weight of path obtained by chaining a shortest from $s$ to $u$ with the edge from $u$ to $v$. The weight of such path is $\delta(s,u) + w(u,v)$ and we get the desired inequality.
+          By definition, $\delta(s,v)$ is the weight of the minimal path from $s$ to $v$, Thus, it is lower or equal to the weight of any other path from $s$ to $v$, particularly the weight of the path obtained by chaining a shortest path from $s$ to $u$ with the edge from $u$ to $v$. The weight of such a path is $\delta(s,u) + w(u,v)$, and we get the desired inequality.
         \end{proof}
 
-      \item \textbf{Upper-bound property.}
-          After application of any sequence relaxation steps we have  $d[v] \ge \delta(s,v)$. 
+      \item \textbf{Upper-bound property.} 
+        After the application of any sequence of relaxation steps, we have $d[v] \ge \delta(s,v)$.
           \begin{proof}
-            By induction on the $i$th relaxation step. We present only the induction step. If $d[v]$ was changed after the step, then it was setted to be $d[u] + w(u,v)$ for some $u \in V$ such $(u,v) \in E$. However: 
+           By induction on the $i$th relaxation step, we present only the induction step. If $d[v]$ was changed after the step, then it was set to be $d[u] + w(u,v)$ for some $u \in V$ such that $(u,v) \in E$. However:
             \begin{equation*}
               \begin{split}
                 d[u] + w(u,v) & \ge \delta(s,u) + w(u,v) \\ 
                 & \ge \delta(s,v)
               \end{split}
             \end{equation*}
-            Where the first inequality uses the induction assumption for the $i-1$ previews relaxation steps, and the second is follow by the triangle inequality. 
+Where the first inequality uses the induction assumption for the $i-1$ previous relaxation steps, and the second follows from the triangle inequality.
           \end{proof}
       %\item \textbf{No-path property}
         %If there is  $\delta(s,v) = \infty$ 
@@ -105,20 +105,15 @@ The standard algorithms to find shortest paths apply relaxation steps, where the
   \end{remark}
 
 \section{Dijkstra}
-Dijkstra can be thought of as BFS where the FIFO queue is replaced by a min-heap. Each time we extract the closest unvisited vertex, we scan its edges and check for each of its neighbors if getting to it through their edge defines a shorter path than what is currently known. If so, we update the heap. \Cref{alg:dijkstra} gives an implementation.   
-
-
-
-
-
-
+Dijkstra can be thought of as BFS where the FIFO queue is replaced by a min-heap. Each time we extract the closest unvisited vertex, we scan its edges and check for each of its neighbors if getting to the neighbor through the corresponding edge defines a shorter path than what is currently known. If so, we update the heap. \Cref{alg:dijkstra} gives an implementation.
 
 \textbf{What's wrong with negative weights?} Consider the following graph, 
+
 
     \begin{figure}[h]
       \centering
       \input{tikz-negative-dij.tex}
-      \caption{ Example of a binary tree with $12$ vertices. In blue, one of the longest paths from the root to one of the leaves, which is of length $4$. }
+      \caption{Example of a graph with negative weights, yet no negative cycles, that Dijkstra fails on. }
       \label{fig:negative}
     \end{figure}
 
