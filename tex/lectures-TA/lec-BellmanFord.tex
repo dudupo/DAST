@@ -23,6 +23,7 @@ Initially the distances from the source are initialized to $\infty$ and along th
 
 
 \begin{claim}
+  \label{claim:subpath}
   Given a weighted (can be directed) graph $G$ with weights $w : E \rightarrow \mathbb{R}$, let $ v_{0},v_{1},..v_{k}$ be a shortest path from $v_{0}$ to $v_{k}$ then for any $0\le i<j \le k$ the path $v_{i},v_{i+1},..,v_{j-1},v_{j}$ is a shortest path from $v_{i}$ to $v_{j}$.
 \end{claim}
 \begin{proof}
@@ -69,7 +70,7 @@ Initially the distances from the source are initialized to $\infty$ and along th
           By definition, $\delta(s,v)$ is the weight of the minimal path from $s$ to $v$, thus it lower or equal than the weight of any other path from $s$ to $v$, Particularly the weight of path obtained by chaining a shortest from $s$ to $u$ with the edge from $u$ to $v$. The weight of such path is $\delta(s,u) + w(u,v)$ and we get the desired inequality.
         \end{proof}
 
-      \item \textbf{[Upper-bound property}
+      \item \textbf{Upper-bound property.}
           After application of any sequence relaxation steps we have  $d[v] \ge \delta(s,v)$. 
           \begin{proof}
             By induction on the $i$th relaxation step. We present only the induction step. If $d[v]$ was changed after the step, then it was setted to be $d[u] + w(u,v)$ for some $u \in V$ such $(u,v) \in E$. However: 
@@ -84,19 +85,16 @@ Initially the distances from the source are initialized to $\infty$ and along th
       %\item \textbf{No-path property}
         %If there is  $\delta(s,v) = \infty$ 
 
-      \item \textbf{Convergence property}
-        $s \leadsto u \rightarrow v $ , last stage. 
+        \item \textbf{Convergence property.} Suppose that a shortest path from $s$ to $v$ crosses trough $(u,v) \in E$ and suppose that $d[u] = \delta(s,u)$ then after application of relaxation $(u,v)$ we have $d[v] = \delta(s,v)$. 
+          \begin{proof}
+            By \cref{claim:subpath}, any sub path of a shortest path is also a shortest path between its two ends. Therefore $\delta(s,v) = \delta(s,u) + w(u,v)$, combining the given that $d[u]$ equals to $\delta(s,v)$ we get the desired equivalence. 
+          \end{proof}
 
-      \item \textbf{Path-relaxation property}
+        \item \textbf{Path-relaxation property.}
         Let $s = v_{0},v_{1},v_{2},..,v_{k}$ be a shortest path from $s$ to $v_{k}$. After an application of a sequence relaxation steps that includes, in order, $(v_{0},v_{1}),(v_{1},v_{2}),..,(v_{k-1},v_{k})$ we have that $d[v_{k}] = \delta(s,v_{k})$.
       \begin{proof}
-        We show by induction on $i$ that after the relaxation of $(v_{i-1},v_{i})$ we have $d[v_{i}] = \delta(s,v_{i})$.
+        By induction on the $i$th (relevant) relaxation step, namely: $(v_{i-1},v_{i})$. We present only the induction step. By the induction assumption after the $i-1$th relevant step, we have that  $d[v_{i-1}] = \delta(s,v_{i-1})$, In addition, the \textbf{Upper-bound property} guarantees that following relaxations steps can't decrease (change) that value. Therefore, at the beginning of the $i$th relevant relaxation step, $d[v_{i-1}]$ is still equals to $\delta(s,v_{i-1}$ and from the \textbf{Convergence property} the application of the $(v_{i-1},v_{i})$ relaxation sets $d[v_{i}]$ to be $\delta(s,v_{i})$.
 
-        \begin{enumerate}
-          \item Base. 
-          \item Assumption. 
-          \item Step.
-        \end{enumerate}
 
       \end{proof}
   \end{itemize}
