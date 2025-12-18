@@ -42,7 +42,6 @@ Initially the distances from the source are initialized to $\infty$ and along th
   \begin{algorithm}[h]
       \If{ $d[v] > d[u] + w(u,v)$ }{ 
         $d[v] \leftarrow d[u] + w(u,v)$ \\
-        Update $(Q, d[v])$\\
         $\pi[v] \leftarrow u $ 
       }
     \caption{Relaxation.}
