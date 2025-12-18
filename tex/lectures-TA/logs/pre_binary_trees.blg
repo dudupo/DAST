@@ -1,0 +1,9 @@
+[0] Config.pm:308> INFO - This is Biber 2.20
+[1] Config.pm:311> INFO - Logfile is 'pre_binary_trees.blg'
+[115] biber:340> INFO - === Wed Oct 29, 2025, 14:30:08
+[145] Biber.pm:420> INFO - Reading 'pre_binary_trees.bcf'
+[198] Biber.pm:994> INFO - Found 0 citekeys in bib section 0
+[218] bbl.pm:676> INFO - Writing 'pre_binary_trees.bbl' with encoding 'UTF-8'
+[218] bbl.pm:779> INFO - Output to pre_binary_trees.bbl
+[219] Biber.pm:131> WARN - The file 'pre_binary_trees.bcf' does not contain any citations!
+[220] Biber.pm:133> INFO - WARNINGS: 1

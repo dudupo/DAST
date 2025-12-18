@@ -1,0 +1,43 @@
+
+  \item \ctt{Not checked grammatically}  A prefix code, is a one-to-one mapping between alpha-bet $\Sigma$ to a subset of the binary strings $S \in \{0,1\}^{\star}$, such that no $x \in S$ is a prefix of another $y \in S$. For example assume $\Sigma = \{a,b,c, d\}$, and our mapping is: 
+    \begin{equation*}
+      \begin{split}
+        a  \rightarrow 01 \\
+        b \rightarrow 00 \\
+        c \rightarrow 10 \\
+        d \rightarrow 11 
+      \end{split}
+    \end{equation*} 
+    The prefix free property guarantees that a transmission could be decoded. For example $011011 \rightarrow\overbrace{01}^{a}\overbrace{10}^{c} \overbrace{11}^{d} \rightarrow  acd$. 
+
+Another example is: 
+
+    \begin{equation*}
+      \begin{split}
+        a \rightarrow 1 \\
+        b \rightarrow 0111 \\
+        c \rightarrow 0110 \\
+        d \rightarrow 0101 \\
+        e \rightarrow 0100 \\
+        f \rightarrow 0011 \\
+        g \rightarrow 0010 \\
+        h \rightarrow 0000 
+      \end{split}
+    \end{equation*}
+    Notice that when the source contains strictly more $a$ than the other literals, that mapping is expected to give a shorter encoding than a mapping that maps the literal to length-equally strings. Suppose that the literals in $\Sigma$ are distributed as follow: the literals distributed independently such that the $i$ literal is $x \in \Sigma$ with probability $p_{x}$. 
+
+    \begin{enumerate}
+      \item Suppose that mapping sends $x$ to a binary string at length $l_{x}$. Denote by $L$ length of the encoding of $n$ literals. Compute the expectation of $L$.
+        
+  
+  \begin{equation*}
+    \begin{split}
+      \expp{L} &=  \expp{\sum_{i}^{n}l_{i}} = \sum_{i}^{n}\expp{l_{i}} \\ 
+      & = \sum_{i}^{n}\sum_{x\in \Sigma}p_{x}l_{x}\\
+    &= \sum_{i}^{n}\sum_{x\in \Sigma}p_{x}l_{x} = n \left( \sum_{x\in \Sigma}p_{x}l_{x} \right)
+    \end{split}
+  \end{equation*}
+
+      \item Write an algorithm that, given $\{p_{x} : x \in \Sigma \}$, returns a mapping that minimizes $\expp{L}$.
+    \end{enumerate}
+

@@ -1,0 +1,9 @@
+[0] Config.pm:308> INFO - This is Biber 2.20
+[0] Config.pm:311> INFO - Logfile is 'lec-BellmanFord.blg'
+[46] biber:340> INFO - === Thu Dec 18, 2025, 11:28:59
+[58] Biber.pm:420> INFO - Reading 'lec-BellmanFord.bcf'
+[90] Biber.pm:994> INFO - Found 0 citekeys in bib section 0
+[96] bbl.pm:676> INFO - Writing 'lec-BellmanFord.bbl' with encoding 'UTF-8'
+[96] bbl.pm:779> INFO - Output to lec-BellmanFord.bbl
+[97] Biber.pm:131> WARN - The file 'lec-BellmanFord.bcf' does not contain any citations!
+[97] Biber.pm:133> INFO - WARNINGS: 1

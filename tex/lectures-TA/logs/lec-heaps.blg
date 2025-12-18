@@ -1,0 +1,9 @@
+[0] Config.pm:308> INFO - This is Biber 2.20
+[1] Config.pm:311> INFO - Logfile is 'lec-heaps.blg'
+[132] biber:340> INFO - === Thu Dec  4, 2025, 09:39:23
+[160] Biber.pm:420> INFO - Reading 'lec-heaps.bcf'
+[238] Biber.pm:994> INFO - Found 0 citekeys in bib section 0
+[255] bbl.pm:676> INFO - Writing 'lec-heaps.bbl' with encoding 'UTF-8'
+[256] bbl.pm:779> INFO - Output to lec-heaps.bbl
+[256] Biber.pm:131> WARN - The file 'lec-heaps.bcf' does not contain any citations!
+[257] Biber.pm:133> INFO - WARNINGS: 1

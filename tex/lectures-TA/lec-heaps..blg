@@ -1,0 +1,5 @@
+[0] Config.pm:308> INFO - This is Biber 2.20
+[0] Config.pm:311> INFO - Logfile is 'lec-heaps..blg'
+[54] biber:340> INFO - === Mon Dec  1, 2025, 10:26:46
+[308] Utils.pm:410> ERROR - Cannot find 'lec-heaps..bcf'!
+[308] Biber.pm:136> INFO - ERRORS: 1

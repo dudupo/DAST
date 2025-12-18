@@ -117,3 +117,42 @@ In the first two cases, we are calling Get-Order on trees (BST with our addition
     \Return Max($T$.right)\;
     \caption{ Max }
 \end{algorithm}
+
+
+
+\begin{algorithm}
+\SetAlgoLined
+\KwData{$x$ - vertex}
+\KwResult{pointer to successor of $x$}
+    \If{$x$.right is not empty}{
+      \Return Min($x$.right)\;
+    }
+    $y \leftarrow x$.parent\;
+    \While{$y$ is not empty and $x$ is $y$.right}{
+        $x \leftarrow y$\;
+        $y \leftarrow y$.parent\;
+    }
+    \Return $y$\;
+\caption{Successor}
+\end{algorithm}
+
+
+
+
+\paragraph{Functionalitiy of BST.}
+\begin{enumerate}
+\item Search($T$, key): returns a pointer to the vertex whose key equals key. 
+  \item Min($T$): returns a pointer to the vertex with the minimum value in $T$.  
+  \item Max($T$): returns a pointer to the vertex with the maximum value in $T$.  
+  \item Predecessor($x$): returns a pointer to the predecessor of $x$.  
+  \item Successor($x$): returns a pointer to the successor of $x$. 
+  \item Insert($T$, key): inserts key into $T$ (creates a new vertex).   
+  \item Delete($T$, $x$): removes $x$ from $T$. 
+  \item Inorder($T$): outputs $T$'s keys in sorted order.
+
+%\begin{algorithm}[H]
+%\SetAlgoLined
+%\KwData{$T$ - tree, $x$ - vertex to delete}
+%\KwResult{removes $x$ from $T$}
+%\Set
+\end{enumerate}

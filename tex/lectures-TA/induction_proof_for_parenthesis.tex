@@ -1,0 +1,34 @@
+
+  \begin{proof} 
+      Assume without loss of generality that pre($u$) $<$ pre($v$). Split to the following:
+	\begin{enumerate}
+	  \item Either pre($v$) $<$ post($u$). In that case, we will prove, by induction on $\text{pre}(v)-\text{pre}(u)$, that for any $u,v$ satisfies the relations, the third case holds. 
+	    \begin{enumerate}
+	      \item Base. $\text{pre}(v)-\text{pre}(u) = 1$, Then clearly $\{u,v\}$, i.e $v$ is a direct child of $u$. Showing that the value of $\text{post}(v)$ has to be set before  $\text{post}(v)$ is left as an exercise. 
+	      \item Assumption. Assume correctness for any $\text{pre}(v)-\text{pre}(u) < t < \text{post}(u)$.
+	      \item Step. Consider $t > 1$ such  $\text{pre}(v)-\text{pre}(u) = t$. Since $t > 1$ there is must to be vertex $w$ for which $\pre(u) < \text{pre}(w) < \text{pre(v)}$. Splits again:  
+		\begin{enumerate}
+		  \item Either $\text{post}(w) > \text{pre}(v)$. Observes that: \begin{equation*}
+		      \begin{split}
+\text{pre}(v) - \text{pre}(w) < \text{pre}(v) - \text{pre}(u) = t
+		      \end{split}
+		    \end{equation*}
+		     and also: \begin{equation*}
+		       \begin{split}
+\text{pre}(w) - \text{pre}(u) < \text{pre}(v) - \text{pre}(u) = t
+		       \end{split}
+		     \end{equation*}
+		      Therefore by the induction assumption: \begin{equation*}
+			\begin{split}
+[\pre(v),\post(v)] \subset [\pre(w),\post(w)]\subset [\pre(u),\post(u)]
+			\end{split}
+		      \end{equation*} and in addition $w$ is a descendant of $u$ and $v$ is a descendant of $w$. Hence $v$ is a descendant of $u$ and the third case holds. 
+		    \item Or $\text{post}(w) < \text{pre}(v)$ for any $w$ satisfies $\pre(u) < \pre(w) < \pre(v)$. That means that any call for $\textbf{Explore}(G,w)$ at line $6$ (over suited $w$'s) returned, and at time $t$ a new child of $u$ has been discovered\footnote{otherwise we get a contradiction for $\post(u) > t$}, namely $v$ is a direct child of $u$ and we back to the base.
+		\end{enumerate}
+	    \end{enumerate}
+	    
+	  \item Or, post($u$) $<$ pre($v$), and by definition, pre($u$) $<$ post($u$) $<$ pre(v) $<$ post($v$) and thus the intervals [pre($u$), post($u$)] and [pre($v$), post($v$)] are disjoint. 
+
+	    Showing that $v$ is not a descendant of $u$ can be proved in similar manner to the above, by induction on $\pre(v) - \post(u)$. Completing the proof is left as an exercise. 
+	\end{enumerate}
+\end{proof}

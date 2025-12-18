@@ -1,0 +1,43 @@
+
+\tikzset{%
+  every neuron/.style={
+    circle,
+    draw,
+    %fill=black,
+    radius=0.1mm
+  },
+  neuron missing/.style={
+    draw=none,
+    scale=2,
+    text height=0.25cm,
+    execute at begin node=\color{black}$\vdots$
+  },
+}
+
+\begin{center}
+
+\begin{tikzpicture}%[ultra thick]
+  \node [every  neuron ] (v-1) at ( 3 ,-0) { $s$ } ;
+  \node [every  neuron ] (v-2) at ( 1 ,-1.5) { } ;
+  \node [every  neuron ] (v-3) at ( 5 ,-1.5) { } ;
+  \node [every  neuron ] (v-4) at ( 3 ,-5) { $t$ } ;
+  
+%  \node [every  neuron ] (v-3) at ( 6 ,-3) { } ;
+%\node (v-4) at ( 0.0 ,-6) { $ \vdots $  };
+%
+%\node [every  neuron ] (v-6) at ( 5 ,-6) { $l$  };
+%\node [every  neuron ] (v-7) at ( 7 ,-6) { $r$  };
+%\node  (v-8) at ( 5 ,-7) { $\vdots$  };
+%\node  (v-9) at ( 7 ,-7) { $\vdots$  };
+  \draw [->] (v-1) -- (v-2) node[midway,above]() { $1$ };
+  \draw [->] (v-1) -- (v-3) node[midway,above]() { $2 $} ;
+  \draw [->] (v-2) -- (v-4) node[midway,above]()  { $0$ };
+  \draw [->] (v-3) -- (v-4) node[midway,above]() { $-10$ };
+%%  node[right=6pt] {$y$} at
+%\draw[decoration={brace,raise=6pt},decorate, thick]
+%(8,-1.5) -- node[right=10pt, align=left] {  $n^{\prime}$-size binary tree, \\It's guaranteed that any node, \\beside the root, \\satisfies the heap inequality. } (8, -7.5);
+%
+%\draw[draw=gray, dashed] (4.5,-7.5) rectangle ++(3.5,6);
+\end{tikzpicture} 
+\end{center}
+

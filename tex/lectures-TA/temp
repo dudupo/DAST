@@ -1,0 +1,20 @@
+Please make the homework self contained -- the statement
+"You can continue directly from the point we have reached to the recitation."
+will very likely create confusion.  Take into account that a % of the students will not
+attend the Tirgul. You can refer to the written notes as needed and append them to make the document self-contained.
+Text of the Homework:
+- label DAST Homework 1 instead of Exercise 0
+- "Algorithm 1: Sophisticated alg."
+   Replace by "Alternate Algorithm"
+- Remove the dot after the title headings: 
+   '"Peaks-findings." -->  "Peaks Findings"
+- Replace "prove correctness" by " Prove its correctness"
+- The sentence
+  "And again if the indices exceed the matrix frame, we define the inequality as satisfied trivially (For example if A1,1 ≥A1,2, A2,1 then A1,1 is a peak).  "
+is unclear -- why again?  avoid the use of trivial.
+Please rephrase. 
+
+Solution 
+ Revise in the same way. 
+Toda!
+Leo

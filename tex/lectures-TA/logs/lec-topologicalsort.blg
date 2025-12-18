@@ -1,9 +1,9 @@
-[0] Config.pm:307> INFO - This is Biber 2.19
-[0] Config.pm:310> INFO - Logfile is 'lec-topologicalsort.blg'
-[83] biber:340> INFO - === Sun Sep 15, 2024, 18:02:10
-[98] Biber.pm:419> INFO - Reading 'lec-topologicalsort.bcf'
-[161] Biber.pm:979> INFO - Found 0 citekeys in bib section 0
-[173] bbl.pm:660> INFO - Writing 'lec-topologicalsort.bbl' with encoding 'UTF-8'
-[173] bbl.pm:763> INFO - Output to lec-topologicalsort.bbl
-[174] Biber.pm:131> WARN - The file 'lec-topologicalsort.bcf' does not contain any citations!
-[174] Biber.pm:133> INFO - WARNINGS: 1
+[0] Config.pm:308> INFO - This is Biber 2.20
+[0] Config.pm:311> INFO - Logfile is 'lec-topologicalsort.blg'
+[45] biber:340> INFO - === Mon Dec 15, 2025, 14:26:47
+[56] Biber.pm:420> INFO - Reading 'lec-topologicalsort.bcf'
+[89] Biber.pm:994> INFO - Found 0 citekeys in bib section 0
+[95] bbl.pm:676> INFO - Writing 'lec-topologicalsort.bbl' with encoding 'UTF-8'
+[95] bbl.pm:779> INFO - Output to lec-topologicalsort.bbl
+[96] Biber.pm:131> WARN - The file 'lec-topologicalsort.bcf' does not contain any citations!
+[96] Biber.pm:133> INFO - WARNINGS: 1

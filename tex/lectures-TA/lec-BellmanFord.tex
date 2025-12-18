@@ -175,9 +175,8 @@ On the other hand, without the assumption, one can think about the graph that co
 
 
   \section{Bellman-Ford}
-
-
-  Assume that the shortest path from $1$ to $4$ is $1,3,2,4$.
+  
+Consider the graph with 4 vertices, denoted by \( V = \{1, 2, 3, 4\} \). Assume that the shortest path from 1 to 4 is \( 1, 3, 2, 4 \), and consider the application of the following relaxation steps:
 
   \begin{equation*}
     \begin{split}
@@ -188,7 +187,7 @@ On the other hand, without the assumption, one can think about the graph that co
       %& (1,2),(1,3),(1,4),(2,1),(2,3),(2,4),(3,1),(3,2),(3,4)
     \end{split}
   \end{equation*}
-
+  Each row contains relaxations for all edges. Thus, in terms of the \textbf{Path-relaxation property}, it ensures that by the end of the $i$th row, the $i$th relevant relaxation will be called. That idea gives an algorithm that computes the shortest paths for a graph with negative weights.
 
 
   \begin{algorithm}[h]
@@ -198,7 +197,7 @@ On the other hand, without the assumption, one can think about the graph that co
     }
     $d[s] \leftarrow 0 $\\
 
-    \For{ $i \in [n]$ }{
+    \For{ $i \in [n-1]$ }{
       \For { $(u,v) \in E$ } {
         \If{ $d[v] > d[u] + w(u,v)$ }{ 
           $d[v] \leftarrow d[u] + w(u,v)$ \\
