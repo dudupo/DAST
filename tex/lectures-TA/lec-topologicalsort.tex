@@ -203,7 +203,7 @@ Now we present \Cref{alg:scc_fast}, an algorithm to find the strongly connected 
 
 \begin{corollary}
   \label{corollary:DAG} 
-  For $v \in V$, denote by $[v]$ the delegate of $v$ according to $\sim$. Running the topological sort on $G$ returns the \inb{first vertices of each SCC to be discovered according to the topological order of $G^\prime$, namely that if $v$ is the first vertex of $C_{1}$, and it appears before $u$, the first vertex of $C_{2}$ to be discovered, only if there is no a directed path form $C_{2}$ to $C_{1}$ in $G^{\prime}$. That's equivalence to say that  $\max_{v \in C_{1}} \post(v) \ge \max_{u \in C_{2}} \post(u)$. The proof is identical to the proof of \Cref{claim:toposort}}.
+  For $v \in V$, denote by $[v]$ the delegate of $v$ according to $\sim$. Running the topological sort on $G$ returns the first vertices of each SCC to be discovered according to the topological order of $G^\prime$, namely that if $v$ is the first vertex of $C_{1}$, and it appears before $u$, the first vertex of $C_{2}$ to be discovered, only if there is no directed path from $C_{2}$ to $C_{1}$ in $G^{\prime}$. That's equivalent to saying that $\max_{v \in C_{1}} \post(v) \ge \max_{u \in C_{2}} \post(u)$ if $C_{1} \leadsto C_{2}$. The proof is identical to the proof of \Cref{claim:toposort}.
 
 \end{corollary}
 
