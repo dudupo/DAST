@@ -113,7 +113,7 @@ We are about to come with an algorithm for sorting a DAG's vertices according to
 
 \begin{claim}
   \label{claim:dag}
-  Let $G=(V,E)$ be a graph, and let $v,u \in V$ such $u \leadsto v$ (There is a path from $u$ to $v$ in $G$). And let $\pi$ be a forest returned from the call \textbf{DFS$(G)$}, If $\pre(u) < \pre(v)$ then $v$ is a descendant of $u$ in $G$. 
+  Let $G=(V,E)$ be a DAG, and let $v,u \in V$ such $u \leadsto v$ (There is a path from $u$ to $v$ in $G$). And let $\pi$ be a forest returned from the call \textbf{DFS$(G)$}, If $\pre(u) < \pre(v)$ then $v$ is a descendant of $u$ in $\pi$. 
 \end{claim}
 
 To prove \Cref{claim:dag}, we will define a graph $G^{\prime}$ that satisfies:
