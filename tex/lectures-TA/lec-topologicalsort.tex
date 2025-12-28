@@ -219,7 +219,7 @@ Now we present \Cref{alg:scc_fast}, an algorithm to find the strongly connected 
   \item Base. The first call to Explore is over the first vertex in the topological order of $G^{\top}$, denoted by $v$. That vertex belongs to $C_{1}$, and from it, there is a directed path to any other vertex of $C_{1}$, so it's left to show that no vertex outside $C_{1}$ is scanned on the first call. If there were $u \in C_{j}$ for $j > 1$ that was scanned, then it means that the algorithm crossed through an edge of the form $(v^{\prime}, u^{\prime})$ such that $v^{\prime} \in C_{1}$ and $u^{\prime} \in C_{j}$. But if $\left( v^{\prime}, u^{\prime} \right) \in E$, then $\left(u^{\prime}, v^{\prime} \right) \in E^{\top}$. 
 
 
-    Thus, there is a directed path from $u^{\prime}$ to $v$ in $G^{\top}$. Using \Cref{corollary:DAG}, it holds that either $u^{\prime} \in C_{1}$, which contradicts $j > 1$, or that \inb{ $C_{j} \leadsto C_{1}$ and therefore $\max_{u \in C_{j}} \post(u) > \max_{v \in C_{1}} \post(v) $ (regarding $G^\top$), So the first vertex of $C_{j}$ has to appear before $v$ }, which contradicts $v$ being the first vertex in the order.
+    Thus, there is a directed path from $u^{\prime}$ to $v$ in $G^{\top}$. Using \Cref{corollary:DAG}, it holds that either $u^{\prime} \in C_{1}$, which contradicts $j > 1$, or that $C_{j} \leadsto C_{1}$ and therefore $\max_{u \in C_{j}} \post(u) > \max_{v \in C_{1}} \post(v) $ (regarding $G^\top$), So the first vertex of $C_{j}$ has to appear before $v$, which contradicts $v$ being the first vertex in the order.
  
   \item Assumption. Assume correction for any $i^{\prime} < i$. 
   \item Step. Left as an exercise.
