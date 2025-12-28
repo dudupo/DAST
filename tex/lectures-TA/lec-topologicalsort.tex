@@ -203,9 +203,9 @@ Now we present \Cref{alg:scc_fast}, an algorithm to find the strongly connected 
 
 \begin{corollary}
   \label{corollary:DAG} 
-  For $v \in V$, denote by $[v]$ the delegate of $v$ according to $\sim$. Running the topological sort on $G$ returns the vertices of $G$ according to the topological order of $G^\prime$, namely that $v$ appears before $u$ only if there is no a directed path form $[u]$ to $[v]$ in $G^{\prime}$. The proof is identical to the proof of \Cref{claim:toposort} .
+  For $v \in V$, denote by $[v]$ the delegate of $v$ according to $\sim$. Running the topological sort on $G$ returns the \inb{first vertices of each SCC to be discovered} according to the topological order of $G^\prime$, namely that if $v$ is the first vertex of $C_{1}$, and it appears before $u$, the first vertex of $C_{2}$ to be discovered, only if there is no a directed path form $C_{2}$ to $C_{1}$ in $G^{\prime}$. That's equivalence to say that  $\max_{v \in C_{1}} \post(v) \ge \max_{u \in C_{2}} \post(u)$. The proof is identical to the proof of \Cref{claim:toposort} .
 
-  \inb{ For SCCs $C_{1}$ and $C_{2}$ such that there is a directed path from $C_{1}$ to $C_{2}$, we have that $\max_{v \in C_{1}} \post(v) \ge \max_{u \in C_{2}} \post(u)$. That result wasn't proved in the recitation.
+  \inb{ For SCCs $C_{1}$ and $C_{2}$ such that there is a directed path from $C_{1}$ to $C_{2}$, we have that That result wasn't proved in the recitation.
     Proof idea: The vertex with the maximal post value in $C_{i}$ is the first vertex to be visited in that connected component. Consider $G^{\prime}$ as defined above, such that the delegates of each component are the first vertices to be visited. Then we get the inequality by \Cref{claim:toposort}.} 
 
 \end{corollary}
