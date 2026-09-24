@@ -24,7 +24,7 @@ Computer science differs from other scientific disciplines in that it focuses no
 
 
 
-\section{Peaks Finding}
+\section{Peak Finding}
 \begin{example}
   Consider an $n$-length array $A$ such that $A_1, A_2, \ldots, A_n \in \mathbb{R}$. We will say that $A_{j}$ is a \textbf{peak} (local maximum) if it is at least as large as each of its neighbors. Namely, $A_{i} \ge A_{i\pm1}$ if $i\pm 1 \in [n]$. Whenever $i\pm 1$ is not in the range $[n]$, we will define the inequality $A_{i} \ge A_{i\pm 1}$ to hold trivially. For example, for $n=1$, $A_{1}=A_{n}$ is always a peak.
 
@@ -106,7 +106,7 @@ Note that in the third bullet, in the case $i>j$, we proved a general claim abou
 Question, In the worst case scenario, how many local checks does peak-finding do? For the third example in~\Cref{example:func}, the naive algorithm will have to check each item, so the running time adds up to at most $c \cdot n$.
 
 \section{Naive alg. recursive version}
-Now, we will show a recursive version of the navie peak-find algorithm for demonstrating how correctness can be proved by induction. 
+Now, we will show a recursive version of the naive peak-find algorithm for demonstrating how correctness can be proved by induction. 
 \begin{algorithm}[h]
 \KwResult{returns a peak of \(A_1 ... A_n \in \mathbb{R}^n \)  }
 \caption{naive recursive peak-find alg.}
@@ -146,7 +146,7 @@ We are ready to prove the correctness of the recursive version by induction usin
 \end{enumerate}
 
 \section{An attempt for improved solution.}
-We saw that we can find an arbitrary peak at $c\cdot n$ time, which raises the question, can we do better? Do we really have to touch all the elements to find a local maxima? Next, we will see two attempts to catch a peak at logarithmic cost. The first attempt fails to achieve correctness, but analyzing exactly why will guide us on how to come up with both an efficient and correct algorithm.
+We saw that we can find an arbitrary peak at $c\cdot n$ time, which raises the question, can we do better? Do we really have to touch all the elements to find a local maximum? Next, we will see two attempts to catch a peak at logarithmic cost. The first attempt fails to achieve correctness, but analyzing exactly why will guide us on how to come up with both an efficient and correct algorithm.
 \begin{algorithm}
 \KwResult{returns an index of a peak of \(A_1 ... A_n \in \mathbb{R}^n \)  }
 \caption{fail attempt for more improved alg. }
@@ -183,7 +183,7 @@ $ i \leftarrow  \lceil n/2 \rceil $\\
         }
         \label{alg:workreq}
 \end{algorithm}
-Let's prove correction.
+Let's prove correctness.
 \begin{proof}
   By induction. 
 \begin{enumerate}
