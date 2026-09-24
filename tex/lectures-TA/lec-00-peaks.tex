@@ -76,7 +76,7 @@ Computer science differs from other scientific disciplines in that it focuses no
 \section{Naive solution}
 To better understand the problem, let's first examine a simple solution before proposing a more intriguing one. Consider the algorithm examining each of the items $A_i$ one by one.
 \begin{algorithm}
-\KwResult{returns a peak of \(A_1 ... A_n \in \mathbb{R}^n \)  }
+\KwResult{returns an index of a peak of \(A_1 ... A_n \in \mathbb{R}^n \)  }
 \caption{naive peak-find alg.}
  \For{ \(i \in [n] \) } { 
    \If { $A_{i}$ is a peak }{
@@ -90,13 +90,13 @@ We will say that an algorithm is correct with respect to a given task if it comp
 
 \begin{proof}
   
-First, there has to be at least one peak in $A$, since $A$ is finite and therefore has a global maximum, which is a peak. Denote by $j$ the position of the first peak in $A$, we will prove that \Cref{alg:simp} returns $A_{j}$. 
+First, there has to be at least one peak in $A$, since $A$ is finite and therefore has a global maximum, which is a peak. Denote by $j$ the position of the first peak in $A$, we will prove that \Cref{alg:simp} returns $j$. 
 
   Denote by $i$ the current iteration step\footnote{ In our course, in terms of terminology, usually 'step' = 'iteration' = 'iteration number' = 'turn' = 'index'. }, and separate upon the following cases: 
 
   \begin{enumerate}
     \item If $i < j$, then by the minimality of $j$ ($A_{j}$ was defined to be the first peak), it has to hold that $A_{i}$ is not a peak. Therefore, the condition on line (2) is not satisfied $ \Rightarrow $ the algorithm skips to line (4) and from there continues to the next iteration.   
-    \item If $i = j$, then by definition of $A_{j}$, the condition on line (2) is satisfied, so the algorithm enters line (3) and returns $A_{j}$.  
+    \item If $i = j$, then by definition of $A_{j}$, the condition on line (2) is satisfied, so the algorithm enters line (3) and returns $j$.  
     \item Else, consider the case when $i > j$. In that case, the algorithm will not reach the $i$th iteration. That is because the algorithm is defined to scan the elements in 'continuous' order, meaning that if the algorithm indeed gets into the $i$ iteration, it implies that it passed through any $i^\prime < i$ iteration and didn't return, specifically at the $j$ iteration, which contradicts $A_{j}$ being a peak. 
   \end{enumerate}
 \end{proof}
@@ -139,16 +139,16 @@ We are ready to prove the correctness of the recursive version by induction usin
 
 \begin{enumerate}
   \item Base. Single element array. Trivial. 
-  \item Assumption. Assume that for any $m$-length array, such that $m<n$ the algorithm returns a peak. 
+  \item Assumption. Assume that for any $m$-length array, such that $m<n$ the algorithm returns a peak's index. 
   \item Step. Consider an array $A$ of length $n$. If $A_1$ is a peak, then the algorithm answers affirmatively on the first check, returning $1$ and we are done. If not, namely $A_1 < A_2$, then by using \Cref{claim:subarray} we have that any peak of $A' = A_2, A_3, \dots, A_n$ is also a peak of $A$. 
 
-    The length of $A'$ is $n-1 < n$. Thus, by the induction assumption, the algorithm succeeds in returning on $A'$ a peak which is also a peak of $A$.
+    The length of $A'$ is $n-1 < n$. Thus, by the induction assumption, the algorithm succeeds in returning on $A'$ a peak's index which is also a peak's index of $A$.
 \end{enumerate}
 
 \section{An attempt for improved solution.}
 We saw that we can find an arbitrary peak at $c\cdot n$ time, which raises the question, can we do better? Do we really have to touch all the elements to find a local maxima? Next, we will see two attempts to catch a peak at logarithmic cost. The first attempt fails to achieve correctness, but analyzing exactly why will guide us on how to come up with both an efficient and correct algorithm.
 \begin{algorithm}
-\KwResult{returns a peak of \(A_1 ... A_n \in \mathbb{R}^n \)  }
+\KwResult{returns an index of a peak of \(A_1 ... A_n \in \mathbb{R}^n \)  }
 \caption{fail attempt for more improved alg. }
         $ i \leftarrow  \lceil n/2 \rceil $\\
         \If { $A_{i}$ is a peak }{
@@ -162,7 +162,7 @@ We saw that we can find an arbitrary peak at $c\cdot n$ time, which raises the q
 Let's try to 'prove' it.  
 \begin{enumerate}
  \item Base. Single element array. Trivial. 
-  \item Assumption. Assume that for any $m$-length array, such that $m<n$ the algorithm returns a peak. 
+  \item Assumption. Assume that for any $m$-length array, such that $m<n$ the algorithm returns an index of a peak. 
   \item Step. If $A_{n/2}$ is a peak, we're done. What happens if it isn't? Is it still true that any peak of $A_{i},A_{i+1}, \ldots, A_{n}$ is also a peak of $A$? Consider, for example, $A[i] = n - i$.
 \end{enumerate}
 
@@ -188,10 +188,10 @@ Let's prove correction.
   By induction. 
 \begin{enumerate}
   \item Base. Single element array. Trivial. 
-  \item Assumption. Assume that for any $m$-length array, such that $m<n$ the algorithm returns a peak. 
+  \item Assumption. Assume that for any $m$-length array, such that $m<n$ the algorithm returns a peak's index. 
   \item Step. Consider an array $A$ of length $n$. If $A_{\lceil n/2 \rceil}$ is a peak, then the algorithm answers affirmatively on the first check, returning $\lceil n/2 \rceil$ and we are done.
 
-  If not, then either $A_{\lceil n/2 \rceil} < A_{\lceil n/2 \rceil + 1}$ or $A_{\lceil n/2 \rceil} < A_{\lceil n/2 \rceil - 1}$. We have already handled the first case, that is, using \Cref{claim:subarraymiddle} we have that any peak of $A' = A_{\lceil n/2 \rceil + 1}, A_{\lceil n/2 \rceil + 2}, \dots, A_n$ is also a peak of $A$. The length of $A'$ is $ n - \lceil n/2 \rceil  = \lfloor n/2 \rfloor < n$. So by the induction assumption, in the case where $A_{\lceil n/2 \rceil} < A_{\lceil n/2 \rceil + 1}$ the algorithm returns a peak. 
+  If not, then either $A_{\lceil n/2 \rceil} < A_{\lceil n/2 \rceil + 1}$ or $A_{\lceil n/2 \rceil} < A_{\lceil n/2 \rceil - 1}$. We have already handled the first case, that is, using \Cref{claim:subarraymiddle} we have that any peak of $A' = A_{\lceil n/2 \rceil + 1}, A_{\lceil n/2 \rceil + 2}, \dots, A_n$ is also a peak of $A$. The length of $A'$ is $ n - \lceil n/2 \rceil  = \lfloor n/2 \rfloor < n$. So by the induction assumption, in the case where $A_{\lceil n/2 \rceil} < A_{\lceil n/2 \rceil + 1}$ the algorithm returns a peak's index. 
 
 
   In the other case, we have $A_{\lceil n/2 \rceil} < A_{\lceil n/2 \rceil + 1}$ (otherwise $A_{\lceil n/2 \rceil}$ would be a peak). 
@@ -215,7 +215,7 @@ What's the running time? Denote by $T\left( n \right)$ an upper bound on the run
       \begin{split}    
 	T\left(n\right) & \le c_{2} + T\left(n/2\right) \le c_{2} + c_{1} \log\left( \lfloor n/2 \rfloor \right) + c_{2}\\
 	& = c_{1} - c_{1} + c_{2} + c_{1} \log\left( \lfloor n/2 \rfloor \right) + c_{2}\\
-	& = c_{1} \log (2) +  c \log\left( \lfloor n/2 \rfloor  \right) + 2c_{2} - c_{1} \\
+  & = c_{1} \log (2) +  c_{1} \log\left( \lfloor n/2 \rfloor  \right) + 2c_{2} - c_{1} \\
 	& = c_{1} \log\left(2 \left(\lfloor n/2 \rfloor \right) \right) + 2c_{2} - c_{1}
       \end{split}
     \end{equation*}
