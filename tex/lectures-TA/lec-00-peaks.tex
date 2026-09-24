@@ -26,7 +26,7 @@ Computer science differs from other scientific disciplines in that it focuses no
 
 \section{Peaks Finding}
 \begin{example}
-  Consider an $n$-length array $A$ such that $A_1, A_2, \ldots, A_n \in \mathbb{R}$. We will say that $A_{j}$ is a \textbf{peak} (local maximum) if it is greater than its neighbors. Namely, $A_{i} \ge A_{i\pm1}$ if $i\pm 1 \in [n]$. Whenever $i\pm 1$ is not in the range $[n]$, we will define the inequality $A_{i} \ge A_{i\pm 1}$ to hold trivially. For example, for $n=1$, $A_{1}=A_{n}$ is always a peak.
+  Consider an $n$-length array $A$ such that $A_1, A_2, \ldots, A_n \in \mathbb{R}$. We will say that $A_{j}$ is a \textbf{peak} (local maximum) if it is at least as large as each of its neighbors. Namely, $A_{i} \ge A_{i\pm1}$ if $i\pm 1 \in [n]$. Whenever $i\pm 1$ is not in the range $[n]$, we will define the inequality $A_{i} \ge A_{i\pm 1}$ to hold trivially. For example, for $n=1$, $A_{1}=A_{n}$ is always a peak.
 
   Write an algorithm that, given $A$, returns the position of an arbitrary peak.
 \end{example}
@@ -38,7 +38,7 @@ Computer science differs from other scientific disciplines in that it focuses no
     \item $A[i] = 1$   $\forall i \in [n]$
     \item $A[i] = \begin{cases}
         i & i < n/2 \\
-        n/2 - i & \text{else}
+        n - i & \text{else}
       \end{cases}$
     \item $A[i] = i $  $\forall i \in [n]$
   \end{enumerate}
@@ -89,7 +89,8 @@ To better understand the problem, let's first examine a simple solution before p
 We will say that an algorithm is correct with respect to a given task if it computes the task for any input. Let's prove that the above algorithm is doing the job.
 
 \begin{proof}
-  Denote by $j$ the position of the first peak in $A$, we will prove that \Cref{alg:simp} returns $A_{j}$. 
+  
+First, there has to be at least one peak in $A$, since $A$ is finite and therefore has a global maximum, which is a peak. Denote by $j$ the position of the first peak in $A$, we will prove that \Cref{alg:simp} returns $A_{j}$. 
 
   Denote by $i$ the current iteration step\footnote{ In our course, in terms of terminology, usually 'step' = 'iteration' = 'iteration number' = 'turn' = 'index'. }, and separate upon the following cases: 
 
@@ -109,7 +110,7 @@ Now, we will show a recursive version of the navie peak-find algorithm for demon
 \begin{algorithm}[h]
 \KwResult{returns a peak of \(A_1 ... A_n \in \mathbb{R}^n \)  }
 \caption{naive recursive peak-find alg.}
-\If { $A_{1} \ge A_{2}$ or $n=1$ }{
+\If { $n=1$ or $A_{1} \ge A_{2}$ }{
    \Return 1
  }
  \Return 1 + peak-find$(A_{2}, .. A_{n})$
@@ -190,7 +191,7 @@ Let's prove correction.
   \item Assumption. Assume that for any $m$-length array, such that $m<n$ the algorithm returns a peak. 
   \item Step. Consider an array $A$ of length $n$. If $A_{\lceil n/2 \rceil}$ is a peak, then the algorithm answers affirmatively on the first check, returning $\lceil n/2 \rceil$ and we are done.
 
-  If not, then either $A_{\lceil n/2 \rceil} < A_{\lceil n/2 \rceil - 1}$ or $A_{\lceil n/2 \rceil} < A_{\lceil n/2 \rceil + 1}$. We have already handled the first case, that is, using \Cref{claim:subarraymiddle} we have that any peak of $A' = A_{\lceil n/2 \rceil + 1}, A_{\lceil n/2 \rceil + 2}, \dots, A_n$ is also a peak of $A$. The length of $A'$ is $ n - \lceil n/2 \rceil - 1 \le  \lfloor n/2 \rfloor < n$. So by the induction assumption, in the case where $A_{\lceil n/2 \rceil} < A_{\lceil n/2 \rceil - 1}$ the algorithm returns a peak. 
+  If not, then either $A_{\lceil n/2 \rceil} < A_{\lceil n/2 \rceil + 1}$ or $A_{\lceil n/2 \rceil} < A_{\lceil n/2 \rceil - 1}$. We have already handled the first case, that is, using \Cref{claim:subarraymiddle} we have that any peak of $A' = A_{\lceil n/2 \rceil + 1}, A_{\lceil n/2 \rceil + 2}, \dots, A_n$ is also a peak of $A$. The length of $A'$ is $ n - \lceil n/2 \rceil  = \lfloor n/2 \rfloor < n$. So by the induction assumption, in the case where $A_{\lceil n/2 \rceil} < A_{\lceil n/2 \rceil + 1}$ the algorithm returns a peak. 
 
 
   In the other case, we have $A_{\lceil n/2 \rceil} < A_{\lceil n/2 \rceil + 1}$ (otherwise $A_{\lceil n/2 \rceil}$ would be a peak). 
@@ -205,11 +206,12 @@ What's the running time? Denote by $T\left( n \right)$ an upper bound on the run
 \begin{proof}
   By induction. 
 \begin{enumerate}
-  \item Base. For the base case, $n \le 3$ we get that $c_{1} \log(1) + c_{2} =  c_{2}$ on the other hand only a single check made by the algorithm, so indeed the base case holds (Choosing $c_{2} \ge$ the cost of a single check).
+  \item Base. For the base case, $n \le 3$ we get that $c_{1} \log(1) + c_{2} =  c_{2}$ on the other at most two check are made by the algorithm, so indeed the base case holds (Choosing $c_{2}$ to be the cost of checking twice).
   \item Induction Assumption. Assume that for any $m < n$, the algorithm runs in at most $c_{1} \log(m) + c_{2}$ time.
   \item Step. Notice that in the worst case, $\lceil n/2 \rceil$ is not a peak, and the algorithm calls itself recursively immediately after paying $c_{2}$ in the first check.
 
-    The recursive call is over an array length of $\lceil n/2 \rceil - 1$ \footnote{ Notice $ \lceil n/2 \rceil - 1 \le \lfloor n/2 \rfloor$.}. Hence: \begin{equation*}
+    The recursive call is over an array length of $\lfloor n/2 \rfloor$. Hence:
+    \begin{equation*}
       \begin{split}    
 	T\left(n\right) & \le c_{2} + T\left(n/2\right) \le c_{2} + c_{1} \log\left( \lfloor n/2 \rfloor \right) + c_{2}\\
 	& = c_{1} - c_{1} + c_{2} + c_{1} \log\left( \lfloor n/2 \rfloor \right) + c_{2}\\
