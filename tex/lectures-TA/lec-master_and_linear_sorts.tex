@@ -14,11 +14,11 @@
 The master theorem is the result of the recursive expansion. It handles recursive functions at the form of \(T\left(n\right) = a\cdot T\left( \frac{n}{b} \right) + f\left(n\right) \), for a positive function \(f : \mathbb{N} \rightarrow \mathbb{R}^{+} \).       
 
 \begin{framed} \noindent \textbf{Master Theorem.}\\
-  First, Consider the case that \(f = n^c\). Let \( a \ge 1, b > 1\) and \( c \ge 0 \). Then: 
+  First, Consider the case that $f = \Theta(n^c)$. Let \( a \ge 1, b > 1\) and \( c \ge 0 \). Then: 
 \begin{enumerate}
-    \item if \(\frac{a}{b^c} < 1 \) then \( T\left(n\right) = \Theta \left( n^c \right) \) \ \ \ \textbf{(\(f\) wins)}.
-    \item if \(\frac{a}{b^c} = 1 \) then \( T\left(n\right) = \Theta \left( n^c \log_{b} \left(n\right) \right) \).
-    \item if \(\frac{a}{b^c} > 1 \) then \( T\left(n\right) = \Theta \left( n^{\log_{b} \left(a\right)} \right) \) \ \ \ \textbf{(\(f\) loses)}.
+    \item If \(\frac{a}{b^c} < 1 \) then \( T\left(n\right) = \Theta \left( n^c \right) \) \ \ \ \textbf{(\(f\) wins)}.
+    \item If \(\frac{a}{b^c} = 1 \) then \( T\left(n\right) = \Theta \left( n^c \log_{b} \left(n\right) \right) \).
+    \item If \(\frac{a}{b^c} > 1 \) then \( T\left(n\right) = \Theta \left( n^{\log_{b} \left(a\right)} \right) \) \ \ \ \textbf{(\(f\) loses)}.
   \end{enumerate}
 \end{framed}
 
@@ -36,11 +36,12 @@ Now, let's generalize the simple version for an arbitrary positive \(f\) and let
 \newcommand{\logab}{\log_{b} \left(a\right)}
 
 \begin{enumerate}
-    \item if  \(f\left(n\right) = O \left( n^{\logab - \varepsilon }\right)\) for some \( \varepsilon > 0 \) then~\(T\left(n\right)=\theta\left( n^{\logab}\right)\) \ \ \ \textbf{(\(f\)~loses)}.
+
+    \item If there exist \(\varepsilon >0 ,c<1\) and \(n_0 \in \mathbb{N} \) such that  \(f\left(n\right) = \Omega \left( n^{\logab + \varepsilon }\right)\) and for every \( n > n_0 \) \(a \cdot f\left( \frac{n}{b} \right) \le c f\left(n\right)\) then \(T\left(n\right)=\theta\left( f\left(n\right) \right) \) \ \ \ \textbf{(\(f\)~wins)}.
     
-    \item if  \(f\left(n\right) = \Theta \left( n^{\logab} \right) \) then \(T\left(n\right)=\Theta\left( n^{\logab}\log\left(n\right)\right)\)
+    \item If  \(f\left(n\right) = O \left( n^{\logab - \varepsilon }\right)\) for some \( \varepsilon > 0 \) then~\(T\left(n\right)=\theta\left( n^{\logab}\right)\) \ \ \ \textbf{(\(f\)~loses)}.
     
-    \item if there exist \(\varepsilon >0 ,c<1\) and \(n_0 \in \mathbb{N} \) such that  \(f\left(n\right) = \Omega \left( n^{\logab + \varepsilon }\right)\) and for every \( n > n_0 \) \(a \cdot f\left( \frac{n}{b} \right) \le c f\left(n\right)\) then \(T\left(n\right)=\theta\left( f\left(n\right) \right) \) \ \ \ \textbf{(\(f\)~wins)}.
+    \item If  \(f\left(n\right) = \Theta \left( n^{\logab} \right) \) then \(T\left(n\right)=\Theta\left( n^{\logab}\log\left(n\right)\right)\)
     
 \end{enumerate}
 \end{framed}
@@ -52,13 +53,13 @@ Now, let's generalize the simple version for an arbitrary positive \(f\) and let
     
     \item \( T(n) = \TT{3}{4} + n\log n \rightarrow f(n) = \Omega( n^{\log_{4}(3) + \varepsilon}  ) \) and notice that \( af( \frac{n}{b})~=\frac{3n}{4}\log(\frac{n}{4})\). 
 
-      Thus, it's matching the third case. \(\Rightarrow T(n) = \Theta(n\log n)\).
+      Thus, it's matching the first case. \(\Rightarrow T(n) = \Theta(n\log n)\).
     
     \item \(T(n) = 3T( n^{\frac{1}{3}}) + \log\log n\). 
 
       Let $ m = \log n $, thus: $$\Rightarrow T( n) = T (2^m ) = 3T(2^{\frac{m}{3}} ) + \log m $$  
-      And denote by $ S = S(m) = T(2^m) $ so we get the recursive form: $$\rightarrow S(m) = 3T(2^{\frac{m}{3}} ) + \log m = 3S(\frac{m}{3} ) + \log m $$ 
-      So we can apply the master theorem according to the first case:  \begin{equation*}
+      And denote $ S = S(m) = T(2^m) $, so we get the recursive form: $$\rightarrow S(m) = 3T(2^{\frac{m}{3}} ) + \log m = 3S(\frac{m}{3} ) + \log m $$. Thus, we can apply the master theorem according to the third case:
+      \begin{equation*}
         \begin{split}
       \log m &= O(m^{\log_{3}(3)-\varepsilon} ) \\ 
       & \rightarrow T(n) = T(2^m) = S(m) = \Theta(m) = \Theta( \log(n)) 
