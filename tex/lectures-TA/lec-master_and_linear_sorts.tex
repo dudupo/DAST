@@ -11,53 +11,62 @@
 
 
 \section{Master Theorem, one Theorem to bound them all }
-The master theorem is the result of the recursive expansion. It handles recursive functions at the form of \(T\left(n\right) = a\cdot T\left( \frac{n}{b} \right) + f\left(n\right) \), for a positive function \(f : \mathbb{N} \rightarrow \mathbb{R}^{+} \).       
+The master theorem is the result of the recursive expansion. It handles recursive functions at the form of $T\left(n\right) = a\cdot T\left( \frac{n}{b} \right) + f\left(n\right) $, for a positive function $f : \mathbb{N} \rightarrow \mathbb{R}^{+} $.       
 
 \begin{framed} \noindent \textbf{Master Theorem.}\\
-  First, Consider the case that $f = \Theta(n^c)$. Let \( a \ge 1, b > 1\) and \( c \ge 0 \). Then: 
+  First, Consider the case that $f = \Theta(n^c)$. Let $ a \ge 1, b > 1$ and $ c \ge 0 $. Then: 
 \begin{enumerate}
-    \item If \(\frac{a}{b^c} < 1 \) then \( T\left(n\right) = \Theta \left( n^c \right) \) \ \ \ \textbf{(\(f\) wins)}.
-    \item If \(\frac{a}{b^c} = 1 \) then \( T\left(n\right) = \Theta \left( n^c \log_{b} \left(n\right) \right) \).
-    \item If \(\frac{a}{b^c} > 1 \) then \( T\left(n\right) = \Theta \left( n^{\log_{b} \left(a\right)} \right) \) \ \ \ \textbf{(\(f\) loses)}.
+    \item If $\frac{a}{b^c} < 1 $ then $ T\left(n\right) = \Theta \left( n^c \right) $ \ \ \ \textbf{($f$ wins)}.
+    \item If $\frac{a}{b^c} = 1 $ then $ T\left(n\right) = \Theta \left( n^c \log_{b} \left(n\right) \right) $.
+    \item If $\frac{a}{b^c} > 1 $ then $ T\left(n\right) = \Theta \left( n^{\log_{b} \left(a\right)} \right) $ \ \ \ \textbf{($f$ loses)}.
   \end{enumerate}
 \end{framed}
 
 \begin{example}\
   \begin{enumerate}
-    \item \( T(n)  =4T(\frac{n}{2})+d\cdot n \Rightarrow
-      T(n) = \Theta(n^2)\) according to case (3).
-    \item \(T(n)  = 3T(\frac{n}{2}) + d\cdot n \Rightarrow T(n) = \Theta ( n^{\log_{2}(3)})\)
+    \item $ T(n)  =4T(\frac{n}{2})+d\cdot n \Rightarrow
+      T(n) = \Theta(n^2)$ according to case (3).
+    \item $T(n)  = 3T(\frac{n}{2}) + d\cdot n \Rightarrow T(n) = \Theta ( n^{\log_{2}(3)})$
       also due to case (3).
   \end{enumerate}
 \end{example}
 \begin{framed}\noindent \textbf{Master Theorem, General Version.}\\
-Now, let's generalize the simple version for an arbitrary positive \(f\) and let~\(a~\ge~1~,~b~>~1\). 
+Now, let's generalize the simple version for an arbitrary positive $f$ and let~$a~\ge~1~,~b~>~1$. 
 
 \newcommand{\logab}{\log_{b} \left(a\right)}
 
 \begin{enumerate}
 
-    \item If there exist \(\varepsilon >0 ,c<1\) and \(n_0 \in \mathbb{N} \) such that  \(f\left(n\right) = \Omega \left( n^{\logab + \varepsilon }\right)\) and for every \( n > n_0 \) \(a \cdot f\left( \frac{n}{b} \right) \le c f\left(n\right)\) then \(T\left(n\right)=\Theta\left( f\left(n\right) \right) \) \ \ \ \textbf{(\(f\)~wins)}.
+    \item If there exist $\varepsilon >0$, $c<1$, and $n_0 \in \mathbb{N}$ such that $f\left(n\right) = \Omega \left( n^{\logab + \varepsilon }\right)$ and for every $n > n_0$ it holds that $a \cdot f\left( \frac{n}{b} \right) \le c f\left(n\right)$, then $T\left(n\right)=\Theta\left( f\left(n\right) \right)$ \ \ \ \textbf{($f$~wins)}.
     
-    \item If  \(f\left(n\right) = O \left( n^{\logab - \varepsilon }\right)\) for some \( \varepsilon > 0 \) then~\(T\left(n\right)=\Theta\left( n^{\logab}\right)\) \ \ \ \textbf{(\(f\)~loses)}.
+    \item If  $f\left(n\right) = O \left( n^{\logab - \varepsilon }\right)$ for some $ \varepsilon > 0 $ then~$T\left(n\right)=\Theta\left( n^{\logab}\right)$ \ \ \ \textbf{($f$~loses)}.
     
-    \item If  \(f\left(n\right) = \Theta \left( n^{\logab} \right) \) then \(T\left(n\right)=\Theta\left( n^{\logab}\log\left(n\right)\right)\)
+    \item If  $f\left(n\right) = \Theta \left( n^{\logab} \right) $ then $T\left(n\right)=\Theta\left( n^{\logab}\log\left(n\right)\right)$
     
 \end{enumerate}
 \end{framed}
 \newcommand{\TT}[2]{#1 T\left(\frac{n}{#2}\right)}
 
-\begin{example}\ 
+\begin{example} Solve the following recursive relations: 
 \begin{enumerate}
-  \item \( T(n) =  T(\frac{2n}{3}) + 1 \rightarrow f(n) = 1 =\Theta ( n^{\log_{\frac{3}{2}} (1)})\) matches the second case, so:  $$T(n) = \Theta ( n^{\log_{\frac{3}{2}} (1)}\log n ) \rightarrow \Theta( \log n ) $$.
-    
-    \item \( T(n) = \TT{3}{4} + n\log n \rightarrow f(n) = \Omega( n^{\log_{4}(3) + \varepsilon}  ) \) and notice that \( af( \frac{n}{b})~=\frac{3n}{4}\log(\frac{n}{4})\). 
-      Thus, it's matching the first case. \(\Rightarrow T(n) = \Theta(n\log n)\).
-    
-    \item \(T(n) = 3T( n^{\frac{1}{3}}) + \log\log n\). 
+  \item $ T(n) = T(\frac{2n}{3}) + 1 $. 
 
-      Let $ m = \log n $, thus: $$\Rightarrow T( n) = T (2^m ) = 3T(2^{\frac{m}{3}} ) + \log m $$  
-      And denote $ S = S(m) = T(2^m) $, so we get the recursive form: $$\rightarrow S(m) = 3T(2^{\frac{m}{3}} ) + \log m = 3S(\frac{m}{3} ) + \log m $$ Thus, we can apply the master theorem according to the third case:
+    \paragraph{}
+    So, $f(n) = 1 = \Theta ( n^{\log_{\frac{3}{2}} (1)}) $, which matches the second case, hence: $$T(n) = \Theta ( n^{\log_{\frac{3}{2}} (1)}\log n ) \rightarrow \Theta( \log n ) $$.
+    
+  \item $T(n) = \TT{3}{4} + n\log n $.
+    \paragraph{}
+    Thus, $f(n) = \Omega( n^{\log_{4}(3) + \varepsilon}  ) $, and notice that $ af( \frac{n}{b})~=\frac{3n}{4}\log(\frac{n}{4})$, which suggests that the first case might hold. To ensure that, we have to show the existence of constants $c, n_{0}$ that satisfy the second condition of the case. Pick $c = \frac{3}{4}$, and using the monotony of the log-function, we have:
+    \begin{equation*}
+      \begin{split}
+        \frac{3}{4}\log(\frac{n}{4}) \le \frac{3}{4} n \log ( n ) 
+      \end{split}
+    \end{equation*}
+    Thus, $T(n) =  \Theta(f(n))  = \Theta(n\log n)$.
+    
+    \item $T(n) = 3T( n^{\frac{1}{3}}) + \log\log n$. 
+    \paragraph{}
+      Let $ m = \log n $, thus: $$\Rightarrow T( n) = T (2^m ) = 3T(2^{\frac{m}{3}} ) + \log m $$ And denote $ S = S(m) = T(2^m) $, so we get the recursive form: $$\rightarrow S(m) = 3T(2^{\frac{m}{3}} ) + \log m = 3S(\frac{m}{3} ) + \log m $$ Thus, we can apply the master theorem according to the third case:
       \begin{equation*}
         \begin{split}
       \log m &= O(m^{\log_{3}(3)-\varepsilon} ) \\ 
@@ -71,7 +80,7 @@ Now, let's generalize the simple version for an arbitrary positive \(f\) and let
 \newpage
 
 \section{Linear Time Sorts (Assumptions over the inputs)}
-You will see in the next lecture that any comparison sort, namely a sorting algorithm that assumes nothing about the given input except that its items can be compared, has an \(\Omega(n\log n)\) lower bound on its running time. We will now see how adding assumptions about the input structure might help us bypass the limit and achieve an asymptotically better running time.
+You will see in the next lecture that any comparison sort, namely a sorting algorithm that assumes nothing about the given input except that its items can be compared, has an $\Omega(n\log n)$ lower bound on its running time. We will now see how adding assumptions about the input structure might help us bypass the limit and achieve an asymptotically better running time.
 
 \begin{example} Assume that the input is permutation over $\{1 ,2 ,3, .., n \}$. For example: \begin{equation*}
     \begin{split}
