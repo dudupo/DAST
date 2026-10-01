@@ -104,17 +104,17 @@ Write an algorithm that sorts given the assumption. What is its running time? \\
 
 
 \paragraph{Counting sort.}
-Counting sort assumes that each of the $n$ input elements is an \textbf{integer} with a size at most $k$. It runs in $\Theta(n + k)$ time, so when $k = O(n)$, counting sort runs in $\Theta(n)$ time. It first determines, for each input element $x$, the number of elements less than or equal to $x$. Then, it uses this information to place element $x$ directly into its position in the output array. For example, if there are 17 elements less than or equal to $x$, then $x$ will be placed in position 17. However, we need to make some adjustments to this method to handle cases where multiple elements have the \textbf{same value}. We do not want all of them to end up in the same position.
+Counting sort assumes that each of the $n$ input elements is an \textbf{integer} which is at most $k$. It runs in $\Theta(n + k)$ time, so when $k = O(n)$, counting sort runs in $\Theta(n)$ time. It first determines, for each input element $x$, the number of elements less than or equal to $x$. Then, it uses this information to place element $x$ directly into its position in the output array. For example, if there are 17 elements less than or equal to $x$, then $x$ will be placed in position 17. However, we need to make some adjustments to this method to handle cases where multiple elements have the \textbf{same value}. We do not want all of them to end up in the same position.
 
   \begin{algorithm}
   	let B and C be new arrays at size $n$ and $k$ \\ 
-  	\For{ $i \in  [0, k]$}{
+  	\For{ $i \in  [1, k]$}{
 		$C_{i} \leftarrow 0 $
   	}
 	\For{ $j \leftarrow [1, n]$}{
 	  $C_{A{j}} \leftarrow C_{A_{j}} + 1 $
  	}
-	\For{ $i \in  [1, k]$}{
+	\For{ $i \in  [2, k]$}{
 	  $C_{i} \leftarrow C_{i} + C_{i – 1} $
  	}
 	\For{ $j \in [n , 1]$}{
