@@ -55,10 +55,10 @@ Now, let's generalize the simple version for an arbitrary positive $f$ and let~$
     
   \item $T(n) = \TT{3}{4} + n\log n $.
     
-    \noindent Thus, $f(n) = \Omega( n^{\log_{4}(3) + \varepsilon}  ) $, and notice that $ af( \frac{n}{b})~=\frac{3n}{4}\log(\frac{n}{4})$, which suggests that the first case might hold. To ensure that, we have to show the existence of constants $c, n_{0}$ that satisfy the second condition of the case. Pick $c = \frac{3}{4}$, and using the monotony of the log-function, we have:
+    \noindent Clearly, $f(n) = \Omega( n^{\log_{4}(3) + \varepsilon}  ) $, which suggests that the first case might hold. To ensure that, we have to show the existence of constants $c, n_{0}$ that satisfy the second condition of the case. Pick $c = \frac{3}{4}$, and using the monotony of the log-function, we have:
     \begin{equation*}
       \begin{split}
-        \frac{3}{4}n\log(\frac{n}{4}) \le \frac{3}{4} n \log ( n ) 
+        af( \frac{n}{b})~=\frac{3n}{4}\log(\frac{n}{4}) = \frac{3}{4}n\log(\frac{n}{4}) \le \frac{3}{4} n \log ( n ) 
       \end{split}
     \end{equation*}
     Thus, $T(n) =  \Theta(f(n))  = \Theta(n\log n)$.
