@@ -134,6 +134,36 @@ An important property of the counting sort is that it is \textbf{stable}.
 
 Counting sort's stability is important for another reason: counting sort is often used as a subroutine in radix sort. As we shall see in the next section, in order for radix sort to work correctly, counting sort must be stable.
 
+\begin{example}
+Consider the array $A = \{ 3,1,3,2,1 \}$. Denote by $C^{(i)}$ the array $C$ at the end of the $i$th iteration of the second loop, where $C^{(0)}$ is the array prior to the execution of the loop.
+  \begin{equation*}
+    \begin{split}
+       & C^{(0)} = \{0,0,0,0,0 \}  \\ 
+       & C^{(1)} = \{0,0,1,0,0 \}  \\ 
+       & C^{(2)} = \{1,0,1,0,0 \}  \\ 
+       & C^{(3)} = \{1,0,2,0,0 \}  \\ 
+       & C^{(4)} = \{1,1,2,0,0 \}  \\ 
+       & C^{(5)} = \{2,1,2,0,0 \}  
+    \end{split}
+  \end{equation*}
+Then, after the accumulation in the third loop, $C$ becomes:
+  \begin{equation*}
+    \begin{split}
+       & C = \{2,3,5,0,0 \}  
+    \end{split}
+  \end{equation*}
+Now, let $B^{(i)}, C^{(5+i)}$ be the arrays $B$ and $C$ at the end of the $i$th iteration of the fourth loop.
+  \begin{equation*}
+    \begin{split}
+      & B^{(1)} =  \{0,1,0,0,0 \}  \quad C^{(6)} = \{1,3,5,0,0 \}  \\
+      & B^{(2)} =  \{0,1,2,0,0 \}  \quad C^{(7)} = \{1,2,5,0,0 \}  \\
+      & B^{(3)} =  \{0,1,2,0,3 \}  \quad C^{(8)} = \{1,2,4,0,0 \}  \\
+      & B^{(4)} =  \{1,1,2,0,3 \}  \quad C^{(9)} = \{0,2,4,0,0 \}  \\
+      & B^{(5)} =  \{1,1,2,3,3 \}  \quad C^{(9)} = \{0,2,3,0,0 \} 
+    \end{split}
+  \end{equation*}
+Observes that since the order in the fourth loop is from the big to the small (or right to left), it's guaranteed that between two elements with equal value in $A$, the rightmost among the two will be placed at a higher index in $B$.
+\end{example}
 
 \paragraph{Radix sort}
 %\marginnote[Note 1: That introduction was copied word by word from a web source. Do not use for commercial purposes. ]{Note 1: That introduction was copied word by word from a web source. Do not use for commercial purposes.} Radix sort is the algorithm used by the card-sorting machines you now find only in computer museums. The cards have 80 columns, and in each column, a machine can punch a hole in one of 12 places. The sorter can be mechanically "programmed" to examine a given column of each card in a deck and distribute the card into one of 12 bins depending on which place has been punched. An operator can then gather the cards bin by bin, so that cards with the first place punched are on top of cards with the second place punched, and so on.
