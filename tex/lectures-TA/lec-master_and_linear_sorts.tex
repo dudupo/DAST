@@ -194,6 +194,8 @@ The Radix-sort procedure assumes that each element in the array $A$ has d digits
 
 The analysis of the running time depends on the stable sort used as the intermediate sorting algorithm. When each digit lies in the range $0$ to $k – 1$ (so that it can take on $k$ possible values), and $k$ is not too large, counting sort is the obvious choice. Each pass over $n$ $d$-digit numbers then takes $\Theta(n + k)$ time. There are $d$ passes, and so the total time for radix sort is $\Theta\left(d(n + k)\right)$.
 
+\newpage
+
 \paragraph{Bucket sort.} % \ctt{Only if there is time.} }
 \marginnote[Note 2:  We will return to analyze the expected (average) running time after the lecture on probability.
 ]{Note 2: We will return to analyze the expected (average) running time after the lecture on probability.
